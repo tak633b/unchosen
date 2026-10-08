@@ -4,6 +4,8 @@ import { readFile } from 'node:fs/promises';
 import { mkdirSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
 import { extname, join, normalize } from 'node:path';
+import { lookup } from 'node:dns/promises';
+import { isIP } from 'node:net';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -70,20 +72,53 @@ function validEntry(b) {
 }
 
 // ---- AI の中継 ---------------------------------------------------------------
-// 何でも中継する踏み台にならないよう、宛先は既知の API か、手元・社内の LLM だけにする
+// 何でも中継する踏み台にならないよう、宛先は既知の API (完全一致) か、
+// 名前を引いた結果がすべて手元・LAN・Tailscale の住所になる LLM だけにする。
+// 私的な住所への中継はサーバの設定で止められる (AI_PRIVATE_RELAY=off)。クライアントからは変えられない。
 const AI_HOSTS = new Set(['openrouter.ai', 'api.openai.com']);
-const PRIVATE = [/^127\./, /^10\./, /^192\.168\./, /^172\.(1[6-9]|2\d|3[01])\./, /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./, /^\[?::1\]?$/, /^localhost$/, /\.local$/, /\.ts\.net$/];
+const PRIVATE_RELAY = process.env.AI_PRIVATE_RELAY !== 'off';
 const AI_TIMEOUT_MS = 90_000;
 const AI_MAX_RESPONSE = 256 * 1024;
 const aiHits = new Map();
 
-function aiTarget(baseUrl) {
+function v4(ip) {
+  const p = ip.split('.').map(Number);
+  return p.length === 4 && p.every((n) => Number.isInteger(n) && n >= 0 && n <= 255) ? p : null;
+}
+
+// 中継してよい私的な住所か。リンクローカル (169.254/16, fe80::/10) と 0.0.0.0 は常に拒む
+function allowedPrivate(addr) {
+  const ip = addr.toLowerCase().replace(/^::ffff:/, '');
+  const p = v4(ip);
+  if (p) {
+    const [a, b] = p;
+    if (a === 0 || (a === 169 && b === 254)) return false;
+    return a === 127 || a === 10 || (a === 192 && b === 168) || (a === 172 && b >= 16 && b <= 31) || (a === 100 && b >= 64 && b <= 127);
+  }
+  if (ip === '::1') return true;
+  if (/^fe[89ab]/.test(ip) || ip === '::') return false;
+  return /^f[cd]/.test(ip); // ULA fc00::/7
+}
+
+// 宛先を確かめ、接続に使う URL と Host を返す。だめなら null
+async function aiTarget(baseUrl) {
   let u;
   try { u = new URL(String(baseUrl)); } catch { return null; }
-  if (!['http:', 'https:'].includes(u.protocol)) return null;
-  const known = AI_HOSTS.has(u.hostname) && u.protocol === 'https:';
-  if (!known && !PRIVATE.some((re) => re.test(u.hostname))) return null;
-  return `${u.origin}${u.pathname.replace(/\/$/, '')}/chat/completions`;
+  if (!['http:', 'https:'].includes(u.protocol) || u.username || u.password) return null;
+  const path = `${u.pathname.replace(/\/$/, '')}/chat/completions`;
+  if (AI_HOSTS.has(u.hostname)) return u.protocol === 'https:' ? { url: `https://${u.host}${path}`, host: null } : null;
+  if (!PRIVATE_RELAY) return null;
+  const host = u.hostname.replace(/^\[|\]$/g, '');
+  let addrs;
+  try { addrs = isIP(host) ? [{ address: host }] : await lookup(host, { all: true }); } catch { return null; }
+  if (!addrs.length || !addrs.every((a) => allowedPrivate(a.address))) return null;
+  // http は確かめた住所へ直接つなぐ (名前の引き直しで別の住所に向けられるのを防ぐ)
+  if (u.protocol === 'http:') {
+    const a = addrs[0].address;
+    const ipHost = a.includes(':') ? `[${a}]` : a;
+    return { url: `http://${ipHost}${u.port ? `:${u.port}` : ''}${path}`, host: u.host };
+  }
+  return { url: `https://${u.host}${path}`, host: null };
 }
 
 async function aiRelay(req, res) {
@@ -95,23 +130,26 @@ async function aiRelay(req, res) {
   if (recent.length > 120) return send(res, 429, { success: false, error: 'too many requests' });
   let b;
   try { b = await readJson(req, 64 * 1024); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
-  const target = aiTarget(b?.baseUrl);
+  const target = await aiTarget(b?.baseUrl);
   if (!target) return send(res, 400, { success: false, error: 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)' });
   const body = b.body && typeof b.body === 'object' ? b.body : null;
   if (!body || typeof body.model !== 'string' || !Array.isArray(body.messages)) return send(res, 400, { success: false, error: 'invalid body' });
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), AI_TIMEOUT_MS);
   try {
-    const r = await fetch(target, {
+    const r = await fetch(target.url, {
       method: 'POST',
+      redirect: 'manual', // 転送先は確かめていないので、追いかけない
       headers: {
         'Content-Type': 'application/json',
+        ...(target.host ? { Host: target.host } : {}),
         ...(typeof b.apiKey === 'string' && b.apiKey ? { Authorization: `Bearer ${b.apiKey}` } : {}),
         'X-Title': 'Unchosen',
       },
       body: JSON.stringify({ model: body.model, messages: body.messages, max_tokens: Math.min(2000, Number(body.max_tokens) || 800), temperature: Number(body.temperature) || 1 }),
       signal: ctrl.signal,
     });
+    if (r.status >= 300 && r.status < 400) return send(res, 502, { success: false, error: 'LLM が転送を返したので中継しなかった' });
     const text = (await r.text()).slice(0, AI_MAX_RESPONSE);
     if (!r.ok) return send(res, 502, { success: false, error: `LLM が ${r.status} を返した: ${text.slice(0, 200)}` });
     const j = JSON.parse(text);
