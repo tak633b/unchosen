@@ -1,8 +1,8 @@
 // 死亡記録: 一生のまとめ、数字、この人への一言、同じ1秒に生まれた人たちの結末。
-import { byCode, type BirthBasis } from '../engine/countries';
+import { ERA_NOW, byCode, countriesAt, countryAt, type BirthBasis } from '../engine/countries';
 import { formatMoney, monthlyYen, yen } from '../engine/economy';
 import { netWorth } from '../engine/events/money';
-import { lifeTable } from '../engine/lifetable';
+import { bornTable } from '../engine/lifetable';
 import { EDU_LABEL, eduLevel, type Person, type Tie } from '../engine/person';
 import { lifeStory } from '../engine/summary';
 import { drawCard, shareCard } from './cards';
@@ -43,7 +43,10 @@ function standIn(l: PastLife): Person {
 
 export const pastLives = () => load<PastLife[]>('lives', []);
 
-// 世界全体で見た所得の位置 (購買力平価ドル)。世界銀行の分布をおおまかに折れ線で近似
+// 世界全体で見た所得の位置 (購買力平価ドル)。世界銀行の分布 (今の時代) をおおまかに折れ線で近似。
+// ほかの年は、世界の1人当たりGDP (人口加重) の比で今の時代に直してから当てる
+const worldGdp = (year: number) => { const list = countriesAt(year); return list.reduce((s, c) => s + c.gdp * c.pop, 0) / list.reduce((s, c) => s + c.pop, 0); };
+const worldIncomeTopAt = (ppp: number, year: number) => worldIncomeTop(ppp * worldGdp(ERA_NOW) / worldGdp(year));
 function worldIncomeTop(ppp: number): number {
   const pts: [number, number][] = [[500, 0.95], [1500, 0.8], [3000, 0.6], [6000, 0.4], [12000, 0.22], [25000, 0.1], [45000, 0.04], [80000, 0.01]];
   if (ppp <= pts[0][0]) return 0.97;
@@ -72,8 +75,8 @@ function factsOf(p: Person): [string, string][] {
     [L('最終学歴', 'Education'), `${EDU_LABEL[edu]}${p.school.major ? `${L('・', ', ')}${majorName(p.school.major)}` : ''}`],
     [L('最後の仕事', 'Last job'), p.job ? `${jobName(p.job)}${p.retired ? L('・引退', ', retired') : ''}` : L('なし', 'None')],
     [L('いちばん稼いだ年', 'Best year'), p.peakIncome ? (isEn
-      ? `${formatMoney(p.peakIncome)}, top ${Math.max(1, Math.round(worldIncomeTop(p.peakIncome) * 100))}% of world incomes`
-      : `${formatMoney(p.peakIncome)}・世界の所得の上位${Math.max(1, Math.round(worldIncomeTop(p.peakIncome) * 100))}%・日本の感覚で月${monthlyYen(p.peakIncome)}`) : '—'],
+      ? `${formatMoney(p.peakIncome)}, top ${Math.max(1, Math.round(worldIncomeTopAt(p.peakIncome, p.peakYear ?? ERA_NOW) * 100))}% of world incomes in ${p.peakYear ?? ERA_NOW}`
+      : `${formatMoney(p.peakIncome)}・${p.peakYear ?? ERA_NOW}年の世界の所得の上位${Math.max(1, Math.round(worldIncomeTopAt(p.peakIncome, p.peakYear ?? ERA_NOW) * 100))}%・日本の感覚で月${monthlyYen(p.peakIncome)}`) : '—'],
     [L('残した財産(日本の物価で)', 'Net worth left'), p.age >= 18 ? yen(netWorth(p)) : '—'],
     [L('子ども', 'Children'), p.children.length ? L(`${p.children.length}人`, `${p.children.length}`) : L('なし', 'None')],
     [L('暮らした国', 'Countries'), p.countriesLived.map((c) => byCode(c).name).join(' → ')],
@@ -98,14 +101,17 @@ function toPast(p: Person, others: Person[], basis: BirthBasis): PastLife {
 }
 
 export function deathRecord(l: PastLife): string {
-  const b = byCode(l.birthCountry);
-  const e0 = l.sex === 'F' ? b.leF : b.leM;
-  const outlive = 1 - lifeTable(b, l.sex).l[Math.min(110, l.age + 1)];
-  const longer = lifeTable(b, l.sex).l[Math.min(110, l.age + 1)];
+  // 同じ年・同じ国に生まれた人たち (その後の各暦年の死亡率で生きた場合) と比べる。
+  // 生まれた年の平均寿命 (その1年の死亡率から出す値) は、飢饉の年などに極端に短くなるので使わない
+  const b = countryAt(l.birthCountry, l.birthYear);
+  const born = bornTable(b, l.sex, l.birthYear);
+  const e0 = born.e0;
+  const longer = born.l[Math.min(110, l.age + 1)];
+  const outlive = 1 - longer;
   const diff = l.age - e0;
   const real = load<string | null>('realCountry', null);
-  const r = real ? byCode(real) : null;
-  const rl = r ? lifeTable(r, l.sex).l[Math.min(110, l.age + 1)] : 0;
+  const r = real ? countryAt(real, l.birthYear) : null;
+  const rl = r ? bornTable(r, l.sex, l.birthYear).l[Math.min(110, l.age + 1)] : 0;
   const five = [{ name: l.name, country: l.birthCountry, age: l.age, story: '' }, ...l.others].sort((a, c) => a.age - c.age);
   const answers = l.questions.filter((q) => q.a);
   return `
@@ -119,8 +125,8 @@ export function deathRecord(l: PastLife): string {
     <section id="aistory">${l.aiStory ? aiStoryHtml(l.aiStory) : ''}</section>
     <div class="cause"><b>${L('死因', 'Cause of death:')} ${esc(causeName(l.cause ?? ''))}</b>
       <p>${isEn
-        ? `Of the ${l.sex === 'F' ? 'girls' : 'boys'} born in ${esc(b.name)} that year, about ${pct(longer)} live longer than this (${pct(outlive)} die sooner). ${l.sex === 'F' ? 'She' : 'He'} lived ${Math.abs(diff).toFixed(1)} years ${diff >= 0 ? 'longer' : 'less'} than the ${l.sex === 'F' ? 'female' : 'male'} life expectancy in ${esc(b.name)}, ${e0.toFixed(1)}.`
-        : `同じ年に${esc(b.name)}で生まれた${l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。${esc(b.name)}の${l.sex === 'F' ? '女性' : '男性'}の平均寿命${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。`}</p></div>
+        ? `Of the ${l.sex === 'F' ? 'girls' : 'boys'} born in ${esc(b.name)} that year, about ${pct(longer)} live longer than this (${pct(outlive)} die sooner). On average they live to ${e0.toFixed(1)}; ${l.sex === 'F' ? 'she' : 'he'} lived ${Math.abs(diff).toFixed(1)} years ${diff >= 0 ? 'longer' : 'less'}.`
+        : `同じ年に${esc(b.name)}で生まれた${l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。その平均${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。`}</p></div>
     <dl class="kv facts">${l.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
     ${r && r.code !== b.code ? `<p class="note">${L(`あなたの生まれた${esc(r.name)}では、同じ年に生まれた人の${pct(rl)}が${l.age}歳を越えて生きる。${esc(b.name)}では${pct(longer)}。`, `In ${esc(r.name)}, where you were born, ${pct(rl)} of people born that year live past ${l.age}. In ${esc(b.name)}, ${pct(longer)}.`)}</p>` : ''}
     ${answers.length ? `<h3>${L('止まった時間に書いたこと', 'Written when time stopped')}</h3><ul class="answers">${answers.map((q) => `<li><small>${L(`${q.age}歳・`, `Age ${q.age} · `)}${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul>` : ''}

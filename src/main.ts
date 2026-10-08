@@ -1,5 +1,7 @@
 import './style.css';
-import { COUNTRIES, byCode, totalOf, type BirthBasis } from './engine/countries';
+import { COUNTRIES, ERA_FROM, ERA_NOW, ERA_TO, byCode, countriesAt, countryAt, totalOf, type BirthBasis } from './engine/countries';
+import { loadWorld } from './engine/world';
+import { bornTable } from './engine/lifetable';
 import { earnings, formatMoney } from './engine/economy';
 import { causeName } from './engine/causes';
 import { createPerson } from './engine/life';
@@ -44,13 +46,21 @@ const sharedCard = (m: Shared) => {
 
 // ---- トップ ---------------------------------------------------------------
 
+// 生まれる年。選ばなければ今年
+const THIS_YEAR = new Date().getFullYear();
+const birthYear = () => Math.min(ERA_TO, Math.max(ERA_FROM, load<number | null>('birthYear', null) ?? THIS_YEAR));
+// 「今生まれる」「1980年に生まれる」のように、年を入れた言い方
+const bornWhen = (y: number) => (y === THIS_YEAR ? L('今生まれる', 'born today') : L(`${y}年に生まれる`, `born in ${y}`));
+
 function home(): void {
   window.clearInterval(counterTimer);
   const basis = load<BirthBasis>('basis', 'births');
   const real = load<string | null>('realCountry', null);
   const saved = hasSaved();
-  const total = totalOf(basis);
-  const top = [...COUNTRIES].sort((a, b) => b[basis] - a[basis]).slice(0, 9);
+  const year = birthYear();
+  const list = countriesAt(year);
+  const total = totalOf(basis, year);
+  const top = [...list].sort((a, b) => b[basis] - a[basis]).slice(0, 9);
   const rest = 1 - top.reduce((s, c) => s + c[basis], 0) / total;
   const opts = [...COUNTRIES].sort((a, b) => a.name.localeCompare(b.name, lang))
     .map((c) => `<option value="${c.code}" ${c.code === real ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
@@ -66,7 +76,7 @@ function home(): void {
         <div class="counters"><div><b id="cb">0</b><small>${L('このページを開いてから生まれた赤ちゃん', 'babies born since you opened this page')}</small></div><div><b id="cd">0</b><small>${L('同じ間に亡くなった人', 'people who died in the same time')}</small></div></div>
       </div>
       <div class="panel odds">
-        <h3>${basis === 'births' ? L('今生まれる赤ちゃんなら', 'If you were born today') : L('今生きている80億人なら', 'Among the 8 billion alive today')} <small>${L('国連世界人口推計 2024', 'UN World Population Prospects 2024')}</small></h3>
+        <h3>${basis === 'births' ? L(`${bornWhen(year)}赤ちゃんなら`, `If you were ${bornWhen(year)}`) : year === THIS_YEAR ? L('今生きている80億人なら', 'Among the 8 billion alive today') : L(`${year}年に生きている人なら`, `Among people alive in ${year}`)} <small>${L('国連世界人口推計 2024', 'UN World Population Prospects 2024')}${year > ERA_NOW ? L('・予測', ', projection') : ''}</small></h3>
         ${top.map((c) => `<div class="odd"><span>${esc(c.name)}</span><i style="width:${((c[basis] / total) * 100 / (top[0][basis] / total)).toFixed(1)}%"></i><b>${pct(c[basis] / total, 1)}</b></div>`).join('')}
         <div class="odd rest"><span>${L(`ほか${COUNTRIES.length - 9}か国`, `${COUNTRIES.length - 9} other countries`)}</span><i style="width:100%"></i><b>${pct(rest, 1)}</b></div>
       </div>
@@ -74,8 +84,11 @@ function home(): void {
     <div class="panel start">
       <div class="startgrid">
         <fieldset><legend>${L('生まれる国の決め方', 'How your country is drawn')}</legend>
-          <div class="seg"><button data-basis="births" class="${basis === 'births' ? 'on' : ''}">${L('今生まれる赤ちゃん', 'Babies born today')}</button><button data-basis="pop" class="${basis === 'pop' ? 'on' : ''}">${L('今生きている80億人', 'All 8 billion alive')}</button></div>
+          <div class="seg"><button data-basis="births" class="${basis === 'births' ? 'on' : ''}">${year === THIS_YEAR ? L('今生まれる赤ちゃん', 'Babies born today') : L(`${year}年の出生数`, `Births in ${year}`)}</button><button data-basis="pop" class="${basis === 'pop' ? 'on' : ''}">${year === THIS_YEAR ? L('今生きている80億人', 'All 8 billion alive') : L(`${year}年の人口`, `Population in ${year}`)}</button></div>
           <p class="note">${L('出生数なら国ごとの年間出生数で、人口なら人口の割合で選ぶ。どちらでも0歳から始まる。', 'By births, weighted by each country’s annual births. By population, by its share of people alive. Either way you start at age 0.')}</p></fieldset>
+        <fieldset><legend>${L('生まれる年', 'Year of birth')}</legend>
+          <div class="yearpick"><input type="range" id="year" min="${ERA_FROM}" max="${ERA_TO}" step="1" value="${year}" aria-label="${L('生まれる年', 'Year of birth')}"><b id="yearv">${year}</b><button data-year="now" class="${year === THIS_YEAR ? 'on' : ''}">${L('今年', 'This year')}</button></div>
+          <p class="note" id="yearnote">${yearNote(year)}</p></fieldset>
         <label class="field">${L('あなたが実際に生まれた国(任意)', 'The country you were actually born in (optional)')}
           <select id="real"><option value="">${L('選ばない', 'Skip')}</option>${opts}</select>
           <span class="note">${L('選ぶと、この人生とあなたの人生を並べて比べる。この端末にだけ保存。', 'If set, this life is compared side by side with yours. Saved only on this device.')}</span></label>
@@ -103,6 +116,9 @@ function home(): void {
     if (el) { el.innerHTML = list.length ? list.slice(0, 12).map(sharedCard).join('') : `<li>${L('まだ誰もいない。', 'No one yet.')}</li>`; paintScenes(el); }
   });
   $('#real').onchange = (e) => save('realCountry', (e.target as HTMLSelectElement).value || null);
+  const yr = $('#year') as HTMLInputElement;
+  yr.oninput = () => { $('#yearv').textContent = yr.value; $('#yearnote').textContent = yearNote(+yr.value); };
+  yr.onchange = () => { save('birthYear', +yr.value === THIS_YEAR ? null : +yr.value); home(); };
   bindAiPanel();
   app.onclick = async (e) => {
     const t = e.target as HTMLElement;
@@ -114,11 +130,13 @@ function home(): void {
     const candle = t.closest<HTMLButtonElement>('[data-candle]');
     if (candle && !candle.disabled) { await light(candle); return; }
     const go = t.closest<HTMLElement>('[data-go]')?.dataset.go;
+    if (t.closest('[data-year=now]')) { save('birthYear', null); home(); return; }
     if (go === 'born') {
       if (saved) clearSaved();
-      roll(createPerson({ seed: randomSeed(), basis }), basis);
+      await loadWorld();
+      roll(createPerson({ seed: randomSeed(), basis, year: birthYear() }), basis);
     }
-    if (go === 'resume') resumeGame(home);
+    if (go === 'resume') { await loadWorld(); resumeGame(home); }
     if (go === 'past') past();
     if (go === 'about') about();
   };
@@ -135,14 +153,21 @@ async function light(btn: HTMLButtonElement): Promise<void> {
 
 // ---- 生まれる国のくじ -----------------------------------------------------
 
+// 選んだ年が、記録の時代か予測の時代か
+function yearNote(y: number): string {
+  if (y <= ERA_NOW) return L(`${y}年の統計で生まれ、その後の年もその時々の統計で生きる。`, `Born into the statistics of ${y}, and lives each later year by that year's figures.`);
+  return L(`${ERA_NOW}年より先は、国連の予測(中位推計)と、それを延ばした推定で生きる。起きることは予測であって、決まった未来ではない。`, `After ${ERA_NOW}, life follows the UN projections (medium variant) and estimates extended from them. It is a projection, not a fixed future.`);
+}
+
 function roll(p: Person, basis: BirthBasis): void {
   window.clearInterval(counterTimer);
-  const total = totalOf(basis);
+  const total = totalOf(basis, p.birthYear);
+  const list = countriesAt(p.birthYear);
   app.innerHTML = `<main class="home roll"><p class="kicker">${L('生まれる場所を決めている', 'Choosing where you are born')}</p><h1 id="rollname"></h1><p id="rollodds" class="lead"></p></main>`;
   let i = 0;
   const steps = 18;
   const timer = window.setInterval(() => {
-    const c = i < steps ? COUNTRIES[Math.floor(Math.random() * 40)] : byCode(p.birthCountry);
+    const c = i < steps ? list[Math.floor(Math.random() * 40)] : countryAt(p.birthCountry, p.birthYear);
     $('#rollname').textContent = c.name;
     $('#rollodds').textContent = `${L('確率', 'Odds')} ${pct(c[basis] / total, 1)}`;
     if (++i > steps) { window.clearInterval(timer); setTimeout(() => born(p, basis), 900); }
@@ -152,18 +177,23 @@ function roll(p: Person, basis: BirthBasis): void {
 // ---- 出生届 ---------------------------------------------------------------
 
 function born(p: Person, basis: BirthBasis): void {
-  const c = byCode(p.birthCountry);
+  const c = countryAt(p.birthCountry, p.birthYear);
+  const total = (b: BirthBasis) => totalOf(b, p.birthYear);
   const share = c[basis] / total(basis);
   const e0 = p.sex === 'F' ? c.leF : c.leM;
-  const others = sameSecondOthers(basis);
+  // この子と同じ年に生まれた人たちが、その後の各暦年の死亡率で生きた場合
+  const bornL = bornTable(c, p.sex, p.birthYear);
+  const bornE0 = bornL.e0, bornU5 = 1 - bornL.l[5];
+  const others = sameSecondOthers(basis, p.birthYear);
   const real = load<string | null>('realCountry', null);
-  const r = real ? byCode(real) : null;
+  const r = real ? countryAt(real, p.birthYear) : null;
   const quint = Math.min(5, Math.floor(p.familyP * 5) + 1);
   const fields: [string, string][] = [
     [L('性別', 'Sex'), sexWord(p.sex)], [L('出生国', 'Country'), c.name], [L('出生地', 'Birthplace'), p.city ? L(`${p.city}(都市)`, `${p.city} (city)`) : L('農村', 'Rural')],
     [L('生まれた家', 'Family income'), `${'●'.repeat(quint)} ${L(`${quint}分位`, `quintile ${quint} of 5`)}`],
     [L('親の年齢', 'Parents’ ages'), L(`母 ${p.mother.age}歳・父 ${p.father.age}歳`, `mother ${p.mother.age}, father ${p.father.age}`)], [L('宗教', 'Religion'), religionName(p.religion)],
-    [L('平均寿命', 'Life expectancy'), L(`${e0.toFixed(1)}歳`, e0.toFixed(1))], [L('5歳までに亡くなる確率', 'Chance of dying before 5'), pct(c.u5mr, 1)], [L('1人当たりGDP (PPP)', 'GDP per person (PPP)'), `$${Math.round(c.gdp).toLocaleString()}`],
+    [L('同じ年に生まれた人の平均寿命', 'Expected lifespan of this birth year'), L(`${bornE0.toFixed(1)}歳`, bornE0.toFixed(1))], [L('5歳までに亡くなる確率', 'Chance of dying before 5'), pct(bornU5, 1)],
+    [L(`${p.birthYear}年の平均寿命`, `Life expectancy in ${p.birthYear}`), L(`${e0.toFixed(1)}歳`, e0.toFixed(1))], [L('1人当たりGDP (PPP)', 'GDP per person (PPP)'), `$${Math.round(c.gdp).toLocaleString()}`],
   ];
   const perYear = Math.round(c.births / 1e4);
   const oneIn = Math.round(total('births') / c.births);
@@ -183,8 +213,8 @@ function born(p: Person, basis: BirthBasis): void {
       <p class="note">${L('平均寿命まで生きると約30分(1年 ≈ 26秒)。途中で閉じてもこの端末に保存され、続きから生きられる。', 'A life to average life expectancy takes about 30 minutes (1 year ≈ 26 seconds). If you close the page, it is saved on this device and you can continue later.')}</p>
       <dl class="fields">${fields.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
       <p class="statbox">${isEn
-        ? `${pct(c.births / total('births'), 1)} of babies born today are born in ${esc(c.name)}. About ${(Math.round(c.births / 1e3) * 1e3).toLocaleString()} a year, 1 in ${oneIn}.${share !== c.births / total('births') ? ` (By population: ${pct(share, 1)}.)` : ''}`
-        : `今生まれる赤ちゃんの ${pct(c.births / total('births'), 1)} が${esc(c.name)}で生まれる。年に約${perYear.toLocaleString()}万人、${oneIn}人に1人。${share !== c.births / total('births') ? `(人口で数えると ${pct(share, 1)})` : ''}`}</p>
+        ? `${pct(c.births / total('births'), 1)} of babies ${bornWhen(p.birthYear)} are born in ${esc(c.name)}. About ${(Math.round(c.births / 1e3) * 1e3).toLocaleString()} a year, 1 in ${oneIn}.${share !== c.births / total('births') ? ` (By population: ${pct(share, 1)}.)` : ''}`
+        : `${bornWhen(p.birthYear)}赤ちゃんの ${pct(c.births / total('births'), 1)} が${esc(c.name)}で生まれる。年に約${perYear.toLocaleString()}万人、${oneIn}人に1人。${share !== c.births / total('births') ? `(人口で数えると ${pct(share, 1)})` : ''}`}</p>
       ${r ? `<table class="cmp"><tr><th>${L('同じ日に生まれたら', 'Born the same day')}</th><th>${L(`あなたの${esc(r.name)}`, `Your ${esc(r.name)}`)}</th><th>${L(`この子の${esc(c.name)}`, `This child’s ${esc(c.name)}`)}</th></tr>${cmp.map(([k, f]) => `<tr><td>${k}</td><td>${f(r)}</td><td><b>${f(c)}</b></td></tr>`).join('')}</table>` : ''}
       <h3>${L('同じ1秒に、地球のどこかで生まれた人たち', 'Others born somewhere on Earth in the same second')}</h3>
       <ul class="certothers">${others.map((o) => `<li><b>${esc(o.name)}</b><span>${esc(byCode(o.birthCountry).name)}${o.city ? ` ${esc(o.city)}` : L('・農村', ', rural')}${L('・', ', ')}${o.sex === 'F' ? L('女', 'girl') : L('男', 'boy')}${L('・', ', ')}${o.familyP < 0.2 ? L('いちばん貧しい家', 'poorest family') : o.familyP < 0.4 ? L('余裕のない家', 'struggling family') : o.familyP < 0.8 ? L('ふつうの家', 'average family') : L('裕福な家', 'well-off family')}</span></li>`).join('')}</ul>
@@ -204,7 +234,7 @@ function born(p: Person, basis: BirthBasis): void {
     if (go === 'card') {
       await shareCard(drawCard({
         kicker: L(`出生届・${p.birthYear}年${p.birthMonth}月`, `Birth record, ${new Date(2000, p.birthMonth - 1).toLocaleString('en-US', { month: 'long' })} ${p.birthYear}`), title: p.name,
-        lines: [p.log[0].text, L(`今生まれる赤ちゃんの ${pct(c.births / total('births'), 1)}・平均寿命 ${e0.toFixed(1)}歳`, `${pct(c.births / total('births'), 1)} of babies born today. Life expectancy ${e0.toFixed(1)}.`)],
+        lines: [p.log[0].text, L(`${bornWhen(p.birthYear)}赤ちゃんの ${pct(c.births / total('births'), 1)}・平均寿命 ${e0.toFixed(1)}歳`, `${pct(c.births / total('births'), 1)} of babies ${bornWhen(p.birthYear)}. Life expectancy ${e0.toFixed(1)}.`)],
         foot: L('Unchosen — 生まれは、選べない', 'Unchosen. You don’t choose where you’re born.'),
         scene: toData(sceneOf(p)),
       }), 'birth.png');
@@ -212,7 +242,6 @@ function born(p: Person, basis: BirthBasis): void {
   };
 }
 
-const total = (basis: BirthBasis) => totalOf(basis);
 
 // ---- 前世の記録 -----------------------------------------------------------
 
@@ -267,3 +296,5 @@ function about(): void {
 }
 
 home();
+// 暦年の統計を読み終えたら、トップの表をその年の値で描き直す
+void loadWorld().then(() => { if (document.getElementById('year') && document.activeElement?.id !== 'year') home(); });

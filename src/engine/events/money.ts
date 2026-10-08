@@ -1,7 +1,7 @@
 // お金の流れ: 毎年の収入と暮らしの費用、貯金と借金、投資・家・車。
 import { L } from '../../i18n';
 import { yen } from '../economy';
-import { bump, countryOf, decide, log, type Person } from '../person';
+import { bump, countryOf, decide, log, type Person, yearOf } from '../person';
 import { normal } from '../rng';
 import { currentIncome, subsistence } from './common';
 
@@ -21,7 +21,7 @@ export function finances(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
   const income = currentIncome(p);
-  p.peakIncome = Math.max(p.peakIncome, income);
+  if (income > p.peakIncome) { p.peakIncome = income; p.peakYear = yearOf(p); }
   const floor = subsistence(c);
   // 貯められる割合は、国の中での位置と、暮らしの絶対的な余裕の両方で決まる
   // 貧しい家でも、土地や家畜などの形で少しは蓄える (最低5%)

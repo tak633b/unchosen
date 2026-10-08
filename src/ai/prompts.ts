@@ -1,9 +1,9 @@
 // AI に渡す文章。統計で決まった事実を渡し、それに矛盾しない肉付けだけを頼む。
 import { jobName, majorName } from '../engine/jobs';
-import { byCode } from '../engine/countries';
+import { ERA_NOW, byCode } from '../engine/countries';
 import { formatMoney } from '../engine/economy';
 import { currentIncome } from '../engine/events/common';
-import { EDU_LABEL, eduLevel, type Person, type Relative } from '../engine/person';
+import { EDU_LABEL, countryOf, eduLevel, type Person, type Relative } from '../engine/person';
 import { isEn, L, regionName, religionName } from '../i18n';
 import type { Msg } from './client';
 import { kindNote } from './words';
@@ -32,7 +32,7 @@ const sexWord = (s: 'F' | 'M') => (s === 'F' ? L('女性', 'female') : L('男性
 const PET_EN: Record<string, string> = { 犬: 'dog', 猫: 'cat' };
 
 function factsEn(p: Person): string {
-  const c = byCode(p.country);
+  const c = countryOf(p);
   const born = byCode(p.birthCountry);
   const income = currentIncome(p);
   const rel = (r: Relative) => `${r.name ?? 'unnamed'} (${r.alive ? `age ${r.age}` : 'deceased'})`;
@@ -40,6 +40,7 @@ function factsEn(p: Person): string {
   const recent = p.log.slice(-10).map((e) => `Age ${e.age}: ${e.text}`).join('\n');
   return [
     `Name: ${p.name} (goes by ${p.given}), ${sexWord(p.sex)}, age ${p.age}, year ${p.birthYear + p.age}`,
+    ...(p.birthYear + p.age > ERA_NOW ? ['This year is in the future. The figures follow UN projections. Do not name specific future events, products or technologies; describe everyday life plainly.'] : []),
     `Born in: ${born.name} (${regionName(born.region)})${p.country !== p.birthCountry ? `, now lives in ${c.name}` : ''}. Lives in: ${p.city ?? 'a rural area'}. Religion: ${religionName(p.religion)}`,
     `Country: GDP per person $${Math.round(c.gdp).toLocaleString()} (PPP), life expectancy ${(p.sex === 'F' ? c.leF : c.leM).toFixed(0)}`,
     `Family of birth: income percentile ${Math.round(p.familyP * 100)} within the country`,
@@ -54,13 +55,14 @@ function factsEn(p: Person): string {
 
 function facts(p: Person): string {
   if (isEn) return factsEn(p);
-  const c = byCode(p.country);
+  const c = countryOf(p);
   const born = byCode(p.birthCountry);
   const income = currentIncome(p);
   const kids = p.children.map((k) => `${k.name}(${k.alive ? `${k.age}歳` : '他界'})`).join('、') || 'なし';
   const recent = p.log.slice(-10).map((e) => `${e.age}歳: ${e.text}`).join('\n');
   return [
     `名前: ${p.name}(呼び名 ${p.given})・${p.sex === 'F' ? '女性' : '男性'}・${p.age}歳・${p.birthYear + p.age}年`,
+    ...(p.birthYear + p.age > ERA_NOW ? ['この年は未来。数字は国連の予測にもとづく。未来の具体的な出来事・製品・技術の名前は作らず、ふだんの暮らしとして書く。'] : []),
     `生まれ: ${born.name}${p.country !== p.birthCountry ? ` → 今は${c.name}に住む` : ''}・住まい: ${p.city ?? '農村'}・宗教: ${religionName(p.religion)}`,
     `国の暮らし: 1人当たりGDP $${Math.round(c.gdp).toLocaleString()}(購買力平価)・平均寿命 ${(p.sex === 'F' ? c.leF : c.leM).toFixed(0)}歳`,
     `生まれた家: 国内の所得分位 ${Math.round(p.familyP * 100)}%`,

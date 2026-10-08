@@ -9,7 +9,7 @@
     "start": "node server/server.mjs",
     "test": "vitest run",
     "data:fetch": "node scripts/fetch-data.mjs",
-    "data:build": "node scripts/build-data.mjs"
+    "data:build": "node scripts/build-data.mjs && node scripts/build-era.mjs && node scripts/build-mortality.mjs"
   },
   "devDependencies": {
     "concurrently": "^10.0.5",

@@ -4,12 +4,14 @@ import { bump, countryOf, decide, log, type Person } from '../person';
 import { clamp, pick } from '../rng';
 import { currentIncome, subsistence } from './common';
 import { isEn, L } from '../../i18n';
+import type { Country } from '../countries';
+import type { Sex } from '../lifetable';
 
 export function habits(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
   if (p.age === 15 && p.smoker === undefined) {
-    const rate = clamp(c.smoke * (p.sex === 'M' ? 1.6 : 0.4), 0.01, 0.9);
+    const rate = smokeStart(c, p.sex);
     decide(p, {
       title: L('タバコ', 'Smoking'),
       text: L('友だちにタバコを勧められた。', 'A friend offered a cigarette.'),
@@ -114,6 +116,11 @@ export function illness(p: Person): void {
   }
 }
 
+// 病院で治したときの死亡率の倍率。その国の医療の水準で決まる (生命表には、この水準がすでに入っている)
+export const careQuality = (c: Country) => (c.gdp < 5000 ? 2 : c.gdp < 20000 ? 1.6 : 1.3);
+// 15歳のときにタバコを吸い始める確率 (国の喫煙率は男女の平均なので、男は高く女は低く)
+export const smokeStart = (c: Country, sex: Sex) => clamp(c.smoke * (sex === 'M' ? 1.6 : 0.4), 0.01, 0.9);
+
 // 病院で治すか、安い手で済ませるか、何もしないか
 function treat(p: Person, name: string, years: number, severity: number): void {
   const c = countryOf(p);
@@ -122,7 +129,7 @@ function treat(p: Person, name: string, years: number, severity: number): void {
   const share = cost * c.oop;
   const income = Math.max(currentIncome(p), subsistence(c));
   const ratio = share / income;
-  const quality = c.gdp < 5000 ? 2 : c.gdp < 20000 ? 1.6 : 1.3;
+  const quality = careQuality(c);
   bump(p, { health: -15 * severity });
   const traditional = c.gdp < 15000;
   decide(p, {

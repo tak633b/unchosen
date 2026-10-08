@@ -1,5 +1,5 @@
 // 一つの人生を、1年ずつ進める。
-import { byCode, pickBirthCountry, type BirthBasis } from './countries';
+import { byCode, countryAt, pickBirthCountry, type BirthBasis } from './countries';
 import { causeName, homicideHazard, pickCause } from './causes';
 import { isEn, L, religionName } from '../i18n';
 import { makeName, pickCity, pickReligion } from './identity';
@@ -12,7 +12,7 @@ import { military, schooling } from './events/school';
 import { work } from './events/work';
 import { finances } from './events/money';
 import { births, childMarriage, love } from './events/love';
-import { drift, habits, hiv, illness } from './events/health';
+import { careQuality, drift, habits, hiv, illness, smokeStart } from './events/health';
 import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
@@ -42,7 +42,8 @@ export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean;
 
 export function createPerson(o: BirthOptions): Person {
   const rng = makeRng(o.seed);
-  const c = o.country ? byCode(o.country) : pickBirthCountry(rng, o.basis);
+  const year = o.year ?? new Date().getFullYear();
+  const c = o.country ? countryAt(o.country, year) : pickBirthCountry(rng, o.basis, year);
   const sex: Sex = rng() < 0.512 ? 'M' : 'F';
   const familyP = clamp(rng(), 0.01, 0.99);
   // 農業で働く人が多い国ほど、貧しい家ほど農村に生まれやすい
@@ -62,7 +63,7 @@ export function createPerson(o: BirthOptions): Person {
   const p: Person = {
     seed: o.seed, rng, given: name.given, name: name.full, pool: name.pool, familyIndex: name.familyIndex, sex,
     birthCountry: c.code, country: c.code, city: rural ? null : pickCity(rng, c.code), religion: pickReligion(rng, c.code),
-    birthYear: o.year ?? now.getFullYear(), birthMonth: o.month ?? now.getMonth() + 1,
+    birthYear: year, birthMonth: o.month ?? now.getMonth() + 1,
     age: 0, alive: true, rural, familyP, incomeP: familyP,
     working: false, jobYears: 0, formal: false, retired: false, unemployed: 0,
     wealth: 0, peakIncome: 0, house: false, car: false,
@@ -112,25 +113,38 @@ export function birthStory(p: Person): string {
 // 生命表は病気や喫煙をすでに含むので、個人の倍率を重ねたぶんを全体で割り戻す。
 // 倍率の平均は年齢で変わる (病気が増える60〜85歳で高く、丈夫な人だけが残る95歳以上で低い) ので、
 // 年齢帯ごとに、その年齢で生きている人の平均が生命表どおりになるよう実測で決めた値 (life.test.ts)
-const CALIBRATION: [number, number][] = [[95, 0.9], [90, 0.78], [85, 0.74], [70, 0.69], [60, 0.72], [40, 0.85], [0, 0.96]];
+const CALIBRATION: [number, number][] = [[90, 0.69], [80, 0.61], [70, 0.58], [60, 0.6], [40, 0.72], [20, 0.85], [0, 0.87]];
 const calibration = (age: number) => CALIBRATION.find(([from]) => age >= from)![1];
+
+// その年齢で生きている同じ世代の人の、喫煙による倍率の平均。15歳で吸い始め、30歳から6年ごとに約14%がやめる (health.ts の habits)。
+// ponytail: やめる割合は自動で決めたときの値 (0.35×0.4)。プレイヤーの選び方は入れていない
+function smokeAvg(p: Person): number {
+  const start = smokeStart(countryAt(p.birthCountry, p.birthYear + 15), p.sex);
+  const share = start * 0.86 ** (p.age >= 30 ? Math.floor((p.age - 30) / 6) + 1 : 0);
+  return share * (p.age >= 55 ? 2 : 1.5) + (1 - share) * 0.92;
+}
 
 // その年に亡くなる確率。生命表の値に、健康・所得・喫煙・病気の倍率をかける
 export function deathRisk(p: Person): number {
   const c = countryOf(p);
   // 生命表の終わりでは必ず亡くなる (倍率で 1 を割ると MAX_AGE を超えて生きてしまう)
   if (p.age >= MAX_AGE) return 1;
-  const base = lifeTable(c, p.sex).q[p.age];
+  // 生命表には出産での死も入っているが、ここでは出産のたびに別に引く (love.ts の giveBirth)。
+  // 二重に数えないよう、15〜49歳の女性からは、1年あたりの見込み (出生率/35 × 妊産婦死亡率) を差し引く
+  // ponytail: 結婚していない人も同じだけ引く。未婚率の高い国・時代では、少し長く生きる側にずれる
+  const maternal = p.sex === 'F' && p.age >= 15 && p.age < 50 ? (c.tfr / 35) * (c.mmr / 1e5) : 0;
+  const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal);
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
   if (p.age < 5) return base;
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
   const usual = p.age < 45 ? 80 : 80 - 0.7 * (Math.min(p.age, 70) - 45) - 1.4 * Math.max(0, p.age - 70);
   const healthK = 1.4 ** ((usual - p.stats.health) / 25);
-  const wealth = p.working ? p.incomeP : p.familyP;
-  const wealthK = wealth < 0.2 ? 1.3 : wealth > 0.8 ? 0.8 : 1;
-  const smokeK = p.age < 35 ? 1 : p.smoker ? (p.age >= 55 ? 2 : 1.5) : 0.92;
+  // 生まれた家の位置で決める。働いてからの所得の位置は、農業の多い国・時代ほど下に偏る (1960年生まれのインドで40歳以上の半数が下位20%)
+  const wealthK = p.familyP < 0.2 ? 1.3 : p.familyP > 0.8 ? 0.8 : 1;
+  // 喫煙と病気は、その国・その時代の平均の人と比べた倍率にする (生命表には、その時代の喫煙と医療の水準がすでに入っている)
+  const smokeK = p.age < 35 ? 1 : (p.smoker ? (p.age >= 55 ? 2 : 1.5) : 0.92) / smokeAvg(p);
   const drinkK = p.drinker ? 1.25 : 1;
-  const illK = p.illness?.mult ?? 1;
+  const illK = (p.illness?.mult ?? careQuality(c)) / careQuality(c);
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
   return Math.min(1, calibration(p.age) * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd);
 }

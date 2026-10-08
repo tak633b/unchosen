@@ -1,8 +1,8 @@
 // 国を移る・帰る。
-import { COUNTRIES, byCode } from '../countries';
+import { byCode, countriesAt } from '../countries';
 import { earnings, formatMoney } from '../economy';
 import { pickCity } from '../identity';
-import { bump, countryOf, decide, log, type Person } from '../person';
+import { bump, countryOf, decide, log, yearOf, type Person } from '../person';
 import { clamp, normal, pickWeighted } from '../rng';
 import { L } from '../../i18n';
 
@@ -12,7 +12,7 @@ export function migration(p: Person): void {
   const r = p.rng;
   if (p.age < 18 || p.age > 45 || c.gdp > 20000 || p.school.enrolled || p.school.uni === 'studying') return;
   if (r() >= (p.focus === 'work' ? 0.025 : 0.015)) return;
-  const dests = COUNTRIES.filter((d) => d.gdp > Math.max(15000, c.gdp * 2.5));
+  const dests = countriesAt(yearOf(p)).filter((d) => d.gdp > Math.max(15000, c.gdp * 2.5));
   const dest = pickWeighted(r, dests, (d) => d.pop * (d.region === c.region ? 3 : 1));
   const destIncome = earnings(dest, 0.2);
   decide(p, {

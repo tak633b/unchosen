@@ -1,9 +1,9 @@
 // 学校・大学・留学・兵役。
-import { COUNTRIES, byCode, type Country } from '../countries';
+import { COUNTRIES, byCode, countriesAt, type Country } from '../countries';
 import { earnings, formatMoney } from '../economy';
 import { L, isEn } from '../../i18n';
 import { MAJORS, majorName } from '../jobs';
-import { bump, countryOf, decide, log, type Person } from '../person';
+import { bump, countryOf, decide, log, yearOf, type Person } from '../person';
 import { clamp, pickWeighted } from '../rng';
 import { startWork } from './work';
 import { because, schoolWhy } from '../why';
@@ -88,7 +88,7 @@ export const uniChance = (p: Person, c: Country) =>
 const tuitionOf = (c: Country, abroad: boolean) => earnings(c, 0.5) * (abroad ? 0.9 : 0.25);
 
 // 留学先: 留学生を多く受け入れる豊かな国
-const studyDest = (p: Person) => pickWeighted(p.rng, COUNTRIES.filter((d) => d.gdp > 35000 && d.code !== p.country), (d) => d.pop * (['USA', 'GBR', 'AUS', 'CAN', 'DEU', 'FRA', 'JPN'].includes(d.code) ? 4 : 1));
+const studyDest = (p: Person) => pickWeighted(p.rng, countriesAt(yearOf(p)).filter((d) => d.gdp > 35000 && d.code !== p.country), (d) => d.pop * (['USA', 'GBR', 'AUS', 'CAN', 'DEU', 'FRA', 'JPN'].includes(d.code) ? 4 : 1));
 
 function afterHighSchool(p: Person, c: Country): void {
   const chance = uniChance(p, c);

@@ -1,5 +1,5 @@
 // ゲームの進行: 時間・意思決定・止まった時間の問い・保存。
-import { byCode, type BirthBasis } from '../engine/countries';
+import { byCode, countryAt, type BirthBasis } from '../engine/countries';
 import { advanceYear, createPerson, fromSaved, pauseQuestion, settle, toSaved, type SavedPerson } from '../engine/life';
 import { choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
 import { randomSeed } from '../engine/rng';
@@ -56,8 +56,8 @@ export function resumeGame(onExit: () => void): void {
   run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit);
 }
 
-export const sameSecondOthers = (basis: BirthBasis) =>
-  Array.from({ length: OTHERS }, () => createPerson({ seed: randomSeed(), basis, auto: true }));
+export const sameSecondOthers = (basis: BirthBasis, year?: number) =>
+  Array.from({ length: OTHERS }, () => createPerson({ seed: randomSeed(), basis, auto: true, year }));
 
 export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, onExit: () => void): void {
   run(p, others, basis, 1, onExit);
@@ -285,9 +285,10 @@ function decideNow(d: Decision, i: number): void {
 
 function questionContext(q: Question): string {
   const { p, others } = S!;
-  const b = byCode(p.birthCountry);
+  // その年齢になった年の、生まれた国とあなたの国
+  const b = countryAt(p.birthCountry, p.birthYear + q.age);
   const real = load<string | null>('realCountry', null);
-  const r = real ? byCode(real) : null;
+  const r = real ? countryAt(real, p.birthYear + q.age) : null;
   const lines: string[] = [];
   if (q.age === 5) lines.push(isEn
     ? `In ${b.name}, about ${(b.u5mr * 100).toFixed(1)}% of children do not reach their fifth birthday. This child did.${r ? ` In ${r.name}, where you were born, it is ${(r.u5mr * 100).toFixed(1)}%.` : ''}`

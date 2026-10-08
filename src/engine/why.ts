@@ -1,7 +1,8 @@
 // 出来事の「なぜ」: その人の人生で、その出来事を引き寄せた数字を一行で。
 // stat が国全体の注釈なのに対し、why はこの人に効いた要因 (家の暮らし向き・年齢・国の確率) を書く
 import type { Country } from './countries';
-import { lifeTable, MAX_AGE, type Sex } from './lifetable';
+import { bornTable, MAX_AGE, type Sex } from './lifetable';
+import { countryAt } from './countries';
 import type { Person } from './person';
 import { qAt } from './events/common';
 import { L } from '../i18n';
@@ -31,7 +32,8 @@ export function deathWhy(c: Country, sex: Sex, age: number): string {
   }
   // 平均寿命は子どもの死に引っぱられるので、大人には「その年まで生きる割合」で示す
   const q = pct(qAt(c, sex, age));
-  const reach = pct(lifeTable(c, sex).l[Math.min(age, MAX_AGE)]);
+  const by = (c.year ?? new Date().getFullYear()) - age; // その人が生まれた年
+  const reach = pct(bornTable(countryAt(c.code, by), sex, by).l[Math.min(age, MAX_AGE)]);
   return L(`${c.name}で生まれた${sexJa(sex)}のうち、${age}歳まで生きるのは約${reach}%。${age}歳の1年で亡くなる確率は約${q}%`,
     `Of ${sexEn(sex)} born in ${c.name}, about ${reach}% live to ${age}. At ${age}, the chance of dying within a year is about ${q}%`);
 }

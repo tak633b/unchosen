@@ -377,3 +377,8 @@ canvas.pixscene { display: block; width: 100%; height: auto; image-rendering: pi
 /* 顔写真は縦長 (48×56)。輪の中では丸く切り抜く */
 .rnode canvas, .rcenter canvas, canvas.big, canvas.mini { aspect-ratio: 1; object-fit: cover; object-position: 50% 35%; }
 .lastpeople .words { margin: 4px 0 0; font-family: var(--serif); line-height: 1.8; }
+
+/* 生まれる年 */
+.yearpick { display: flex; align-items: center; gap: 12px; }
+.yearpick input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); }
+.yearpick b { font: 700 22px/1 'Shippori Mincho', serif; color: var(--accent); font-variant-numeric: tabular-nums; min-width: 3em; text-align: right; }

@@ -1,4 +1,4 @@
-import { byCode, type Country } from './countries';
+import { countryAt, type Country } from './countries';
 import type { Sex } from './lifetable';
 import { clamp, type Rng } from './rng';
 import { isEn, L } from '../i18n';
@@ -73,6 +73,7 @@ export interface Person {
   unemployed: number;
   wealth: number;    // 純資産 (購買力平価ドル)。マイナスは借金
   peakIncome: number;
+  peakYear?: number; // いちばん稼いだ暦年 (世界の中の位置をその年の世界と比べるため)
   house: boolean;
   car: boolean;
   mortgage?: { years: number; pay: number; value: number };
@@ -122,7 +123,9 @@ export interface Person {
   recent: Record<string, number>; // 日常の出来事を最後に見た年齢 (同じ話の繰り返しを避ける)
 }
 
-export const countryOf = (p: Person): Country => byCode(p.country);
+export const yearOf = (p: Person): number => p.birthYear + p.age;
+// その人がいる国の、今の暦年の値
+export const countryOf = (p: Person): Country => countryAt(p.country, yearOf(p));
 
 export function log(p: Person, text: string, kind: YearKind, big = false, stat?: string, who?: number[]): void {
   p.log.push({ age: p.age, text, kind, big, ...(stat ? { stat } : {}), ...(who?.length ? { who } : {}) });

@@ -1,6 +1,7 @@
 // 日常の小さな出来事 (src/data/moments.json) と、節目の生存率の記録。
 import data from '../../data/moments.json';
-import { lifeTable } from '../lifetable';
+import { bornTable } from '../lifetable';
+import { countryAt } from '../countries';
 import { bump, countryOf, log, place, type Person, type Stats } from '../person';
 import { pickWeighted } from '../rng';
 import { isEn, L } from '../../i18n';
@@ -129,16 +130,17 @@ export function moments(p: Person): void {
 const MILESTONES = [1, 5, 15, 30, 50, 65, 80];
 export function milestone(p: Person): void {
   if (!MILESTONES.includes(p.age)) return;
-  const c = countryOf(p);
-  const born = p.birthCountry === c.code ? c : countryOf({ ...p, country: p.birthCountry });
-  const alive = lifeTable(born, p.sex).l[p.age];
+  // 同じ年・同じ国に生まれた人たちが、その後の各暦年の死亡率で生きた場合
+  const born = countryAt(p.birthCountry, p.birthYear);
+  const alive = bornTable(born, p.sex, p.birthYear).l[p.age];
+  const u5 = 1 - bornTable(born, p.sex, p.birthYear).l[5];
   const who = p.sex === 'F' ? L('女の子', 'girls') : L('男の子', 'boys');
   const text = isEn
     ? (p.age === 5
-      ? `Fifth birthday. About ${(born.u5mr * 100).toFixed(1)}% of children born in ${born.name} die before age 5. This child made it past that point.`
+      ? `Fifth birthday. About ${(u5 * 100).toFixed(1)}% of children born in ${born.name} die before age 5. This child made it past that point.`
       : `Age ${p.age}. Of the ${who} born in ${born.name} the same year, about ${Math.round(alive * 100)}% are still alive.`)
     : (p.age === 5
-      ? `5歳の誕生日。${born.name}で生まれた子どものおよそ${(born.u5mr * 100).toFixed(1)}%は、5歳になる前に亡くなる。この子はその時期を越えた。`
+      ? `5歳の誕生日。${born.name}で生まれた子どものおよそ${(u5 * 100).toFixed(1)}%は、5歳になる前に亡くなる。この子はその時期を越えた。`
       : `${p.age}歳。同じ年に${born.name}で生まれた${who}のうち、約${Math.round(alive * 100)}%が今も生きている。`);
   log(p, text, p.kinds[p.age] ?? 'child');
 }

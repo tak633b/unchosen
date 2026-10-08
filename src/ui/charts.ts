@@ -1,5 +1,5 @@
-import { COUNTRIES, byCode } from '../engine/countries';
-import { lifeTable, MAX_AGE, type Sex } from '../engine/lifetable';
+import { countriesAt, countryAt } from '../engine/countries';
+import { bornTable, MAX_AGE, type Sex } from '../engine/lifetable';
 import type { Person, YearKind } from '../engine/person';
 import { esc } from './dom';
 import { L } from '../i18n';
@@ -11,7 +11,7 @@ export const KIND_LABEL: Record<YearKind, string> = {
 
 // 人生の帯: 年が左から右へ並ぶ。色は出来事、高さはその年の幸福。平均寿命の年に印
 export function lifeBand(p: Person): string {
-  const born = byCode(p.birthCountry);
+  const born = countryAt(p.birthCountry, p.birthYear);
   const e0 = Math.round(p.sex === 'F' ? born.leF : born.leM);
   const years = Math.max(90, Math.ceil((p.age + 1) / 10) * 10);
   const bars = Array.from({ length: years }, (_, a) => {
@@ -32,25 +32,27 @@ export function lifeBand(p: Person): string {
     <p class="note">${L(`高い年ほど幸せだった。印の年 = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳`, `Taller means a happier year. Marked year = life expectancy for ${p.sex === 'F' ? 'women' : 'men'} in ${esc(born.name)}, ${e0}`)}</p>`;
 }
 
-// 出生数で重み付けした世界全体の生存曲線
-let worldCache: Partial<Record<Sex, number[]>> = {};
-function worldCurve(sex: Sex): number[] {
-  if (worldCache[sex]) return worldCache[sex]!;
-  const total = COUNTRIES.reduce((s, c) => s + c.births, 0);
-  const l = Array.from({ length: MAX_AGE + 1 }, (_, x) =>
-    COUNTRIES.reduce((s, c) => s + lifeTable(c, sex).l[x] * c.births, 0) / total);
-  worldCache = { ...worldCache, [sex]: l };
+// 出生数で重み付けした、同じ年に世界で生まれた人の生存曲線
+const worldCache = new Map<string, number[]>();
+function worldCurve(sex: Sex, year: number): number[] {
+  const key = sex + year;
+  if (worldCache.has(key)) return worldCache.get(key)!;
+  const list = countriesAt(year);
+  const total = list.reduce((s, c) => s + c.births, 0);
+  const tables = list.map((c) => bornTable(c, sex, year).l);
+  const l = Array.from({ length: MAX_AGE + 1 }, (_, x) => list.reduce((s, c, i) => s + tables[i][x] * c.births, 0) / total);
+  worldCache.set(key, l);
   return l;
 }
 
 export function survivalChart(p: Person): string {
-  const c = byCode(p.birthCountry);
+  const c = countryAt(p.birthCountry, p.birthYear);
   const W = 320, H = 150, maxX = 100;
   const x = (a: number) => (a / maxX) * W;
   const y = (v: number) => H - v * H;
   const path = (l: number[]) => l.slice(0, maxX + 1).map((v, a) => `${a ? 'L' : 'M'}${x(a).toFixed(1)},${y(v).toFixed(1)}`).join('');
-  const mine = lifeTable(c, p.sex).l;
-  const world = worldCurve(p.sex);
+  const mine = bornTable(c, p.sex, p.birthYear).l;
+  const world = worldCurve(p.sex, p.birthYear);
   const age = Math.min(p.age, maxX);
   const alive = mine[age];
   const ticks = [0, 20, 40, 60, 80, 100].map((a) => `<text x="${x(a)}" y="${H + 14}" text-anchor="middle">${a}</text>`).join('');

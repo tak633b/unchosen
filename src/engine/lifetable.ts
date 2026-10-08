@@ -27,10 +27,86 @@ export interface LifeTable {
 
 const cache = new Map<string, LifeTable>();
 
-export function lifeTable(c: Country, sex: Sex): LifeTable {
-  const key = c.code + sex;
+// ---- 国連 WPP 2024 の単歳生命表 (暦年ごと) ----
+// mortality.json: 年の行 (1950〜2023は毎年、それ以降は5年ごと) × 0〜100歳の qx を、-ln(qx)×K の整数で持ち、行どうしの差分で詰めたもの。
+// 読み込む前 (setMortality の前) と、暦年を持たない国 (countries.json の最新の1年) は、下のモデルで作る
+export interface Mortality { K: number; years: number[]; ages: number; countries: Record<string, Record<Sex, number[]>> }
+let mort: Mortality | null = null;
+const decoded = new Map<string, Float64Array[]>();
+export function setMortality(m: Mortality): void { mort = m; decoded.clear(); cache.clear(); onMortality?.(); }
+let onMortality: (() => void) | undefined;
+// countries.ts が、生命表から出した寿命の作り直しのために使う
+export const whenMortality = (fn: () => void) => { onMortality = fn; };
+export const mortalityReady = () => mort !== null;
+
+function rows(code: string, sex: Sex): Float64Array[] | null {
+  const raw = mort?.countries[code]?.[sex];
+  if (!mort || !raw) return null;
+  const key = code + sex;
+  const hit = decoded.get(key);
+  if (hit) return hit;
+  const out: Float64Array[] = [];
+  const cur = new Array<number>(mort.ages).fill(0);
+  for (let r = 0; r < mort.years.length; r++) {
+    for (let a = 0; a < mort.ages; a++) cur[a] += raw[r * mort.ages + a];
+    out.push(Float64Array.from(cur, (v) => Math.exp(-v / mort!.K)));
+  }
+  decoded.set(key, out);
+  return out;
+}
+
+// その暦年の年齢別死亡確率 (0〜MAX_AGE)。行の間の年は対数の上で直線に埋める。100歳以上は95→99歳の傾きで延ばす
+function periodQ(code: string, sex: Sex, year: number): number[] | null {
+  const rs = rows(code, sex);
+  if (!rs || !mort) return null;
+  const ys = mort.years;
+  const y = Math.min(ys[ys.length - 1], Math.max(ys[0], year));
+  let i = ys.findIndex((v) => v >= y);
+  const t = ys[i] === y ? 0 : (y - ys[i - 1]) / (ys[i] - ys[i - 1]);
+  if (t) i--;
+  const q: number[] = [];
+  for (let a = 0; a < 100; a++) q.push(Math.exp(Math.log(rs[i][a]) * (1 - t) + Math.log(rs[Math.min(i + 1, rs.length - 1)][a]) * t));
+  const h = (x: number) => -Math.log(1 - Math.min(q[x], 0.999));
+  const slope = Math.log(h(99) / h(95)) / 4;
+  for (let a = 100; a < MAX_AGE; a++) q.push(Math.min(1, 1 - Math.exp(-h(99) * Math.exp(slope * (a - 99)))));
+  q.push(1);
+  return q;
+}
+
+function fromQ(q: number[]): LifeTable {
+  const l = [1];
+  for (let x = 0; x < MAX_AGE; x++) l.push(l[x] * (1 - q[x]));
+  let e0 = 0;
+  for (let x = 0; x < MAX_AGE; x++) e0 += (l[x] + l[x + 1]) / 2;
+  return { q, l, e0 };
+}
+
+// 主人公と同じ年・同じ国に生まれた人たち
+export const bornTable = (c: Country, sex: Sex, birthYear: number) => cohortTable(c, sex, birthYear);
+
+// 生まれた年の人たちが、その後の各暦年の死亡率で生きた場合 (コホート)。「同じ年に生まれた人のうち何%が」はこちら
+export function cohortTable(c: Country, sex: Sex, birthYear: number): LifeTable {
+  if (!mort?.countries[c.code]) return lifeTable(c, sex);
+  const key = `c${c.code}${sex}${birthYear}`;
   const hit = cache.get(key);
   if (hit) return hit;
+  const q: number[] = [];
+  for (let x = 0; x <= MAX_AGE; x++) q.push(x === MAX_AGE ? 1 : periodQ(c.code, sex, birthYear + x)![x]);
+  const t = fromQ(q);
+  cache.set(key, t);
+  return t;
+}
+
+export function lifeTable(c: Country, sex: Sex): LifeTable {
+  const key = c.code + sex + (c.year ?? '');
+  const hit = cache.get(key);
+  if (hit) return hit;
+  const wq = c.year !== undefined ? periodQ(c.code, sex, c.year) : null;
+  if (wq) {
+    const t = fromQ(wq);
+    cache.set(key, t);
+    return t;
+  }
   const target = sex === 'F' ? c.leF : c.leM;
   // 男児は女児より乳幼児死亡がやや高い
   const sexK = sex === 'M' ? 1.1 : 0.9;

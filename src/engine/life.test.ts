@@ -1,53 +1,66 @@
 import { describe, it, expect } from 'vitest';
-import { byCode } from './countries';
+import { countryAt } from './countries';
 import { createPerson, liveOut } from './life';
-import { MAX_AGE } from './lifetable';
+import { bornTable, lifeTable, MAX_AGE } from './lifetable';
 
-// 実測 (2026-10-08 第2版, 2000人, CALIBRATION=0.78): 平均死亡年齢と平均寿命の差は JPN +0.3 / USA -0.3 / IND -2.1 / NGA -0.3〜-2 / BRA -1。
-// 本家も国によって+2〜+5年ずれる (治療を選ぶ人が多いため)。ここでは±3年を許す
-describe('自動で生きた人生の集計が統計と合う', () => {
-  for (const code of ['JPN', 'IND', 'NGA']) {
-    it(code, () => {
-      const c = byCode(code);
+// 生まれた年の人たちは、その後の各暦年の死亡率 (国連 WPP 2024。2024年以降は中位推計) で生きる。
+// 比べる相手は、同じ年に生まれた人の生命表 (コホート) の平均寿命・5歳までの死亡・15歳の年の児童婚の割合。
+// 実測 (2026-10-09, 1500人, seed を s*7919 + off*104729 で2セット, JPN/IND/NGA × 1960/2000/2050):
+// 平均寿命の差は -0.7〜+1.3年、5歳未満の死亡の差は最大 0.019 (NGA 2000)、児童婚の差は最大 0.041 (NGA 1960)
+describe('自動で生きた人生の集計が、生まれた年の統計と合う', () => {
+  for (const [code, year] of [['JPN', 1960], ['JPN', 2050], ['IND', 1960], ['IND', 2000], ['NGA', 2000], ['NGA', 2050]] as const) {
+    it(`${code} ${year}年生まれ`, () => {
       const n = 1500;
       let sum = 0, u5 = 0, cm = 0, women = 0;
       for (let s = 1; s <= n; s++) {
-        const p = liveOut(createPerson({ seed: s * 7919, basis: 'births', country: code, auto: true }));
+        const p = liveOut(createPerson({ seed: s * 7919, basis: 'births', country: code, auto: true, year }));
         sum += p.age + 0.5;
         if (p.age < 5) u5++;
         if (p.sex === 'F' && p.age >= 18) { women++; if (p.childMarriage) cm++; }
       }
-      expect(Math.abs(sum / n - (c.leF + c.leM) / 2)).toBeLessThan(3);
-      expect(Math.abs(u5 / n - c.u5mr)).toBeLessThan(0.02);
-      expect(Math.abs(cm / women - c.childMarriage)).toBeLessThan(0.06);
+      const c = countryAt(code, year);
+      const f = bornTable(c, 'F', year), m = bornTable(c, 'M', year);
+      expect(Math.abs(sum / n - (f.e0 + m.e0) / 2)).toBeLessThan(2.5);
+      expect(Math.abs(u5 / n - (1 - (f.l[5] + m.l[5]) / 2))).toBeLessThan(0.025);
+      expect(Math.abs(cm / women - countryAt(code, year + 15).childMarriage)).toBeLessThan(0.06);
     }, 60_000);
   }
 });
 
-// 厚労省 令和6年簡易生命表 (表3, 男・女) の生存数 lx から: 出生10万人のうち x 歳まで生きる割合 (%)
-const JPN_REACH = { M: { 90: 25.8, 95: 9.3, 100: 1.5 }, F: { 90: 50.2, 95: 25.6, 100: 6.5 } };
 // 許容幅 = 1 + 2.5 × 標本誤差。1 は平均のずれの目標 (±1ポイント)、2.5 × 標本誤差は乱数の並びによる揺れ
-// (男女各2000人ほどなので、90歳で標本誤差は 女1.1・男1.0 ポイント)。90歳で 女3.8・男3.4、100歳で 女2.4・男1.7 になる。
-// 実測 (2026-10-09, seed を s*7919 + off*104729 で8セット): 実際との差の平均 女 +0.65/-0.41/-0.80  男 +0.73/+0.33/-0.29、
-// 差の最大 女90歳 +3.3 (off=2)。一つ前の形 (±3 固定) では、出来事を足して乱数の並びが変わっただけで落ちた
-const tolerance = (realPct: number, n: number) => 1 + 2.5 * 100 * Math.sqrt((realPct / 100) * (1 - realPct / 100) / n);
-// 修正前 (傾き0.09のまま) は 女 46.8/32.7/19.6・最高齢113歳 だった
-describe('日本の高齢まで生きる割合が生命表と合う', () => {
-  it('90・95・100歳到達率が実際に近く、MAX_AGE を超えない', () => {
-    const ages = { M: [] as number[], F: [] as number[] };
-    for (let s = 1; s <= 4000; s++) {
-      const p = liveOut(createPerson({ seed: s * 7919, basis: 'births', country: 'JPN', auto: true }));
-      ages[p.sex].push(p.age);
-    }
-    for (const sex of ['M', 'F'] as const) {
-      const a = ages[sex];
-      for (const x of [90, 95, 100] as const) {
-        const pct = (100 * a.filter((v) => v >= x).length) / a.length;
-        expect(Math.abs(pct - JPN_REACH[sex][x]), `${sex} ${x}歳 ${pct.toFixed(1)}%`).toBeLessThan(tolerance(JPN_REACH[sex][x], a.length));
+const tolerance = (pct: number, n: number) => 1 + 2.5 * 100 * Math.sqrt((pct / 100) * (1 - pct / 100) / n);
+// 実測 (2026-10-09, 2500人): 1960年生まれ 女 +0.6/-0.4/-0.7 男 +1.0/+1.7/+1.5、2000年生まれ 女 +1.5/-0.5/0.0 男 +1.0/+1.1/+0.6
+describe('日本の高齢まで生きる割合が、生まれた年の生命表と合う', () => {
+  for (const year of [1960, 2000]) {
+    it(`${year}年生まれの90・95・100歳到達率`, () => {
+      const ages = { M: [] as number[], F: [] as number[] };
+      for (let s = 1; s <= 2500; s++) {
+        const p = liveOut(createPerson({ seed: s * 7919 + 13, basis: 'births', country: 'JPN', auto: true, year }));
+        ages[p.sex].push(p.age);
       }
-      expect(Math.max(...a)).toBeLessThanOrEqual(MAX_AGE);
+      for (const sex of ['M', 'F'] as const) {
+        const a = ages[sex];
+        const l = bornTable(countryAt('JPN', year), sex, year).l;
+        for (const x of [90, 95, 100]) {
+          const pct = (100 * a.filter((v) => v >= x).length) / a.length;
+          expect(Math.abs(pct - 100 * l[x]), `${sex} ${x}歳 ${pct.toFixed(1)}%`).toBeLessThan(tolerance(100 * l[x], a.length));
+        }
+        expect(Math.max(...a)).toBeLessThanOrEqual(MAX_AGE);
+      }
+    }, 120_000);
+  }
+});
+
+// 国連の表そのものの確かめ: 2023年の日本の表から、厚労省 令和6年簡易生命表 (表3) の 90/95/100歳到達率 (%) に近いか。
+// 実測: 国連の表は 女 52.5/27.6/7.9 男 28.0/10.4/1.9 で、厚労省より 0.4〜2.3ポイント高い (国連は推計で値をならす)
+const JPN_REACH = { M: { 90: 25.8, 95: 9.3, 100: 1.5 }, F: { 90: 50.2, 95: 25.6, 100: 6.5 } };
+describe('国連の生命表が厚労省の生命表と大きくずれない', () => {
+  it('2023年の日本', () => {
+    for (const sex of ['M', 'F'] as const) {
+      const l = lifeTable(countryAt('JPN', 2023), sex).l;
+      for (const x of [90, 95, 100] as const) expect(Math.abs(100 * l[x] - JPN_REACH[sex][x]), `${sex} ${x}`).toBeLessThan(3);
     }
-  }, 120_000);
+  });
 });
 
 describe('同じ seed からは同じ人生', () => {

@@ -1,9 +1,9 @@
 // ゲーム画面の各パネル。どれも Person を受け取って HTML を返すだけ。
-import { byCode, type Country } from '../engine/countries';
+import { byCode, countryAt, type Country } from '../engine/countries';
 import { perDay, yen } from '../engine/economy';
 import { currentIncome } from '../engine/events/common';
 import { netWorth } from '../engine/events/money';
-import { EDU_LABEL, eduLevel, type Focus, type Person } from '../engine/person';
+import { EDU_LABEL, eduLevel, yearOf, type Focus, type Person } from '../engine/person';
 import { nowLine } from '../engine/summary';
 import { esc, load, pct } from './dom';
 import { isEn, L, religionName } from '../i18n';
@@ -120,9 +120,10 @@ export function othersPanel(others: Person[], aiLines: string[] = []): string {
 
 export function comparePanel(p: Person): string {
   const real = load<string | null>('realCountry', null);
-  const b = byCode(p.birthCountry);
+  // 今の暦年どうしで比べる
+  const b = countryAt(p.birthCountry, yearOf(p));
   if (!real) return `<h3>${L('あなたの出生地と比べる', 'Compare with your birthplace')}</h3><p class="note">${L('トップ画面で実際に生まれた国を選ぶと、ここで並べて比べられる(この端末にだけ保存)。', 'Pick the country you were actually born in on the start screen to compare it here (saved only on this device).')}</p>`;
-  const r = byCode(real);
+  const r = countryAt(real, yearOf(p));
   const le = (c: Country) => `${(p.sex === 'F' ? c.leF : c.leM).toFixed(1)}${L('歳', '')}`;
   const rows: [string, (c: Country) => string][] = [
     [L('平均寿命', 'Life expectancy'), le],

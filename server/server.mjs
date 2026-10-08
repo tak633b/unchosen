@@ -1,6 +1,7 @@
 // 追悼館の API と、本番用に dist/ を配る小さなサーバ。依存なし (node:sqlite)。
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
+import { gzipSync } from 'node:zlib';
 import { mkdirSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
 import { extname, join, normalize } from 'node:path';
@@ -242,13 +243,32 @@ async function api(req, res, url) {
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png' };
 
-async function staticFile(res, pathname) {
+// 文字のファイルは gzip で送る (国連の生命表は 9MB → 2.6MB)。圧縮したものは、ファイルの更新時刻ごとにメモリに置く
+const gzCache = new Map();
+async function gzipped(file) {
+  const { mtimeMs } = await stat(file);
+  const hit = gzCache.get(file);
+  if (hit?.mtimeMs === mtimeMs) return hit.data;
+  const data = gzipSync(await readFile(file));
+  gzCache.set(file, { mtimeMs, data });
+  return data;
+}
+
+async function staticFile(req, res, pathname) {
   const rel = normalize(pathname).replace(/^(\.\.[/\\])+/, '');
   const file = join(DIST, rel === '/' ? 'index.html' : rel);
   if (!file.startsWith(DIST)) return send(res, 403, { success: false, error: 'forbidden' });
   try {
+    const type = TYPES[extname(file)] ?? 'application/octet-stream';
+    // assets/ の下はファイル名にハッシュが付くので、長く持たせてよい
+    const cache = rel.startsWith('/assets/') ? 'public, max-age=31536000, immutable' : 'no-cache';
+    if (/^(text|application\/json)/.test(type) && /\bgzip\b/.test(req.headers['accept-encoding'] ?? '')) {
+      const data = await gzipped(file);
+      res.writeHead(200, { 'Content-Type': type, 'Content-Encoding': 'gzip', Vary: 'Accept-Encoding', 'Cache-Control': cache });
+      return res.end(data);
+    }
     const data = await readFile(file);
-    res.writeHead(200, { 'Content-Type': TYPES[extname(file)] ?? 'application/octet-stream' });
+    res.writeHead(200, { 'Content-Type': type, 'Cache-Control': cache });
     res.end(data);
   } catch {
     try {
@@ -264,7 +284,7 @@ createServer(async (req, res) => {
   const url = new URL(req.url ?? '/', 'http://localhost');
   try {
     if (url.pathname.startsWith('/api/')) return await api(req, res, url);
-    return await staticFile(res, url.pathname);
+    return await staticFile(req, res, url.pathname);
   } catch (err) {
     console.error(err);
     send(res, 500, { success: false, error: 'server error' });
