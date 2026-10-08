@@ -8,21 +8,26 @@ export const KIND_LABEL: Record<YearKind, string> = {
   move: '移住', hard: '苦しい出来事', ill: '病気', loss: '別れ', old: '老後', death: '死',
 };
 
-// 人生地図: 1マス = 1年
+// 人生地図: 1マス = 1年。色は出来事、濃さはその年の幸福。平均寿命の年に枠
 export function lifeMap(p: Person): string {
+  const born = byCode(p.birthCountry);
+  const e0 = Math.round(p.sex === 'F' ? born.leF : born.leM);
   const years = Math.max(90, Math.ceil((p.age + 1) / 10) * 10);
   const cells = Array.from({ length: years }, (_, a) => {
     const k = p.kinds[a];
     const cls = a > p.age ? 'future' : k ?? 'child';
-    const cur = a === p.age && p.alive ? ' now' : '';
-    return `<i class="cell k-${cls}${cur}" title="${a}歳${k ? ` · ${KIND_LABEL[k]}` : ''}"></i>`;
+    const h = p.happyByAge[a];
+    const op = a > p.age || h === undefined ? '' : ` style="opacity:${(0.35 + (h / 100) * 0.65).toFixed(2)}"`;
+    const mark = (a === p.age && p.alive ? ' now' : '') + (a === e0 ? ' e0' : '');
+    return `<i class="cell k-${cls}${mark}"${op} title="${a}歳${k ? ` · ${KIND_LABEL[k]}` : ''}"></i>`;
   }).join('');
   const used = new Set(p.kinds.filter(Boolean));
   const legend = (Object.keys(KIND_LABEL) as YearKind[])
     .filter((k) => used.has(k))
     .map((k) => `<span><i class="cell k-${k}"></i>${KIND_LABEL[k]}</span>`)
     .join('');
-  return `<div class="map">${cells}</div><div class="legend">${legend}</div>`;
+  return `<div class="map">${cells}</div><div class="legend">${legend}</div>
+    <p class="note">濃いほど幸せだった年。枠のマス = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳</p>`;
 }
 
 // 出生数で重み付けした世界全体の生存曲線

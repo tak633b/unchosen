@@ -24,6 +24,7 @@ export interface Country {
   oop: number;
   childMarriage: number;
   happiness: number;
+  flfp: number; // 女性の労働参加率
   est?: string[];
 }
 

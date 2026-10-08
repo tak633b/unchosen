@@ -35,6 +35,8 @@ export interface Person {
   rng: Rng;
   given: string;
   name: string;      // 姓名
+  pool: string;      // 命名の伝統 (identity.json の pools)
+  familyIndex: number;
   sex: Sex;
   birthCountry: string;
   country: string;
@@ -50,6 +52,9 @@ export interface Person {
   incomeP: number;   // 自分の所得分位 0–1
   working: boolean;
   job?: string;
+  jobKind?: 'office' | 'manual' | 'farm';
+  homemaker?: boolean;   // 外で働かず家のことをすると決めた
+  selfEmployed?: boolean; // 自分の畑・露店・家の仕事など、雇い主のいない働き方
   jobYears: number;
   formal: boolean;   // 正規の雇用か (年金・保険あり)
   retired: boolean;
@@ -58,6 +63,7 @@ export interface Person {
   peakIncome: number;
   house: boolean;
   car: boolean;
+  mortgage?: { years: number; pay: number; value: number };
   invest?: 'deposit' | 'stock' | 'realestate';
   mother: Relative;
   father: Relative;
@@ -71,6 +77,7 @@ export interface Person {
     abroad?: string; // 留学先の国コード
   };
   military: 'none' | 'serving' | 'done' | 'deferred';
+  serviceEnd?: number;
   spouse?: Relative;
   dating?: Relative & { years: number };
   childMarriage: boolean;

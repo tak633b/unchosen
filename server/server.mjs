@@ -13,6 +13,10 @@ mkdirSync(join(ROOT, 'data'), { recursive: true });
 const db = new DatabaseSync(join(ROOT, 'data', 'memorial.db'));
 db.exec(`CREATE TABLE IF NOT EXISTS memorial (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL DEFAULT '',
+  rural INTEGER NOT NULL DEFAULT 0,
+  birth_year INTEGER NOT NULL DEFAULT 0,
+  job TEXT NOT NULL DEFAULT '',
   country TEXT NOT NULL,
   sex TEXT NOT NULL,
   age INTEGER NOT NULL,
@@ -43,7 +47,7 @@ async function readJson(req) {
   const chunks = [];
   for await (const c of req) {
     size += c.length;
-    if (size > 4096) throw new Error('too large');
+    if (size > 8192) throw new Error('too large');
     chunks.push(c);
   }
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
@@ -58,13 +62,17 @@ function validEntry(b) {
   if (!/^[A-Z]{3}$/.test(country) || !['F', 'M'].includes(b.sex) || !Number.isInteger(age) || age < 0 || age > 120) return null;
   const cause = str(b.cause, 40);
   if (!cause) return null;
-  return { country, sex: b.sex, age, cause, line: str(b.line, 120), message: str(b.message, 200) };
+  const birthYear = Number(b.birthYear);
+  return {
+    rural: b.rural ? 1 : 0, name: str(b.name, 60), birthYear: Number.isInteger(birthYear) ? birthYear : 0, job: str(b.job, 40),
+    country, sex: b.sex, age, cause, line: str(b.line, 400), message: str(b.message, 200),
+  };
 }
 
 async function api(req, res, url) {
   const ip = req.socket.remoteAddress ?? '';
   if (req.method === 'GET' && url.pathname === '/api/memorial') {
-    const rows = db.prepare(`SELECT id, country, sex, age, cause, line, message, candles, created_at AS createdAt
+    const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, created_at AS createdAt
       FROM memorial ORDER BY id DESC LIMIT 100`).all();
     return send(res, 200, { success: true, data: rows });
   }
@@ -74,8 +82,8 @@ async function api(req, res, url) {
     try { body = await readJson(req); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
     const e = validEntry(body);
     if (!e) return send(res, 400, { success: false, error: 'invalid entry' });
-    const r = db.prepare('INSERT INTO memorial (country, sex, age, cause, line, message) VALUES (?, ?, ?, ?, ?, ?)')
-      .run(e.country, e.sex, e.age, e.cause, e.line, e.message);
+    const r = db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+      .run(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message);
     return send(res, 201, { success: true, data: { id: Number(r.lastInsertRowid) } });
   }
   const m = url.pathname.match(/^\/api\/memorial\/(\d+)\/candle$/);

@@ -1,47 +1,30 @@
-import { byCode, type BirthBasis, type Country } from '../engine/countries';
-import { earnings, formatMoney, perDay } from '../engine/economy';
-import { advanceYear, createPerson, settle } from '../engine/life';
-import { lifeTable } from '../engine/lifetable';
-import type { Decision, Focus, Person, Question } from '../engine/person';
+// ゲームの進行: 時間・意思決定・止まった時間の問い・保存。
+import { byCode, type BirthBasis } from '../engine/countries';
+import { advanceYear, createPerson, fromSaved, pauseQuestion, settle, toSaved, type SavedPerson } from '../engine/life';
+import { choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
 import { randomSeed } from '../engine/rng';
-import { drawCard, shareCard } from './cards';
+import { nowLine } from '../engine/summary';
 import { lifeMap, survivalChart } from './charts';
-import { $, esc, load, pct, save, setHTML } from './dom';
+import { showDeath } from './death';
+import { $, esc, load, save, setHTML } from './dom';
 import { setMusic } from './music';
+import { drawPortrait, drawScene, sceneOf } from './pixel';
+import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel } from './panels';
 
-const YEAR_MS = 24000; // 1倍速で1年 = 24秒
+const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
 const SPEEDS = [1, 2, 4, 8, 16];
 const OTHERS = 4;
-const MAX_PAST = 10;
+const AUTO_WAIT_MS = 4000; // 自動で決めるとき、選択肢を見せておく時間
+const SAVE_KEY = 'current';
 
-export interface PastLife {
-  seed: number; basis: BirthBasis; name: string; sex: Person['sex'];
-  birthCountry: string; country: string; age: number; cause: string;
-  log: Person['log']; kinds: Person['kinds']; questions: Question[]; message?: string; date: string;
-}
-
-export const pastLives = () => load<PastLife[]>('lives', []);
-
-function toPast(p: Person, basis: BirthBasis): PastLife {
-  return {
-    seed: p.seed, basis, name: p.name, sex: p.sex, birthCountry: p.birthCountry, country: p.country,
-    age: p.age, cause: p.cause ?? '', log: p.log, kinds: p.kinds, questions: p.questions, date: new Date().toISOString(),
-  };
-}
-
-const FOCUS: [Focus, string, string][] = [
-  ['health', '健康', '体をいたわる'],
-  ['learn', '学び', '知識や技術を身につける'],
-  ['work', '仕事', '稼ぎを増やす。体と家族の時間は減る'],
-  ['family', '家族・人', '家族や友人と過ごす'],
-  ['rest', '休む', '心を休める'],
-];
+interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[] }
 
 interface GameState {
   p: Person;
   others: Person[];
   basis: BirthBasis;
   speed: number;
+  ff: boolean;       // 次の決定まで早送り
   paused: boolean;
   music: boolean;
   progress: number;
@@ -49,20 +32,42 @@ interface GameState {
   logOpen: boolean;
   raf: number;
   last: number;
+  timer?: number;
   onExit: () => void;
 }
 
 let S: GameState | null = null;
 
-export function startGame(p: Person, basis: BirthBasis, onExit: () => void): void {
+export const hasSaved = () => load<Saved | null>(SAVE_KEY, null);
+export const clearSaved = () => save(SAVE_KEY, null);
+
+export function resumeGame(onExit: () => void): void {
+  const s = hasSaved();
+  if (!s) return onExit();
+  run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit);
+}
+
+export const sameSecondOthers = (basis: BirthBasis) =>
+  Array.from({ length: OTHERS }, () => createPerson({ seed: randomSeed(), basis, auto: true }));
+
+export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, onExit: () => void): void {
+  run(p, others, basis, 1, onExit);
+}
+
+function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
-  const others = Array.from({ length: OTHERS }, () => createPerson({ seed: randomSeed(), basis, auto: true }));
-  S = { p, others, basis, speed: 1, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, raf: 0, last: performance.now(), onExit };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, raf: 0, last: performance.now(), onExit };
   $('#app').innerHTML = shell();
   $('#app').onclick = onClick;
   if (S.music) setMusic(true);
   render();
+  persist();
   S.raf = requestAnimationFrame(frame);
+}
+
+function persist(): void {
+  if (!S || !S.p.alive) return;
+  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved) } satisfies Saved);
 }
 
 function frame(t: number): void {
@@ -70,16 +75,16 @@ function frame(t: number): void {
   const dt = Math.min(250, t - S.last);
   S.last = t;
   if (!S.paused && !S.modal && S.p.alive) {
-    S.progress += (dt * S.speed) / YEAR_MS;
-    if (S.progress >= 1) {
-      S.progress = 0;
+    S.progress += (dt * (S.ff ? 400 : S.speed)) / YEAR_MS;
+    while (S && S.progress >= 1 && !S.modal) {
+      S.progress -= 1;
       tick();
     }
+    if (S?.modal) S.progress = 0;
   }
+  if (!S) return;
   const bar = $('#yearbar');
   if (bar) bar.style.width = `${S.progress * 100}%`;
-  const month = $('#month');
-  if (month) month.textContent = S.p.alive ? `${Math.floor(S.progress * 12)}か月` : '';
   S.raf = requestAnimationFrame(frame);
 }
 
@@ -89,6 +94,7 @@ function tick(): void {
   for (const o of S.others) advanceYear(o);
   render();
   nextModal();
+  if (S && !S.modal) persist();
 }
 
 // ---- 描画 -----------------------------------------------------------------
@@ -96,20 +102,25 @@ function tick(): void {
 function shell(): string {
   return `
   <header class="topbar">
-    <div class="who" id="who"></div>
+    <div class="who"><b class="brand">Un<span>chosen</span></b><span class="agebig" id="age"></span><span id="wholine"></span></div>
     <div class="controls">
       <button data-act="pause" id="pausebtn" aria-label="一時停止">❚❚</button>
       <span class="speeds">${SPEEDS.map((s) => `<button data-act="speed" data-v="${s}">${s}×</button>`).join('')}</span>
-      <label class="toggle"><input type="checkbox" id="autobtn"> 自動で決める</label>
+      <button data-act="ff" title="次に決めることが来るまで早送り">次の決定まで »</button>
+      <button data-act="auto" id="autobtn">自動で決める</button>
       <button data-act="music" id="musicbtn" aria-label="音楽">♪</button>
-      <button data-act="exit">終える</button>
+      <button data-act="exit">中断</button>
     </div>
     <div class="yeartrack"><div id="yearbar"></div></div>
   </header>
-  <main class="game">
+  <main class="game3">
     <section class="col">
+      <div class="panel idcard" id="idcard"></div>
       <div class="panel" id="stats"></div>
       <div class="panel" id="family"></div>
+    </section>
+    <section class="col">
+      <div class="panel scenebox" id="scene"></div>
       <div class="panel" id="focus"></div>
       <div class="panel" id="log"></div>
     </section>
@@ -118,6 +129,7 @@ function shell(): string {
       <div class="panel" id="map"></div>
       <div class="panel" id="survival"></div>
       <div class="panel" id="compare"></div>
+      <div class="panel" id="country"></div>
     </section>
   </main>
   <div class="modal-back" id="modal" hidden><div class="modal" id="modalbody"></div></div>`;
@@ -126,99 +138,25 @@ function shell(): string {
 function render(): void {
   if (!S) return;
   const { p } = S;
-  const c = byCode(p.country);
-  const born = byCode(p.birthCountry);
-  setHTML('#who', `<b>${esc(p.name)}</b>　${p.age}歳 <span id="month"></span>　${esc(c.name)}${p.migratedTo ? `(${esc(born.name)}生まれ)` : ''}・${p.sex === 'F' ? '女性' : '男性'}`);
-  $('#pausebtn').textContent = S.paused ? '▶' : '❚❚';
+  $('#age').textContent = `${p.age}歳`;
+  setHTML('#wholine', `${p.birthYear + p.age}年・${esc(p.name)}・1年 ≈ ${Math.round(YEAR_MS / 1000 / S.speed)}秒`);
+  $('#pausebtn').textContent = S.paused ? '▶ 再開' : '❚❚ 止める';
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
-  $<HTMLInputElement>('#autobtn').checked = p.auto;
+  $('#autobtn').classList.toggle('on', p.auto);
   $('#musicbtn').classList.toggle('on', S.music);
-  setHTML('#stats', statsPanel(p, c));
+  setHTML('#idcard', idCard(p));
+  setHTML('#stats', statsPanel(p));
   setHTML('#family', familyPanel(p));
+  setHTML('#scene', scenePanel(p));
+  drawScene($<HTMLCanvasElement>('#scenecv'), sceneOf(p));
+  drawPortrait($<HTMLCanvasElement>('#portraitcv'), p);
   setHTML('#focus', focusPanel(p));
   setHTML('#log', logPanel(p, S.logOpen));
   setHTML('#others', othersPanel(S.others));
   setHTML('#map', `<h3>人生地図 <small>1マス = 1年</small></h3>${lifeMap(p)}`);
-  setHTML('#survival', `<h3>生存曲線</h3>${survivalChart(p)}`);
+  setHTML('#survival', `<h3>生存曲線 <small>同じ年に生まれた人のうち生きている割合</small></h3>${survivalChart(p)}`);
   setHTML('#compare', comparePanel(p));
-}
-
-const bar = (label: string, v: number) =>
-  `<div class="stat"><span>${label}</span><div class="meter"><i style="width:${v.toFixed(0)}%"></i></div><b>${v.toFixed(0)}</b></div>`;
-
-function statsPanel(p: Person, c: Country): string {
-  const own = p.working && p.school.uni !== 'studying' && p.unemployed === 0;
-  const income = own ? earnings(c, p.incomeP) * (p.retired ? 0.6 : 1) : earnings(c, p.familyP) / 1.6;
-  const label = own ? (p.retired ? '年金・仕送り' : '年収') : '家の1人あたり所得';
-  return `<h3>状態 <small>0–100</small></h3>
-    ${bar('健康', p.stats.health)}${bar('幸福', p.stats.happy)}${bar('暮らし向き', p.stats.money)}${bar('学び', p.stats.learn)}${bar('つながり', p.stats.bond)}
-    <p class="money">${label}: <b>${formatMoney(income)}</b>　<small>${perDay(income)}・購買力平価ドル</small></p>`;
-}
-
-function familyPanel(p: Person): string {
-  const rel = (alive: boolean, age: number) => (alive ? `${age}歳` : '他界');
-  const sibs = p.siblings.filter((s) => s.age >= 0);
-  const sibDead = sibs.filter((s) => !s.alive).length;
-  const kids = p.children.length;
-  const kidsDead = p.children.filter((k) => !k.alive).length;
-  const edu = p.school.uni === 'done' ? '大学卒' : p.school.uni === 'studying' ? '大学在学中'
-    : p.school.enrolled ? `在学中(${p.school.years}年目)` : p.age < 6 ? '—' : `${p.school.years}年間の学校教育`;
-  const rows: [string, string][] = [
-    ['父', rel(p.father.alive, p.father.age)],
-    ['母', rel(p.mother.alive, p.mother.age)],
-    ['きょうだい', sibs.length ? `${sibs.length}人${sibDead ? `(うち${sibDead}人が他界)` : ''}` : 'なし'],
-    ['連れ合い', p.spouse ? (p.spouse.alive ? `${p.spouse.age}歳` : '他界') : 'なし'],
-    ['子ども', kids ? `${kids}人${kidsDead ? `(うち${kidsDead}人が他界)` : ''}` : 'なし'],
-    ['住まい', `${byCode(p.country).name}・${p.migratedTo ? '都市' : p.rural ? '農村' : '町'}`],
-    ['教育', edu],
-    ['仕事', p.working ? (p.unemployed ? '失業中' : p.retired ? '引退' : p.job ?? '') : 'なし'],
-  ];
-  if (p.smoker) rows.push(['タバコ', '吸う']);
-  if (p.hiv === 'treated') rows.push(['HIV', '治療中']);
-  if (p.illness) rows.push(['病気', `${p.illness.name}`]);
-  return `<h3>家族と暮らし</h3><dl class="kv">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`;
-}
-
-function focusPanel(p: Person): string {
-  return `<h3>今年の焦点 <small>いつでも変えられる</small></h3><div class="focus">${FOCUS.map(([k, label, hint]) =>
-    `<button data-act="focus" data-v="${k}" class="${p.focus === k ? 'on' : ''}" title="${hint}">${label}</button>`).join('')}</div>`;
-}
-
-function logPanel(p: Person, open: boolean): string {
-  const items = [...p.log].reverse();
-  const shown = open ? items : items.slice(0, 10);
-  return `<h3>人生の記録</h3><ol class="log">${shown.map((e) =>
-    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span class="age">${e.age}歳</span>${esc(e.text)}</li>`).join('')}</ol>
-    ${items.length > 10 ? `<button class="link" data-act="logmore">${open ? '閉じる' : `もっと見る(${items.length})`}</button>` : ''}`;
-}
-
-function othersPanel(others: Person[]): string {
-  return `<h3>同じ1秒に生まれた人たち</h3><ul class="others">${others.map((o) => {
-    const c = byCode(o.country);
-    const last = o.log.at(-1)!;
-    const head = `${esc(byCode(o.birthCountry).name)}の${o.sex === 'F' ? '女の子' : '男の子'}`;
-    const body = o.alive ? `${o.age}歳・${esc(c.name)}で暮らす。<small>${esc(last.text)}</small>` : `${o.age}歳で亡くなった(${esc(o.cause)})。`;
-    return `<li class="${o.alive ? '' : 'gone'}"><b>${head}</b><br>${body}</li>`;
-  }).join('')}</ul>`;
-}
-
-function comparePanel(p: Person): string {
-  const real = load<string | null>('realCountry', null);
-  const b = byCode(p.birthCountry);
-  if (!real) return `<h3>あなたの出生地と比べる</h3><p class="note">トップ画面で実際に生まれた国を選ぶと、ここで並べて比べられます(この端末にだけ保存)。</p>`;
-  const r = byCode(real);
-  const le = (c: Country) => `${(p.sex === 'F' ? c.leF : c.leM).toFixed(1)}歳`;
-  const rows: [string, (c: Country) => string][] = [
-    ['平均寿命', le],
-    ['5歳までに亡くなる子', (c) => pct(c.u5mr, 1)],
-    ['1人当たりGDP', (c) => `$${Math.round(c.gdp).toLocaleString()}`],
-    ['平均教育年数', (c) => `${c.school.toFixed(1)}年`],
-    ['大学進学率', (c) => pct(Math.min(1, c.tertiary))],
-    ['18歳未満で結婚する女性', (c) => pct(c.childMarriage)],
-    ['生活満足度 (0–10)', (c) => c.happiness.toFixed(1)],
-  ];
-  return `<h3>あなたの出生地と比べる</h3><table class="cmp"><tr><th></th><th>${esc(b.name)}<small>この人生</small></th><th>${esc(r.name)}<small>あなた</small></th></tr>
-    ${rows.map(([k, f]) => `<tr><td>${k}</td><td>${f(b)}</td><td>${f(r)}</td></tr>`).join('')}</table>`;
+  setHTML('#country', countryPanel(p));
 }
 
 // ---- 操作 -----------------------------------------------------------------
@@ -226,13 +164,13 @@ function comparePanel(p: Person): string {
 function onClick(e: MouseEvent): void {
   if (!S) return;
   const t = (e.target as HTMLElement).closest<HTMLElement>('[data-act]');
-  const auto = (e.target as HTMLElement).closest('#autobtn');
-  if (auto) { setAuto($<HTMLInputElement>('#autobtn').checked); return; }
-  if (!t) return;
+  if (!t || t.closest('#modal')) return;
   const v = t.dataset.v;
   switch (t.dataset.act) {
     case 'pause': S.paused = !S.paused; break;
-    case 'speed': S.speed = Number(v); break;
+    case 'speed': S.speed = Number(v); S.ff = false; break;
+    case 'ff': S.ff = true; S.paused = false; break;
+    case 'auto': S.p.auto = !S.p.auto; break;
     case 'music': S.music = !S.music; save('music', S.music); setMusic(S.music); break;
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;
@@ -242,25 +180,18 @@ function onClick(e: MouseEvent): void {
   render();
 }
 
-function setAuto(on: boolean): void {
-  if (!S) return;
-  S.p.auto = on;
-  if (on && S.p.pending.length && S.modal) {
-    // 開いている意思決定も自動で決めて先へ進む
-    const d = S.p.pending.shift()!;
-    choose(d, d.auto(S.p));
-  }
-}
-
 function openModal(html: string): void {
   if (!S) return;
   S.modal = true;
+  S.ff = false;
+  window.clearTimeout(S.timer);
   setHTML('#modalbody', html);
   $('#modal').hidden = false;
 }
 function closeModal(): void {
   if (!S) return;
   S.modal = false;
+  window.clearTimeout(S.timer);
   $('#modal').hidden = true;
 }
 
@@ -270,36 +201,72 @@ function nextModal(): void {
   if (p.pending.length) return showDecision(p.pending[0]);
   const q = p.questions.find((x) => x.a === undefined);
   if (q && p.alive) return showQuestion(q);
-  if (!p.alive) return showDeath();
+  if (!p.alive) {
+    closeModal();
+    finish();
+    return;
+  }
   closeModal();
+  persist();
 }
 
 function showDecision(d: Decision): void {
-  openModal(`<p class="kicker">${S!.p.age}歳</p><h2>${esc(d.title)}</h2><p>${esc(d.text)}</p>
-    <div class="choices">${d.options.map((o, i) => `<button data-i="${i}">${esc(o.label)}${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>`);
+  const p = S!.p;
+  const auto = p.auto ? d.auto(p) : -1;
+  openModal(`<p class="kicker">大きな決定・${p.age}歳・${p.birthYear + p.age}年</p><h2>${esc(d.title)}</h2><p>${esc(d.text)}</p>
+    ${d.stat ? `<p class="statbox">${esc(d.stat)}</p>` : ''}
+    <div class="cards">${d.options.map((o, i) => `<button data-i="${i}" class="${i === auto ? 'pre' : ''}"><span class="num">${i + 1}</span><b>${esc(o.label)}</b>${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>
+    <div class="modalfoot">${auto >= 0
+      ? `<span class="countdown">まもなく「${esc(d.options[auto].label)}」で進む・カードを押すと止まる</span><button class="link" data-x="manual">自分で選ぶ</button>`
+      : '<button class="link" data-x="auto">これからは自動で決める</button>'}</div>`);
+  if (auto >= 0) S!.timer = window.setTimeout(() => decideNow(d, auto), AUTO_WAIT_MS);
   $('#modalbody').onclick = (e) => {
-    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-i]');
-    if (!b || !S) return;
-    S.p.pending.shift();
-    choose(d, Number(b.dataset.i));
+    const t = e.target as HTMLElement;
+    const x = t.closest<HTMLElement>('[data-x]')?.dataset.x;
+    if (x === 'manual') { S!.p.auto = false; render(); showDecision(d); return; }
+    if (x === 'auto') { S!.p.auto = true; render(); decideNow(d, d.auto(S!.p)); return; }
+    const b = t.closest<HTMLElement>('[data-i]');
+    if (b) decideNow(d, Number(b.dataset.i));
   };
 }
 
-function choose(d: Decision, i: number): void {
-  if (!S) return;
-  d.options[i].apply(S.p);
+function decideNow(d: Decision, i: number): void {
+  if (!S || S.p.pending[0] !== d) return;
+  S.p.pending.shift();
+  choose(S.p, d, i);
   settle(S.p);
   render();
   nextModal();
 }
 
+function questionContext(q: Question): string {
+  const { p, others } = S!;
+  const b = byCode(p.birthCountry);
+  const real = load<string | null>('realCountry', null);
+  const r = real ? byCode(real) : null;
+  const lines: string[] = [];
+  if (q.age === 5) lines.push(`${b.name}では子どものおよそ${(b.u5mr * 100).toFixed(1)}%が5歳の誕生日を迎えられない。この子は迎えた。${r ? `あなたの生まれた${r.name}では${(r.u5mr * 100).toFixed(1)}%。` : ''}`);
+  if (q.age === 15) lines.push(!p.school.enrolled ? `この子はもう学校に通っていない。${b.name}の大人の平均教育年数は${b.school.toFixed(1)}年${r ? `、${r.name}は${r.school.toFixed(1)}年` : ''}。` : `この子は学校に通っている。`);
+  lines.push(`同じ1秒に生まれた人たち — ${others.map((o) => `${o.given}(${byCode(o.birthCountry).name}): ${nowLine(o)}`).join(' / ')}`);
+  return lines.map((l) => `<p>${esc(l)}</p>`).join('');
+}
+
 function showQuestion(q: Question): void {
-  openModal(`<p class="kicker">${q.age}歳・時間が止まった</p><h2>${esc(q.q)}</h2>
+  const p = S!.p;
+  q.q ||= pauseQuestion(p, q.age) ?? '';
+  openModal(`<p class="kicker">時間が止まった・${q.age}歳・${p.birthYear + q.age}年</p><h2>${esc(p.given)}、${q.age}歳</h2>
+    <div class="context">${questionContext(q)}</div>
+    <p class="q">${esc(q.q)}</p>
     <textarea id="answer" maxlength="140" rows="3" placeholder="一行だけ(書かなくてもいい)"></textarea>
-    <div class="choices"><button data-act="answer">先へ進む</button></div>`);
+    <div class="cards"><button data-a="write"><span class="num">1</span><b>書き留めて生き続ける</b><small>この人生の記録に残る</small></button>
+    <button data-a="keep"><span class="num">2</span><b>胸にしまって生き続ける</b></button></div>`);
   $('#modalbody').onclick = (e) => {
-    if (!(e.target as HTMLElement).closest('[data-act=answer]')) return;
-    q.a = $<HTMLTextAreaElement>('#answer').value.trim();
+    const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
+    if (!a || !S) return;
+    const text = $<HTMLTextAreaElement>('#answer').value.trim();
+    q.a = a === 'write' ? text : '';
+    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: `「${text}」`, kind: S.p.kinds[S.p.age] ?? 'family' });
+    render();
     nextModal();
   };
 }
@@ -307,12 +274,12 @@ function showQuestion(q: Question): void {
 function confirmExit(): void {
   if (!S) return;
   const wasModal = S.modal;
-  openModal(`<h2>この人生を途中で終える？</h2><p>ここまでの記録は残りません。</p>
-    <div class="choices"><button data-x="yes">終える</button><button data-x="no">続ける</button></div>`);
+  openModal(`<h2>ここで中断する？</h2><p>この人生はこの端末に保存され、トップ画面から続きを生きられる。</p>
+    <div class="cards"><button data-x="yes"><b>中断してトップへ</b></button><button data-x="no"><b>続ける</b></button></div>`);
   $('#modalbody').onclick = (e) => {
     const b = (e.target as HTMLElement).closest<HTMLElement>('[data-x]');
     if (!b) return;
-    if (b.dataset.x === 'yes') return leave();
+    if (b.dataset.x === 'yes') { persist(); return leave(); }
     if (wasModal) nextModal(); else closeModal();
   };
 }
@@ -320,71 +287,21 @@ function confirmExit(): void {
 function leave(): void {
   if (!S) return;
   cancelAnimationFrame(S.raf);
+  window.clearTimeout(S.timer);
   if (S.music) setMusic(false);
   const exit = S.onExit;
   S = null;
   exit();
 }
 
-// ---- 人生の終わり ---------------------------------------------------------
-
-export function deathSummary(life: PastLife): string {
-  const b = byCode(life.birthCountry);
-  const c = byCode(life.country);
-  const l = lifeTable(b, life.sex).l;
-  const earlier = 1 - l[Math.min(110, life.age)];
-  const e0 = life.sex === 'F' ? b.leF : b.leM;
-  const moments = life.log.filter((e) => e.big && e.kind !== 'death').slice(-8);
-  const answers = life.questions.filter((q) => q.a);
-  return `<p class="kicker">${esc(b.name)}に生まれ、${life.country !== life.birthCountry ? `${esc(c.name)}で` : ''}${life.age}歳で</p>
-    <h2>${esc(life.name)}の一生</h2>
-    <p>死因: <b>${esc(life.cause)}</b>。${esc(b.name)}の${life.sex === 'F' ? '女性' : '男性'}の平均寿命は${e0.toFixed(1)}歳。
-    同じ年に生まれた人のうち <b>${pct(earlier)}</b> がこれより早く亡くなる。</p>
-    <ol class="log moments">${moments.map((e) => `<li><span class="age">${e.age}歳</span>${esc(e.text)}</li>`).join('')}</ol>
-    ${answers.length ? `<h3>止まった時間に書いたこと</h3><ul class="answers">${answers.map((q) => `<li><small>${q.age}歳・${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul>` : ''}
-    ${life.message ? `<p class="message">「${esc(life.message)}」</p>` : ''}`;
-}
-
-export function deathCard(life: PastLife): HTMLCanvasElement {
-  const b = byCode(life.birthCountry);
-  const moments = life.log.filter((e) => e.big && e.kind !== 'death').slice(-3).map((e) => `${e.age}歳　${e.text}`);
-  return drawCard({ kicker: `${b.name}に生まれた${life.sex === 'F' ? '女性' : '男性'}`, title: `${life.name}、${life.age}歳で(${life.cause})`, lines: moments, foot: '80億分の1 — 一度きりの人生' });
-}
-
-function showDeath(): void {
+// 自分が亡くなったあとも、同じ1秒の人たちは最後まで生きる
+function finish(): void {
   if (!S) return;
-  const { p, basis } = S;
-  const life = toPast(p, basis);
-  const lives = [life, ...pastLives()].slice(0, MAX_PAST);
-  save('lives', lives);
-  openModal(`${deathSummary(life)}
-    <h3>この人に一言</h3>
-    <textarea id="msg" maxlength="200" rows="2" placeholder="おつかれさま、など"></textarea>
-    <label class="toggle"><input type="checkbox" id="tomemorial" checked> 追悼館に残す(名前は残りません)</label>
-    <div class="choices">
-      <button data-d="done">見送る</button>
-      <button data-d="card">記録カードを保存</button>
-    </div>`);
-  $('#modalbody').onclick = async (e) => {
-    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-d]');
-    if (!b || !S) return;
-    if (b.dataset.d === 'card') { await shareCard(deathCard(life), 'life.png'); return; }
-    const message = $<HTMLTextAreaElement>('#msg').value.trim();
-    if (message) { life.message = message; save('lives', [life, ...lives.slice(1)]); }
-    if ($<HTMLInputElement>('#tomemorial').checked) await postMemorial(life);
-    leave();
-  };
-}
-
-async function postMemorial(life: PastLife): Promise<void> {
-  const highlight = life.log.filter((e) => e.big && e.kind !== 'death').at(-1)?.text ?? '';
-  try {
-    await fetch('/api/memorial', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ country: life.birthCountry, sex: life.sex, age: life.age, cause: life.cause, line: highlight, message: life.message ?? '' }),
-    });
-  } catch {
-    // 追悼館に届かなくても、前世の記録には残っている
-  }
+  const { p, others, basis, onExit } = S;
+  for (const o of others) while (o.alive) advanceYear(o);
+  clearSaved();
+  cancelAnimationFrame(S.raf);
+  if (S.music) setMusic(false);
+  S = null;
+  showDeath(p, others, basis, onExit);
 }

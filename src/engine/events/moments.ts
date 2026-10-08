@@ -1,0 +1,123 @@
+// 日常の小さな出来事 (src/data/moments.json) と、節目の生存率の記録。
+import data from '../../data/moments.json';
+import { lifeTable } from '../lifetable';
+import { bump, countryOf, log, place, type Person, type Stats } from '../person';
+import { pickWeighted } from '../rng';
+import { isPoor, isRich, scaleOf } from './common';
+import { independent } from './money';
+
+type Wealth = 'poor' | 'middle' | 'rich';
+type Income = 'low' | 'mid' | 'high';
+const oneOf = <T>(want: T | T[], have: T) => (Array.isArray(want) ? want.includes(have) : want === have);
+
+interface Moment {
+  id: string;
+  text: string;
+  minAge: number;
+  maxAge: number;
+  weight: number;
+  when?: {
+    place?: 'rural' | 'urban';
+    wealth?: Wealth | Wealth[];
+    income?: Income | Income[];
+    region?: string[];
+    countries?: string[];
+    religion?: string[];
+    state?: 'school' | 'work' | 'retired' | 'child';
+    sex?: 'F' | 'M';
+    married?: boolean;
+    hasChildren?: boolean;
+    hasPet?: boolean;
+    migrated?: boolean;
+    youngChild?: boolean;
+    parentAlive?: boolean;
+    fatherAlive?: boolean;
+    motherAlive?: boolean;
+    teenChild?: boolean;
+    livingAlone?: boolean;
+    job?: 'office' | 'manual' | 'farm' | 'none';
+  };
+  effects?: Partial<Stats>;
+  cost?: number;
+  stat?: string;
+  once?: boolean;
+}
+
+const MOMENTS = (data as { moments: Moment[] }).moments;
+const REPEAT_GAP = 6; // 同じ出来事は6年は繰り返さない
+
+function stateOf(p: Person): 'school' | 'work' | 'retired' | 'child' | null {
+  if (p.retired) return 'retired';
+  if (p.school.enrolled || p.school.uni === 'studying' || p.school.grad === 'studying') return 'school';
+  if (p.working) return 'work';
+  return p.age < 6 ? 'child' : null;
+}
+
+function matches(p: Person, m: Moment): boolean {
+  if (p.age < m.minAge || p.age > m.maxAge) return false;
+  const last = p.recent[m.id];
+  if (last !== undefined && (m.once || p.age - last < REPEAT_GAP)) return false;
+  const w = m.when;
+  if (!w) return true;
+  const c = countryOf(p);
+  if (w.place && (w.place === 'rural') !== (p.city === null)) return false;
+  if (w.wealth && !oneOf<Wealth>(w.wealth, isPoor(p) ? 'poor' : isRich(p) ? 'rich' : 'middle')) return false;
+  if (w.income && !oneOf<Income>(w.income, c.gdp < 5000 ? 'low' : c.gdp <= 25000 ? 'mid' : 'high')) return false;
+  if (w.region && !w.region.includes(c.region)) return false;
+  if (w.countries && !w.countries.includes(c.code)) return false;
+  if (w.religion && !w.religion.includes(p.religion)) return false;
+  if (w.state && w.state !== stateOf(p)) return false;
+  if (w.sex && w.sex !== p.sex) return false;
+  if (w.married !== undefined && w.married !== !!p.spouse?.alive) return false;
+  if (w.hasChildren && !p.children.some((k) => k.alive)) return false;
+  if (w.hasPet && !p.pet) return false;
+  if (w.migrated !== undefined && w.migrated !== !!p.migratedTo) return false;
+  if (w.youngChild && !p.children.some((k) => k.alive && k.age < 4)) return false;
+  if (w.parentAlive && !p.mother.alive && !p.father.alive) return false;
+  if (w.fatherAlive && !p.father.alive) return false;
+  if (w.motherAlive && !p.mother.alive) return false;
+  if (w.teenChild && !p.children.some((k) => k.alive && k.age >= 13 && k.age <= 19)) return false;
+  if (w.livingAlone && !(p.working && p.age >= 18 && !p.spouse?.alive)) return false;
+  if (w.job && w.job !== (p.working && !p.retired && p.unemployed === 0 ? p.jobKind ?? 'manual' : 'none')) return false;
+  return true;
+}
+
+const fill = (p: Person, text: string) => text
+  .replaceAll('{name}', p.given)
+  .replaceAll('{city}', place(p))
+  .replaceAll('{country}', countryOf(p).name)
+  .replaceAll('{friend}', p.friend ?? '幼なじみ')
+  .replaceAll('{pet}', p.pet?.name ?? '');
+
+// 1年に1〜3つ。土地や暮らしに合う出来事ほど選ばれやすい
+export function moments(p: Person): void {
+  const pool = MOMENTS.filter((m) => matches(p, m) && (!m.text.includes('{pet}') || p.pet) && (!m.text.includes('{friend}') || p.friend));
+  const n = 1 + (p.rng() < 0.6 ? 1 : 0) + (p.rng() < 0.25 ? 1 : 0);
+  for (let i = 0; i < n && pool.length; i++) {
+    const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1));
+    pool.splice(pool.indexOf(m), 1);
+    p.recent[m.id] = p.age;
+    const text = fill(p, m.text);
+    // 子どもの出来事のお金は親の家計の話なので、本人の財布は動かさない
+    if (m.cost && independent(p)) p.wealth += scaleOf(p) * m.cost;
+    if (m.effects) bump(p, m.effects);
+    // 同じ統計の注釈は一生に一度だけ
+    const stat = m.stat && p.recent[`stat:${m.id}`] === undefined ? m.stat : undefined;
+    if (stat) p.recent[`stat:${m.id}`] = p.age;
+    log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
+  }
+}
+
+// 1・5・15・30・50・65・80歳に、同じ年に生まれた人がどれだけ生きているかを記す
+const MILESTONES = [1, 5, 15, 30, 50, 65, 80];
+export function milestone(p: Person): void {
+  if (!MILESTONES.includes(p.age)) return;
+  const c = countryOf(p);
+  const born = p.birthCountry === c.code ? c : countryOf({ ...p, country: p.birthCountry });
+  const alive = lifeTable(born, p.sex).l[p.age];
+  const who = p.sex === 'F' ? '女の子' : '男の子';
+  const text = p.age === 5
+    ? `5歳の誕生日。${born.name}で生まれた子どものおよそ${(born.u5mr * 100).toFixed(1)}%は、5歳になる前に亡くなる。この子はその時期を越えた。`
+    : `${p.age}歳。同じ年に${born.name}で生まれた${who}のうち、約${Math.round(alive * 100)}%が今も生きている。`;
+  log(p, text, p.kinds[p.age] ?? 'child');
+}

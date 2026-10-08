@@ -2,7 +2,9 @@
 const W = 1200, H = 630;
 const FONT = '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif';
 
-export interface CardText { kicker: string; title: string; lines: string[]; foot: string }
+import { drawScene, fromData, H as SH, W as SW, type SceneData } from './pixel';
+
+export interface CardText { kicker: string; title: string; lines: string[]; foot: string; scene?: SceneData }
 
 export function drawCard(t: CardText): HTMLCanvasElement {
   const cv = document.createElement('canvas');
@@ -11,6 +13,26 @@ export function drawCard(t: CardText): HTMLCanvasElement {
   const g = cv.getContext('2d')!;
   g.fillStyle = '#f4eede';
   g.fillRect(0, 0, W, H);
+  if (t.scene) {
+    // 上半分にピクセルの場面を拡大して置き、下に文字
+    const sc = document.createElement('canvas');
+    drawScene(sc, fromData(t.scene));
+    g.imageSmoothingEnabled = false;
+    const h = Math.round((W / SW) * SH);
+    g.drawImage(sc, 0, 0, W, h);
+    g.fillStyle = '#6d6d72';
+    g.font = `24px ${FONT}`;
+    g.fillText(t.kicker, 60, h + 46);
+    g.fillStyle = '#3c3c43';
+    g.font = `bold 46px ${FONT}`;
+    wrap(g, t.title, 60, h + 104, W - 120, 54, 1);
+    g.font = `24px ${FONT}`;
+    wrap(g, t.lines.join(' '), 60, h + 150, W - 120, 34, 2);
+    g.fillStyle = '#7f0019';
+    g.font = `bold 20px ${FONT}`;
+    g.fillText(t.foot, W - 60 - g.measureText(t.foot).width, H - 22);
+    return cv;
+  }
   g.fillStyle = '#7f0019';
   g.fillRect(0, 0, 14, H);
   g.fillStyle = '#6d6d72';

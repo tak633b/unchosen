@@ -1,0 +1,82 @@
+// 家族の時間: 親・きょうだい・連れ合い・子ども・ペットが歳をとり、時に亡くなる。
+import { earnings, formatMoney } from '../economy';
+import { bump, childWord, countryOf, log, type Person, type Relative } from '../person';
+import { clamp } from '../rng';
+import { qAt } from './common';
+import { pickCause } from '../causes';
+
+function relDies(p: Person, rel: Relative): string | null {
+  const c = countryOf(p);
+  if (p.rng() >= qAt(c, rel.sex, rel.age)) return null;
+  rel.alive = false;
+  return pickCause(p.rng, c, rel.sex, rel.age, qAt(c, rel.sex, rel.age), false);
+}
+
+export function family(p: Person): void {
+  const r = p.rng;
+  const parents = [[p.mother, '母'], [p.father, '父']] as const;
+  for (const [rel, word] of parents) {
+    if (!rel.alive) continue;
+    rel.age++;
+    const cause = relDies(p, rel);
+    if (!cause) continue;
+    const young = p.age < 18;
+    log(p, `${word}が${rel.age}歳で亡くなった(${cause})。`, 'loss', true);
+    bump(p, { happy: young ? -18 : -8, bond: young ? -10 : -4 });
+    if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
+    if (!p.mother.alive && !p.father.alive && p.age >= 18) inherit(p);
+  }
+  for (const s of p.siblings) {
+    if (s.age < 0) {
+      s.age++;
+      if (s.age === 0) log(p, `${childWord(s.sex)}のきょうだい、${s.name}が生まれた。`, 'family');
+      continue;
+    }
+    if (!s.alive) continue;
+    s.age++;
+    if (relDies(p, s)) {
+      log(p, `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true);
+      bump(p, { happy: -10 });
+    }
+  }
+  if (p.spouse?.alive) {
+    p.spouse.age++;
+    const cause = relDies(p, p.spouse);
+    if (cause) {
+      log(p, `連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, 'loss', true);
+      bump(p, { happy: -20, bond: -15 });
+    }
+  }
+  for (const k of p.children) {
+    if (!k.alive) continue;
+    k.age++;
+    if (relDies(p, k)) {
+      log(p, `子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, 'loss', true);
+      bump(p, { happy: -25, bond: -5 });
+    }
+    if (k.age === 18 && p.age < 80) log(p, `${k.name}が家を出て、自分の暮らしを始めた。`, 'family');
+  }
+  if (p.age >= 50 && p.children.some((k) => k.alive && k.age >= 20) && r() < 0.12) {
+    log(p, '孫が生まれた。', 'family');
+    bump(p, { happy: 6, bond: 5 });
+  }
+  if (p.pet) {
+    p.pet.age++;
+    if (p.pet.age >= p.pet.life) {
+      log(p, `${p.pet.kind}の${p.pet.name}が${p.pet.age}歳で死んだ。`, 'loss');
+      bump(p, { happy: -6 });
+      p.pet = undefined;
+    }
+  }
+}
+
+// 両親を見送ったあと、家の財産をきょうだいと分ける
+function inherit(p: Person): void {
+  const c = countryOf(p);
+  if (p.familyP < 0.45) return;
+  const heirs = 1 + p.siblings.filter((s) => s.alive && s.age >= 0).length;
+  // 中くらいの家で年収の2年分ほど、裕福な家ほど多い
+  const amount = (earnings(c, p.familyP) * p.familyP ** 2 * 6) / heirs;
+  p.wealth += amount;
+  log(p, `両親の残した財産を${heirs > 1 ? 'きょうだいと分けて' : ''}受け継いだ(+${formatMoney(amount)})。`, 'family');
+}

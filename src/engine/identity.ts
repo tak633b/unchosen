@@ -19,7 +19,7 @@ interface CountryIdentity {
 }
 
 const POOLS = data.pools as Record<string, Pool>;
-const COUNTRIES = data.countries as Record<string, CountryIdentity>;
+const COUNTRIES = data.countries as unknown as Record<string, CountryIdentity>;
 const FALLBACK: CountryIdentity = { pool: 'english', cities: [], religions: [['その他', 1]] };
 
 const idOf = (code: string) => COUNTRIES[code] ?? FALLBACK;

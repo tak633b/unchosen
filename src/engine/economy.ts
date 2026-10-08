@@ -27,3 +27,16 @@ export function formatMoney(ppp: number): string {
 
 // 1日あたりに直すと貧しさが伝わりやすい
 export const perDay = (ppp: number) => `1日 $${(ppp / 365).toFixed(ppp < 3650 ? 2 : 0)}`;
+
+// 日本の物価での感覚 (月あたり)
+export function monthlyYen(ppp: number): string {
+  const man = (ppp * JPY_PER_PPP) / 12 / 1e4;
+  return man >= 1 ? `${Math.round(man).toLocaleString()}万円` : `${Math.round(man * 1e4).toLocaleString()}円`;
+}
+
+export function yen(ppp: number): string {
+  const v = ppp * JPY_PER_PPP;
+  const a = Math.abs(v);
+  const s = a >= 1e8 ? `${(a / 1e8).toFixed(1)}億円` : a >= 1e4 ? `${Math.round(a / 1e4).toLocaleString()}万円` : `${Math.round(a).toLocaleString()}円`;
+  return v < 0 ? `-${s}` : s;
+}

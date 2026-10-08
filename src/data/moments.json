@@ -1,0 +1,6898 @@
+{
+  "moments": [
+    {
+      "id": "first-steps",
+      "text": "{name}が初めて自分の足で三歩歩き、そのまま床に座りこんだ。",
+      "minAge": 0,
+      "maxAge": 2,
+      "weight": 1,
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "first-word",
+      "text": "{name}の最初の言葉は「ママ」でも「パパ」でもなく、近所の犬の鳴きまねだった。",
+      "minAge": 0,
+      "maxAge": 2,
+      "weight": 1,
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "fever-night",
+      "text": "夜中に{name}が高い熱を出した。朝には下がっていた。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "health": -2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "vaccine-day",
+      "text": "予防接種の日。{name}は注射より、待合室で待たされる長さに泣いた。",
+      "minAge": 0,
+      "maxAge": 2,
+      "weight": 1,
+      "effects": {
+        "health": 2
+      },
+      "stat": "2023年、3回目のDTPワクチン(ジフテリア・破傷風・百日咳)を受けた乳児は世界で約84%だった (WHO・UNICEF)"
+    },
+    {
+      "id": "grandma-lullaby",
+      "text": "祖母が昔の子守歌を歌ってくれた。歌詞の半分は、誰も意味を知らなかった。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "bond": 3,
+        "happy": 1
+      }
+    },
+    {
+      "id": "sandbox",
+      "text": "公園の砂場で知らない子とシャベルを取りあい、最後は一緒に山を作った。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "chase-chickens",
+      "text": "庭のにわとりを追いかけて転び、膝をすりむいた。",
+      "minAge": 1,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "happy": 1,
+        "health": -1
+      }
+    },
+    {
+      "id": "mud-puddle",
+      "text": "雨上がりの水たまりに座りこみ、服を泥だらけにして叱られた。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "same-picture-book",
+      "text": "毎晩同じ昔話をしてほしいとせがんだ。親は話の言い回しまで覚えてしまった。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "parentAlive": true
+      },
+      "effects": {
+        "learn": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "diarrhea-ors",
+      "text": "お腹をこわして下痢が何日も続いた。母親は塩と砂糖を溶かした水を、少しずつ飲ませた。",
+      "minAge": 0,
+      "maxAge": 4,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "motherAlive": true
+      },
+      "effects": {
+        "health": -3,
+        "bond": 1
+      },
+      "stat": "下痢症で亡くなる5歳未満の子どもは、世界で毎年約44万人にのぼる (WHO)"
+    },
+    {
+      "id": "mosquito-net",
+      "text": "蚊帳の中で眠るのが、毎晩の決まりになった。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ"
+        ],
+        "income": "low"
+      },
+      "effects": {
+        "health": 1
+      },
+      "stat": "2022年のマラリアによる死者は約60万人で、その大半がアフリカの5歳未満の子どもだった (WHO)"
+    },
+    {
+      "id": "birth-registered",
+      "text": "{name}の出生届が役所に出された。紙一枚で、{name}はこの国の人になった。",
+      "minAge": 0,
+      "maxAge": 1,
+      "weight": 1,
+      "once": true,
+      "stat": "世界の5歳未満の子どものおよそ4人に1人は、出生登録がされていない (UNICEF)"
+    },
+    {
+      "id": "carried-on-back",
+      "text": "母親は{name}を布で背中にくくりつけたまま、畑と台所を行き来した。",
+      "minAge": 0,
+      "maxAge": 2,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ"
+        ],
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "first-rice",
+      "text": "初めておかゆを口にした。半分は口の外に出た。",
+      "minAge": 0,
+      "maxAge": 1,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アジア"
+        ]
+      },
+      "effects": {
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "nursery-first-day",
+      "text": "保育園に初めて行った日、{name}は門の前で泣き、帰りには帰りたくないと泣いた。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "happy": 1,
+        "learn": 2,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "supermarket-tantrum",
+      "text": "お菓子を買ってもらえず、店の床に寝そべって抗議した。",
+      "minAge": 2,
+      "maxAge": 4,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "neighbor-cat",
+      "text": "近所の猫が{name}の膝に乗った。それから毎日、その猫を探すようになった。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "hide-and-sleep",
+      "text": "かくれんぼで物陰に隠れたまま眠ってしまい、家族が大騒ぎで探しまわった。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": 1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "crayon-wall",
+      "text": "家の壁に大きな絵を描いた。親はしばらく消さずに残しておいた。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "parentAlive": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "photo-to-relatives",
+      "text": "親の携帯電話で撮られた{name}の写真が、親戚じゅうに送られた。",
+      "minAge": 0,
+      "maxAge": 1,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ],
+        "parentAlive": true
+      },
+      "effects": {
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "small-for-age",
+      "text": "食事は毎日あったが、ほとんどが豆と穀物だった。{name}は同い年の子より少し小さかった。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low"
+      },
+      "effects": {
+        "health": -2
+      },
+      "stat": "2022年、世界の5歳未満の子ども約1億4,800万人が発育阻害(年齢に比べて背が低い状態)だった (UNICEF・WHO・世界銀行)"
+    },
+    {
+      "id": "breastfed",
+      "text": "母親はしばらく、母乳だけで{name}を育てた。",
+      "minAge": 0,
+      "maxAge": 1,
+      "weight": 1,
+      "when": {
+        "motherAlive": true
+      },
+      "effects": {
+        "health": 2,
+        "bond": 2
+      },
+      "once": true,
+      "stat": "生後6か月未満で母乳だけで育てられている赤ちゃんは、世界でおよそ半数 (UNICEF)"
+    },
+    {
+      "id": "kitchen-smoke",
+      "text": "台所のかまどの煙で、{name}はよく咳をした。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low"
+      },
+      "effects": {
+        "health": -2
+      },
+      "stat": "世界ではおよそ23億人が、薪や炭、灯油など煙の多い燃料で調理している (WHO)"
+    },
+    {
+      "id": "rope-swing",
+      "text": "父親が木の枝にロープを結び、ぶらんこを作ってくれた。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "fatherAlive": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "first-zoo",
+      "text": "初めて動物園に行った。{name}が一番喜んだのは、象ではなく入口の鳩だった。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2,
+        "learn": 1
+      },
+      "once": true
+    },
+    {
+      "id": "hot-pot-burn",
+      "text": "熱い鍋に手を伸ばして、指先をやけどした。痕は残らなかった。",
+      "minAge": 1,
+      "maxAge": 4,
+      "weight": 1,
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "afraid-of-dark",
+      "text": "暗いのが怖くなり、しばらく灯りをつけたまま眠った。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": -1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "grandpa-shoulders",
+      "text": "祖父の肩車で、祭りの人ごみを上から見た。",
+      "minAge": 1,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "cousins-visit",
+      "text": "いとこたちが遊びに来て、家じゅうが三日間うるさかった。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "runny-nose",
+      "text": "鼻水が一週間止まらなかった。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1.5,
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "pet-licks-face",
+      "text": "{pet}が{name}の顔をなめ、{name}は笑いころげた。",
+      "minAge": 1,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "hasPet": true
+      },
+      "effects": {
+        "happy": 3
+      }
+    },
+    {
+      "id": "cartoon-song",
+      "text": "朝のアニメの歌を、意味もわからないまま全部覚えた。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "first-haircut",
+      "text": "初めての散髪で、{name}は鏡の前で固まっていた。",
+      "minAge": 1,
+      "maxAge": 4,
+      "weight": 1,
+      "effects": {
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "water-trip-with-mother",
+      "text": "母親は毎朝、水汲みに{name}を連れて出かけた。往復で一時間かかった。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low",
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 1
+      },
+      "stat": "家に水道のない世帯のおよそ7割で、水汲みは女性や少女の役目になっている (WHO・UNICEF)"
+    },
+    {
+      "id": "shadow-puppets",
+      "text": "停電の夜、ろうそくの明かりで家族が影絵をして見せてくれた。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "new-shoes-bed",
+      "text": "新しい靴を買ってもらい、その夜は靴をはいたまま寝ようとした。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "effects": {
+        "happy": 3
+      }
+    },
+    {
+      "id": "bump-forehead",
+      "text": "段差から転げ落ちて、おでこにこぶができた。",
+      "minAge": 1,
+      "maxAge": 4,
+      "weight": 1,
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "market-banana",
+      "text": "母親と市場に行った。魚の匂いと、果物屋のおばさんがくれたバナナを覚えている。",
+      "minAge": 1,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ",
+          "アジア",
+          "南アメリカ"
+        ],
+        "motherAlive": true
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "private-kindergarten",
+      "text": "英語と音楽を教える私立の幼稚園に通い始めた。月謝は安くなかった。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "wealth": "rich"
+      },
+      "effects": {
+        "learn": 3
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "first-snow",
+      "text": "初めて雪を見た。{name}は手袋を外して、その冷たさを確かめた。",
+      "minAge": 1,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN",
+          "CAN",
+          "RUS",
+          "NOR",
+          "FIN",
+          "SWE",
+          "DEU",
+          "POL",
+          "KOR",
+          "KAZ",
+          "MNG",
+          "UKR",
+          "USA",
+          "CHN",
+          "AUT",
+          "CHE"
+        ]
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "grandfather-funeral-child",
+      "text": "祖父が亡くなった。{name}は葬式の意味がよくわからず、親戚が泣くのを見ていた。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 0.5,
+      "effects": {
+        "happy": -2,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "measles",
+      "text": "はしかにかかり、高い熱と発疹が一週間続いた。",
+      "minAge": 0,
+      "maxAge": 5,
+      "weight": 0.4,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "health": -4
+      }
+    },
+    {
+      "id": "fridge-drawings",
+      "text": "保育園で描いた絵が、冷蔵庫の扉に磁石で貼られた。",
+      "minAge": 3,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "milk-tea-stall",
+      "text": "父親に連れられて屋台へ行き、甘い練乳入りのコーヒーをひと口もらった。",
+      "minAge": 2,
+      "maxAge": 5,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM",
+          "THA",
+          "MYS",
+          "IDN"
+        ],
+        "fatherAlive": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "school-first-day",
+      "text": "学校の初日。新しい鉛筆の匂いがした。",
+      "minAge": 6,
+      "maxAge": 7,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "learn": 2,
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "school-fees-late",
+      "text": "学費の支払いが遅れ、{name}は名前を呼ばれて教室の外に立たされた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low",
+        "state": "school"
+      },
+      "effects": {
+        "happy": -3,
+        "learn": -1
+      }
+    },
+    {
+      "id": "shared-textbook",
+      "text": "教科書は三人で一冊だった。{name}は真ん中に座れる日を楽しみにしていた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "state": "school"
+      },
+      "effects": {
+        "learn": 1
+      }
+    },
+    {
+      "id": "long-walk-school",
+      "text": "学校までは片道一時間歩いた。雨季には、川を渡るたびに靴を脱いだ。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low",
+        "state": "school"
+      },
+      "effects": {
+        "health": 1
+      }
+    },
+    {
+      "id": "kerosene-homework",
+      "text": "灯油ランプの下で宿題をした。煤で鼻の穴が黒くなった。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low",
+        "state": "school"
+      },
+      "effects": {
+        "learn": 1
+      },
+      "stat": "電気を使えない人は、2022年時点で世界に約6億8,000万人いた (IEA・世界銀行など)"
+    },
+    {
+      "id": "school-meal",
+      "text": "学校の給食が、一日のうちでいちばんしっかりした食事だった。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "state": "school"
+      },
+      "effects": {
+        "health": 2
+      },
+      "stat": "世界では約4億人の子どもが学校給食を受けている (WFP)"
+    },
+    {
+      "id": "tooth-on-roof",
+      "text": "前歯が抜けた。{name}は抜けた歯を屋根の上に投げた。",
+      "minAge": 5,
+      "maxAge": 8,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アジア"
+        ]
+      },
+      "effects": {
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "tooth-under-pillow",
+      "text": "抜けた歯を枕の下に置いて眠った。朝、そこには硬貨が一枚あった。",
+      "minAge": 5,
+      "maxAge": 8,
+      "weight": 1,
+      "when": {
+        "region": [
+          "ヨーロッパ",
+          "北アメリカ",
+          "オセアニア"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      },
+      "once": true
+    },
+    {
+      "id": "learn-bicycle",
+      "text": "自転車に乗れるようになった。後ろを支えていた手がいつ離れたのか、気づかなかった。",
+      "minAge": 5,
+      "maxAge": 10,
+      "weight": 1,
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "best-friend",
+      "text": "{friend}と親友になった。きっかけは、同じ日に生まれたとわかったことだった。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "quarrel-friend",
+      "text": "{friend}とけんかして、三日間口をきかなかった。四日目には元に戻っていた。",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "effects": {
+        "happy": -1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "harvest-skip-school",
+      "text": "収穫の時期は学校を休んで畑を手伝った。手のひらに豆ができた。",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low",
+        "state": "school"
+      },
+      "effects": {
+        "learn": -1,
+        "bond": 1
+      },
+      "stat": "2020年、世界で約1億6,000万人の子どもが児童労働をしていて、その約7割が農業だった (ILO・UNICEF)"
+    },
+    {
+      "id": "goat-herding",
+      "text": "放課後、家の山羊を連れて丘まで行くのが{name}の仕事だった。",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "region": [
+          "アフリカ",
+          "アジア"
+        ],
+        "state": "school"
+      },
+      "effects": {
+        "health": 1
+      }
+    },
+    {
+      "id": "sell-snacks-street",
+      "text": "週末、母親が作った揚げ菓子を道で売った。売れ残りは家族で食べた。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 1
+      },
+      "cost": 0.01
+    },
+    {
+      "id": "essay-prize",
+      "text": "作文が学校で表彰された。題は「わたしの家族」だった。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "happy": 3,
+        "learn": 2
+      },
+      "once": true
+    },
+    {
+      "id": "child-glasses",
+      "text": "黒板の字が見えにくくなり、眼鏡をかけ始めた。",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "learn": 1
+      },
+      "once": true,
+      "stat": "近視は世界中で増えていて、2050年には世界人口の約半数が近視になるという推計がある (Holden et al., Ophthalmology 2016)"
+    },
+    {
+      "id": "broken-arm-tree",
+      "text": "木から落ちて腕の骨を折った。腕を固めていた間、友達がかわりに荷物を持ってくれた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "effects": {
+        "health": -4,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "cram-school",
+      "text": "週に三日、塾に通い始めた。帰りに買う肉まんが楽しみだった。",
+      "minAge": 9,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN",
+          "KOR",
+          "CHN"
+        ]
+      },
+      "effects": {
+        "learn": 3,
+        "happy": -1
+      },
+      "cost": -0.04
+    },
+    {
+      "id": "home-tutor",
+      "text": "家庭教師が週に二回来るようになった。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "rich"
+      },
+      "effects": {
+        "learn": 3
+      },
+      "cost": -0.05
+    },
+    {
+      "id": "piano-lessons",
+      "text": "ピアノを習い始めた。同じ曲を半年弾き続けた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "rich"
+      },
+      "effects": {
+        "learn": 2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "plastic-bag-football",
+      "text": "空き地で裸足のサッカーをした。ボールはビニール袋を丸めて紐でしばったものだった。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": 3,
+        "health": 1
+      }
+    },
+    {
+      "id": "street-cricket",
+      "text": "路地でクリケットをして、隣の家の窓ガラスを割った。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "PAK",
+          "BGD",
+          "LKA",
+          "AFG",
+          "NPL"
+        ]
+      },
+      "effects": {
+        "happy": 1
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "sports-day",
+      "text": "運動会のリレーで抜かれた。家族はそれでもござの上に弁当を広げて褒めてくれた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN",
+          "KOR"
+        ],
+        "state": "school"
+      },
+      "effects": {
+        "happy": 1,
+        "bond": 2
+      }
+    },
+    {
+      "id": "first-internet",
+      "text": "学校のパソコン室で、初めてインターネットにつないだ。最初に検索したのは好きな動物の名前だった。",
+      "minAge": 8,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "income": [
+          "mid",
+          "high"
+        ],
+        "married": false
+      },
+      "effects": {
+        "learn": 2
+      },
+      "once": true,
+      "stat": "2024年時点で、世界の約26億人がまだインターネットを使っていない (ITU)"
+    },
+    {
+      "id": "friends-video-game",
+      "text": "友達の家で初めてテレビゲームをやり、帰りたくなくなった。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "night-phone-minutes",
+      "text": "家族で一台の携帯電話を使っていた。{name}が触れるのは、親が寝た後の数分だけだった。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "parentAlive": true
+      },
+      "effects": {
+        "happy": 1
+      }
+    },
+    {
+      "id": "caught-lying",
+      "text": "宿題をしたと嘘をついて、すぐにばれた。",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "bond": -1
+      }
+    },
+    {
+      "id": "grandma-war-stories",
+      "text": "祖母の家に泊まり、昔の話を聞いた。若い頃の苦しかった話をする時だけ、祖母は声が小さくなった。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "effects": {
+        "bond": 2,
+        "learn": 1
+      }
+    },
+    {
+      "id": "river-swimming",
+      "text": "村の川で泳ぎを覚えた。最初は年上の子に放りこまれた。",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "happy": 2,
+        "health": 1
+      }
+    },
+    {
+      "id": "swimming-class",
+      "text": "プールの水泳教室に通い、ようやく二十五メートル泳げた。",
+      "minAge": 6,
+      "maxAge": 10,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "health": 2,
+        "happy": 2
+      }
+    },
+    {
+      "id": "dengue",
+      "text": "デング熱にかかり、一週間寝こんだ。",
+      "minAge": 5,
+      "maxAge": 15,
+      "weight": 0.5,
+      "when": {
+        "region": [
+          "アジア",
+          "南アメリカ"
+        ]
+      },
+      "effects": {
+        "health": -4
+      },
+      "stat": "デングウイルスの感染は、世界で年に約1億〜4億件起きていると推計されている (WHO)"
+    },
+    {
+      "id": "deworming",
+      "text": "学校で虫下しの薬が配られ、みんなで並んで飲んだ。",
+      "minAge": 5,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "state": "school"
+      },
+      "effects": {
+        "health": 2
+      },
+      "stat": "土壌を介して感染する寄生虫に感染している人は、世界で約15億人いる (WHO)"
+    },
+    {
+      "id": "class-monitor",
+      "text": "学級委員に選ばれた。主な仕事は黒板を消すことだった。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "learn": 1,
+        "happy": 1
+      }
+    },
+    {
+      "id": "teased-at-school",
+      "text": "クラスの何人かに名前をからかわれ続けた。しばらく学校に行くのが憂うつだった。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "happy": -3
+      },
+      "stat": "過去1か月にいじめを受けたと答えた生徒は、世界でおよそ3人に1人 (UNESCO, 2019)"
+    },
+    {
+      "id": "moving-house-child",
+      "text": "引っ越しをした。前の家の柱に刻んだ背の高さの印は、そのまま残してきた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "effects": {
+        "happy": -1
+      },
+      "once": true
+    },
+    {
+      "id": "flood-school-closed",
+      "text": "大雨で学校が一週間休みになった。教室には泥が残った。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アジア",
+          "アフリカ"
+        ],
+        "state": "school"
+      },
+      "effects": {
+        "learn": -1
+      },
+      "stat": "2024年、異常気象で学校教育が中断された子どもは、世界で約2億4,200万人にのぼった (UNICEF)"
+    },
+    {
+      "id": "monsoon-first-rain",
+      "text": "雨季の最初の雨の日、子どもたちは裸足で外に飛び出した。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "BGD",
+          "MMR",
+          "THA",
+          "VNM",
+          "NPL",
+          "LKA",
+          "LAO",
+          "KHM"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "first-full-fast",
+      "text": "初めてラマダンの断食を最後まで続けた。日没に飲んだ水の味を、よく覚えている。",
+      "minAge": 8,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "eid-new-clothes",
+      "text": "イードの朝、新しい服を着て親戚の家をまわり、お小遣いをもらった。",
+      "minAge": 5,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "diwali-lamps",
+      "text": "ディワリの夜、家の入口に素焼きのランプを並べた。風が吹くたびに、いくつか消えた。",
+      "minAge": 5,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ヒンドゥー教"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "holi-colors",
+      "text": "ホーリーの日、色粉をかけあった。髪が三日間ピンク色のままだった。",
+      "minAge": 6,
+      "maxAge": 15,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "NPL"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 1
+      }
+    },
+    {
+      "id": "tet-lixi",
+      "text": "テトに祖父母から赤い封筒のお年玉をもらい、すぐに枕の下へ隠した。",
+      "minAge": 4,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "spring-festival-firecrackers",
+      "text": "春節の夜は爆竹の音で眠れなかった。朝、道は赤い紙くずでいっぱいだった。",
+      "minAge": 4,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "christmas-morning-box",
+      "text": "クリスマスの朝、ツリーの下の箱を開けた。欲しかったものとは少し違ったが、黙っていた。",
+      "minAge": 4,
+      "maxAge": 11,
+      "weight": 0.6,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ],
+        "region": [
+          "ヨーロッパ",
+          "北アメリカ",
+          "オセアニア",
+          "南アメリカ"
+        ],
+        "wealth": [
+          "middle",
+          "rich"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "easter-egg-hunt",
+      "text": "イースターの日、庭に隠された卵を探した。一つだけ見つからず、夏になって出てきた。",
+      "minAge": 4,
+      "maxAge": 10,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ],
+        "region": [
+          "ヨーロッパ",
+          "北アメリカ",
+          "オセアニア"
+        ],
+        "wealth": [
+          "middle",
+          "rich"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "otoshidama",
+      "text": "正月に親戚からお年玉をもらった。半分は親に「預かって」おかれた。",
+      "minAge": 5,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "parentAlive": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "randoseru",
+      "text": "祖父母から入学祝いのランドセルが届いた。体の半分くらいの大きさだった。",
+      "minAge": 6,
+      "maxAge": 6,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "state": "school"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "chuseok-trip",
+      "text": "秋夕に家族で田舎へ向かった。高速道路は大渋滞で、着いた頃には眠っていた。",
+      "minAge": 5,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KOR"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "carnival-parade",
+      "text": "カーニバルの行列を、父親の肩の上から見た。太鼓の音が胸に響いた。",
+      "minAge": 6,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "BRA"
+        ],
+        "married": false,
+        "fatherAlive": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 1
+      }
+    },
+    {
+      "id": "day-of-dead-altar",
+      "text": "死者の日、祖母の写真を飾った祭壇にマリーゴールドを供えた。",
+      "minAge": 5,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "MEX"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "handmedown-uniform",
+      "text": "制服は兄のお下がりで、袖を二回折って着た。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "state": "school"
+      }
+    },
+    {
+      "id": "songkran-water",
+      "text": "ソンクラーンの日、通りで水をかけあって全身ずぶぬれになった。",
+      "minAge": 5,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "THA",
+          "LAO",
+          "MMR",
+          "KHM"
+        ]
+      },
+      "effects": {
+        "happy": 3
+      }
+    },
+    {
+      "id": "kite-fighting",
+      "text": "凧揚げの季節、近所の子と糸を切りあった。指に糸のあとが残った。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "AFG",
+          "PAK",
+          "IND",
+          "NPL"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "first-pocket-money",
+      "text": "初めておこづかいをもらい、その日のうちに全部お菓子に使った。",
+      "minAge": 7,
+      "maxAge": 10,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "stray-dog-follows",
+      "text": "学校の帰り道、野良犬が家までついてきた。親は飼うことを許さなかった。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "parentAlive": true
+      },
+      "effects": {
+        "happy": 1
+      }
+    },
+    {
+      "id": "summer-camp",
+      "text": "夏のキャンプで、生まれて初めて満天の星を見た。",
+      "minAge": 9,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "wealth": "rich"
+      },
+      "effects": {
+        "happy": 3,
+        "learn": 1
+      },
+      "cost": -0.03,
+      "once": true
+    },
+    {
+      "id": "night-sky-village",
+      "text": "夜、家の外に寝転んで、天の川を眺めた。",
+      "minAge": 6,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "first-crush",
+      "text": "{friend}のことが気になり始めた。話しかけようとして、三回やめた。",
+      "minAge": 12,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "walk-home-together",
+      "text": "初めて好きな人と並んで帰った。何を話したのかは覚えていない。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "heartbreak-teen",
+      "text": "好きだった人に相手がいると知った。その夜は、なかなか眠れなかった。",
+      "minAge": 14,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": -3
+      }
+    },
+    {
+      "id": "first-own-phone",
+      "text": "初めて自分の携帯電話を持った。最初の一週間で、通知音を何度も変えた。",
+      "minAge": 12,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      },
+      "once": true,
+      "stat": "10歳以上の人の約8割が自分の携帯電話を持っている (ITU, 2023)"
+    },
+    {
+      "id": "exam-late-nights",
+      "text": "進学の試験が近づき、夜遅くまで机に向かった。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 3,
+        "health": -1,
+        "happy": -1
+      }
+    },
+    {
+      "id": "exam-passed",
+      "text": "試験に合格した。掲示板の前で、{name}は自分の番号を三回確かめた。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "happy": 4,
+        "learn": 1
+      },
+      "once": true
+    },
+    {
+      "id": "exam-bad",
+      "text": "試験の結果は思ったより悪かった。親は何も言わずに夕食を出した。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false,
+        "parentAlive": true
+      },
+      "effects": {
+        "happy": -3,
+        "bond": 1
+      }
+    },
+    {
+      "id": "gaokao",
+      "text": "高考の二日間、会場の外では親たちが日傘をさして待っていた。",
+      "minAge": 17,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN"
+        ],
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 2,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "suneung",
+      "text": "修能試験の日、遅刻しそうな受験生をパトカーが会場まで送っていた。",
+      "minAge": 17,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KOR"
+        ],
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 1
+      },
+      "once": true
+    },
+    {
+      "id": "common-test-snow",
+      "text": "大学入学共通テストの朝、雪で電車が遅れた。",
+      "minAge": 17,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "happy": -1
+      },
+      "once": true
+    },
+    {
+      "id": "part-time-job",
+      "text": "放課後、飲食店でアルバイトを始めた。初めての給料で家族に菓子を買った。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "bond": 2
+      },
+      "cost": 0.02
+    },
+    {
+      "id": "leave-school-work",
+      "text": "家計が苦しくなり、{name}は学校をやめて働きに出た。",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 0.6,
+      "when": {
+        "wealth": "poor",
+        "income": "low",
+        "married": false,
+        "state": "school"
+      },
+      "effects": {
+        "learn": -3,
+        "bond": 1
+      },
+      "once": true,
+      "stat": "学校に通っていない子どもや若者は、世界で約2億5,000万人いる (UNESCO)"
+    },
+    {
+      "id": "acne",
+      "text": "顔のにきびが気になり、人前に出るのを避けた。",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "voice-change",
+      "text": "声変わりして、電話で父親と間違えられた。",
+      "minAge": 12,
+      "maxAge": 15,
+      "weight": 1,
+      "when": {
+        "sex": "M",
+        "fatherAlive": true
+      },
+      "effects": {
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "first-period-cloth",
+      "text": "初めての生理が来た。母親は台所で、黙って布の使い方を教えてくれた。",
+      "minAge": 11,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "sex": "F",
+        "income": "low",
+        "married": false,
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "first-period-sister",
+      "text": "初めての生理が来た。姉がナプキンの使い方を教えてくれて、父親には黙っていてくれた。",
+      "minAge": 11,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "sex": "F",
+        "place": "urban",
+        "married": false,
+        "fatherAlive": true
+      },
+      "effects": {
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "garage-band",
+      "text": "友達とバンドを組んだ。練習した曲の数より、バンドの名前を決める時間のほうが長かった。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 1
+      }
+    },
+    {
+      "id": "morning-practice",
+      "text": "学校のスポーツの練習で、毎朝早くから走った。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "health": 3,
+        "bond": 1
+      },
+      "stat": "世界の11〜17歳の約8割は、推奨される運動量に届いていない (WHO)"
+    },
+    {
+      "id": "no-likes",
+      "text": "SNSに載せた写真に反応がつかず、一時間後に消した。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "online-game-friend",
+      "text": "ネットのゲームで、遠い国の同い年と仲よくなった。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 2,
+        "learn": 1
+      }
+    },
+    {
+      "id": "curfew-fight",
+      "text": "門限を破り、親と大げんかになった。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "married": false,
+        "parentAlive": true
+      },
+      "effects": {
+        "bond": -2
+      }
+    },
+    {
+      "id": "driving-test",
+      "text": "運転免許の試験に合格した。最初に一人で向かった先は、ガソリンスタンドだった。",
+      "minAge": 16,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "USA",
+          "CAN",
+          "AUS",
+          "NZL"
+        ],
+        "married": false
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "first-motorbike-ride",
+      "text": "兄のバイクを借りて、初めて一人で町まで走った。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM",
+          "IDN",
+          "THA",
+          "PHL",
+          "MYS",
+          "KHM",
+          "LAO",
+          "IND",
+          "NGA"
+        ],
+        "married": false
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "classmate-bike-accident",
+      "text": "同級生がバイクの事故で大けがをした。みんなで見舞いに行った。",
+      "minAge": 15,
+      "maxAge": 20,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": -2,
+        "bond": 1
+      },
+      "stat": "交通事故で亡くなる人は世界で年に約119万人で、5歳から29歳の死因の第1位になっている (WHO, 2023)"
+    },
+    {
+      "id": "librarian",
+      "text": "町の図書館に通うようになった。司書が{name}の好みを覚えて、新しい本を取り置いてくれた。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "learn": 3
+      }
+    },
+    {
+      "id": "school-trip",
+      "text": "学校の旅行で、初めて家族と離れて泊まった。夜中まで騒いで先生に叱られた。",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "confirmation",
+      "text": "教会で堅信礼を受けた。代父母がくれた十字架のネックレスを、しばらく毎日つけた。",
+      "minAge": 12,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "bar-mitzvah",
+      "text": "十三歳でバル・ミツワーを迎え、会衆の前でトーラーを読んだ。声が少し震えた。",
+      "minAge": 12,
+      "maxAge": 13,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ユダヤ教"
+        ],
+        "sex": "M"
+      },
+      "effects": {
+        "bond": 3,
+        "learn": 1
+      },
+      "once": true
+    },
+    {
+      "id": "bat-mitzvah",
+      "text": "バト・ミツワーを迎えた。親戚が遠くから集まり、夜遅くまで踊った。",
+      "minAge": 12,
+      "maxAge": 13,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ユダヤ教"
+        ],
+        "sex": "F"
+      },
+      "effects": {
+        "bond": 3
+      },
+      "once": true
+    },
+    {
+      "id": "quinceanera",
+      "text": "十五歳の誕生日、キンセアニェーラの祝いで、父親と最初のワルツを踊った。",
+      "minAge": 15,
+      "maxAge": 15,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "MEX",
+          "COL",
+          "PER",
+          "ECU",
+          "GTM",
+          "HND",
+          "SLV",
+          "NIC",
+          "DOM",
+          "BOL",
+          "PRY",
+          "CRI",
+          "PAN"
+        ],
+        "sex": "F",
+        "married": false,
+        "fatherAlive": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 3
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "classmate-married",
+      "text": "同じ学年の女の子が結婚して、学校に来なくなった。",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "married": false,
+        "state": "school"
+      },
+      "effects": {
+        "happy": -2
+      },
+      "stat": "世界では毎年約1,200万人の少女が18歳未満で結婚している (UNICEF)"
+    },
+    {
+      "id": "dawn-water-girl",
+      "text": "夜明け前に起きて井戸まで水を汲みに行き、それから学校へ向かった。",
+      "minAge": 10,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low",
+        "sex": "F",
+        "married": false,
+        "state": "school"
+      },
+      "effects": {
+        "health": -1,
+        "learn": -1
+      },
+      "stat": "世界の女性と少女が水汲みに費やす時間は、合わせて1日約2億時間にのぼる (UNICEF, 2016)"
+    },
+    {
+      "id": "teacher-reads-essay",
+      "text": "ある先生が{name}の作文を授業で読み上げた。それから国語の時間が好きになった。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 3,
+        "happy": 2
+      }
+    },
+    {
+      "id": "did-not-copy",
+      "text": "試験中、隣の答案が見えたが写さなかった。点数は平均より少し下だった。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 1
+      }
+    },
+    {
+      "id": "river-cleanup",
+      "text": "週末、地域の川の清掃に参加した。川底から自転車が三台出てきた。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 1
+      }
+    },
+    {
+      "id": "scholarship",
+      "text": "奨学金の面接を受け、合格した。家族は近所じゅうに話してまわった。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 0.4,
+      "when": {
+        "wealth": "poor",
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "happy": 4,
+        "learn": 3
+      },
+      "once": true
+    },
+    {
+      "id": "short-video",
+      "text": "友達と踊った短い動画が、知らない人に三千回再生された。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "dyed-hair",
+      "text": "髪を染めて帰り、祖母に泣かれた。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 1,
+        "bond": -1
+      }
+    },
+    {
+      "id": "first-concert",
+      "text": "初めて好きな歌手のコンサートに行った。帰りの電車でも、耳が鳴っていた。",
+      "minAge": 15,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 4
+      },
+      "cost": -0.02,
+      "once": true
+    },
+    {
+      "id": "abroad-university-fair",
+      "text": "海外の大学の説明会に親と出かけた。学費の数字を見て、父親は黙った。",
+      "minAge": 16,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "wealth": "rich",
+        "married": false,
+        "fatherAlive": true,
+        "state": "school"
+      },
+      "effects": {
+        "learn": 1
+      }
+    },
+    {
+      "id": "family-trip-abroad",
+      "text": "家族で外国へ旅行した。{name}がいちばんよく覚えているのは、空港の免税店だった。",
+      "minAge": 10,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "wealth": "rich",
+        "married": false
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2,
+        "learn": 1
+      },
+      "cost": -0.08
+    },
+    {
+      "id": "friday-prayer-father",
+      "text": "金曜の礼拝に、父親と並んで行くようになった。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ],
+        "sex": "M",
+        "fatherAlive": true
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "temporary-ordination",
+      "text": "雨安居の間、寺で短期出家をした。頭を剃ると、風が冷たかった。",
+      "minAge": 10,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "THA",
+          "MMR",
+          "LAO",
+          "KHM",
+          "LKA"
+        ],
+        "religion": [
+          "仏教"
+        ],
+        "sex": "M"
+      },
+      "effects": {
+        "bond": 2,
+        "learn": 2
+      },
+      "once": true
+    },
+    {
+      "id": "first-turban",
+      "text": "初めて自分でターバンを巻いた。三回やり直した。",
+      "minAge": 12,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "シク教"
+        ],
+        "sex": "M"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "church-choir",
+      "text": "教会の聖歌隊で歌った。一番高い音は、いつも出なかった。",
+      "minAge": 10,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 1
+      }
+    },
+    {
+      "id": "phone-snatched",
+      "text": "帰り道で携帯電話を奪われた。相手は{name}と同じくらいの年だった。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -3
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "cybercafe",
+      "text": "町のネットカフェで一時間いくらの席を借り、友達とメールを送りあった。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "married": false
+      },
+      "effects": {
+        "learn": 1,
+        "happy": 1
+      }
+    },
+    {
+      "id": "fasting-exam",
+      "text": "ラマダン中に試験があった。夜明け前の食事のあと、そのまま教科書を開いた。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ],
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 1,
+        "health": -1
+      }
+    },
+    {
+      "id": "harvest-teen",
+      "text": "稲刈りの時期は、朝から晩まで家族総出で田に出た。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "region": [
+          "アジア"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "health": -1
+      }
+    },
+    {
+      "id": "baby-sitting-siblings",
+      "text": "親が働きに出ている間、{name}が下の兄弟の面倒を見た。",
+      "minAge": 10,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "married": false,
+        "parentAlive": true
+      },
+      "effects": {
+        "bond": 2,
+        "learn": -1
+      }
+    },
+    {
+      "id": "learn-sewing",
+      "text": "近所の仕立て屋で、ミシンの使い方を習い始めた。",
+      "minAge": 12,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "learn": 2
+      }
+    },
+    {
+      "id": "sat-prep",
+      "text": "大学入試のための予備校に通った。週末も模試でつぶれた。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "wealth": "rich",
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 3,
+        "happy": -1
+      },
+      "cost": -0.04
+    },
+    {
+      "id": "first-job-shop",
+      "text": "親戚の店を手伝い、計算が誰よりも速いと褒められた。",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "learn": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "teen-volunteer-hospital",
+      "text": "病院でボランティアをした。待合室の老人に、何度も同じ道を聞かれた。",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "wealth": "middle",
+        "married": false
+      },
+      "effects": {
+        "bond": 2,
+        "learn": 1
+      }
+    },
+    {
+      "id": "graduation-high",
+      "text": "高校を卒業した。式のあと、制服のボタンを後輩にあげた。",
+      "minAge": 17,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "married": false,
+        "state": "school"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "sleepover",
+      "text": "{friend}の家に泊まり、明け方まで話しこんだ。",
+      "minAge": 12,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "diary-start",
+      "text": "日記をつけ始めた。三週間続いた。",
+      "minAge": 12,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 1
+      }
+    },
+    {
+      "id": "haircut-fail",
+      "text": "自分で前髪を切って失敗し、一週間帽子をかぶって過ごした。",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "first-payday",
+      "text": "初めての給料日。{name}は何に使うか決めないまま、しばらく残高を眺めていた。",
+      "minAge": 18,
+      "maxAge": 25,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "office"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "tenth-rejection",
+      "text": "十社目の不採用の通知が届いた。",
+      "minAge": 20,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "job": "none",
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -3
+      }
+    },
+    {
+      "id": "first-suit",
+      "text": "面接のために初めてスーツを買った。肩幅が少し合わなかった。",
+      "minAge": 20,
+      "maxAge": 26,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "job": "office"
+      },
+      "cost": -0.03,
+      "once": true
+    },
+    {
+      "id": "roommate-milk",
+      "text": "ルームメイトが、冷蔵庫の{name}の牛乳を毎回少しずつ飲んでいた。",
+      "minAge": 19,
+      "maxAge": 28,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "livingAlone": true
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "crowded-train",
+      "text": "満員電車で毎朝四十分立った。窓に映る自分の顔が、少し疲れて見えた。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN",
+          "KOR",
+          "CHN",
+          "IND"
+        ]
+      },
+      "effects": {
+        "happy": -1,
+        "health": -1
+      }
+    },
+    {
+      "id": "motorbike-commute",
+      "text": "バイクで通勤した。信号待ちのたびに、隣の人と同じ排気ガスを吸った。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM",
+          "IDN",
+          "THA",
+          "PHL",
+          "MYS",
+          "KHM",
+          "LAO",
+          "IND"
+        ],
+        "state": "work"
+      },
+      "effects": {
+        "health": -1
+      },
+      "stat": "交通事故で亡くなる人の約2割は、バイクなど二輪・三輪車の利用者である (WHO, 2023)"
+    },
+    {
+      "id": "minibus-commute",
+      "text": "乗り合いのミニバスに、車掌が定員の倍の客を押しこんだ。{name}は誰かの肘を背中に感じながら職場まで揺られた。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KEN",
+          "UGA",
+          "TZA",
+          "NGA",
+          "GHA",
+          "ZAF",
+          "SEN",
+          "CMR"
+        ],
+        "state": "work"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "before-payday",
+      "text": "給料日の三日前、財布に残っているのは小銭だけだった。食事を一日二回にした。",
+      "minAge": 19,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "state": "work"
+      },
+      "effects": {
+        "happy": -2,
+        "health": -1
+      }
+    },
+    {
+      "id": "send-money-home",
+      "text": "給料の一部を故郷の家族に送った。母親から「屋根を直した」と短い返事が来た。",
+      "minAge": 20,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "migrated": true,
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 3
+      },
+      "cost": -0.08,
+      "stat": "低・中所得国への海外送金は2023年に約6,560億ドルにのぼった (世界銀行)"
+    },
+    {
+      "id": "migrant-first-winter",
+      "text": "外国での最初の冬、{name}は母国の料理の味を思い出せなくなりかけた。",
+      "minAge": 19,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "migrated": true
+      },
+      "effects": {
+        "happy": -2
+      },
+      "stat": "生まれた国の外で暮らす人は、2020年に世界で約2億8,100万人いた (IOM)"
+    },
+    {
+      "id": "migrant-joke",
+      "text": "職場の言葉がようやく聞き取れるようになった。同僚の冗談の意味がわかった日は、少しうれしかった。",
+      "minAge": 19,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "migrated": true
+      },
+      "effects": {
+        "learn": 3,
+        "happy": 2
+      }
+    },
+    {
+      "id": "friend-wedding-gift",
+      "text": "{friend}の結婚式に招かれ、お祝いを包んだ。",
+      "minAge": 20,
+      "maxAge": 35,
+      "weight": 1,
+      "effects": {
+        "bond": 2
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "three-day-wedding",
+      "text": "親戚の結婚式は三日間続いた。{name}は毎晩踊り、毎晩遅くまで食べた。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "PAK",
+          "BGD",
+          "NPL"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "red-envelope-wedding",
+      "text": "同僚の結婚式に赤い封筒を持っていった。中の額は、ほかの同僚と相談して決めた。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN",
+          "VNM",
+          "MYS",
+          "SGP"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "lobola-talks",
+      "text": "親戚の娘の婚資を決めるため、男たちが長い時間座りこんで話していた。{name}は外で待った。",
+      "minAge": 22,
+      "maxAge": 35,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ZAF",
+          "ZWE",
+          "SWZ",
+          "LSO",
+          "BWA",
+          "MWI",
+          "ZMB",
+          "NAM"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "coming-of-age-ceremony",
+      "text": "成人式に出た。振袖やスーツ姿の同級生の顔を、半分くらい思い出せなかった。",
+      "minAge": 20,
+      "maxAge": 20,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "happy": 1,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "military-service-kr",
+      "text": "兵役のため、二年近く家を離れた。休暇で帰るたび、母親は量の多すぎる食事を出した。",
+      "minAge": 19,
+      "maxAge": 23,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KOR"
+        ],
+        "sex": "M",
+        "motherAlive": true
+      },
+      "effects": {
+        "health": 1,
+        "bond": 2,
+        "happy": -1
+      },
+      "once": true
+    },
+    {
+      "id": "military-service-il",
+      "text": "兵役に就いた。週末に家へ帰ると、洗濯物を山ほど母親に渡した。",
+      "minAge": 18,
+      "maxAge": 21,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ISR"
+        ],
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 1,
+        "learn": 1
+      },
+      "once": true
+    },
+    {
+      "id": "dorm-life",
+      "text": "大学の寮に入った。同じ階には、遠くの町から来た学生ばかりがいた。",
+      "minAge": 18,
+      "maxAge": 22,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "learn": 2,
+        "happy": 2
+      },
+      "once": true
+    },
+    {
+      "id": "graduation-uni",
+      "text": "卒業式の日、家族が一番前の席に座っていた。",
+      "minAge": 21,
+      "maxAge": 25,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      },
+      "once": true,
+      "stat": "世界で高等教育に進む若者の割合は、およそ4割に達している (UNESCO)"
+    },
+    {
+      "id": "student-loan",
+      "text": "学生ローンの返済通知が届いた。完済までの年数を計算して、途中でやめた。",
+      "minAge": 22,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "happy": -2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "dating-app",
+      "text": "アプリで知り合った人と初めて会った。写真よりよく笑う人だった。",
+      "minAge": 20,
+      "maxAge": 35,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "married": false
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "breakup",
+      "text": "長くつきあった人と別れた。共通の友人に会うのが、少し気まずくなった。",
+      "minAge": 20,
+      "maxAge": 35,
+      "weight": 1,
+      "when": {
+        "married": false
+      },
+      "effects": {
+        "happy": -3
+      }
+    },
+    {
+      "id": "baby-night-crying",
+      "text": "子どもの夜泣きで、何か月もまとまって眠れなかった。",
+      "minAge": 22,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "youngChild": true
+      },
+      "effects": {
+        "health": -2,
+        "bond": 3
+      }
+    },
+    {
+      "id": "baby-first-smile",
+      "text": "子どもが初めて{name}の顔を見て笑った。",
+      "minAge": 20,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "youngChild": true
+      },
+      "effects": {
+        "happy": 4,
+        "bond": 3
+      },
+      "once": true
+    },
+    {
+      "id": "month-end-overtime",
+      "text": "月末の締めで、一週間ずっと終電で帰った。",
+      "minAge": 22,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "place": "urban",
+        "job": "office"
+      },
+      "effects": {
+        "health": -2,
+        "happy": -1
+      },
+      "cost": 0.02
+    },
+    {
+      "id": "year-end-bonus",
+      "text": "年末に、思っていたより多いボーナスが出た。",
+      "minAge": 22,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "income": "high",
+        "job": "office"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "cost": 0.05
+    },
+    {
+      "id": "fruit-stall-day",
+      "text": "露店で果物を売って一日を過ごした。売れ行きは天気しだいだった。",
+      "minAge": 18,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low",
+        "job": "manual"
+      },
+      "stat": "世界の働く人の約6割は、契約や社会保障のない「インフォーマル」な仕事に就いている (ILO)"
+    },
+    {
+      "id": "first-mobile-money",
+      "text": "携帯電話で初めて送金した。紙幣を数えなくていいのが不思議だった。",
+      "minAge": 18,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ"
+        ]
+      },
+      "effects": {
+        "learn": 1
+      },
+      "once": true,
+      "stat": "サハラ以南アフリカでは、成人の約3人に1人がモバイルマネーの口座を持っている (世界銀行 Global Findex 2021)"
+    },
+    {
+      "id": "first-bank-account",
+      "text": "初めて銀行口座を開いた。窓口で名前のつづりを二回確かめられた。",
+      "minAge": 18,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "learn": 1
+      },
+      "once": true,
+      "stat": "2021年時点で、世界の成人のうち約14億人が銀行などの口座を持っていない (世界銀行 Global Findex)"
+    },
+    {
+      "id": "cracked-screen",
+      "text": "携帯電話を落として、画面にくもの巣のようなひびが入った。直すのはあと回しにした。",
+      "minAge": 18,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "influenza",
+      "text": "インフルエンザで五日寝こんだ。熱が下がった日のおかゆがおいしかった。",
+      "minAge": 18,
+      "maxAge": 60,
+      "weight": 1,
+      "effects": {
+        "health": -3
+      },
+      "stat": "季節性インフルエンザには、毎年世界で約10億人がかかる (WHO)"
+    },
+    {
+      "id": "gym-three-weeks",
+      "text": "ジムに入会した。通ったのは最初の三週間だった。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": "high"
+      },
+      "effects": {
+        "health": 1
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "mothers-soup",
+      "text": "一人暮らしで料理を覚えた。最初にまともに作れたのは、母親の味をまねたスープだった。",
+      "minAge": 19,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "livingAlone": true
+      },
+      "effects": {
+        "happy": 2,
+        "learn": 1
+      }
+    },
+    {
+      "id": "night-bus-trip",
+      "text": "友達と安い夜行バスに乗って、海辺の町まで出かけた。",
+      "minAge": 20,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "wealth": "middle"
+      },
+      "effects": {
+        "happy": 4,
+        "bond": 2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "backpacking",
+      "text": "リュック一つで、三か月かけて外国をまわった。帰ると両親が少し老けて見えた。",
+      "minAge": 20,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "wealth": "rich",
+        "income": "high",
+        "parentAlive": true
+      },
+      "effects": {
+        "happy": 4,
+        "learn": 3
+      },
+      "cost": -0.15,
+      "once": true,
+      "stat": "2023年の国際観光客の到着数は、世界でのべ約13億人だった (UN Tourism)"
+    },
+    {
+      "id": "garment-factory",
+      "text": "縫製工場で一日十時間ミシンを踏んだ。昼休みは床に座って、弁当を分けあった。",
+      "minAge": 18,
+      "maxAge": 35,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "BGD",
+          "KHM",
+          "VNM",
+          "MMR",
+          "LKA",
+          "PAK"
+        ],
+        "job": "manual"
+      },
+      "effects": {
+        "bond": 1,
+        "health": -1
+      },
+      "stat": "バングラデシュの輸出額の約8割は衣料品が占めている (世界銀行など)"
+    },
+    {
+      "id": "gulf-send-off",
+      "text": "湾岸の国へ出稼ぎに行く同郷の若者を、村じゅうで見送った。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NPL",
+          "BGD",
+          "PAK",
+          "IND",
+          "LKA",
+          "PHL"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      },
+      "stat": "ネパールでは、海外からの送金がGDPのおよそ4分の1にあたる (世界銀行)"
+    },
+    {
+      "id": "shouted-at",
+      "text": "上司に人前で怒鳴られた。帰りに、一人で甘いものを食べた。",
+      "minAge": 22,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "office"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "lunch-coworker",
+      "text": "同僚の{friend}と昼食をとるのが習慣になった。仕事の話は、ほとんどしなかった。",
+      "minAge": 22,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "office"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "own-lease",
+      "text": "自分の名前で部屋を借りた。家具は段ボール箱が二つだけだった。",
+      "minAge": 22,
+      "maxAge": 35,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "livingAlone": true
+      },
+      "effects": {
+        "happy": 2
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "leaky-pipe",
+      "text": "部屋の水道管が漏れ、大家が直しに来るまで一週間バケツで受けた。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "first-vote",
+      "text": "初めて選挙で投票した。投票所の鉛筆は、紐で机につながれていた。",
+      "minAge": 18,
+      "maxAge": 25,
+      "weight": 1,
+      "effects": {
+        "learn": 1
+      },
+      "once": true
+    },
+    {
+      "id": "shorter-ramadan-hours",
+      "text": "ラマダン中は仕事の時間が短くなった。日没の少し前、通りから人がふっと消えた。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ],
+        "state": "work"
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "iftar-dates",
+      "text": "ラマダンの夕方、モスクの前で道行く人にナツメヤシと水を配った。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 2
+      }
+    },
+    {
+      "id": "sms-scam",
+      "text": "「荷物をお届けできませんでした」というメッセージのリンクを押しかけて、やめた。",
+      "minAge": 18,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "stat": "2023年に世界で詐欺により失われた金額は、約1兆ドルと推計されている (Global Anti-Scam Alliance)"
+    },
+    {
+      "id": "pickpocket",
+      "text": "人ごみで財布をすられた。身分証の再発行に半日かかった。",
+      "minAge": 18,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -3
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "wallet-returned",
+      "text": "落とした財布が、中身もそのまま戻ってきた。拾った人が近所に聞いてまわってくれたらしい。",
+      "minAge": 18,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "happy": 4
+      }
+    },
+    {
+      "id": "night-shift",
+      "text": "夜勤の週が続いた。昼間に眠るため、窓に厚い布を貼った。",
+      "minAge": 20,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "manual"
+      },
+      "effects": {
+        "health": -2
+      },
+      "cost": 0.02,
+      "stat": "世界の働く人のうち、週48時間を超えて働いている人はおよそ3分の1にのぼる (ILO)"
+    },
+    {
+      "id": "shared-room-workers",
+      "text": "工場の寮で、八人で一つの部屋に寝た。棚の一段だけが{name}の場所だった。",
+      "minAge": 18,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "place": "urban",
+        "job": "manual"
+      },
+      "effects": {
+        "happy": -1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "first-laptop",
+      "text": "貯めたお金で初めてノートパソコンを買った。",
+      "minAge": 18,
+      "maxAge": 25,
+      "weight": 1,
+      "when": {
+        "wealth": "middle",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "learn": 2,
+        "happy": 2
+      },
+      "cost": -0.08,
+      "once": true
+    },
+    {
+      "id": "cousin-visa",
+      "text": "いとこが外国のビザを取った。親戚が集まって、何を持っていくべきか口々に言った。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "gift-wedding-village",
+      "text": "村の結婚式で、{name}の家は米を一袋と鶏を二羽持っていった。",
+      "minAge": 20,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "bond": 2
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "weekend-football",
+      "text": "週末、昔の仲間と草サッカーを続けた。翌日はいつも足が痛かった。",
+      "minAge": 19,
+      "maxAge": 35,
+      "weight": 1,
+      "when": {
+        "sex": "M"
+      },
+      "effects": {
+        "health": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "back-pain",
+      "text": "かがんだ拍子に、腰に痛みが走った。二週間、そっと歩いた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "effects": {
+        "health": -3
+      },
+      "stat": "腰痛を抱える人は世界で約6億人にのぼる (GBD 2021, Lancet Rheumatology 2023)"
+    },
+    {
+      "id": "checkup-cholesterol",
+      "text": "健康診断で、コレステロールの値に印がついた。揚げ物を少し減らした。",
+      "minAge": 35,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "health": 1
+      }
+    },
+    {
+      "id": "first-grey-hair",
+      "text": "鏡を見ていて、こめかみに白い髪を一本見つけた。抜かずにそのままにした。",
+      "minAge": 33,
+      "maxAge": 45,
+      "weight": 1,
+      "effects": {
+        "happy": -1
+      },
+      "once": true
+    },
+    {
+      "id": "reading-glasses",
+      "text": "針に糸を通すのに、目を細めるようになった。老眼鏡を買った。",
+      "minAge": 40,
+      "maxAge": 55,
+      "weight": 1,
+      "effects": {
+        "learn": -1
+      },
+      "cost": -0.01,
+      "once": true,
+      "stat": "老眼の人は世界で約18億人と推計されている (Fricke et al., Ophthalmology 2018)"
+    },
+    {
+      "id": "roof-repair",
+      "text": "雨漏りがひどくなり、屋根を直した。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.15
+    },
+    {
+      "id": "tin-roof",
+      "text": "貯めたお金で、わら屋根をトタン屋根に替えた。雨の音がずいぶんうるさくなった。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "cost": -0.3,
+      "once": true
+    },
+    {
+      "id": "first-fridge",
+      "text": "冷蔵庫を買った。最初の夜、{name}は冷えた水を何杯も飲んだ。",
+      "minAge": 30,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "cost": -0.2,
+      "once": true
+    },
+    {
+      "id": "washing-machine",
+      "text": "洗濯機を買った。家族で、回るのをしばらく眺めていた。",
+      "minAge": 30,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "income": "mid"
+      },
+      "effects": {
+        "happy": 2
+      },
+      "cost": -0.08,
+      "once": true
+    },
+    {
+      "id": "car-breakdown",
+      "text": "車が高速道路の路肩で動かなくなった。修理代は思っていたより高かった。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "happy": -2
+      },
+      "cost": -0.05
+    },
+    {
+      "id": "sell-goat-fees",
+      "text": "子どもの学費を払うために、家畜を一頭売った。",
+      "minAge": 32,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "bond": 2,
+        "happy": -1
+      }
+    },
+    {
+      "id": "child-school-gate",
+      "text": "子どもの学校の初日、{name}は校門の外でしばらく立っていた。",
+      "minAge": 30,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 3
+      },
+      "once": true
+    },
+    {
+      "id": "child-report-card",
+      "text": "子どもの成績表を見て、自分の子どもの頃より良いことに少し驚いた。",
+      "minAge": 33,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "quiet-teen-child",
+      "text": "十代になった子どもが、あまり口をきいてくれなくなった。",
+      "minAge": 38,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "teenChild": true
+      },
+      "effects": {
+        "happy": -1,
+        "bond": -1
+      }
+    },
+    {
+      "id": "side-business",
+      "text": "週末に小さな商売を始めた。最初の月は赤字だった。",
+      "minAge": 30,
+      "maxAge": 50,
+      "weight": 1,
+      "effects": {
+        "learn": 2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "colleague-funeral",
+      "text": "同僚の父親の葬儀に行き、香典を包んだ。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "job": "office"
+      },
+      "effects": {
+        "bond": 1
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "village-funeral",
+      "text": "村の葬式は三日間続いた。{name}の家も、米と鶏を持っていった。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "bond": 2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "parent-hospital",
+      "text": "親が入院した。仕事帰りに、毎日病院へ寄った。",
+      "minAge": 35,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "parentAlive": true
+      },
+      "effects": {
+        "bond": 3,
+        "health": -1,
+        "happy": -2
+      },
+      "cost": -0.05
+    },
+    {
+      "id": "reunion-20-years",
+      "text": "二十年ぶりの同窓会。当時いちばん静かだった{friend}が、いちばんよくしゃべっていた。",
+      "minAge": 35,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "burglary",
+      "text": "留守の間に泥棒に入られた。盗られたのはラジオと、子どもの貯金箱だった。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "effects": {
+        "happy": -4
+      },
+      "cost": -0.05
+    },
+    {
+      "id": "fake-son-call",
+      "text": "息子を名乗る電話がかかってきた。声が違う気がして、一度切ってから本人に確かめた。",
+      "minAge": 35,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "flood-house",
+      "text": "大雨で家に水が入り、床の上まで泥につかった。乾くまで一か月かかった。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アジア",
+          "アフリカ",
+          "南アメリカ"
+        ]
+      },
+      "effects": {
+        "happy": -4
+      },
+      "cost": -0.1,
+      "stat": "2023年には世界で約9,300万人が洪水・暴風・干ばつ・地震などの自然災害の影響を受けた (EM-DAT)"
+    },
+    {
+      "id": "typhoon-night",
+      "text": "台風で、一晩じゅう窓が鳴っていた。翌朝、近所の屋根が一枚なくなっていた。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PHL",
+          "JPN",
+          "VNM",
+          "CHN",
+          "KOR"
+        ]
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "typhoon-blackout",
+      "text": "台風で三日間電気が止まった。冷蔵庫の中身を近所と分けて、食べきった。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PHL",
+          "JPN",
+          "VNM",
+          "CHN",
+          "KOR",
+          "IND"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": -1
+      }
+    },
+    {
+      "id": "earthquake-night",
+      "text": "夜中に大きな地震があり、家族で外に出て朝を待った。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN",
+          "TUR",
+          "IRN",
+          "NPL",
+          "CHL",
+          "PER",
+          "MEX",
+          "IDN",
+          "PHL",
+          "ECU",
+          "AFG",
+          "PAK",
+          "GTM"
+        ]
+      },
+      "effects": {
+        "happy": -3
+      }
+    },
+    {
+      "id": "drought-maize",
+      "text": "雨の降らない年だった。井戸の水位が下がり、トウモロコシは膝の高さで枯れた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "region": [
+          "アフリカ"
+        ]
+      },
+      "effects": {
+        "happy": -3,
+        "health": -1
+      },
+      "cost": -0.15,
+      "stat": "干ばつの影響を受ける人は、世界で毎年約5,500万人いる (WHO)"
+    },
+    {
+      "id": "heat-nights",
+      "text": "暑い夜が続き、なかなか寝つけなかった。",
+      "minAge": 30,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "snow-shoveling",
+      "text": "大雪の朝、出勤前に一時間雪かきをした。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CAN",
+          "RUS",
+          "FIN",
+          "NOR",
+          "SWE",
+          "USA",
+          "JPN",
+          "KAZ",
+          "POL"
+        ]
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "heating-bill",
+      "text": "冬の暖房費の請求書を見て、部屋の温度を二度下げた。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "region": [
+          "ヨーロッパ"
+        ]
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "homework-volunteer",
+      "text": "週に一度、地域の子どもの宿題を見るボランティアを始めた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 2
+      },
+      "stat": "過去1か月にボランティアをしたと答えた成人は、世界でおよそ5人に1人 (CAF World Giving Index)"
+    },
+    {
+      "id": "disaster-donation",
+      "text": "災害の募金箱に、財布の中の紙幣を全部入れた。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      },
+      "cost": -0.01,
+      "stat": "過去1か月にお金を寄付したと答えた成人は、世界でおよそ3人に1人 (CAF World Giving Index)"
+    },
+    {
+      "id": "flat-tire-stranger",
+      "text": "道で自転車がパンクした。通りがかりの人が、何も言わずに直すのを手伝ってくれた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "happy": 3
+      },
+      "stat": "過去1か月に見知らぬ人を助けたと答えた成人は、世界で半数を超える (CAF World Giving Index)"
+    },
+    {
+      "id": "neighbor-pot",
+      "text": "隣の家から、作りすぎたという料理が鍋ごと届いた。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "bond": 2,
+        "happy": 2
+      }
+    },
+    {
+      "id": "neighbor-construction",
+      "text": "隣の部屋の工事の音が、一か月続いた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "pet-vet",
+      "text": "{pet}が何も食べなくなり、動物病院に連れていった。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "hasPet": true,
+        "income": "high"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "pet-walk-neighbors",
+      "text": "雨の日も{pet}の散歩に出た。近所の人の顔は、ほとんど{pet}を通じて覚えた。",
+      "minAge": 25,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "hasPet": true
+      },
+      "effects": {
+        "health": 1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "blood-sugar",
+      "text": "健診で血糖値が高いと言われた。夜の甘いお茶をやめた。",
+      "minAge": 40,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "health": -1
+      },
+      "stat": "糖尿病の人は世界で約8億人にのぼる (WHO, 2022)"
+    },
+    {
+      "id": "dentist-finally",
+      "text": "奥歯が痛み、ようやく歯医者に行った。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "health": 1
+      },
+      "cost": -0.02,
+      "stat": "永久歯にむし歯がある人は、世界で約20億人いる (WHO)"
+    },
+    {
+      "id": "forgot-anniversary",
+      "text": "結婚記念日を二人とも忘れていて、一日遅れで気づいて笑った。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "married": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "budget-argument",
+      "text": "配偶者と家計のことで言い争った。翌朝、相手は{name}の分のお茶も淹れてくれていた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "married": true
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "brick-by-brick",
+      "text": "少しずつれんがを買いためて、家の壁をもう一面建てた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": 2
+      },
+      "cost": -0.1
+    },
+    {
+      "id": "silent-weekend",
+      "text": "週末、誰とも話さないまま二日が過ぎた。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "happy": -2
+      },
+      "stat": "世界の成人の約4人に1人が、とても、またはかなり孤独だと感じている (Meta-Gallup, 2023)"
+    },
+    {
+      "id": "tuberculosis",
+      "text": "咳が何週間も止まらず、結核と診断された。半年間、毎日薬を飲んだ。",
+      "minAge": 25,
+      "maxAge": 60,
+      "weight": 0.3,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "health": -5
+      },
+      "stat": "2023年には世界で約1,080万人が結核を発症した (WHO)"
+    },
+    {
+      "id": "tet-bus-home",
+      "text": "テトに故郷へ帰った。バスは人と荷物でいっぱいで、通路にまで米袋が積まれていた。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM"
+        ]
+      },
+      "effects": {
+        "bond": 3
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "tet-altar",
+      "text": "テトの前に家じゅうを掃除し、祖先の祭壇に五種類の果物を供えた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "chunyun-tickets",
+      "text": "春節の帰省のため、何日も前から列車の切符を取ろうとした。",
+      "minAge": 20,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": -1
+      }
+    },
+    {
+      "id": "new-year-dumplings",
+      "text": "大みそかの夜、家族で餃子を包みながら、春節の番組を流していた。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN"
+        ]
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 2
+      }
+    },
+    {
+      "id": "obon-grave",
+      "text": "お盆に実家へ帰り、墓を掃除して線香をあげた。",
+      "minAge": 25,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "hatsumode",
+      "text": "正月、初詣の列に並んだ。おみくじは中吉だった。",
+      "minAge": 25,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "happy": 1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "diwali-sweets",
+      "text": "ディワリの前に家を塗り直し、親戚に菓子の箱を配ってまわった。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ヒンドゥー教"
+        ]
+      },
+      "effects": {
+        "bond": 3
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "eid-al-adha",
+      "text": "イード・アル=アドハーに羊を一頭ほふり、肉の三分の一を近所の貧しい家に届けた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "bond": 3
+      },
+      "cost": -0.05
+    },
+    {
+      "id": "christmas-dinner",
+      "text": "クリスマスの夕食に、家族が遠くの町から集まった。誰かが必ず同じ昔話をした。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ]
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 2
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "thanksgiving",
+      "text": "感謝祭の七面鳥は少し焼きすぎだった。食後、みんなでテレビのフットボールを眺めた。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "USA",
+          "CAN"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 1
+      }
+    },
+    {
+      "id": "jesa",
+      "text": "祖先の祭祀のため、前の晩から親戚の女性たちが料理を作り続けた。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KOR"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "health": -1
+      }
+    },
+    {
+      "id": "qingming",
+      "text": "清明節に家族で墓参りへ行き、墓のまわりの草を抜いた。",
+      "minAge": 25,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "vesak",
+      "text": "ウェサクの日、寺に花と灯明を供え、白い服で静かに過ごした。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "LKA",
+          "THA",
+          "MMR",
+          "MYS",
+          "SGP",
+          "NPL",
+          "KHM",
+          "LAO"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "hanukkah",
+      "text": "ハヌカの八日間、毎晩一本ずつ蝋燭を増やして灯した。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ユダヤ教"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "passover-questions",
+      "text": "過越祭の食卓で、子どもが決まった四つの問いを読み上げた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ユダヤ教"
+        ],
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": 3
+      }
+    },
+    {
+      "id": "langar",
+      "text": "グルドワラの無料の食堂で、知らない人たちと床に並んで座り、同じ食事をとった。",
+      "minAge": 15,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "シク教"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 1
+      }
+    },
+    {
+      "id": "libation",
+      "text": "話し合いの前に、長老が祖先のために酒を少し地面に注いだ。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "民間信仰・伝統宗教"
+        ],
+        "region": [
+          "アフリカ"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "famadihana",
+      "text": "祖先の遺骨を新しい布で包み直すファマディハナに親族が集まり、一日じゅう音楽が鳴っていた。",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "MDG"
+        ]
+      },
+      "effects": {
+        "bond": 3
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "patron-saint-fiesta",
+      "text": "町の守護聖人の祭りで、通りに花火と楽団が出た。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ],
+        "region": [
+          "南アメリカ",
+          "北アメリカ"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "ice-hole-sauna",
+      "text": "サウナで体を温めてから、湖の氷に開けた穴に入った。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "FIN"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "health": 1
+      }
+    },
+    {
+      "id": "midsummer",
+      "text": "夏至祭の夜、日が沈みきらないまま朝になった。",
+      "minAge": 15,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "SWE",
+          "FIN",
+          "NOR"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "braai",
+      "text": "週末、庭でブラーイをした。肉を焼くのは、いつも同じおじの役目だった。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ZAF",
+          "NAM",
+          "BWA"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 2
+      }
+    },
+    {
+      "id": "asado-sunday",
+      "text": "日曜日の昼に家族でアサードを囲んだ。食べ始めたのは午後三時だった。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ARG",
+          "URY",
+          "PRY"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 2
+      }
+    },
+    {
+      "id": "coffee-ceremony",
+      "text": "近所の女性たちとコーヒーセレモニーをした。豆を炒る煙で部屋がいっぱいになった。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ETH"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "new-yam",
+      "text": "ヤム芋の収穫祭で、村の長老が最初の芋を口にするまで、誰も食べなかった。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NGA",
+          "GHA"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "nowruz",
+      "text": "ノウルーズの前に家を大掃除し、テーブルに七つの縁起物を並べた。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IRN",
+          "AFG",
+          "TJK",
+          "UZB",
+          "AZE",
+          "KAZ",
+          "KGZ",
+          "TKM"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 2
+      }
+    },
+    {
+      "id": "phone-charge-shop",
+      "text": "また停電した。携帯電話の充電は、近くの店に一回いくらで頼んだ。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.005
+    },
+    {
+      "id": "load-shedding",
+      "text": "計画停電の時間表が出た。{name}は夕食の支度をそれに合わせた。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ZAF",
+          "PAK",
+          "NGA",
+          "BGD",
+          "NPL",
+          "LKA",
+          "ZWE",
+          "ZMB"
+        ]
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "generator-fuel",
+      "text": "発電機の燃料代が、食費の次に大きな出費になった。",
+      "minAge": 25,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NGA",
+          "LBN",
+          "IRQ",
+          "HTI"
+        ]
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "water-truck",
+      "text": "断水が三日続き、給水車の前に長い列ができた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "income": "mid"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "fuel-queue",
+      "text": "ガソリンスタンドの列に二時間並んだ。",
+      "minAge": 20,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NGA",
+          "LKA",
+          "PAK",
+          "ZWE",
+          "LBN"
+        ]
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "haggle-tomatoes",
+      "text": "市場で値切って、トマトを一山おまけしてもらった。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ",
+          "アジア",
+          "南アメリカ"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "street-noodles",
+      "text": "仕事帰りに屋台で麺をすすった。店主はもう、{name}に注文を聞かなくなっていた。",
+      "minAge": 15,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM",
+          "THA",
+          "MYS",
+          "IDN",
+          "CHN",
+          "PHL",
+          "KHM",
+          "LAO",
+          "SGP"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "chai-politics",
+      "text": "夕方、道ばたのチャイ屋で、いつもの顔ぶれと政治の話をした。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "PAK",
+          "BGD",
+          "NPL"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "mate-afternoon",
+      "text": "友達とマテ茶の器を回しながら、午後をつぶした。",
+      "minAge": 20,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ARG",
+          "URY",
+          "PRY"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "skip-dinner-kids",
+      "text": "食べ物の値段が上がり、大人は夕食を抜いて子どもに回した。",
+      "minAge": 25,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low"
+      },
+      "effects": {
+        "health": -2,
+        "bond": 1
+      },
+      "stat": "2023年に飢餓に直面した人は、世界で約7億3,000万人だった (FAO『世界の食料安全保障と栄養の現状』2024)"
+    },
+    {
+      "id": "rice-price",
+      "text": "市場で米の値段がまた上がっていた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "microloan-sewing",
+      "text": "女性グループの小口融資を受けて、ミシンを一台買った。",
+      "minAge": 25,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "sex": "F",
+        "income": "low"
+      },
+      "effects": {
+        "learn": 2,
+        "happy": 2
+      },
+      "cost": 0.03,
+      "once": true
+    },
+    {
+      "id": "good-harvest",
+      "text": "今年の収穫はよかった。穀物倉がいっぱいになり、余りを町で売った。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "job": "farm"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "cost": 0.08,
+      "stat": "世界の働く人のおよそ4人に1人は、農業で生計を立てている (ILO)"
+    },
+    {
+      "id": "calf-born",
+      "text": "牛が子を産んだ。夜中、家族全員でその様子を見守った。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 1
+      },
+      "cost": 0.05
+    },
+    {
+      "id": "snakebite",
+      "text": "畑で蛇に足を咬まれた。町の病院まで二時間かかったが、助かった。",
+      "minAge": 15,
+      "maxAge": 60,
+      "weight": 0.2,
+      "when": {
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "health": -5
+      },
+      "stat": "蛇に咬まれて亡くなる人は、世界で年に約8万〜14万人いる (WHO)"
+    },
+    {
+      "id": "dog-bite-rabies",
+      "text": "野良犬に咬まれ、狂犬病の予防注射を何度も打ちに通った。",
+      "minAge": 5,
+      "maxAge": 60,
+      "weight": 0.4,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "health": -2
+      },
+      "cost": -0.02,
+      "stat": "狂犬病による死者は年に約5万9,000人で、その4割ほどが15歳未満の子ども (WHO)"
+    },
+    {
+      "id": "signal-arrives",
+      "text": "村にようやく携帯電話の電波が届いた。最初の夜、みんなが丘の上の一か所に集まった。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "happy": 3,
+        "learn": 1
+      },
+      "once": true,
+      "stat": "世界人口の約95%が、モバイルブロードバンドの電波が届く場所に住んでいる (ITU, 2023)"
+    },
+    {
+      "id": "video-call-learned",
+      "text": "子どもに教わって、スマートフォンで動画通話を覚えた。遠くの親戚の顔を、初めて画面で見た。",
+      "minAge": 40,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": 3,
+        "learn": 2
+      },
+      "once": true
+    },
+    {
+      "id": "wrong-color-order",
+      "text": "ネットで服を注文したら、写真とまったく違う色のものが届いた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "parking-ticket",
+      "text": "駐車違反の切符を切られた。",
+      "minAge": 25,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": "high"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "tax-return",
+      "text": "税金の申告書類を前に、一晩じゅうため息をついた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "thinning-hair",
+      "text": "頭のてっぺんの髪が薄くなった。帽子をかぶることが増えた。",
+      "minAge": 38,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "sex": "M"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "once": true
+    },
+    {
+      "id": "hot-flashes",
+      "text": "夜中に急に体が熱くなって目がさめる日が、しばらく続いた。",
+      "minAge": 45,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "sex": "F"
+      },
+      "effects": {
+        "health": -1
+      },
+      "once": true
+    },
+    {
+      "id": "caring-for-parent",
+      "text": "年老いた親を家で介護することになった。夜中に何度も起きた。",
+      "minAge": 45,
+      "maxAge": 65,
+      "weight": 0.5,
+      "when": {
+        "parentAlive": true
+      },
+      "effects": {
+        "bond": 3,
+        "health": -2,
+        "happy": -2
+      },
+      "once": true
+    },
+    {
+      "id": "hajj",
+      "text": "長年貯めたお金で、メッカへの巡礼に出かけた。",
+      "minAge": 30,
+      "maxAge": 75,
+      "weight": 0.3,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "happy": 5,
+        "bond": 2
+      },
+      "cost": -0.5,
+      "once": true,
+      "stat": "2024年のハッジの巡礼者は約180万人だった (サウジアラビア統計局)"
+    },
+    {
+      "id": "kids-abroad-school",
+      "text": "子どもを外国の学校に進ませることにした。空港で、子どもは一度も振り返らなかった。",
+      "minAge": 38,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "wealth": "rich",
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": -1,
+        "happy": -1
+      },
+      "cost": -0.2,
+      "once": true,
+      "stat": "自分の国の外の大学などで学ぶ学生は、世界で約690万人いる (UNESCO, 2022)"
+    },
+    {
+      "id": "private-hospital",
+      "text": "検査は待ち時間の短い私立病院で受けた。ロビーにはピアノが置いてあった。",
+      "minAge": 35,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "wealth": "rich"
+      },
+      "effects": {
+        "health": 2
+      },
+      "cost": -0.03
+    },
+    {
+      "id": "family-vacation-resort",
+      "text": "家族で海外のリゾートに出かけた。子どもたちはホテルのプールから出てこなかった。",
+      "minAge": 31,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "wealth": "rich",
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 3
+      },
+      "cost": -0.1
+    },
+    {
+      "id": "school-fees-late-parent",
+      "text": "子どもの学費の支払い期限が過ぎた。{name}は学校に、来月まで待ってほしいと頼みに行った。",
+      "minAge": 31,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": -3,
+        "bond": 1
+      }
+    },
+    {
+      "id": "neighbors-wedding-cook",
+      "text": "近所の結婚式のために、女たちが朝から大鍋で料理を作った。{name}も玉ねぎを刻み続けた。",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "bond": 3
+      }
+    },
+    {
+      "id": "eye-strain",
+      "text": "一日じゅう画面を見ていて、夕方になると目の奥が痛んだ。",
+      "minAge": 31,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "place": "urban",
+        "job": "office"
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "commute-podcast",
+      "text": "通勤の時間に、外国語の音声講座を聞くようになった。",
+      "minAge": 31,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "job": "office"
+      },
+      "effects": {
+        "learn": 2
+      }
+    },
+    {
+      "id": "grandchild-care",
+      "text": "共働きの子どもに頼まれて、孫の世話をするようになった。",
+      "minAge": 55,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": 3,
+        "health": -1
+      }
+    },
+    {
+      "id": "child-moves-away",
+      "text": "子どもが遠くの町で働くことになり、家が急に広く感じた。",
+      "minAge": 48,
+      "maxAge": 65,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": -2
+      },
+      "once": true
+    },
+    {
+      "id": "nowhere-to-go",
+      "text": "退職してから、毎朝同じ時間に目がさめ、行く場所がないことに気づく日が続いた。",
+      "minAge": 60,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "state": "retired"
+      },
+      "effects": {
+        "happy": -2
+      },
+      "once": true
+    },
+    {
+      "id": "allotment",
+      "text": "小さな畑を借りて野菜を育て始めた。ナスがよく実った。",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "state": "retired",
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 3,
+        "health": 2
+      }
+    },
+    {
+      "id": "no-pension",
+      "text": "年金はなかった。{name}は六十を過ぎても、市場で野菜を売り続けた。",
+      "minAge": 60,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "state": "work"
+      },
+      "effects": {
+        "health": -1
+      },
+      "stat": "世界では年金を受け取れる高齢者は約8割だが、低所得国ではその割合はずっと低い (ILO)"
+    },
+    {
+      "id": "old-friend-dies",
+      "text": "若い頃から親しかった{friend}が亡くなった。葬儀のあと、{name}は二人でよく座った場所にしばらくいた。",
+      "minAge": 55,
+      "maxAge": 90,
+      "weight": 1,
+      "effects": {
+        "happy": -5,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "two-obituaries",
+      "text": "同じ年頃の知り合いの訃報が、続けて二つ届いた。",
+      "minAge": 65,
+      "maxAge": 90,
+      "weight": 1,
+      "effects": {
+        "happy": -3
+      }
+    },
+    {
+      "id": "tv-too-loud",
+      "text": "話し声が大きくなったと、家族に言われた。",
+      "minAge": 60,
+      "maxAge": 90,
+      "weight": 1,
+      "effects": {
+        "health": -1
+      },
+      "stat": "世界で約15億人が、何らかの難聴を抱えている (WHO)"
+    },
+    {
+      "id": "cataract-surgery",
+      "text": "白内障の手術を受けた。翌日、壁の色が思っていたより白かった。",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "effects": {
+        "health": 3
+      },
+      "cost": -0.05,
+      "once": true,
+      "stat": "白内障で視力が低下している人は、世界で約9,400万人いる (WHO)"
+    },
+    {
+      "id": "knee-stairs",
+      "text": "立ち上がるたびに、膝が痛むようになった。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "health": -2
+      },
+      "stat": "変形性関節症を抱える人は、2020年に世界で約6億人いた (GBD 2021, Lancet Rheumatology 2023)"
+    },
+    {
+      "id": "recheck-nothing",
+      "text": "胃の検査で引っかかり、再検査を受けた。結果は何でもなかった。",
+      "minAge": 55,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "happy": -1,
+        "health": 1
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "park-taichi",
+      "text": "朝の公園で、知らない人たちと太極拳をするようになった。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN",
+          "SGP",
+          "MYS",
+          "VNM"
+        ]
+      },
+      "effects": {
+        "health": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "radio-calisthenics",
+      "text": "朝六時半のラジオ体操に毎日通った。カードのはんこが少しずつ増えた。",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "health": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "park-chess",
+      "text": "公園のベンチで、チェスを指す仲間ができた。",
+      "minAge": 55,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "region": [
+          "ヨーロッパ"
+        ]
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "pension-shrinks",
+      "text": "物価が上がり、年金でまかなえる範囲がまた少し狭くなった。",
+      "minAge": 60,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": "high",
+        "state": "retired"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "same-age-meeting",
+      "text": "町内会の集まりに出ると、ほとんどが{name}と同じくらいの年の人だった。",
+      "minAge": 65,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      },
+      "stat": "日本では人口の約29%が65歳以上である (総務省, 2023)"
+    },
+    {
+      "id": "weekly-call",
+      "text": "週に一度、遠くにいる子どもからの電話を待つようになった。",
+      "minAge": 60,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "frozen-video-song",
+      "text": "画面越しに孫が歌ってくれた。電波が悪く、固まった顔のまま歌だけが続いた。",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "fake-bank-call",
+      "text": "銀行員を名乗る電話が、暗証番号を聞いてきた。{name}は黙って切った。",
+      "minAge": 65,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "investment-scam",
+      "text": "「必ず増える」という投資話に乗り、貯金の一部を失った。",
+      "minAge": 65,
+      "maxAge": 90,
+      "weight": 0.3,
+      "when": {
+        "wealth": "middle"
+      },
+      "effects": {
+        "happy": -5
+      },
+      "cost": -0.3
+    },
+    {
+      "id": "forgot-why-kitchen",
+      "text": "台所に何を取りに来たのか思い出せず、しばらく立っていた。",
+      "minAge": 65,
+      "maxAge": 90,
+      "weight": 1,
+      "effects": {
+        "happy": -1
+      },
+      "stat": "認知症の人は世界で約5,700万人いる (WHO, 2021)"
+    },
+    {
+      "id": "old-photos",
+      "text": "しまってあった箱から古い写真が出てきた。若い頃の{name}は、思っていたより痩せていた。",
+      "minAge": 60,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "writing-will",
+      "text": "遺言を書いた。書き終えると、少し気が軽くなった。",
+      "minAge": 65,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "once": true
+    },
+    {
+      "id": "ohenro",
+      "text": "四国のお遍路を、何回かに分けて歩き始めた。",
+      "minAge": 60,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "religion": [
+          "仏教"
+        ]
+      },
+      "effects": {
+        "health": 2,
+        "happy": 3
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "kumbh-mela",
+      "text": "クンブ・メーラに出かけ、何百万人もの人と一緒に川で沐浴した。",
+      "minAge": 50,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND"
+        ],
+        "religion": [
+          "ヒンドゥー教"
+        ]
+      },
+      "effects": {
+        "happy": 4,
+        "bond": 1
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "church-cleaning",
+      "text": "教会の掃除当番を、もう二十年続けていた。",
+      "minAge": 55,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "dawn-mosque-walk",
+      "text": "夜明けの礼拝のためにモスクへ歩くのが、一日の始まりになった。",
+      "minAge": 55,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "health": 1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "alms-round",
+      "text": "毎朝、托鉢の僧にもち米を少しずつ入れた。",
+      "minAge": 55,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "THA",
+          "LAO",
+          "MMR",
+          "KHM"
+        ]
+      },
+      "effects": {
+        "happy": 1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "tet-elder-envelopes",
+      "text": "テトの朝、孫たちが並んで長寿を祝う言葉を言い、{name}は赤い封筒を配った。",
+      "minAge": 60,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM"
+        ],
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": 4,
+        "bond": 3
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "not-the-cook",
+      "text": "春節に一家が{name}の家に集まった。台所に立っているのは、もう{name}ではなかった。",
+      "minAge": 60,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "CHN"
+        ]
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 1
+      }
+    },
+    {
+      "id": "gutter-fixed",
+      "text": "壊れた戸を、近所の若い人が直してくれた。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "bond": 2
+      },
+      "cost": -0.01
+    },
+    {
+      "id": "spouse-snoring",
+      "text": "配偶者のいびきに、四十年ぶりに文句を言った。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "married": true
+      },
+      "effects": {
+        "happy": 1,
+        "bond": 1
+      }
+    },
+    {
+      "id": "spouse-hospital-lunch",
+      "text": "配偶者が入院し、{name}は毎日病院まで弁当を届けた。",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "married": true
+      },
+      "effects": {
+        "bond": 3,
+        "happy": -2
+      }
+    },
+    {
+      "id": "neighbor-stroke",
+      "text": "近所の人が脳卒中で倒れ、{name}が人を呼んで病院へ運んだ。",
+      "minAge": 55,
+      "maxAge": 85,
+      "weight": 1,
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "grandkid-slang",
+      "text": "孫の話す言葉に、意味のわからない言い方が増えた。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "learn": 1
+      }
+    },
+    {
+      "id": "first-to-the-paddy",
+      "text": "腰は曲がったが、田植えの時期になると{name}は誰よりも早く田んぼに出た。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "region": [
+          "アジア"
+        ]
+      },
+      "effects": {
+        "health": 1
+      }
+    },
+    {
+      "id": "old-water-carrier",
+      "text": "若い者が町へ出てしまい、水汲みも薪集めも年寄りの仕事になった。",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "health": -2
+      }
+    },
+    {
+      "id": "school-closed-village",
+      "text": "村の小学校が閉校になった。昼間、子どもの声が聞こえなくなった。",
+      "minAge": 55,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "high"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "bath-slip",
+      "text": "濡れた床で滑って転んだ。骨は折れていなかったが、あざが一週間消えなかった。",
+      "minAge": 65,
+      "maxAge": 90,
+      "weight": 1,
+      "effects": {
+        "health": -2
+      },
+      "stat": "転倒による死者は世界で年に約68万人で、その多くが60歳以上である (WHO)"
+    },
+    {
+      "id": "shutters-check",
+      "text": "隣の家の人が毎朝、{name}の家の戸が開いているかを見てくれていた。",
+      "minAge": 70,
+      "maxAge": 95,
+      "weight": 1,
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "bus-seat-offered",
+      "text": "バスで若い人が席をゆずってくれた。{name}は少し迷ってから座った。",
+      "minAge": 60,
+      "maxAge": 95,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 1
+      }
+    },
+    {
+      "id": "hypertension",
+      "text": "血圧が高いと言われ、毎朝薬を飲むことになった。",
+      "minAge": 40,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "health": -1
+      },
+      "stat": "30〜79歳で高血圧の人は世界に約13億人いて、その約半数は自分が高血圧だと知らない (WHO)"
+    },
+    {
+      "id": "grandchild-school-fees",
+      "text": "孫の学費の一部を、{name}が出すことにした。",
+      "minAge": 55,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "income": "low"
+      },
+      "effects": {
+        "bond": 3
+      },
+      "cost": -0.05
+    },
+    {
+      "id": "widow-group",
+      "text": "同じ年頃の女たちと、毎週木曜に集まって編み物をした。",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "sex": "F"
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 2
+      }
+    },
+    {
+      "id": "chess-club-retired",
+      "text": "地域の囲碁会に入った。最初の一か月は一度も勝てなかった。",
+      "minAge": 60,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN",
+          "KOR",
+          "CHN"
+        ]
+      },
+      "effects": {
+        "learn": 1,
+        "bond": 2
+      }
+    },
+    {
+      "id": "photo-digitize",
+      "text": "古いアルバムを一冊ずつスマートフォンで撮って、子どもたちに送った。",
+      "minAge": 55,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "place": "urban"
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "eightieth-birthday",
+      "text": "八十歳の誕生日に、子どもや孫が集まった。ケーキの蝋燭は、数字の形をした二本だけだった。",
+      "minAge": 79,
+      "maxAge": 81,
+      "weight": 1,
+      "when": {
+        "hasChildren": true,
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "happy": 4,
+        "bond": 3
+      },
+      "once": true,
+      "stat": "世界の平均寿命は、2024年におよそ73歳だった (国連『世界人口推計』2024)"
+    },
+    {
+      "id": "walking-stick",
+      "text": "杖をつくようになった。最初は恥ずかしかったが、すぐに手放せなくなった。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "effects": {
+        "health": -1
+      },
+      "once": true
+    },
+    {
+      "id": "hearing-aid",
+      "text": "補聴器をつけた。鳥の声がこんなにうるさかったのかと驚いた。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "health": 2,
+        "happy": 2
+      },
+      "cost": -0.03,
+      "once": true
+    },
+    {
+      "id": "one-left",
+      "text": "若い頃の仲間は、もう{name}のほかに一人しか残っていなかった。",
+      "minAge": 78,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "happy": -3
+      },
+      "once": true
+    },
+    {
+      "id": "three-funerals",
+      "text": "この一年で三回、葬式に出た。葬式に着ていく服をしまうひまがなかった。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "effects": {
+        "happy": -2
+      },
+      "cost": -0.02
+    },
+    {
+      "id": "old-house-layout",
+      "text": "昨日のことは忘れても、子どもの頃に住んでいた家の間取りは、はっきり覚えていた。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "learn": -1
+      }
+    },
+    {
+      "id": "grandchild-reads",
+      "text": "孫が{name}に本を読んで聞かせてくれた。昔は逆だった。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 3
+      }
+    },
+    {
+      "id": "care-home",
+      "text": "介護施設に入った。同じ部屋の人は、毎日同じ歌を口ずさんでいた。",
+      "minAge": 78,
+      "maxAge": 100,
+      "weight": 0.5,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "happy": -2,
+        "bond": 1
+      },
+      "once": true
+    },
+    {
+      "id": "under-one-roof",
+      "text": "息子の家族と一つ屋根の下で暮らし、毎晩、孫が宿題をするのを横で眺めた。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アジア",
+          "アフリカ"
+        ],
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 2
+      }
+    },
+    {
+      "id": "same-story-thrice",
+      "text": "同じ話を一日に三回したと、家族に言われた。",
+      "minAge": 75,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "learn": -2,
+        "happy": -1
+      }
+    },
+    {
+      "id": "early-to-bed",
+      "text": "夜八時には眠くなり、朝四時に目がさめるようになった。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "health": 1
+      }
+    },
+    {
+      "id": "radio-days",
+      "text": "一日の大半を、ラジオを聞きながら過ごした。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "happy": 1
+      }
+    },
+    {
+      "id": "tree-fruit",
+      "text": "若い頃に{name}が植えた庭の木が、今年も実をつけた。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "effects": {
+        "happy": 3
+      }
+    },
+    {
+      "id": "waiting-room-friends",
+      "text": "病院の待合室で、顔なじみの年寄りたちと世間話をするのが日課になった。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": "high"
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "pneumonia",
+      "text": "肺炎で二週間入院した。退院の日、家までの道がずいぶん遠く感じた。",
+      "minAge": 75,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "health": -5
+      }
+    },
+    {
+      "id": "long-cold",
+      "text": "風邪をこじらせ、ひと月ほど床についた。",
+      "minAge": 75,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "health": -4
+      }
+    },
+    {
+      "id": "bamboo-copter",
+      "text": "近所の子どもたちに昔の遊びを教えた。手作りのこまは、三回目でようやく回った。",
+      "minAge": 72,
+      "maxAge": 90,
+      "weight": 1,
+      "effects": {
+        "bond": 3,
+        "happy": 3
+      }
+    },
+    {
+      "id": "story-again",
+      "text": "孫たちが、{name}の若い頃の話をもう一度せがんだ。話すたびに、少しずつ大げさになった。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "hasChildren": true
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 3
+      }
+    },
+    {
+      "id": "elder-council",
+      "text": "村の集まりで、{name}の意見を聞くまで誰も何も決めようとしなかった。",
+      "minAge": 70,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "region": [
+          "アフリカ"
+        ]
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 2
+      }
+    },
+    {
+      "id": "chair-outside",
+      "text": "夕方、家の前に椅子を出して、通る人に声をかけた。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "bond": 2,
+        "happy": 1
+      }
+    },
+    {
+      "id": "dentures",
+      "text": "入れ歯を作った。しばらくは、好きだった硬いものが食べられなかった。",
+      "minAge": 70,
+      "maxAge": 90,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "health": 1
+      },
+      "cost": -0.03,
+      "once": true
+    },
+    {
+      "id": "headlines-only",
+      "text": "字が読みにくくなり、新聞は見出しだけを読むようになった。",
+      "minAge": 75,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "learn": -1
+      }
+    },
+    {
+      "id": "bank-machine",
+      "text": "銀行の窓口がなくなり、機械の操作がわからず、若い行員に三回聞いた。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "when": {
+        "place": "urban",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "old-letters",
+      "text": "古い手紙の束が出てきた。差出人の名前を見て、{name}はしばらく黙っていた。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "rosary-night",
+      "text": "毎晩、ロザリオの祈りを唱えてから眠った。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ]
+      },
+      "effects": {
+        "happy": 1
+      }
+    },
+    {
+      "id": "quran-grandchild",
+      "text": "毎日少しずつクルアーンを読んだ。目が疲れると、孫に続きを読んでもらった。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "bond": 2,
+        "happy": 1
+      }
+    },
+    {
+      "id": "temple-veranda",
+      "text": "寺の縁側で、同じ年頃の人たちとお茶を飲んで一日を過ごした。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "仏教"
+        ]
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "morning-puja",
+      "text": "毎朝、家の祭壇の前で灯明をともすのは、ずっと{name}の役目だった。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "ヒンドゥー教"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "heatwave-calls",
+      "text": "記録的に暑い夏、家族が毎日電話をかけてきて、水を飲んだかと聞いた。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "bond": 2,
+        "health": -1
+      }
+    },
+    {
+      "id": "kotatsu-winter",
+      "text": "冬は、こたつから出るのが一日に数回だけになった。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "health": -1,
+        "happy": 1
+      }
+    },
+    {
+      "id": "centenarian",
+      "text": "百歳の誕生日に、近所の人まで祝いに来た。",
+      "minAge": 99,
+      "maxAge": 101,
+      "weight": 1,
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "last-visit-hometown",
+      "text": "家族に付き添われて、生まれた町をもう一度訪ねた。",
+      "minAge": 72,
+      "maxAge": 85,
+      "weight": 1,
+      "effects": {
+        "happy": 4,
+        "bond": 2
+      },
+      "once": true
+    },
+    {
+      "id": "slow-walk-pet",
+      "text": "{pet}と{name}は、同じくらいゆっくり歩くようになった。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "when": {
+        "hasPet": true
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "crossing-guard",
+      "text": "小学校の登下校の見守りを続けた。子どもたちは{name}を名前で呼んだ。",
+      "minAge": 70,
+      "maxAge": 85,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "JPN"
+        ]
+      },
+      "effects": {
+        "bond": 3,
+        "health": 1
+      }
+    },
+    {
+      "id": "choose-grave",
+      "text": "自分の墓の場所を決めた。家族はその話になると、少し困った顔をした。",
+      "minAge": 72,
+      "maxAge": 95,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アジア"
+        ]
+      },
+      "effects": {
+        "happy": 1
+      },
+      "once": true
+    },
+    {
+      "id": "one-in-six",
+      "text": "近所を見渡すと、{name}と同じように白髪の人が増えていた。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "effects": {
+        "bond": 1
+      },
+      "stat": "2030年には世界の6人に1人が60歳以上になる (WHO)"
+    },
+    {
+      "id": "village-elder-blessing",
+      "text": "若い夫婦が、結婚の前に{name}のところへ祝福を受けに来た。",
+      "minAge": 72,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 3
+      }
+    },
+    {
+      "id": "wheelchair-outing",
+      "text": "車いすを押してもらって、近くの公園まで花を見に行った。",
+      "minAge": 80,
+      "maxAge": 100,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "fall-hip",
+      "text": "家の中でつまずいて、腰の骨を折った。歩けるようになるまで、三か月かかった。",
+      "minAge": 78,
+      "maxAge": 100,
+      "weight": 0.5,
+      "effects": {
+        "health": -6,
+        "happy": -2
+      },
+      "once": true
+    },
+    {
+      "id": "umbrella-stranger",
+      "text": "突然の雨に降られ、知らない人が傘に入れてくれた。",
+      "minAge": 10,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "power-outage-week",
+      "text": "停電が一週間続いた。夜はろうそくの灯りで、早めに眠った。",
+      "minAge": 10,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "harmattan",
+      "text": "ハルマッタンの季節が来た。乾いた砂まじりの風で、唇がひび割れた。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NGA",
+          "GHA",
+          "NER",
+          "MLI",
+          "BFA",
+          "TCD",
+          "SEN",
+          "BEN",
+          "TGO",
+          "CIV",
+          "CMR",
+          "GMB",
+          "GIN",
+          "MRT"
+        ]
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "monsoon-flooded-road",
+      "text": "雨季の豪雨で道が川のようになり、膝まで水につかって家へ帰った。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "BGD",
+          "PAK",
+          "NPL",
+          "MMR",
+          "THA",
+          "VNM",
+          "KHM",
+          "LAO",
+          "PHL"
+        ]
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "dust-storm",
+      "text": "砂嵐で空が黄色くなり、一日じゅう窓を閉めきった。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "SAU",
+          "ARE",
+          "KWT",
+          "QAT",
+          "IRQ",
+          "EGY",
+          "SDN",
+          "IRN",
+          "OMN",
+          "CHN",
+          "MNG"
+        ]
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "walk-for-water",
+      "text": "家の近くの井戸が涸れ、水を汲みに片道四十分歩く日が続いた。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "health": -2
+      },
+      "stat": "安全に管理された飲み水を使えない人は、世界に20億人以上いる (WHO・UNICEF, 2024)"
+    },
+    {
+      "id": "shared-latrine",
+      "text": "共同のトイレの前に、朝から列ができていた。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "stat": "安全に管理されたトイレを使えない人は、世界に約35億人いる (WHO・UNICEF, 2022)"
+    },
+    {
+      "id": "bucket-shower",
+      "text": "水道の出が悪く、バケツ一杯の水で体を洗った。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "wealth": "poor"
+      },
+      "effects": {
+        "health": -1
+      },
+      "stat": "石けんと水で手を洗える設備が家にない人は、世界に約20億人いる (WHO・UNICEF, 2022)"
+    },
+    {
+      "id": "kindness-bus-fare",
+      "text": "バス代が足りなかった{name}の分を、隣の席の人が黙って払ってくれた。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "wealth": "poor"
+      },
+      "effects": {
+        "happy": 3
+      }
+    },
+    {
+      "id": "loan-from-neighbor",
+      "text": "月末、隣の家に米を一袋借りた。翌月、少し多めに返した。",
+      "minAge": 19,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "wealth": "poor"
+      },
+      "effects": {
+        "bond": 2
+      }
+    },
+    {
+      "id": "pawned-ring",
+      "text": "急な出費のために、指輪を質に入れた。",
+      "minAge": 25,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "wealth": "poor"
+      },
+      "effects": {
+        "happy": -2
+      },
+      "cost": 0.03
+    },
+    {
+      "id": "festival-family",
+      "text": "町の祭りに家族で出かけた。屋台の焼き物の匂いが、帰り道まで服に残っていた。",
+      "minAge": 6,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "cold-passes",
+      "text": "風邪をひいて三日ほど寝こんだ。",
+      "minAge": 6,
+      "maxAge": 90,
+      "weight": 1.5,
+      "effects": {
+        "health": -2
+      }
+    },
+    {
+      "id": "toothache",
+      "text": "歯が痛み、片側だけで噛む日が続いた。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "food-poisoning",
+      "text": "屋台で食べたものにあたり、一晩トイレから出られなかった。",
+      "minAge": 13,
+      "maxAge": 70,
+      "weight": 1,
+      "effects": {
+        "health": -3
+      }
+    },
+    {
+      "id": "new-neighbor",
+      "text": "隣に新しい家族が越してきた。最初の挨拶で、手作りの菓子をくれた。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "bond": 1,
+        "happy": 1
+      }
+    },
+    {
+      "id": "lost-keys",
+      "text": "家の鍵をなくし、合鍵を作るまで窓から出入りした。",
+      "minAge": 19,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -1
+      },
+      "cost": -0.005
+    },
+    {
+      "id": "lottery-small",
+      "text": "宝くじで少額が当たった。その日の夕食に一品増えた。",
+      "minAge": 19,
+      "maxAge": 80,
+      "weight": 0.4,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2
+      },
+      "cost": 0.02
+    },
+    {
+      "id": "found-money",
+      "text": "古い上着のポケットから、忘れていた紙幣が出てきた。",
+      "minAge": 10,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      },
+      "cost": 0.005
+    },
+    {
+      "id": "heavy-snowfall",
+      "text": "大雪で道が閉ざされ、三日間家から出られなかった。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "RUS",
+          "CAN",
+          "FIN",
+          "NOR",
+          "SWE",
+          "KAZ",
+          "MNG",
+          "JPN",
+          "KOR",
+          "UKR",
+          "POL"
+        ]
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "first-airplane",
+      "text": "初めて飛行機に乗った。離陸の瞬間、{name}はひじ掛けを強く握った。",
+      "minAge": 10,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true,
+      "stat": "2023年に世界の航空会社が運んだ旅客は、のべ40億人を超えた (ICAO)"
+    },
+    {
+      "id": "kind-doctor",
+      "text": "診療所の医者が、薬代を「次でいい」と言ってくれた。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low"
+      },
+      "effects": {
+        "happy": 3,
+        "health": 1
+      },
+      "stat": "医療費の自己負担のために家計が苦しくなっている人は、世界で約20億人いる (WHO・世界銀行, 2023)"
+    },
+    {
+      "id": "mobile-data-bundle",
+      "text": "携帯電話の通信量が切れ、無料のWi-Fiがある店の前に座ってメッセージを読んだ。",
+      "minAge": 13,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "shared-phone-family",
+      "text": "家族で一台の携帯電話を使っていた。電話がかかってくると、誰あてかをまず聞いた。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "wealth": "poor",
+        "income": "low"
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "religious-pilgrimage-catholic",
+      "text": "聖地への巡礼に出かけ、教会の前で蝋燭を一本ともした。",
+      "minAge": 30,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ]
+      },
+      "effects": {
+        "happy": 3
+      },
+      "cost": -0.05,
+      "once": true
+    },
+    {
+      "id": "ramadan-sahur",
+      "text": "ラマダン中、夜明け前に起きて食事をとった。眠い目で時計を見ながら水を飲んだ。",
+      "minAge": 19,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "effects": {
+        "bond": 1
+      }
+    },
+    {
+      "id": "village-well-new",
+      "text": "村に新しい井戸が掘られ、水汲みにかかる時間が半分になった。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "income": "low"
+      },
+      "effects": {
+        "happy": 3,
+        "health": 2
+      },
+      "once": true
+    },
+    {
+      "id": "solar-lamp",
+      "text": "小さな太陽光のランプを買った。夜も手元が明るくなった。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": "low"
+      },
+      "effects": {
+        "happy": 2,
+        "learn": 1
+      },
+      "cost": -0.02,
+      "once": true
+    },
+    {
+      "id": "minor-car-accident",
+      "text": "交差点で車にぶつけられた。けがはなかったが、しばらく首が痛かった。",
+      "minAge": 19,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "effects": {
+        "health": -2
+      }
+    },
+    {
+      "id": "stray-cat-feeding",
+      "text": "近所の野良猫に、毎日残り物をやるようになった。",
+      "minAge": 13,
+      "maxAge": 80,
+      "weight": 1,
+      "effects": {
+        "happy": 2
+      }
+    },
+    {
+      "id": "shouted-at-manual",
+      "text": "店の主人に、客の前で怒鳴られた。帰りに、一人で甘いものを食べた。",
+      "minAge": 22,
+      "maxAge": 50,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "manual"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "lunch-coworker-manual",
+      "text": "休憩のたびに、同じ職場の{friend}と道ばたで一服した。仕事の話は、ほとんどしなかった。",
+      "minAge": 22,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "manual"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "first-payday-manual",
+      "text": "初めての給料を手渡しで受け取った。{name}は紙幣を何度も数え直した。",
+      "minAge": 18,
+      "maxAge": 25,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "manual"
+      },
+      "effects": {
+        "happy": 3
+      },
+      "once": true
+    },
+    {
+      "id": "christmas-church-clothes",
+      "text": "クリスマスの朝、新しい服を着せてもらって教会へ行った。昼には鶏が一羽つぶされた。",
+      "minAge": 3,
+      "maxAge": 12,
+      "weight": 0.6,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ],
+        "region": [
+          "アフリカ"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "christmas-church-clothes-poor",
+      "text": "クリスマスの朝、いちばんきれいな服を着て教会へ行った。帰りに、隣の家から甘い揚げパンをもらった。",
+      "minAge": 3,
+      "maxAge": 12,
+      "weight": 0.6,
+      "when": {
+        "religion": [
+          "キリスト教"
+        ],
+        "wealth": "poor"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    },
+    {
+      "id": "first-internet-cafe",
+      "text": "町のネットカフェで、年上のいとこに教わって初めてインターネットを使った。",
+      "minAge": 10,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "income": "low",
+        "state": "school",
+        "married": false
+      },
+      "effects": {
+        "learn": 2
+      },
+      "once": true,
+      "stat": "2024年時点で、世界の約26億人がまだインターネットを使っていない (ITU)"
+    },
+    {
+      "id": "kitchen-heat",
+      "text": "厨房や工場の火のそばで一日立ち続け、帰ると足がむくんでいた。",
+      "minAge": 19,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "job": "manual"
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "regular-customer",
+      "text": "毎日来る客が、{name}の顔を見ると黙って同じものを頼むようになった。",
+      "minAge": 19,
+      "maxAge": 65,
+      "weight": 1,
+      "when": {
+        "job": "manual"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      }
+    },
+    {
+      "id": "rain-awaited",
+      "text": "種をまいたのに雨が来なかった。毎朝、空ばかり見て過ごした。",
+      "minAge": 19,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "job": "farm"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "shared-irrigation",
+      "text": "水路の水を、隣の畑と時間を決めて順番に使った。夜中の番の日もあった。",
+      "minAge": 19,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "job": "farm"
+      },
+      "effects": {
+        "bond": 1,
+        "health": -1
+      }
+    },
+    {
+      "id": "market-day-produce",
+      "text": "収穫した野菜を、朝いちばんの市場に運んだ。値段は仲買人の言い値だった。",
+      "minAge": 19,
+      "maxAge": 75,
+      "weight": 1,
+      "when": {
+        "job": "farm"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "meeting-long",
+      "text": "一時間の予定の会議が、三時間続いた。決まったのは次の会議の日時だけだった。",
+      "minAge": 22,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "job": "office"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "email-weekend",
+      "text": "休みの日にも、仕事のメッセージの通知が鳴った。",
+      "minAge": 22,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "job": "office",
+        "income": "high"
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "job-search-office",
+      "text": "仕事を探して、毎日求人の貼り紙を見てまわった。",
+      "minAge": 19,
+      "maxAge": 40,
+      "weight": 1,
+      "when": {
+        "job": "none",
+        "place": "urban"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "new-baby-relatives",
+      "text": "小さな子どもを見に、親戚がかわるがわる家に来た。誰が抱いても泣きやまなかった。",
+      "minAge": 20,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "youngChild": true
+      },
+      "effects": {
+        "bond": 3,
+        "happy": 1
+      }
+    },
+    {
+      "id": "toddler-words",
+      "text": "小さな子どもが、{name}の口ぐせをそのまままねするようになった。",
+      "minAge": 20,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "youngChild": true
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 2
+      }
+    },
+    {
+      "id": "teen-exam-worry",
+      "text": "子どもの試験の前の晩、{name}のほうが眠れなかった。",
+      "minAge": 35,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "teenChild": true
+      },
+      "effects": {
+        "bond": 2,
+        "happy": -1
+      }
+    },
+    {
+      "id": "teen-borrowed-clothes",
+      "text": "十代の子どもが、{name}の服を勝手に着て出かけていた。",
+      "minAge": 35,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "teenChild": true
+      },
+      "effects": {
+        "bond": 1,
+        "happy": 1
+      }
+    },
+    {
+      "id": "alone-sunday",
+      "text": "休みの日、一人の部屋で、誰とも話さずに洗濯と掃除だけをして終わった。",
+      "minAge": 20,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "livingAlone": true
+      },
+      "effects": {
+        "happy": -1
+      }
+    },
+    {
+      "id": "alone-cooking-for-one",
+      "text": "一人分の料理を作るのがおっくうになり、同じ鍋のものを三日食べ続けた。",
+      "minAge": 20,
+      "maxAge": 45,
+      "weight": 1,
+      "when": {
+        "livingAlone": true
+      },
+      "effects": {
+        "health": -1
+      }
+    },
+    {
+      "id": "in-laws-house",
+      "text": "夫の家族の家に移った。台所のどこに何があるのか、しばらく誰にも聞けなかった。",
+      "minAge": 12,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "married": true,
+        "sex": "F"
+      },
+      "effects": {
+        "happy": -2,
+        "bond": 1
+      },
+      "once": true,
+      "stat": "世界では毎年約1,200万人の少女が18歳未満で結婚している (UNICEF)"
+    },
+    {
+      "id": "in-laws-expectations",
+      "text": "義理の母は、誰より早く起きて水と火の支度をするのが嫁の仕事だと言った。",
+      "minAge": 12,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "married": true,
+        "sex": "F"
+      },
+      "effects": {
+        "health": -1,
+        "happy": -1
+      }
+    },
+    {
+      "id": "school-friends-passing",
+      "text": "学校へ向かう昔の同級生たちを、戸口から見送った。",
+      "minAge": 12,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "married": true,
+        "sex": "F"
+      },
+      "effects": {
+        "happy": -2
+      }
+    },
+    {
+      "id": "first-prenatal-check",
+      "text": "初めての妊婦健診に、義理の姉に付き添われて行った。看護師は{name}の年を二度聞き返した。",
+      "minAge": 13,
+      "maxAge": 19,
+      "weight": 0.5,
+      "when": {
+        "married": true,
+        "sex": "F"
+      },
+      "effects": {
+        "health": 1
+      },
+      "once": true,
+      "stat": "低・中所得国では、15〜19歳の少女による出産が年に約1,200万件ある (WHO)"
+    },
+    {
+      "id": "visit-mother-home",
+      "text": "月に一度、実家の母に会いに帰ることを許された。帰り道は、いつも足が重かった。",
+      "minAge": 12,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "married": true,
+        "sex": "F",
+        "motherAlive": true
+      },
+      "effects": {
+        "bond": 2,
+        "happy": -1
+      }
+    },
+    {
+      "id": "young-wives-talk",
+      "text": "同じ年頃で嫁いできた近所の{friend}と、市場の帰りに少し話すのが一日の息抜きになった。",
+      "minAge": 12,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "married": true,
+        "sex": "F"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 2
+      }
+    }
+  ]
+}

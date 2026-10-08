@@ -45,6 +45,7 @@ const SPEC = {
   oop: ['oop', 3, (v) => v / 100],           // 医療費のうち自己負担の割合
   childMarriage: ['childMarriage', 3, (v) => v / 100],
   happiness: ['happiness', 3],
+  flfp: ['flfp', 3, (v) => v / 100],        // 15歳以上の女性の労働参加率 (ILO)
 };
 const REQUIRED = ['births', 'pop', 'leF', 'leM', 'u5mr', 'gdp'];
 const MAX_YEAR = 2024;

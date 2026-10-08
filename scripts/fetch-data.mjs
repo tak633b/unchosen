@@ -20,7 +20,7 @@ const SLUGS = {
   oop: 'share-of-out-of-pocket-expenditure-on-healthcare',
   childMarriage: 'women-married-by-age-18',
   happiness: 'happiness-cantril-ladder',
-  poverty: 'share-of-population-living-in-extreme-poverty',
+  flfp: 'female-labor-force-participation-rates',
 };
 
 const dir = new URL('../data/raw/', import.meta.url);
