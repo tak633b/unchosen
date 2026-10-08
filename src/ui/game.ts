@@ -8,6 +8,8 @@ import { lifeMap, survivalChart } from './charts';
 import { showDeath } from './death';
 import { $, esc, load, save, setHTML } from './dom';
 import { setMusic } from './music';
+import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
+import { aiOn } from '../ai/settings';
 import { drawPortrait, drawScene, sceneOf } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel } from './panels';
 
@@ -56,6 +58,7 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
+  resetAi();
   S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, raf: 0, last: performance.now(), onExit };
   $('#app').innerHTML = shell();
   $('#app').onclick = onClick;
@@ -92,6 +95,12 @@ function tick(): void {
   if (!S) return;
   advanceYear(S.p);
   for (const o of S.others) advanceYear(o);
+  // AI の1年分が届いていれば反映し、用意した文の出来事は1つだけ残す
+  if (S.p.alive && onYear(S.p, S.others)) {
+    const age = S.p.age;
+    let kept = 0;
+    S.p.log = S.p.log.filter((e) => !(e.age === age && e.tpl && kept++ >= 1));
+  }
   render();
   nextModal();
   if (S && !S.modal) persist();
@@ -108,6 +117,7 @@ function shell(): string {
       <span class="speeds">${SPEEDS.map((s) => `<button data-act="speed" data-v="${s}">${s}×</button>`).join('')}</span>
       <button data-act="ff" title="次に決めることが来るまで早送り">次の決定まで »</button>
       <button data-act="auto" id="autobtn">自動で決める</button>
+      <span class="aibadge" id="aibadge" hidden>AI</span>
       <button data-act="music" id="musicbtn" aria-label="音楽">♪</button>
       <button data-act="exit">中断</button>
     </div>
@@ -152,7 +162,14 @@ function render(): void {
   drawPortrait($<HTMLCanvasElement>('#portraitcv'), p);
   setHTML('#focus', focusPanel(p));
   setHTML('#log', logPanel(p, S.logOpen));
-  setHTML('#others', othersPanel(S.others));
+  setHTML('#others', othersPanel(S.others, aiOthersLines()));
+  const st = aiStatus();
+  const badge = $('#aibadge');
+  if (badge) {
+    badge.hidden = !aiOn();
+    badge.textContent = st.error ? 'AI ⚠' : st.waiting > 0 ? 'AI …' : 'AI';
+    badge.title = st.error ? `AIの呼び出しに失敗: ${st.error}` : 'AIが出来事を書いている';
+  }
   setHTML('#map', `<h3>人生地図 <small>1マス = 1年</small></h3>${lifeMap(p)}`);
   setHTML('#survival', `<h3>生存曲線 <small>同じ年に生まれた人のうち生きている割合</small></h3>${survivalChart(p)}`);
   setHTML('#compare', comparePanel(p));

@@ -101,14 +101,14 @@ export function logPanel(p: Person, open: boolean): string {
   const items = [...p.log].reverse();
   const shown = open ? items : items.slice(0, 14);
   return `<h3>人生の記録 <small>新しい順</small></h3><ol class="log">${shown.map((e) =>
-    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span class="age">${e.age}歳</span><span>${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}</span></li>`).join('')}</ol>
+    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span class="age">${e.age}歳</span><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}</span></li>`).join('')}</ol>
     ${items.length > 14 ? `<button class="link" data-act="logmore">${open ? '閉じる' : `もっと見る(${items.length})`}</button>` : ''}`;
 }
 
-export function othersPanel(others: Person[]): string {
+export function othersPanel(others: Person[], aiLines: string[] = []): string {
   return `<h3>同じ1秒に生まれた人たち <small>いまのこの人たち</small></h3><ul class="others">${others.map((o) => `
     <li class="${o.alive ? '' : 'gone'}"><div><b>${esc(o.name)}</b><small>${esc(byCode(o.birthCountry).name)}・${o.sex === 'F' ? '女' : '男'}</small></div>
-    <span>${esc(nowLine(o))}</span></li>`).join('')}</ul>`;
+    <span>${esc(nowLine(o))}${aiLines[others.indexOf(o)] ? `<small class="ailine">${esc(aiLines[others.indexOf(o)])}</small>` : ''}</span></li>`).join('')}</ul>`;
 }
 
 export function comparePanel(p: Person): string {

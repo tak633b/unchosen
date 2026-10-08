@@ -7,6 +7,8 @@ import { EDU_LABEL, eduLevel, type Person } from '../engine/person';
 import { lifeStory } from '../engine/summary';
 import { drawCard, shareCard } from './cards';
 import { paintScenes, sceneAttr, sceneOf, toData, type SceneData } from './pixel';
+import { lifeStoryAi } from '../ai/director';
+import { aiOn } from '../ai/settings';
 import { $, esc, load, pct, save } from './dom';
 
 const MAX_PAST = 10;
@@ -18,6 +20,7 @@ export interface PastLife {
   questions: Person['questions']; facts: [string, string][]; others: { name: string; country: string; age: number; story: string }[];
   message?: string; date: string;
   scene?: SceneData;
+  aiStory?: { title: string; story: string };
 }
 
 export const pastLives = () => load<PastLife[]>('lives', []);
@@ -87,6 +90,7 @@ export function deathRecord(l: PastLife): string {
     <h1>${esc(l.name)}</h1>
     <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}・享年${l.age}歳</p>
     <p class="story">${esc(l.story)}</p>
+    <section id="aistory">${l.aiStory ? aiStoryHtml(l.aiStory) : ''}</section>
     <div class="cause"><b>死因 ${esc(l.cause)}</b>
       <p>同じ年に${esc(b.name)}で生まれた${l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。${esc(b.name)}の${l.sex === 'F' ? '女性' : '男性'}の平均寿命${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。</p></div>
     <dl class="kv facts">${l.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
@@ -100,6 +104,9 @@ export function deathRecord(l: PastLife): string {
     <p class="note">同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。</p>
   </section>`;
 }
+
+const aiStoryHtml = (s: { title: string; story: string }) =>
+  `<div class="aistory"><h3><i class="aitag">AI</i>${esc(s.title || 'この人の物語')}</h3>${s.story.split(/\n\n+/).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`;
 
 export function deathCard(l: PastLife): HTMLCanvasElement {
   const b = byCode(l.birthCountry);
@@ -124,6 +131,17 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
     </section></main>`;
   window.scrollTo(0, 0);
   paintScenes(app);
+  if (aiOn('story')) {
+    const box = $('#aistory');
+    box.innerHTML = '<p class="note"><i class="aitag">AI</i>この人の一生を物語にしている…</p>';
+    void lifeStoryAi(p).then((s) => {
+      if (!document.body.contains(box)) return;
+      if (!s) { box.innerHTML = '<p class="note">物語を書けなかった(AIの設定を確かめてください)。</p>'; return; }
+      life.aiStory = s;
+      save('lives', [life, ...pastLives().slice(1)]);
+      box.innerHTML = aiStoryHtml(s);
+    });
+  }
   app.onclick = async (e) => {
     const d = (e.target as HTMLElement).closest<HTMLElement>('[data-d]')?.dataset.d;
     if (!d) return;

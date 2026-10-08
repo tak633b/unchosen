@@ -5,7 +5,7 @@ import { clamp, type Rng } from './rng';
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
 
-export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string }
+export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean }
 export interface Stats { health: number; happy: number; money: number; learn: number; bond: number }
 
 export interface Option {

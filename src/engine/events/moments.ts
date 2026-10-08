@@ -105,6 +105,7 @@ export function moments(p: Person): void {
     const stat = m.stat && p.recent[`stat:${m.id}`] === undefined ? m.stat : undefined;
     if (stat) p.recent[`stat:${m.id}`] = p.age;
     log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
+    p.log[p.log.length - 1].tpl = true; // 用意した文から選んだもの (AI の出来事が届いた年は減らす)
   }
 }
 

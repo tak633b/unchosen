@@ -8,6 +8,7 @@ import { drawCard, shareCard } from './ui/cards';
 import { deathCard, deathRecord, pastLives } from './ui/death';
 import { $, esc, load, pct, save } from './ui/dom';
 import { clearSaved, hasSaved, resumeGame, sameSecondOthers, startWithOthers } from './ui/game';
+import { aiPanel, bindAiPanel, handleAiClick } from './ui/aipanel';
 import { paintScenes, sceneAttr, sceneFromSummary, sceneOf, toData } from './ui/pixel';
 
 const app = $('#app');
@@ -79,6 +80,7 @@ function home(): void {
       </div>
       <p class="note">平均寿命まで生きると約30分(1倍速で1年 ≈ 26秒)。止めることも早送りもできる。途中で閉じても、この端末に保存される。乳幼児の死、児童婚、病気など重い出来事も統計どおりに起こる。15歳以上向け。</p>
     </div>
+    ${aiPanel()}
     <section><h2>みんなの人生</h2><p class="note">それぞれが生きた人生と、その人への一言。プレイした人の名前や連絡先は残らない。</p><ul class="memorial" id="shared"><li>読み込み中…</li></ul></section>
     <nav class="homenav"><button data-go="past">前世の記録</button><button data-go="about">データについて</button></nav>
   </main>`;
@@ -95,8 +97,10 @@ function home(): void {
     if (el) { el.innerHTML = list.length ? list.slice(0, 12).map(sharedCard).join('') : '<li>まだ誰もいない。</li>'; paintScenes(el); }
   });
   $('#real').onchange = (e) => save('realCountry', (e.target as HTMLSelectElement).value || null);
+  bindAiPanel();
   app.onclick = async (e) => {
     const t = e.target as HTMLElement;
+    if (await handleAiClick(t)) return;
     const b = t.closest<HTMLElement>('[data-basis]')?.dataset.basis;
     if (b) { save('basis', b); home(); return; }
     const candle = t.closest<HTMLButtonElement>('[data-candle]');

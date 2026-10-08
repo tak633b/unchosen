@@ -42,12 +42,12 @@ const send = (res, status, body) => {
   res.end(JSON.stringify(body));
 };
 
-async function readJson(req) {
+async function readJson(req, limit = 8192) {
   let size = 0;
   const chunks = [];
   for await (const c of req) {
     size += c.length;
-    if (size > 8192) throw new Error('too large');
+    if (size > limit) throw new Error('too large');
     chunks.push(c);
   }
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
@@ -69,7 +69,62 @@ function validEntry(b) {
   };
 }
 
+// ---- AI の中継 ---------------------------------------------------------------
+// 何でも中継する踏み台にならないよう、宛先は既知の API か、手元・社内の LLM だけにする
+const AI_HOSTS = new Set(['openrouter.ai', 'api.openai.com']);
+const PRIVATE = [/^127\./, /^10\./, /^192\.168\./, /^172\.(1[6-9]|2\d|3[01])\./, /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./, /^\[?::1\]?$/, /^localhost$/, /\.local$/, /\.ts\.net$/];
+const AI_TIMEOUT_MS = 90_000;
+const AI_MAX_RESPONSE = 256 * 1024;
+const aiHits = new Map();
+
+function aiTarget(baseUrl) {
+  let u;
+  try { u = new URL(String(baseUrl)); } catch { return null; }
+  if (!['http:', 'https:'].includes(u.protocol)) return null;
+  const known = AI_HOSTS.has(u.hostname) && u.protocol === 'https:';
+  if (!known && !PRIVATE.some((re) => re.test(u.hostname))) return null;
+  return `${u.origin}${u.pathname.replace(/\/$/, '')}/chat/completions`;
+}
+
+async function aiRelay(req, res) {
+  const ip = req.socket.remoteAddress ?? '';
+  const now = Date.now();
+  const recent = (aiHits.get(ip) ?? []).filter((t) => now - t < 60_000);
+  recent.push(now);
+  aiHits.set(ip, recent);
+  if (recent.length > 120) return send(res, 429, { success: false, error: 'too many requests' });
+  let b;
+  try { b = await readJson(req, 64 * 1024); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
+  const target = aiTarget(b?.baseUrl);
+  if (!target) return send(res, 400, { success: false, error: 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)' });
+  const body = b.body && typeof b.body === 'object' ? b.body : null;
+  if (!body || typeof body.model !== 'string' || !Array.isArray(body.messages)) return send(res, 400, { success: false, error: 'invalid body' });
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), AI_TIMEOUT_MS);
+  try {
+    const r = await fetch(target, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(typeof b.apiKey === 'string' && b.apiKey ? { Authorization: `Bearer ${b.apiKey}` } : {}),
+        'X-Title': 'Unchosen',
+      },
+      body: JSON.stringify({ model: body.model, messages: body.messages, max_tokens: Math.min(2000, Number(body.max_tokens) || 800), temperature: Number(body.temperature) || 1 }),
+      signal: ctrl.signal,
+    });
+    const text = (await r.text()).slice(0, AI_MAX_RESPONSE);
+    if (!r.ok) return send(res, 502, { success: false, error: `LLM が ${r.status} を返した: ${text.slice(0, 200)}` });
+    const j = JSON.parse(text);
+    return send(res, 200, { success: true, data: { content: j.choices?.[0]?.message?.content ?? '' } });
+  } catch (err) {
+    return send(res, 502, { success: false, error: err.name === 'AbortError' ? 'LLM の応答が時間内に返らなかった' : 'LLM に接続できなかった' });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function api(req, res, url) {
+  if (req.method === 'POST' && url.pathname === '/api/ai/chat') return aiRelay(req, res);
   const ip = req.socket.remoteAddress ?? '';
   if (req.method === 'GET' && url.pathname === '/api/memorial') {
     const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, created_at AS createdAt

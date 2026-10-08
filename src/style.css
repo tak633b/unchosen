@@ -272,3 +272,17 @@ canvas.portrait.pix { width: 56px; height: 63px; image-rendering: pixelated; bor
 #shared li .note { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 #shared li button { margin-top: auto; align-self: flex-start; }
 .subtitle { font-size: 18px; color: var(--sub); margin: -8px 0 14px; letter-spacing: 0.2em; }
+
+/* AI */
+.aipanel summary { cursor: pointer; }
+.aipanel[open] summary { margin-bottom: 8px; }
+.aigrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+@media (max-width: 760px) { .aigrid { grid-template-columns: 1fr; } }
+.aipanel fieldset { margin: 10px 0; }
+.aipanel fieldset label { font-size: 13px; }
+.aipanel fieldset input { width: auto; margin-right: 6px; }
+.aitag { font-style: normal; font-size: 10px; font-weight: 700; color: var(--m-learn); border: 1px solid currentColor; border-radius: 3px; padding: 0 3px; margin-right: 6px; vertical-align: 1px; }
+.aibadge { font-size: 11px; font-weight: 700; color: var(--m-learn); border: 1px solid currentColor; border-radius: 4px; padding: 2px 6px; }
+.ailine { display: block; color: var(--m-learn); }
+.aistory { background: color-mix(in srgb, var(--m-learn) 8%, transparent); border-radius: 6px; padding: 12px 16px; margin: 10px 0 16px; }
+.aistory p { margin: 0 0 10px; }
