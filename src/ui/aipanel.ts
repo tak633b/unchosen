@@ -1,5 +1,5 @@
 // トップ画面の「AIで人生を広げる」設定。キーはこの端末にだけ保存し、画面には出さない。
-import { chat, parseJson } from '../ai/client';
+import { chat, listModels, parseJson } from '../ai/client';
 import { aiSettings, PRESETS, saveAiSettings, type AiSettings, type Provider } from '../ai/settings';
 import { $, esc } from './dom';
 
@@ -21,7 +21,7 @@ export function aiPanel(): string {
       <label class="field">接続先
         <select id="ai-provider">${(Object.keys(PRESETS) as Provider[]).map((k) => `<option value="${k}" ${k === s.provider ? 'selected' : ''}>${esc(PRESETS[k].label)}</option>`).join('')}</select></label>
       <label class="field">URL(…/v1 まで)<input id="ai-base" value="${esc(s.baseUrl)}" autocomplete="off"></label>
-      <label class="field">モデル<input id="ai-model" value="${esc(s.model)}" placeholder="例: google/gemini-2.5-flash" autocomplete="off"></label>
+      <label class="field">モデル<input id="ai-model" list="ai-models" value="${esc(s.model)}" placeholder="例: google/gemini-2.5-flash" autocomplete="off"><datalist id="ai-models"></datalist></label>
       <label class="field">APIキー${s.apiKey ? ' <small>(保存済み。変えるときだけ入力)</small>' : ' <small>(ローカルLLMなら空でよい)</small>'}
         <input id="ai-key" type="password" placeholder="" autocomplete="off"></label>
     </div>
@@ -32,7 +32,7 @@ export function aiPanel(): string {
     <fieldset><legend>AIに任せること</legend>
       ${(Object.keys(FEATURE_LABEL) as (keyof AiSettings['features'])[]).map((k) => `<label><input type="checkbox" data-feature="${k}" ${s.features[k] ? 'checked' : ''}> ${FEATURE_LABEL[k]}</label>`).join('')}
     </fieldset>
-    <div class="choices"><button data-ai="save">保存</button><button data-ai="test">接続テスト</button><span id="ai-result" class="note"></span></div>
+    <div class="choices"><button data-ai="models">モデル一覧を取得</button><button data-ai="test">接続テスト</button><button data-ai="save" class="primary">保存</button><span id="ai-result" class="note"></span></div>
     <p class="note">APIキーはこの端末のブラウザにだけ保存される。サーバ中継のときも、キーはその場で LLM に渡すだけで記録しない。</p>
   </details>`;
 }
@@ -72,6 +72,17 @@ export async function handleAiClick(t: HTMLElement): Promise<boolean> {
     saveAiSettings(s);
     $<HTMLInputElement>('#ai-key').value = '';
     out.textContent = s.enabled ? '保存した。次の人生から使われる。' : '保存した(AIはオフ)。';
+    return true;
+  }
+  if (act === 'models') {
+    out.textContent = 'モデル一覧を取りに行っている…';
+    try {
+      const ids = await listModels(s);
+      $('#ai-models').innerHTML = ids.map((id) => `<option value="${esc(id)}">`).join('');
+      out.textContent = ids.length ? `${ids.length}個のモデルが見つかった。モデル欄で選べる。` : 'つながったが、モデルが1つもなかった。';
+    } catch (e) {
+      out.textContent = `失敗: ${e instanceof Error ? e.message : String(e)}`;
+    }
     return true;
   }
   out.textContent = '問い合わせ中…';

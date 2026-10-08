@@ -155,7 +155,45 @@ async function aiRelay(req, res) {
     const j = JSON.parse(text);
     return send(res, 200, { success: true, data: { content: j.choices?.[0]?.message?.content ?? '' } });
   } catch (err) {
-    return send(res, 502, { success: false, error: err.name === 'AbortError' ? 'LLM の応答が時間内に返らなかった' : 'LLM に接続できなかった' });
+    return send(res, 502, { success: false, error: relayError(err, target.url) });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// つながらなかった理由を、直し方が分かる言葉で返す (サーバのログにも残す。キーは書かない)
+function relayError(err, url) {
+  const code = err.cause?.code ?? err.code ?? '';
+  const where = new URL(url).host;
+  console.error('[ai relay]', where, err.name, code || err.message);
+  if (err.name === 'AbortError') return 'LLM の応答が時間内に返らなかった(モデルの読み込み中かもしれない)';
+  if (code === 'ECONNREFUSED') return `${where} に接続を拒否された。そのポートで LLM が動いていない(サーバの機械から見た住所です)`;
+  if (code === 'ENOTFOUND' || code === 'EAI_AGAIN') return `${where} の名前が引けなかった`;
+  if (code === 'ETIMEDOUT' || code === 'UND_ERR_CONNECT_TIMEOUT') return `${where} に届かなかった(住所かファイアウォールを確かめて)`;
+  return `LLM に接続できなかった(${code || err.message})`;
+}
+
+// モデル一覧: 設定画面で接続を確かめ、モデル名を選ぶのに使う
+async function aiModels(req, res) {
+  let b;
+  try { b = await readJson(req, 8192); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
+  const target = await aiTarget(b?.baseUrl);
+  if (!target) return send(res, 400, { success: false, error: 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)' });
+  const url = target.url.replace(/\/chat\/completions$/, '/models');
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 15_000);
+  try {
+    const r = await fetch(url, {
+      redirect: 'manual',
+      headers: { ...(target.host ? { Host: target.host } : {}), ...(typeof b.apiKey === 'string' && b.apiKey ? { Authorization: `Bearer ${b.apiKey}` } : {}) },
+      signal: ctrl.signal,
+    });
+    if (!r.ok) return send(res, 502, { success: false, error: `モデル一覧が ${r.status} を返した` });
+    const j = JSON.parse((await r.text()).slice(0, 2 * 1024 * 1024));
+    const ids = (Array.isArray(j.data) ? j.data : []).map((m) => String(m.id)).slice(0, 500);
+    return send(res, 200, { success: true, data: { models: ids } });
+  } catch (err) {
+    return send(res, 502, { success: false, error: relayError(err, url) });
   } finally {
     clearTimeout(timer);
   }
@@ -163,6 +201,7 @@ async function aiRelay(req, res) {
 
 async function api(req, res, url) {
   if (req.method === 'POST' && url.pathname === '/api/ai/chat') return aiRelay(req, res);
+  if (req.method === 'POST' && url.pathname === '/api/ai/models') return aiModels(req, res);
   const ip = req.socket.remoteAddress ?? '';
   if (req.method === 'GET' && url.pathname === '/api/memorial') {
     const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, created_at AS createdAt

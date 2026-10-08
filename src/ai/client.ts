@@ -5,6 +5,19 @@ export interface Msg { role: 'system' | 'user' | 'assistant'; content: string }
 
 const TIMEOUT_MS = 60000;
 
+export async function listModels(s: AiSettings): Promise<string[]> {
+  if (s.route === 'server') {
+    const r = await fetch('/api/ai/models', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ baseUrl: s.baseUrl, apiKey: s.apiKey }) });
+    const j = await r.json();
+    if (!j.success) throw new Error(j.error ?? `HTTP ${r.status}`);
+    return j.data.models as string[];
+  }
+  const r = await fetch(`${s.baseUrl.replace(/\/$/, '')}/models`, { headers: s.apiKey ? { Authorization: `Bearer ${s.apiKey}` } : {} });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const j = await r.json();
+  return (j.data ?? []).map((m: { id: string }) => String(m.id));
+}
+
 export async function chat(messages: Msg[], opts: { maxTokens?: number; temperature?: number; settings?: AiSettings } = {}): Promise<string> {
   const s = opts.settings ?? aiSettings();
   const body = { model: s.model, messages, max_tokens: opts.maxTokens ?? 800, temperature: opts.temperature ?? 1 };
