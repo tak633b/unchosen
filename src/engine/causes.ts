@@ -1,0 +1,62 @@
+// 死因の割り振り。年齢帯ごとの構成は WHO/GBD の大まかな形に、
+// 感染症は国の豊かさ、マラリアはアフリカ、肺の病気は喫煙で重みを変える。
+import type { Country } from './countries';
+import { pickWeighted, type Rng } from './rng';
+import type { Sex } from './lifetable';
+
+type Tag = 'inf' | 'mal' | 'smoke' | 'old' | 'road';
+type Row = [name: string, weight: number, tag?: Tag];
+
+const BANDS: [maxAge: number, rows: Row[]][] = [
+  [0, [
+    ['早産・低出生体重', 30], ['出生時の仮死', 20], ['新生児の敗血症', 12, 'inf'], ['肺炎', 12, 'inf'],
+    ['先天的な病気', 12], ['下痢症', 6, 'inf'], ['マラリア', 4, 'mal'],
+  ]],
+  [4, [
+    ['肺炎', 25, 'inf'], ['下痢症', 20, 'inf'], ['マラリア', 18, 'mal'], ['栄養失調', 8, 'inf'],
+    ['溺水', 8], ['先天的な病気', 8], ['はしか', 5, 'inf'], ['交通事故', 5, 'road'],
+  ]],
+  [14, [
+    ['交通事故', 15, 'road'], ['溺水', 10], ['マラリア', 10, 'mal'], ['下痢症', 8, 'inf'], ['肺炎', 8, 'inf'],
+    ['白血病などのがん', 12], ['結核', 5, 'inf'], ['髄膜炎', 5, 'inf'],
+  ]],
+  [49, [
+    ['交通事故', 14, 'road'], ['心臓病', 12], ['がん', 12], ['結核', 8, 'inf'], ['肝臓の病気', 6], ['脳卒中', 6],
+    ['転落などの事故', 5], ['肺炎', 4, 'inf'], ['下痢症', 3, 'inf'], ['腎臓病', 4], ['糖尿病', 3],
+  ]],
+  [69, [
+    ['心臓病', 26], ['脳卒中', 16], ['がん', 22], ['肺がん', 6, 'smoke'], ['慢性閉塞性肺疾患', 6, 'smoke'],
+    ['糖尿病', 6], ['肝硬変', 4], ['腎臓病', 4], ['結核', 3, 'inf'], ['肺炎', 3, 'inf'],
+  ]],
+  [999, [
+    ['心臓病', 26], ['脳卒中', 16], ['がん', 14], ['肺がん', 3, 'smoke'], ['認知症', 10, 'old'],
+    ['慢性閉塞性肺疾患', 7, 'smoke'], ['肺炎', 8], ['腎臓病', 4], ['糖尿病', 4], ['老衰', 8, 'old'], ['転倒', 2],
+  ]],
+];
+
+export const HOMICIDE = '他殺';
+
+function tagWeight(tag: Tag | undefined, c: Country, smoker: boolean): number {
+  switch (tag) {
+    case 'inf': return c.gdp < 3000 ? 3 : c.gdp < 10000 ? 1.6 : c.gdp < 30000 ? 0.7 : 0.3;
+    case 'mal': return c.region === 'アフリカ' ? (c.gdp < 10000 ? 2 : 0.5) : 0.02;
+    case 'smoke': return smoker ? 3 : 0.7;
+    case 'old': return c.gdp > 20000 ? 1.5 : 0.6;
+    // 推計: 交通事故死亡率は中所得国で最も高い
+    case 'road': return c.gdp < 3000 ? 1.2 : c.gdp < 25000 ? 1.5 : 0.6;
+    default: return 1;
+  }
+}
+
+// 1年あたりの他殺の確率。統計は人口全体の率なので、若い男性に寄せて配る
+export function homicideHazard(c: Country, sex: Sex, age: number): number {
+  const ageK = age < 15 ? 0.2 : age < 45 ? 1.8 : age < 65 ? 0.7 : 0.4;
+  const sexK = sex === 'M' ? 1.6 : 0.4;
+  return (c.homicide / 1e5) * ageK * sexK;
+}
+
+export function pickCause(rng: Rng, c: Country, sex: Sex, age: number, q: number, smoker: boolean): string {
+  if (rng() < Math.min(0.9, homicideHazard(c, sex, age) / q)) return HOMICIDE;
+  const rows = BANDS.find(([max]) => age <= max)![1];
+  return pickWeighted(rng, rows, ([, w, tag]) => w * tagWeight(tag, c, smoker))[0];
+}

@@ -1,0 +1,162 @@
+/* 無印良品の DESIGN.md を下敷きに: きなり色・濃いグレーの文字・ムジの赤を少しだけ・行間 1.6 */
+:root {
+  --bg: #f4eede;
+  --surface: #fffdf7;
+  --text: #3c3c43;
+  --sub: #6d6d72;
+  --faint: #9d9da0;
+  --line: #e0d8c6;
+  --accent: #7f0019;
+  --k-child: #e8d9b5;
+  --k-school: #9cb6c9;
+  --k-work: #b9b39a;
+  --k-family: #c9b07a;
+  --k-love: #d79a8c;
+  --k-move: #7c9a86;
+  --k-hard: #8d7f73;
+  --k-ill: #b98a8a;
+  --k-loss: #5d5560;
+  --k-old: #cfc7b8;
+  --k-death: #3c3c43;
+  --k-future: #ece5d3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f1d1a; --surface: #292622; --text: #e9e4d8; --sub: #b0aa9c; --faint: #7c766b; --line: #3d3832;
+    --accent: #d9737f; --k-future: #34302a; --k-death: #e9e4d8; --k-child: #6f644a;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Helvetica Neue", Arial, "Noto Sans JP", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+h1 { font-size: 28px; margin: 4px 0 12px; }
+h2 { font-size: 20px; margin: 4px 0 8px; }
+h3 { font-size: 14px; margin: 0 0 10px; color: var(--sub); font-weight: 700; letter-spacing: 0.08em; }
+h3 small, .note, small { color: var(--sub); font-weight: 400; font-size: 12px; letter-spacing: 0; }
+.kicker { color: var(--sub); font-size: 13px; margin: 0; }
+.lead { font-size: 16px; }
+button {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 4px; padding: 6px 12px; cursor: pointer;
+}
+button:hover { border-color: var(--sub); }
+button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); padding: 10px 28px; font-weight: 700; }
+button.link { border: 0; background: none; color: var(--accent); padding: 4px 0; }
+button:disabled { opacity: 0.6; cursor: default; }
+input, select, textarea {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 4px; padding: 8px; width: 100%;
+}
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; margin-bottom: 14px; }
+
+/* トップ・誕生・記録 */
+.home { max-width: 640px; margin: 0 auto; padding: 40px 16px 60px; }
+.start { display: grid; gap: 14px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 4px; }
+legend { font-weight: 700; margin-bottom: 4px; }
+fieldset input { width: auto; margin-right: 6px; }
+.field { display: grid; gap: 6px; font-size: 13px; color: var(--sub); }
+.homenav, .choices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.choices button small { display: block; color: var(--sub); font-size: 12px; }
+.choices button.on small { color: var(--bg); }
+.born h1 { font-size: 26px; }
+.facts { margin: 20px 0; }
+.about p { margin: 0 0 14px; }
+.pastlist, .memorial { list-style: none; padding: 0; display: grid; gap: 8px; }
+.pastlist button { width: 100%; text-align: left; }
+.pastlist small { display: block; }
+.memorial li { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+.memorial p { margin: 0 0 4px; }
+.message { font-style: italic; }
+
+/* ゲーム画面 */
+.topbar {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  border-bottom: 1px solid var(--line); padding: 10px 16px 0;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+}
+.who { font-size: 15px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.controls button { padding: 4px 10px; }
+.speeds { display: inline-flex; gap: 2px; }
+.toggle { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; }
+.toggle input { width: auto; }
+.yeartrack { flex-basis: 100%; height: 3px; background: var(--line); margin: 4px -16px 0; }
+#yearbar { height: 100%; background: var(--accent); width: 0; }
+.game { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 1100px; margin: 0 auto; padding: 16px; }
+@media (max-width: 760px) { .game { grid-template-columns: 1fr; } }
+.col { min-width: 0; }
+
+.stat { display: grid; grid-template-columns: 6em 1fr 2.4em; align-items: center; gap: 8px; font-size: 13px; }
+.stat b { text-align: right; font-variant-numeric: tabular-nums; }
+.meter { height: 8px; background: var(--k-future); border-radius: 4px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--text); transition: width 0.6s; }
+.money { margin: 10px 0 0; font-size: 13px; }
+
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 0; font-size: 14px; }
+.kv dt { color: var(--sub); }
+.kv dd { margin: 0; }
+
+.focus { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.log { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14px; }
+.log li { padding-left: 10px; border-left: 3px solid var(--k-future); }
+.log li.big { font-weight: 700; }
+.log .age { color: var(--sub); font-size: 12px; margin-right: 8px; font-variant-numeric: tabular-nums; }
+.log li.k-loss, .log li.k-death { border-color: var(--k-loss); }
+.log li.k-hard, .log li.k-ill { border-color: var(--k-ill); }
+.log li.k-love, .log li.k-family { border-color: var(--k-love); }
+.log li.k-school { border-color: var(--k-school); }
+.log li.k-work { border-color: var(--k-work); }
+.log li.k-move { border-color: var(--k-move); }
+
+.others { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 14px; }
+.others small { display: block; }
+.others .gone { color: var(--faint); }
+
+.map { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+.cell { display: inline-block; aspect-ratio: 1; min-width: 10px; border-radius: 2px; background: var(--k-future); }
+.cell.now { outline: 2px solid var(--accent); outline-offset: 1px; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 10px; font-size: 12px; color: var(--sub); }
+.legend span { display: inline-flex; align-items: center; gap: 4px; }
+.legend .cell { width: 10px; }
+.k-child { background: var(--k-child); } .k-school { background: var(--k-school); } .k-work { background: var(--k-work); }
+.k-family { background: var(--k-family); } .k-love { background: var(--k-love); } .k-move { background: var(--k-move); }
+.k-hard { background: var(--k-hard); } .k-ill { background: var(--k-ill); } .k-loss { background: var(--k-loss); }
+.k-old { background: var(--k-old); } .k-death { background: var(--k-death); } .k-future { background: var(--k-future); }
+.log li[class*='k-'] { background: none; }
+
+.survival { width: 100%; height: auto; font-size: 10px; fill: var(--sub); }
+.survival path { fill: none; stroke-width: 2; }
+.survival .mine { stroke: var(--accent); }
+.survival .world { stroke: var(--faint); stroke-dasharray: 4 3; }
+.survival .axis { stroke: var(--line); }
+.survival .grid { stroke: var(--line); stroke-dasharray: 2 4; }
+.survival .nowline { stroke: var(--sub); stroke-width: 1; }
+.survival .dot { fill: var(--accent); }
+.survival .dot.dead { fill: var(--text); }
+.sw { display: inline-block; width: 16px; height: 3px; vertical-align: middle; margin: 0 4px 0 8px; }
+.sw.mine { background: var(--accent); }
+.sw.world { background: var(--faint); }
+
+.cmp { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cmp th, .cmp td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: right; }
+.cmp th:first-child, .cmp td:first-child { text-align: left; color: var(--sub); }
+.cmp th small { display: block; }
+
+.modal-back { position: fixed; inset: 0; background: rgb(30 28 24 / 0.45); display: grid; place-items: center; z-index: 10; padding: 16px; }
+.modal-back[hidden] { display: none; }
+.modal { background: var(--surface); border-radius: 8px; padding: 24px; width: min(560px, 100%); max-height: 90vh; overflow: auto; }
+.modal textarea { margin: 8px 0; }
+.moments { margin: 14px 0; }
+.answers { padding-left: 18px; }
