@@ -2,7 +2,8 @@
 import type { Country } from './countries';
 import { earnings } from './economy';
 import { isEn } from '../i18n';
-import type { EduLevel, Person } from './person';
+import { countryOf, type EduLevel, type Person } from './person';
+import { techShare, type Tech } from './tech';
 import { clamp, normal, type Rng } from './rng';
 
 export type JobKind = 'office' | 'manual' | 'farm';
@@ -15,6 +16,7 @@ export interface Job {
   majors?: string[];  // 大学の専攻が要る仕事
   where?: 'rural' | 'urban';
   maxEdu?: EduLevel;  // 学歴が高すぎる人には勧めない
+  tech?: Tech;        // 要る道具。その国その年に少しでも広まっていなければ勧めない
 }
 
 export const MAJORS = ['人文学', '経営・経済', '法学', '工学', '情報科学', '医学', '看護・保健', '教育', '農学'] as const;
@@ -59,7 +61,7 @@ export const JOBS: Job[] = [
   { name: '住み込みの家事手伝い', kind: 'manual', edu: 0, pay: -0.38, maxEdu: 2 },
   { name: '縫製工場の工員', kind: 'manual', edu: 1, pay: -0.2, where: 'urban', maxEdu: 3 },
   { name: '建設作業員', kind: 'manual', edu: 1, pay: -0.15, maxEdu: 3 },
-  { name: '運転手', kind: 'manual', edu: 1, pay: -0.1, maxEdu: 3 },
+  { name: '運転手', kind: 'manual', edu: 1, pay: -0.1, maxEdu: 3, tech: 'car' },
   { name: '市場の店主', kind: 'manual', edu: 1, pay: -0.05, maxEdu: 3 },
   { name: '店員', kind: 'manual', edu: 2, pay: -0.08, maxEdu: 4 },
   { name: '料理人', kind: 'manual', edu: 2, pay: -0.03, maxEdu: 4 },
@@ -75,7 +77,7 @@ export const JOBS: Job[] = [
   { name: '教師', kind: 'office', edu: 4, pay: 0.12, majors: ['教育', '人文学'] },
   { name: '看護師', kind: 'office', edu: 4, pay: 0.14, majors: ['看護・保健', '医学'] },
   { name: 'エンジニア', kind: 'office', edu: 4, pay: 0.25, majors: ['工学', '情報科学'] },
-  { name: 'プログラマー', kind: 'office', edu: 4, pay: 0.27, majors: ['情報科学', '工学'], where: 'urban' },
+  { name: 'プログラマー', kind: 'office', edu: 4, pay: 0.27, majors: ['情報科学', '工学'], where: 'urban', tech: 'computer' },
   { name: '会計・金融の専門職', kind: 'office', edu: 4, pay: 0.25, majors: ['経営・経済'], where: 'urban' },
   { name: '会社員(営業・企画)', kind: 'office', edu: 4, pay: 0.18, where: 'urban' },
   { name: '公務員', kind: 'office', edu: 4, pay: 0.15, majors: ['法学', '人文学', '経営・経済', '教育'] },
@@ -98,10 +100,14 @@ export function offerFor(p: Person, c: Country, job: Job, rng: Rng): Offer {
   return { job, p: pos, pay: earnings(c, pos), formal };
 }
 
+// 仕事に要る道具が、この割合を超えて広まっていれば勧める (1960年代の豊かな国のプログラマーは数%から)
+const TECH_MIN = 0.02;
+
 export function eligibleJobs(p: Person, edu: EduLevel): Job[] {
   return JOBS.filter((j) => j.edu <= edu && (j.maxEdu ?? 5) >= edu
     && (!j.majors || (p.school.major && j.majors.includes(p.school.major)))
-    && (!j.where || (j.where === 'rural') === p.rural));
+    && (!j.where || (j.where === 'rural') === p.rural)
+    && (!j.tech || techShare(countryOf(p), j.tech) > TECH_MIN));
 }
 
 // 働き手の多くが男性/女性の仕事。逆の性別には、4回に1回だけ勧める

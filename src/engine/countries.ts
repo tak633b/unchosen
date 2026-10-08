@@ -28,6 +28,7 @@ export interface Country {
   childMarriage: number;
   happiness: number;
   flfp: number; // 女性の労働参加率
+  elec?: number; // 電気が使える人の割合 (暦年の値だけが持つ。世界銀行、1990年より前は所得から推定)
   est?: string[];
   year?: number; // 暦年の値なら、その年 (countryAt)。無ければ最新の1年 (countries.json)
 }
@@ -80,6 +81,21 @@ export function basisOf(code: string, key: string, year: number): Basis {
   const r = era.countries[code]?.obs[key];
   if (!r || year < r[0] || year > r[1]) return year > ERA_NOW ? 'proj' : 'est';
   return 'obs';
+}
+
+// 生まれる年を選ばないとき: 1950〜2100年に生まれる人全体から1人を引く。年は世界の出生数に比例する
+const ALL_YEARS = Array.from({ length: ERA_TO - ERA_FROM + 1 }, (_, i) => ERA_FROM + i);
+export const pickBirthYear = (rng: Rng): number => pickWeighted(rng, ALL_YEARS, (y) => totalOf('births', y));
+// 全期間を通した国ごとの合計 (年を選ばないときの「生まれる場所」の表)
+const spanMemo = new Map<string, Country[]>();
+export function countriesAcrossYears(basis: BirthBasis): Country[] {
+  const hit = spanMemo.get(basis + eraReady());
+  if (hit) return hit;
+  const sums = new Map<string, number>();
+  for (const y of ALL_YEARS) for (const c of countriesAt(y)) sums.set(c.code, (sums.get(c.code) ?? 0) + c[basis]);
+  const list = COUNTRIES.map((c) => ({ ...c, [basis]: sums.get(c.code)! }));
+  spanMemo.set(basis + eraReady(), list);
+  return list;
 }
 
 export type BirthBasis = 'births' | 'pop';

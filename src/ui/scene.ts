@@ -1,7 +1,10 @@
 // 場面のピクセル画 320×100。左に住まい、右にいま過ごしている場所、真ん中に家族。
 // 空はディザのグラデーション、遠景ほど霞み、物は光の向きに沿った3段の陰影と長い影を持つ。
 // 時刻 (朝・昼・夕・夜) と季節は年ごとに変わる。場面の色は時刻の tint を受け、窓や街灯の明かりだけは受けない。
+// 暦年があれば時代と国で描き分ける (電気・テレビ・車の普及、ビルの高さ、2050年ごろからの太陽光パネル)。
+// 時代の判定は c.r と別の乱数 c.e で引く。暦年の無い古い記録は c.r の並びも絵も前のまま
 import type { Country } from '../engine/countries';
+import { techShare } from '../engine/tech';
 import { makeRng, type Rng } from '../engine/rng';
 import { climateOf, type Climate, type Style } from './look';
 import { dith, hash, mixc, Pix, tones } from './raster';
@@ -24,6 +27,7 @@ export interface Scene {
   t: number; // 一生のどこか 0–1
   figures: Figure[]; pet?: '犬' | '猫'; car: boolean; poor: boolean; night?: boolean;
   tod?: Tod; season?: number; // 季節 0 春 / 1 夏 / 2 秋 / 3 冬。古い記録には無い
+  year?: number; // 暦年。country はこの年の値。古い記録には無い (今の時代として描く)
 }
 
 const SKY: Record<Tod, string[]> = {
@@ -54,7 +58,14 @@ function landOf(cl: Climate, season: number): Land {
 // 古い記録には時刻・季節が無いので、一生のどこかと夜かどうかから決める
 export const todOf = (s: Scene): Tod => s.tod ?? (s.night ? 'night' : s.t > 0.7 ? 'dusk' : s.t < 0.2 ? 'morning' : 'day');
 
-interface Ctx { P: Pix; s: Scene; r: Rng; tod: Tod; land: Land; cl: Climate; dir: number; lightsOn: boolean; nightish: boolean }
+interface Ctx {
+  P: Pix; s: Scene; r: Rng; tod: Tod; land: Land; cl: Climate; dir: number; lightsOn: boolean; nightish: boolean;
+  e: Rng; year?: number; grid: number; lamp: boolean; // grid: その土地の電気の普及率、lamp: この場面の灯りは電気でなくランプ
+}
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
+// ビルの高さの時代の倍率: 1950年は今の半分弱、2000年で今と同じ、2050年からまた少し伸びる
+const eraTall = (y?: number) => (y === undefined ? 1 : y < 2000 ? 0.45 + 0.55 * clamp01((y - 1950) / 50) : 1 + 0.35 * clamp01((y - 2045) / 45));
+const glassy = (c: Ctx) => (c.year ?? 0) >= 2050 && c.s.country.gdp > 15000;
 
 function gradRows(P: Pix, h: number, stops: string[]): void {
   for (let y = 0; y < h; y++) {
@@ -105,19 +116,20 @@ function ridge(c: Ctx, base: number, amp: number, f: number, ph: number, col: st
 function backdrop(c: Ctx): void {
   const { P, s, r, land, cl, tod } = c;
   if (s.urban) {
-    const tall = s.country.gdp > 25000 ? 34 : s.country.gdp > 8000 ? 26 : 14;
+    const tall = Math.round((s.country.gdp > 25000 ? 34 : s.country.gdp > 8000 ? 26 : 14) * eraTall(c.year));
     const far = tod === 'night' ? '#3a4470' : mixc('#5a6a80', SKY[tod][SKY[tod].length - 1], 0.4);
     for (let x = 0; x < W;) {
       const w = 10 + Math.floor(r() * 18), top = HZ - 4 - Math.floor(r() * tall);
       P.box(x, top, w, HZ + 6 - top, far);
       P.box(c.dir > 0 ? x + w - 2 : x, top, 2, HZ + 6 - top, mixc(far, '#ffffff', 0.12));
-      if (c.lightsOn) for (let yy = top + 3; yy < HZ; yy += 4) for (let xx = x + 2; xx < x + w - 2; xx += 3) if (r() < 0.18) P.px(xx, yy, '#8a7a5a', 1, true);
+      if (c.lightsOn) for (let yy = top + 3; yy < HZ; yy += 4) for (let xx = x + 2; xx < x + w - 2; xx += 3) if (r() < (glassy(c) ? 0.32 : 0.18) && c.e() < c.grid) P.px(xx, yy, glassy(c) ? '#a8a070' : '#8a7a5a', 1, true);
       x += w + 1;
     }
     // 手前のビル: 人の後ろに2棟
     for (const [bx, bw, bh] of [[98 + (s.seed % 4) * 6, 26 + (s.seed % 3) * 4, 18 + tall * (0.5 + r() * 0.5)], [168 + (s.seed % 5) * 4, 22 + (s.seed % 2) * 6, 14 + tall * (0.4 + r() * 0.4)]]) {
-      const col = s.country.gdp < 8000 ? ['#b8a890', '#a89a8a', '#c8b498'][s.seed % 3] : ['#8a8a94', '#7a8494', '#9a948a'][s.seed % 3];
+      const col = glassy(c) ? ['#5a7a94', '#6a8aa0', '#4a6a8a'][s.seed % 3] : s.country.gdp < 8000 ? ['#b8a890', '#a89a8a', '#c8b498'][s.seed % 3] : ['#8a8a94', '#7a8494', '#9a948a'][s.seed % 3];
       wall(c, bx, BY - bh, bw, bh, col);
+      if (glassy(c)) for (let xx = bx + 2; xx < bx + bw - 2; xx += 4) P.box(xx, BY - bh + 2, 1, bh - 4, mixc(col, '#cfe2ee', 0.3)); // ガラスの縦の目地
       for (let y = BY - bh + 4; y < BY - 6; y += 6) for (let xx = bx + 3; xx < bx + bw - 4; xx += 6) win(c, xx, y, 3, 3, 0.45);
     }
     return;
@@ -173,9 +185,36 @@ function castShadow(c: Ctx, x: number, w: number, h: number, base = BY): void {
 }
 function win(c: Ctx, x: number, y: number, w: number, h: number, chance = 0.5): void {
   const { P, r } = c;
-  if (c.lightsOn && r() < chance) { P.box(x, y, w, h, LIT, true); P.px(x + (c.dir > 0 ? w - 1 : 0), y, LIT2, 1, true); return; }
+  const on = c.lightsOn && r() < chance;
+  if (on && !c.lamp) { P.box(x, y, w, h, LIT, true); P.px(x + (c.dir > 0 ? w - 1 : 0), y, LIT2, 1, true); return; }
   P.box(x, y, w, h, c.nightish ? '#1a1e34' : '#7a9ab4');
   if (!c.nightish) P.px(x + (c.dir > 0 ? w - 1 : 0), y, '#cfe2ee');
+  // 電気の無い家: ランプやろうそくの小さく弱い明かりが、一部の窓にだけ
+  if (on && c.e() < 0.6) { P.box(x + Math.floor((w - 2) / 2), y + Math.floor((h - 2) / 2), Math.min(2, w), Math.min(2, h), '#b8743a', true); P.px(x + Math.floor(w / 2), y + Math.floor(h / 2), '#e0a050', 1, true); }
+}
+
+// 屋根の上 (x, y は屋根のてっぺん)。テレビのアンテナ: 2000年までは八木アンテナ、その後は一部がパラボラ。2040年からは減る
+function antenna(c: Ctx, x: number, y: number): void {
+  const yr = c.year;
+  if (yr === undefined) return;
+  const fade = 1 - 0.8 * clamp01((yr - 2040) / 40);
+  if (c.e() >= techShare(c.s.country, 'tv', !c.s.urban, yr) * fade) return;
+  const { P } = c;
+  if (yr >= 2000 && c.e() < 0.4) {
+    P.box(x, y - 3, 1, 3, '#5a5a62');
+    for (let k = 0; k < 4; k++) P.box(x - 2 + k, y - 7 + k, 2 + (k === 1 || k === 2 ? 1 : 0), 1, k < 2 ? '#e8e8e4' : '#b8b8b8');
+    P.px(x + 2, y - 5, '#5a5a62');
+    return;
+  }
+  P.box(x, y - 9, 1, 9, '#3a3a42');
+  for (const [dy, w] of [[-9, 7], [-7, 5], [-5, 3]]) P.box(x - (w >> 1), y + dy, w, 1, '#3a3a42');
+}
+// 2050年ごろから屋根に太陽光パネル。豊かな国ほど多い
+function solar(c: Ctx, x: number, y: number, w: number): void {
+  const yr = c.year;
+  if (yr === undefined || yr < 2045 || c.e() >= 0.6 * clamp01((yr - 2040) / 40) * (c.s.country.gdp > 12000 ? 1 : 0.4)) return;
+  for (let k = 0; k < w; k++) { c.P.px(x + k, y, k % 4 === 3 ? '#4a5a7a' : '#2a3a6a'); c.P.px(x + k, y + 1, k % 4 === 3 ? '#3a4a6a' : '#1e2a50'); }
+  if (!c.nightish) c.P.box(x + 1, y, Math.max(1, w - 4), 1, '#6a8ac8');
 }
 
 function home(c: Ctx): void {
@@ -190,6 +229,7 @@ function home(c: Ctx): void {
       P.box(x, BY - 20, 42, 1, thatch ? '#7a5a30' : '#4f545a');
       P.box(x + 16, BY - 12, 7, 12, '#2a1e18');
       win(c, x + 28, BY - 15, 5, 4, 0.9);
+      antenna(c, x + 26, BY - 28);
       break;
     }
     case 'house': {
@@ -203,6 +243,8 @@ function home(c: Ctx): void {
       P.box(x + 19, BY - 13, 7, 13, '#6a4a3a'); P.px(x + 24, BY - 7, '#d8b050');
       win(c, x + 5, BY - 17, 8, 6); win(c, x + 31, BY - 17, 8, 6);
       P.box(x + 4, BY - 11, 10, 1, '#ffffff');
+      solar(c, x + 4, BY - 30, 11);
+      antenna(c, x + 22, BY - 36);
       break;
     }
     case 'villa': {
@@ -212,6 +254,8 @@ function home(c: Ctx): void {
       P.box(x - 2, BY - 18, 34, 2, '#4a4a52');
       win(c, x + 4, BY - 30, 24, 9, 0.8); win(c, x + 36, BY - 30, 20, 9, 0.8); win(c, x + 36, BY - 14, 20, 12, 0.8);
       P.box(x + 14, BY - 14, 8, 14, '#5a4a3a');
+      solar(c, x + 6, BY - 38, 22);
+      antenna(c, x + 50, BY - 36);
       for (let xx = x - 6; xx < x + 64; xx++) P.px(xx, BY - 6 - ((xx * 7) % 3 === 0 ? 1 : 0), '#4f7a46');
       break;
     }
@@ -225,6 +269,8 @@ function home(c: Ctx): void {
       }
       if (poor) { P.box(x + 6, BY - tall - 5, 7, 5, '#3a6a8a'); P.box(x + 34, BY - tall - 4, 6, 4, '#5a5a5a'); for (let i = 0; i < 8; i++) P.px(x + 6 + r() * 38, BY - tall + 6 + r() * 30, '#a89880', 0.8); }
       P.box(x + 21, BY - 7, 8, 7, '#3a3a4a'); P.box(x + 20, BY - 8, 10, 1, '#c84a3a');
+      solar(c, x + 18, BY - tall - 2, 26);
+      antenna(c, x + 44, BY - tall);
     }
   }
 }
@@ -456,14 +502,33 @@ function pet(c: Ctx, x: number, kind: '犬' | '猫'): void {
   P.box(x - 1, GY - 8, 1, kind === '猫' ? 4 : 2, t[0]);
 }
 
-function car(c: Ctx, x: number, y: number): void {
+// 車の形は時代で: 〜1977年は丸い屋根とメッキのバンパー、〜2039年は今の形、2040年からは低く丸い
+function car(c: Ctx, x: number, y: number, k = c.s.seed): void {
   const { P, dir } = c;
-  const t = tones(['#c8483c', '#3a5a8a', '#d8d4cc', '#2a2a2e', '#6a7a4a'][c.s.seed % 5]);
+  const t = tones(['#c8483c', '#3a5a8a', '#d8d4cc', '#2a2a2e', '#6a7a4a'][k % 5]);
+  const gen = c.year === undefined ? 1 : c.year < 1978 ? 0 : c.year < 2040 ? 1 : 2;
+  const glass = (a: string) => (c.nightish ? '#2a3044' : a);
   for (let i = 0; i < 6; i++) for (let k = 0; k < 28; k++) P.dark(x + k - dir * i, y + 9, 0.3);
+  if (gen === 2) {
+    P.box(x, y + 4, 28, 5, t[1]); P.box(x + 1, y + 3, 26, 1, t[2]);
+    P.box(x + 5, y + 1, 18, 2, t[1]); P.box(x + 7, y, 13, 1, t[2]);
+    P.box(x + 6, y + 1, 16, 2, glass('#8ab0cc')); P.px(x + (dir > 0 ? 21 : 6), y + 1, glass('#cfe6f2'));
+    for (const wx of [4, 20]) { P.box(x + wx, y + 8, 5, 2, '#1a1a1a'); P.px(x + wx + 2, y + 8, '#6a6a6a'); }
+    if (c.lightsOn) P.box(x + (dir > 0 ? 25 : 0), y + 5, 3, 1, '#e8f4ff', true);
+    return;
+  }
   P.box(x, y + 3, 28, 6, t[1]); P.box(x, y + 3, 28, 1, t[2]); P.box(x + (dir > 0 ? 24 : 0), y + 4, 4, 4, t[2]);
-  P.box(x + 6, y, 15, 3, t[1]);
-  P.box(x + 7, y + 1, 6, 2, c.nightish ? '#2a3044' : '#9ac0d8'); P.box(x + 14, y + 1, 6, 2, c.nightish ? '#2a3044' : '#bfe0ee');
-  for (const wx of [4, 20]) { P.box(x + wx, y + 8, 5, 3, '#1a1a1a'); P.px(x + wx + 2, y + 9, '#8a8a8a'); }
+  if (gen === 0) {
+    P.box(x + 8, y, 12, 3, t[1]); P.box(x + 7, y + 1, 14, 2, t[1]);
+    P.box(x + 8, y + 1, 5, 2, glass('#9ac0d8')); P.box(x + 15, y + 1, 5, 2, glass('#bfe0ee'));
+    P.box(x, y + 7, 28, 1, '#c8c8c0'); // メッキのバンパー
+    for (const wx of [4, 20]) { P.box(x + wx, y + 7, 5, 4, '#1a1a1a'); P.box(x + wx + 1, y + 9, 3, 1, '#b8b4a8'); }
+  } else {
+    P.box(x + 6, y, 15, 3, t[1]);
+    P.box(x + 7, y + 1, 6, 2, glass('#9ac0d8')); P.box(x + 14, y + 1, 6, 2, glass('#bfe0ee'));
+    for (const wx of [4, 20]) { P.box(x + wx, y + 8, 5, 3, '#1a1a1a'); P.px(x + wx + 2, y + 9, '#8a8a8a'); }
+  }
+  if (gen === 0) for (const k of [0, 27]) P.px(x + k, y + 3, mixc(t[1], '#000000', 0.15)); // 丸い角
   if (c.lightsOn) P.box(x + (dir > 0 ? 27 : 0), y + 4, 1, 2, '#fff4c0', true);
 }
 
@@ -480,18 +545,23 @@ export function paintScene(s: Scene): Pix {
   const cl = climateOf(s.country);
   const season = s.season ?? 1;
   const land = landOf(cl, season);
-  const c: Ctx = { P, s: { ...s, season }, r: makeRng(hash(s.seed, 0x5c)), tod, land, cl, dir: tod === 'morning' ? -1 : 1, lightsOn: tod === 'dusk' || tod === 'night', nightish: tod === 'night' };
+  const e = makeRng(hash(s.seed, 0xe7)), year = s.year;
+  const grid = year === undefined ? 1 : techShare(s.country, 'electricity', !s.urban, year);
+  const c: Ctx = { P, s: { ...s, season }, r: makeRng(hash(s.seed, 0x5c)), tod, land, cl, dir: tod === 'morning' ? -1 : 1, lightsOn: tod === 'dusk' || tod === 'night', nightish: tod === 'night', e, year, grid, lamp: e() >= grid };
   sky(c);
   P.tint = TINT[tod];
   backdrop(c);
   ground(c);
-  if (!s.urban || s.country.gdp < 8000) pole(c);
+  // 電柱: 電気が来ている土地だけ。2045年からは豊かな国から地中へ
+  const buried = year === undefined ? 0 : 0.85 * clamp01((year - 2045) / 40) * clamp01(s.country.gdp / 20000);
+  if ((!s.urban || s.country.gdp < 8000) && (year === undefined || (e() < grid && e() >= buried))) pole(c);
   home(c);
   tree(c, 84 + (s.seed % 7) * 3, BY);
   if (!s.urban) tree(c, 200 + (s.seed % 6) * 4, BY + 1, 0.9);
   place(c);
   if (s.urban && s.place !== 'bench') lamp(c, 206);
   if (s.car) { if (s.urban) car(c, 34, 87); else car(c, 70, BY - 2); }
+  if (s.urban && year !== undefined && e() < techShare(s.country, 'car', false, year)) car(c, 262, 88, s.seed + 2); // 道を通る車
   if (!s.urban && s.poor && c.r() < 0.6 && s.place !== 'field') goat(c, 186);
   // 家族: 真ん中に並べる。赤ちゃんは隣の大人が抱く
   const widths = s.figures.map((f) => (f.kind === 'baby' ? 0 : Math.max(3, Math.round(f.height * 1.75 * 0.26)) + 5));

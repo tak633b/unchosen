@@ -2,7 +2,8 @@
 import data from '../../data/moments.json';
 import { bornTable } from '../lifetable';
 import { countryAt } from '../countries';
-import { bump, countryOf, log, place, type Person, type Stats } from '../person';
+import { bump, countryOf, log, place, yearOf, type Person, type Stats } from '../person';
+import { techShare, type Tech } from '../tech';
 import { pickWeighted } from '../rng';
 import { isEn, L } from '../../i18n';
 import { isPoor, isRich, scaleOf } from './common';
@@ -46,6 +47,9 @@ interface Moment {
   cost?: number;
   stat?: string;
   once?: boolean;
+  tech?: Tech[];     // 要る道具。その国その年の普及率に比例して出やすくなる
+  from?: number;     // 出てよい暦年の範囲
+  to?: number;
 }
 
 const MOMENTS = (data as { moments: Moment[] }).moments;
@@ -60,6 +64,8 @@ function stateOf(p: Person): 'school' | 'work' | 'retired' | 'child' | null {
 
 function matches(p: Person, m: Moment): boolean {
   if (p.age < m.minAge || p.age > m.maxAge) return false;
+  const year = yearOf(p);
+  if ((m.from !== undefined && year < m.from) || (m.to !== undefined && year > m.to)) return false;
   const last = p.recent[m.id];
   if (last !== undefined && (m.once || p.age - last < REPEAT_GAP)) return false;
   const w = m.when;
@@ -95,7 +101,15 @@ const fill = (p: Person, text: string) => text
   .replaceAll('{pet}', p.pet?.name ?? '');
 
 const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
-const statOf = (m: Moment) => (isEn ? m.en?.stat ?? m.stat : m.stat);
+// 注釈の統計は、その数字の年が出来事の年から15年以上離れていたら出さない (1965年の出来事に「2023年に世界で…」は添えない)
+const STAT_SPAN = 15;
+const statOf = (m: Moment, year: number) => {
+  const s = isEn ? m.en?.stat ?? m.stat : m.stat;
+  const y = Number(s?.match(/(?:19|20)\d\d(?!.*(?:19|20)\d\d)/)?.[0]);
+  return s && (!y || Math.abs(year - y) <= STAT_SPAN) ? s : undefined;
+};
+// その出来事に要る道具が、この人の暮らしにどれだけありそうか (0–1)
+const techWeight = (p: Person, m: Moment) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, p.city === null), 1);
 
 const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。輪の上でも亡くなったことにする
 
@@ -103,10 +117,10 @@ const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。�
 export function moments(p: Person): void {
   // {friend} の出来事は、その友だちが生きているときだけ (亡くなった友だちと出かける話を出さない)
   const friend = (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend);
-  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || (p.friend && friend?.alive !== false)));
+  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || (p.friend && friend?.alive !== false)) && techWeight(p, m) > 0.005);
   const n = 1 + (p.rng() < 0.6 ? 1 : 0) + (p.rng() < 0.25 ? 1 : 0);
   for (let i = 0; i < n && pool.length; i++) {
-    const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1));
+    const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1) * techWeight(p, x));
     pool.splice(pool.indexOf(m), 1);
     p.recent[m.id] = p.age;
     const text = fill(p, textOf(m));
@@ -114,7 +128,7 @@ export function moments(p: Person): void {
     if (m.cost && independent(p)) p.wealth += scaleOf(p) * m.cost;
     if (m.effects) bump(p, m.effects);
     // 同じ統計の注釈は一生に一度だけ
-    const stat = m.stat && p.recent[`stat:${m.id}`] === undefined ? statOf(m) : undefined;
+    const stat = m.stat && p.recent[`stat:${m.id}`] === undefined ? statOf(m, yearOf(p)) : undefined;
     if (stat) p.recent[`stat:${m.id}`] = p.age;
     log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
     p.log[p.log.length - 1].tpl = true; // 用意した文から選んだもの (AI の出来事が届いた年は減らす)

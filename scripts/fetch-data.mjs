@@ -23,6 +23,7 @@ const SLUGS = {
   childMarriage: 'women-married-by-age-18',
   happiness: 'happiness-cantril-ladder',
   flfp: 'female-labor-force-participation-rates',
+  electricity: 'share-of-the-population-with-access-to-electricity',
 };
 
 const dir = new URL('../data/raw/', import.meta.url);

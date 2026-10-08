@@ -62,6 +62,7 @@ const OWID = {
   childMarriage: ['childMarriage', (v) => v / 100, 'logit', 1],
   happiness: ['happiness', (v) => v, 'logit', 10],
   flfp: ['flfp', (v) => v / 100, 'logit', 1],
+  elec: ['electricity', (v) => v / 100, 'logit', 1], // 電気が使える人の割合 (世界銀行、1990年〜)
 };
 const points = {}; // key → code → [[year, v]]
 for (const [key, [file, fn]] of Object.entries(OWID)) {
@@ -89,7 +90,9 @@ const beta = {};
 for (const [key, [, , shape, cap]] of Object.entries(OWID)) {
   const f = fwd(shape, cap);
   const xs = [], ys = [];
-  for (const c of countries) if (!(c.est ?? []).includes(key)) { xs.push(Math.log(c.gdp)); ys.push(f(c[key])); }
+  // countries.json に無い指標 (電気) は、その国の実測の最後の値を使う
+  const latest = (c) => c[key] ?? points[key][c.code]?.at(-1)?.[1];
+  for (const c of countries) if (!(c.est ?? []).includes(key) && latest(c) !== undefined) { xs.push(Math.log(c.gdp)); ys.push(f(latest(c))); }
   const mx = xs.reduce((a, b) => a + b, 0) / xs.length, my = ys.reduce((a, b) => a + b, 0) / ys.length;
   let sxy = 0, sxx = 0;
   for (let i = 0; i < xs.length; i++) { sxy += (xs[i] - mx) * (ys[i] - my); sxx += (xs[i] - mx) ** 2; }
@@ -103,7 +106,7 @@ const TREND_YEARS = 20;
 function series(c, key) {
   const [, , shape, cap] = OWID[key];
   const f = fwd(shape, cap), g = back(shape, cap);
-  const pts = points[key][c.code]?.length ? points[key][c.code] : [[NOW, c[key]]];
+  const pts = points[key][c.code]?.length ? points[key][c.code] : [[NOW, c[key] ?? 1]];
   const out = [];
   for (const y of YEARS) {
     const first = pts[0], last = pts[pts.length - 1];

@@ -141,7 +141,8 @@ function enterUni(p: Person, home: Country, abroad: Country | null): void {
 
 function chooseMajor(p: Person): void {
   const med = p.stats.learn >= 80;
-  const list = MAJORS.filter((m) => m !== '医学' || med);
+  // 情報科学の学科は1960年代半ばから
+  const list = MAJORS.filter((m) => (m !== '医学' || med) && (m !== '情報科学' || yearOf(p) >= 1965));
   const shown = [...list].sort(() => p.rng() - 0.5).slice(0, 5);
   decide(p, {
     title: L('何を学ぶ？', 'What to study?'),

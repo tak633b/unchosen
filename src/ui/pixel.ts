@@ -1,7 +1,7 @@
 // ピクセルアートの場面と顔写真の入り口。Person から場面の材料を組み立て、描くのは scene.ts / portrait.ts。
 // 見た目 (肌・髪・服) は look.ts から引くので、場面の家族と人の輪の顔写真は同じ人なら同じ色になる。
-import { byCode } from '../engine/countries';
-import type { Person, Relative, Role } from '../engine/person';
+import { byCode, countryAt } from '../engine/countries';
+import { countryOf, yearOf, type Person, type Relative, type Role } from '../engine/person';
 import { makeRng } from '../engine/rng';
 import { lookOfId, lookOfMe, lookOfRel, type Look } from './look';
 import { hash } from './raster';
@@ -30,7 +30,7 @@ function timeOf(seed: number, age: number): { tod: Tod; season: number } {
 }
 
 export function sceneOf(p: Person): Scene {
-  const c = byCode(p.country);
+  const c = countryOf(p);
   const urban = p.city !== null;
   const poor = (p.working ? p.incomeP : p.familyP) < 0.35;
   const home = urban ? (c.gdp > 30000 && p.familyP > 0.75 && !p.migratedTo ? 'villa' : 'apartment') : poor && c.gdp < 8000 ? 'hut' : 'house';
@@ -52,7 +52,7 @@ export function sceneOf(p: Person): Scene {
   const time = p.alive ? timeOf(p.seed, p.age) : { tod: 'night' as Tod, season: timeOf(p.seed, p.age).season };
   return {
     seed: p.seed, country: c, urban, home, place, t: Math.min(1, p.age / 85), figures,
-    pet: p.pet?.kind, car: p.car, poor, night: !p.alive, ...time,
+    pet: p.pet?.kind, car: p.car, poor, night: !p.alive, ...time, year: yearOf(p),
   };
 }
 
@@ -86,7 +86,7 @@ export function sceneFromSummary(o: { id: number; country: string; sex: 'F' | 'M
 // 保存や HTML 埋め込みのための、国を国コードにした場面
 export type SceneData = Omit<Scene, 'country'> & { country: string };
 export const toData = (s: Scene): SceneData => ({ ...s, country: s.country.code });
-export const fromData = (d: SceneData): Scene => ({ ...d, country: byCode(d.country) });
+export const fromData = (d: SceneData): Scene => ({ ...d, country: d.year ? countryAt(d.country, d.year) : byCode(d.country) });
 
 // data-scene (SceneData の JSON) を持つキャンバスを、まとめて描く
 export function paintScenes(root: ParentNode = document): void {
