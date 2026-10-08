@@ -108,7 +108,113 @@
         "近藤"
       ],
       "order": "family-first",
-      "sep": ""
+      "sep": "",
+      "maleEn": [
+        "Ren",
+        "Haruto",
+        "Minato",
+        "Aoi",
+        "Itsuki",
+        "Yuma",
+        "Hiroto",
+        "Ritsu",
+        "Asahi",
+        "Aoi",
+        "Soma",
+        "Hinata",
+        "Yamato",
+        "Yuto",
+        "Yuito",
+        "Shota",
+        "Kenta",
+        "Takumi",
+        "Daiki",
+        "Tsubasa",
+        "Makoto",
+        "Koji",
+        "Takashi",
+        "Kazuya",
+        "Naoki",
+        "Kenichi",
+        "Tsuyoshi",
+        "Manabu",
+        "Osamu",
+        "Hiroyuki",
+        "Yudai",
+        "Riku"
+      ],
+      "femaleEn": [
+        "Himari",
+        "Rin",
+        "Uta",
+        "Yuna",
+        "Mei",
+        "Tsumugi",
+        "Sakura",
+        "Yua",
+        "Riko",
+        "Mio",
+        "An",
+        "Mio",
+        "Aoi",
+        "Sakura",
+        "Koharu",
+        "Himari",
+        "Yui",
+        "Misaki",
+        "Ayaka",
+        "Nanami",
+        "Hana",
+        "Kotone",
+        "Kaede",
+        "Chihiro",
+        "Ai",
+        "Mai",
+        "Mayumi",
+        "Keiko",
+        "Yumi",
+        "Asuka",
+        "Yuna",
+        "Miu"
+      ],
+      "familyEn": [
+        "Sato",
+        "Suzuki",
+        "Takahashi",
+        "Tanaka",
+        "Ito",
+        "Watanabe",
+        "Yamamoto",
+        "Nakamura",
+        "Kobayashi",
+        "Kato",
+        "Yoshida",
+        "Yamada",
+        "Sasaki",
+        "Yamaguchi",
+        "Matsumoto",
+        "Inoue",
+        "Kimura",
+        "Hayashi",
+        "Saito",
+        "Shimizu",
+        "Yamazaki",
+        "Mori",
+        "Ikeda",
+        "Hashimoto",
+        "Abe",
+        "Ishikawa",
+        "Yamashita",
+        "Nakajima",
+        "Ishii",
+        "Ogawa",
+        "Maeda",
+        "Okada",
+        "Hasegawa",
+        "Fujita",
+        "Goto",
+        "Kondo"
+      ]
     },
     "chinese": {
       "male": [
@@ -217,7 +323,112 @@
         "董"
       ],
       "order": "family-first",
-      "sep": ""
+      "sep": "",
+      "maleEn": [
+        "Haoran",
+        "Zixuan",
+        "Yuxuan",
+        "Zirui",
+        "Yinuo",
+        "Junjie",
+        "Haoyu",
+        "Zihao",
+        "Yuhang",
+        "Bowen",
+        "Mingxuan",
+        "Ruize",
+        "Wei",
+        "Qiang",
+        "Lei",
+        "Jun",
+        "Yong",
+        "Jie",
+        "Tao",
+        "Bin",
+        "Peng",
+        "Chao",
+        "Xin",
+        "Jianhua",
+        "Zhiqiang",
+        "Chenyang",
+        "Tianyou",
+        "Siyuan",
+        "Yichen",
+        "Muchen",
+        "Haoxuan",
+        "Junxi"
+      ],
+      "femaleEn": [
+        "Xinyi",
+        "Zihan",
+        "Shihan",
+        "Zihan",
+        "Ruoxi",
+        "Kexin",
+        "Yutong",
+        "Yutong",
+        "Siqi",
+        "Jiayi",
+        "Mengyao",
+        "Fang",
+        "Na",
+        "Min",
+        "Jing",
+        "Li",
+        "Yan",
+        "Xiuying",
+        "Ting",
+        "Xue",
+        "Hui",
+        "Yulan",
+        "Guiying",
+        "Xinyan",
+        "Zihan",
+        "Yinuo",
+        "Muqing",
+        "Zixuan",
+        "Anqi",
+        "Xiaoyan",
+        "Yaqi",
+        "Yinuo"
+      ],
+      "familyEn": [
+        "Wang",
+        "Li",
+        "Zhang",
+        "Liu",
+        "Chen",
+        "Yang",
+        "Huang",
+        "Zhao",
+        "Wu",
+        "Zhou",
+        "Xu",
+        "Sun",
+        "Ma",
+        "Zhu",
+        "Hu",
+        "Guo",
+        "He",
+        "Gao",
+        "Lin",
+        "Luo",
+        "Zheng",
+        "Liang",
+        "Xie",
+        "Song",
+        "Tang",
+        "Xu",
+        "Han",
+        "Feng",
+        "Deng",
+        "Cao",
+        "Peng",
+        "Zeng",
+        "Xiao",
+        "Tian",
+        "Dong"
+      ]
     },
     "chinese_sea": {
       "male": [
@@ -431,7 +642,109 @@
         "노"
       ],
       "order": "family-first",
-      "sep": ""
+      "sep": "",
+      "maleEn": [
+        "Seojun",
+        "Doyun",
+        "Hajun",
+        "Siu",
+        "Eunu",
+        "Jiho",
+        "Ijun",
+        "Yejun",
+        "Yujun",
+        "Suho",
+        "Juwon",
+        "Seonu",
+        "Dohyeon",
+        "Geonu",
+        "Ujin",
+        "Minjun",
+        "Hyeonu",
+        "Jihun",
+        "Junseo",
+        "Yeonu",
+        "Minjae",
+        "Seongmin",
+        "Donghyeon",
+        "Jiseong",
+        "Jaehyeon",
+        "Sanghun",
+        "Yeongho",
+        "Jeongho",
+        "Seongho",
+        "Jinu",
+        "Taeyun",
+        "Eunho"
+      ],
+      "femaleEn": [
+        "Seoa",
+        "Iseo",
+        "Hayun",
+        "Jian",
+        "Arin",
+        "Haeun",
+        "Sua",
+        "Jiu",
+        "Seoyun",
+        "Yunseo",
+        "Sia",
+        "Chaewon",
+        "Jiyu",
+        "Soyul",
+        "Daeun",
+        "Harin",
+        "Minseo",
+        "Jimin",
+        "Subin",
+        "Yeeun",
+        "Seoyeon",
+        "Jihyeon",
+        "Eunji",
+        "Sujin",
+        "Miyeong",
+        "Eunjeong",
+        "Hyejin",
+        "Hyeonjeong",
+        "Minji",
+        "Yujin",
+        "Naeun",
+        "Yerin"
+      ],
+      "familyEn": [
+        "Kim",
+        "Lee",
+        "Park",
+        "Choi",
+        "Jung",
+        "Kang",
+        "Cho",
+        "Yoon",
+        "Jang",
+        "Lim",
+        "Han",
+        "Oh",
+        "Seo",
+        "Shin",
+        "Kwon",
+        "Hwang",
+        "Ahn",
+        "Song",
+        "Ryu",
+        "Jeon",
+        "Hong",
+        "Ko",
+        "Moon",
+        "Yang",
+        "Son",
+        "Bae",
+        "Baek",
+        "Heo",
+        "Yoo",
+        "Nam",
+        "Shim",
+        "Noh"
+      ]
     },
     "vietnamese": {
       "male": [
@@ -9397,6 +9710,13 @@
         "ハイデラバード",
         "アーメダバード"
       ],
+      "citiesEn": [
+        "Mumbai",
+        "Delhi",
+        "Bangalore",
+        "Hyderabad",
+        "Ahmedabad"
+      ],
       "religions": [
         [
           "ヒンドゥー教",
@@ -9428,6 +9748,13 @@
         "重慶",
         "広州",
         "深圳"
+      ],
+      "citiesEn": [
+        "Shanghai",
+        "Beijing",
+        "Chongqing",
+        "Guangzhou",
+        "Shenzhen"
       ],
       "religions": [
         [
@@ -9474,6 +9801,13 @@
         "アブジャ",
         "ポートハーコート"
       ],
+      "citiesEn": [
+        "Lagos",
+        "Kano",
+        "Ibadan",
+        "Abuja",
+        "Port Harcourt"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -9498,6 +9832,13 @@
         "ラワルピンディー",
         "グジュランワーラ"
       ],
+      "citiesEn": [
+        "Karachi",
+        "Lahore",
+        "Faisalabad",
+        "Rawalpindi",
+        "Gujranwala"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -9521,6 +9862,13 @@
         "バンドン",
         "メダン",
         "スマラン"
+      ],
+      "citiesEn": [
+        "Jakarta",
+        "Surabaya",
+        "Bandung",
+        "Medan",
+        "Semarang"
       ],
       "religions": [
         [
@@ -9554,6 +9902,13 @@
         "キサンガニ",
         "カナンガ"
       ],
+      "citiesEn": [
+        "Kinshasa",
+        "Lubumbashi",
+        "Mbuji-Mayi",
+        "Kisangani",
+        "Kananga"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -9581,6 +9936,13 @@
         "メケレ",
         "ゴンダール",
         "アダマ"
+      ],
+      "citiesEn": [
+        "Addis Ababa",
+        "Dire Dawa",
+        "Mekelle",
+        "Gondar",
+        "Adama"
       ],
       "religions": [
         [
@@ -9623,6 +9985,13 @@
         "ヒューストン",
         "フェニックス"
       ],
+      "citiesEn": [
+        "New York",
+        "Los Angeles",
+        "Chicago",
+        "Houston",
+        "Phoenix"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -9655,6 +10024,13 @@
         "ラジシャヒ",
         "シレット"
       ],
+      "citiesEn": [
+        "Dhaka",
+        "Chittagong",
+        "Khulna",
+        "Rajshahi",
+        "Sylhet"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -9678,6 +10054,13 @@
         "ブラジリア",
         "サルバドール",
         "フォルタレザ"
+      ],
+      "citiesEn": [
+        "São Paulo",
+        "Rio de Janeiro",
+        "Brasília",
+        "Salvador",
+        "Fortaleza"
       ],
       "religions": [
         [
@@ -9703,6 +10086,13 @@
         "シュブラ・エル・ケイマ",
         "ポートサイド"
       ],
+      "citiesEn": [
+        "Cairo",
+        "Alexandria",
+        "Giza",
+        "Shubra El Kheima",
+        "Port Said"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -9722,6 +10112,13 @@
         "アルーシャ",
         "ドドマ",
         "ムベヤ"
+      ],
+      "citiesEn": [
+        "Dar es Salaam",
+        "Mwanza",
+        "Arusha",
+        "Dodoma",
+        "Mbeya"
       ],
       "religions": [
         [
@@ -9751,6 +10148,13 @@
         "プエブラ",
         "ティフアナ"
       ],
+      "citiesEn": [
+        "Mexico City",
+        "Guadalajara",
+        "Monterrey",
+        "Puebla",
+        "Tijuana"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -9775,6 +10179,13 @@
         "カローカン",
         "セブ"
       ],
+      "citiesEn": [
+        "Quezon City",
+        "Manila",
+        "Davao",
+        "Caloocan",
+        "Cebu"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -9798,6 +10209,13 @@
         "キラ",
         "ムバララ",
         "グル"
+      ],
+      "citiesEn": [
+        "Kampala",
+        "Nansana",
+        "Kira",
+        "Mbarara",
+        "Gulu"
       ],
       "religions": [
         [
@@ -9827,6 +10245,13 @@
         "ニャラ",
         "ポートスーダン"
       ],
+      "citiesEn": [
+        "Omdurman",
+        "Khartoum",
+        "Khartoum North",
+        "Nyala",
+        "Port Sudan"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -9854,6 +10279,13 @@
         "ナクル",
         "キスム",
         "エルドレット"
+      ],
+      "citiesEn": [
+        "Nairobi",
+        "Mombasa",
+        "Nakuru",
+        "Kisumu",
+        "Eldoret"
       ],
       "religions": [
         [
@@ -9883,6 +10315,13 @@
         "マザーリシャリーフ",
         "ジャララバード"
       ],
+      "citiesEn": [
+        "Kabul",
+        "Kandahar",
+        "Herat",
+        "Mazar-i-Sharif",
+        "Jalalabad"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -9902,6 +10341,13 @@
         "ハイフォン",
         "カントー",
         "ダナン"
+      ],
+      "citiesEn": [
+        "Ho Chi Minh City",
+        "Hanoi",
+        "Haiphong",
+        "Can Tho",
+        "Da Nang"
       ],
       "religions": [
         [
@@ -9934,6 +10380,13 @@
         "ロビト",
         "ベンゲラ",
         "ルバンゴ"
+      ],
+      "citiesEn": [
+        "Luanda",
+        "Huambo",
+        "Lobito",
+        "Benguela",
+        "Lubango"
       ],
       "religions": [
         [
@@ -9972,6 +10425,13 @@
         "エカテリンブルク",
         "カザン"
       ],
+      "citiesEn": [
+        "Moscow",
+        "Saint Petersburg",
+        "Novosibirsk",
+        "Yekaterinburg",
+        "Kazan"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -9999,6 +10459,13 @@
         "ベイラ",
         "ナンプラ",
         "シモイオ"
+      ],
+      "citiesEn": [
+        "Maputo",
+        "Matola",
+        "Beira",
+        "Nampula",
+        "Chimoio"
       ],
       "religions": [
         [
@@ -10049,6 +10516,13 @@
         "プレトリア",
         "ポートエリザベス"
       ],
+      "citiesEn": [
+        "Johannesburg",
+        "Cape Town",
+        "Durban",
+        "Pretoria",
+        "Port Elizabeth"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10081,6 +10555,13 @@
         "カラジ",
         "シーラーズ"
       ],
+      "citiesEn": [
+        "Tehran",
+        "Mashhad",
+        "Isfahan",
+        "Karaj",
+        "Shiraz"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10100,6 +10581,13 @@
         "モスル",
         "アルビル",
         "ナジャフ"
+      ],
+      "citiesEn": [
+        "Baghdad",
+        "Basra",
+        "Mosul",
+        "Erbil",
+        "Najaf"
       ],
       "religions": [
         [
@@ -10134,6 +10622,13 @@
         "アガデス",
         "タウア"
       ],
+      "citiesEn": [
+        "Niamey",
+        "Zinder",
+        "Maradi",
+        "Agadez",
+        "Tahoua"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10153,6 +10648,13 @@
         "イズミル",
         "ブルサ",
         "アンタルヤ"
+      ],
+      "citiesEn": [
+        "Istanbul",
+        "Ankara",
+        "Izmir",
+        "Bursa",
+        "Antalya"
       ],
       "religions": [
         [
@@ -10177,6 +10679,13 @@
         "アンツィラベ",
         "マハジャンガ",
         "フィアナランツォア"
+      ],
+      "citiesEn": [
+        "Antananarivo",
+        "Toamasina",
+        "Antsirabe",
+        "Mahajanga",
+        "Fianarantsoa"
       ],
       "religions": [
         [
@@ -10214,6 +10723,13 @@
         "ダロア",
         "ヤムスクロ",
         "サンペドロ"
+      ],
+      "citiesEn": [
+        "Abidjan",
+        "Bouaké",
+        "Daloa",
+        "Yamoussoukro",
+        "San-Pédro"
       ],
       "religions": [
         [
@@ -10256,6 +10772,13 @@
         "バメンダ",
         "マルア"
       ],
+      "citiesEn": [
+        "Douala",
+        "Yaoundé",
+        "Garoua",
+        "Bamenda",
+        "Maroua"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10287,6 +10810,13 @@
         "セグー",
         "モプティ",
         "クティアラ"
+      ],
+      "citiesEn": [
+        "Bamako",
+        "Sikasso",
+        "Ségou",
+        "Mopti",
+        "Koutiala"
       ],
       "religions": [
         [
@@ -10325,6 +10855,13 @@
         "アンディジャン",
         "ブハラ"
       ],
+      "citiesEn": [
+        "Tashkent",
+        "Namangan",
+        "Samarkand",
+        "Andijan",
+        "Bukhara"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10353,6 +10890,13 @@
         "アンナバ",
         "ブリダ"
       ],
+      "citiesEn": [
+        "Algiers",
+        "Oran",
+        "Constantine",
+        "Annaba",
+        "Blida"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10376,6 +10920,13 @@
         "ネピドー",
         "モーラミャイン",
         "バゴー"
+      ],
+      "citiesEn": [
+        "Yangon",
+        "Mandalay",
+        "Naypyidaw",
+        "Mawlamyine",
+        "Bago"
       ],
       "religions": [
         [
@@ -10408,6 +10959,13 @@
         "タマレ",
         "セコンディ・タコラディ",
         "アシャイマン"
+      ],
+      "citiesEn": [
+        "Accra",
+        "Kumasi",
+        "Tamale",
+        "Sekondi-Takoradi",
+        "Ashaiman"
       ],
       "religions": [
         [
@@ -10450,6 +11008,13 @@
         "サール",
         "ケロ"
       ],
+      "citiesEn": [
+        "N'Djamena",
+        "Moundou",
+        "Abéché",
+        "Sarh",
+        "Kélo"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10478,6 +11043,13 @@
         "キスマヨ",
         "ガルカイヨ"
       ],
+      "citiesEn": [
+        "Mogadishu",
+        "Hargeisa",
+        "Bosaso",
+        "Kismayo",
+        "Galkayo"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10497,6 +11069,13 @@
         "大阪",
         "名古屋",
         "札幌"
+      ],
+      "citiesEn": [
+        "Tokyo",
+        "Yokohama",
+        "Osaka",
+        "Nagoya",
+        "Sapporo"
       ],
       "religions": [
         [
@@ -10529,6 +11108,13 @@
         "クドゥグ",
         "ワイグヤ",
         "バンフォラ"
+      ],
+      "citiesEn": [
+        "Ouagadougou",
+        "Bobo-Dioulasso",
+        "Koudougou",
+        "Ouahigouya",
+        "Banfora"
       ],
       "religions": [
         [
@@ -10571,6 +11157,13 @@
         "ケルン",
         "フランクフルト"
       ],
+      "citiesEn": [
+        "Berlin",
+        "Hamburg",
+        "Munich",
+        "Cologne",
+        "Frankfurt"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10598,6 +11191,13 @@
         "カリ",
         "バランキージャ",
         "カルタヘナ"
+      ],
+      "citiesEn": [
+        "Bogotá",
+        "Medellín",
+        "Cali",
+        "Barranquilla",
+        "Cartagena"
       ],
       "religions": [
         [
@@ -10636,6 +11236,13 @@
         "リーズ",
         "グラスゴー"
       ],
+      "citiesEn": [
+        "London",
+        "Manchester",
+        "Birmingham",
+        "Leeds",
+        "Glasgow"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10668,6 +11275,13 @@
         "カブウェ",
         "チンゴラ"
       ],
+      "citiesEn": [
+        "Lusaka",
+        "Kitwe",
+        "Ndola",
+        "Kabwe",
+        "Chingola"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10694,6 +11308,12 @@
         "ブランタイア",
         "ムズズ",
         "ゾンバ"
+      ],
+      "citiesEn": [
+        "Lilongwe",
+        "Blantyre",
+        "Mzuzu",
+        "Zomba"
       ],
       "religions": [
         [
@@ -10732,6 +11352,13 @@
         "トゥールーズ",
         "ニース"
       ],
+      "citiesEn": [
+        "Paris",
+        "Marseille",
+        "Lyon",
+        "Toulouse",
+        "Nice"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10764,6 +11391,13 @@
         "マラケシュ",
         "ラバト"
       ],
+      "citiesEn": [
+        "Casablanca",
+        "Fez",
+        "Tangier",
+        "Marrakesh",
+        "Rabat"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10783,6 +11417,13 @@
         "ナコンラチャシマ",
         "チェンマイ",
         "ハートヤイ"
+      ],
+      "citiesEn": [
+        "Bangkok",
+        "Nonthaburi",
+        "Nakhon Ratchasima",
+        "Chiang Mai",
+        "Hat Yai"
       ],
       "religions": [
         [
@@ -10811,6 +11452,13 @@
         "ラリトプル",
         "バラトプル",
         "ビラトナガル"
+      ],
+      "citiesEn": [
+        "Kathmandu",
+        "Pokhara",
+        "Lalitpur",
+        "Bharatpur",
+        "Biratnagar"
       ],
       "religions": [
         [
@@ -10857,6 +11505,13 @@
         "メディナ",
         "ダンマーム"
       ],
+      "citiesEn": [
+        "Riyadh",
+        "Jeddah",
+        "Mecca",
+        "Medina",
+        "Dammam"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10885,6 +11540,13 @@
         "チクラヨ",
         "ピウラ"
       ],
+      "citiesEn": [
+        "Lima",
+        "Arequipa",
+        "Trujillo",
+        "Chiclayo",
+        "Piura"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -10908,6 +11570,13 @@
         "ティエス",
         "カオラック",
         "サンルイ"
+      ],
+      "citiesEn": [
+        "Dakar",
+        "Touba",
+        "Thiès",
+        "Kaolack",
+        "Saint-Louis"
       ],
       "religions": [
         [
@@ -10933,6 +11602,13 @@
         "ラタキア",
         "ハマ"
       ],
+      "citiesEn": [
+        "Aleppo",
+        "Damascus",
+        "Homs",
+        "Latakia",
+        "Hama"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -10956,6 +11632,13 @@
         "ロサリオ",
         "メンドーサ",
         "ラプラタ"
+      ],
+      "citiesEn": [
+        "Buenos Aires",
+        "Córdoba",
+        "Rosario",
+        "Mendoza",
+        "La Plata"
       ],
       "religions": [
         [
@@ -10985,6 +11668,13 @@
         "ムタレ",
         "グウェル"
       ],
+      "citiesEn": [
+        "Harare",
+        "Bulawayo",
+        "Chitungwiza",
+        "Mutare",
+        "Gweru"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11013,6 +11703,13 @@
         "キンディア",
         "ラベ"
       ],
+      "citiesEn": [
+        "Conakry",
+        "Nzérékoré",
+        "Kankan",
+        "Kindia",
+        "Labé"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -11040,6 +11737,12 @@
         "パラク",
         "アボメカラビ"
       ],
+      "citiesEn": [
+        "Cotonou",
+        "Porto-Novo",
+        "Parakou",
+        "Abomey-Calavi"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11066,6 +11769,12 @@
         "ギテガ",
         "ンゴジ",
         "ルモンゲ"
+      ],
+      "citiesEn": [
+        "Bujumbura",
+        "Gitega",
+        "Ngozi",
+        "Rumonge"
       ],
       "religions": [
         [
@@ -11108,6 +11817,13 @@
         "クチン",
         "コタキナバル"
       ],
+      "citiesEn": [
+        "Kuala Lumpur",
+        "Johor Bahru",
+        "Ipoh",
+        "Kuching",
+        "Kota Kinabalu"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -11149,6 +11865,13 @@
         "カラガンダ",
         "アクトベ"
       ],
+      "citiesEn": [
+        "Almaty",
+        "Astana",
+        "Shymkent",
+        "Karaganda",
+        "Aktobe"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -11175,6 +11898,12 @@
         "ムサンゼ",
         "ルバブ",
         "フイエ"
+      ],
+      "citiesEn": [
+        "Kigali",
+        "Musanze",
+        "Rubavu",
+        "Huye"
       ],
       "religions": [
         [
@@ -11204,6 +11933,13 @@
         "トリノ",
         "パレルモ"
       ],
+      "citiesEn": [
+        "Rome",
+        "Milan",
+        "Naples",
+        "Turin",
+        "Palermo"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11231,6 +11967,12 @@
         "ビジャヌエバ",
         "ケツァルテナンゴ"
       ],
+      "citiesEn": [
+        "Guatemala City",
+        "Mixco",
+        "Villa Nueva",
+        "Quetzaltenango"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11253,6 +11995,12 @@
         "シェムリアップ",
         "バッタンバン",
         "シアヌークビル"
+      ],
+      "citiesEn": [
+        "Phnom Penh",
+        "Siem Reap",
+        "Battambang",
+        "Sihanoukville"
       ],
       "religions": [
         [
@@ -11294,6 +12042,13 @@
         "カルガリー",
         "オタワ",
         "エドモントン"
+      ],
+      "citiesEn": [
+        "Toronto",
+        "Montreal",
+        "Calgary",
+        "Ottawa",
+        "Edmonton"
       ],
       "religions": [
         [
@@ -11340,6 +12095,13 @@
         "セビリア",
         "サラゴサ"
       ],
+      "citiesEn": [
+        "Madrid",
+        "Barcelona",
+        "Valencia",
+        "Seville",
+        "Zaragoza"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11381,6 +12143,13 @@
         "ネゴンボ",
         "キャンディ"
       ],
+      "citiesEn": [
+        "Colombo",
+        "Dehiwala-Mount Lavinia",
+        "Moratuwa",
+        "Negombo",
+        "Kandy"
+      ],
       "religions": [
         [
           "仏教",
@@ -11412,6 +12181,13 @@
         "ヴロツワフ",
         "ウッチ",
         "ポズナン"
+      ],
+      "citiesEn": [
+        "Warsaw",
+        "Kraków",
+        "Wrocław",
+        "Łódź",
+        "Poznań"
       ],
       "religions": [
         [
@@ -11454,6 +12230,13 @@
         "パース",
         "アデレード"
       ],
+      "citiesEn": [
+        "Sydney",
+        "Melbourne",
+        "Brisbane",
+        "Perth",
+        "Adelaide"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11485,6 +12268,12 @@
         "ボフタル",
         "クリャブ"
       ],
+      "citiesEn": [
+        "Dushanbe",
+        "Khujand",
+        "Bokhtar",
+        "Kulob"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -11508,6 +12297,12 @@
         "クエンカ",
         "サントドミンゴ"
       ],
+      "citiesEn": [
+        "Guayaquil",
+        "Quito",
+        "Cuenca",
+        "Santo Domingo"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11530,6 +12325,12 @@
         "ソコデ",
         "カラ",
         "アタクパメ"
+      ],
+      "citiesEn": [
+        "Lomé",
+        "Sokodé",
+        "Kara",
+        "Atakpamé"
       ],
       "religions": [
         [
@@ -11559,6 +12360,13 @@
         "コチャバンバ",
         "オルロ"
       ],
+      "citiesEn": [
+        "Santa Cruz",
+        "El Alto",
+        "La Paz",
+        "Cochabamba",
+        "Oruro"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11581,6 +12389,12 @@
         "ボ",
         "ケネマ",
         "マケニ"
+      ],
+      "citiesEn": [
+        "Freetown",
+        "Bo",
+        "Kenema",
+        "Makeni"
       ],
       "religions": [
         [
@@ -11605,6 +12419,12 @@
         "デルマ",
         "カパイシアン"
       ],
+      "citiesEn": [
+        "Port-au-Prince",
+        "Carrefour",
+        "Delmas",
+        "Cap-Haïtien"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11627,6 +12447,12 @@
         "ラエ",
         "マウントハーゲン",
         "マダン"
+      ],
+      "citiesEn": [
+        "Port Moresby",
+        "Lae",
+        "Mount Hagen",
+        "Madang"
       ],
       "religions": [
         [
@@ -11656,6 +12482,12 @@
         "ベルベラティ",
         "カルノ"
       ],
+      "citiesEn": [
+        "Bangui",
+        "Bimbo",
+        "Berbérati",
+        "Carnot"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11684,6 +12516,13 @@
         "大邱",
         "大田"
       ],
+      "citiesEn": [
+        "Seoul",
+        "Busan",
+        "Incheon",
+        "Daegu",
+        "Daejeon"
+      ],
       "religions": [
         [
           "無宗教",
@@ -11711,6 +12550,12 @@
         "イルビド",
         "ルサイファ"
       ],
+      "citiesEn": [
+        "Amman",
+        "Zarqa",
+        "Irbid",
+        "Russeifa"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -11733,6 +12578,12 @@
         "サンペドロスーラ",
         "チョロマ",
         "ラセイバ"
+      ],
+      "citiesEn": [
+        "Tegucigalpa",
+        "San Pedro Sula",
+        "Choloma",
+        "La Ceiba"
       ],
       "religions": [
         [
@@ -11767,6 +12618,13 @@
         "ドニプロ",
         "リビウ"
       ],
+      "citiesEn": [
+        "Kyiv",
+        "Kharkiv",
+        "Odesa",
+        "Dnipro",
+        "Lviv"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11794,6 +12652,12 @@
         "サンペドロ・デ・マコリス",
         "ラ・ロマーナ"
       ],
+      "citiesEn": [
+        "Santo Domingo",
+        "Santiago",
+        "San Pedro de Macorís",
+        "La Romana"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11816,6 +12680,12 @@
         "ポワントノワール",
         "ドリジー",
         "ンカイ"
+      ],
+      "citiesEn": [
+        "Brazzaville",
+        "Pointe-Noire",
+        "Dolisie",
+        "Nkayi"
       ],
       "religions": [
         [
@@ -11849,6 +12719,13 @@
         "ティミショアラ",
         "コンスタンツァ"
       ],
+      "citiesEn": [
+        "Bucharest",
+        "Cluj-Napoca",
+        "Iași",
+        "Timișoara",
+        "Constanța"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -11872,6 +12749,13 @@
         "コンセプシオン",
         "ラセレナ",
         "アントファガスタ"
+      ],
+      "citiesEn": [
+        "Santiago",
+        "Valparaíso",
+        "Concepción",
+        "La Serena",
+        "Antofagasta"
       ],
       "religions": [
         [
@@ -11905,6 +12789,12 @@
         "キファ",
         "ズエラート"
       ],
+      "citiesEn": [
+        "Nouakchott",
+        "Nouadhibou",
+        "Kiffa",
+        "Zouérat"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -11934,6 +12824,13 @@
         "リションレツィヨン",
         "ペタフ・ティクバ"
       ],
+      "citiesEn": [
+        "Jerusalem",
+        "Tel Aviv",
+        "Haifa",
+        "Rishon LeZion",
+        "Petah Tikva"
+      ],
       "religions": [
         [
           "ユダヤ教",
@@ -11960,6 +12857,12 @@
         "ガンタ",
         "ブキャナン",
         "カカタ"
+      ],
+      "citiesEn": [
+        "Monrovia",
+        "Ganta",
+        "Buchanan",
+        "Kakata"
       ],
       "religions": [
         [
@@ -12002,6 +12905,13 @@
         "ユトレヒト",
         "アイントホーフェン"
       ],
+      "citiesEn": [
+        "Amsterdam",
+        "Rotterdam",
+        "The Hague",
+        "Utrecht",
+        "Eindhoven"
+      ],
       "religions": [
         [
           "無宗教",
@@ -12030,6 +12940,13 @@
         "カイルアン",
         "ビゼルト"
       ],
+      "citiesEn": [
+        "Tunis",
+        "Sfax",
+        "Sousse",
+        "Kairouan",
+        "Bizerte"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12048,6 +12965,12 @@
         "パクセー",
         "サワンナケート",
         "ルアンパバーン"
+      ],
+      "citiesEn": [
+        "Vientiane",
+        "Pakse",
+        "Savannakhet",
+        "Luang Prabang"
       ],
       "religions": [
         [
@@ -12079,6 +13002,12 @@
         "トルクメナバート",
         "ダショグズ",
         "マル"
+      ],
+      "citiesEn": [
+        "Ashgabat",
+        "Turkmenabat",
+        "Dashoguz",
+        "Mary"
       ],
       "religions": [
         [
@@ -12112,6 +13041,12 @@
         "ジャララバード",
         "カラコル"
       ],
+      "citiesEn": [
+        "Bishkek",
+        "Osh",
+        "Jalal-Abad",
+        "Karakol"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12136,6 +13071,13 @@
         "ラファ",
         "ナブルス"
       ],
+      "citiesEn": [
+        "Gaza",
+        "Hebron",
+        "Khan Yunis",
+        "Rafah",
+        "Nablus"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12158,6 +13100,12 @@
         "シウダー・デル・エステ",
         "ルケ",
         "サンロレンソ"
+      ],
+      "citiesEn": [
+        "Asunción",
+        "Ciudad del Este",
+        "Luque",
+        "San Lorenzo"
       ],
       "religions": [
         [
@@ -12182,6 +13130,12 @@
         "マサヤ",
         "チナンデガ"
       ],
+      "citiesEn": [
+        "Managua",
+        "León",
+        "Masaya",
+        "Chinandega"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12205,6 +13159,12 @@
         "スムガイト",
         "ミンゲチェヴィル"
       ],
+      "citiesEn": [
+        "Baku",
+        "Ganja",
+        "Sumgait",
+        "Mingachevir"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12227,6 +13187,12 @@
         "ベンガジ",
         "ミスラタ",
         "ザウィヤ"
+      ],
+      "citiesEn": [
+        "Tripoli",
+        "Benghazi",
+        "Misrata",
+        "Zawiya"
       ],
       "religions": [
         [
@@ -12280,6 +13246,12 @@
         "シャルジャ",
         "アジュマーン"
       ],
+      "citiesEn": [
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah",
+        "Ajman"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12329,6 +13301,13 @@
         "シャルルロワ",
         "リエージュ"
       ],
+      "citiesEn": [
+        "Antwerp",
+        "Brussels",
+        "Ghent",
+        "Charleroi",
+        "Liège"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12355,6 +13334,12 @@
         "ソヤパンゴ",
         "サンタアナ",
         "サンミゲル"
+      ],
+      "citiesEn": [
+        "San Salvador",
+        "Soyapango",
+        "Santa Ana",
+        "San Miguel"
       ],
       "religions": [
         [
@@ -12397,6 +13382,13 @@
         "ウプサラ",
         "ヴェステロース"
       ],
+      "citiesEn": [
+        "Stockholm",
+        "Gothenburg",
+        "Malmö",
+        "Uppsala",
+        "Västerås"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12424,6 +13416,12 @@
         "サイダ",
         "ティール"
       ],
+      "citiesEn": [
+        "Beirut",
+        "Tripoli",
+        "Sidon",
+        "Tyre"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12447,6 +13445,13 @@
         "オストラバ",
         "プルゼニ",
         "リベレツ"
+      ],
+      "citiesEn": [
+        "Prague",
+        "Brno",
+        "Ostrava",
+        "Plzeň",
+        "Liberec"
       ],
       "religions": [
         [
@@ -12472,6 +13477,13 @@
         "ポルト",
         "ブラガ"
       ],
+      "citiesEn": [
+        "Lisbon",
+        "Sintra",
+        "Vila Nova de Gaia",
+        "Porto",
+        "Braga"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12495,6 +13507,13 @@
         "セゲド",
         "ミシュコルツ",
         "ペーチ"
+      ],
+      "citiesEn": [
+        "Budapest",
+        "Debrecen",
+        "Szeged",
+        "Miskolc",
+        "Pécs"
       ],
       "religions": [
         [
@@ -12535,6 +13554,12 @@
         "スィーブ",
         "サラーラ",
         "ソハール"
+      ],
+      "citiesEn": [
+        "Muscat",
+        "Seeb",
+        "Salalah",
+        "Sohar"
       ],
       "religions": [
         [
@@ -12585,6 +13610,13 @@
         "ローザンヌ",
         "ベルン"
       ],
+      "citiesEn": [
+        "Zurich",
+        "Geneva",
+        "Basel",
+        "Lausanne",
+        "Bern"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12611,6 +13643,12 @@
         "ブリカマ",
         "バカウ",
         "バンジュール"
+      ],
+      "citiesEn": [
+        "Serekunda",
+        "Brikama",
+        "Bakau",
+        "Banjul"
       ],
       "religions": [
         [
@@ -12644,6 +13682,13 @@
         "リンツ",
         "ザルツブルク",
         "インスブルック"
+      ],
+      "citiesEn": [
+        "Vienna",
+        "Graz",
+        "Linz",
+        "Salzburg",
+        "Innsbruck"
       ],
       "religions": [
         [
@@ -12681,6 +13726,12 @@
         "ウォルビスベイ",
         "スワコプムント"
       ],
+      "citiesEn": [
+        "Windhoek",
+        "Rundu",
+        "Walvis Bay",
+        "Swakopmund"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12704,6 +13755,13 @@
         "パトラ",
         "イラクリオン",
         "ピレウス"
+      ],
+      "citiesEn": [
+        "Athens",
+        "Thessaloniki",
+        "Patras",
+        "Heraklion",
+        "Piraeus"
       ],
       "religions": [
         [
@@ -12732,6 +13790,12 @@
         "ダビッド",
         "コロン"
       ],
+      "citiesEn": [
+        "Panama City",
+        "San Miguelito",
+        "David",
+        "Colón"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12754,6 +13818,12 @@
         "ポールジャンティ",
         "フランスビル",
         "オウェンド"
+      ],
+      "citiesEn": [
+        "Libreville",
+        "Port-Gentil",
+        "Franceville",
+        "Owendo"
       ],
       "religions": [
         [
@@ -12787,6 +13857,13 @@
         "ビテプスク",
         "グロドノ"
       ],
+      "citiesEn": [
+        "Minsk",
+        "Gomel",
+        "Mogilev",
+        "Vitebsk",
+        "Grodno"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12809,6 +13886,12 @@
         "エルデネト",
         "ダルハン",
         "チョイバルサン"
+      ],
+      "citiesEn": [
+        "Ulaanbaatar",
+        "Erdenet",
+        "Darkhan",
+        "Choibalsan"
       ],
       "religions": [
         [
@@ -12849,6 +13932,11 @@
         "ガブ",
         "バファタ"
       ],
+      "citiesEn": [
+        "Bissau",
+        "Gabú",
+        "Bafatá"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -12886,6 +13974,13 @@
         "ブルガス",
         "ルセ"
       ],
+      "citiesEn": [
+        "Sofia",
+        "Plovdiv",
+        "Varna",
+        "Burgas",
+        "Ruse"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -12908,6 +14003,12 @@
         "フランシスタウン",
         "モレポロレ",
         "マウン"
+      ],
+      "citiesEn": [
+        "Gaborone",
+        "Francistown",
+        "Molepolole",
+        "Maun"
       ],
       "religions": [
         [
@@ -12944,6 +14045,12 @@
         "ノヴィ・サド",
         "ニシュ",
         "クラグイェヴァツ"
+      ],
+      "citiesEn": [
+        "Belgrade",
+        "Novi Sad",
+        "Niš",
+        "Kragujevac"
       ],
       "religions": [
         [
@@ -12990,6 +14097,13 @@
         "ハミルトン",
         "タウランガ"
       ],
+      "citiesEn": [
+        "Auckland",
+        "Christchurch",
+        "Wellington",
+        "Hamilton",
+        "Tauranga"
+      ],
       "religions": [
         [
           "無宗教",
@@ -13034,6 +14148,12 @@
         "オーデンセ",
         "オールボー"
       ],
+      "citiesEn": [
+        "Copenhagen",
+        "Aarhus",
+        "Odense",
+        "Aalborg"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13060,6 +14180,11 @@
         "テヤテヤネン",
         "マフェテング"
       ],
+      "citiesEn": [
+        "Maseru",
+        "Teyateyaneng",
+        "Mafeteng"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13085,6 +14210,11 @@
         "バタ",
         "マラボ",
         "エベビイン"
+      ],
+      "citiesEn": [
+        "Bata",
+        "Malabo",
+        "Ebebiyín"
       ],
       "religions": [
         [
@@ -13127,6 +14257,13 @@
         "ゴールウェイ",
         "ウォーターフォード"
       ],
+      "citiesEn": [
+        "Dublin",
+        "Cork",
+        "Limerick",
+        "Galway",
+        "Waterford"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13164,6 +14301,13 @@
         "ジリナ",
         "ニトラ"
       ],
+      "citiesEn": [
+        "Bratislava",
+        "Košice",
+        "Prešov",
+        "Žilina",
+        "Nitra"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13186,6 +14330,12 @@
         "リモン",
         "アラフエラ",
         "カルタゴ"
+      ],
+      "citiesEn": [
+        "San José",
+        "Limón",
+        "Alajuela",
+        "Cartago"
       ],
       "religions": [
         [
@@ -13226,6 +14376,12 @@
         "ベルゲン",
         "トロンハイム",
         "スタヴァンゲル"
+      ],
+      "citiesEn": [
+        "Oslo",
+        "Bergen",
+        "Trondheim",
+        "Stavanger"
       ],
       "religions": [
         [
@@ -13279,6 +14435,12 @@
         "サルミヤ",
         "アフマディ"
       ],
+      "citiesEn": [
+        "Kuwait City",
+        "Jahra",
+        "Salmiya",
+        "Ahmadi"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -13327,6 +14489,12 @@
         "タンピネス",
         "ウッドランズ"
       ],
+      "citiesEn": [
+        "Bedok",
+        "Jurong West",
+        "Tampines",
+        "Woodlands"
+      ],
       "religions": [
         [
           "仏教",
@@ -13358,6 +14526,13 @@
         "タンペレ",
         "ヴァンター",
         "オウル"
+      ],
+      "citiesEn": [
+        "Helsinki",
+        "Espoo",
+        "Tampere",
+        "Vantaa",
+        "Oulu"
       ],
       "religions": [
         [
@@ -13403,6 +14578,12 @@
         "クタイシ",
         "ルスタビ"
       ],
+      "citiesEn": [
+        "Tbilisi",
+        "Batumi",
+        "Kutaisi",
+        "Rustavi"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13425,6 +14606,12 @@
         "ギュムリ",
         "ヴァナゾル",
         "ヴァガルシャパト"
+      ],
+      "citiesEn": [
+        "Yerevan",
+        "Gyumri",
+        "Vanadzor",
+        "Vagharshapat"
       ],
       "religions": [
         [
@@ -13449,6 +14636,12 @@
         "シウダー・デ・ラ・コスタ",
         "パイサンドゥ"
       ],
+      "citiesEn": [
+        "Montevideo",
+        "Salto",
+        "Ciudad de la Costa",
+        "Paysandú"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13471,6 +14664,12 @@
         "ポートモア",
         "スパニッシュタウン",
         "モンテゴベイ"
+      ],
+      "citiesEn": [
+        "Kingston",
+        "Portmore",
+        "Spanish Town",
+        "Montego Bay"
       ],
       "religions": [
         [
@@ -13508,6 +14707,12 @@
         "バルツィ",
         "ベンデル"
       ],
+      "citiesEn": [
+        "Chișinău",
+        "Tiraspol",
+        "Bălți",
+        "Bender"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13530,6 +14735,12 @@
         "スプリト",
         "リエカ",
         "オシエク"
+      ],
+      "citiesEn": [
+        "Zagreb",
+        "Split",
+        "Rijeka",
+        "Osijek"
       ],
       "religions": [
         [
@@ -13558,6 +14769,12 @@
         "マリアナ",
         "ロスパロス"
       ],
+      "citiesEn": [
+        "Dili",
+        "Baucau",
+        "Maliana",
+        "Lospalos"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13575,6 +14792,11 @@
         "マンジニ",
         "ムババーネ",
         "ンランガノ"
+      ],
+      "citiesEn": [
+        "Manzini",
+        "Mbabane",
+        "Nhlangano"
       ],
       "religions": [
         [
@@ -13632,6 +14854,12 @@
         "アル・ワクラ",
         "アル・ホール"
       ],
+      "citiesEn": [
+        "Doha",
+        "Al Rayyan",
+        "Al Wakrah",
+        "Al Khor"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -13663,6 +14891,13 @@
         "ヴロラ",
         "エルバサン",
         "シュコドラ"
+      ],
+      "citiesEn": [
+        "Tirana",
+        "Durrës",
+        "Vlorë",
+        "Elbasan",
+        "Shkodër"
       ],
       "religions": [
         [
@@ -13701,6 +14936,13 @@
         "ゼニツァ",
         "モスタル"
       ],
+      "citiesEn": [
+        "Sarajevo",
+        "Banja Luka",
+        "Tuzla",
+        "Zenica",
+        "Mostar"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -13727,6 +14969,11 @@
         "ムツァムドゥ",
         "フォンボニ"
       ],
+      "citiesEn": [
+        "Moroni",
+        "Mutsamudu",
+        "Fomboni"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -13750,6 +14997,12 @@
         "タジュラ",
         "ディキル"
       ],
+      "citiesEn": [
+        "Djibouti City",
+        "Ali Sabieh",
+        "Tadjourah",
+        "Dikhil"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -13771,6 +15024,11 @@
         "ホニアラ",
         "アウキ",
         "ギゾ"
+      ],
+      "citiesEn": [
+        "Honiara",
+        "Auki",
+        "Gizo"
       ],
       "religions": [
         [
@@ -13808,6 +15066,13 @@
         "クライペダ",
         "シャウレイ",
         "パネヴェジース"
+      ],
+      "citiesEn": [
+        "Vilnius",
+        "Kaunas",
+        "Klaipėda",
+        "Šiauliai",
+        "Panevėžys"
       ],
       "religions": [
         [
@@ -13857,6 +15122,12 @@
         "ムハッラク",
         "ハマド・タウン"
       ],
+      "citiesEn": [
+        "Manama",
+        "Riffa",
+        "Muharraq",
+        "Hamad Town"
+      ],
       "religions": [
         [
           "イスラム教",
@@ -13887,6 +15158,12 @@
         "マリボル",
         "ツェリェ",
         "クラーニ"
+      ],
+      "citiesEn": [
+        "Ljubljana",
+        "Maribor",
+        "Celje",
+        "Kranj"
       ],
       "religions": [
         [
@@ -13929,6 +15206,13 @@
         "プリレプ",
         "テトヴォ"
       ],
+      "citiesEn": [
+        "Skopje",
+        "Kumanovo",
+        "Bitola",
+        "Prilep",
+        "Tetovo"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -13959,6 +15243,11 @@
         "ジョージタウン",
         "リンデン",
         "ニューアムステルダム"
+      ],
+      "citiesEn": [
+        "Georgetown",
+        "Linden",
+        "New Amsterdam"
       ],
       "religions": [
         [
@@ -14000,6 +15289,12 @@
         "ナシヌ",
         "ナンディ"
       ],
+      "citiesEn": [
+        "Suva",
+        "Lautoka",
+        "Nasinu",
+        "Nadi"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -14035,6 +15330,12 @@
         "サンフェルナンド",
         "ポートオブスペイン",
         "アリマ"
+      ],
+      "citiesEn": [
+        "Chaguanas",
+        "San Fernando",
+        "Port of Spain",
+        "Arima"
       ],
       "religions": [
         [
@@ -14080,6 +15381,12 @@
         "ラルナカ",
         "パフォス"
       ],
+      "citiesEn": [
+        "Nicosia",
+        "Limassol",
+        "Larnaca",
+        "Paphos"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -14111,6 +15418,12 @@
         "ダウガフピルス",
         "リエパーヤ",
         "イェルガヴァ"
+      ],
+      "citiesEn": [
+        "Riga",
+        "Daugavpils",
+        "Liepāja",
+        "Jelgava"
       ],
       "religions": [
         [
@@ -14152,6 +15465,12 @@
         "ヴァコア＝フェニックス",
         "キュールピップ"
       ],
+      "citiesEn": [
+        "Port Louis",
+        "Beau Bassin-Rose Hill",
+        "Vacoas-Phoenix",
+        "Curepipe"
+      ],
       "religions": [
         [
           "ヒンドゥー教",
@@ -14192,6 +15511,12 @@
         "ナルヴァ",
         "パルヌ"
       ],
+      "citiesEn": [
+        "Tallinn",
+        "Tartu",
+        "Narva",
+        "Pärnu"
+      ],
       "religions": [
         [
           "無宗教",
@@ -14230,6 +15555,11 @@
         "パラマリボ",
         "レリドルプ",
         "ニウ・ニッケリー"
+      ],
+      "citiesEn": [
+        "Paramaribo",
+        "Lelydorp",
+        "Nieuw Nickerie"
       ],
       "religions": [
         [
@@ -14270,6 +15600,12 @@
         "プンツォリン",
         "パロ",
         "ゲレフ"
+      ],
+      "citiesEn": [
+        "Thimphu",
+        "Phuntsholing",
+        "Paro",
+        "Gelephu"
       ],
       "religions": [
         [
@@ -14313,6 +15649,11 @@
         "ポドゴリツァ",
         "ニクシッチ",
         "プリェヴリャ"
+      ],
+      "citiesEn": [
+        "Podgorica",
+        "Nikšić",
+        "Pljevlja"
       ],
       "religions": [
         [
@@ -14362,6 +15703,12 @@
         "ディフェルダンジュ",
         "デュドランジュ"
       ],
+      "citiesEn": [
+        "Luxembourg",
+        "Esch-sur-Alzette",
+        "Differdange",
+        "Dudelange"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -14388,6 +15735,11 @@
         "ミンデロ",
         "エスパルゴス"
       ],
+      "citiesEn": [
+        "Praia",
+        "Mindelo",
+        "Espargos"
+      ],
       "religions": [
         [
           "キリスト教",
@@ -14409,6 +15761,11 @@
         "マレ",
         "アッドゥ",
         "フヴァムラ"
+      ],
+      "citiesEn": [
+        "Malé",
+        "Addu",
+        "Fuvahmulah"
       ],
       "religions": [
         [
@@ -14432,6 +15789,12 @@
         "ビルキルカラ",
         "モスタ",
         "コルミ"
+      ],
+      "citiesEn": [
+        "St. Paul's Bay",
+        "Birkirkara",
+        "Mosta",
+        "Qormi"
       ],
       "religions": [
         [

@@ -10,6 +10,9 @@ import { paintScenes, sceneAttr, sceneOf, toData, type SceneData } from './pixel
 import { lifeStoryAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
 import { $, esc, load, pct, save } from './dom';
+import { isEn, L, lang } from '../i18n';
+import { jobName, majorName } from '../engine/jobs';
+import { causeName } from '../engine/causes';
 
 const MAX_PAST = 10;
 
@@ -42,21 +45,25 @@ function factsOf(p: Person): [string, string][] {
   if (p.age < 6) {
     const sibs = p.siblings.filter((s) => s.age >= 0).length;
     return [
-      ['生きた時間', p.age === 0 ? '1年に満たない' : `${p.age}年`],
-      ['家族', `母 ${p.mother.name ?? ''}・父 ${p.father.name ?? ''}${sibs ? `・きょうだい${sibs}人` : ''}`],
-      ['生まれた場所', `${p.city ?? '農村'}・${byCode(p.birthCountry).name}`],
+      [L('生きた時間', 'Lived'), p.age === 0 ? L('1年に満たない', 'Less than a year') : L(`${p.age}年`, `${p.age} ${p.age === 1 ? 'year' : 'years'}`)],
+      [L('家族', 'Family'), isEn
+        ? `Mother ${p.mother.name ?? ''}, father ${p.father.name ?? ''}${sibs ? `, ${sibs} ${sibs === 1 ? 'sibling' : 'siblings'}` : ''}`
+        : `母 ${p.mother.name ?? ''}・父 ${p.father.name ?? ''}${sibs ? `・きょうだい${sibs}人` : ''}`],
+      [L('生まれた場所', 'Born in'), `${p.city ?? L('農村', 'a rural area')}${L('・', ', ')}${byCode(p.birthCountry).name}`],
     ];
   }
   const edu = eduLevel(p);
   return [
-    ['最終学歴', `${EDU_LABEL[edu]}${p.school.major ? `・${p.school.major}` : ''}`],
-    ['最後の仕事', p.job ? `${p.job}${p.retired ? '・引退' : ''}` : 'なし'],
-    ['いちばん稼いだ年', p.peakIncome ? `${formatMoney(p.peakIncome)}・世界の所得の上位${Math.max(1, Math.round(worldIncomeTop(p.peakIncome) * 100))}%・日本の感覚で月${monthlyYen(p.peakIncome)}` : '—'],
-    ['残した財産(日本の物価で)', p.age >= 18 ? yen(netWorth(p)) : '—'],
-    ['子ども', p.children.length ? `${p.children.length}人` : 'なし'],
-    ['暮らした国', p.countriesLived.map((c) => byCode(c).name).join(' → ')],
-    ['自分で決めたこと', `${p.decisions}回`],
-    ['好きだったこと', p.hobbies.join('・') || '—'],
+    [L('最終学歴', 'Education'), `${EDU_LABEL[edu]}${p.school.major ? `${L('・', ', ')}${majorName(p.school.major)}` : ''}`],
+    [L('最後の仕事', 'Last job'), p.job ? `${jobName(p.job)}${p.retired ? L('・引退', ', retired') : ''}` : L('なし', 'None')],
+    [L('いちばん稼いだ年', 'Best year'), p.peakIncome ? (isEn
+      ? `${formatMoney(p.peakIncome)}, top ${Math.max(1, Math.round(worldIncomeTop(p.peakIncome) * 100))}% of world incomes`
+      : `${formatMoney(p.peakIncome)}・世界の所得の上位${Math.max(1, Math.round(worldIncomeTop(p.peakIncome) * 100))}%・日本の感覚で月${monthlyYen(p.peakIncome)}`) : '—'],
+    [L('残した財産(日本の物価で)', 'Net worth left'), p.age >= 18 ? yen(netWorth(p)) : '—'],
+    [L('子ども', 'Children'), p.children.length ? L(`${p.children.length}人`, `${p.children.length}`) : L('なし', 'None')],
+    [L('暮らした国', 'Countries'), p.countriesLived.map((c) => byCode(c).name).join(' → ')],
+    [L('自分で決めたこと', 'Own decisions'), L(`${p.decisions}回`, `${p.decisions}`)],
+    [L('好きだったこと', 'Liked'), p.hobbies.join(L('・', ', ')) || '—'],
   ];
 }
 
@@ -84,33 +91,35 @@ export function deathRecord(l: PastLife): string {
   const answers = l.questions.filter((q) => q.a);
   return `
   <article class="record">
-    <header><span>死亡記録</span><span>No. ${l.birthCountry}-${l.birthYear}-${String(l.age).padStart(3, '0')}</span></header>
+    <header><span>${L('死亡記録', 'Death record')}</span><span>No. ${l.birthCountry}-${l.birthYear}-${String(l.age).padStart(3, '0')}</span></header>
     ${l.scene ? `<canvas class="pixscene" data-scene="${sceneAttr(l.scene)}"></canvas>` : ''}
-    <p class="kicker">${esc(b.name)}・${l.sex === 'F' ? '女性' : '男性'}</p>
+    <p class="kicker">${esc(b.name)}${L('・', ' · ')}${l.sex === 'F' ? L('女性', 'Female') : L('男性', 'Male')}</p>
     <h1>${esc(l.name)}</h1>
-    <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}・享年${l.age}歳</p>
+    <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}${L(`・享年${l.age}歳`, ` · died at ${l.age}`)}</p>
     <p class="story">${esc(l.story)}</p>
     <section id="aistory">${l.aiStory ? aiStoryHtml(l.aiStory) : ''}</section>
-    <div class="cause"><b>死因 ${esc(l.cause)}</b>
-      <p>同じ年に${esc(b.name)}で生まれた${l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。${esc(b.name)}の${l.sex === 'F' ? '女性' : '男性'}の平均寿命${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。</p></div>
+    <div class="cause"><b>${L('死因', 'Cause of death:')} ${esc(causeName(l.cause ?? ''))}</b>
+      <p>${isEn
+        ? `Of the ${l.sex === 'F' ? 'girls' : 'boys'} born in ${esc(b.name)} that year, about ${pct(longer)} live longer than this (${pct(outlive)} die sooner). ${l.sex === 'F' ? 'She' : 'He'} lived ${Math.abs(diff).toFixed(1)} years ${diff >= 0 ? 'longer' : 'less'} than the ${l.sex === 'F' ? 'female' : 'male'} life expectancy in ${esc(b.name)}, ${e0.toFixed(1)}.`
+        : `同じ年に${esc(b.name)}で生まれた${l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。${esc(b.name)}の${l.sex === 'F' ? '女性' : '男性'}の平均寿命${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。`}</p></div>
     <dl class="kv facts">${l.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
-    ${r && r.code !== b.code ? `<p class="note">あなたの生まれた${esc(r.name)}では、同じ年に生まれた人の${pct(rl)}が${l.age}歳を越えて生きる。${esc(b.name)}では${pct(longer)}。</p>` : ''}
-    ${answers.length ? `<h3>止まった時間に書いたこと</h3><ul class="answers">${answers.map((q) => `<li><small>${q.age}歳・${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul>` : ''}
-    ${l.message ? `<p class="message">「${esc(l.message)}」</p>` : ''}
+    ${r && r.code !== b.code ? `<p class="note">${L(`あなたの生まれた${esc(r.name)}では、同じ年に生まれた人の${pct(rl)}が${l.age}歳を越えて生きる。${esc(b.name)}では${pct(longer)}。`, `In ${esc(r.name)}, where you were born, ${pct(rl)} of people born that year live past ${l.age}. In ${esc(b.name)}, ${pct(longer)}.`)}</p>` : ''}
+    ${answers.length ? `<h3>${L('止まった時間に書いたこと', 'Written when time stopped')}</h3><ul class="answers">${answers.map((q) => `<li><small>${L(`${q.age}歳・`, `Age ${q.age} · `)}${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul>` : ''}
+    ${l.message ? `<p class="message">${L(`「${esc(l.message)}」`, `"${esc(l.message)}"`)}</p>` : ''}
   </article>
   <section class="panel">
-    <h3>同じ1秒に生まれた5人 <small>短く生きた順</small></h3>
-    <ol class="five">${five.map((o) => `<li><span class="age">${o.age}歳</span><div><b>${esc(o.name)}</b>・${esc(byCode(o.country).name)}${o.story ? '' : '・この人生のあなた'}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
-    <p class="note">同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。</p>
+    <h3>${L('同じ1秒に生まれた5人', 'Five born in the same second')} <small>${L('短く生きた順', 'shortest life first')}</small></h3>
+    <ol class="five">${five.map((o) => `<li><span class="age">${L(`${o.age}歳`, `${o.age}`)}</span><div><b>${esc(o.name)}</b>${L('・', ' · ')}${esc(byCode(o.country).name)}${o.story ? '' : L('・この人生のあなた', ' · you, this life')}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
+    <p class="note">${L(`同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。`, `The five born in the same second lived to ${five.map((o) => o.age).join(', ')}. None of them chose where to be born.`)}</p>
   </section>`;
 }
 
 const aiStoryHtml = (s: { title: string; story: string }) =>
-  `<div class="aistory"><h3><i class="aitag">AI</i>${esc(s.title || 'この人の物語')}</h3>${s.story.split(/\n\n+/).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`;
+  `<div class="aistory"><h3><i class="aitag">AI</i>${esc(s.title || L('この人の物語', 'This life'))}</h3>${s.story.split(/\n\n+/).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`;
 
 export function deathCard(l: PastLife): HTMLCanvasElement {
   const b = byCode(l.birthCountry);
-  return drawCard({ kicker: `${b.name}・${l.birthYear}–${l.birthYear + l.age}`, title: `${l.name}、${l.age}歳`, lines: [l.story], foot: 'Unchosen — 生まれは、選べない', scene: l.scene });
+  return drawCard({ kicker: `${b.name}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene });
 }
 
 export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit: () => void): void {
@@ -121,22 +130,22 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
   app.innerHTML = `<main class="home wide">
     ${deathRecord(life)}
     <section class="panel">
-      <h3>${esc(p.given)}に一言</h3>
-      <textarea id="msg" maxlength="200" rows="2" placeholder="おつかれさま、など。記録カードと前世の記録に残る"></textarea>
-      <label class="toggle"><input type="checkbox" id="share" checked> 「みんなの人生」と追悼館に残す(名前・連絡先は残らない)</label>
+      <h3>${L(`${esc(p.given)}に一言`, `A word for ${esc(p.given)}`)}</h3>
+      <textarea id="msg" maxlength="200" rows="2" placeholder="${L('おつかれさま、など。記録カードと前世の記録に残る', 'Rest well, or anything. Kept on the card and in past lives')}"></textarea>
+      <label class="toggle"><input type="checkbox" id="share" checked> ${L('「みんなの人生」と追悼館に残す(名前・連絡先は残らない)', 'Add to "All lives" and the memorial (no name or contact kept)')}</label>
       <div class="choices">
-        <button class="primary" data-d="done">見送る</button>
-        <button data-d="card">記録カードを保存</button>
+        <button class="primary" data-d="done">${L('見送る', 'Say goodbye')}</button>
+        <button data-d="card">${L('記録カードを保存', 'Save card')}</button>
       </div>
     </section></main>`;
   window.scrollTo(0, 0);
   paintScenes(app);
   if (aiOn('story')) {
     const box = $('#aistory');
-    box.innerHTML = '<p class="note"><i class="aitag">AI</i>この人の一生を物語にしている…</p>';
+    box.innerHTML = `<p class="note"><i class="aitag">AI</i>${L('この人の一生を物語にしている…', 'Writing this life as a story…')}</p>`;
     void lifeStoryAi(p).then((s) => {
       if (!document.body.contains(box)) return;
-      if (!s) { box.innerHTML = '<p class="note">物語を書けなかった(AIの設定を確かめてください)。</p>'; return; }
+      if (!s) { box.innerHTML = `<p class="note">${L('物語を書けなかった(AIの設定を確かめてください)。', 'Could not write the story (check the AI settings).')}</p>`; return; }
       life.aiStory = s;
       save('lives', [life, ...pastLives().slice(1)]);
       box.innerHTML = aiStoryHtml(s);
@@ -158,7 +167,7 @@ async function postMemorial(l: PastLife, p: Person): Promise<void> {
     await fetch('/api/memorial', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ rural: p.rural, name: l.name, country: l.birthCountry, sex: l.sex, age: l.age, cause: l.cause, line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '' }),
+      body: JSON.stringify({ rural: p.rural, name: l.name, country: l.birthCountry, sex: l.sex, age: l.age, cause: l.cause, line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '', lang }),
     });
   } catch {
     // 届かなくても、前世の記録には残っている

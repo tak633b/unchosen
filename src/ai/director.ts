@@ -4,6 +4,7 @@ import { applyYear, sanitizeYear, type AiYear } from './apply';
 import { chat, parseJson } from './client';
 import { othersPrompt, storyPrompt, yearPrompt } from './prompts';
 import { aiOn } from './settings';
+import { isEn } from '../i18n';
 
 const EVENT_RATE = 0.25;    // 予想外の出来事を頼む年の割合
 const DECISION_RATE = 0.3;  // その場かぎりの決断を頼む年の割合
@@ -48,7 +49,7 @@ export function onYear(p: Person, others: Person[]): boolean {
     void call(() => chat(othersPrompt(others), { maxTokens: 400 }))
       .then((t) => {
         const j = parseJson(t) as { lines?: unknown[] };
-        if (Array.isArray(j.lines)) othersLines = j.lines.map((l) => String(l).slice(0, 40));
+        if (Array.isArray(j.lines)) othersLines = j.lines.map((l) => String(l).slice(0, isEn ? 80 : 40));
       })
       .catch((e: unknown) => { lastError = String(e); });
   }
@@ -75,8 +76,8 @@ export async function lifeStoryAi(p: Person): Promise<{ title: string; story: st
   if (!aiOn('story')) return null;
   try {
     const j = parseJson(await chat(storyPrompt(p), { maxTokens: 1500, temperature: 0.9 })) as { title?: unknown; story?: unknown };
-    const story = typeof j.story === 'string' ? j.story.slice(0, 2400) : '';
-    return story ? { title: typeof j.title === 'string' ? j.title.slice(0, 30) : '', story } : null;
+    const story = typeof j.story === 'string' ? j.story.slice(0, isEn ? 4000 : 2400) : '';
+    return story ? { title: typeof j.title === 'string' ? j.title.slice(0, isEn ? 60 : 30) : '', story } : null;
   } catch (e) {
     lastError = String(e);
     return null;

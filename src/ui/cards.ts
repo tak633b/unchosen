@@ -1,8 +1,9 @@
 // 共有用の画像カード (1200×630)。canvas で描いて PNG にする。
 const W = 1200, H = 630;
-const FONT = '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif';
-
 import { drawScene, fromData, H as SH, W as SW, type SceneData } from './pixel';
+import { isEn } from '../i18n';
+
+const FONT = isEn ? 'system-ui, "Helvetica Neue", Arial, sans-serif' : '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif';
 
 export interface CardText { kicker: string; title: string; lines: string[]; foot: string; scene?: SceneData }
 
@@ -52,7 +53,8 @@ export function drawCard(t: CardText): HTMLCanvasElement {
 function wrap(g: CanvasRenderingContext2D, text: string, x: number, y: number, maxW: number, lh: number, maxLines: number): void {
   let line = '';
   let n = 0;
-  for (const ch of text) {
+  // 英語は単語の途中で折らない
+  for (const ch of isEn ? text.split(/(?<= )/) : text) {
     if (g.measureText(line + ch).width > maxW) {
       if (++n >= maxLines) { g.fillText(line.slice(0, -1) + '…', x, y); return; }
       g.fillText(line, x, y);

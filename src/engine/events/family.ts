@@ -4,6 +4,7 @@ import { bump, childWord, countryOf, log, type Person, type Relative } from '../
 import { clamp } from '../rng';
 import { qAt } from './common';
 import { pickCause } from '../causes';
+import { isEn, L } from '../../i18n';
 
 function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -14,14 +15,14 @@ function relDies(p: Person, rel: Relative): string | null {
 
 export function family(p: Person): void {
   const r = p.rng;
-  const parents = [[p.mother, '母'], [p.father, '父']] as const;
-  for (const [rel, word] of parents) {
+  const parents = [[p.mother, '母', 'Mother'], [p.father, '父', 'Father']] as const;
+  for (const [rel, word, wordEn] of parents) {
     if (!rel.alive) continue;
     rel.age++;
     const cause = relDies(p, rel);
     if (!cause) continue;
     const young = p.age < 18;
-    log(p, `${word}が${rel.age}歳で亡くなった(${cause})。`, 'loss', true);
+    log(p, L(`${word}が${rel.age}歳で亡くなった(${cause})。`, `${wordEn} died at ${rel.age} (${cause}).`), 'loss', true);
     bump(p, { happy: young ? -18 : -8, bond: young ? -10 : -4 });
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
     if (!p.mother.alive && !p.father.alive && p.age >= 18) inherit(p);
@@ -29,13 +30,15 @@ export function family(p: Person): void {
   for (const s of p.siblings) {
     if (s.age < 0) {
       s.age++;
-      if (s.age === 0) log(p, `${childWord(s.sex)}のきょうだい、${s.name}が生まれた。`, 'family');
+      if (s.age === 0) log(p, L(`${childWord(s.sex)}のきょうだい、${s.name}が生まれた。`, `A baby ${s.sex === 'F' ? 'sister' : 'brother'}, ${s.name}, was born.`), 'family');
       continue;
     }
     if (!s.alive) continue;
     s.age++;
     if (relDies(p, s)) {
-      log(p, `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true);
+      log(p, isEn
+        ? `${s.sex === 'F' ? 'Sister' : 'Brother'} ${s.name} died ${s.age <= 1 ? 'as a newborn' : `at ${s.age}`}.`
+        : `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true);
       bump(p, { happy: -10 });
     }
   }
@@ -43,7 +46,7 @@ export function family(p: Person): void {
     p.spouse.age++;
     const cause = relDies(p, p.spouse);
     if (cause) {
-      log(p, `連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, 'loss', true);
+      log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, `Spouse ${p.spouse.name} died at ${p.spouse.age} (${cause}).`), 'loss', true);
       bump(p, { happy: -20, bond: -15 });
     }
   }
@@ -51,19 +54,19 @@ export function family(p: Person): void {
     if (!k.alive) continue;
     k.age++;
     if (relDies(p, k)) {
-      log(p, `子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, 'loss', true);
+      log(p, L(`子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, `Child ${k.name} died ${k.age <= 1 ? 'before turning 1' : `at ${k.age}`}.`), 'loss', true);
       bump(p, { happy: -25, bond: -5 });
     }
-    if (k.age === 18 && p.age < 80) log(p, `${k.name}が家を出て、自分の暮らしを始めた。`, 'family');
+    if (k.age === 18 && p.age < 80) log(p, L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family');
   }
   if (p.age >= 50 && p.children.some((k) => k.alive && k.age >= 20) && r() < 0.12) {
-    log(p, '孫が生まれた。', 'family');
+    log(p, L('孫が生まれた。', 'A grandchild was born.'), 'family');
     bump(p, { happy: 6, bond: 5 });
   }
   if (p.pet) {
     p.pet.age++;
     if (p.pet.age >= p.pet.life) {
-      log(p, `${p.pet.kind}の${p.pet.name}が${p.pet.age}歳で死んだ。`, 'loss');
+      log(p, L(`${p.pet.kind}の${p.pet.name}が${p.pet.age}歳で死んだ。`, `${p.pet.name} the ${p.pet.kind === '犬' ? 'dog' : 'cat'} died at ${p.pet.age}.`), 'loss');
       bump(p, { happy: -6 });
       p.pet = undefined;
     }
@@ -78,5 +81,6 @@ function inherit(p: Person): void {
   // 中くらいの家で年収の2年分ほど、裕福な家ほど多い
   const amount = (earnings(c, p.familyP) * p.familyP ** 2 * 6) / heirs;
   p.wealth += amount;
-  log(p, `両親の残した財産を${heirs > 1 ? 'きょうだいと分けて' : ''}受け継いだ(+${formatMoney(amount)})。`, 'family');
+  log(p, L(`両親の残した財産を${heirs > 1 ? 'きょうだいと分けて' : ''}受け継いだ(+${formatMoney(amount)})。`,
+    `Inherited the parents' estate${heirs > 1 ? ', split with siblings' : ''} (+${formatMoney(amount)}).`), 'family');
 }

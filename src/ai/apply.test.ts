@@ -42,3 +42,11 @@ describe('sanitizeYear', () => {
     expect(sanitizeYear({ moments: 'x', event: 3, decision: [] })).toEqual({ moments: [] });
   });
 });
+
+describe('sanitizeYear (英語)', () => {
+  it('英語でも人生の骨格に触れる文は捨てる', () => {
+    const texts = ['Her grandfather died.', 'He got married.', 'The family moved to the city.', 'She was diagnosed with TB.', 'They emigrated to Spain.', 'Rain fell on the field.'];
+    const y = sanitizeYear({ moments: texts.map((text) => ({ text })) });
+    expect(y.moments).toEqual(['Rain fell on the field.']);
+  });
+});

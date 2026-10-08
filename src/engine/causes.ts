@@ -1,6 +1,7 @@
 // 死因の割り振り。年齢帯ごとの構成は WHO/GBD の大まかな形に、
 // 感染症は国の豊かさ、マラリアはアフリカ、肺の病気は喫煙で重みを変える。
 import type { Country } from './countries';
+import { isEn } from '../i18n';
 import { pickWeighted, type Rng } from './rng';
 import type { Sex } from './lifetable';
 
@@ -36,6 +37,19 @@ const BANDS: [maxAge: number, rows: Row[]][] = [
 
 export const HOMICIDE = '他殺';
 
+// 死因は内部では日本語で持ち、決まった時に今の言語の名前にする
+const CAUSE_EN: Record<string, string> = {
+  早産・低出生体重: 'preterm birth and low birth weight', 出生時の仮死: 'birth asphyxia', 新生児の敗血症: 'neonatal sepsis',
+  肺炎: 'pneumonia', 先天的な病気: 'congenital condition', 下痢症: 'diarrheal disease', マラリア: 'malaria',
+  栄養失調: 'malnutrition', 溺水: 'drowning', はしか: 'measles', 交通事故: 'road accident',
+  白血病などのがん: 'childhood cancer', 結核: 'tuberculosis', 髄膜炎: 'meningitis', 心臓病: 'heart disease',
+  がん: 'cancer', 肝臓の病気: 'liver disease', 脳卒中: 'stroke', 転落などの事故: 'fall or other accident',
+  腎臓病: 'kidney disease', 糖尿病: 'diabetes', 肺がん: 'lung cancer', 慢性閉塞性肺疾患: 'COPD',
+  肝硬変: 'cirrhosis', 認知症: 'dementia', 老衰: 'old age', 転倒: 'fall', [HOMICIDE]: 'homicide',
+  エイズ関連の病気: 'AIDS-related illness', 出産時の合併症: 'complications of childbirth',
+};
+export const causeName = (n: string): string => (isEn ? CAUSE_EN[n] ?? n : n);
+
 function tagWeight(tag: Tag | undefined, c: Country, smoker: boolean): number {
   switch (tag) {
     case 'inf': return c.gdp < 3000 ? 3 : c.gdp < 10000 ? 1.6 : c.gdp < 30000 ? 0.7 : 0.3;
@@ -56,7 +70,7 @@ export function homicideHazard(c: Country, sex: Sex, age: number): number {
 }
 
 export function pickCause(rng: Rng, c: Country, sex: Sex, age: number, q: number, smoker: boolean): string {
-  if (rng() < Math.min(0.9, homicideHazard(c, sex, age) / q)) return HOMICIDE;
+  if (rng() < Math.min(0.9, homicideHazard(c, sex, age) / q)) return causeName(HOMICIDE);
   const rows = BANDS.find(([max]) => age <= max)![1];
-  return pickWeighted(rng, rows, ([, w, tag]) => w * tagWeight(tag, c, smoker))[0];
+  return causeName(pickWeighted(rng, rows, ([, w, tag]) => w * tagWeight(tag, c, smoker))[0]);
 }

@@ -1,5 +1,6 @@
 // AI の接続設定。この端末の localStorage にだけ保存する。
 import { load, save } from '../ui/dom';
+import { L } from '../i18n';
 
 export type Provider = 'openrouter' | 'openai';
 export type Route = 'server' | 'browser';
@@ -16,7 +17,7 @@ export interface AiSettings {
 
 export const PRESETS: Record<Provider, { baseUrl: string; model: string; label: string }> = {
   openrouter: { baseUrl: 'https://openrouter.ai/api/v1', model: 'google/gemini-2.5-flash', label: 'OpenRouter' },
-  openai: { baseUrl: 'http://127.0.0.1:1234/v1', model: '', label: 'ローカルLLM / OpenAI 互換 (LM Studio・Ollama・mlx など)' },
+  openai: { baseUrl: 'http://127.0.0.1:1234/v1', model: '', label: L('ローカルLLM / OpenAI 互換 (LM Studio・Ollama・mlx など)', 'Local LLM / OpenAI-compatible (LM Studio, Ollama, mlx, etc.)') },
 };
 
 const DEFAULTS: AiSettings = {

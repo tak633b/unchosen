@@ -10,6 +10,7 @@ import { $, esc, load, save, setHTML } from './dom';
 import { setMusic } from './music';
 import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
+import { isEn, L } from '../i18n';
 import { drawPortrait, drawScene, sceneOf } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel } from './panels';
 
@@ -113,13 +114,13 @@ function shell(): string {
   <header class="topbar">
     <div class="who"><b class="brand">Un<span>chosen</span></b><span class="agebig" id="age"></span><span id="wholine"></span></div>
     <div class="controls">
-      <button data-act="pause" id="pausebtn" aria-label="一時停止">❚❚</button>
+      <button data-act="pause" id="pausebtn" aria-label="${L('一時停止', 'Pause')}">❚❚</button>
       <span class="speeds">${SPEEDS.map((s) => `<button data-act="speed" data-v="${s}">${s}×</button>`).join('')}</span>
-      <button data-act="ff" title="次に決めることが来るまで早送り">次の決定まで »</button>
-      <button data-act="auto" id="autobtn">自動で決める</button>
+      <button data-act="ff" title="${L('次に決めることが来るまで早送り', 'Fast-forward to the next decision')}">${L('次の決定まで', 'Next decision')} »</button>
+      <button data-act="auto" id="autobtn">${L('自動で決める', 'Auto')}</button>
       <span class="aibadge" id="aibadge" hidden>AI</span>
-      <button data-act="music" id="musicbtn" aria-label="音楽">♪</button>
-      <button data-act="exit">中断</button>
+      <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button>
+      <button data-act="exit">${L('中断', 'Quit')}</button>
     </div>
     <div class="yeartrack"><div id="yearbar"></div></div>
   </header>
@@ -148,9 +149,10 @@ function shell(): string {
 function render(): void {
   if (!S) return;
   const { p } = S;
-  $('#age').textContent = `${p.age}歳`;
-  setHTML('#wholine', `${p.birthYear + p.age}年・${esc(p.name)}・1年 ≈ ${Math.round(YEAR_MS / 1000 / S.speed)}秒`);
-  $('#pausebtn').textContent = S.paused ? '▶ 再開' : '❚❚ 止める';
+  $('#age').textContent = L(`${p.age}歳`, `Age ${p.age}`);
+  const secs = Math.round(YEAR_MS / 1000 / S.speed);
+  setHTML('#wholine', L(`${p.birthYear + p.age}年・${esc(p.name)}・1年 ≈ ${secs}秒`, `${p.birthYear + p.age} · ${esc(p.name)} · 1 yr ≈ ${secs}s`));
+  $('#pausebtn').textContent = S.paused ? L('▶ 再開', '▶ Resume') : L('❚❚ 止める', '❚❚ Pause');
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
   $('#autobtn').classList.toggle('on', p.auto);
   $('#musicbtn').classList.toggle('on', S.music);
@@ -168,10 +170,10 @@ function render(): void {
   if (badge) {
     badge.hidden = !aiOn();
     badge.textContent = st.error ? 'AI ⚠' : st.waiting > 0 ? 'AI …' : 'AI';
-    badge.title = st.error ? `AIの呼び出しに失敗: ${st.error}` : 'AIが出来事を書いている';
+    badge.title = st.error ? L(`AIの呼び出しに失敗: ${st.error}`, `AI call failed: ${st.error}`) : L('AIが出来事を書いている', 'AI is writing events');
   }
-  setHTML('#map', `<h3>人生地図 <small>1マス = 1年</small></h3>${lifeMap(p)}`);
-  setHTML('#survival', `<h3>生存曲線 <small>同じ年に生まれた人のうち生きている割合</small></h3>${survivalChart(p)}`);
+  setHTML('#map', `<h3>${L('人生地図', 'Life map')} <small>${L('1マス = 1年', '1 square = 1 year')}</small></h3>${lifeMap(p)}`);
+  setHTML('#survival', `<h3>${L('生存曲線', 'Survival curve')} <small>${L('同じ年に生まれた人のうち生きている割合', 'Share of the same birth cohort still alive')}</small></h3>${survivalChart(p)}`);
   setHTML('#compare', comparePanel(p));
   setHTML('#country', countryPanel(p));
 }
@@ -230,12 +232,12 @@ function nextModal(): void {
 function showDecision(d: Decision): void {
   const p = S!.p;
   const auto = p.auto ? d.auto(p) : -1;
-  openModal(`<p class="kicker">大きな決定・${p.age}歳・${p.birthYear + p.age}年</p><h2>${esc(d.title)}</h2><p>${esc(d.text)}</p>
+  openModal(`<p class="kicker">${L(`大きな決定・${p.age}歳・${p.birthYear + p.age}年`, `Big decision · age ${p.age} · ${p.birthYear + p.age}`)}</p><h2>${esc(d.title)}</h2><p>${esc(d.text)}</p>
     ${d.stat ? `<p class="statbox">${esc(d.stat)}</p>` : ''}
     <div class="cards">${d.options.map((o, i) => `<button data-i="${i}" class="${i === auto ? 'pre' : ''}"><span class="num">${i + 1}</span><b>${esc(o.label)}</b>${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>
     <div class="modalfoot">${auto >= 0
-      ? `<span class="countdown">まもなく「${esc(d.options[auto].label)}」で進む・カードを押すと止まる</span><button class="link" data-x="manual">自分で選ぶ</button>`
-      : '<button class="link" data-x="auto">これからは自動で決める</button>'}</div>`);
+      ? `<span class="countdown">${L(`まもなく「${esc(d.options[auto].label)}」で進む・カードを押すと止まる`, `Going with "${esc(d.options[auto].label)}" shortly. Tap a card to stop.`)}</span><button class="link" data-x="manual">${L('自分で選ぶ', 'Choose myself')}</button>`
+      : `<button class="link" data-x="auto">${L('これからは自動で決める', 'Decide automatically from now on')}</button>`}</div>`);
   if (auto >= 0) S!.timer = window.setTimeout(() => decideNow(d, auto), AUTO_WAIT_MS);
   $('#modalbody').onclick = (e) => {
     const t = e.target as HTMLElement;
@@ -262,27 +264,31 @@ function questionContext(q: Question): string {
   const real = load<string | null>('realCountry', null);
   const r = real ? byCode(real) : null;
   const lines: string[] = [];
-  if (q.age === 5) lines.push(`${b.name}では子どものおよそ${(b.u5mr * 100).toFixed(1)}%が5歳の誕生日を迎えられない。この子は迎えた。${r ? `あなたの生まれた${r.name}では${(r.u5mr * 100).toFixed(1)}%。` : ''}`);
-  if (q.age === 15) lines.push(!p.school.enrolled ? `この子はもう学校に通っていない。${b.name}の大人の平均教育年数は${b.school.toFixed(1)}年${r ? `、${r.name}は${r.school.toFixed(1)}年` : ''}。` : `この子は学校に通っている。`);
-  lines.push(`同じ1秒に生まれた人たち — ${others.map((o) => `${o.given}(${byCode(o.birthCountry).name}): ${nowLine(o)}`).join(' / ')}`);
+  if (q.age === 5) lines.push(isEn
+    ? `In ${b.name}, about ${(b.u5mr * 100).toFixed(1)}% of children do not reach their fifth birthday. This child did.${r ? ` In ${r.name}, where you were born, it is ${(r.u5mr * 100).toFixed(1)}%.` : ''}`
+    : `${b.name}では子どものおよそ${(b.u5mr * 100).toFixed(1)}%が5歳の誕生日を迎えられない。この子は迎えた。${r ? `あなたの生まれた${r.name}では${(r.u5mr * 100).toFixed(1)}%。` : ''}`);
+  if (q.age === 15) lines.push(isEn
+    ? (!p.school.enrolled ? `This child no longer goes to school. Adults in ${b.name} average ${b.school.toFixed(1)} years of schooling${r ? `; in ${r.name}, ${r.school.toFixed(1)}` : ''}.` : 'This child is in school.')
+    : (!p.school.enrolled ? `この子はもう学校に通っていない。${b.name}の大人の平均教育年数は${b.school.toFixed(1)}年${r ? `、${r.name}は${r.school.toFixed(1)}年` : ''}。` : `この子は学校に通っている。`));
+  lines.push(`${L('同じ1秒に生まれた人たち — ', 'Born in the same second: ')}${others.map((o) => `${o.given}${isEn ? ' ' : ''}(${byCode(o.birthCountry).name}): ${nowLine(o)}`).join(' / ')}`);
   return lines.map((l) => `<p>${esc(l)}</p>`).join('');
 }
 
 function showQuestion(q: Question): void {
   const p = S!.p;
   q.q ||= pauseQuestion(p, q.age) ?? '';
-  openModal(`<p class="kicker">時間が止まった・${q.age}歳・${p.birthYear + q.age}年</p><h2>${esc(p.given)}、${q.age}歳</h2>
+  openModal(`<p class="kicker">${L(`時間が止まった・${q.age}歳・${p.birthYear + q.age}年`, `Time stopped · age ${q.age} · ${p.birthYear + q.age}`)}</p><h2>${esc(p.given)}${L(`、${q.age}歳`, `, ${q.age}`)}</h2>
     <div class="context">${questionContext(q)}</div>
     <p class="q">${esc(q.q)}</p>
-    <textarea id="answer" maxlength="140" rows="3" placeholder="一行だけ(書かなくてもいい)"></textarea>
-    <div class="cards"><button data-a="write"><span class="num">1</span><b>書き留めて生き続ける</b><small>この人生の記録に残る</small></button>
-    <button data-a="keep"><span class="num">2</span><b>胸にしまって生き続ける</b></button></div>`);
+    <textarea id="answer" maxlength="140" rows="3" placeholder="${L('一行だけ(書かなくてもいい)', 'One line (optional)')}"></textarea>
+    <div class="cards"><button data-a="write"><span class="num">1</span><b>${L('書き留めて生き続ける', 'Write it down, live on')}</b><small>${L('この人生の記録に残る', 'Kept in this life\'s record')}</small></button>
+    <button data-a="keep"><span class="num">2</span><b>${L('胸にしまって生き続ける', 'Keep it to myself, live on')}</b></button></div>`);
   $('#modalbody').onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
     if (!a || !S) return;
     const text = $<HTMLTextAreaElement>('#answer').value.trim();
     q.a = a === 'write' ? text : '';
-    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: `「${text}」`, kind: S.p.kinds[S.p.age] ?? 'family' });
+    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: L(`「${text}」`, `"${text}"`), kind: S.p.kinds[S.p.age] ?? 'family' });
     render();
     nextModal();
   };
@@ -291,8 +297,8 @@ function showQuestion(q: Question): void {
 function confirmExit(): void {
   if (!S) return;
   const wasModal = S.modal;
-  openModal(`<h2>ここで中断する？</h2><p>この人生はこの端末に保存され、トップ画面から続きを生きられる。</p>
-    <div class="cards"><button data-x="yes"><b>中断してトップへ</b></button><button data-x="no"><b>続ける</b></button></div>`);
+  openModal(`<h2>${L('ここで中断する？', 'Stop here?')}</h2><p>${L('この人生はこの端末に保存され、トップ画面から続きを生きられる。', 'This life is saved on this device. You can continue it from the start screen.')}</p>
+    <div class="cards"><button data-x="yes"><b>${L('中断してトップへ', 'Quit to start')}</b></button><button data-x="no"><b>${L('続ける', 'Keep going')}</b></button></div>`);
   $('#modalbody').onclick = (e) => {
     const b = (e.target as HTMLElement).closest<HTMLElement>('[data-x]');
     if (!b) return;

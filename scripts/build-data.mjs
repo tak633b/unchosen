@@ -3,8 +3,10 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import countries from 'i18n-iso-countries';
 import ja from 'i18n-iso-countries/langs/ja.json' with { type: 'json' };
+import en from 'i18n-iso-countries/langs/en.json' with { type: 'json' };
 
 countries.registerLocale(ja);
+countries.registerLocale(en);
 const raw = (k) => readFileSync(new URL(`../data/raw/${k}.csv`, import.meta.url), 'utf8');
 
 function parseCsv(text) {
@@ -100,6 +102,12 @@ for (const key of Object.keys(SPEC)) {
   }
 }
 
+const SHORT_NAME_EN = {
+  USA: 'United States', RUS: 'Russia', IRN: 'Iran', SYR: 'Syria', BOL: 'Bolivia', KOR: 'South Korea',
+  LAO: 'Laos', MDA: 'Moldova', PSE: 'Palestine', TZA: 'Tanzania', VNM: 'Vietnam', COD: 'DR Congo', COG: 'Congo',
+  GBR: 'United Kingdom', CZE: 'Czechia', NLD: 'Netherlands', ARE: 'United Arab Emirates',
+};
+
 const SHORT_NAME = {
   CHN: '中国', USA: 'アメリカ', RUS: 'ロシア', IRN: 'イラン', SYR: 'シリア', BOL: 'ボリビア',
   KOR: '韓国', LAO: 'ラオス', MDA: 'モルドバ', SWZ: 'エスワティニ', PSE: 'パレスチナ',
@@ -107,7 +115,8 @@ const SHORT_NAME = {
 
 list = list.map((c) => {
   const name = SHORT_NAME[c.code] ?? countries.getName(c.code, 'ja') ?? c.code;
-  const out = { code: c.code, name, region: REGION_JA[c.region] };
+  const nameEn = SHORT_NAME_EN[c.code] ?? countries.getName(c.code, 'en', { select: 'alias' }) ?? c.code;
+  const out = { code: c.code, name, nameEn, region: REGION_JA[c.region] };
   for (const k of Object.keys(SPEC)) out[k] = +(+c[k]).toPrecision(4);
   if (c.est) out.est = c.est;
   return out;

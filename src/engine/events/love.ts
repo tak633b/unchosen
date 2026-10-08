@@ -1,12 +1,16 @@
 // 恋愛・結婚・子ども。相手には名前と仕事がある。
+import { causeName } from '../causes';
 import { makeName } from '../identity';
-import { JOBS } from '../jobs';
+import { L, isEn } from '../../i18n';
+import { JOBS, jobName } from '../jobs';
 import { bump, childWord, countryOf, decide, eduLevel, log, type Person, type Relative } from '../person';
 import type { Sex } from '../lifetable';
 import { clamp, normal, pick } from '../rng';
 import { yearly } from './common';
 
-const TRAITS = ['やさしい', '明るい', '物静かな', 'まじめな', 'よく笑う', '頼りになる', '気の強い', 'のんびりした'];
+const TRAITS = isEn
+  ? ['kind', 'cheerful', 'quiet', 'earnest', 'quick to laugh', 'dependable', 'strong-willed', 'easygoing']
+  : ['やさしい', '明るい', '物静かな', 'まじめな', 'よく笑う', '頼りになる', '気の強い', 'のんびりした'];
 
 function newPartner(p: Person): Relative {
   const sex: Sex = p.sex === 'F' ? 'M' : 'F';
@@ -21,7 +25,7 @@ function newPartner(p: Person): Relative {
 function marry(p: Person, partner: Relative): void {
   p.spouse = { ...partner };
   p.dating = undefined;
-  log(p, `${partner.name}と結婚した。`, 'love', true);
+  log(p, L(`${partner.name}と結婚した。`, `Married ${partner.name}.`), 'love', true);
   bump(p, { happy: 10, bond: 15 });
 }
 
@@ -33,18 +37,18 @@ export function love(p: Person): void {
     p.dating.age++;
     p.dating.years++;
     if (r() < 0.22) {
-      log(p, `${p.dating.name}と別れた。`, 'love');
+      log(p, L(`${p.dating.name}と別れた。`, `Broke up with ${p.dating.name}.`), 'love');
       bump(p, { happy: -6 });
       p.dating = undefined;
     } else if (p.dating.years >= 2 && r() < 0.35) {
       const d = p.dating;
       decide(p, {
-        title: '結婚の話',
-        text: `${d.name}と付き合って${d.years}年。そろそろ一緒になろうかと話している。`,
+        title: L('結婚の話', 'Talk of marriage'),
+        text: L(`${d.name}と付き合って${d.years}年。そろそろ一緒になろうかと話している。`, `${d.years} years with ${d.name}. The two have started talking about marriage.`),
         options: [
-          { label: '結婚する', apply: (q) => marry(q, d) },
-          { label: 'このままでいい', apply: () => {} },
-          { label: '別れる', apply: (q) => { log(q, `${d.name}と別れた。`, 'love'); q.dating = undefined; } },
+          { label: L('結婚する', 'Marry'), apply: (q) => marry(q, d) },
+          { label: L('このままでいい', 'Keep as is'), apply: () => {} },
+          { label: L('別れる', 'Break up'), apply: (q) => { log(q, L(`${d.name}と別れた。`, `Broke up with ${d.name}.`), 'love'); q.dating = undefined; } },
         ],
         auto: (q) => (q.rng() < 0.7 ? 0 : 1),
       });
@@ -57,15 +61,17 @@ export function love(p: Person): void {
   if (r() >= base * (p.focus === 'family' ? 1.5 : 1)) return;
   const partner = newPartner(p);
   decide(p, {
-    title: p.spouse ? 'もう一度' : '好きな人ができた',
-    text: `知り合いの${partner.age}歳の${pick(r, TRAITS)}${partner.sex === 'F' ? '女性' : '男性'}、${partner.name}。仕事は${partner.job}。`,
+    title: p.spouse ? L('もう一度', 'Again') : L('好きな人ができた', 'Someone special'),
+    text: isEn
+      ? `${partner.name}, an acquaintance: a ${pick(r, TRAITS)} ${partner.sex === 'F' ? 'woman' : 'man'} of ${partner.age}. Works as: ${jobName(partner.job ?? '')}.`
+      : `知り合いの${partner.age}歳の${pick(r, TRAITS)}${partner.sex === 'F' ? '女性' : '男性'}、${partner.name}。仕事は${partner.job}。`,
     options: [
-      { label: '結婚する', hint: 'つながり↑ 幸福↑', apply: (q) => marry(q, partner) },
+      { label: L('結婚する', 'Marry'), hint: L('つながり↑ 幸福↑', 'Bond↑ Happiness↑'), apply: (q) => marry(q, partner) },
       {
-        label: '付き合う', hint: '決めるのは先送り',
-        apply: (q) => { q.dating = { ...partner, years: 0 }; log(q, `${partner.name}と付き合い始めた。`, 'love'); bump(q, { happy: 6 }); },
+        label: L('付き合う', 'Date'), hint: L('決めるのは先送り', 'Decide later'),
+        apply: (q) => { q.dating = { ...partner, years: 0 }; log(q, L(`${partner.name}と付き合い始めた。`, `Started seeing ${partner.name}.`), 'love'); bump(q, { happy: 6 }); },
       },
-      { label: '断る', apply: () => {} },
+      { label: L('断る', 'Decline'), apply: () => {} },
     ],
     auto: (q) => (q.rng() < (c.gdp < 10000 ? 0.65 : 0.35) ? 0 : q.rng() < 0.8 ? 1 : 2),
   });
@@ -83,8 +89,10 @@ export function childMarriage(p: Person): void {
   p.childMarriage = true;
   const wasInSchool = p.school.enrolled;
   p.school.enrolled = false;
-  log(p, `${p.age}歳で、親の決めた${partner.age}歳の${partner.name}と結婚させられた。${wasInSchool ? '学校には戻れなかった。' : ''}`, 'hard', true,
-    `${c.name}では女性のおよそ${Math.round(c.childMarriage * 100)}%が18歳になる前に結婚している (UNICEF)`);
+  log(p, isEn
+    ? `At ${p.age}, was married off to ${partner.name}, ${partner.age}, chosen by her parents.${wasInSchool ? ' Never went back to school.' : ''}`
+    : `${p.age}歳で、親の決めた${partner.age}歳の${partner.name}と結婚させられた。${wasInSchool ? '学校には戻れなかった。' : ''}`, 'hard', true,
+    L(`${c.name}では女性のおよそ${Math.round(c.childMarriage * 100)}%が18歳になる前に結婚している (UNICEF)`, `In ${c.name}, about ${Math.round(c.childMarriage * 100)}% of women marry before 18 (UNICEF)`));
   bump(p, { happy: -15, health: -3 });
   // 農村では嫁ぎ先の畑で働く。町では家事を担い、外で働くかは後で決まる
   if (!p.working && p.age >= 12 && !p.city) {
@@ -108,11 +116,11 @@ export function births(p: Person): void {
   if (r() >= pYear) return;
   if (c.tfr < 3) {
     decide(p, {
-      title: '子ども',
-      text: p.children.length ? 'もう一人、子どもを持つ？' : '子どもを持つ？',
+      title: L('子ども', 'Children'),
+      text: p.children.length ? L('もう一人、子どもを持つ？', 'Have another child?') : L('子どもを持つ？', 'Have a child?'),
       options: [
-        { label: '持つ', apply: (q) => giveBirth(q) },
-        { label: '今は持たない', apply: () => {} },
+        { label: L('持つ', 'Yes'), apply: (q) => giveBirth(q) },
+        { label: L('今は持たない', 'Not now'), apply: () => {} },
       ],
       // 少子の国では、2人目・3人目からは持たない人が増える
       auto: (q) => (q.rng() < (q.children.length < 2 ? 0.85 : q.children.length < 3 ? 0.4 : 0.2) ? 0 : 1),
@@ -129,18 +137,18 @@ export function giveBirth(p: Person): void {
   const name = makeName(r, p.birthCountry, sex, { pool: p.pool, index: p.familyIndex }).given;
   p.children.push({ alive: true, age: 0, sex, name });
   const n = p.children.length;
-  log(p, `${n}人目の子ども、${childWord(sex)}の${name}が生まれた。`, 'family', n === 1);
+  log(p, L(`${n}人目の子ども、${childWord(sex)}の${name}が生まれた。`, `${n === 1 ? 'A first child was born' : `Child number ${n} was born`}: a ${sex === 'F' ? 'daughter' : 'son'}, ${name}.`), 'family', n === 1);
   bump(p, { happy: 8, bond: 8 });
   const motherAge = p.sex === 'F' ? p.age : p.spouse!.age;
   const risk = (c.mmr / 1e5) * (p.familyP < 0.3 && p.rural ? 1.6 : p.incomeP > 0.7 ? 0.5 : 1) * (motherAge < 18 ? 2 : 1);
   if (r() < risk) {
     if (p.sex === 'F') {
       p.alive = false;
-      p.cause = '出産時の合併症';
+      p.cause = causeName('出産時の合併症');
     } else {
       p.spouse!.alive = false;
-      log(p, `妻の${p.spouse!.name}が出産で亡くなった。`, 'loss', true,
-        `${c.name}では出産10万件あたりおよそ${Math.round(c.mmr)}人の母親が亡くなる (WHO)`);
+      log(p, L(`妻の${p.spouse!.name}が出産で亡くなった。`, `His wife, ${p.spouse!.name}, died in childbirth.`), 'loss', true,
+        L(`${c.name}では出産10万件あたりおよそ${Math.round(c.mmr)}人の母親が亡くなる (WHO)`, `In ${c.name}, about ${Math.round(c.mmr)} mothers die per 100,000 births (WHO)`));
       bump(p, { happy: -25, bond: -15 });
     }
   }

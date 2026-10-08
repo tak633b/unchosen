@@ -10,7 +10,10 @@
         "happy": 3,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "{name} took three steps alone for the first time, then sat right down on the floor."
+      }
     },
     {
       "id": "first-word",
@@ -22,7 +25,10 @@
         "happy": 2,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "{name}'s first word was not \"mama\" or \"papa\" but an imitation of the neighbor's dog barking."
+      }
     },
     {
       "id": "fever-night",
@@ -33,6 +39,9 @@
       "effects": {
         "health": -2,
         "bond": 1
+      },
+      "en": {
+        "text": "{name} ran a high fever in the middle of the night. By morning it had broken."
       }
     },
     {
@@ -44,7 +53,11 @@
       "effects": {
         "health": 2
       },
-      "stat": "2023年、3回目のDTPワクチン(ジフテリア・破傷風・百日咳)を受けた乳児は世界で約84%だった (WHO・UNICEF)"
+      "stat": "2023年、3回目のDTPワクチン(ジフテリア・破傷風・百日咳)を受けた乳児は世界で約84%だった (WHO・UNICEF)",
+      "en": {
+        "text": "Vaccination day. {name} cried less at the needle than at the long wait in the waiting room.",
+        "stat": "In 2023, about 84% of infants worldwide received a third dose of the DTP vaccine (diphtheria, tetanus, pertussis) (WHO, UNICEF)"
+      }
     },
     {
       "id": "grandma-lullaby",
@@ -55,6 +68,9 @@
       "effects": {
         "bond": 3,
         "happy": 1
+      },
+      "en": {
+        "text": "Grandmother sang an old lullaby. No one knew what half the words meant."
       }
     },
     {
@@ -69,6 +85,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Fought a stranger's child over a shovel in the park sandbox. In the end they built a mountain together."
       }
     },
     {
@@ -83,6 +102,9 @@
       "effects": {
         "happy": 1,
         "health": -1
+      },
+      "en": {
+        "text": "Chased the chickens around the yard, fell, and scraped a knee."
       }
     },
     {
@@ -93,6 +115,9 @@
       "weight": 1,
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Sat down in a puddle after the rain, got mud all over, and was scolded."
       }
     },
     {
@@ -107,6 +132,9 @@
       "effects": {
         "learn": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Begged for the same old story every night. The parent ended up knowing it word for word."
       }
     },
     {
@@ -123,7 +151,11 @@
         "health": -3,
         "bond": 1
       },
-      "stat": "下痢症で亡くなる5歳未満の子どもは、世界で毎年約44万人にのぼる (WHO)"
+      "stat": "下痢症で亡くなる5歳未満の子どもは、世界で毎年約44万人にのぼる (WHO)",
+      "en": {
+        "text": "An upset stomach brought days of diarrhea. Mother gave {name} sips of water with salt and sugar dissolved in it.",
+        "stat": "About 440,000 children under 5 die of diarrheal disease worldwide every year (WHO)"
+      }
     },
     {
       "id": "mosquito-net",
@@ -140,7 +172,11 @@
       "effects": {
         "health": 1
       },
-      "stat": "2022年のマラリアによる死者は約60万人で、その大半がアフリカの5歳未満の子どもだった (WHO)"
+      "stat": "2022年のマラリアによる死者は約60万人で、その大半がアフリカの5歳未満の子どもだった (WHO)",
+      "en": {
+        "text": "Sleeping under a mosquito net became the nightly rule.",
+        "stat": "Malaria killed about 600,000 people in 2022, most of them children under 5 in Africa (WHO)"
+      }
     },
     {
       "id": "birth-registered",
@@ -149,7 +185,11 @@
       "maxAge": 1,
       "weight": 1,
       "once": true,
-      "stat": "世界の5歳未満の子どものおよそ4人に1人は、出生登録がされていない (UNICEF)"
+      "stat": "世界の5歳未満の子どものおよそ4人に1人は、出生登録がされていない (UNICEF)",
+      "en": {
+        "text": "{name}'s birth was registered at the local office. With one sheet of paper, {name} became a person of this country.",
+        "stat": "About 1 in 4 children under 5 worldwide has never had their birth registered (UNICEF)"
+      }
     },
     {
       "id": "carried-on-back",
@@ -165,6 +205,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Mother kept {name} tied to her back with a cloth as she went between the field and the kitchen."
       }
     },
     {
@@ -181,7 +224,10 @@
       "effects": {
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "First taste of rice porridge. Half of it ended up outside the mouth."
+      }
     },
     {
       "id": "nursery-first-day",
@@ -201,7 +247,10 @@
         "learn": 2,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "On the first day of daycare, {name} cried at the gate, and at pickup cried about not wanting to leave."
+      }
     },
     {
       "id": "supermarket-tantrum",
@@ -214,6 +263,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Was refused a snack and protested by lying flat on the store floor."
       }
     },
     {
@@ -224,6 +276,9 @@
       "weight": 1,
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "The neighbor's cat climbed into {name}'s lap. After that, {name} went looking for it every day."
       }
     },
     {
@@ -235,6 +290,9 @@
       "effects": {
         "happy": 1,
         "bond": 1
+      },
+      "en": {
+        "text": "Fell asleep in a hiding spot during hide-and-seek. The family searched everywhere in a panic."
       }
     },
     {
@@ -249,6 +307,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Drew a big picture on the wall at home. The parents left it there for a while."
       }
     },
     {
@@ -267,7 +328,10 @@
       "effects": {
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "A photo of {name}, taken on a parent's phone, was sent to every relative."
+      }
     },
     {
       "id": "small-for-age",
@@ -282,7 +346,11 @@
       "effects": {
         "health": -2
       },
-      "stat": "2022年、世界の5歳未満の子ども約1億4,800万人が発育阻害(年齢に比べて背が低い状態)だった (UNICEF・WHO・世界銀行)"
+      "stat": "2022年、世界の5歳未満の子ども約1億4,800万人が発育阻害(年齢に比べて背が低い状態)だった (UNICEF・WHO・世界銀行)",
+      "en": {
+        "text": "There was food every day, but it was mostly beans and grain. {name} was a little smaller than other children the same age.",
+        "stat": "In 2022, about 148 million children under 5 worldwide were stunted (too short for their age) (UNICEF, WHO, World Bank)"
+      }
     },
     {
       "id": "breastfed",
@@ -298,7 +366,11 @@
         "bond": 2
       },
       "once": true,
-      "stat": "生後6か月未満で母乳だけで育てられている赤ちゃんは、世界でおよそ半数 (UNICEF)"
+      "stat": "生後6か月未満で母乳だけで育てられている赤ちゃんは、世界でおよそ半数 (UNICEF)",
+      "en": {
+        "text": "For a while, Mother fed {name} only breast milk.",
+        "stat": "About half of babies under 6 months old worldwide are exclusively breastfed (UNICEF)"
+      }
     },
     {
       "id": "kitchen-smoke",
@@ -313,7 +385,11 @@
       "effects": {
         "health": -2
       },
-      "stat": "世界ではおよそ23億人が、薪や炭、灯油など煙の多い燃料で調理している (WHO)"
+      "stat": "世界ではおよそ23億人が、薪や炭、灯油など煙の多い燃料で調理している (WHO)",
+      "en": {
+        "text": "Smoke from the kitchen stove often made {name} cough.",
+        "stat": "About 2.3 billion people worldwide cook with smoky fuels such as wood, charcoal, or kerosene (WHO)"
+      }
     },
     {
       "id": "rope-swing",
@@ -329,7 +405,10 @@
         "happy": 3,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Father tied a rope to a tree branch and made a swing."
+      }
     },
     {
       "id": "first-zoo",
@@ -344,7 +423,10 @@
         "happy": 2,
         "learn": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "First trip to the zoo. What {name} liked best was not the elephant but the pigeons at the entrance."
+      }
     },
     {
       "id": "hot-pot-burn",
@@ -354,6 +436,9 @@
       "weight": 1,
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Reached for a hot pot and burned a fingertip. It left no scar."
       }
     },
     {
@@ -365,6 +450,9 @@
       "effects": {
         "happy": -1,
         "bond": 1
+      },
+      "en": {
+        "text": "Became afraid of the dark and slept with the light on for a while."
       }
     },
     {
@@ -376,6 +464,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "Watched the festival crowd from the top of Grandfather's shoulders."
       }
     },
     {
@@ -387,6 +478,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "The cousins came to visit, and the house was loud for three days."
       }
     },
     {
@@ -397,6 +491,9 @@
       "weight": 1.5,
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Had a runny nose that would not stop for a week."
       }
     },
     {
@@ -410,6 +507,9 @@
       },
       "effects": {
         "happy": 3
+      },
+      "en": {
+        "text": "{pet} licked {name}'s face, and {name} rolled around laughing."
       }
     },
     {
@@ -423,6 +523,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Memorized every word of a morning cartoon's theme song without understanding any of it."
       }
     },
     {
@@ -434,7 +537,10 @@
       "effects": {
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "At the first haircut, {name} sat frozen in front of the mirror."
+      }
     },
     {
       "id": "water-trip-with-mother",
@@ -450,7 +556,11 @@
       "effects": {
         "bond": 1
       },
-      "stat": "家に水道のない世帯のおよそ7割で、水汲みは女性や少女の役目になっている (WHO・UNICEF)"
+      "stat": "家に水道のない世帯のおよそ7割で、水汲みは女性や少女の役目になっている (WHO・UNICEF)",
+      "en": {
+        "text": "Every morning Mother took {name} along to fetch water. The round trip took an hour.",
+        "stat": "In about 7 out of 10 households without water at home, fetching water falls to women and girls (WHO, UNICEF)"
+      }
     },
     {
       "id": "shadow-puppets",
@@ -464,6 +574,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "On a night when the power was out, the family made shadow puppets by candlelight."
       }
     },
     {
@@ -474,6 +587,9 @@
       "weight": 1,
       "effects": {
         "happy": 3
+      },
+      "en": {
+        "text": "Got new shoes and tried to go to bed still wearing them."
       }
     },
     {
@@ -484,6 +600,9 @@
       "weight": 1,
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Tumbled off a step and got a bump on the forehead."
       }
     },
     {
@@ -502,6 +621,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Went to the market with Mother. What stayed in memory was the smell of fish and the banana the fruit seller gave."
       }
     },
     {
@@ -517,7 +639,10 @@
         "learn": 3
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Started at a private kindergarten that taught English and music. The fees were not cheap."
+      }
     },
     {
       "id": "first-snow",
@@ -548,7 +673,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Saw snow for the first time. {name} pulled off a glove to feel how cold it was."
+      }
     },
     {
       "id": "grandfather-funeral-child",
@@ -560,7 +688,10 @@
         "happy": -2,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Grandfather died. Not really understanding what a funeral was, {name} watched the relatives cry."
+      }
     },
     {
       "id": "measles",
@@ -573,6 +704,9 @@
       },
       "effects": {
         "health": -4
+      },
+      "en": {
+        "text": "Caught measles. The high fever and rash lasted a week."
       }
     },
     {
@@ -591,6 +725,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "A drawing from daycare went up on the fridge door with a magnet."
       }
     },
     {
@@ -611,6 +748,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Father took {name} to a street stall and gave {name} a sip of sweet coffee with condensed milk."
       }
     },
     {
@@ -626,7 +766,10 @@
         "learn": 2,
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "First day of school. The new pencils had a smell."
+      }
     },
     {
       "id": "school-fees-late",
@@ -642,6 +785,9 @@
       "effects": {
         "happy": -3,
         "learn": -1
+      },
+      "en": {
+        "text": "The school fees were paid late. {name}'s name was called, and {name} was made to stand outside the classroom."
       }
     },
     {
@@ -656,6 +802,9 @@
       },
       "effects": {
         "learn": 1
+      },
+      "en": {
+        "text": "Three students shared one textbook. {name} looked forward to the days of sitting in the middle."
       }
     },
     {
@@ -671,6 +820,9 @@
       },
       "effects": {
         "health": 1
+      },
+      "en": {
+        "text": "Walked an hour each way to school. In the rainy season, the shoes came off at every river crossing."
       }
     },
     {
@@ -687,7 +839,11 @@
       "effects": {
         "learn": 1
       },
-      "stat": "電気を使えない人は、2022年時点で世界に約6億8,000万人いた (IEA・世界銀行など)"
+      "stat": "電気を使えない人は、2022年時点で世界に約6億8,000万人いた (IEA・世界銀行など)",
+      "en": {
+        "text": "Did homework under a kerosene lamp. The soot turned the inside of the nose black.",
+        "stat": "As of 2022, about 680 million people worldwide had no access to electricity (IEA, World Bank and others)"
+      }
     },
     {
       "id": "school-meal",
@@ -702,7 +858,11 @@
       "effects": {
         "health": 2
       },
-      "stat": "世界では約4億人の子どもが学校給食を受けている (WFP)"
+      "stat": "世界では約4億人の子どもが学校給食を受けている (WFP)",
+      "en": {
+        "text": "The school lunch was the most solid meal of the day.",
+        "stat": "About 400 million children worldwide receive school meals (WFP)"
+      }
     },
     {
       "id": "tooth-on-roof",
@@ -718,7 +878,10 @@
       "effects": {
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "A front tooth came out. {name} threw it up onto the roof."
+      }
     },
     {
       "id": "tooth-under-pillow",
@@ -736,7 +899,10 @@
       "effects": {
         "happy": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Slept with a lost tooth under the pillow. In the morning, there was a coin in its place."
+      }
     },
     {
       "id": "learn-bicycle",
@@ -747,7 +913,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Learned to ride a bicycle. Never noticed when the hand holding the back let go."
+      }
     },
     {
       "id": "best-friend",
@@ -759,7 +928,10 @@
         "happy": 3,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Became best friends with {friend}. It started when they found out they were born on the same day."
+      }
     },
     {
       "id": "quarrel-friend",
@@ -770,6 +942,9 @@
       "effects": {
         "happy": -1,
         "bond": 1
+      },
+      "en": {
+        "text": "Fought with {friend} and they did not speak for three days. By the fourth day things were back to normal."
       }
     },
     {
@@ -787,7 +962,11 @@
         "learn": -1,
         "bond": 1
       },
-      "stat": "2020年、世界で約1億6,000万人の子どもが児童労働をしていて、その約7割が農業だった (ILO・UNICEF)"
+      "stat": "2020年、世界で約1億6,000万人の子どもが児童労働をしていて、その約7割が農業だった (ILO・UNICEF)",
+      "en": {
+        "text": "Missed school at harvest time to help in the fields. Blisters formed on both palms.",
+        "stat": "In 2020, about 160 million children worldwide were in child labor, about 70% of them in agriculture (ILO, UNICEF)"
+      }
     },
     {
       "id": "goat-herding",
@@ -805,6 +984,9 @@
       },
       "effects": {
         "health": 1
+      },
+      "en": {
+        "text": "After school, {name}'s job was to take the family's goats up to the hills."
       }
     },
     {
@@ -820,7 +1002,10 @@
       "effects": {
         "bond": 1
       },
-      "cost": 0.01
+      "cost": 0.01,
+      "en": {
+        "text": "On weekends, sold fried snacks Mother made by the roadside. The family ate whatever was left."
+      }
     },
     {
       "id": "essay-prize",
@@ -835,7 +1020,10 @@
         "happy": 3,
         "learn": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "An essay won a prize at school. The title was \"My Family.\""
+      }
     },
     {
       "id": "child-glasses",
@@ -850,7 +1038,11 @@
         "learn": 1
       },
       "once": true,
-      "stat": "近視は世界中で増えていて、2050年には世界人口の約半数が近視になるという推計がある (Holden et al., Ophthalmology 2016)"
+      "stat": "近視は世界中で増えていて、2050年には世界人口の約半数が近視になるという推計がある (Holden et al., Ophthalmology 2016)",
+      "en": {
+        "text": "The writing on the blackboard got hard to read, and {name} started wearing glasses.",
+        "stat": "Nearsightedness is rising worldwide, and one estimate says about half the world's population will be nearsighted by 2050 (Holden et al., Ophthalmology 2016)"
+      }
     },
     {
       "id": "broken-arm-tree",
@@ -862,7 +1054,10 @@
         "health": -4,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Fell out of a tree and broke an arm. While it was in a cast, friends carried {name}'s things."
+      }
     },
     {
       "id": "cram-school",
@@ -881,7 +1076,10 @@
         "learn": 3,
         "happy": -1
       },
-      "cost": -0.04
+      "cost": -0.04,
+      "en": {
+        "text": "Started going to cram school three days a week. The steamed meat bun on the way home was the best part."
+      }
     },
     {
       "id": "home-tutor",
@@ -895,7 +1093,10 @@
       "effects": {
         "learn": 3
       },
-      "cost": -0.05
+      "cost": -0.05,
+      "en": {
+        "text": "A private tutor started coming twice a week."
+      }
     },
     {
       "id": "piano-lessons",
@@ -909,7 +1110,10 @@
       "effects": {
         "learn": 2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Started piano lessons. Played the same piece for six months."
+      }
     },
     {
       "id": "plastic-bag-football",
@@ -923,6 +1127,9 @@
       "effects": {
         "happy": 3,
         "health": 1
+      },
+      "en": {
+        "text": "Played barefoot soccer in a vacant lot. The ball was plastic bags wadded up and tied with string."
       }
     },
     {
@@ -944,7 +1151,10 @@
       "effects": {
         "happy": 1
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "Played cricket in the alley and broke the neighbor's window."
+      }
     },
     {
       "id": "sports-day",
@@ -962,6 +1172,9 @@
       "effects": {
         "happy": 1,
         "bond": 2
+      },
+      "en": {
+        "text": "Got passed in the relay at the school sports day. The family still spread out lunch on a mat and said well done."
       }
     },
     {
@@ -982,7 +1195,11 @@
         "learn": 2
       },
       "once": true,
-      "stat": "2024年時点で、世界の約26億人がまだインターネットを使っていない (ITU)"
+      "stat": "2024年時点で、世界の約26億人がまだインターネットを使っていない (ITU)",
+      "en": {
+        "text": "Went online for the first time in the school computer room. The first search was the name of a favorite animal.",
+        "stat": "As of 2024, about 2.6 billion people worldwide still do not use the internet (ITU)"
+      }
     },
     {
       "id": "friends-video-game",
@@ -995,6 +1212,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Played a video game for the first time at a friend's house and did not want to go home."
       }
     },
     {
@@ -1009,6 +1229,9 @@
       },
       "effects": {
         "happy": 1
+      },
+      "en": {
+        "text": "The family shared one mobile phone. {name} only got to use it for a few minutes after the parents went to sleep."
       }
     },
     {
@@ -1022,6 +1245,9 @@
       },
       "effects": {
         "bond": -1
+      },
+      "en": {
+        "text": "Lied about doing homework and was found out right away."
       }
     },
     {
@@ -1033,6 +1259,9 @@
       "effects": {
         "bond": 2,
         "learn": 1
+      },
+      "en": {
+        "text": "Stayed over at Grandmother's and heard stories from the old days. Her voice only dropped when she talked about the hard years of her youth."
       }
     },
     {
@@ -1047,6 +1276,9 @@
       "effects": {
         "happy": 2,
         "health": 1
+      },
+      "en": {
+        "text": "Learned to swim in the village river. The first time, an older kid threw {name} in."
       }
     },
     {
@@ -1065,6 +1297,9 @@
       "effects": {
         "health": 2,
         "happy": 2
+      },
+      "en": {
+        "text": "Took swimming lessons at the pool and finally managed 25 meters."
       }
     },
     {
@@ -1082,7 +1317,11 @@
       "effects": {
         "health": -4
       },
-      "stat": "デングウイルスの感染は、世界で年に約1億〜4億件起きていると推計されている (WHO)"
+      "stat": "デングウイルスの感染は、世界で年に約1億〜4億件起きていると推計されている (WHO)",
+      "en": {
+        "text": "Caught dengue fever and was in bed for a week.",
+        "stat": "An estimated 100 to 400 million dengue infections occur worldwide each year (WHO)"
+      }
     },
     {
       "id": "deworming",
@@ -1097,7 +1336,11 @@
       "effects": {
         "health": 2
       },
-      "stat": "土壌を介して感染する寄生虫に感染している人は、世界で約15億人いる (WHO)"
+      "stat": "土壌を介して感染する寄生虫に感染している人は、世界で約15億人いる (WHO)",
+      "en": {
+        "text": "Deworming pills were handed out at school, and everyone lined up to take them.",
+        "stat": "About 1.5 billion people worldwide are infected with soil-transmitted parasitic worms (WHO)"
+      }
     },
     {
       "id": "class-monitor",
@@ -1111,6 +1354,9 @@
       "effects": {
         "learn": 1,
         "happy": 1
+      },
+      "en": {
+        "text": "Was chosen as class monitor. The main job was erasing the blackboard."
       }
     },
     {
@@ -1125,7 +1371,11 @@
       "effects": {
         "happy": -3
       },
-      "stat": "過去1か月にいじめを受けたと答えた生徒は、世界でおよそ3人に1人 (UNESCO, 2019)"
+      "stat": "過去1か月にいじめを受けたと答えた生徒は、世界でおよそ3人に1人 (UNESCO, 2019)",
+      "en": {
+        "text": "A few classmates kept making fun of {name}'s name. For a while, going to school was miserable.",
+        "stat": "About 1 in 3 students worldwide say they were bullied in the past month (UNESCO, 2019)"
+      }
     },
     {
       "id": "moving-house-child",
@@ -1136,7 +1386,10 @@
       "effects": {
         "happy": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "The family moved. The height marks carved into a post in the old house were left behind."
+      }
     },
     {
       "id": "flood-school-closed",
@@ -1154,7 +1407,11 @@
       "effects": {
         "learn": -1
       },
-      "stat": "2024年、異常気象で学校教育が中断された子どもは、世界で約2億4,200万人にのぼった (UNICEF)"
+      "stat": "2024年、異常気象で学校教育が中断された子どもは、世界で約2億4,200万人にのぼった (UNICEF)",
+      "en": {
+        "text": "Heavy rain closed the school for a week. Mud was left in the classroom.",
+        "stat": "In 2024, extreme weather disrupted schooling for about 242 million children worldwide (UNICEF)"
+      }
     },
     {
       "id": "monsoon-first-rain",
@@ -1177,6 +1434,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "On the first day of the monsoon rains, the children ran outside barefoot."
       }
     },
     {
@@ -1194,7 +1454,10 @@
         "happy": 2,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Kept the Ramadan fast all the way through for the first time. The taste of the water at sunset stayed in memory."
+      }
     },
     {
       "id": "eid-new-clothes",
@@ -1210,6 +1473,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "On the morning of Eid, wore new clothes, went around the relatives' homes, and collected pocket money."
       }
     },
     {
@@ -1226,6 +1492,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "On Diwali night, set clay lamps along the doorway. Every gust of wind put a few out."
       }
     },
     {
@@ -1243,6 +1512,9 @@
       "effects": {
         "happy": 3,
         "bond": 1
+      },
+      "en": {
+        "text": "On Holi, everyone threw colored powder at each other. {name}'s hair stayed pink for three days."
       }
     },
     {
@@ -1259,6 +1531,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "At Tet, the grandparents gave lucky money in a red envelope. {name} hid it under the pillow right away."
       }
     },
     {
@@ -1275,6 +1550,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Firecrackers made sleep impossible on the night of Spring Festival. In the morning, the street was covered in red paper scraps."
       }
     },
     {
@@ -1301,6 +1579,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "On Christmas morning, opened the box under the tree. It was not quite what {name} had wanted, but {name} said nothing."
       }
     },
     {
@@ -1326,6 +1607,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Hunted for eggs hidden in the yard on Easter. One was never found until it turned up in summer."
       }
     },
     {
@@ -1343,6 +1627,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Got New Year's money from the relatives. The parents \"held on to\" half of it."
       }
     },
     {
@@ -1361,7 +1648,10 @@
         "happy": 2,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "The grandparents sent a school backpack as a gift for starting school. It was about half the size of {name}'s body."
+      }
     },
     {
       "id": "chuseok-trip",
@@ -1376,6 +1666,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "The family drove to the countryside for Chuseok. The highway was jammed, and {name} was asleep by the time they arrived."
       }
     },
     {
@@ -1394,6 +1687,9 @@
       "effects": {
         "happy": 3,
         "bond": 1
+      },
+      "en": {
+        "text": "Watched the Carnival parade from Father's shoulders. The drums could be felt in the chest."
       }
     },
     {
@@ -1409,6 +1705,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "On the Day of the Dead, placed marigolds on the altar with Grandmother's photo."
       }
     },
     {
@@ -1420,6 +1719,9 @@
       "when": {
         "wealth": "poor",
         "state": "school"
+      },
+      "en": {
+        "text": "The school uniform was an older brother's hand-me-down. The sleeves were rolled up twice."
       }
     },
     {
@@ -1438,6 +1740,9 @@
       },
       "effects": {
         "happy": 3
+      },
+      "en": {
+        "text": "On Songkran, everyone threw water at each other in the street, and {name} was soaked from head to toe."
       }
     },
     {
@@ -1456,6 +1761,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "In kite season, fought the neighborhood kids to cut each other's strings. The string left marks on {name}'s fingers."
       }
     },
     {
@@ -1466,6 +1774,9 @@
       "weight": 1,
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Got pocket money for the first time and spent all of it on snacks that same day."
       }
     },
     {
@@ -1480,6 +1791,9 @@
       },
       "effects": {
         "happy": 1
+      },
+      "en": {
+        "text": "A stray dog followed {name} home from school. The parents would not allow keeping it."
       }
     },
     {
@@ -1496,7 +1810,10 @@
         "learn": 1
       },
       "cost": -0.03,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "At summer camp, saw a sky full of stars for the first time."
+      }
     },
     {
       "id": "night-sky-village",
@@ -1509,6 +1826,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Lay outside the house at night and watched the Milky Way."
       }
     },
     {
@@ -1523,7 +1843,10 @@
       "effects": {
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Started thinking about {friend} a lot. Tried to start a conversation and gave up three times."
+      }
     },
     {
       "id": "walk-home-together",
@@ -1537,7 +1860,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Walked home side by side with a crush for the first time. Cannot remember what they talked about."
+      }
     },
     {
       "id": "heartbreak-teen",
@@ -1550,6 +1876,9 @@
       },
       "effects": {
         "happy": -3
+      },
+      "en": {
+        "text": "Found out the person {name} liked was already with someone. Sleep was slow to come that night."
       }
     },
     {
@@ -1568,7 +1897,11 @@
         "happy": 2
       },
       "once": true,
-      "stat": "10歳以上の人の約8割が自分の携帯電話を持っている (ITU, 2023)"
+      "stat": "10歳以上の人の約8割が自分の携帯電話を持っている (ITU, 2023)",
+      "en": {
+        "text": "Got a first mobile phone of {name}'s own. Changed the notification sound many times in the first week.",
+        "stat": "About 80% of people aged 10 and over own a mobile phone (ITU, 2023)"
+      }
     },
     {
       "id": "exam-late-nights",
@@ -1584,6 +1917,9 @@
         "learn": 3,
         "health": -1,
         "happy": -1
+      },
+      "en": {
+        "text": "With the entrance exams getting close, studied at the desk late into the night."
       }
     },
     {
@@ -1600,7 +1936,10 @@
         "happy": 4,
         "learn": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Passed the exam. In front of the results board, {name} checked the number three times."
+      }
     },
     {
       "id": "exam-bad",
@@ -1616,6 +1955,9 @@
       "effects": {
         "happy": -3,
         "bond": 1
+      },
+      "en": {
+        "text": "The exam results were worse than expected. The parents said nothing and served dinner."
       }
     },
     {
@@ -1635,7 +1977,10 @@
         "learn": 2,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "For the two days of the gaokao, the national college entrance exam, parents waited outside the test site under parasols."
+      }
     },
     {
       "id": "suneung",
@@ -1653,7 +1998,10 @@
       "effects": {
         "learn": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "On the day of the Suneung, the college entrance exam, police cars were driving late students to their test sites."
+      }
     },
     {
       "id": "common-test-snow",
@@ -1671,7 +2019,10 @@
       "effects": {
         "happy": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "On the morning of the national university entrance exam, snow delayed the trains."
+      }
     },
     {
       "id": "part-time-job",
@@ -1687,7 +2038,10 @@
       "effects": {
         "bond": 2
       },
-      "cost": 0.02
+      "cost": 0.02,
+      "en": {
+        "text": "Started a part-time job at a restaurant after school. Bought sweets for the family with the first paycheck."
+      }
     },
     {
       "id": "leave-school-work",
@@ -1706,7 +2060,11 @@
         "bond": 1
       },
       "once": true,
-      "stat": "学校に通っていない子どもや若者は、世界で約2億5,000万人いる (UNESCO)"
+      "stat": "学校に通っていない子どもや若者は、世界で約2億5,000万人いる (UNESCO)",
+      "en": {
+        "text": "Money at home got tight, and {name} left school to go to work.",
+        "stat": "About 250 million children and young people worldwide are out of school (UNESCO)"
+      }
     },
     {
       "id": "acne",
@@ -1716,6 +2074,9 @@
       "weight": 1,
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Was self-conscious about acne and avoided being seen."
       }
     },
     {
@@ -1731,7 +2092,10 @@
       "effects": {
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "His voice broke, and people on the phone mistook him for his father."
+      }
     },
     {
       "id": "first-period-cloth",
@@ -1748,7 +2112,10 @@
       "effects": {
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Her first period came. In the kitchen, without a word, Mother showed her how to use the cloths."
+      }
     },
     {
       "id": "first-period-sister",
@@ -1765,7 +2132,10 @@
       "effects": {
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Her first period came. Her older sister showed her how to use a pad and kept it from their father."
+      }
     },
     {
       "id": "garage-band",
@@ -1780,6 +2150,9 @@
       "effects": {
         "happy": 3,
         "bond": 1
+      },
+      "en": {
+        "text": "Started a band with friends. They spent more time choosing the band's name than learning songs."
       }
     },
     {
@@ -1796,7 +2169,11 @@
         "health": 3,
         "bond": 1
       },
-      "stat": "世界の11〜17歳の約8割は、推奨される運動量に届いていない (WHO)"
+      "stat": "世界の11〜17歳の約8割は、推奨される運動量に届いていない (WHO)",
+      "en": {
+        "text": "Ran early every morning for school sports practice.",
+        "stat": "About 80% of 11 to 17 year olds worldwide do not get the recommended amount of physical activity (WHO)"
+      }
     },
     {
       "id": "no-likes",
@@ -1809,6 +2186,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "A photo posted on social media got no reactions. {name} deleted it an hour later."
       }
     },
     {
@@ -1824,6 +2204,9 @@
       "effects": {
         "happy": 2,
         "learn": 1
+      },
+      "en": {
+        "text": "Became friends with someone the same age from a faraway country through an online game."
       }
     },
     {
@@ -1838,6 +2221,9 @@
       },
       "effects": {
         "bond": -2
+      },
+      "en": {
+        "text": "Broke curfew and had a huge fight with the parents."
       }
     },
     {
@@ -1858,7 +2244,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Passed the driving test. The first solo drive was to a gas station."
+      }
     },
     {
       "id": "first-motorbike-ride",
@@ -1883,7 +2272,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Borrowed an older brother's motorbike and rode into town alone for the first time."
+      }
     },
     {
       "id": "classmate-bike-accident",
@@ -1898,7 +2290,11 @@
         "happy": -2,
         "bond": 1
       },
-      "stat": "交通事故で亡くなる人は世界で年に約119万人で、5歳から29歳の死因の第1位になっている (WHO, 2023)"
+      "stat": "交通事故で亡くなる人は世界で年に約119万人で、5歳から29歳の死因の第1位になっている (WHO, 2023)",
+      "en": {
+        "text": "A classmate was badly hurt in a motorbike accident. Everyone went to visit together.",
+        "stat": "Road traffic crashes kill about 1.19 million people a year worldwide and are the leading cause of death for people aged 5 to 29 (WHO, 2023)"
+      }
     },
     {
       "id": "librarian",
@@ -1912,6 +2308,9 @@
       },
       "effects": {
         "learn": 3
+      },
+      "en": {
+        "text": "Started going to the town library regularly. The librarian learned {name}'s taste and set new books aside."
       }
     },
     {
@@ -1929,7 +2328,10 @@
         "happy": 3,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "On a school trip, spent a night away from the family for the first time. Stayed up making noise until midnight and got scolded by a teacher."
+      }
     },
     {
       "id": "confirmation",
@@ -1945,7 +2347,10 @@
       "effects": {
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Was confirmed at church. Wore the cross necklace from the godparents every day for a while."
+      }
     },
     {
       "id": "bar-mitzvah",
@@ -1963,7 +2368,10 @@
         "bond": 3,
         "learn": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "At thirteen he had his bar mitzvah and read from the Torah before the congregation. His voice shook a little."
+      }
     },
     {
       "id": "bat-mitzvah",
@@ -1980,7 +2388,10 @@
       "effects": {
         "bond": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "She had her bat mitzvah. Relatives came from far away and danced late into the night."
+      }
     },
     {
       "id": "quinceanera",
@@ -2013,7 +2424,10 @@
         "bond": 3
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "On her fifteenth birthday, at her quinceañera, she danced the first waltz with her father."
+      }
     },
     {
       "id": "classmate-married",
@@ -2029,7 +2443,11 @@
       "effects": {
         "happy": -2
       },
-      "stat": "世界では毎年約1,200万人の少女が18歳未満で結婚している (UNICEF)"
+      "stat": "世界では毎年約1,200万人の少女が18歳未満で結婚している (UNICEF)",
+      "en": {
+        "text": "A girl in the same grade got married and stopped coming to school.",
+        "stat": "About 12 million girls worldwide are married before age 18 each year (UNICEF)"
+      }
     },
     {
       "id": "dawn-water-girl",
@@ -2048,7 +2466,11 @@
         "health": -1,
         "learn": -1
       },
-      "stat": "世界の女性と少女が水汲みに費やす時間は、合わせて1日約2億時間にのぼる (UNICEF, 2016)"
+      "stat": "世界の女性と少女が水汲みに費やす時間は、合わせて1日約2億時間にのぼる (UNICEF, 2016)",
+      "en": {
+        "text": "Got up before dawn to fetch water from the well, then set off for school.",
+        "stat": "Women and girls worldwide spend a combined 200 million hours a day collecting water (UNICEF, 2016)"
+      }
     },
     {
       "id": "teacher-reads-essay",
@@ -2063,6 +2485,9 @@
       "effects": {
         "learn": 3,
         "happy": 2
+      },
+      "en": {
+        "text": "A teacher read {name}'s essay aloud in class. After that, language class became a favorite."
       }
     },
     {
@@ -2077,6 +2502,9 @@
       },
       "effects": {
         "learn": 1
+      },
+      "en": {
+        "text": "During an exam, the answers on the next desk were in plain view, but {name} did not copy. The score was a little below average."
       }
     },
     {
@@ -2092,6 +2520,9 @@
       "effects": {
         "bond": 2,
         "happy": 1
+      },
+      "en": {
+        "text": "Joined a local river cleanup on the weekend. Three bicycles came up from the riverbed."
       }
     },
     {
@@ -2109,7 +2540,10 @@
         "happy": 4,
         "learn": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Interviewed for a scholarship and got it. The family told the whole neighborhood."
+      }
     },
     {
       "id": "short-video",
@@ -2123,6 +2557,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "A short video of {name} dancing with friends got 3,000 views from strangers."
       }
     },
     {
@@ -2138,6 +2575,9 @@
       "effects": {
         "happy": 1,
         "bond": -1
+      },
+      "en": {
+        "text": "Came home with dyed hair and made Grandmother cry."
       }
     },
     {
@@ -2154,7 +2594,10 @@
         "happy": 4
       },
       "cost": -0.02,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Went to a favorite singer's concert for the first time. The ears were still ringing on the train home."
+      }
     },
     {
       "id": "abroad-university-fair",
@@ -2170,6 +2613,9 @@
       },
       "effects": {
         "learn": 1
+      },
+      "en": {
+        "text": "Went with the parents to an information session for universities abroad. Father went quiet when he saw the tuition."
       }
     },
     {
@@ -2187,7 +2633,10 @@
         "bond": 2,
         "learn": 1
       },
-      "cost": -0.08
+      "cost": -0.08,
+      "en": {
+        "text": "The family took a trip abroad. What {name} remembers best is the airport duty-free shop."
+      }
     },
     {
       "id": "friday-prayer-father",
@@ -2204,6 +2653,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Started going to Friday prayers side by side with his father."
       }
     },
     {
@@ -2229,7 +2681,10 @@
         "bond": 2,
         "learn": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "During the rainy-season retreat, he was ordained as a monk for a short time at the temple. With his head shaved, the wind felt cold."
+      }
     },
     {
       "id": "first-turban",
@@ -2247,7 +2702,10 @@
         "happy": 2,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Tied his own turban for the first time. It took three tries."
+      }
     },
     {
       "id": "church-choir",
@@ -2263,6 +2721,9 @@
       "effects": {
         "bond": 2,
         "happy": 1
+      },
+      "en": {
+        "text": "Sang in the church choir. Never once hit the highest note."
       }
     },
     {
@@ -2277,7 +2738,10 @@
       "effects": {
         "happy": -3
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Had a phone snatched on the way home. The thief was about {name}'s age."
+      }
     },
     {
       "id": "cybercafe",
@@ -2292,6 +2756,9 @@
       "effects": {
         "learn": 1,
         "happy": 1
+      },
+      "en": {
+        "text": "Rented a seat by the hour at the town internet cafe and traded emails with friends."
       }
     },
     {
@@ -2310,6 +2777,9 @@
       "effects": {
         "learn": 1,
         "health": -1
+      },
+      "en": {
+        "text": "Exams fell during Ramadan. After the pre-dawn meal, {name} went straight to the textbooks."
       }
     },
     {
@@ -2327,6 +2797,9 @@
       "effects": {
         "bond": 2,
         "health": -1
+      },
+      "en": {
+        "text": "At rice harvest, the whole family was out in the paddies from morning to night."
       }
     },
     {
@@ -2343,6 +2816,9 @@
       "effects": {
         "bond": 2,
         "learn": -1
+      },
+      "en": {
+        "text": "While the parents were out working, {name} looked after the younger siblings."
       }
     },
     {
@@ -2356,6 +2832,9 @@
       },
       "effects": {
         "learn": 2
+      },
+      "en": {
+        "text": "Started learning to use a sewing machine at a neighborhood tailor's."
       }
     },
     {
@@ -2373,7 +2852,10 @@
         "learn": 3,
         "happy": -1
       },
-      "cost": -0.04
+      "cost": -0.04,
+      "en": {
+        "text": "Went to a prep school for university entrance exams. Weekends were taken up by practice tests."
+      }
     },
     {
       "id": "first-job-shop",
@@ -2387,6 +2869,9 @@
       "effects": {
         "learn": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Helped out at a relative's shop and was praised for doing sums faster than anyone."
       }
     },
     {
@@ -2402,6 +2887,9 @@
       "effects": {
         "bond": 2,
         "learn": 1
+      },
+      "en": {
+        "text": "Volunteered at a hospital. An old man in the waiting room kept asking the same directions."
       }
     },
     {
@@ -2421,7 +2909,10 @@
         "happy": 2,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Graduated from high school. After the ceremony, gave a button from the uniform to a younger student."
+      }
     },
     {
       "id": "sleepover",
@@ -2435,6 +2926,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "Stayed over at {friend}'s house and talked until dawn."
       }
     },
     {
@@ -2449,6 +2943,9 @@
       },
       "effects": {
         "learn": 1
+      },
+      "en": {
+        "text": "Started keeping a diary. It lasted three weeks."
       }
     },
     {
@@ -2462,6 +2959,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Botched cutting the bangs at home and wore a hat for a week."
       }
     },
     {
@@ -2477,7 +2977,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "First payday. Without deciding what to spend it on, {name} stared at the balance for a while."
+      }
     },
     {
       "id": "tenth-rejection",
@@ -2491,6 +2994,9 @@
       },
       "effects": {
         "happy": -3
+      },
+      "en": {
+        "text": "The tenth rejection letter arrived."
       }
     },
     {
@@ -2504,7 +3010,10 @@
         "job": "office"
       },
       "cost": -0.03,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Bought a first suit for interviews. The shoulders did not quite fit."
+      }
     },
     {
       "id": "roommate-milk",
@@ -2518,6 +3027,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The roommate kept drinking a little of {name}'s milk from the fridge every time."
       }
     },
     {
@@ -2537,6 +3049,9 @@
       "effects": {
         "happy": -1,
         "health": -1
+      },
+      "en": {
+        "text": "Stood for forty minutes on a packed train every morning. The face reflected in the window looked a little tired."
       }
     },
     {
@@ -2561,7 +3076,11 @@
       "effects": {
         "health": -1
       },
-      "stat": "交通事故で亡くなる人の約2割は、バイクなど二輪・三輪車の利用者である (WHO, 2023)"
+      "stat": "交通事故で亡くなる人の約2割は、バイクなど二輪・三輪車の利用者である (WHO, 2023)",
+      "en": {
+        "text": "Commuted by motorbike. At every red light, breathed the same exhaust as the rider alongside.",
+        "stat": "About 20% of road traffic deaths are riders of motorbikes and other two- and three-wheelers (WHO, 2023)"
+      }
     },
     {
       "id": "minibus-commute",
@@ -2584,6 +3103,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The conductor packed twice the seated capacity into the shared minibus. {name} rode to work with someone's elbow in the back."
       }
     },
     {
@@ -2599,6 +3121,9 @@
       "effects": {
         "happy": -2,
         "health": -1
+      },
+      "en": {
+        "text": "Three days before payday, there was nothing left in the wallet but coins. Cut down to two meals a day."
       }
     },
     {
@@ -2615,7 +3140,11 @@
         "bond": 3
       },
       "cost": -0.08,
-      "stat": "低・中所得国への海外送金は2023年に約6,560億ドルにのぼった (世界銀行)"
+      "stat": "低・中所得国への海外送金は2023年に約6,560億ドルにのぼった (世界銀行)",
+      "en": {
+        "text": "Sent part of the pay to the family back home. A short reply came from Mother: \"We fixed the roof.\"",
+        "stat": "Remittances to low- and middle-income countries reached about $656 billion in 2023 (World Bank)"
+      }
     },
     {
       "id": "migrant-first-winter",
@@ -2629,7 +3158,11 @@
       "effects": {
         "happy": -2
       },
-      "stat": "生まれた国の外で暮らす人は、2020年に世界で約2億8,100万人いた (IOM)"
+      "stat": "生まれた国の外で暮らす人は、2020年に世界で約2億8,100万人いた (IOM)",
+      "en": {
+        "text": "In the first winter abroad, {name} almost forgot what the food from home tasted like.",
+        "stat": "About 281 million people worldwide were living outside the country they were born in, as of 2020 (IOM)"
+      }
     },
     {
       "id": "migrant-joke",
@@ -2643,6 +3176,9 @@
       "effects": {
         "learn": 3,
         "happy": 2
+      },
+      "en": {
+        "text": "Finally began to follow the language at work. The day {name} got a coworker's joke felt like a small win."
       }
     },
     {
@@ -2654,7 +3190,10 @@
       "effects": {
         "bond": 2
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "Was invited to {friend}'s wedding and brought a gift of money."
+      }
     },
     {
       "id": "three-day-wedding",
@@ -2674,7 +3213,10 @@
         "happy": 3,
         "bond": 2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "A relative's wedding went on for three days. {name} danced every night and ate late every night."
+      }
     },
     {
       "id": "red-envelope-wedding",
@@ -2693,7 +3235,10 @@
       "effects": {
         "bond": 1
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "Brought a red envelope to a coworker's wedding. The amount inside was settled after asking the other coworkers."
+      }
     },
     {
       "id": "lobola-talks",
@@ -2715,6 +3260,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "The men sat for hours talking over the lobola, the bride price, for a relative's daughter. {name} waited outside."
       }
     },
     {
@@ -2732,7 +3280,10 @@
         "happy": 1,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Attended the Coming of Age Day ceremony. Could not place about half of the classmates' faces in their kimonos and suits."
+      }
     },
     {
       "id": "military-service-kr",
@@ -2752,7 +3303,10 @@
         "bond": 2,
         "happy": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Left home for nearly two years of military service. Every time he came home on leave, his mother served far too much food."
+      }
     },
     {
       "id": "military-service-il",
@@ -2770,7 +3324,10 @@
         "bond": 1,
         "learn": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Began military service. Coming home on weekends meant handing Mother a mountain of laundry."
+      }
     },
     {
       "id": "dorm-life",
@@ -2785,7 +3342,10 @@
         "learn": 2,
         "happy": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Moved into a university dorm. Everyone on the same floor had come from some faraway town."
+      }
     },
     {
       "id": "graduation-uni",
@@ -2801,7 +3361,11 @@
         "bond": 2
       },
       "once": true,
-      "stat": "世界で高等教育に進む若者の割合は、およそ4割に達している (UNESCO)"
+      "stat": "世界で高等教育に進む若者の割合は、およそ4割に達している (UNESCO)",
+      "en": {
+        "text": "On graduation day, the family sat in the front row.",
+        "stat": "About 40% of young people worldwide now go on to higher education (UNESCO)"
+      }
     },
     {
       "id": "student-loan",
@@ -2815,7 +3379,10 @@
       "effects": {
         "happy": -2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "A student loan repayment notice arrived. Started working out how many years it would take to pay off, and stopped halfway."
+      }
     },
     {
       "id": "dating-app",
@@ -2829,6 +3396,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Met someone from an app in person for the first time. They laughed more than their photos suggested."
       }
     },
     {
@@ -2842,6 +3412,9 @@
       },
       "effects": {
         "happy": -3
+      },
+      "en": {
+        "text": "Broke up after a long relationship. Seeing mutual friends got a little awkward."
       }
     },
     {
@@ -2857,6 +3430,9 @@
       "effects": {
         "health": -2,
         "bond": 3
+      },
+      "en": {
+        "text": "The baby cried every night, and for months there was no real stretch of sleep."
       }
     },
     {
@@ -2873,7 +3449,10 @@
         "happy": 4,
         "bond": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "The child looked at {name}'s face and smiled for the first time."
+      }
     },
     {
       "id": "month-end-overtime",
@@ -2890,7 +3469,10 @@
         "health": -2,
         "happy": -1
       },
-      "cost": 0.02
+      "cost": 0.02,
+      "en": {
+        "text": "With the month-end close, took the last train home every night for a week."
+      }
     },
     {
       "id": "year-end-bonus",
@@ -2906,7 +3488,10 @@
       "effects": {
         "happy": 3
       },
-      "cost": 0.05
+      "cost": 0.05,
+      "en": {
+        "text": "The year-end bonus was bigger than expected."
+      }
     },
     {
       "id": "fruit-stall-day",
@@ -2919,7 +3504,11 @@
         "income": "low",
         "job": "manual"
       },
-      "stat": "世界の働く人の約6割は、契約や社会保障のない「インフォーマル」な仕事に就いている (ILO)"
+      "stat": "世界の働く人の約6割は、契約や社会保障のない「インフォーマル」な仕事に就いている (ILO)",
+      "en": {
+        "text": "Spent the day selling fruit at a roadside stall. Sales depended on the weather.",
+        "stat": "About 60% of workers worldwide are in informal jobs without contracts or social protection (ILO)"
+      }
     },
     {
       "id": "first-mobile-money",
@@ -2936,7 +3525,11 @@
         "learn": 1
       },
       "once": true,
-      "stat": "サハラ以南アフリカでは、成人の約3人に1人がモバイルマネーの口座を持っている (世界銀行 Global Findex 2021)"
+      "stat": "サハラ以南アフリカでは、成人の約3人に1人がモバイルマネーの口座を持っている (世界銀行 Global Findex 2021)",
+      "en": {
+        "text": "Sent money by mobile phone for the first time. Not having to count bills felt strange.",
+        "stat": "In sub-Saharan Africa, about 1 in 3 adults has a mobile money account (World Bank Global Findex 2021)"
+      }
     },
     {
       "id": "first-bank-account",
@@ -2951,7 +3544,11 @@
         "learn": 1
       },
       "once": true,
-      "stat": "2021年時点で、世界の成人のうち約14億人が銀行などの口座を持っていない (世界銀行 Global Findex)"
+      "stat": "2021年時点で、世界の成人のうち約14億人が銀行などの口座を持っていない (世界銀行 Global Findex)",
+      "en": {
+        "text": "Opened a bank account for the first time. The clerk checked the spelling of the name twice.",
+        "stat": "As of 2021, about 1.4 billion adults worldwide had no account at a bank or similar institution (World Bank Global Findex)"
+      }
     },
     {
       "id": "cracked-screen",
@@ -2965,7 +3562,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "Dropped the phone and the screen cracked like a spider web. Put off getting it fixed."
+      }
     },
     {
       "id": "influenza",
@@ -2976,7 +3576,11 @@
       "effects": {
         "health": -3
       },
-      "stat": "季節性インフルエンザには、毎年世界で約10億人がかかる (WHO)"
+      "stat": "季節性インフルエンザには、毎年世界で約10億人がかかる (WHO)",
+      "en": {
+        "text": "Was in bed for five days with the flu. The rice porridge on the day the fever broke tasted wonderful.",
+        "stat": "About 1 billion people worldwide catch seasonal influenza every year (WHO)"
+      }
     },
     {
       "id": "gym-three-weeks",
@@ -2991,7 +3595,10 @@
       "effects": {
         "health": 1
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "Joined a gym. Went for the first three weeks."
+      }
     },
     {
       "id": "mothers-soup",
@@ -3005,6 +3612,9 @@
       "effects": {
         "happy": 2,
         "learn": 1
+      },
+      "en": {
+        "text": "Learned to cook while living alone. The first decent dish was a soup copied from Mother's."
       }
     },
     {
@@ -3020,7 +3630,10 @@
         "happy": 4,
         "bond": 2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Took a cheap overnight bus with friends to a seaside town."
+      }
     },
     {
       "id": "backpacking",
@@ -3039,7 +3652,11 @@
       },
       "cost": -0.15,
       "once": true,
-      "stat": "2023年の国際観光客の到着数は、世界でのべ約13億人だった (UN Tourism)"
+      "stat": "2023年の国際観光客の到着数は、世界でのべ約13億人だった (UN Tourism)",
+      "en": {
+        "text": "Traveled abroad for three months with a single backpack. Back home, the parents looked a little older.",
+        "stat": "International tourist arrivals worldwide totaled about 1.3 billion in 2023 (UN Tourism)"
+      }
     },
     {
       "id": "garment-factory",
@@ -3062,7 +3679,11 @@
         "bond": 1,
         "health": -1
       },
-      "stat": "バングラデシュの輸出額の約8割は衣料品が占めている (世界銀行など)"
+      "stat": "バングラデシュの輸出額の約8割は衣料品が占めている (世界銀行など)",
+      "en": {
+        "text": "Worked a sewing machine ten hours a day at a garment factory. At lunch, workers sat on the floor and shared their food.",
+        "stat": "Clothing makes up about 80% of Bangladesh's exports (World Bank and others)"
+      }
     },
     {
       "id": "gulf-send-off",
@@ -3083,7 +3704,11 @@
       "effects": {
         "bond": 1
       },
-      "stat": "ネパールでは、海外からの送金がGDPのおよそ4分の1にあたる (世界銀行)"
+      "stat": "ネパールでは、海外からの送金がGDPのおよそ4分の1にあたる (世界銀行)",
+      "en": {
+        "text": "The whole village saw off a young man from home leaving to work in the Gulf.",
+        "stat": "In Nepal, remittances from abroad equal about a quarter of GDP (World Bank)"
+      }
     },
     {
       "id": "shouted-at",
@@ -3097,6 +3722,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "Was yelled at by the boss in front of everyone. On the way home, ate something sweet alone."
       }
     },
     {
@@ -3112,6 +3740,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Lunch with coworker {friend} became a habit. They hardly ever talked about work."
       }
     },
     {
@@ -3128,7 +3759,10 @@
         "happy": 2
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Rented a room under {name}'s own name. The furniture was two cardboard boxes."
+      }
     },
     {
       "id": "leaky-pipe",
@@ -3141,6 +3775,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "A pipe in the apartment leaked, and it took a week of catching the drip in a bucket before the landlord came to fix it."
       }
     },
     {
@@ -3152,7 +3789,10 @@
       "effects": {
         "learn": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Voted in an election for the first time. The pencil at the polling station was tied to the desk with string."
+      }
     },
     {
       "id": "shorter-ramadan-hours",
@@ -3168,6 +3808,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "Work hours were shorter during Ramadan. Just before sunset, the streets suddenly emptied."
       }
     },
     {
@@ -3184,6 +3827,9 @@
       "effects": {
         "bond": 2,
         "happy": 2
+      },
+      "en": {
+        "text": "On Ramadan evenings, handed out dates and water to passersby in front of the mosque."
       }
     },
     {
@@ -3198,7 +3844,11 @@
       "effects": {
         "happy": -1
       },
-      "stat": "2023年に世界で詐欺により失われた金額は、約1兆ドルと推計されている (Global Anti-Scam Alliance)"
+      "stat": "2023年に世界で詐欺により失われた金額は、約1兆ドルと推計されている (Global Anti-Scam Alliance)",
+      "en": {
+        "text": "A text said \"We were unable to deliver your package.\" {name} almost tapped the link, then didn't.",
+        "stat": "An estimated $1 trillion was lost to scams worldwide in 2023 (Global Anti-Scam Alliance)"
+      }
     },
     {
       "id": "pickpocket",
@@ -3212,7 +3862,10 @@
       "effects": {
         "happy": -3
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "Had a wallet picked in a crowd. Replacing the ID took half a day."
+      }
     },
     {
       "id": "wallet-returned",
@@ -3222,6 +3875,9 @@
       "weight": 1,
       "effects": {
         "happy": 4
+      },
+      "en": {
+        "text": "A lost wallet came back with everything still inside. Apparently the person who found it had asked around the neighborhood."
       }
     },
     {
@@ -3238,7 +3894,11 @@
         "health": -2
       },
       "cost": 0.02,
-      "stat": "世界の働く人のうち、週48時間を超えて働いている人はおよそ3分の1にのぼる (ILO)"
+      "stat": "世界の働く人のうち、週48時間を超えて働いている人はおよそ3分の1にのぼる (ILO)",
+      "en": {
+        "text": "Weeks of night shifts went on. Hung thick cloth over the window to sleep in the daytime.",
+        "stat": "About a third of workers worldwide work more than 48 hours a week (ILO)"
+      }
     },
     {
       "id": "shared-room-workers",
@@ -3254,6 +3914,9 @@
       "effects": {
         "happy": -1,
         "bond": 1
+      },
+      "en": {
+        "text": "Slept eight to a room in the factory dorm. One shelf was {name}'s only space."
       }
     },
     {
@@ -3274,7 +3937,10 @@
         "happy": 2
       },
       "cost": -0.08,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Bought a first laptop with saved-up money."
+      }
     },
     {
       "id": "cousin-visa",
@@ -3287,6 +3953,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "A cousin got a visa to go abroad. The relatives gathered and all had opinions about what to pack."
       }
     },
     {
@@ -3301,7 +3970,10 @@
       "effects": {
         "bond": 2
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "For a village wedding, {name}'s family brought a sack of rice and two chickens."
+      }
     },
     {
       "id": "weekend-football",
@@ -3315,6 +3987,9 @@
       "effects": {
         "health": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Kept playing pickup soccer with old friends on weekends. The legs always ached the next day."
       }
     },
     {
@@ -3326,7 +4001,11 @@
       "effects": {
         "health": -3
       },
-      "stat": "腰痛を抱える人は世界で約6億人にのぼる (GBD 2021, Lancet Rheumatology 2023)"
+      "stat": "腰痛を抱える人は世界で約6億人にのぼる (GBD 2021, Lancet Rheumatology 2023)",
+      "en": {
+        "text": "Bent over and felt a sharp pain in the lower back. Walked carefully for two weeks.",
+        "stat": "About 600 million people worldwide live with low back pain (GBD 2021, Lancet Rheumatology 2023)"
+      }
     },
     {
       "id": "checkup-cholesterol",
@@ -3342,6 +4021,9 @@
       },
       "effects": {
         "health": 1
+      },
+      "en": {
+        "text": "The cholesterol number was flagged at a health checkup. Cut back a little on fried food."
       }
     },
     {
@@ -3353,7 +4035,10 @@
       "effects": {
         "happy": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Found a single white hair at the temple in the mirror. Left it alone."
+      }
     },
     {
       "id": "reading-glasses",
@@ -3366,7 +4051,11 @@
       },
       "cost": -0.01,
       "once": true,
-      "stat": "老眼の人は世界で約18億人と推計されている (Fricke et al., Ophthalmology 2018)"
+      "stat": "老眼の人は世界で約18億人と推計されている (Fricke et al., Ophthalmology 2018)",
+      "en": {
+        "text": "Started squinting to thread a needle. Bought reading glasses.",
+        "stat": "An estimated 1.8 billion people worldwide have presbyopia, age-related farsightedness (Fricke et al., Ophthalmology 2018)"
+      }
     },
     {
       "id": "roof-repair",
@@ -3377,7 +4066,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.15
+      "cost": -0.15,
+      "en": {
+        "text": "The roof leak got bad, so the roof was repaired."
+      }
     },
     {
       "id": "tin-roof",
@@ -3393,7 +4085,10 @@
         "happy": 3
       },
       "cost": -0.3,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Used savings to replace the thatched roof with corrugated metal. The rain got a lot louder."
+      }
     },
     {
       "id": "first-fridge",
@@ -3409,7 +4104,10 @@
         "happy": 3
       },
       "cost": -0.2,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Bought a refrigerator. On the first night, {name} drank glass after glass of cold water."
+      }
     },
     {
       "id": "washing-machine",
@@ -3424,7 +4122,10 @@
         "happy": 2
       },
       "cost": -0.08,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Bought a washing machine. The family stood and watched it spin for a while."
+      }
     },
     {
       "id": "car-breakdown",
@@ -3438,7 +4139,10 @@
       "effects": {
         "happy": -2
       },
-      "cost": -0.05
+      "cost": -0.05,
+      "en": {
+        "text": "The car died on the shoulder of the highway. The repair cost more than expected."
+      }
     },
     {
       "id": "sell-goat-fees",
@@ -3454,6 +4158,9 @@
       "effects": {
         "bond": 2,
         "happy": -1
+      },
+      "en": {
+        "text": "Sold one of the livestock to pay a child's school fees."
       }
     },
     {
@@ -3469,7 +4176,10 @@
         "happy": 2,
         "bond": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "On the child's first day of school, {name} stood outside the school gate for a while."
+      }
     },
     {
       "id": "child-report-card",
@@ -3483,6 +4193,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Looked at the child's report card and was a little surprised it was better than {name}'s own at that age."
       }
     },
     {
@@ -3498,6 +4211,9 @@
       "effects": {
         "happy": -1,
         "bond": -1
+      },
+      "en": {
+        "text": "The child, now a teenager, stopped talking much."
       }
     },
     {
@@ -3509,7 +4225,10 @@
       "effects": {
         "learn": 2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Started a small business on weekends. The first month ran at a loss."
+      }
     },
     {
       "id": "colleague-funeral",
@@ -3523,7 +4242,10 @@
       "effects": {
         "bond": 1
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "Went to the funeral of a colleague's father and brought an envelope of condolence money."
+      }
     },
     {
       "id": "village-funeral",
@@ -3537,7 +4259,10 @@
       "effects": {
         "bond": 2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "The village funeral went on for three days. {name}'s family brought rice and a chicken."
+      }
     },
     {
       "id": "parent-hospital",
@@ -3554,7 +4279,10 @@
         "health": -1,
         "happy": -2
       },
-      "cost": -0.05
+      "cost": -0.05,
+      "en": {
+        "text": "A parent was admitted to hospital. Stopped by every day on the way home from work."
+      }
     },
     {
       "id": "reunion-20-years",
@@ -3568,6 +4296,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "A school reunion, the first in twenty years. {friend}, once the quietest in class, was now the one doing most of the talking."
       }
     },
     {
@@ -3579,7 +4310,10 @@
       "effects": {
         "happy": -4
       },
-      "cost": -0.05
+      "cost": -0.05,
+      "en": {
+        "text": "The house was burgled while no one was home. They took the radio and the children's piggy bank."
+      }
     },
     {
       "id": "fake-son-call",
@@ -3592,6 +4326,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "A caller claimed to be a son in trouble. The voice sounded wrong, so {name} hung up and called the real son to check."
       }
     },
     {
@@ -3611,7 +4348,11 @@
         "happy": -4
       },
       "cost": -0.1,
-      "stat": "2023年には世界で約9,300万人が洪水・暴風・干ばつ・地震などの自然災害の影響を受けた (EM-DAT)"
+      "stat": "2023年には世界で約9,300万人が洪水・暴風・干ばつ・地震などの自然災害の影響を受けた (EM-DAT)",
+      "en": {
+        "text": "Heavy rain flooded the house, and mud rose above the floor. It took a month to dry out.",
+        "stat": "In 2023, about 93 million people worldwide were affected by natural disasters such as floods, storms, droughts and earthquakes (EM-DAT)"
+      }
     },
     {
       "id": "typhoon-night",
@@ -3630,6 +4371,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "A typhoon rattled the windows all night. The next morning, a neighbor's roof was missing a sheet."
       }
     },
     {
@@ -3651,6 +4395,9 @@
       "effects": {
         "bond": 2,
         "happy": -1
+      },
+      "en": {
+        "text": "A typhoon cut the power for three days. The family shared what was in the fridge with the neighbors and ate it all."
       }
     },
     {
@@ -3678,6 +4425,9 @@
       },
       "effects": {
         "happy": -3
+      },
+      "en": {
+        "text": "A strong earthquake struck in the middle of the night. The family went outside and waited for morning."
       }
     },
     {
@@ -3697,7 +4447,11 @@
         "health": -1
       },
       "cost": -0.15,
-      "stat": "干ばつの影響を受ける人は、世界で毎年約5,500万人いる (WHO)"
+      "stat": "干ばつの影響を受ける人は、世界で毎年約5,500万人いる (WHO)",
+      "en": {
+        "text": "It was a year without rain. The water in the well dropped, and the maize withered at knee height.",
+        "stat": "About 55 million people worldwide are affected by drought every year (WHO)"
+      }
     },
     {
       "id": "heat-nights",
@@ -3707,6 +4461,9 @@
       "weight": 1,
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Hot nights went on and on, and sleep was hard to come by."
       }
     },
     {
@@ -3730,6 +4487,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "After a heavy snowfall, spent an hour shoveling before work."
       }
     },
     {
@@ -3746,7 +4506,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "After seeing the winter heating bill, turned the thermostat down two degrees."
+      }
     },
     {
       "id": "homework-volunteer",
@@ -3761,7 +4524,11 @@
         "bond": 3,
         "happy": 2
       },
-      "stat": "過去1か月にボランティアをしたと答えた成人は、世界でおよそ5人に1人 (CAF World Giving Index)"
+      "stat": "過去1か月にボランティアをしたと答えた成人は、世界でおよそ5人に1人 (CAF World Giving Index)",
+      "en": {
+        "text": "Started volunteering once a week, helping neighborhood children with their homework.",
+        "stat": "About 1 in 5 adults worldwide say they volunteered in the past month (CAF World Giving Index)"
+      }
     },
     {
       "id": "disaster-donation",
@@ -3773,7 +4540,11 @@
         "happy": 2
       },
       "cost": -0.01,
-      "stat": "過去1か月にお金を寄付したと答えた成人は、世界でおよそ3人に1人 (CAF World Giving Index)"
+      "stat": "過去1か月にお金を寄付したと答えた成人は、世界でおよそ3人に1人 (CAF World Giving Index)",
+      "en": {
+        "text": "Put every banknote in the wallet into a disaster relief collection box.",
+        "stat": "About 1 in 3 adults worldwide say they donated money in the past month (CAF World Giving Index)"
+      }
     },
     {
       "id": "flat-tire-stranger",
@@ -3784,7 +4555,11 @@
       "effects": {
         "happy": 3
       },
-      "stat": "過去1か月に見知らぬ人を助けたと答えた成人は、世界で半数を超える (CAF World Giving Index)"
+      "stat": "過去1か月に見知らぬ人を助けたと答えた成人は、世界で半数を超える (CAF World Giving Index)",
+      "en": {
+        "text": "Got a flat tire on the bicycle. A passerby stopped and helped fix it without saying a word.",
+        "stat": "More than half of adults worldwide say they helped a stranger in the past month (CAF World Giving Index)"
+      }
     },
     {
       "id": "neighbor-pot",
@@ -3795,6 +4570,9 @@
       "effects": {
         "bond": 2,
         "happy": 2
+      },
+      "en": {
+        "text": "The neighbors brought over a whole pot of food. They said they had made too much."
       }
     },
     {
@@ -3808,6 +4586,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "Renovation noise from the apartment next door went on for a month."
       }
     },
     {
@@ -3823,7 +4604,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "{pet} stopped eating, so {name} took {pet} to the vet."
+      }
     },
     {
       "id": "pet-walk-neighbors",
@@ -3837,6 +4621,9 @@
       "effects": {
         "health": 1,
         "bond": 1
+      },
+      "en": {
+        "text": "Walked {pet} even on rainy days. Most of the neighbors' faces became familiar through {pet}."
       }
     },
     {
@@ -3851,7 +4638,11 @@
       "effects": {
         "health": -1
       },
-      "stat": "糖尿病の人は世界で約8億人にのぼる (WHO, 2022)"
+      "stat": "糖尿病の人は世界で約8億人にのぼる (WHO, 2022)",
+      "en": {
+        "text": "A checkup showed high blood sugar. Gave up the sweet tea in the evenings.",
+        "stat": "About 800 million people worldwide have diabetes (WHO, 2022)"
+      }
     },
     {
       "id": "dentist-finally",
@@ -3866,7 +4657,11 @@
         "health": 1
       },
       "cost": -0.02,
-      "stat": "永久歯にむし歯がある人は、世界で約20億人いる (WHO)"
+      "stat": "永久歯にむし歯がある人は、世界で約20億人いる (WHO)",
+      "en": {
+        "text": "A back tooth started to hurt, and {name} finally went to the dentist.",
+        "stat": "About 2 billion people worldwide have tooth decay in their permanent teeth (WHO)"
+      }
     },
     {
       "id": "forgot-anniversary",
@@ -3880,6 +4675,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Both of them forgot their wedding anniversary. They noticed a day late and laughed about it."
       }
     },
     {
@@ -3893,6 +4691,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "Argued with the spouse about household money. The next morning, the spouse had made tea for {name} too."
       }
     },
     {
@@ -3907,7 +4708,10 @@
       "effects": {
         "happy": 2
       },
-      "cost": -0.1
+      "cost": -0.1,
+      "en": {
+        "text": "Bought bricks a few at a time and finally built another wall of the house."
+      }
     },
     {
       "id": "silent-weekend",
@@ -3918,7 +4722,11 @@
       "effects": {
         "happy": -2
       },
-      "stat": "世界の成人の約4人に1人が、とても、またはかなり孤独だと感じている (Meta-Gallup, 2023)"
+      "stat": "世界の成人の約4人に1人が、とても、またはかなり孤独だと感じている (Meta-Gallup, 2023)",
+      "en": {
+        "text": "The whole weekend passed without speaking to anyone.",
+        "stat": "About 1 in 4 adults worldwide say they feel very or fairly lonely (Meta-Gallup, 2023)"
+      }
     },
     {
       "id": "tuberculosis",
@@ -3932,7 +4740,11 @@
       "effects": {
         "health": -5
       },
-      "stat": "2023年には世界で約1,080万人が結核を発症した (WHO)"
+      "stat": "2023年には世界で約1,080万人が結核を発症した (WHO)",
+      "en": {
+        "text": "A cough lasted for weeks and turned out to be tuberculosis. Took the medicine every day for six months.",
+        "stat": "In 2023, about 10.8 million people worldwide fell ill with tuberculosis (WHO)"
+      }
     },
     {
       "id": "tet-bus-home",
@@ -3948,7 +4760,10 @@
       "effects": {
         "bond": 3
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Went home for Tet. The bus was packed with people and luggage, with sacks of rice stacked in the aisle."
+      }
     },
     {
       "id": "tet-altar",
@@ -3963,6 +4778,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Before Tet, cleaned the whole house and set five kinds of fruit on the ancestral altar."
       }
     },
     {
@@ -3979,6 +4797,9 @@
       "effects": {
         "bond": 2,
         "happy": -1
+      },
+      "en": {
+        "text": "Spent days trying to get train tickets home for the Spring Festival."
       }
     },
     {
@@ -3995,6 +4816,9 @@
       "effects": {
         "bond": 3,
         "happy": 2
+      },
+      "en": {
+        "text": "On New Year's Eve, the family folded dumplings together with the Spring Festival Gala on TV."
       }
     },
     {
@@ -4010,6 +4834,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Went back to the family home for Obon, cleaned the family grave and lit incense."
       }
     },
     {
@@ -4026,6 +4853,9 @@
       "effects": {
         "happy": 1,
         "bond": 1
+      },
+      "en": {
+        "text": "Waited in line for the first shrine visit of the New Year. The fortune slip said \"middling luck.\""
       }
     },
     {
@@ -4042,7 +4872,10 @@
       "effects": {
         "bond": 3
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Before Diwali, repainted the house and went around giving boxes of sweets to relatives."
+      }
     },
     {
       "id": "eid-al-adha",
@@ -4058,7 +4891,10 @@
       "effects": {
         "bond": 3
       },
-      "cost": -0.05
+      "cost": -0.05,
+      "en": {
+        "text": "For Eid al-Adha, slaughtered a sheep and took a third of the meat to poor families in the neighborhood."
+      }
     },
     {
       "id": "christmas-dinner",
@@ -4075,7 +4911,10 @@
         "bond": 3,
         "happy": 2
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "Family came from distant towns for Christmas dinner. Someone always told the same old story."
+      }
     },
     {
       "id": "thanksgiving",
@@ -4092,6 +4931,9 @@
       "effects": {
         "bond": 2,
         "happy": 1
+      },
+      "en": {
+        "text": "The Thanksgiving turkey was a little overcooked. After dinner, everyone watched football on TV."
       }
     },
     {
@@ -4108,6 +4950,9 @@
       "effects": {
         "bond": 2,
         "health": -1
+      },
+      "en": {
+        "text": "For the ancestral rites, the women of the family cooked from the night before without stopping."
       }
     },
     {
@@ -4123,6 +4968,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "At Qingming, the family visited the graves and pulled the weeds around them."
       }
     },
     {
@@ -4146,6 +4994,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "On Vesak, offered flowers and lamps at the temple and spent the day quietly in white."
       }
     },
     {
@@ -4161,6 +5012,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "For the eight nights of Hanukkah, lit one more candle each night."
       }
     },
     {
@@ -4177,6 +5031,9 @@
       },
       "effects": {
         "bond": 3
+      },
+      "en": {
+        "text": "At the Passover table, the child read out the Four Questions."
       }
     },
     {
@@ -4193,6 +5050,9 @@
       "effects": {
         "bond": 2,
         "happy": 1
+      },
+      "en": {
+        "text": "At the free kitchen of the gurdwara, sat on the floor in a row with strangers and ate the same meal."
       }
     },
     {
@@ -4211,6 +5071,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "Before the meeting began, an elder poured a little drink on the ground for the ancestors."
       }
     },
     {
@@ -4228,7 +5091,10 @@
         "bond": 3
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Relatives gathered for the famadihana to rewrap the ancestors' remains in new cloth. Music played all day."
+      }
     },
     {
       "id": "patron-saint-fiesta",
@@ -4248,6 +5114,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "For the town's patron saint festival, fireworks and a brass band filled the streets."
       }
     },
     {
@@ -4264,6 +5133,9 @@
       "effects": {
         "happy": 2,
         "health": 1
+      },
+      "en": {
+        "text": "Warmed up in the sauna, then climbed into a hole cut in the lake ice."
       }
     },
     {
@@ -4282,6 +5154,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "On Midsummer night, the sun never quite set before morning came."
       }
     },
     {
@@ -4300,6 +5175,9 @@
       "effects": {
         "bond": 2,
         "happy": 2
+      },
+      "en": {
+        "text": "Had a braai in the yard on the weekend. The same uncle always did the grilling."
       }
     },
     {
@@ -4318,6 +5196,9 @@
       "effects": {
         "bond": 2,
         "happy": 2
+      },
+      "en": {
+        "text": "The family gathered for a Sunday asado. They started eating at three in the afternoon."
       }
     },
     {
@@ -4333,6 +5214,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Held a coffee ceremony with the women of the neighborhood. Smoke from the roasting beans filled the room."
       }
     },
     {
@@ -4349,6 +5233,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "At the New Yam Festival, no one ate until the village elder had tasted the first yam."
       }
     },
     {
@@ -4372,6 +5259,9 @@
       "effects": {
         "bond": 2,
         "happy": 2
+      },
+      "en": {
+        "text": "Before Nowruz, cleaned the whole house and set seven symbolic items on the table."
       }
     },
     {
@@ -4386,7 +5276,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.005
+      "cost": -0.005,
+      "en": {
+        "text": "Another power cut. Paid a nearby shop a small fee each time to charge the phone."
+      }
     },
     {
       "id": "load-shedding",
@@ -4408,6 +5301,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The load-shedding schedule came out. {name} planned dinner around it."
       }
     },
     {
@@ -4427,7 +5323,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Fuel for the generator became the biggest expense after food."
+      }
     },
     {
       "id": "water-truck",
@@ -4440,6 +5339,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The water was off for three days, and a long line formed at the water truck."
       }
     },
     {
@@ -4459,6 +5361,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "Waited two hours in line at the gas station."
       }
     },
     {
@@ -4476,6 +5381,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Haggled at the market and got an extra pile of tomatoes thrown in."
       }
     },
     {
@@ -4499,6 +5407,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Slurped noodles at a street stall after work. The owner no longer needed to ask {name} what to order."
       }
     },
     {
@@ -4517,6 +5428,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "In the evening, talked politics with the usual crowd at the roadside chai stall."
       }
     },
     {
@@ -4534,6 +5448,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Passed the afternoon with friends, handing the mate gourd around."
       }
     },
     {
@@ -4550,7 +5467,11 @@
         "health": -2,
         "bond": 1
       },
-      "stat": "2023年に飢餓に直面した人は、世界で約7億3,000万人だった (FAO『世界の食料安全保障と栄養の現状』2024)"
+      "stat": "2023年に飢餓に直面した人は、世界で約7億3,000万人だった (FAO『世界の食料安全保障と栄養の現状』2024)",
+      "en": {
+        "text": "Food prices went up. The adults skipped dinner so the children could eat.",
+        "stat": "In 2023, about 730 million people worldwide faced hunger (FAO, The State of Food Security and Nutrition in the World 2024)"
+      }
     },
     {
       "id": "rice-price",
@@ -4564,7 +5485,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "The price of rice at the market had gone up again."
+      }
     },
     {
       "id": "microloan-sewing",
@@ -4581,7 +5505,10 @@
         "happy": 2
       },
       "cost": 0.03,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Took a small loan through a women's group and bought a sewing machine."
+      }
     },
     {
       "id": "good-harvest",
@@ -4597,7 +5524,11 @@
         "happy": 3
       },
       "cost": 0.08,
-      "stat": "世界の働く人のおよそ4人に1人は、農業で生計を立てている (ILO)"
+      "stat": "世界の働く人のおよそ4人に1人は、農業で生計を立てている (ILO)",
+      "en": {
+        "text": "It was a good harvest this year. The granary was full, and the surplus was sold in town.",
+        "stat": "About 1 in 4 workers worldwide make their living in agriculture (ILO)"
+      }
     },
     {
       "id": "calf-born",
@@ -4612,7 +5543,10 @@
         "happy": 3,
         "bond": 1
       },
-      "cost": 0.05
+      "cost": 0.05,
+      "en": {
+        "text": "The cow gave birth. The whole family watched over it in the middle of the night."
+      }
     },
     {
       "id": "snakebite",
@@ -4627,7 +5561,11 @@
       "effects": {
         "health": -5
       },
-      "stat": "蛇に咬まれて亡くなる人は、世界で年に約8万〜14万人いる (WHO)"
+      "stat": "蛇に咬まれて亡くなる人は、世界で年に約8万〜14万人いる (WHO)",
+      "en": {
+        "text": "Bitten on the foot by a snake in the field. The hospital in town was two hours away, but {name} survived.",
+        "stat": "Snakebites kill about 80,000 to 140,000 people worldwide each year (WHO)"
+      }
     },
     {
       "id": "dog-bite-rabies",
@@ -4642,7 +5580,11 @@
         "health": -2
       },
       "cost": -0.02,
-      "stat": "狂犬病による死者は年に約5万9,000人で、その4割ほどが15歳未満の子ども (WHO)"
+      "stat": "狂犬病による死者は年に約5万9,000人で、その4割ほどが15歳未満の子ども (WHO)",
+      "en": {
+        "text": "Bitten by a stray dog. Had to go back again and again for rabies shots.",
+        "stat": "Rabies kills about 59,000 people a year, around 40% of them children under 15 (WHO)"
+      }
     },
     {
       "id": "signal-arrives",
@@ -4659,7 +5601,11 @@
         "learn": 1
       },
       "once": true,
-      "stat": "世界人口の約95%が、モバイルブロードバンドの電波が届く場所に住んでいる (ITU, 2023)"
+      "stat": "世界人口の約95%が、モバイルブロードバンドの電波が届く場所に住んでいる (ITU, 2023)",
+      "en": {
+        "text": "Mobile phone signal finally reached the village. On the first night, everyone gathered at one spot on the hill.",
+        "stat": "About 95% of the world's population lives within range of a mobile broadband signal (ITU, 2023)"
+      }
     },
     {
       "id": "video-call-learned",
@@ -4674,7 +5620,10 @@
         "bond": 3,
         "learn": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Learned to make video calls on a smartphone, taught by the children. Saw faraway relatives on a screen for the first time."
+      }
     },
     {
       "id": "wrong-color-order",
@@ -4692,7 +5641,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "Ordered clothes online, and what arrived was a completely different color from the photo."
+      }
     },
     {
       "id": "parking-ticket",
@@ -4707,7 +5659,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "Got a parking ticket."
+      }
     },
     {
       "id": "tax-return",
@@ -4720,6 +5675,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Sighed all night over the tax return forms."
       }
     },
     {
@@ -4734,7 +5692,10 @@
       "effects": {
         "happy": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "The hair on top of his head thinned. He started wearing a hat more often."
+      }
     },
     {
       "id": "hot-flashes",
@@ -4748,7 +5709,10 @@
       "effects": {
         "health": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "For a while, she kept waking in the night with sudden waves of heat."
+      }
     },
     {
       "id": "caring-for-parent",
@@ -4764,7 +5728,10 @@
         "health": -2,
         "happy": -2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Began caring for an aging parent at home. Woke up several times a night."
+      }
     },
     {
       "id": "hajj",
@@ -4783,7 +5750,11 @@
       },
       "cost": -0.5,
       "once": true,
-      "stat": "2024年のハッジの巡礼者は約180万人だった (サウジアラビア統計局)"
+      "stat": "2024年のハッジの巡礼者は約180万人だった (サウジアラビア統計局)",
+      "en": {
+        "text": "Used money saved over many years to make the pilgrimage to Mecca.",
+        "stat": "About 1.8 million pilgrims performed the Hajj in 2024 (General Authority for Statistics, Saudi Arabia)"
+      }
     },
     {
       "id": "kids-abroad-school",
@@ -4801,7 +5772,11 @@
       },
       "cost": -0.2,
       "once": true,
-      "stat": "自分の国の外の大学などで学ぶ学生は、世界で約690万人いる (UNESCO, 2022)"
+      "stat": "自分の国の外の大学などで学ぶ学生は、世界で約690万人いる (UNESCO, 2022)",
+      "en": {
+        "text": "Decided to send the child to school abroad. At the airport, the child never once looked back.",
+        "stat": "About 6.9 million students worldwide study at universities and colleges outside their own country (UNESCO, 2022)"
+      }
     },
     {
       "id": "private-hospital",
@@ -4815,7 +5790,10 @@
       "effects": {
         "health": 2
       },
-      "cost": -0.03
+      "cost": -0.03,
+      "en": {
+        "text": "Had the tests done at a private hospital with short waits. There was a piano in the lobby."
+      }
     },
     {
       "id": "family-vacation-resort",
@@ -4831,7 +5809,10 @@
         "happy": 3,
         "bond": 3
       },
-      "cost": -0.1
+      "cost": -0.1,
+      "en": {
+        "text": "Took the family to a resort abroad. The children never got out of the hotel pool."
+      }
     },
     {
       "id": "school-fees-late-parent",
@@ -4846,6 +5827,9 @@
       "effects": {
         "happy": -3,
         "bond": 1
+      },
+      "en": {
+        "text": "The deadline for the children's school fees passed. {name} went to the school to ask them to wait until next month."
       }
     },
     {
@@ -4859,6 +5843,9 @@
       },
       "effects": {
         "bond": 3
+      },
+      "en": {
+        "text": "For a neighbor's wedding, the women cooked in big pots from early morning. {name} kept chopping onions."
       }
     },
     {
@@ -4874,6 +5861,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Looked at a screen all day. By evening, there was an ache behind the eyes."
       }
     },
     {
@@ -4888,6 +5878,9 @@
       },
       "effects": {
         "learn": 2
+      },
+      "en": {
+        "text": "Started listening to foreign language lessons on the commute."
       }
     },
     {
@@ -4902,6 +5895,9 @@
       "effects": {
         "bond": 3,
         "health": -1
+      },
+      "en": {
+        "text": "The children both worked and asked for help, so {name} began looking after the grandchild."
       }
     },
     {
@@ -4916,7 +5912,10 @@
       "effects": {
         "happy": -2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "A child took a job in a distant city, and the house suddenly felt bigger."
+      }
     },
     {
       "id": "nowhere-to-go",
@@ -4930,7 +5929,10 @@
       "effects": {
         "happy": -2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "After retiring, kept waking at the same time every morning and realizing there was nowhere to go."
+      }
     },
     {
       "id": "allotment",
@@ -4945,6 +5947,9 @@
       "effects": {
         "happy": 3,
         "health": 2
+      },
+      "en": {
+        "text": "Rented a small plot and started growing vegetables. The eggplants did well."
       }
     },
     {
@@ -4960,7 +5965,11 @@
       "effects": {
         "health": -1
       },
-      "stat": "世界では年金を受け取れる高齢者は約8割だが、低所得国ではその割合はずっと低い (ILO)"
+      "stat": "世界では年金を受け取れる高齢者は約8割だが、低所得国ではその割合はずっと低い (ILO)",
+      "en": {
+        "text": "There was no pension. Past sixty, {name} kept selling vegetables at the market.",
+        "stat": "Worldwide, about 80% of older people receive a pension, but the share is much lower in low-income countries (ILO)"
+      }
     },
     {
       "id": "old-friend-dies",
@@ -4972,7 +5981,10 @@
         "happy": -5,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "{friend}, a close friend since youth, died. After the funeral, {name} stayed a while at the place where they used to sit together."
+      }
     },
     {
       "id": "two-obituaries",
@@ -4982,6 +5994,9 @@
       "weight": 1,
       "effects": {
         "happy": -3
+      },
+      "en": {
+        "text": "News came of two acquaintances of the same age dying, one after the other."
       }
     },
     {
@@ -4993,7 +6008,11 @@
       "effects": {
         "health": -1
       },
-      "stat": "世界で約15億人が、何らかの難聴を抱えている (WHO)"
+      "stat": "世界で約15億人が、何らかの難聴を抱えている (WHO)",
+      "en": {
+        "text": "The family said {name} had started talking too loudly.",
+        "stat": "About 1.5 billion people worldwide live with some degree of hearing loss (WHO)"
+      }
     },
     {
       "id": "cataract-surgery",
@@ -5006,7 +6025,11 @@
       },
       "cost": -0.05,
       "once": true,
-      "stat": "白内障で視力が低下している人は、世界で約9,400万人いる (WHO)"
+      "stat": "白内障で視力が低下している人は、世界で約9,400万人いる (WHO)",
+      "en": {
+        "text": "Had cataract surgery. The next day, the walls looked whiter than expected.",
+        "stat": "About 94 million people worldwide have vision impairment caused by cataracts (WHO)"
+      }
     },
     {
       "id": "knee-stairs",
@@ -5017,7 +6040,11 @@
       "effects": {
         "health": -2
       },
-      "stat": "変形性関節症を抱える人は、2020年に世界で約6億人いた (GBD 2021, Lancet Rheumatology 2023)"
+      "stat": "変形性関節症を抱える人は、2020年に世界で約6億人いた (GBD 2021, Lancet Rheumatology 2023)",
+      "en": {
+        "text": "The knees began to hurt every time {name} stood up.",
+        "stat": "About 600 million people worldwide had osteoarthritis in 2020 (GBD 2021, Lancet Rheumatology 2023)"
+      }
     },
     {
       "id": "recheck-nothing",
@@ -5032,7 +6059,10 @@
         "happy": -1,
         "health": 1
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "A stomach exam flagged something, so {name} went back for more tests. It turned out to be nothing."
+      }
     },
     {
       "id": "park-taichi",
@@ -5051,6 +6081,9 @@
       "effects": {
         "health": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "Started doing tai chi in the park in the mornings with people {name} did not know."
       }
     },
     {
@@ -5067,6 +6100,9 @@
       "effects": {
         "health": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Went to the 6:30 a.m. radio exercises every day. The stamps on the attendance card slowly added up."
       }
     },
     {
@@ -5083,6 +6119,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Found a group to play chess with on a park bench."
       }
     },
     {
@@ -5097,6 +6136,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Prices went up, and the pension covered a little less again."
       }
     },
     {
@@ -5113,7 +6155,11 @@
       "effects": {
         "bond": 1
       },
-      "stat": "日本では人口の約29%が65歳以上である (総務省, 2023)"
+      "stat": "日本では人口の約29%が65歳以上である (総務省, 2023)",
+      "en": {
+        "text": "At the neighborhood association meeting, almost everyone was about {name}'s age.",
+        "stat": "About 29% of Japan's population is 65 or older (Ministry of Internal Affairs and Communications, 2023)"
+      }
     },
     {
       "id": "weekly-call",
@@ -5126,6 +6172,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Began waiting each week for a call from a child who lived far away."
       }
     },
     {
@@ -5140,6 +6189,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "A grandchild sang over a video call. The connection was poor, and the song kept going while the face stayed frozen on the screen."
       }
     },
     {
@@ -5153,6 +6205,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "A caller claiming to be from the bank asked for the PIN. {name} hung up without a word."
       }
     },
     {
@@ -5167,7 +6222,10 @@
       "effects": {
         "happy": -5
       },
-      "cost": -0.3
+      "cost": -0.3,
+      "en": {
+        "text": "Fell for an investment pitch that promised sure returns and lost part of the savings."
+      }
     },
     {
       "id": "forgot-why-kitchen",
@@ -5178,7 +6236,11 @@
       "effects": {
         "happy": -1
       },
-      "stat": "認知症の人は世界で約5,700万人いる (WHO, 2021)"
+      "stat": "認知症の人は世界で約5,700万人いる (WHO, 2021)",
+      "en": {
+        "text": "Stood in the kitchen for a while, unable to remember what {name} had come in for.",
+        "stat": "About 57 million people worldwide live with dementia (WHO, 2021)"
+      }
     },
     {
       "id": "old-photos",
@@ -5192,6 +6254,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "Old photos turned up in a box in storage. The young {name} was thinner than remembered."
       }
     },
     {
@@ -5203,7 +6268,10 @@
       "when": {
         "income": "high"
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Wrote a will. Felt a little lighter afterward."
+      }
     },
     {
       "id": "ohenro",
@@ -5224,7 +6292,10 @@
         "happy": 3
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Began walking the Shikoku pilgrimage, a few stretches at a time."
+      }
     },
     {
       "id": "kumbh-mela",
@@ -5245,7 +6316,10 @@
         "bond": 1
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Went to the Kumbh Mela and bathed in the river along with millions of others."
+      }
     },
     {
       "id": "church-cleaning",
@@ -5260,6 +6334,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Had been on the church cleaning rota for twenty years."
       }
     },
     {
@@ -5276,6 +6353,9 @@
       "effects": {
         "health": 1,
         "bond": 1
+      },
+      "en": {
+        "text": "Walking to the mosque for the dawn prayer became the start of each day."
       }
     },
     {
@@ -5295,6 +6375,9 @@
       "effects": {
         "happy": 1,
         "bond": 1
+      },
+      "en": {
+        "text": "Every morning, placed a little sticky rice in the bowls of the monks on their alms round."
       }
     },
     {
@@ -5313,7 +6396,10 @@
         "happy": 4,
         "bond": 3
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "On the morning of Tet, the grandchildren lined up to wish {name} a long life, and {name} handed out red envelopes."
+      }
     },
     {
       "id": "not-the-cook",
@@ -5329,6 +6415,9 @@
       "effects": {
         "bond": 3,
         "happy": 1
+      },
+      "en": {
+        "text": "The family gathered at {name}'s house for the Spring Festival. The one at the stove was no longer {name}."
       }
     },
     {
@@ -5340,7 +6429,10 @@
       "effects": {
         "bond": 2
       },
-      "cost": -0.01
+      "cost": -0.01,
+      "en": {
+        "text": "A young neighbor fixed the broken door."
+      }
     },
     {
       "id": "spouse-snoring",
@@ -5354,6 +6446,9 @@
       "effects": {
         "happy": 1,
         "bond": 1
+      },
+      "en": {
+        "text": "Complained about the spouse's snoring for the first time in forty years."
       }
     },
     {
@@ -5368,6 +6463,9 @@
       "effects": {
         "bond": 3,
         "happy": -2
+      },
+      "en": {
+        "text": "The spouse was in hospital, and {name} brought a packed lunch there every day."
       }
     },
     {
@@ -5378,6 +6476,9 @@
       "weight": 1,
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "A neighbor collapsed with a stroke. {name} called for help and got them to the hospital."
       }
     },
     {
@@ -5391,6 +6492,9 @@
       },
       "effects": {
         "learn": 1
+      },
+      "en": {
+        "text": "The grandchildren used more and more expressions {name} did not understand."
       }
     },
     {
@@ -5407,6 +6511,9 @@
       },
       "effects": {
         "health": 1
+      },
+      "en": {
+        "text": "Bent-backed now, {name} was still the first one out in the paddy when planting season came."
       }
     },
     {
@@ -5421,6 +6528,9 @@
       },
       "effects": {
         "health": -2
+      },
+      "en": {
+        "text": "The young people had all left for the city, so fetching water and gathering firewood fell to the old."
       }
     },
     {
@@ -5435,6 +6545,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "The village primary school closed. Children's voices were no longer heard during the day."
       }
     },
     {
@@ -5446,7 +6559,11 @@
       "effects": {
         "health": -2
       },
-      "stat": "転倒による死者は世界で年に約68万人で、その多くが60歳以上である (WHO)"
+      "stat": "転倒による死者は世界で年に約68万人で、その多くが60歳以上である (WHO)",
+      "en": {
+        "text": "Slipped and fell on a wet floor. Nothing was broken, but the bruise took a week to fade.",
+        "stat": "Falls kill about 680,000 people worldwide each year, most of them over 60 (WHO)"
+      }
     },
     {
       "id": "shutters-check",
@@ -5456,6 +6573,9 @@
       "weight": 1,
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Every morning, the neighbor checked whether {name}'s shutters had been opened."
       }
     },
     {
@@ -5469,6 +6589,9 @@
       },
       "effects": {
         "happy": 1
+      },
+      "en": {
+        "text": "A young person offered a seat on the bus. {name} hesitated, then sat down."
       }
     },
     {
@@ -5483,7 +6606,11 @@
       "effects": {
         "health": -1
       },
-      "stat": "30〜79歳で高血圧の人は世界に約13億人いて、その約半数は自分が高血圧だと知らない (WHO)"
+      "stat": "30〜79歳で高血圧の人は世界に約13億人いて、その約半数は自分が高血圧だと知らない (WHO)",
+      "en": {
+        "text": "Told the blood pressure was high. Started taking a pill every morning.",
+        "stat": "About 1.3 billion people aged 30 to 79 worldwide have hypertension, and about half of them do not know it (WHO)"
+      }
     },
     {
       "id": "grandchild-school-fees",
@@ -5498,7 +6625,10 @@
       "effects": {
         "bond": 3
       },
-      "cost": -0.05
+      "cost": -0.05,
+      "en": {
+        "text": "{name} decided to pay part of a grandchild's school fees."
+      }
     },
     {
       "id": "widow-group",
@@ -5512,6 +6642,9 @@
       "effects": {
         "bond": 3,
         "happy": 2
+      },
+      "en": {
+        "text": "Met every Thursday with women her age to knit together."
       }
     },
     {
@@ -5530,6 +6663,9 @@
       "effects": {
         "learn": 1,
         "bond": 2
+      },
+      "en": {
+        "text": "Joined the local go club. Did not win a single game the first month."
       }
     },
     {
@@ -5544,6 +6680,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Photographed the old albums one by one with a smartphone and sent them to the children."
       }
     },
     {
@@ -5564,7 +6703,11 @@
         "bond": 3
       },
       "once": true,
-      "stat": "世界の平均寿命は、2024年におよそ73歳だった (国連『世界人口推計』2024)"
+      "stat": "世界の平均寿命は、2024年におよそ73歳だった (国連『世界人口推計』2024)",
+      "en": {
+        "text": "Children and grandchildren gathered for the 80th birthday. The cake had just two candles, shaped like numbers.",
+        "stat": "Global life expectancy was about 73 years in 2024 (UN World Population Prospects 2024)"
+      }
     },
     {
       "id": "walking-stick",
@@ -5575,7 +6718,10 @@
       "effects": {
         "health": -1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Started using a walking stick. It was embarrassing at first, but soon {name} could not do without it."
+      }
     },
     {
       "id": "hearing-aid",
@@ -5591,7 +6737,10 @@
         "happy": 2
       },
       "cost": -0.03,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Got a hearing aid. Was surprised at how loud the birds were."
+      }
     },
     {
       "id": "one-left",
@@ -5602,7 +6751,10 @@
       "effects": {
         "happy": -3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Of the friends from youth, only one besides {name} was still alive."
+      }
     },
     {
       "id": "three-funerals",
@@ -5613,7 +6765,10 @@
       "effects": {
         "happy": -2
       },
-      "cost": -0.02
+      "cost": -0.02,
+      "en": {
+        "text": "Went to three funerals this year. The funeral clothes never made it back into the closet."
+      }
     },
     {
       "id": "old-house-layout",
@@ -5623,6 +6778,9 @@
       "weight": 1,
       "effects": {
         "learn": -1
+      },
+      "en": {
+        "text": "Yesterday was easy to forget, but the layout of the childhood home was still clear."
       }
     },
     {
@@ -5637,6 +6795,9 @@
       "effects": {
         "happy": 3,
         "bond": 3
+      },
+      "en": {
+        "text": "A grandchild read a book aloud to {name}. It used to be the other way around."
       }
     },
     {
@@ -5652,7 +6813,10 @@
         "happy": -2,
         "bond": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Moved into a care home. The roommate hummed the same song every day."
+      }
     },
     {
       "id": "under-one-roof",
@@ -5670,6 +6834,9 @@
       "effects": {
         "bond": 3,
         "happy": 2
+      },
+      "en": {
+        "text": "Lived under one roof with a son's family, and every evening sat watching a grandchild do homework."
       }
     },
     {
@@ -5681,6 +6848,9 @@
       "effects": {
         "learn": -2,
         "happy": -1
+      },
+      "en": {
+        "text": "The family said {name} had told the same story three times in one day."
       }
     },
     {
@@ -5691,6 +6861,9 @@
       "weight": 1,
       "effects": {
         "health": 1
+      },
+      "en": {
+        "text": "Started getting sleepy by eight at night and waking at four in the morning."
       }
     },
     {
@@ -5701,6 +6874,9 @@
       "weight": 1,
       "effects": {
         "happy": 1
+      },
+      "en": {
+        "text": "Spent most of the day listening to the radio."
       }
     },
     {
@@ -5711,6 +6887,9 @@
       "weight": 1,
       "effects": {
         "happy": 3
+      },
+      "en": {
+        "text": "The tree {name} planted in the yard as a young person bore fruit again this year."
       }
     },
     {
@@ -5725,6 +6904,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Chatting with familiar old faces in the hospital waiting room became a daily routine."
       }
     },
     {
@@ -5735,6 +6917,9 @@
       "weight": 1,
       "effects": {
         "health": -5
+      },
+      "en": {
+        "text": "Spent two weeks in hospital with pneumonia. On the day of discharge, the road home felt very long."
       }
     },
     {
@@ -5745,6 +6930,9 @@
       "weight": 1,
       "effects": {
         "health": -4
+      },
+      "en": {
+        "text": "A cold got worse, and {name} was in bed for about a month."
       }
     },
     {
@@ -5756,6 +6944,9 @@
       "effects": {
         "bond": 3,
         "happy": 3
+      },
+      "en": {
+        "text": "Taught the neighborhood children old games. The homemade spinning top finally spun on the third try."
       }
     },
     {
@@ -5770,6 +6961,9 @@
       "effects": {
         "bond": 3,
         "happy": 3
+      },
+      "en": {
+        "text": "The grandchildren begged once more for the stories of {name}'s youth. They grew a little bigger with every telling."
       }
     },
     {
@@ -5787,6 +6981,9 @@
       "effects": {
         "bond": 3,
         "happy": 2
+      },
+      "en": {
+        "text": "At the village meeting, no one would decide anything until they had heard what {name} thought."
       }
     },
     {
@@ -5798,6 +6995,9 @@
       "effects": {
         "bond": 2,
         "happy": 1
+      },
+      "en": {
+        "text": "In the evenings, set a chair out in front of the house and greeted people passing by."
       }
     },
     {
@@ -5813,7 +7013,10 @@
         "health": 1
       },
       "cost": -0.03,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Got dentures. For a while, the hard foods {name} loved were off the menu."
+      }
     },
     {
       "id": "headlines-only",
@@ -5826,6 +7029,9 @@
       },
       "effects": {
         "learn": -1
+      },
+      "en": {
+        "text": "Reading became harder, so {name} started reading only the newspaper headlines."
       }
     },
     {
@@ -5843,6 +7049,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The bank closed its teller counter. Could not work the machine and had to ask a young clerk three times."
       }
     },
     {
@@ -5856,6 +7065,9 @@
       },
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "A bundle of old letters turned up. Seeing the sender's name, {name} was quiet for a while."
       }
     },
     {
@@ -5871,6 +7083,9 @@
       },
       "effects": {
         "happy": 1
+      },
+      "en": {
+        "text": "Said the rosary every night before sleep."
       }
     },
     {
@@ -5887,6 +7102,9 @@
       "effects": {
         "bond": 2,
         "happy": 1
+      },
+      "en": {
+        "text": "Read a little of the Quran every day. When the eyes got tired, a grandchild read the rest aloud."
       }
     },
     {
@@ -5902,6 +7120,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "Spent the day drinking tea with people of the same age on the temple veranda."
       }
     },
     {
@@ -5917,6 +7138,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "Lighting the lamp at the household shrine each morning had always been {name}'s task."
       }
     },
     {
@@ -5931,6 +7155,9 @@
       "effects": {
         "bond": 2,
         "health": -1
+      },
+      "en": {
+        "text": "In a record hot summer, the family called every day to ask if {name} had been drinking water."
       }
     },
     {
@@ -5947,6 +7174,9 @@
       "effects": {
         "health": -1,
         "happy": 1
+      },
+      "en": {
+        "text": "In winter, {name} left the kotatsu only a few times a day."
       }
     },
     {
@@ -5958,7 +7188,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Even the neighbors came to celebrate the 100th birthday."
+      }
     },
     {
       "id": "last-visit-hometown",
@@ -5970,7 +7203,10 @@
         "happy": 4,
         "bond": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "With family alongside, visited the hometown one more time."
+      }
     },
     {
       "id": "slow-walk-pet",
@@ -5984,6 +7220,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "{pet} and {name} now walked at about the same slow pace."
       }
     },
     {
@@ -6000,6 +7239,9 @@
       "effects": {
         "bond": 3,
         "health": 1
+      },
+      "en": {
+        "text": "Kept watching over the children on their way to and from primary school. The children called {name} by name."
       }
     },
     {
@@ -6016,7 +7258,10 @@
       "effects": {
         "happy": 1
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Chose the site for {name}'s own grave. The family looked a little uneasy whenever it came up."
+      }
     },
     {
       "id": "one-in-six",
@@ -6027,7 +7272,11 @@
       "effects": {
         "bond": 1
       },
-      "stat": "2030年には世界の6人に1人が60歳以上になる (WHO)"
+      "stat": "2030年には世界の6人に1人が60歳以上になる (WHO)",
+      "en": {
+        "text": "Looking around the neighborhood, there were more and more gray heads like {name}'s.",
+        "stat": "By 2030, 1 in 6 people in the world will be aged 60 or over (WHO)"
+      }
     },
     {
       "id": "village-elder-blessing",
@@ -6041,6 +7290,9 @@
       "effects": {
         "bond": 3,
         "happy": 3
+      },
+      "en": {
+        "text": "A young couple came to {name} for a blessing before their wedding."
       }
     },
     {
@@ -6055,6 +7307,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "Someone pushed the wheelchair to the nearby park to see the flowers."
       }
     },
     {
@@ -6067,7 +7322,10 @@
         "health": -6,
         "happy": -2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Tripped at home and broke a hip. It took three months to walk again."
+      }
     },
     {
       "id": "umbrella-stranger",
@@ -6077,6 +7335,9 @@
       "weight": 1,
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Caught in a sudden rain, and a stranger shared an umbrella."
       }
     },
     {
@@ -6090,6 +7351,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The power was out for a week. Went to bed early by candlelight."
       }
     },
     {
@@ -6118,6 +7382,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "The harmattan season came. The dry, sandy wind cracked the lips."
       }
     },
     {
@@ -6142,6 +7409,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Monsoon rains turned the road into a river. Waded home through knee-deep water."
       }
     },
     {
@@ -6167,6 +7437,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "A dust storm turned the sky yellow. The windows stayed shut all day."
       }
     },
     {
@@ -6182,7 +7455,11 @@
       "effects": {
         "health": -2
       },
-      "stat": "安全に管理された飲み水を使えない人は、世界に20億人以上いる (WHO・UNICEF, 2024)"
+      "stat": "安全に管理された飲み水を使えない人は、世界に20億人以上いる (WHO・UNICEF, 2024)",
+      "en": {
+        "text": "The well near the house ran dry. For weeks, it was a forty-minute walk each way to fetch water.",
+        "stat": "More than 2 billion people worldwide lack safely managed drinking water (WHO/UNICEF, 2024)"
+      }
     },
     {
       "id": "shared-latrine",
@@ -6197,7 +7474,11 @@
       "effects": {
         "happy": -1
       },
-      "stat": "安全に管理されたトイレを使えない人は、世界に約35億人いる (WHO・UNICEF, 2022)"
+      "stat": "安全に管理されたトイレを使えない人は、世界に約35億人いる (WHO・UNICEF, 2022)",
+      "en": {
+        "text": "From early morning, a line formed outside the shared toilet.",
+        "stat": "About 3.5 billion people worldwide lack safely managed sanitation (WHO/UNICEF, 2022)"
+      }
     },
     {
       "id": "bucket-shower",
@@ -6211,7 +7492,11 @@
       "effects": {
         "health": -1
       },
-      "stat": "石けんと水で手を洗える設備が家にない人は、世界に約20億人いる (WHO・UNICEF, 2022)"
+      "stat": "石けんと水で手を洗える設備が家にない人は、世界に約20億人いる (WHO・UNICEF, 2022)",
+      "en": {
+        "text": "The water barely ran from the tap, so {name} washed with a single bucket of water.",
+        "stat": "About 2 billion people worldwide have no place at home to wash their hands with soap and water (WHO/UNICEF, 2022)"
+      }
     },
     {
       "id": "kindness-bus-fare",
@@ -6224,6 +7509,9 @@
       },
       "effects": {
         "happy": 3
+      },
+      "en": {
+        "text": "{name} was short of the bus fare, and the person in the next seat quietly paid it."
       }
     },
     {
@@ -6237,6 +7525,9 @@
       },
       "effects": {
         "bond": 2
+      },
+      "en": {
+        "text": "At the end of the month, borrowed a sack of rice from the neighbors. Paid back a little more the next month."
       }
     },
     {
@@ -6251,7 +7542,10 @@
       "effects": {
         "happy": -2
       },
-      "cost": 0.03
+      "cost": 0.03,
+      "en": {
+        "text": "Pawned a ring to cover a sudden expense."
+      }
     },
     {
       "id": "festival-family",
@@ -6262,6 +7556,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "Went to the town festival with the family. The smell of grilled food from the stalls stayed on their clothes all the way home."
       }
     },
     {
@@ -6272,6 +7569,9 @@
       "weight": 1.5,
       "effects": {
         "health": -2
+      },
+      "en": {
+        "text": "Caught a cold and spent about three days in bed."
       }
     },
     {
@@ -6282,6 +7582,9 @@
       "weight": 1,
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "A tooth hurt, and for days {name} chewed on one side only."
       }
     },
     {
@@ -6292,6 +7595,9 @@
       "weight": 1,
       "effects": {
         "health": -3
+      },
+      "en": {
+        "text": "Got food poisoning from a street stall and spent the night in the bathroom."
       }
     },
     {
@@ -6303,6 +7609,9 @@
       "effects": {
         "bond": 1,
         "happy": 1
+      },
+      "en": {
+        "text": "A new family moved in next door. At their first visit, they brought homemade sweets."
       }
     },
     {
@@ -6317,7 +7626,10 @@
       "effects": {
         "happy": -1
       },
-      "cost": -0.005
+      "cost": -0.005,
+      "en": {
+        "text": "Lost the house keys and went in and out through the window until a spare was made."
+      }
     },
     {
       "id": "lottery-small",
@@ -6331,7 +7643,10 @@
       "effects": {
         "happy": 2
       },
-      "cost": 0.02
+      "cost": 0.02,
+      "en": {
+        "text": "Won a small lottery prize. There was one extra dish at dinner that night."
+      }
     },
     {
       "id": "found-money",
@@ -6342,7 +7657,10 @@
       "effects": {
         "happy": 2
       },
-      "cost": 0.005
+      "cost": 0.005,
+      "en": {
+        "text": "Found a forgotten banknote in the pocket of an old jacket."
+      }
     },
     {
       "id": "heavy-snowfall",
@@ -6367,6 +7685,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Heavy snow closed the roads, and {name} could not leave the house for three days."
       }
     },
     {
@@ -6382,7 +7703,11 @@
         "happy": 3
       },
       "once": true,
-      "stat": "2023年に世界の航空会社が運んだ旅客は、のべ40億人を超えた (ICAO)"
+      "stat": "2023年に世界の航空会社が運んだ旅客は、のべ40億人を超えた (ICAO)",
+      "en": {
+        "text": "Flew on a plane for the first time. At takeoff, {name} gripped the armrest hard.",
+        "stat": "Airlines worldwide carried more than 4 billion passengers in 2023 (ICAO)"
+      }
     },
     {
       "id": "kind-doctor",
@@ -6398,7 +7723,11 @@
         "happy": 3,
         "health": 1
       },
-      "stat": "医療費の自己負担のために家計が苦しくなっている人は、世界で約20億人いる (WHO・世界銀行, 2023)"
+      "stat": "医療費の自己負担のために家計が苦しくなっている人は、世界で約20億人いる (WHO・世界銀行, 2023)",
+      "en": {
+        "text": "The doctor at the clinic said the medicine could be paid for next time.",
+        "stat": "About 2 billion people worldwide face financial hardship because of out-of-pocket health spending (WHO and World Bank, 2023)"
+      }
     },
     {
       "id": "mobile-data-bundle",
@@ -6411,6 +7740,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "The phone ran out of data. Sat outside a shop with free Wi-Fi to read messages."
       }
     },
     {
@@ -6425,6 +7757,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "The family shared a single mobile phone. When it rang, the first question was who the call was for."
       }
     },
     {
@@ -6442,7 +7777,10 @@
         "happy": 3
       },
       "cost": -0.05,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Went on a pilgrimage to a holy site and lit a candle in front of the church."
+      }
     },
     {
       "id": "ramadan-sahur",
@@ -6457,6 +7795,9 @@
       },
       "effects": {
         "bond": 1
+      },
+      "en": {
+        "text": "During Ramadan, got up before dawn to eat. Drank water with sleepy eyes on the clock."
       }
     },
     {
@@ -6473,7 +7814,10 @@
         "happy": 3,
         "health": 2
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "A new well was dug in the village, and the time spent fetching water was cut in half."
+      }
     },
     {
       "id": "solar-lamp",
@@ -6489,7 +7833,10 @@
         "learn": 1
       },
       "cost": -0.02,
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Bought a small solar lamp. Now there was light to work by at night."
+      }
     },
     {
       "id": "minor-car-accident",
@@ -6502,6 +7849,9 @@
       },
       "effects": {
         "health": -2
+      },
+      "en": {
+        "text": "A car hit {name}'s at an intersection. No one was hurt, but the neck ached for a while."
       }
     },
     {
@@ -6512,6 +7862,9 @@
       "weight": 1,
       "effects": {
         "happy": 2
+      },
+      "en": {
+        "text": "Began feeding leftovers to a neighborhood stray cat every day."
       }
     },
     {
@@ -6526,6 +7879,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "The boss shouted at {name} in front of customers. On the way home, {name} ate something sweet alone."
       }
     },
     {
@@ -6541,6 +7897,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "Every break, took a smoke by the roadside with {friend} from work. They hardly ever talked about the job."
       }
     },
     {
@@ -6556,7 +7915,10 @@
       "effects": {
         "happy": 3
       },
-      "once": true
+      "once": true,
+      "en": {
+        "text": "Received the first pay in cash, by hand. {name} counted the bills over and over."
+      }
     },
     {
       "id": "christmas-church-clothes",
@@ -6575,6 +7937,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "On Christmas morning, {name} was dressed in new clothes and taken to church. At noon, a chicken was killed for the meal."
       }
     },
     {
@@ -6592,6 +7957,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "On Christmas morning, went to church in the best clothes {name} had. On the way back, the neighbors gave out sweet fried dough."
       }
     },
     {
@@ -6609,7 +7977,11 @@
         "learn": 2
       },
       "once": true,
-      "stat": "2024年時点で、世界の約26億人がまだインターネットを使っていない (ITU)"
+      "stat": "2024年時点で、世界の約26億人がまだインターネットを使っていない (ITU)",
+      "en": {
+        "text": "Used the internet for the first time at an internet cafe in town, with an older cousin showing how.",
+        "stat": "As of 2024, about 2.6 billion people worldwide still do not use the internet (ITU)"
+      }
     },
     {
       "id": "kitchen-heat",
@@ -6622,6 +7994,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Stood all day by the heat of a kitchen stove or factory furnace, and came home with swollen feet."
       }
     },
     {
@@ -6636,6 +8011,9 @@
       "effects": {
         "happy": 2,
         "bond": 1
+      },
+      "en": {
+        "text": "A customer who came every day now just ordered the usual without a word when {name} looked up."
       }
     },
     {
@@ -6649,6 +8027,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "The seeds were sown, but the rain did not come. Spent every morning watching the sky."
       }
     },
     {
@@ -6663,6 +8044,9 @@
       "effects": {
         "bond": 1,
         "health": -1
+      },
+      "en": {
+        "text": "Took turns with the neighboring field for water from the canal, on a set schedule. Some nights it was {name}'s turn to keep watch."
       }
     },
     {
@@ -6676,6 +8060,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Carried the harvested vegetables to the market first thing in the morning. The price was whatever the middleman said."
       }
     },
     {
@@ -6689,6 +8076,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "A meeting scheduled for one hour ran three. The only decision was the date of the next meeting."
       }
     },
     {
@@ -6703,6 +8093,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "Work message notifications kept going off even on days off."
       }
     },
     {
@@ -6717,6 +8110,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "Looking for work, went around every day reading job notices."
       }
     },
     {
@@ -6731,6 +8127,9 @@
       "effects": {
         "bond": 3,
         "happy": 1
+      },
+      "en": {
+        "text": "Relatives came by one after another to see the little one. The baby would not stop crying, no matter who held it."
       }
     },
     {
@@ -6745,6 +8144,9 @@
       "effects": {
         "happy": 3,
         "bond": 2
+      },
+      "en": {
+        "text": "The little one started copying {name}'s favorite phrases word for word."
       }
     },
     {
@@ -6759,6 +8161,9 @@
       "effects": {
         "bond": 2,
         "happy": -1
+      },
+      "en": {
+        "text": "The night before the child's exam, {name} was the one who could not sleep."
       }
     },
     {
@@ -6773,6 +8178,9 @@
       "effects": {
         "bond": 1,
         "happy": 1
+      },
+      "en": {
+        "text": "The teenager had gone out wearing {name}'s clothes without asking."
       }
     },
     {
@@ -6786,6 +8194,9 @@
       },
       "effects": {
         "happy": -1
+      },
+      "en": {
+        "text": "A day off, alone in the apartment. Did the laundry and the cleaning and spoke to no one."
       }
     },
     {
@@ -6799,6 +8210,9 @@
       },
       "effects": {
         "health": -1
+      },
+      "en": {
+        "text": "Cooking for one became a chore, so {name} ate from the same pot for three days."
       }
     },
     {
@@ -6816,7 +8230,11 @@
         "bond": 1
       },
       "once": true,
-      "stat": "世界では毎年約1,200万人の少女が18歳未満で結婚している (UNICEF)"
+      "stat": "世界では毎年約1,200万人の少女が18歳未満で結婚している (UNICEF)",
+      "en": {
+        "text": "Moved into her husband's family home. For a while, she could not bring herself to ask anyone where things were kept in the kitchen.",
+        "stat": "About 12 million girls worldwide are married before the age of 18 each year (UNICEF)"
+      }
     },
     {
       "id": "in-laws-expectations",
@@ -6831,6 +8249,9 @@
       "effects": {
         "health": -1,
         "happy": -1
+      },
+      "en": {
+        "text": "Her mother-in-law said a daughter-in-law's job was to rise before everyone else and see to the water and the fire."
       }
     },
     {
@@ -6845,6 +8266,9 @@
       },
       "effects": {
         "happy": -2
+      },
+      "en": {
+        "text": "Watched from the doorway as her former classmates walked to school."
       }
     },
     {
@@ -6861,7 +8285,11 @@
         "health": 1
       },
       "once": true,
-      "stat": "低・中所得国では、15〜19歳の少女による出産が年に約1,200万件ある (WHO)"
+      "stat": "低・中所得国では、15〜19歳の少女による出産が年に約1,200万件ある (WHO)",
+      "en": {
+        "text": "Went to her first prenatal checkup with her sister-in-law. The nurse asked {name}'s age twice.",
+        "stat": "In low- and middle-income countries, girls aged 15 to 19 give birth about 12 million times a year (WHO)"
+      }
     },
     {
       "id": "visit-mother-home",
@@ -6877,6 +8305,9 @@
       "effects": {
         "bond": 2,
         "happy": -1
+      },
+      "en": {
+        "text": "She was allowed to go home once a month to see her mother. The walk back always felt heavy."
       }
     },
     {
@@ -6892,6 +8323,9 @@
       "effects": {
         "happy": 2,
         "bond": 2
+      },
+      "en": {
+        "text": "A few words with {friend}, a neighbor who had married into the village at the same age, on the way back from the market became the break in her day."
       }
     }
   ]

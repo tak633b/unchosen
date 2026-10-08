@@ -1,6 +1,7 @@
 import { byCode, type Country } from './countries';
 import type { Sex } from './lifetable';
 import { clamp, type Rng } from './rng';
+import { isEn, L } from '../i18n';
 
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
@@ -132,13 +133,13 @@ export function decide(p: Person, d: Decision): void {
 
 export function choose(p: Person, d: Decision, i: number): void {
   p.decisions++;
-  if (p.reflect) log(p, `決めたこと: ${d.options[i].label}`, p.kinds[p.age] ?? 'family');
+  if (p.reflect) log(p, L(`決めたこと: ${d.options[i].label}`, `Decided: ${d.options[i].label}`), p.kinds[p.age] ?? 'family');
   d.options[i].apply(p);
 }
 
-export const he = (p: Person) => (p.sex === 'F' ? '彼女' : '彼');
-export const childWord = (sex: Sex) => (sex === 'F' ? '女の子' : '男の子');
-export const place = (p: Person) => p.city ?? '村';
+export const he = (p: Person) => (p.sex === 'F' ? L('彼女', 'she') : L('彼', 'he'));
+export const childWord = (sex: Sex) => (sex === 'F' ? L('女の子', 'girl') : L('男の子', 'boy'));
+export const place = (p: Person) => p.city ?? L('村', 'the village');
 
 export function eduLevel(p: Person): EduLevel {
   if (p.school.grad === 'done') return 5;
@@ -147,4 +148,6 @@ export function eduLevel(p: Person): EduLevel {
   return y >= 12 ? 3 : y >= 9 ? 2 : y >= 6 ? 1 : 0;
 }
 
-export const EDU_LABEL = ['学校に通えなかった', '小学校', '中学校', '高校', '大学', '大学院'];
+export const EDU_LABEL = isEn
+  ? ['No schooling', 'Primary school', 'Middle school', 'High school', 'University', 'Graduate school']
+  : ['学校に通えなかった', '小学校', '中学校', '高校', '大学', '大学院'];

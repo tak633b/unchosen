@@ -1,6 +1,7 @@
 // 仕事の一覧。学歴・専攻・農村か都市かで就ける仕事が決まり、給料はその国の所得分布の中の位置で決まる。
 import type { Country } from './countries';
 import { earnings } from './economy';
+import { isEn } from '../i18n';
 import type { EduLevel, Person } from './person';
 import { clamp, normal, type Rng } from './rng';
 
@@ -17,6 +18,36 @@ export interface Job {
 }
 
 export const MAJORS = ['人文学', '経営・経済', '法学', '工学', '情報科学', '医学', '看護・保健', '教育', '農学'] as const;
+
+// 専攻の英語名。内部(p.school.major・JOBS の majors)は日本語のまま持ち、表示の時だけ訳す
+const MAJOR_EN: Record<string, string> = {
+  人文学: 'Humanities', '経営・経済': 'Business & Economics', 法学: 'Law', 工学: 'Engineering', 情報科学: 'Computer Science',
+  医学: 'Medicine', '看護・保健': 'Nursing & Health', 教育: 'Education', 農学: 'Agriculture',
+};
+export const majorName = (m: string): string => (isEn ? MAJOR_EN[m] ?? m : m);
+
+// 仕事の英語名。p.job は日本語のまま持つ(正規表現で種類を見ている箇所があるため)
+const JOB_EN: Record<string, string> = {
+  自分の畑を耕す農家: 'Farmer on own land', 農場の働き手: 'Farmhand', 漁師: 'Fisher', 家畜の世話: 'Herder',
+  日雇い労働者: 'Day laborer', 露天商: 'Street vendor', 住み込みの家事手伝い: 'Live-in domestic worker',
+  縫製工場の工員: 'Garment worker', 建設作業員: 'Construction worker', 運転手: 'Driver', 市場の店主: 'Market stallholder',
+  店員: 'Shop assistant', 料理人: 'Cook', 工場のライン工: 'Factory line worker', 警備員: 'Security guard', 美容師: 'Hairdresser',
+  整備士: 'Mechanic', 電気工: 'Electrician', 事務員: 'Clerk', 販売員: 'Sales staff', 介護士: 'Care worker',
+  銀行の窓口係: 'Bank teller', 教師: 'Teacher', 看護師: 'Nurse', エンジニア: 'Engineer', プログラマー: 'Programmer',
+  '会計・金融の専門職': 'Accountant / finance professional', '会社員(営業・企画)': 'Office worker (sales, planning)',
+  公務員: 'Civil servant', 農業技術者: 'Agricultural technician', '記者・編集者': 'Journalist / editor', 弁護士: 'Lawyer',
+  医師: 'Doctor', 研究者: 'Researcher', 大学の教員: 'University lecturer',
+  // JOBS の外で p.job に入る名前
+  日雇いの仕事: 'Day labor', 家の仕事: 'Work at home', 家事と畑仕事: 'Housework and farm work',
+  畑と家畜の世話: 'Tending fields and animals', 家の仕事と物売り: 'Housework and street selling',
+};
+// 「(リーダー)」の付いた名前もそのまま渡してよい
+export const jobName = (j: string): string => {
+  if (!isEn) return j;
+  const lead = j.endsWith('(リーダー)');
+  const base = lead ? j.slice(0, -'(リーダー)'.length) : j;
+  return `${JOB_EN[base] ?? base}${lead ? ' (team lead)' : ''}`;
+};
 
 export const JOBS: Job[] = [
   { name: '自分の畑を耕す農家', kind: 'farm', edu: 0, pay: -0.3, where: 'rural', maxEdu: 3 },

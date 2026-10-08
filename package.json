@@ -1,6 +1,7 @@
 {
   "name": "unchosen",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "concurrently -k \"node server/server.mjs\" \"vite\"",

@@ -2,13 +2,16 @@
 import { scaleOf } from '../engine/events/common';
 import { bump, decide, log, type Person, type Stats } from '../engine/person';
 import { clamp } from '../engine/rng';
+import { isEn } from '../i18n';
 
-const MAX_TEXT = 160;
+// 英語は同じ内容でも日本語の2倍ほどの文字数になる
+const WIDE = isEn ? 2 : 1;
+const MAX_TEXT = 160 * WIDE;
 const EFFECT = 10;
 const MONEY_MIN = -0.5;
 const MONEY_MAX = 0.3;
 // 生死や人生の骨格を勝手に変える言葉が入った文は使わない (シミュレーションが決めることなので)
-const FORBIDDEN = /亡くな|死ん|死亡|自殺|自死|離婚|結婚し|妊娠|出産|生まれた|移住|引っ越|転勤|転居|がんと|診断され/;
+const FORBIDDEN = /亡くな|死ん|死亡|自殺|自死|離婚|結婚し|妊娠|出産|生まれた|移住|引っ越|転勤|転居|がんと|診断され|\b(?:died|dies|dead|death|passed away|killed|suicide|marri(?:ed|age)|wedding|divorc\w*|pregnan\w*|gave birth|was born|(?:e|im)migrat\w*|moved (?:to|away|out|house|in)|relocat\w*|transferred|diagnos\w*)\b/i;
 
 export interface AiEffects { health?: number; happy?: number; bond?: number; learn?: number }
 export interface AiOption { label: string; hint?: string; result: string; effects: AiEffects; money: number }
@@ -49,14 +52,14 @@ export function sanitizeYear(raw: unknown, ask: { event: boolean; decision: bool
   if (evText && ask.event) out.event = { text: evText, effects: effects(ev!.effects), money: money(ev!.money) };
   const d = o.decision as Record<string, unknown> | undefined;
   if (d && ask.decision) {
-    const title = safe(str(d.title, 30));
+    const title = safe(str(d.title, 30 * WIDE));
     const text = safe(str(d.text));
     const options = (Array.isArray(d.options) ? d.options : []).map((x): AiOption | null => {
       const op = (x ?? {}) as Record<string, unknown>;
-      const label = safe(str(op.label, 30));
+      const label = safe(str(op.label, 30 * WIDE));
       const result = safe(str(op.result));
       if (!label || !result) return null;
-      return { label, hint: safe(str(op.hint, 40)) ?? undefined, result, effects: effects(op.effects), money: money(op.money) };
+      return { label, hint: safe(str(op.hint, 40 * WIDE)) ?? undefined, result, effects: effects(op.effects), money: money(op.money) };
     }).filter((x): x is AiOption => !!x).slice(0, 3);
     if (title && text && options.length >= 2) out.decision = { title, text, options };
   }

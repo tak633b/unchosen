@@ -3,6 +3,7 @@ import data from '../../data/moments.json';
 import { lifeTable } from '../lifetable';
 import { bump, countryOf, log, place, type Person, type Stats } from '../person';
 import { pickWeighted } from '../rng';
+import { isEn, L } from '../../i18n';
 import { isPoor, isRich, scaleOf } from './common';
 import { independent } from './money';
 
@@ -13,6 +14,7 @@ const oneOf = <T>(want: T | T[], have: T) => (Array.isArray(want) ? want.include
 interface Moment {
   id: string;
   text: string;
+  en?: { text: string; stat?: string };
   minAge: number;
   maxAge: number;
   weight: number;
@@ -86,23 +88,26 @@ const fill = (p: Person, text: string) => text
   .replaceAll('{name}', p.given)
   .replaceAll('{city}', place(p))
   .replaceAll('{country}', countryOf(p).name)
-  .replaceAll('{friend}', p.friend ?? '幼なじみ')
+  .replaceAll('{friend}', p.friend ?? L('幼なじみ', 'a childhood friend'))
   .replaceAll('{pet}', p.pet?.name ?? '');
+
+const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
+const statOf = (m: Moment) => (isEn ? m.en?.stat ?? m.stat : m.stat);
 
 // 1年に1〜3つ。土地や暮らしに合う出来事ほど選ばれやすい
 export function moments(p: Person): void {
-  const pool = MOMENTS.filter((m) => matches(p, m) && (!m.text.includes('{pet}') || p.pet) && (!m.text.includes('{friend}') || p.friend));
+  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || p.friend));
   const n = 1 + (p.rng() < 0.6 ? 1 : 0) + (p.rng() < 0.25 ? 1 : 0);
   for (let i = 0; i < n && pool.length; i++) {
     const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1));
     pool.splice(pool.indexOf(m), 1);
     p.recent[m.id] = p.age;
-    const text = fill(p, m.text);
+    const text = fill(p, textOf(m));
     // 子どもの出来事のお金は親の家計の話なので、本人の財布は動かさない
     if (m.cost && independent(p)) p.wealth += scaleOf(p) * m.cost;
     if (m.effects) bump(p, m.effects);
     // 同じ統計の注釈は一生に一度だけ
-    const stat = m.stat && p.recent[`stat:${m.id}`] === undefined ? m.stat : undefined;
+    const stat = m.stat && p.recent[`stat:${m.id}`] === undefined ? statOf(m) : undefined;
     if (stat) p.recent[`stat:${m.id}`] = p.age;
     log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
     p.log[p.log.length - 1].tpl = true; // 用意した文から選んだもの (AI の出来事が届いた年は減らす)
@@ -116,9 +121,13 @@ export function milestone(p: Person): void {
   const c = countryOf(p);
   const born = p.birthCountry === c.code ? c : countryOf({ ...p, country: p.birthCountry });
   const alive = lifeTable(born, p.sex).l[p.age];
-  const who = p.sex === 'F' ? '女の子' : '男の子';
-  const text = p.age === 5
-    ? `5歳の誕生日。${born.name}で生まれた子どものおよそ${(born.u5mr * 100).toFixed(1)}%は、5歳になる前に亡くなる。この子はその時期を越えた。`
-    : `${p.age}歳。同じ年に${born.name}で生まれた${who}のうち、約${Math.round(alive * 100)}%が今も生きている。`;
+  const who = p.sex === 'F' ? L('女の子', 'girls') : L('男の子', 'boys');
+  const text = isEn
+    ? (p.age === 5
+      ? `Fifth birthday. About ${(born.u5mr * 100).toFixed(1)}% of children born in ${born.name} die before age 5. This child made it past that point.`
+      : `Age ${p.age}. Of the ${who} born in ${born.name} the same year, about ${Math.round(alive * 100)}% are still alive.`)
+    : (p.age === 5
+      ? `5歳の誕生日。${born.name}で生まれた子どものおよそ${(born.u5mr * 100).toFixed(1)}%は、5歳になる前に亡くなる。この子はその時期を越えた。`
+      : `${p.age}歳。同じ年に${born.name}で生まれた${who}のうち、約${Math.round(alive * 100)}%が今も生きている。`);
   log(p, text, p.kinds[p.age] ?? 'child');
 }

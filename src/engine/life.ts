@@ -1,6 +1,7 @@
 // 一つの人生を、1年ずつ進める。
 import { byCode, pickBirthCountry, type BirthBasis } from './countries';
-import { homicideHazard, pickCause } from './causes';
+import { causeName, homicideHazard, pickCause } from './causes';
+import { isEn, L, religionName } from '../i18n';
 import { makeName, pickCity, pickReligion } from './identity';
 import { lifeTable, type Sex } from './lifetable';
 import { bump, childWord, countryOf, log, type Person } from './person';
@@ -21,11 +22,15 @@ import { milestone, moments } from './events/moments';
 export const PAUSE_AGES = [5, 15, 30, 50, 70];
 export function pauseQuestion(p: Person, age = p.age): string | null {
   switch (age) {
-    case 5: return 'この子に今いちばん必要なものは、何だろう？';
-    case 15: return !p.school.enrolled ? (p.working ? '学校の代わりに働いている15歳。あなたにとって15歳の学校は、どんな場所だった？' : 'もう学校には通っていない15歳。あなたにとって15歳の学校は、どんな場所だった？') : '今、何になりたい？';
-    case 30: return 'ここまでで一番大きかった選択は？';
-    case 50: return '20歳の自分に一言かけるとしたら？';
-    case 70: return 'この人生で、幸せだった瞬間は？';
+    case 5: return L('この子に今いちばん必要なものは、何だろう？', 'What does this child need most right now?');
+    case 15: return !p.school.enrolled
+      ? (p.working
+        ? L('学校の代わりに働いている15歳。あなたにとって15歳の学校は、どんな場所だった？', 'Fifteen, and working instead of going to school. What was school like for you at 15?')
+        : L('もう学校には通っていない15歳。あなたにとって15歳の学校は、どんな場所だった？', 'Fifteen, and no longer in school. What was school like for you at 15?'))
+      : L('今、何になりたい？', 'What do you want to be?');
+    case 30: return L('ここまでで一番大きかった選択は？', 'What has been the biggest choice so far?');
+    case 50: return L('20歳の自分に一言かけるとしたら？', 'What would you say to yourself at 20?');
+    case 70: return L('この人生で、幸せだった瞬間は？', 'When in this life were you happy?');
     default: return null;
   }
 }
@@ -75,12 +80,25 @@ export function createPerson(o: BirthOptions): Person {
   return p;
 }
 
-export const homeWord = (familyP: number) =>
-  familyP < 0.2 ? 'とても貧しい家' : familyP < 0.4 ? '暮らし向きの苦しい家' : familyP < 0.8 ? 'ふつうの家' : '裕福な家';
+export const homeWord = (familyP: number) => isEn
+  ? (familyP < 0.2 ? 'very poor family' : familyP < 0.4 ? 'struggling family' : familyP < 0.8 ? 'ordinary family' : 'wealthy family')
+  : (familyP < 0.2 ? 'とても貧しい家' : familyP < 0.4 ? '暮らし向きの苦しい家' : familyP < 0.8 ? 'ふつうの家' : '裕福な家');
+
+const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+function birthStoryEn(p: Person, older: number): string {
+  const c = byCode(p.birthCountry);
+  const where = p.city ? `${p.city}, ${c.name}` : `a rural area of ${c.name}`;
+  const home = p.familyP >= 0.8 ? 'a family in the top 20% of incomes' : `${p.familyP >= 0.4 && p.familyP < 0.8 ? 'an' : 'a'} ${homeWord(p.familyP)}`;
+  const sibs = older ? `There ${older === 1 ? 'was 1 older sibling' : `were ${older} older siblings`}.` : 'The first child.';
+  const faith = p.religion === '無宗教' ? 'The family followed no particular religion.' : `Family religion: ${religionName(p.religion)}.`;
+  return `Born a ${childWord(p.sex)} in ${MONTHS_EN[p.birthMonth - 1]} ${p.birthYear}, in ${where}, into ${home}. ${sibs} ${faith}`;
+}
 
 export function birthStory(p: Person): string {
   const c = byCode(p.birthCountry);
   const older = p.siblings.filter((s) => s.age > 0).length;
+  if (isEn) return birthStoryEn(p, older);
   const where = p.city ? `${c.name}の${p.city}` : `${c.name}の農村`;
   const top = p.familyP >= 0.8 ? 'で、所得の上位20%に入る家' : `の${homeWord(p.familyP)}`;
   return `${p.birthYear}年${p.birthMonth}月、${where}${top}に${childWord(p.sex)}として生まれた。${older ? `上に${older}人のきょうだいがいる。` : '最初の子どもだった。'}家は${p.religion === '無宗教' ? '特定の宗教を持たない' : `${p.religion}を信じている`}。`;
@@ -117,7 +135,7 @@ function die(p: Person, cause: string): void {
 // 出産のように意思決定の中で亡くなることもあるので、死亡の記録はここで一度だけ付ける
 export function settle(p: Person): void {
   if (p.alive || p.log.at(-1)?.kind === 'death') return;
-  log(p, `${p.age}歳で亡くなった。死因: ${p.cause}。`, 'death', true);
+  log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
 }
 
 export function advanceYear(p: Person): void {
@@ -126,7 +144,7 @@ export function advanceYear(p: Person): void {
   const q = deathRisk(p);
   if (p.rng() < q) {
     let cause: string;
-    if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = 'エイズ関連の病気';
+    if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;
     else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker);
     die(p, cause);
@@ -153,7 +171,7 @@ export function advanceYear(p: Person): void {
   adultPet(p);
   moments(p);
   if (p.age === 12 && !p.friend) p.friend = makeName(p.rng, p.country, p.rng() < 0.5 ? 'F' : 'M').given;
-  if (p.age === 62 && p.hobbies.length < 3 && p.rng() < 0.5) chooseHobby(p, '新しい趣味を始める？');
+  if (p.age === 62 && p.hobbies.length < 3 && p.rng() < 0.5) chooseHobby(p, L('新しい趣味を始める？', 'Take up a new hobby?'));
   drift(p);
   if (!p.kinds[p.age]) p.kinds[p.age] = baseKind(p);
   if (PAUSE_AGES.includes(p.age) && p.reflect) p.questions.push({ age: p.age, q: '' });

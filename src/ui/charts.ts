@@ -2,10 +2,11 @@ import { COUNTRIES, byCode } from '../engine/countries';
 import { lifeTable, MAX_AGE, type Sex } from '../engine/lifetable';
 import type { Person, YearKind } from '../engine/person';
 import { esc } from './dom';
+import { L } from '../i18n';
 
 export const KIND_LABEL: Record<YearKind, string> = {
-  child: '幼い日々', school: '学び', work: '仕事', family: '家族', love: '恋愛・結婚',
-  move: '移住', hard: '苦しい出来事', ill: '病気', loss: '別れ', old: '老後', death: '死',
+  child: L('幼い日々', 'Childhood'), school: L('学び', 'School'), work: L('仕事', 'Work'), family: L('家族', 'Family'), love: L('恋愛・結婚', 'Love, marriage'),
+  move: L('移住', 'Moving'), hard: L('苦しい出来事', 'Hardship'), ill: L('病気', 'Illness'), loss: L('別れ', 'Loss'), old: L('老後', 'Old age'), death: L('死', 'Death'),
 };
 
 // 人生地図: 1マス = 1年。色は出来事、濃さはその年の幸福。平均寿命の年に枠
@@ -19,7 +20,7 @@ export function lifeMap(p: Person): string {
     const h = p.happyByAge[a];
     const op = a > p.age || h === undefined ? '' : ` style="opacity:${(0.35 + (h / 100) * 0.65).toFixed(2)}"`;
     const mark = (a === p.age && p.alive ? ' now' : '') + (a === e0 ? ' e0' : '');
-    return `<i class="cell k-${cls}${mark}"${op} title="${a}歳${k ? ` · ${KIND_LABEL[k]}` : ''}"></i>`;
+    return `<i class="cell k-${cls}${mark}"${op} title="${L(`${a}歳`, `Age ${a}`)}${k ? ` · ${KIND_LABEL[k]}` : ''}"></i>`;
   }).join('');
   const used = new Set(p.kinds.filter(Boolean));
   const legend = (Object.keys(KIND_LABEL) as YearKind[])
@@ -27,7 +28,7 @@ export function lifeMap(p: Person): string {
     .map((k) => `<span><i class="cell k-${k}"></i>${KIND_LABEL[k]}</span>`)
     .join('');
   return `<div class="map">${cells}</div><div class="legend">${legend}</div>
-    <p class="note">濃いほど幸せだった年。枠のマス = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳</p>`;
+    <p class="note">${L(`濃いほど幸せだった年。枠のマス = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳`, `Darker means a happier year. Outlined square = life expectancy for ${p.sex === 'F' ? 'women' : 'men'} in ${esc(born.name)}, ${e0}`)}</p>`;
 }
 
 // 出生数で重み付けした世界全体の生存曲線
@@ -53,7 +54,7 @@ export function survivalChart(p: Person): string {
   const alive = mine[age];
   const ticks = [0, 20, 40, 60, 80, 100].map((a) => `<text x="${x(a)}" y="${H + 14}" text-anchor="middle">${a}</text>`).join('');
   return `
-  <svg viewBox="-12 -6 ${W + 24} ${H + 22}" class="survival" role="img" aria-label="生存曲線">
+  <svg viewBox="-12 -6 ${W + 24} ${H + 22}" class="survival" role="img" aria-label="${L('生存曲線', 'Survival curve')}">
     <line x1="0" y1="${H}" x2="${W}" y2="${H}" class="axis"/>
     <line x1="0" y1="${y(0.5)}" x2="${W}" y2="${y(0.5)}" class="grid"/>
     <path d="${path(world)}" class="world"/>
@@ -62,6 +63,6 @@ export function survivalChart(p: Person): string {
     <circle cx="${x(age)}" cy="${y(alive)}" r="4" class="dot ${p.alive ? '' : 'dead'}"/>
     ${ticks}
   </svg>
-  <p class="note"><span class="sw mine"></span>${esc(c.name)}の${p.sex === 'F' ? '女性' : '男性'}　<span class="sw world"></span>世界全体</p>
-  <p>同じ年に${esc(c.name)}で生まれた${p.sex === 'F' ? '女の子' : '男の子'}のうち、<b>${(alive * 100).toFixed(1)}%</b> が${age}歳まで生きる。</p>`;
+  <p class="note"><span class="sw mine"></span>${L(`${esc(c.name)}の${p.sex === 'F' ? '女性' : '男性'}`, `${p.sex === 'F' ? 'Women' : 'Men'} in ${esc(c.name)}`)}　<span class="sw world"></span>${L('世界全体', 'World')}</p>
+  <p>${L(`同じ年に${esc(c.name)}で生まれた${p.sex === 'F' ? '女の子' : '男の子'}のうち、<b>${(alive * 100).toFixed(1)}%</b> が${age}歳まで生きる。`, `Of ${p.sex === 'F' ? 'girls' : 'boys'} born in ${esc(c.name)} the same year, <b>${(alive * 100).toFixed(1)}%</b> live to age ${age}.`)}</p>`;
 }

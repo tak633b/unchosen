@@ -1,9 +1,11 @@
 import data from '../data/countries.json';
+import { isEn } from '../i18n';
 import { pickWeighted, type Rng } from './rng';
 
 export interface Country {
   code: string;
-  name: string;
+  name: string; // 表示の言語での国名
+  nameEn?: string;
   region: string;
   births: number;
   pop: number;
@@ -28,7 +30,7 @@ export interface Country {
   est?: string[];
 }
 
-export const COUNTRIES: Country[] = data as Country[];
+export const COUNTRIES: Country[] = (data as Country[]).map((c) => (isEn && c.nameEn ? { ...c, name: c.nameEn } : c));
 export const byCode = (code: string) => COUNTRIES.find((c) => c.code === code)!;
 
 export type BirthBasis = 'births' | 'pop';

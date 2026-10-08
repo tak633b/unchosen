@@ -1,4 +1,5 @@
 // OpenAI 互換の chat/completions を呼ぶ。サーバ中継か、ブラウザから直接か。
+import { lang } from '../i18n';
 import { aiSettings, type AiSettings } from './settings';
 
 export interface Msg { role: 'system' | 'user' | 'assistant'; content: string }
@@ -7,7 +8,7 @@ const TIMEOUT_MS = 60000;
 
 export async function listModels(s: AiSettings): Promise<string[]> {
   if (s.route === 'server') {
-    const r = await fetch('/api/ai/models', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ baseUrl: s.baseUrl, apiKey: s.apiKey }) });
+    const r = await fetch('/api/ai/models', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ baseUrl: s.baseUrl, apiKey: s.apiKey, lang }) });
     const j = await r.json();
     if (!j.success) throw new Error(j.error ?? `HTTP ${r.status}`);
     return j.data.models as string[];
@@ -28,7 +29,7 @@ export async function chat(messages: Msg[], opts: { maxTokens?: number; temperat
       const r = await fetch('/api/ai/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ baseUrl: s.baseUrl, apiKey: s.apiKey, body }),
+        body: JSON.stringify({ baseUrl: s.baseUrl, apiKey: s.apiKey, body, lang }),
         signal: ctrl.signal,
       });
       const j = await r.json();

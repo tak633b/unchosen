@@ -26,8 +26,14 @@ db.exec(`CREATE TABLE IF NOT EXISTS memorial (
   line TEXT NOT NULL,
   message TEXT NOT NULL,
   candles INTEGER NOT NULL DEFAULT 0,
+  lang TEXT NOT NULL DEFAULT 'ja',
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
 )`);
+// 英語版より前に作った DB には lang 列がない。ある人生はすべて日本語のもの
+if (!db.prepare('PRAGMA table_info(memorial)').all().some((c) => c.name === 'lang')) {
+  db.exec("ALTER TABLE memorial ADD COLUMN lang TEXT NOT NULL DEFAULT 'ja'");
+}
+const langOf = (v) => (v === 'en' ? 'en' : 'ja');
 
 // 1つの IP からの書き込みは 1分に10回まで
 const hits = new Map();
@@ -64,10 +70,11 @@ function validEntry(b) {
   if (!/^[A-Z]{3}$/.test(country) || !['F', 'M'].includes(b.sex) || !Number.isInteger(age) || age < 0 || age > 120) return null;
   const cause = str(b.cause, 40);
   if (!cause) return null;
+  if (b.lang !== undefined && !['ja', 'en'].includes(b.lang)) return null;
   const birthYear = Number(b.birthYear);
   return {
     rural: b.rural ? 1 : 0, name: str(b.name, 60), birthYear: Number.isInteger(birthYear) ? birthYear : 0, job: str(b.job, 40),
-    country, sex: b.sex, age, cause, line: str(b.line, 400), message: str(b.message, 200),
+    country, sex: b.sex, age, cause, line: str(b.line, 400), message: str(b.message, 200), lang: langOf(b.lang),
   };
 }
 
@@ -131,7 +138,7 @@ async function aiRelay(req, res) {
   let b;
   try { b = await readJson(req, 64 * 1024); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
   const target = await aiTarget(b?.baseUrl);
-  if (!target) return send(res, 400, { success: false, error: 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)' });
+  if (!target) return send(res, 400, { success: false, error: T(b, 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)', 'This endpoint cannot be relayed (only OpenRouter, OpenAI, or a local/LAN/Tailscale LLM)') });
   const body = b.body && typeof b.body === 'object' ? b.body : null;
   if (!body || typeof body.model !== 'string' || !Array.isArray(body.messages)) return send(res, 400, { success: false, error: 'invalid body' });
   const ctrl = new AbortController();
@@ -149,28 +156,31 @@ async function aiRelay(req, res) {
       body: JSON.stringify({ model: body.model, messages: body.messages, max_tokens: Math.min(2000, Number(body.max_tokens) || 800), temperature: Number(body.temperature) || 1 }),
       signal: ctrl.signal,
     });
-    if (r.status >= 300 && r.status < 400) return send(res, 502, { success: false, error: 'LLM が転送を返したので中継しなかった' });
+    if (r.status >= 300 && r.status < 400) return send(res, 502, { success: false, error: T(b, 'LLM が転送を返したので中継しなかった', 'The LLM returned a redirect, so it was not followed') });
     const text = (await r.text()).slice(0, AI_MAX_RESPONSE);
-    if (!r.ok) return send(res, 502, { success: false, error: `LLM が ${r.status} を返した: ${text.slice(0, 200)}` });
+    if (!r.ok) return send(res, 502, { success: false, error: T(b, `LLM が ${r.status} を返した: `, `The LLM returned ${r.status}: `) + text.slice(0, 200) });
     const j = JSON.parse(text);
     return send(res, 200, { success: true, data: { content: j.choices?.[0]?.message?.content ?? '' } });
   } catch (err) {
-    return send(res, 502, { success: false, error: relayError(err, target.url) });
+    return send(res, 502, { success: false, error: relayError(err, target.url, b) });
   } finally {
     clearTimeout(timer);
   }
 }
 
+// 画面の言語でエラーを返す (クライアントが body に lang を付ける)
+const T = (b, ja, en) => (b?.lang === 'en' ? en : ja);
+
 // つながらなかった理由を、直し方が分かる言葉で返す (サーバのログにも残す。キーは書かない)
-function relayError(err, url) {
+function relayError(err, url, b) {
   const code = err.cause?.code ?? err.code ?? '';
   const where = new URL(url).host;
   console.error('[ai relay]', where, err.name, code || err.message);
-  if (err.name === 'AbortError') return 'LLM の応答が時間内に返らなかった(モデルの読み込み中かもしれない)';
-  if (code === 'ECONNREFUSED') return `${where} に接続を拒否された。そのポートで LLM が動いていない(サーバの機械から見た住所です)`;
-  if (code === 'ENOTFOUND' || code === 'EAI_AGAIN') return `${where} の名前が引けなかった`;
-  if (code === 'ETIMEDOUT' || code === 'UND_ERR_CONNECT_TIMEOUT') return `${where} に届かなかった(住所かファイアウォールを確かめて)`;
-  return `LLM に接続できなかった(${code || err.message})`;
+  if (err.name === 'AbortError') return T(b, 'LLM の応答が時間内に返らなかった(モデルの読み込み中かもしれない)', 'The LLM did not answer in time (the model may still be loading)');
+  if (code === 'ECONNREFUSED') return T(b, `${where} に接続を拒否された。そのポートで LLM が動いていない(サーバの機械から見た住所です)`, `${where} refused the connection. No LLM is running on that port (the address is as seen from the server)`);
+  if (code === 'ENOTFOUND' || code === 'EAI_AGAIN') return T(b, `${where} の名前が引けなかった`, `Could not resolve ${where}`);
+  if (code === 'ETIMEDOUT' || code === 'UND_ERR_CONNECT_TIMEOUT') return T(b, `${where} に届かなかった(住所かファイアウォールを確かめて)`, `Could not reach ${where} (check the address or the firewall)`);
+  return T(b, `LLM に接続できなかった(${code || err.message})`, `Could not connect to the LLM (${code || err.message})`);
 }
 
 // モデル一覧: 設定画面で接続を確かめ、モデル名を選ぶのに使う
@@ -178,7 +188,7 @@ async function aiModels(req, res) {
   let b;
   try { b = await readJson(req, 8192); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
   const target = await aiTarget(b?.baseUrl);
-  if (!target) return send(res, 400, { success: false, error: 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)' });
+  if (!target) return send(res, 400, { success: false, error: T(b, 'この接続先は中継できません (OpenRouter・OpenAI か、手元/LAN/Tailscale の LLM だけ)', 'This endpoint cannot be relayed (only OpenRouter, OpenAI, or a local/LAN/Tailscale LLM)') });
   const url = target.url.replace(/\/chat\/completions$/, '/models');
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 15_000);
@@ -188,7 +198,7 @@ async function aiModels(req, res) {
       headers: { ...(target.host ? { Host: target.host } : {}), ...(typeof b.apiKey === 'string' && b.apiKey ? { Authorization: `Bearer ${b.apiKey}` } : {}) },
       signal: ctrl.signal,
     });
-    if (!r.ok) return send(res, 502, { success: false, error: `モデル一覧が ${r.status} を返した` });
+    if (!r.ok) return send(res, 502, { success: false, error: T(b, `モデル一覧が ${r.status} を返した`, `The model list returned ${r.status}`) });
     const j = JSON.parse((await r.text()).slice(0, 2 * 1024 * 1024));
     const ids = (Array.isArray(j.data) ? j.data : []).map((m) => String(m.id)).slice(0, 500);
     return send(res, 200, { success: true, data: { models: ids } });
@@ -205,7 +215,7 @@ async function api(req, res, url) {
   const ip = req.socket.remoteAddress ?? '';
   if (req.method === 'GET' && url.pathname === '/api/memorial') {
     const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, created_at AS createdAt
-      FROM memorial ORDER BY id DESC LIMIT 100`).all();
+      FROM memorial WHERE lang = ? ORDER BY id DESC LIMIT 100`).all(langOf(url.searchParams.get('lang')));
     return send(res, 200, { success: true, data: rows });
   }
   if (req.method === 'POST' && url.pathname === '/api/memorial') {
@@ -214,8 +224,8 @@ async function api(req, res, url) {
     try { body = await readJson(req); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
     const e = validEntry(body);
     if (!e) return send(res, 400, { success: false, error: 'invalid entry' });
-    const r = db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-      .run(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message);
+    const r = db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+      .run(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message, e.lang);
     return send(res, 201, { success: true, data: { id: Number(r.lastInsertRowid) } });
   }
   const m = url.pathname.match(/^\/api\/memorial\/(\d+)\/candle$/);

@@ -286,3 +286,5 @@ canvas.portrait.pix { width: 56px; height: 63px; image-rendering: pixelated; bor
 .ailine { display: block; color: var(--m-learn); }
 .aistory { background: color-mix(in srgb, var(--m-learn) 8%, transparent); border-radius: 6px; padding: 12px 16px; margin: 10px 0 16px; }
 .aistory p { margin: 0 0 10px; }
+.langsw { text-align: right; margin: -24px 0 8px; }
+.langsw button { padding: 4px 10px; font-size: 13px; }
