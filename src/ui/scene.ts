@@ -61,10 +61,23 @@ export const todOf = (s: Scene): Tod => s.tod ?? (s.night ? 'night' : s.t > 0.7 
 interface Ctx {
   P: Pix; s: Scene; r: Rng; tod: Tod; land: Land; cl: Climate; dir: number; lightsOn: boolean; nightish: boolean;
   e: Rng; year?: number; grid: number; lamp: boolean; // grid: その土地の電気の普及率、lamp: この場面の灯りは電気でなくランプ
+  carX?: number; // 農村の家の車の位置。貯水タンクがあれば右へよける
+  tallF: number; fut: number; // tallF: 行き先の建物の高さの倍率、fut: 未来らしさ 0–1 (2045年から伸び、豊かな国ほど強い)
 }
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 // ビルの高さの時代の倍率: 1950年は今の半分弱、2000年で今と同じ、2050年からまた少し伸びる
 const eraTall = (y?: number) => (y === undefined ? 1 : y < 2000 ? 0.45 + 0.55 * clamp01((y - 1950) / 50) : 1 + 0.35 * clamp01((y - 2045) / 45));
+const tallOf = (s: Scene) => (s.year === undefined ? 1 : eraTall(s.year) * (s.country.gdp < 8000 ? 0.7 + 0.3 * clamp01(s.country.gdp / 8000) : 1));
+const futOf = (s: Scene) => (s.year === undefined ? 0 : clamp01((s.year - 2045) / 45) * (0.25 + 0.75 * clamp01(s.country.gdp / 25000)) * (s.urban ? 1 : 0.8));
+// 行き先の建物の高さ。lo は低い建物が潰れないための下限の倍率
+const vh = (c: Ctx, h: number, lo = 0.3) => Math.min(BY - 3, Math.round(h * Math.max(lo, c.tallF)));
+const GREEN = ['#3a6a32', '#4a8a3a', '#6aa04a'];
+// 屋上と壁面の緑
+function greenOn(c: Ctx, x: number, y: number, w: number, h: number): void {
+  y = Math.round(y); h = Math.round(h);
+  for (let k = 0; k < w; k++) { c.P.px(x + k, y - 1, GREEN[(k * 7) % 3]); if ((k * 5) % 3) c.P.px(x + k, y - 2, GREEN[2]); }
+  for (let yy = y + 2; yy < y + h - 2; yy++) for (let k = 0; k < 3; k++) if (dith(x + k, yy, 0.55)) c.P.px(x + k, yy, GREEN[(yy + k) % 2]);
+}
 const glassy = (c: Ctx) => (c.year ?? 0) >= 2050 && c.s.country.gdp > 15000;
 
 function gradRows(P: Pix, h: number, stops: string[]): void {
@@ -126,17 +139,45 @@ function backdrop(c: Ctx): void {
       x += w + 1;
     }
     // 手前のビル: 人の後ろに2棟
+    const fore: number[][] = [];
     for (const [bx, bw, bh] of [[98 + (s.seed % 4) * 6, 26 + (s.seed % 3) * 4, 18 + tall * (0.5 + r() * 0.5)], [168 + (s.seed % 5) * 4, 22 + (s.seed % 2) * 6, 14 + tall * (0.4 + r() * 0.4)]]) {
       const col = glassy(c) ? ['#5a7a94', '#6a8aa0', '#4a6a8a'][s.seed % 3] : s.country.gdp < 8000 ? ['#b8a890', '#a89a8a', '#c8b498'][s.seed % 3] : ['#8a8a94', '#7a8494', '#9a948a'][s.seed % 3];
       wall(c, bx, BY - bh, bw, bh, col);
       if (glassy(c)) for (let xx = bx + 2; xx < bx + bw - 2; xx += 4) P.box(xx, BY - bh + 2, 1, bh - 4, mixc(col, '#cfe2ee', 0.3)); // ガラスの縦の目地
       for (let y = BY - bh + 4; y < BY - 6; y += 6) for (let xx = bx + 3; xx < bx + bw - 4; xx += 6) win(c, xx, y, 3, 3, 0.45);
+      if (c.fut > 0.15 && c.e() < c.fut + 0.3) greenOn(c, c.dir > 0 ? bx : bx + bw - 3, BY - bh, bw, bh);
+      fore.push([bx, bw, bh]);
     }
+    future(c, fore);
     return;
   }
   ridge(c, 46, 5, 0.025, s.seed % 7, land.far, 0.6, cl === 'arid', cl === 'cold' || land.snow ? '#eef2f8' : undefined);
   ridge(c, 55, 3, 0.045, 3 + (s.seed % 5), land.mid, 0.35, cl === 'arid');
   ridge(c, 63, 1.4, 0.08, s.seed % 3, land.near, 0.1);
+}
+
+// 未来の街: 空中の歩道と、細い高架の軌道を走る無人の車両
+function future(c: Ctx, fore: number[][]): void {
+  const { P, e } = c;
+  if (c.fut <= 0.15) return;
+  const [[ax, aw, ah], [bx, , bh]] = fore, wy = BY - Math.min(ah, bh) + 8;
+  if (wy < BY - 12) { P.box(ax + aw, wy, bx - ax - aw, 3, '#8ab4cc'); P.box(ax + aw, wy, bx - ax - aw, 1, '#cfe6f2'); P.box(ax + aw, wy + 3, bx - ax - aw, 1, '#5a6a7a'); }
+  if (c.fut <= 0.25) return;
+  const ty = BY - 30;
+  for (let x = 20 + Math.floor(e() * 30); x < W; x += 70) P.box(x, ty + 2, 2, BY - ty - 2, '#9aa0a8');
+  P.box(0, ty, W, 2, '#d8dce0'); P.box(0, ty + 2, W, 1, '#7a8088');
+  const px = Math.floor(e() * (W - 30));
+  P.box(px + 1, ty - 5, 18, 5, '#eef0f2'); P.box(px, ty - 4, 20, 3, '#eef0f2'); P.box(px + 3, ty - 4, 14, 2, c.lightsOn ? LIT2 : '#6a8aa4', c.lightsOn);
+}
+// 小さな配送ドローン
+function drones(c: Ctx): void {
+  const { P, e } = c;
+  const n = Math.round(c.fut * 3 + c.fut * 2 * e());
+  for (let i = 0; i < n; i++) {
+    const x = 20 + e() * 280, y = 6 + e() * 30;
+    P.box(x, y, 4, 2, '#2a2a30', true); P.box(x - 2, y - 1, 2, 1, '#6a6a72', true); P.box(x + 4, y - 1, 2, 1, '#6a6a72', true); P.box(x + 1, y + 2, 2, 2, '#c8a050');
+    if (c.lightsOn) P.px(x + 1, y, '#ff6a5a', 1, true);
+  }
 }
 
 function ground(c: Ctx): void {
@@ -193,11 +234,11 @@ function win(c: Ctx, x: number, y: number, w: number, h: number, chance = 0.5): 
   if (on && c.e() < 0.6) { P.box(x + Math.floor((w - 2) / 2), y + Math.floor((h - 2) / 2), Math.min(2, w), Math.min(2, h), '#b8743a', true); P.px(x + Math.floor(w / 2), y + Math.floor(h / 2), '#e0a050', 1, true); }
 }
 
-// 屋根の上 (x, y は屋根のてっぺん)。テレビのアンテナ: 2000年までは八木アンテナ、その後は一部がパラボラ。2040年からは減る
+// 屋根の上 (x, y は屋根のてっぺん)。テレビのアンテナ: 2000年までは八木アンテナ、その後は一部がパラボラ。2040年からは減り、2080年からは無い
 function antenna(c: Ctx, x: number, y: number): void {
   const yr = c.year;
-  if (yr === undefined) return;
-  const fade = 1 - 0.8 * clamp01((yr - 2040) / 40);
+  if (yr === undefined || yr >= 2080) return;
+  const fade = 1 - clamp01((yr - 2040) / 40);
   if (c.e() >= techShare(c.s.country, 'tv', !c.s.urban, yr) * fade) return;
   const { P } = c;
   if (yr >= 2000 && c.e() < 0.4) {
@@ -213,8 +254,27 @@ function antenna(c: Ctx, x: number, y: number): void {
 function solar(c: Ctx, x: number, y: number, w: number): void {
   const yr = c.year;
   if (yr === undefined || yr < 2045 || c.e() >= 0.6 * clamp01((yr - 2040) / 40) * (c.s.country.gdp > 12000 ? 1 : 0.4)) return;
+  panel(c, x, y, w);
+}
+function panel(c: Ctx, x: number, y: number, w: number): void {
   for (let k = 0; k < w; k++) { c.P.px(x + k, y, k % 4 === 3 ? '#4a5a7a' : '#2a3a6a'); c.P.px(x + k, y + 1, k % 4 === 3 ? '#3a4a6a' : '#1e2a50'); }
   if (!c.nightish) c.P.box(x + 1, y, Math.max(1, w - 4), 1, '#6a8ac8');
+}
+// 屋根の小さな風車 (x, y は屋根の上)
+function turbine(c: Ctx, x: number, y: number): void {
+  if (c.e() >= c.fut * 0.7) return;
+  const { P } = c;
+  P.box(x, y - 9, 1, 9, '#d8d8dc');
+  for (const [dx, dy] of [[0, -1], [0, -2], [0, -3], [1, 1], [2, 2], [-1, 1], [-2, 2]]) P.px(x + dx, y - 9 + dy, '#f0f0f2');
+}
+// 農村の未来: 足の付いた貯水タンク (x は左端)
+function tank(c: Ctx, x: number): boolean {
+  if (c.e() >= c.fut * 1.2) return false;
+  const { P } = c, t = tones('#4a7a9a');
+  P.box(x, BY - 14, 1, 14, '#6a6a70'); P.box(x + 8, BY - 14, 1, 14, '#6a6a70'); P.box(x + 4, BY - 14, 1, 14, '#5a8aa4');
+  for (let k = 0; k < 9; k++) P.box(x + k, BY - 22, 1, 8, t[k === (c.dir > 0 ? 8 : 0) ? 2 : k === (c.dir > 0 ? 0 : 8) ? 0 : 1]);
+  P.box(x, BY - 23, 9, 1, t[2]);
+  return true;
 }
 
 function home(c: Ctx): void {
@@ -230,6 +290,8 @@ function home(c: Ctx): void {
       P.box(x + 16, BY - 12, 7, 12, '#2a1e18');
       win(c, x + 28, BY - 15, 5, 4, 0.9);
       antenna(c, x + 26, BY - 28);
+      if (c.fut > 0 && c.e() < c.fut * 1.2) panel(c, x + 6, BY - 27, 10);
+      if (tank(c, x + 46)) c.carX = x + 58;
       break;
     }
     case 'house': {
@@ -245,6 +307,8 @@ function home(c: Ctx): void {
       P.box(x + 4, BY - 11, 10, 1, '#ffffff');
       solar(c, x + 4, BY - 30, 11);
       antenna(c, x + 22, BY - 36);
+      turbine(c, x + 38, BY - 30);
+      if (!s.urban && !s.car) tank(c, x + 50); // 車の置き場と重なるので、車の無い家だけ
       break;
     }
     case 'villa': {
@@ -256,12 +320,14 @@ function home(c: Ctx): void {
       P.box(x + 14, BY - 14, 8, 14, '#5a4a3a');
       solar(c, x + 6, BY - 38, 22);
       antenna(c, x + 50, BY - 36);
+      turbine(c, x + 58, BY - 36);
       for (let xx = x - 6; xx < x + 64; xx++) P.px(xx, BY - 6 - ((xx * 7) % 3 === 0 ? 1 : 0), '#4f7a46');
       break;
     }
     default: { // apartment
       const tall = s.country.gdp > 20000 ? 62 : 48, poor = s.country.gdp < 8000;
-      wall(c, x, BY - tall, 50, tall, poor ? '#c8b8a0' : '#d8d0c4');
+      wall(c, x, BY - tall, 50, tall, glassy(c) ? '#8aa8bc' : poor ? '#c8b8a0' : '#d8d0c4');
+      if (c.fut > 0.2) greenOn(c, c.dir > 0 ? x : x + 47, BY - tall, 50, tall);
       P.box(x, BY - tall, 50, 2, '#8a847a');
       for (let y = BY - tall + 5, f = 0; y < BY - 8; y += 7, f++) {
         for (let xx = x + 4; xx < x + 46; xx += 8) win(c, xx, y, 4, 4, 0.55);
@@ -333,21 +399,27 @@ function place(c: Ctx): void {
       if (s.season === 2) { for (let dy = 0; dy < 8; dy++) P.box(286 - dy, BY - dy, 14 + dy * 0, 1, dy > 5 ? '#e0c060' : '#c8a040'); }
       break;
     }
-    case 'factory':
-      wall(c, x, BY - 26, 72, 26, '#a8a29a');
-      for (let i = 0; i < 4; i++) for (let k = 0; k < 6; k++) P.box(x + i * 18 + k * 3, BY - 26 - k, 18 - k * 3, 1, k % 2 ? '#8a847c' : '#9a948c');
-      P.box(x + 60, BY - 58, 7, 32, '#8a5a4a'); P.box(x + 60, BY - 58, 7, 2, '#5a3a30');
-      for (let i = 0; i < 12; i++) for (let k = 0; k < 4 + i * 0.4; k++) { const sx = x + 63 + i * 1.6 + Math.sin(i + k) * 2, sy = BY - 62 - i * 2.2 + k * 0.6; if (dith(Math.round(sx), Math.round(sy), 0.6 - i * 0.03)) P.px(sx, sy, '#c8c4c0'); }
+    case 'factory': {
+      const fh = vh(c, 26, 0.85), ch = vh(c, 58, 0.6);
+      wall(c, x, BY - fh, 72, fh, '#a8a29a');
+      for (let i = 0; i < 4; i++) for (let k = 0; k < 6; k++) P.box(x + i * 18 + k * 3, BY - fh - k, 18 - k * 3, 1, k % 2 ? '#8a847c' : '#9a948c');
+      P.box(x + 60, BY - ch, 7, ch - fh, '#8a5a4a'); P.box(x + 60, BY - ch, 7, 2, '#5a3a30');
+      for (let i = 0; i < 12; i++) for (let k = 0; k < 4 + i * 0.4; k++) { const sx = x + 63 + i * 1.6 + Math.sin(i + k) * 2, sy = BY - ch - 4 - i * 2.2 + k * 0.6; if (dith(Math.round(sx), Math.round(sy), 0.6 - i * 0.03)) P.px(sx, sy, '#c8c4c0'); }
       for (let xx = x + 4; xx < x + 56; xx += 7) win(c, xx, BY - 16, 4, 4, 0.6);
       P.box(x + 24, BY - 9, 12, 9, '#5a5a5a');
+      if (c.fut > 0.2) panel(c, x + 2, BY - fh - 2, 52);
       break;
-    case 'office':
-      wall(c, x + 30, BY - 46, 30, 46, '#b8b0a4');
-      for (let y = BY - 42; y < BY - 4; y += 5) for (let xx = x + 33; xx < x + 57; xx += 5) win(c, xx, y, 3, 3, 0.5);
-      wall(c, x, BY - 70, 34, 70, '#4a6a84');
-      for (let y = BY - 67; y < BY - 4; y += 4) for (let xx = x + 3; xx < x + 32; xx += 4) win(c, xx, y, 3, 2, 0.45);
+    }
+    case 'office': {
+      const lh = vh(c, 46), th = vh(c, 70);
+      wall(c, x + 30, BY - lh, 30, lh, '#b8b0a4');
+      for (let y = BY - lh + 4; y < BY - 4; y += 5) for (let xx = x + 33; xx < x + 57; xx += 5) win(c, xx, y, 3, 3, 0.5);
+      wall(c, x, BY - th, 34, th, '#4a6a84');
+      for (let y = BY - th + 3; y < BY - 4; y += 4) for (let xx = x + 3; xx < x + 32; xx += 4) win(c, xx, y, 3, 2, 0.45);
       P.box(x + 13, BY - 6, 8, 6, '#2a3440');
+      if (c.fut > 0.2) { greenOn(c, c.dir > 0 ? x : x + 31, BY - th, 34, th); greenOn(c, c.dir > 0 ? x + 30 : x + 57, BY - lh, 30, lh); }
       break;
+    }
     case 'stall':
       wall(c, x + 4, BY - 12, 46, 12, '#8a5a3a');
       for (let i = 0; i < 12; i++) P.box(x + i * 4, BY - 26, 4, 5, i % 2 ? '#e4e0d4' : '#c8483c');
@@ -356,13 +428,16 @@ function place(c: Ctx): void {
       for (let i = 0; i < 14; i++) { const g = ['#d8a031', '#6b8e4e', '#c8553d', '#e8c84a', '#8a3a6a'][Math.floor(r() * 5)]; P.box(x + 6 + i * 3, BY - 14 - (i % 2), 2, 2, g); }
       P.box(x + 54, BY - 7, 10, 7, '#a07a4a'); P.box(x + 54, BY - 7, 10, 1, '#7a5a3a');
       break;
-    case 'hospital':
-      wall(c, x, BY - 38, 66, 38, '#eef0ee');
-      P.box(x, BY - 38, 66, 2, '#b8c0c0');
-      for (let y = BY - 32; y < BY - 12; y += 7) for (let xx = x + 4; xx < x + 64; xx += 9) win(c, xx, y, 5, 4, 0.5);
-      P.box(x + 28, BY - 50, 10, 10, '#f4f4f2'); P.box(x + 31, BY - 49, 4, 8, '#d84040', c.nightish); P.box(x + 29, BY - 47, 8, 4, '#d84040', c.nightish);
+    case 'hospital': {
+      const hh = vh(c, 38, 0.6);
+      wall(c, x, BY - hh, 66, hh, '#eef0ee');
+      P.box(x, BY - hh, 66, 2, '#b8c0c0');
+      for (let y = BY - hh + 6; y < BY - 12; y += 7) for (let xx = x + 4; xx < x + 64; xx += 9) win(c, xx, y, 5, 4, 0.5);
+      P.box(x + 28, BY - hh - 12, 10, 10, '#f4f4f2'); P.box(x + 31, BY - hh - 11, 4, 8, '#d84040', c.nightish); P.box(x + 29, BY - hh - 9, 8, 4, '#d84040', c.nightish);
       P.box(x + 24, BY - 10, 18, 2, '#5a8a9a'); P.box(x + 27, BY - 8, 12, 8, '#8fb4cc');
+      if (c.fut > 0.2) greenOn(c, c.dir > 0 ? x : x + 63, BY - hh, 66, hh);
       break;
+    }
     case 'bench':
       tree(c, x + 50, BY);
       P.box(x + 6, BY + 4, 20, 2, '#8a5a3a'); P.box(x + 6, BY, 20, 1, '#8a5a3a'); P.box(x + 6, BY + 2, 20, 1, '#6a4a2a');
@@ -403,14 +478,15 @@ function place(c: Ctx): void {
 function lamp(c: Ctx, x: number): void {
   const { P } = c;
   P.box(x, BY - 40, 2, 40 + (GY - BY) - 6, '#2a2a34'); P.box(x - 4, BY - 41, 8, 2, '#3a3a44');
-  if (!c.lightsOn) { P.box(x - 3, BY - 39, 6, 1, '#d8d8c8'); return; }
-  P.box(x - 3, BY - 39, 6, 1, LIT2, true);
+  const led = c.fut > 0.15; // 未来の街灯は白い LED
+  if (!c.lightsOn) { P.box(x - 3, BY - 39, 6, 1, led ? '#eef4ff' : '#d8d8c8'); return; }
+  P.box(x - 3, BY - 39, 6, 1, led ? '#f4f8ff' : LIT2, true);
   // 光だまり: 下へ広がる三角をディザで
   for (let y = BY - 38; y < GY + 2; y++) {
     const half = (y - BY + 38) * 0.42;
     for (let k = -half; k <= half; k++) {
       const xx = Math.round(x + 1 + k), t = 1 - (Math.abs(k) / (half + 1)) * 0.8 - (y - BY + 38) / 90;
-      if (t > 0.3 && dith(xx, y, t - 0.15)) P.px(xx, y, '#f8e0a0', 0.22, true);
+      if (t > 0.3 && dith(xx, y, t - 0.15)) P.px(xx, y, led ? '#e8f0ff' : '#f8e0a0', led ? 0.3 : 0.22, true);
     }
   }
 }
@@ -532,6 +608,19 @@ function car(c: Ctx, x: number, y: number, k = c.s.seed): void {
   if (c.lightsOn) P.box(x + (dir > 0 ? 27 : 0), y + 4, 1, 2, '#fff4c0', true);
 }
 
+// 未来の畑: 灌漑の配管と、屋根に太陽光パネルの付いた電動の農機
+function farmFuture(c: Ctx): void {
+  const { P, e } = c;
+  if (c.fut <= 0 || e() >= c.fut * 1.5) return;
+  P.box(200, BY + 1, W - 200, 1, '#8a9098');
+  for (let x = 206; x < W; x += 26) { P.box(x, BY - 3, 1, 4, '#8a9098'); if (!c.nightish) for (let k = -2; k <= 2; k++) if (dith(x + k, BY - 4, 0.5)) P.px(x + k, BY - 4 - Math.abs(k) % 2, '#cfe6f2', 0.7); }
+  if (e() >= c.fut) return;
+  const x = 268, t = tones('#4a8aa0');
+  P.box(x, BY - 4, 16, 5, t[1]); P.box(x, BY - 4, 16, 1, t[2]);
+  P.box(x + 3, BY - 10, 8, 6, '#9ac0d8'); P.box(x + 2, BY - 11, 11, 1, '#2a3a6a');
+  P.box(x + 1, BY + 1, 5, 4, '#1a1a1a'); P.box(x + 12, BY + 2, 3, 3, '#1a1a1a');
+}
+
 function goat(c: Ctx, x: number): void {
   const { P } = c;
   for (let i = 0; i < 6; i++) P.dark(x + 3 - c.dir * i, BY + 6, 0.3);
@@ -547,22 +636,24 @@ export function paintScene(s: Scene): Pix {
   const land = landOf(cl, season);
   const e = makeRng(hash(s.seed, 0xe7)), year = s.year;
   const grid = year === undefined ? 1 : techShare(s.country, 'electricity', !s.urban, year);
-  const c: Ctx = { P, s: { ...s, season }, r: makeRng(hash(s.seed, 0x5c)), tod, land, cl, dir: tod === 'morning' ? -1 : 1, lightsOn: tod === 'dusk' || tod === 'night', nightish: tod === 'night', e, year, grid, lamp: e() >= grid };
+  const c: Ctx = { P, s: { ...s, season }, r: makeRng(hash(s.seed, 0x5c)), tod, land, cl, dir: tod === 'morning' ? -1 : 1, lightsOn: tod === 'dusk' || tod === 'night', nightish: tod === 'night', e, year, grid, lamp: e() >= grid, tallF: tallOf(s), fut: futOf(s) };
   sky(c);
   P.tint = TINT[tod];
   backdrop(c);
   ground(c);
   // 電柱: 電気が来ている土地だけ。2045年からは豊かな国から地中へ
-  const buried = year === undefined ? 0 : 0.85 * clamp01((year - 2045) / 40) * clamp01(s.country.gdp / 20000);
+  const buried = year === undefined ? 0 : clamp01((year - 2045) / 35) * clamp01(s.country.gdp / 20000);
   if ((!s.urban || s.country.gdp < 8000) && (year === undefined || (e() < grid && e() >= buried))) pole(c);
   home(c);
   tree(c, 84 + (s.seed % 7) * 3, BY);
   if (!s.urban) tree(c, 200 + (s.seed % 6) * 4, BY + 1, 0.9);
   place(c);
+  if (s.place === 'field') farmFuture(c);
   if (s.urban && s.place !== 'bench') lamp(c, 206);
-  if (s.car) { if (s.urban) car(c, 34, 87); else car(c, 70, BY - 2); }
+  if (s.car) { if (s.urban) car(c, 34, 87); else car(c, c.carX ?? 70, BY - 2); }
   if (s.urban && year !== undefined && e() < techShare(s.country, 'car', false, year)) car(c, 262, 88, s.seed + 2); // 道を通る車
   if (!s.urban && s.poor && c.r() < 0.6 && s.place !== 'field') goat(c, 186);
+  if (c.fut > 0) drones(c);
   // 家族: 真ん中に並べる。赤ちゃんは隣の大人が抱く
   const widths = s.figures.map((f) => (f.kind === 'baby' ? 0 : Math.max(3, Math.round(f.height * 1.75 * 0.26)) + 5));
   const span = widths.reduce((a, b) => a + b, 0) + (s.pet ? 14 : 0);
