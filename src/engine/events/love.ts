@@ -9,6 +9,7 @@ import { clamp, normal, pick } from '../rng';
 import { yearly } from './common';
 import { freshName, mourn, newId, shared } from '../bonds';
 import { breakUp, keepLateSpouse } from './bonds';
+import { because, birthWhy, childMarriageWhy } from '../why';
 
 const TRAITS = isEn
   ? ['kind', 'cheerful', 'quiet', 'earnest', 'quick to laugh', 'dependable', 'strong-willed', 'easygoing']
@@ -96,6 +97,7 @@ export function childMarriage(p: Person): void {
     ? `At ${p.age}, was married off to ${partner.name}, ${partner.age}, chosen by her parents.${wasInSchool ? ' Never went back to school.' : ''}`
     : `${p.age}歳で、親の決めた${partner.age}歳の${partner.name}と結婚させられた。${wasInSchool ? '学校には戻れなかった。' : ''}`, 'hard', true,
     L(`${c.name}では女性のおよそ${Math.round(c.childMarriage * 100)}%が18歳になる前に結婚している (UNICEF)`, `In ${c.name}, about ${Math.round(c.childMarriage * 100)}% of women marry before 18 (UNICEF)`), [partner.id!]);
+  because(p, childMarriageWhy(p, c));
   bump(p, { happy: -15, health: -3 });
   // 農村では嫁ぎ先の畑で働く。町では家事を担い、外で働くかは後で決まる
   if (!p.working && p.age >= 12 && !p.city) {
@@ -153,6 +155,7 @@ export function giveBirth(p: Person): void {
       p.spouse!.alive = false;
       log(p, L(`妻の${p.spouse!.name}が出産で亡くなった。`, `His wife, ${p.spouse!.name}, died in childbirth.`), 'loss', true,
         L(`${c.name}では出産10万件あたりおよそ${Math.round(c.mmr)}人の母親が亡くなる (WHO)`, `In ${c.name}, about ${Math.round(c.mmr)} mothers die per 100,000 births (WHO)`), [p.spouse!.id!]);
+      because(p, birthWhy(p, c, motherAge));
       mourn(p, p.spouse!, -25, -15);
     }
   }

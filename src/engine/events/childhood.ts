@@ -6,6 +6,7 @@ import { clamp, normal, pick } from '../rng';
 import { isRich } from './common';
 import { homeShare } from './work';
 import { isEn, L } from '../../i18n';
+import { because, homeWhy, schoolWhy } from '../why';
 
 const TEMPERAMENTS: [string, Partial<Stats>, string][] = [
   [L('好奇心の強い子', 'Curious'), { learn: 8 }, L('学び +8', 'Learning +8')],
@@ -125,6 +126,7 @@ export function childhood(p: Person): void {
     p.selfEmployed = true;
     log(p, L(`${p.job}をして家族を手伝い始めた。`, `Started helping the family by ${p.job}.`), 'work', false,
       L('世界でおよそ1億6千万人の子どもが働いている (ILO・UNICEF 2021)', 'About 160 million children worldwide are in child labor (ILO, UNICEF 2021)'));
+    because(p, homeWhy(p, c));
   }
 }
 
@@ -134,6 +136,7 @@ function startSchool(p: Person, c: Country): void {
   p.school.target = clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3), 0, 12);
   if (p.school.target < 1) {
     log(p, L('みんなが学校へ行く年になったが、通えなかった。', 'Reached school age, but could not go.'), 'hard', true);
+    because(p, schoolWhy(p, c));
     return;
   }
   p.school.enrolled = true;

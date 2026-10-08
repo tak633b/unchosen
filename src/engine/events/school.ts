@@ -6,6 +6,7 @@ import { MAJORS, majorName } from '../jobs';
 import { bump, countryOf, decide, log, type Person } from '../person';
 import { clamp, pickWeighted } from '../rng';
 import { startWork } from './work';
+import { because, schoolWhy } from '../why';
 
 const levelOf = (years: number) => isEn
   ? (years >= 12 ? 'finished high school' : years >= 9 ? 'finished middle school' : years >= 6 ? 'finished primary school' : `left primary school after ${Math.round(years)} years`)
@@ -63,6 +64,7 @@ function askToLeave(p: Person): void {
 function leaveSchool(p: Person): void {
   p.school.enrolled = false;
   log(p, isEn ? capital(levelOf(p.school.years)) + '.' : levelOf(p.school.years) + '。', 'school');
+  if (p.school.years < 12) because(p, schoolWhy(p, countryOf(p)));
   if (p.age >= 10) startWork(p);
 }
 
@@ -100,8 +102,10 @@ function afterHighSchool(p: Person, c: Country): void {
       {
         label: L('大学を受験する', 'Apply to university'), hint: L(`合格の見込み ${Math.round(chance * 100)}%`, `${Math.round(chance * 100)}% chance of admission`),
         apply: (q) => {
-          if (q.rng() < chance) enterUni(q, c, null);
-          else { log(q, L('大学には受からなかった。', 'Did not get into university.'), 'school'); startWork(q); }
+          const why = L(`合格の見込みは${Math.round(chance * 100)}%だった。${c.name}の大学進学率${Math.round(Math.min(1, c.tertiary) * 100)}%に、家の暮らし向きと学力をかけて決まる`,
+            `The odds of getting in were ${Math.round(chance * 100)}%: ${c.name}'s ${Math.round(Math.min(1, c.tertiary) * 100)}% university rate, scaled by family money and grades`);
+          if (q.rng() < chance) { enterUni(q, c, null); because(q, why); }
+          else { log(q, L('大学には受からなかった。', 'Did not get into university.'), 'school'); because(q, why); startWork(q); }
         },
       },
       { label: L('働き始める', 'Start working'), hint: L('早くからお金を稼ぐ', 'Earn money sooner'), apply: (q) => startWork(q) },

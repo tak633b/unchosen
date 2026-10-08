@@ -108,7 +108,7 @@ export function logPanel(p: Person, open: boolean): string {
   const items = [...p.log].reverse();
   const shown = open ? items : items.slice(0, 14);
   return `<h3>${L('人生の記録', 'Life record')} <small>${L('新しい順', 'newest first')}</small></h3><ol class="log">${shown.map((e) =>
-    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span class="age">${L(`${e.age}歳`, `${e.age}`)}</span><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}</span></li>`).join('')}</ol>
+    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span class="age">${L(`${e.age}歳`, `${e.age}`)}</span><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span></li>`).join('')}</ol>
     ${items.length > 14 ? `<button class="link" data-act="logmore">${open ? L('閉じる', 'Close') : L(`もっと見る(${items.length})`, `More (${items.length})`)}</button>` : ''}`;
 }
 
@@ -168,5 +168,5 @@ export function yearPanel(p: Person): string {
   const recent = p.log.filter((e) => e.age >= p.age - 2).reverse();
   const ages = [...new Set(recent.map((e) => e.age))];
   return `<h3>${L('このごろ', 'Lately')} <small>${L('最近3年の出来事', 'the last three years')}</small></h3>${ages.map((a) => `<div class="yr"><span class="yrage">${L(`${a}歳`, `Age ${a}`)}</span><ol class="log">${recent.filter((e) => e.age === a).map((e) =>
-    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}</span>${e.who?.length ? `<span class="whos">${e.who.map((id) => `<button data-act="person" data-v="${id}">${face(id)}</button>`).join('')}</span>` : ''}</li>`).join('')}</ol></div>`).join('')}`;
+    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span>${e.who?.length ? `<span class="whos">${e.who.map((id) => `<button data-act="person" data-v="${id}">${face(id)}</button>`).join('')}</span>` : ''}</li>`).join('')}</ol></div>`).join('')}`;
 }

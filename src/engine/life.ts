@@ -17,6 +17,7 @@ import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
 import { bonds } from './events/bonds';
+import { because, birthWhy, deathWhy, joinWhy } from './why';
 import { ensureBonds, freshName } from './bonds';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
@@ -144,6 +145,12 @@ function die(p: Person, cause: string): void {
 export function settle(p: Person): void {
   if (p.alive || p.log.at(-1)?.kind === 'death') return;
   log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
+  because(p, p.cause === causeName('出産時の合併症') ? birthWhy(p, countryOf(p), p.age) : joinWhy([
+    deathWhy(countryOf(p), p.sex, p.age),
+    p.smoker && L('タバコを吸っていた', 'smoked'),
+    p.illness && L(`${p.illness.name}を患っていた`, `was living with ${p.illness.name}`),
+    p.hiv === 'untreated' && L('HIVの治療を受けられなかった', 'never got HIV treatment'),
+  ]));
 }
 
 export function advanceYear(p: Person): void {

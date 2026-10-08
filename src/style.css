@@ -243,6 +243,7 @@ canvas.mini { width: 26px; height: auto; border-radius: 50%; border: 1px solid v
 .log li.big { font-weight: 700; }
 .log .age { color: var(--sub); font-size: 12px; margin-right: 8px; font-variant-numeric: tabular-nums; }
 .log .stat { display: block; color: var(--faint); font-weight: 400; margin-top: 2px; }
+.log .why { display: block; color: var(--sub); font-weight: 400; font-size: 12px; margin-top: 3px; padding-left: 8px; border-left: 2px solid var(--glow); }
 .log li.k-loss, .log li.k-death { border-color: var(--k-loss); }
 .log li.k-hard, .log li.k-ill { border-color: var(--k-ill); }
 .log li.k-love, .log li.k-family { border-color: var(--k-love); }

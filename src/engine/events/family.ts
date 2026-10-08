@@ -7,6 +7,7 @@ import { makeName } from '../identity';
 import { qAt } from './common';
 import { pickCause } from '../causes';
 import { isEn, L } from '../../i18n';
+import { because, deathWhy } from '../why';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -26,6 +27,7 @@ export function family(p: Person): void {
     if (!cause) continue;
     const young = p.age < 18;
     log(p, L(`${word}が${rel.age}歳で亡くなった(${cause})。`, `${wordEn} died at ${rel.age} (${cause}).`), 'loss', true, undefined, [rel.id!]);
+    because(p, deathWhy(countryOf(p), rel.sex, rel.age));
     mourn(p, rel, young ? -18 : -8, young ? -10 : -4);
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
     if (!p.mother.alive && !p.father.alive && p.age >= 18) inherit(p);
@@ -42,6 +44,7 @@ export function family(p: Person): void {
       log(p, isEn
         ? `${s.sex === 'F' ? 'Sister' : 'Brother'} ${s.name} died ${s.age <= 1 ? 'as a newborn' : `at ${s.age}`}.`
         : `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true, undefined, [s.id!]);
+      because(p, deathWhy(countryOf(p), s.sex, s.age));
       mourn(p, s, -10);
     }
   }
@@ -50,6 +53,7 @@ export function family(p: Person): void {
     const cause = relDies(p, p.spouse);
     if (cause) {
       log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, `Spouse ${p.spouse.name} died at ${p.spouse.age} (${cause}).`), 'loss', true, undefined, [p.spouse.id!]);
+      because(p, deathWhy(countryOf(p), p.spouse.sex, p.spouse.age));
       mourn(p, p.spouse, -20, -15);
     }
   }
@@ -58,6 +62,7 @@ export function family(p: Person): void {
     k.age++;
     if (relDies(p, k)) {
       log(p, L(`子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, `Child ${k.name} died ${k.age <= 1 ? 'before turning 1' : `at ${k.age}`}.`), 'loss', true, undefined, [k.id!]);
+      because(p, deathWhy(countryOf(p), k.sex, k.age));
       mourn(p, k, -25, -5);
     }
     if (k.age === 18 && p.age < 80 && k.alive) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');

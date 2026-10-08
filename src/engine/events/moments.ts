@@ -7,6 +7,7 @@ import { isEn, L } from '../../i18n';
 import { isPoor, isRich, scaleOf } from './common';
 import { independent } from './money';
 import { remember } from '../bonds';
+import { because, deathWhy } from '../why';
 
 type Wealth = 'poor' | 'middle' | 'rich';
 type Income = 'low' | 'mid' | 'high';
@@ -95,9 +96,13 @@ const fill = (p: Person, text: string) => text
 const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
 const statOf = (m: Moment) => (isEn ? m.en?.stat ?? m.stat : m.stat);
 
+const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。輪の上でも亡くなったことにする
+
 // 1年に1〜3つ。土地や暮らしに合う出来事ほど選ばれやすい
 export function moments(p: Person): void {
-  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || p.friend));
+  // {friend} の出来事は、その友だちが生きているときだけ (亡くなった友だちと出かける話を出さない)
+  const friend = (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend);
+  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || (p.friend && friend?.alive !== false)));
   const n = 1 + (p.rng() < 0.6 ? 1 : 0) + (p.rng() < 0.25 ? 1 : 0);
   for (let i = 0; i < n && pool.length; i++) {
     const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1));
@@ -112,8 +117,11 @@ export function moments(p: Person): void {
     if (stat) p.recent[`stat:${m.id}`] = p.age;
     log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
     p.log[p.log.length - 1].tpl = true; // 用意した文から選んだもの (AI の出来事が届いた年は減らす)
-    const f = textOf(m).includes('{friend}') ? (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend) : undefined;
+    const f = textOf(m).includes('{friend}') ? friend : undefined;
     if (f) { p.log[p.log.length - 1].who = [f.id!]; remember(p, f, text, 1, 'moment'); }
+    if (f && m.id === FRIEND_DIES) { f.alive = false; f.diedAt = p.age; because(p, deathWhy(countryOf(p), f.sex, f.age));
+      for (let j = pool.length - 1; j >= 0; j--) if (textOf(pool[j]).includes('{friend}')) pool.splice(j, 1);
+    }
   }
 }
 

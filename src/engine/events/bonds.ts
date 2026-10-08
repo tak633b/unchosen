@@ -5,6 +5,7 @@ import { bump, countryOf, log, type Person, type Relative, type Role, type Tie }
 import { clamp, normal, pick } from '../rng';
 import { relDies } from './family';
 import { L } from '../../i18n';
+import { because, deathWhy } from '../why';
 
 const inTouch = (t: Tie) => t.alive && t.until === undefined;
 const tiesOf = (p: Person, role: Role) => (p.ties ?? []).filter((t) => t.role === role);
@@ -63,6 +64,7 @@ function ageTies(p: Person): void {
     t.age++;
     if (t.role === 'ex' || t.until !== undefined || !relDies(p, t)) continue;
     log(p, L(`${callName(t, t.role)}が${t.age}歳で亡くなった。`, `${t.name} died at ${t.age}.`), 'loss', (t.bond ?? 0) >= 60, undefined, [t.id!]);
+    because(p, deathWhy(countryOf(p), t.sex, t.age));
     mourn(p, t, GRIEF[t.role] ?? -4);
   }
 }
