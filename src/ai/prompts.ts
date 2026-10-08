@@ -6,6 +6,9 @@ import { currentIncome } from '../engine/events/common';
 import { EDU_LABEL, eduLevel, type Person, type Relative } from '../engine/person';
 import { isEn, L, regionName, religionName } from '../i18n';
 import type { Msg } from './client';
+import { kindNote } from './words';
+import type { BondAsk } from './apply';
+import type { Role, Tie } from '../engine/person';
 
 const RULES = `あなたは、実際の統計にもとづく人生シミュレーション「Unchosen」の語り手です。
 - 渡された事実(国・年齢・家族・仕事・お金・健康)に矛盾することは書かない。
@@ -70,7 +73,45 @@ function facts(p: Person): string {
   ].join('\n');
 }
 
-export interface YearAsk { moments: number; event: boolean; decision: boolean }
+export interface YearAsk { moments: number; event: boolean; decision: boolean; bond?: BondAsk }
+
+const ROLE_JA: Record<Role, string> = { mother: '母', father: '父', sibling: 'きょうだい', spouse: '連れ合い', partner: '恋人', child: '子ども', friend: '友だち', mentor: '恩師', rival: 'ライバル', ex: '昔の恋人', grandchild: '孫' };
+const ROLE_EN: Record<Role, string> = { mother: 'mother', father: 'father', sibling: 'sibling', spouse: 'spouse', partner: 'partner', child: 'child', friend: 'friend', mentor: 'mentor', rival: 'rival', ex: 'former partner', grandchild: 'grandchild' };
+const WHY_JA: Record<BondAsk['why'], string> = { moved: 'この1年で関係が大きく動いた', long: 'しばらく一緒に過ごしていない', old: '年老いた親', lost: '連絡が途絶えている', close: 'いま近しい人' };
+const WHY_EN: Record<BondAsk['why'], string> = { moved: 'the relationship shifted a lot this past year', long: 'they have not spent time together in years', old: 'an aging parent', lost: 'they have lost touch', close: 'one of the closest people now' };
+const TONE_LIST = 'warm, help, reunion, reconcile, worry, distant, quarrel, hurt';
+
+// 場面に出てくる人と、その人と過ごした出来事
+function personJa(t: Tie): string {
+  const mem = (t.mem ?? []).map((m) => `  ${m.age}歳: ${m.text}${kindNote(m.k) ? `[${kindNote(m.k)}]` : ''}`).join('\n') || '  (記録なし)';
+  return `${t.name ?? ROLE_JA[t.role]}(${ROLE_JA[t.role]}・${t.age}歳・近さ ${Math.round(t.bond ?? 50)}/100・主人公が${t.since}歳の時から${t.until !== undefined ? `・${t.until}歳から疎遠` : ''})\n一緒に過ごした出来事:\n${mem}`;
+}
+function personEn(t: Tie): string {
+  const mem = (t.mem ?? []).map((m) => `  Age ${m.age}: ${m.text}${kindNote(m.k) ? ` [${kindNote(m.k)}]` : ''}`).join('\n') || '  (nothing recorded)';
+  return `${t.name ?? ROLE_EN[t.role]} (${ROLE_EN[t.role]}, age ${t.age}, closeness ${Math.round(t.bond ?? 50)}/100, known since the main character was ${t.since}${t.until !== undefined ? `, out of touch since ${t.until}` : ''})\nWhat they went through together:\n${mem}`;
+}
+
+function bondPartsJa(b: BondAsk): string[] {
+  const n = b.t.name ?? ROLE_JA[b.t.role];
+  const out = [`この年に関わる人: ${personJa(b.t)}\n選んだ理由: ${WHY_JA[b.why]}`];
+  if (b.dead.length) out.push(`亡くなった人(生きている人として書かない・場面に出さない): ${b.dead.join('、')}`);
+  if (!b.household) out.push(`${n}とは一緒に暮らしていない。同居している書き方をしない。`);
+  if (b.scene) out.push(`scene: ${n}と主人公の短い場面を1つ(1〜2文、80字以内)。上の出来事と矛盾させず、その国・時代・暮らし向きに即して具体的に。tone は場面の種類を次から1つ: ${TONE_LIST}`);
+  if (b.decision) out.push(`decision: ${n}が関わる、この年ならではの一回きりの決断を1つ(お金を貸すか・引き取るか・連絡を取るか など)。選択肢は2〜3個。それぞれに結果の一文、その後の二人の関係を表す tone(${TONE_LIST} から1つ)、幸福への影響 effects.happy と money を付ける。`);
+  return out;
+}
+function bondPartsEn(b: BondAsk): string[] {
+  const n = b.t.name ?? ROLE_EN[b.t.role];
+  const out = [`Person involved this year: ${personEn(b.t)}\nWhy them: ${WHY_EN[b.why]}`];
+  if (b.dead.length) out.push(`People who have died (never write them as alive, keep them out of the scene): ${b.dead.join(', ')}`);
+  if (!b.household) out.push(`${n} does not live with the main character. Do not write them as living together.`);
+  if (b.scene) out.push(`scene: one short scene between ${n} and the main character (1 or 2 sentences, at most 25 words). Do not contradict the events above; keep it concrete and true to the country, period and standard of living. tone is the kind of scene, one of: ${TONE_LIST}`);
+  if (b.decision) out.push(`decision: one choice involving ${n} that comes up this year (lend money, take them in, get back in touch, and so on). 2 or 3 options, each with a one-sentence result, a tone for how things stand between them afterwards (one of ${TONE_LIST}), an effect on happiness (effects.happy) and money.`);
+  return out;
+}
+const bondSchema = (b?: BondAsk) => (b?.scene ? `"scene": {"text": "…", "tone": "…"},` : '');
+const decisionSchema = (b: BondAsk | undefined, label: string, hint: string, result: string) =>
+  b?.decision ? `"options": [{"label": "${label}", "hint": "${hint}", "result": "${result}", "tone": "…", "effects": {"happy": 0}, "money": 0}]` : `"options": [{"label": "${label}", "hint": "${hint}", "result": "${result}", "effects": {"health": 0, "happy": 0, "bond": 0, "learn": 0}, "money": 0}]`;
 
 // 1年分をまとめて1回で頼む
 export function yearPrompt(p: Person, ask: YearAsk): Msg[] {
@@ -78,10 +119,12 @@ export function yearPrompt(p: Person, ask: YearAsk): Msg[] {
   const parts = [`「${p.age}歳の1年」に起きることを考えてください。`, `moments: その年の小さな出来事を${ask.moments}つ。それぞれ1文、60字以内。`];
   if (ask.event) parts.push('event: 予想していなかった出来事を1つ(良いことでも悪いことでもよい。事故・災害・幸運・人との出会い・失せ物など)。暮らしの目盛りへの影響を付ける。');
   if (ask.decision) parts.push('decision: この人がこの年に迫られる、その状況ならではの選択を1つ。選択肢は2〜3個で、それぞれに結果の一文と影響を付ける。');
+  if (ask.bond) parts.push(...bondPartsJa(ask.bond));
   const schema = `{
   "moments": [{"text": "…"}],
   ${ask.event ? `"event": {"text": "…", "effects": {"health": 0, "happy": 0, "bond": 0, "learn": 0}, "money": 0},` : ''}
-  ${ask.decision ? `"decision": {"title": "短い見出し", "text": "状況の説明(1〜2文)", "options": [{"label": "選択肢(15字以内)", "hint": "見込み(20字以内)", "result": "選んだあとに起きたこと(1文)", "effects": {"health": 0, "happy": 0, "bond": 0, "learn": 0}, "money": 0}]},` : ''}
+  ${bondSchema(ask.bond)}
+  ${ask.decision || ask.bond?.decision ? `"decision": {"title": "短い見出し", "text": "状況の説明(1〜2文)", ${decisionSchema(ask.bond, '選択肢(15字以内)', '見込み(20字以内)', '選んだあとに起きたこと(1文)')}},` : ''}
   "_": 0
 }`;
   return [
@@ -97,10 +140,12 @@ function yearPromptEn(p: Person, ask: YearAsk): Msg[] {
   const parts = [`Think of what happens in "the year at age ${p.age}".`, `moments: ${ask.moments} small events from that year. One sentence each, at most 15 words.`];
   if (ask.event) parts.push('event: one unexpected event (good or bad: an accident, a disaster, a stroke of luck, meeting someone, losing something). Give its effect on the life meters.');
   if (ask.decision) parts.push('decision: one choice this person faces this year, specific to their situation. 2 or 3 options, each with a one-sentence result and its effects.');
+  if (ask.bond) parts.push(...bondPartsEn(ask.bond));
   const schema = `{
   "moments": [{"text": "…"}],
   ${ask.event ? `"event": {"text": "…", "effects": {"health": 0, "happy": 0, "bond": 0, "learn": 0}, "money": 0},` : ''}
-  ${ask.decision ? `"decision": {"title": "short heading", "text": "the situation (1 or 2 sentences)", "options": [{"label": "option (at most 4 words)", "hint": "likely outcome (at most 5 words)", "result": "what happened after choosing it (1 sentence)", "effects": {"health": 0, "happy": 0, "bond": 0, "learn": 0}, "money": 0}]},` : ''}
+  ${bondSchema(ask.bond)}
+  ${ask.decision || ask.bond?.decision ? `"decision": {"title": "short heading", "text": "the situation (1 or 2 sentences)", ${decisionSchema(ask.bond, 'option (at most 4 words)', 'likely outcome (at most 5 words)', 'what happened after choosing it (1 sentence)')}},` : ''}
   "_": 0
 }`;
   return [
@@ -153,5 +198,29 @@ export function othersPrompt(others: Person[]): Msg[] {
   return [
     { role: 'system', content: RULES },
     { role: 'user', content: `同じ1秒に生まれた4人の、いまの様子を一言ずつ(30字以内)。亡くなった人は、残された人の様子で。\n${list}\n次の形の JSON で答えてください: {"lines": ["…", "…", "…", "…"]}` },
+  ];
+}
+
+// 最後までそばにいた人たちの言葉。渡した出来事だけを根拠にさせる
+export function wordsPrompt(p: Person, ts: Tie[]): Msg[] {
+  if (isEn) {
+    return [
+      { role: 'system', content: RULES_EN.replace('Do not let the main character die. ', '') },
+      {
+        role: 'user',
+        content: `${facts(p)}\n\nThis person died at age ${p.age}. The people who were closest at the end each say a few words about ${p.given}.\n\n${ts.map((t) => `id ${t.id}: ${t.name} is ${p.given}'s ${ROLE_EN[t.role]}. ${personEn(t)}`).join('\n\n')}
+For each person, 2 or 3 sentences (at most 45 words) in their own voice, first person. Base them only on what is listed under "What they went through together" for that person. Do not add events, places, years or names that are not listed there. Write names of people and places exactly as given. The listed events are written from the main character's side; the note in [ ] says what happened as this person saw it. Speak from this person's side (for a child, the main character is their mother or father).
+Answer with JSON in this shape: {"words": [{"id": 0, "text": "…"}]}`,
+      },
+    ];
+  }
+  return [
+    { role: 'system', content: RULES.replace('主人公を死なせない。', '') },
+    {
+      role: 'user',
+      content: `${facts(p)}\n\nこの人は${p.age}歳で亡くなりました。最後までそばにいた人たちが、${p.given}について短く語ります。\n\n${ts.map((t) => `id ${t.id}: ${t.name}は${p.given}の${ROLE_JA[t.role]}。${personJa(t)}`).join('\n\n')}
+それぞれ2〜3文(120字以内)、その人の口から出る話し言葉で。根拠にしてよいのは、その人の「一緒に過ごした出来事」に書かれていることだけ。書かれていない出来事・地名・年・人名を足さない。人名・地名は渡した表記のまま書く(カタカナに直さない)。出来事の文は主人公の側から書かれている。[ ] の注はその人から見て何があったか。語る人の側から話す(子どもにとって主人公は母か父)。
+次の形の JSON で答えてください: {"words": [{"id": 0, "text": "…"}]}`,
+    },
   ];
 }

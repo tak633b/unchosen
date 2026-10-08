@@ -6,7 +6,7 @@ import { isEn, L } from '../i18n';
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
 
-export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean }
+export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string }
 export interface Stats { health: number; happy: number; money: number; learn: number; bond: number }
 
 export interface Option {
@@ -24,7 +24,18 @@ export interface Decision {
 }
 export interface Question { age: number; q: string; context?: string; a?: string }
 
-export interface Relative { alive: boolean; age: number; sex: Sex; name?: string; job?: string }
+export interface Relative {
+  alive: boolean; age: number; sex: Sex; name?: string; job?: string;
+  id?: number;        // 人の輪で使う、この人生の中で一意の番号
+  bond?: number;      // 主人公との近さ 0–100
+  mem?: Memory[];     // 一緒に過ごした出来事 (新しいものほど後ろ)
+  diedAt?: number;    // 亡くなった時の主人公の年齢
+  since?: number;     // 輪に入った時の主人公の年齢 (Tie では必須)
+}
+// 主人公から見た関係。family 系は Person の mother/father/siblings/spouse/children に、それ以外は ties に入る
+export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild';
+export interface Memory { age: number; text: string; d: number; k?: string } // d: その時の近さの変化。k: 出来事の種類 (最後の言葉を、語る人の目線で組むため)
+export interface Tie extends Relative { role: Role; since: number; until?: number; of?: number } // since/until は主人公の年齢。of は孫の親 (子) の id
 export interface Illness { name: string; years: number; mult: number }
 export interface Pet { kind: '犬' | '猫'; name: string; age: number; life: number }
 
@@ -88,6 +99,9 @@ export interface Person {
   temperament?: string;
   hobbies: string[];
   friend?: string;
+  ties?: Tie[];      // 家族以外の人 (友人・恩師・ライバル・元の相手・孫)
+  nextId?: number;
+  nameKeys?: string[]; // 主人公・きょうだい・子・孫に使った名 (Name.key)。家の中で同じ名前にしない
   smoker?: boolean;
   drinker?: boolean;
   hiv: 'none' | 'untreated' | 'treated';
@@ -110,8 +124,8 @@ export interface Person {
 
 export const countryOf = (p: Person): Country => byCode(p.country);
 
-export function log(p: Person, text: string, kind: YearKind, big = false, stat?: string): void {
-  p.log.push({ age: p.age, text, kind, big, ...(stat ? { stat } : {}) });
+export function log(p: Person, text: string, kind: YearKind, big = false, stat?: string, who?: number[]): void {
+  p.log.push({ age: p.age, text, kind, big, ...(stat ? { stat } : {}), ...(who?.length ? { who } : {}) });
   // その年を一番よく表す出来事で人生地図の色を決める
   const rank: YearKind[] = ['child', 'school', 'work', 'old', 'family', 'love', 'move', 'hard', 'ill', 'loss', 'death'];
   const cur = p.kinds[p.age];

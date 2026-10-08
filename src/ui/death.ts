@@ -3,16 +3,18 @@ import { byCode, type BirthBasis } from '../engine/countries';
 import { formatMoney, monthlyYen, yen } from '../engine/economy';
 import { netWorth } from '../engine/events/money';
 import { lifeTable } from '../engine/lifetable';
-import { EDU_LABEL, eduLevel, type Person } from '../engine/person';
+import { EDU_LABEL, eduLevel, type Person, type Tie } from '../engine/person';
 import { lifeStory } from '../engine/summary';
 import { drawCard, shareCard } from './cards';
 import { paintScenes, sceneAttr, sceneOf, toData, type SceneData } from './pixel';
-import { lifeStoryAi } from '../ai/director';
+import { lastWords, lastWordsAi, lifeStoryAi, type LastWord } from '../ai/director';
 import { aiOn } from '../ai/settings';
 import { $, esc, load, pct, save } from './dom';
 import { isEn, L, lang } from '../i18n';
 import { jobName, majorName } from '../engine/jobs';
 import { causeName } from '../engine/causes';
+import { people } from '../engine/bonds';
+import { lastWordsHtml, mountRing, paintFaces } from './ring';
 
 const MAX_PAST = 10;
 
@@ -24,6 +26,19 @@ export interface PastLife {
   message?: string; date: string;
   scene?: SceneData;
   aiStory?: { title: string; story: string };
+  words?: LastWord[];          // 最後にそばにいた人の言葉
+  circle?: CircleTie[];        // 人の輪の要約 (顔と輪を描くだけの分。mem は持たない)
+  religion?: string;           // 顔を描くのに使う
+  spouse?: { id: number; sex: Person['sex'] };
+}
+
+export type CircleTie = Pick<Tie, 'id' | 'name' | 'role' | 'sex' | 'age' | 'alive' | 'bond' | 'diedAt' | 'since' | 'until'>;
+const toCircle = (p: Person): CircleTie[] =>
+  people(p).map(({ id, name, role, sex, age, alive, bond, diedAt, since, until }) => ({ id, name, role, sex, age, alive, bond, diedAt, since, until }));
+
+// 前世の記録から顔を描くための、主人公の代わり。lookOfMe / lookOfRel と人の輪が読む欄だけを持つ
+function standIn(l: PastLife): Person {
+  return { seed: l.seed, given: l.given, sex: l.sex, age: l.age, alive: false, birthCountry: l.birthCountry, country: l.country, religion: l.religion ?? '', spouse: l.spouse } as unknown as Person;
 }
 
 export const pastLives = () => load<PastLife[]>('lives', []);
@@ -75,6 +90,10 @@ function toPast(p: Person, others: Person[], basis: BirthBasis): PastLife {
     others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o) })),
     date: new Date().toISOString(),
     scene: toData(sceneOf(p)),
+    words: lastWords(p),
+    circle: toCircle(p),
+    religion: p.religion,
+    spouse: p.spouse?.id !== undefined ? { id: p.spouse.id, sex: p.spouse.sex } : undefined,
   };
 }
 
@@ -107,11 +126,30 @@ export function deathRecord(l: PastLife): string {
     ${answers.length ? `<h3>${L('止まった時間に書いたこと', 'Written when time stopped')}</h3><ul class="answers">${answers.map((q) => `<li><small>${L(`${q.age}歳・`, `Age ${q.age} · `)}${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul>` : ''}
     ${l.message ? `<p class="message">${L(`「${esc(l.message)}」`, `"${esc(l.message)}"`)}</p>` : ''}
   </article>
+  ${l.circle ? `<section class="panel">
+    <h3>${L('最後にそばにいた人', 'Who was there at the end')}</h3>
+    <div class="lastwords">${lastWordsHtml(standIn(l), l.circle as Tie[], l.words ?? [])}</div>
+  </section>
+  <section class="panel">
+    <h3>${L('一生の輪', 'The whole circle')} <small>${L(`出会った${l.circle.length}人`, `${l.circle.length} people in one life`)}</small></h3>
+    <div class="finalring"></div>
+  </section>` : ''}
   <section class="panel">
     <h3>${L('同じ1秒に生まれた5人', 'Five born in the same second')} <small>${L('短く生きた順', 'shortest life first')}</small></h3>
     <ol class="five">${five.map((o) => `<li><span class="age">${L(`${o.age}歳`, `${o.age}`)}</span><div><b>${esc(o.name)}</b>${L('・', ' · ')}${esc(byCode(o.country).name)}${o.story ? '' : L('・この人生のあなた', ' · you, this life')}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
     <p class="note">${L(`同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。`, `The five born in the same second lived to ${five.map((o) => o.age).join(', ')}. None of them chose where to be born.`)}</p>
   </section>`;
+}
+
+// deathRecord を置いたあとに呼ぶ: 場面・顔・輪を描く
+export function paintLife(root: HTMLElement, l: PastLife): void {
+  paintScenes(root);
+  if (!l.circle) return;
+  const me = standIn(l);
+  const ties = l.circle as Tie[];
+  root.querySelectorAll<HTMLElement>('.lastwords').forEach((el) => paintFaces(el, me, ties));
+  const ring = root.querySelector<HTMLElement>('.finalring');
+  if (ring) mountRing(ring, me, undefined, false, ties);
 }
 
 const aiStoryHtml = (s: { title: string; story: string }) =>
@@ -139,7 +177,17 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       </div>
     </section></main>`;
   window.scrollTo(0, 0);
-  paintScenes(app);
+  paintLife(app, life);
+  if (aiOn('story') && life.words?.length) {
+    const box = app.querySelector<HTMLElement>('.lastwords')!;
+    void lastWordsAi(p).then((words) => {
+      if (!document.body.contains(box) || !words.some((w) => w.ai)) return;
+      life.words = words;
+      save('lives', [life, ...pastLives().slice(1)]);
+      box.innerHTML = lastWordsHtml(standIn(life), life.circle as Tie[], words);
+      paintFaces(box, standIn(life), life.circle as Tie[]);
+    });
+  }
   if (aiOn('story')) {
     const box = $('#aistory');
     box.innerHTML = `<p class="note"><i class="aitag">AI</i>${L('この人の一生を物語にしている…', 'Writing this life as a story…')}</p>`;

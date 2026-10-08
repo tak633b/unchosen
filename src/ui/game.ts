@@ -4,7 +4,7 @@ import { advanceYear, createPerson, fromSaved, pauseQuestion, settle, toSaved, t
 import { choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
 import { randomSeed } from '../engine/rng';
 import { nowLine } from '../engine/summary';
-import { lifeMap, survivalChart } from './charts';
+import { lifeBand, survivalChart } from './charts';
 import { showDeath } from './death';
 import { $, esc, load, save, setHTML } from './dom';
 import { setMusic } from './music';
@@ -12,13 +12,17 @@ import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
 import { isEn, L } from '../i18n';
 import { drawPortrait, drawScene, sceneOf } from './pixel';
-import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel } from './panels';
+import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
+import { mountRing, paintFaces, personCard } from './ring';
 
 const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
 const SPEEDS = [1, 2, 4, 8, 16];
 const OTHERS = 4;
 const AUTO_WAIT_MS = 4000; // 自動で決めるとき、選択肢を見せておく時間
 const SAVE_KEY = 'current';
+
+type Tab = '' | 'me' | 'band' | 'compare' | 'log';
+const TABS: [Exclude<Tab, ''>, string][] = [['me', L('いまの状態', 'Status')], ['band', L('人生の帯', 'Life band')], ['compare', L('比べる', 'Compare')], ['log', L('全部の記録', 'Full record')]];
 
 interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[] }
 
@@ -33,6 +37,8 @@ interface GameState {
   progress: number;
   modal: boolean;
   logOpen: boolean;
+  sel?: number;      // 人の輪で選んでいる人の id
+  tab: Tab;          // 開いている「データ」の欄。'' なら閉じている
   raf: number;
   last: number;
   timer?: number;
@@ -60,7 +66,7 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, raf: 0, last: performance.now(), onExit };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, tab: '', raf: 0, last: performance.now(), onExit };
   $('#app').innerHTML = shell();
   $('#app').onclick = onClick;
   if (S.music) setMusic(true);
@@ -124,25 +130,22 @@ function shell(): string {
     </div>
     <div class="yeartrack"><div id="yearbar"></div></div>
   </header>
-  <main class="game3">
-    <section class="col">
-      <div class="panel idcard" id="idcard"></div>
-      <div class="panel" id="stats"></div>
-      <div class="panel" id="family"></div>
+  <main class="stage">
+    <section class="ringcol">
+      <div class="ringwrap" id="ring"></div>
+      <div class="panel pcard" id="pcard"></div>
     </section>
-    <section class="col">
-      <div class="panel scenebox" id="scene"></div>
+    <section class="side">
+      <div class="scenebox" id="scene"></div>
       <div class="panel" id="focus"></div>
-      <div class="panel" id="log"></div>
-    </section>
-    <section class="col">
+      <div class="panel" id="year"></div>
       <div class="panel" id="others"></div>
-      <div class="panel" id="map"></div>
-      <div class="panel" id="survival"></div>
-      <div class="panel" id="compare"></div>
-      <div class="panel" id="country"></div>
     </section>
   </main>
+  <section class="datadrawer">
+    <nav class="tabs"><span class="tabslabel">${L('データ', 'Data')}</span>${TABS.map(([k, label]) => `<button data-act="tab" data-v="${k}">${label}</button>`).join('')}</nav>
+    <div id="data"></div>
+  </section>
   <div class="modal-back" id="modal" hidden><div class="modal" id="modalbody"></div></div>`;
 }
 
@@ -156,14 +159,17 @@ function render(): void {
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
   $('#autobtn').classList.toggle('on', p.auto);
   $('#musicbtn').classList.toggle('on', S.music);
-  setHTML('#idcard', idCard(p));
-  setHTML('#stats', statsPanel(p));
-  setHTML('#family', familyPanel(p));
+  mountRing($('#ring'), p, S.sel);
+  setHTML('#pcard', personCard(p, S.sel));
   setHTML('#scene', scenePanel(p));
-  drawScene($<HTMLCanvasElement>('#scenecv'), sceneOf(p));
-  drawPortrait($<HTMLCanvasElement>('#portraitcv'), p);
+  const scv = $<HTMLCanvasElement>('#scenecv');
+  drawScene(scv, sceneOf(p));
+  fitPixels(scv);
   setHTML('#focus', focusPanel(p));
-  setHTML('#log', logPanel(p, S.logOpen));
+  setHTML('#year', yearPanel(p));
+  paintFaces($('#pcard'), p);
+  paintFaces($('#year'), p);
+  renderData();
   setHTML('#others', othersPanel(S.others, aiOthersLines()));
   const st = aiStatus();
   const badge = $('#aibadge');
@@ -172,10 +178,27 @@ function render(): void {
     badge.textContent = st.error ? 'AI ⚠' : st.waiting > 0 ? 'AI …' : 'AI';
     badge.title = st.error ? L(`AIの呼び出しに失敗: ${st.error}`, `AI call failed: ${st.error}`) : L('AIが出来事を書いている', 'AI is writing events');
   }
-  setHTML('#map', `<h3>${L('人生地図', 'Life map')} <small>${L('1マス = 1年', '1 square = 1 year')}</small></h3>${lifeMap(p)}`);
-  setHTML('#survival', `<h3>${L('生存曲線', 'Survival curve')} <small>${L('同じ年に生まれた人のうち生きている割合', 'Share of the same birth cohort still alive')}</small></h3>${survivalChart(p)}`);
-  setHTML('#compare', comparePanel(p));
-  setHTML('#country', countryPanel(p));
+}
+
+// 「データ」の欄は開いている1つだけ作る
+function renderData(): void {
+  if (!S) return;
+  const { p, tab } = S;
+  document.querySelectorAll<HTMLButtonElement>('[data-act=tab]').forEach((b) => b.classList.toggle('on', b.dataset.v === tab));
+  const html = tab === 'me' ? `<div class="datagrid"><div class="panel idcard">${idCard(p)}</div><div class="panel">${statsPanel(p)}</div><div class="panel">${familyPanel(p)}</div></div>`
+    : tab === 'band' ? `<div class="datagrid two"><div class="panel"><h3>${L('人生の帯', 'Life band')} <small>${L('1本 = 1年', '1 bar = 1 year')}</small></h3>${lifeBand(p)}</div><div class="panel"><h3>${L('生存曲線', 'Survival curve')} <small>${L('同じ年に生まれた人のうち生きている割合', 'Share of the same birth cohort still alive')}</small></h3>${survivalChart(p)}</div></div>`
+    : tab === 'compare' ? `<div class="datagrid two"><div class="panel">${comparePanel(p)}</div><div class="panel">${countryPanel(p)}</div></div>`
+    : tab === 'log' ? `<div class="panel">${logPanel(p, S.logOpen)}</div>` : '';
+  setHTML('#data', html);
+  const pc = $<HTMLCanvasElement>('#portraitcv');
+  if (pc) drawPortrait(pc, p);
+}
+
+// ピクセル画は整数倍で拡大する。枠が狭くて2倍に届かなければ枠いっぱいに
+function fitPixels(cv: HTMLCanvasElement): void {
+  const box = cv.parentElement!.clientWidth;
+  const k = Math.floor(box / cv.width);
+  cv.style.width = k >= 2 ? `${cv.width * k}px` : '100%';
 }
 
 // ---- 操作 -----------------------------------------------------------------
@@ -193,6 +216,8 @@ function onClick(e: MouseEvent): void {
     case 'music': S.music = !S.music; save('music', S.music); setMusic(S.music); break;
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;
+    case 'person': S.sel = v ? Number(v) : undefined; break;
+    case 'tab': S.tab = S.tab === v ? '' : (v as Tab); break;
     case 'exit': confirmExit(); return;
     default: return;
   }

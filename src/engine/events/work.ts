@@ -5,6 +5,7 @@ import { L, isEn } from '../../i18n';
 import { offerFor, pickOffers, jobName, JOBS, type Offer } from '../jobs';
 import { bump, countryOf, decide, eduLevel, log, type Person } from '../person';
 import { clamp, normal } from '../rng';
+import { shared } from '../bonds';
 
 function takeJob(p: Person, o: Offer, first: boolean): void {
   p.working = true;
@@ -65,7 +66,7 @@ function staysHome(p: Person): boolean {
   // 幼い娘には選ぶ余地がない
   if (p.age < 15) {
     if (p.rng() >= pHome) return false;
-    log(p, L('学校をやめ、家で母親を手伝って家事と弟や妹の世話をするようになった。', 'Left school to help her mother at home with housework and the younger children.'), 'family');
+    shared(p, p.mother.alive ? [p.mother] : [], L('学校をやめ、家で母親を手伝って家事と弟や妹の世話をするようになった。', 'Left school to help her mother at home with housework and the younger children.'), 'family', 3, false, undefined, 'home_help');
     p.homemaker = true;
     return true;
   }

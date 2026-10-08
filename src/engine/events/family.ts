@@ -1,15 +1,18 @@
 // 家族の時間: 親・きょうだい・連れ合い・子ども・ペットが歳をとり、時に亡くなる。
 import { earnings, formatMoney } from '../economy';
 import { bump, childWord, countryOf, log, type Person, type Relative } from '../person';
-import { clamp } from '../rng';
+import { clamp, pick } from '../rng';
+import { addTie, freshName, mourn, shared } from '../bonds';
+import { makeName } from '../identity';
 import { qAt } from './common';
 import { pickCause } from '../causes';
 import { isEn, L } from '../../i18n';
 
-function relDies(p: Person, rel: Relative): string | null {
+export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
   if (p.rng() >= qAt(c, rel.sex, rel.age)) return null;
   rel.alive = false;
+  rel.diedAt = p.age;
   return pickCause(p.rng, c, rel.sex, rel.age, qAt(c, rel.sex, rel.age), false);
 }
 
@@ -22,15 +25,15 @@ export function family(p: Person): void {
     const cause = relDies(p, rel);
     if (!cause) continue;
     const young = p.age < 18;
-    log(p, L(`${word}が${rel.age}歳で亡くなった(${cause})。`, `${wordEn} died at ${rel.age} (${cause}).`), 'loss', true);
-    bump(p, { happy: young ? -18 : -8, bond: young ? -10 : -4 });
+    log(p, L(`${word}が${rel.age}歳で亡くなった(${cause})。`, `${wordEn} died at ${rel.age} (${cause}).`), 'loss', true, undefined, [rel.id!]);
+    mourn(p, rel, young ? -18 : -8, young ? -10 : -4);
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
     if (!p.mother.alive && !p.father.alive && p.age >= 18) inherit(p);
   }
   for (const s of p.siblings) {
     if (s.age < 0) {
       s.age++;
-      if (s.age === 0) log(p, L(`${childWord(s.sex)}のきょうだい、${s.name}が生まれた。`, `A baby ${s.sex === 'F' ? 'sister' : 'brother'}, ${s.name}, was born.`), 'family');
+      if (s.age === 0) shared(p, [s], L(`${childWord(s.sex)}のきょうだい、${s.name}が生まれた。`, `A baby ${s.sex === 'F' ? 'sister' : 'brother'}, ${s.name}, was born.`), 'family', 0, false, undefined, 'sibling_born');
       continue;
     }
     if (!s.alive) continue;
@@ -38,29 +41,33 @@ export function family(p: Person): void {
     if (relDies(p, s)) {
       log(p, isEn
         ? `${s.sex === 'F' ? 'Sister' : 'Brother'} ${s.name} died ${s.age <= 1 ? 'as a newborn' : `at ${s.age}`}.`
-        : `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true);
-      bump(p, { happy: -10 });
+        : `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true, undefined, [s.id!]);
+      mourn(p, s, -10);
     }
   }
   if (p.spouse?.alive) {
     p.spouse.age++;
     const cause = relDies(p, p.spouse);
     if (cause) {
-      log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, `Spouse ${p.spouse.name} died at ${p.spouse.age} (${cause}).`), 'loss', true);
-      bump(p, { happy: -20, bond: -15 });
+      log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, `Spouse ${p.spouse.name} died at ${p.spouse.age} (${cause}).`), 'loss', true, undefined, [p.spouse.id!]);
+      mourn(p, p.spouse, -20, -15);
     }
   }
   for (const k of p.children) {
     if (!k.alive) continue;
     k.age++;
     if (relDies(p, k)) {
-      log(p, L(`子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, `Child ${k.name} died ${k.age <= 1 ? 'before turning 1' : `at ${k.age}`}.`), 'loss', true);
-      bump(p, { happy: -25, bond: -5 });
+      log(p, L(`子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, `Child ${k.name} died ${k.age <= 1 ? 'before turning 1' : `at ${k.age}`}.`), 'loss', true, undefined, [k.id!]);
+      mourn(p, k, -25, -5);
     }
-    if (k.age === 18 && p.age < 80) log(p, L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family');
+    if (k.age === 18 && p.age < 80 && k.alive) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');
   }
   if (p.age >= 50 && p.children.some((k) => k.alive && k.age >= 20) && r() < 0.12) {
-    log(p, L('孫が生まれた。', 'A grandchild was born.'), 'family');
+    const parent = pick(r, p.children.filter((k) => k.alive && k.age >= 20));
+    const sex = r() < 0.512 ? 'M' : 'F';
+    const name = freshName(() => makeName(r, p.country, sex), (p.nameKeys ??= []));
+    const g = addTie(p, { alive: true, age: 0, sex, name, role: 'grandchild', since: p.age, of: parent.id });
+    shared(p, [g, parent], L(`孫が生まれた。${parent.name}の子で、名前は${g.name}。`, `A grandchild was born: ${parent.name}'s ${sex === 'F' ? 'daughter' : 'son'}, ${g.name}.`), 'family', 3, false, undefined, 'grandbirth');
     bump(p, { happy: 6, bond: 5 });
   }
   if (p.pet) {

@@ -3,6 +3,10 @@ import { yen } from '../economy';
 import { bump, countryOf, decide, log, type Person } from '../person';
 import { scaleOf } from './common';
 import { L } from '../../i18n';
+import { remember } from '../bonds';
+
+// 頼みごとをしてくる友だちは、人の輪の中の一番近い友だち (p.friend はその名前)
+const friendTie = (p: Person) => (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend && t.alive && t.until === undefined);
 
 export function crime(p: Person): void {
   const c = countryOf(p);
@@ -55,14 +59,20 @@ export function dilemmas(p: Person): void {
         {
           label: L('貸す', 'Lend it'), hint: L('返ってくるとは限らない', 'It may not come back'),
           apply: (q) => {
-            if (q.rng() < 0.5) log(q, L(`${q.friend}は少しずつお金を返してくれた。`, `${q.friend} paid the money back, little by little.`), 'family');
-            else { q.wealth -= amount; log(q, L(`${q.friend}に貸したお金は返ってこなかった。`, `The money lent to ${q.friend} never came back.`), 'hard'); }
+            const f = friendTie(q);
+            if (q.rng() < 0.5) friendLog(q, f, L(`${q.friend}は少しずつお金を返してくれた。`, `${q.friend} paid the money back, little by little.`), 'family', 6, 'lend_back');
+            else { q.wealth -= amount; friendLog(q, f, L(`${q.friend}に貸したお金は返ってこなかった。`, `The money lent to ${q.friend} never came back.`), 'hard', -10, 'lend_lost'); }
             bump(q, { bond: 3 });
           },
         },
-        { label: L('余裕がないと断る', 'Say no, money is tight'), apply: (q) => { log(q, L('事情を話して断った。気まずさが残った。', 'Explained and said no. It left things awkward.'), 'family'); bump(q, { bond: -2 }); } },
+        { label: L('余裕がないと断る', 'Say no, money is tight'), apply: (q) => { friendLog(q, friendTie(q), L('事情を話して断った。気まずさが残った。', 'Explained and said no. It left things awkward.'), 'family', -6, 'lend_refused'); bump(q, { bond: -2 }); } },
       ],
       auto: (q) => (q.rng() < 0.5 ? 0 : 1),
     });
   }
+}
+
+function friendLog(p: Person, f: ReturnType<typeof friendTie>, text: string, kind: 'family' | 'hard', d: number, k: string): void {
+  log(p, text, kind, false, undefined, f ? [f.id!] : undefined);
+  if (f) remember(p, f, text, d, k);
 }

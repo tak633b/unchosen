@@ -3,7 +3,7 @@ import { byCode, pickBirthCountry, type BirthBasis } from './countries';
 import { causeName, homicideHazard, pickCause } from './causes';
 import { isEn, L, religionName } from '../i18n';
 import { makeName, pickCity, pickReligion } from './identity';
-import { lifeTable, type Sex } from './lifetable';
+import { lifeTable, MAX_AGE, type Sex } from './lifetable';
 import { bump, childWord, countryOf, log, type Person } from './person';
 import { clamp, makeRng, normal, poisson } from './rng';
 import { family } from './events/family';
@@ -16,6 +16,8 @@ import { drift, habits, hiv, illness } from './events/health';
 import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
+import { bonds } from './events/bonds';
+import { ensureBonds, freshName } from './bonds';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -50,9 +52,10 @@ export function createPerson(o: BirthOptions): Person {
   const fatherAge = Math.round(clamp(motherAge + normal(rng, 4, 3), 16, 70));
   const older = poisson(rng, Math.max(0, (c.tfr - 1) * 0.5));
   const younger = poisson(rng, Math.max(0, (c.tfr - 1) * 0.5));
+  const nameKeys = [name.key]; // きょうだいは主人公とも、きょうだい同士とも同じ名にしない
   const sib = (age: number) => {
     const s: Sex = rng() < 0.5 ? 'M' : 'F';
-    return { alive: true, age, sex: s, name: makeName(rng, c.code, s, fam).given };
+    return { alive: true, age, sex: s, name: freshName(() => makeName(rng, c.code, s, fam), nameKeys) };
   };
   const now = new Date();
   const p: Person = {
@@ -73,10 +76,11 @@ export function createPerson(o: BirthOptions): Person {
     hiv: 'none', hivYears: 0, countriesLived: [c.code],
     stats: { health: clamp(normal(rng, 75, 8), 30, 95), happy: c.happiness * 10, money: familyP * 100, learn: 5, bond: 60 },
     focus: 'family', decisions: 0, log: [], kinds: [], happyByAge: [], pending: [], questions: [],
-    auto: o.auto ?? false, recent: {},
+    auto: o.auto ?? false, recent: {}, nameKeys,
   };
   if (c.u5mr > 0.05 && familyP < 0.3) bump(p, { health: -10 });
-  log(p, birthStory(p), 'child', true);
+  ensureBonds(p);
+  log(p, birthStory(p), 'child', true, undefined, [p.mother.id!, p.father.id!]);
   return p;
 }
 
@@ -105,13 +109,17 @@ export function birthStory(p: Person): string {
 }
 
 // 生命表は病気や喫煙をすでに含むので、個人の倍率を重ねたぶんを全体で割り戻す。
-// 自動で生きた人生の平均死亡年齢が平均寿命に合うよう実測で決めた値 (life.test.ts)
-const CALIBRATION = 0.78;
+// 倍率の平均は年齢で変わる (病気が増える60〜85歳で高く、丈夫な人だけが残る95歳以上で低い) ので、
+// 年齢帯ごとに、その年齢で生きている人の平均が生命表どおりになるよう実測で決めた値 (life.test.ts)
+const CALIBRATION: [number, number][] = [[95, 0.9], [90, 0.78], [85, 0.74], [70, 0.69], [60, 0.72], [40, 0.85], [0, 0.96]];
+const calibration = (age: number) => CALIBRATION.find(([from]) => age >= from)![1];
 
 // その年に亡くなる確率。生命表の値に、健康・所得・喫煙・病気の倍率をかける
 export function deathRisk(p: Person): number {
   const c = countryOf(p);
-  const base = lifeTable(c, p.sex).q[Math.min(110, p.age)];
+  // 生命表の終わりでは必ず亡くなる (倍率で 1 を割ると MAX_AGE を超えて生きてしまう)
+  if (p.age >= MAX_AGE) return 1;
+  const base = lifeTable(c, p.sex).q[p.age];
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
   if (p.age < 5) return base;
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
@@ -123,7 +131,7 @@ export function deathRisk(p: Person): number {
   const drinkK = p.drinker ? 1.25 : 1;
   const illK = p.illness?.mult ?? 1;
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
-  return Math.min(1, CALIBRATION * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd);
+  return Math.min(1, calibration(p.age) * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd);
 }
 
 function die(p: Person, cause: string): void {
@@ -170,7 +178,7 @@ export function advanceYear(p: Person): void {
   dilemmas(p);
   adultPet(p);
   moments(p);
-  if (p.age === 12 && !p.friend) p.friend = makeName(p.rng, p.country, p.rng() < 0.5 ? 'F' : 'M').given;
+  bonds(p);
   if (p.age === 62 && p.hobbies.length < 3 && p.rng() < 0.5) chooseHobby(p, L('新しい趣味を始める？', 'Take up a new hobby?'));
   drift(p);
   if (!p.kinds[p.age]) p.kinds[p.age] = baseKind(p);
@@ -203,5 +211,7 @@ export function toSaved(p: Person): SavedPerson {
 
 export function fromSaved(s: SavedPerson): Person {
   const { rngState, ...rest } = s;
-  return { ...rest, rng: makeRng(s.seed, rngState), pending: [] };
+  const p: Person = { ...rest, rng: makeRng(s.seed, rngState), pending: [] };
+  ensureBonds(p); // id や bond の無い古いセーブを補う
+  return p;
 }

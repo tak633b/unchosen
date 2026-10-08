@@ -8,6 +8,7 @@ import { nowLine } from '../engine/summary';
 import { esc, load, pct } from './dom';
 import { isEn, L, religionName } from '../i18n';
 import { jobName, majorName } from '../engine/jobs';
+import { face } from './ring';
 
 export const FOCUS: [Focus, string, string][] = [
   ['health', L('健康', 'Health'), L('体をいたわる', 'Look after your body')],
@@ -160,4 +161,12 @@ export function countryPanel(p: Person): string {
   return `<h3>${esc(c.name)}</h3><dl class="kv small ctry">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
     ${c.est?.length ? `<p class="note">${L(`一部の値(${c.est.length}項目)は近い国から推計。`, `${c.est.length} values estimated from similar countries.`)}</p>` : ''}
     <p class="note">${L('出典: 国連世界人口推計2024、UN IGME、世界銀行WDI、WHO、UNESCO、UNAIDS、UNODC、UNICEF、World Happiness Report 2024 (主に Our World in Data 経由)', 'Sources: UN World Population Prospects 2024, UN IGME, World Bank WDI, WHO, UNESCO, UNAIDS, UNODC, UNICEF, World Happiness Report 2024 (mostly via Our World in Data)')}</p>`;
+}
+
+// 今年の出来事: 最近3年の記録を、関わった人の小さな顔つきで
+export function yearPanel(p: Person): string {
+  const recent = p.log.filter((e) => e.age >= p.age - 2).reverse();
+  const ages = [...new Set(recent.map((e) => e.age))];
+  return `<h3>${L('このごろ', 'Lately')} <small>${L('最近3年の出来事', 'the last three years')}</small></h3>${ages.map((a) => `<div class="yr"><span class="yrage">${L(`${a}歳`, `Age ${a}`)}</span><ol class="log">${recent.filter((e) => e.age === a).map((e) =>
+    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}</span>${e.who?.length ? `<span class="whos">${e.who.map((id) => `<button data-act="person" data-v="${id}">${face(id)}</button>`).join('')}</span>` : ''}</li>`).join('')}</ol></div>`).join('')}`;
 }

@@ -9,26 +9,27 @@ export const KIND_LABEL: Record<YearKind, string> = {
   move: L('移住', 'Moving'), hard: L('苦しい出来事', 'Hardship'), ill: L('病気', 'Illness'), loss: L('別れ', 'Loss'), old: L('老後', 'Old age'), death: L('死', 'Death'),
 };
 
-// 人生地図: 1マス = 1年。色は出来事、濃さはその年の幸福。平均寿命の年に枠
-export function lifeMap(p: Person): string {
+// 人生の帯: 年が左から右へ並ぶ。色は出来事、高さはその年の幸福。平均寿命の年に印
+export function lifeBand(p: Person): string {
   const born = byCode(p.birthCountry);
   const e0 = Math.round(p.sex === 'F' ? born.leF : born.leM);
   const years = Math.max(90, Math.ceil((p.age + 1) / 10) * 10);
-  const cells = Array.from({ length: years }, (_, a) => {
+  const bars = Array.from({ length: years }, (_, a) => {
     const k = p.kinds[a];
-    const cls = a > p.age ? 'future' : k ?? 'child';
     const h = p.happyByAge[a];
-    const op = a > p.age || h === undefined ? '' : ` style="opacity:${(0.35 + (h / 100) * 0.65).toFixed(2)}"`;
-    const mark = (a === p.age && p.alive ? ' now' : '') + (a === e0 ? ' e0' : '');
-    return `<i class="cell k-${cls}${mark}"${op} title="${L(`${a}歳`, `Age ${a}`)}${k ? ` · ${KIND_LABEL[k]}` : ''}"></i>`;
+    const future = a > p.age;
+    const ht = future || h === undefined ? 12 : 18 + (h / 100) * 82;
+    const mark = (a === p.age && p.alive ? ' now' : '') + (a === e0 ? ' e0' : '') + (a % 10 === 0 ? ' dec' : '');
+    return `<i class="yb k-${future ? 'future' : k ?? 'child'}${mark}" style="height:${ht.toFixed(0)}%" title="${L(`${a}歳`, `Age ${a}`)}${k ? ` · ${KIND_LABEL[k]}` : ''}"></i>`;
   }).join('');
+  const ticks = Array.from({ length: years / 10 + 1 }, (_, i) => `<span style="left:${((i * 10) / years) * 100}%">${i * 10}</span>`).join('');
   const used = new Set(p.kinds.filter(Boolean));
   const legend = (Object.keys(KIND_LABEL) as YearKind[])
     .filter((k) => used.has(k))
     .map((k) => `<span><i class="cell k-${k}"></i>${KIND_LABEL[k]}</span>`)
     .join('');
-  return `<div class="map">${cells}</div><div class="legend">${legend}</div>
-    <p class="note">${L(`濃いほど幸せだった年。枠のマス = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳`, `Darker means a happier year. Outlined square = life expectancy for ${p.sex === 'F' ? 'women' : 'men'} in ${esc(born.name)}, ${e0}`)}</p>`;
+  return `<div class="band">${bars}</div><div class="bandticks">${ticks}</div><div class="legend">${legend}</div>
+    <p class="note">${L(`高い年ほど幸せだった。印の年 = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳`, `Taller means a happier year. Marked year = life expectancy for ${p.sex === 'F' ? 'women' : 'men'} in ${esc(born.name)}, ${e0}`)}</p>`;
 }
 
 // 出生数で重み付けした世界全体の生存曲線

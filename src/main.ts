@@ -6,7 +6,7 @@ import { createPerson } from './engine/life';
 import type { Person } from './engine/person';
 import { randomSeed } from './engine/rng';
 import { drawCard, shareCard } from './ui/cards';
-import { deathCard, deathRecord, pastLives } from './ui/death';
+import { deathCard, deathRecord, paintLife, pastLives } from './ui/death';
 import { $, esc, load, pct, save } from './ui/dom';
 import { clearSaved, hasSaved, resumeGame, sameSecondOthers, startWithOthers } from './ui/game';
 import { aiPanel, bindAiPanel, handleAiClick } from './ui/aipanel';
@@ -233,7 +233,7 @@ function past(): void {
     const i = t.closest<HTMLElement>('[data-i]')?.dataset.i;
     if (i !== undefined) {
       $('#pastdetail').innerHTML = `${deathRecord(lives[Number(i)])}<div class="choices"><button data-card="${Number(i)}">${L('記録カードを保存', 'Save record card')}</button></div>`;
-      paintScenes($('#pastdetail'));
+      paintLife($('#pastdetail'), lives[Number(i)]);
       $('#pastdetail').scrollIntoView();
     }
     const card = t.closest<HTMLElement>('[data-card]')?.dataset.card;

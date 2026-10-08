@@ -6,6 +6,7 @@ import { pickWeighted } from '../rng';
 import { isEn, L } from '../../i18n';
 import { isPoor, isRich, scaleOf } from './common';
 import { independent } from './money';
+import { remember } from '../bonds';
 
 type Wealth = 'poor' | 'middle' | 'rich';
 type Income = 'low' | 'mid' | 'high';
@@ -111,6 +112,8 @@ export function moments(p: Person): void {
     if (stat) p.recent[`stat:${m.id}`] = p.age;
     log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
     p.log[p.log.length - 1].tpl = true; // 用意した文から選んだもの (AI の出来事が届いた年は減らす)
+    const f = textOf(m).includes('{friend}') ? (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend) : undefined;
+    if (f) { p.log[p.log.length - 1].who = [f.id!]; remember(p, f, text, 1, 'moment'); }
   }
 }
 

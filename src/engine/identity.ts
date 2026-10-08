@@ -31,7 +31,7 @@ const FALLBACK: CountryIdentity = { pool: 'english', cities: [], religions: [['�
 
 const idOf = (code: string) => COUNTRIES[code] ?? FALLBACK;
 
-export interface Name { given: string; full: string; pool: string }
+export interface Name { given: string; full: string; pool: string; key: string } // key: 元の文字の名 (日英で同じ。家の中の重複を避けるのに使う)
 
 export function makeName(rng: Rng, code: string, sex: Sex, family?: { pool: string; index: number }): Name & { familyIndex: number } {
   const ci = idOf(code);
@@ -50,7 +50,7 @@ export function makeName(rng: Rng, code: string, sex: Sex, family?: { pool: stri
   const order = en && poolId === 'japanese' ? 'given-first' : pool.order;
   const sep = en ? ' ' : pool.sep;
   const full = order === 'family-first' ? `${fam}${sep}${given}` : `${given}${sep}${fam}`;
-  return { given, full, pool: poolId, familyIndex };
+  return { given, full, pool: poolId, familyIndex, key: givens[givenIndex] };
 }
 
 // 都市の人は上位の都市ほど生まれやすい
