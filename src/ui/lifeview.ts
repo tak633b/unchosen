@@ -2,7 +2,7 @@
 import { byCode } from '../engine/countries';
 import { people } from '../engine/bonds';
 import { lifeOf, type KinEntry } from '../engine/kin';
-import type { Person } from '../engine/person';
+import type { LogEntry, Person } from '../engine/person';
 import { esc } from './dom';
 import { L } from '../i18n';
 
@@ -11,8 +11,9 @@ const item = (e: KinEntry, given: string) =>
 
 const divider = (text: string, cls = '') => `<li class="kindiv${cls}"><span>${text}</span></li>`;
 
-export function lifeHtml(p: Person, id: number): string {
-  const l = lifeOf(p, id);
+// upto: この暦年より先は出さない (同じ1秒に生まれた人の輪を、遊んでいる間に見るとき)
+export function lifeHtml(p: Person, id: number, upto?: number): string {
+  const l = lifeOf(p, id, upto);
   if (!l) return '';
   const c = byCode(l.country).name;
   const given = p.given;
@@ -36,4 +37,10 @@ export function lifeHtml(p: Person, id: number): string {
     <p class="rlegend kinlegend"><span class="kinkey shared"></span>${L(`${esc(given)}と一緒の出来事 (印のある行は${esc(given)}の側の文)`, `Moments with ${esc(given)} (tagged rows are in ${esc(given)}'s words)`)}${after ? `<span class="kinkey after"></span>${L('その後', 'Afterward')}` : ''}</p>
     ${unheard ? `<p class="note">${L(`${esc(given)}は、この人が亡くなったことを知らなかった。`, `${esc(given)} never learned of this death.`)}</p>` : ''}
     <ol class="log kinlist">${before ? divider(L(`${esc(given)}が生まれる前`, `Before ${esc(given)} was born`)) : ''}${rows.join('')}</ol>${tail}</section>`;
+}
+
+// その人自身の記録 (同じ1秒に生まれた人など)。生まれた年からの古い順で、主人公の記録と同じ「なぜ」を添える
+export function recordHtml(p: Person): string {
+  const entry = (e: LogEntry): KinEntry => ({ age: e.age, year: p.birthYear + e.age, text: e.text, kind: e.kind, big: e.big, why: e.why, stat: e.stat });
+  return `<ol class="log kinlist">${p.log.map((e) => item(entry(e), p.given)).join('')}</ol>`;
 }

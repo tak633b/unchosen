@@ -427,3 +427,19 @@ canvas.pixscene { display: block; width: 100%; height: auto; image-rendering: pi
 .b-cry { position: absolute; left: 0; right: 0; top: 44%; z-index: 4; font: 700 clamp(28px, 6vw, 44px)/1.3 'Shippori Mincho', serif; color: #3a2a10; letter-spacing: 0.1em; }
 .b-skip { position: absolute; right: 16px; bottom: 14px; font-size: 12px; color: var(--faint); opacity: 0.8 !important; z-index: 5; }
 @media (prefers-reduced-motion: reduce) { .birth > *, .b-facts li { transition-duration: 0.2s; } }
+
+/* 同じ1秒に生まれた人の詳しい記録 */
+button.olink { display: grid; justify-items: start; text-align: left; border: 0; border-radius: 6px; padding: 0; background: none; color: var(--text); font: inherit; cursor: pointer; }
+button.olink b { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+button.olink:hover b { color: var(--text); }
+.five button.olink { display: inline; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.other h3 { margin-top: 18px; }
+.ohead { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: start; }
+.ohead p { margin: 0; }
+.obirth { margin: 10px 0; font-size: 14px; }
+.ofacts { grid-template-columns: max-content minmax(0, 1fr); overflow-wrap: anywhere; }
+.ocmp { width: 100%; table-layout: fixed; overflow-wrap: anywhere; font-size: 13px; }
+.ocmp th:first-child, .ocmp td:first-child { width: 30%; }
+.oring { max-width: 420px; margin: 0 auto; }
+.opcard { margin-top: 12px; }
+.otherdetail:not(:empty) { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }

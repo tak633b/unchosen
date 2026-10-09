@@ -113,8 +113,8 @@ export function logPanel(p: Person, open: boolean): string {
 }
 
 export function othersPanel(others: Person[], aiLines: string[] = []): string {
-  return `<h3>${L('同じ1秒に生まれた人たち', 'Born in the same second')} <small>${L('いまのこの人たち', 'where they are now')}</small></h3><ul class="others">${others.map((o) => `
-    <li class="${o.alive ? '' : 'gone'}"><div><b>${esc(o.name)}</b><small>${esc(byCode(o.birthCountry).name)}${L('・', ' · ')}${o.sex === 'F' ? L('女', 'F') : L('男', 'M')}</small></div>
+  return `<h3>${L('同じ1秒に生まれた人たち', 'Born in the same second')} <small>${L('いまのこの人たち・名前を押すと詳しく', 'where they are now · tap a name for details')}</small></h3><ul class="others">${others.map((o) => `
+    <li class="${o.alive ? '' : 'gone'}"><button class="olink" data-act="other" data-v="${others.indexOf(o)}" title="${L('詳しく見る', 'See details')}"><b>${esc(o.name)}</b><small>${esc(byCode(o.birthCountry).name)}${L('・', ' · ')}${o.sex === 'F' ? L('女', 'F') : L('男', 'M')}</small></button>
     <span>${esc(nowLine(o))}${aiLines[others.indexOf(o)] ? `<small class="ailine">${esc(aiLines[others.indexOf(o)])}</small>` : ''}</span></li>`).join('')}</ul>`;
 }
 

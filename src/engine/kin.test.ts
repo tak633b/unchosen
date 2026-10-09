@@ -210,3 +210,24 @@ describe('一緒の出来事は、その人の側から書く', () => {
     expect(bad.slice(0, 10)).toEqual([]);
   }, 120_000);
 });
+
+// 同じ1秒に生まれた人の輪を、遊んでいる途中に見るときは、主人公の今の年より先を出さない
+describe('同じ1秒に生まれた人の輪の一生は、今の年まで', () => {
+  it('その人が亡くなっていても、輪の人の一生は今の暦年で止まる', () => {
+    let lives = 0;
+    for (const o of sample(40, 4000)) {
+      const other = createPerson({ ...o, basis: 'births', auto: true });
+      while (other.alive && other.age < 30) advanceYear(other);
+      while (other.alive) advanceYear(other); // 主人公より先に亡くなった人
+      const upto = other.birthYear + Math.max(other.age, 30) + 5;
+      for (const t of people(other)) {
+        const l = lifeOf(other, t.id!, upto);
+        if (!l) continue;
+        lives++;
+        expect(l.entries.every((e) => e.year <= upto), `${t.name}`).toBe(true);
+        expect(l.born + l.age <= upto).toBe(true);
+      }
+    }
+    expect(lives).toBeGreaterThan(200);
+  }, 60_000);
+});

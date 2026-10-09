@@ -14,6 +14,7 @@ import { isEn, L } from '../i18n';
 import { drawPortrait, drawScene, sceneOf, type Scene } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
 import { mountRing, paintFaces, personCard } from './ring';
+import { briefOf, otherHtml } from './otherview';
 
 const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
 const SPEEDS = [1, 2, 4, 8, 16];
@@ -40,6 +41,9 @@ interface GameState {
   logOpen: boolean;
   sel?: number;      // 人の輪で選んでいる人の id
   life: boolean;     // 選んだ人の一生を開いているか
+  other?: number;    // 詳しく見ている、同じ1秒に生まれた人 (others の番号)
+  osel?: number;     // その人の輪で選んでいる人の id
+  olife: boolean;    // その人の輪の人の一生を開いているか
   tab: Tab;          // 開いている「データ」の欄。'' なら閉じている
   raf: number;
   last: number;
@@ -73,7 +77,7 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, life: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
   $('#app').innerHTML = shell();
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
@@ -195,7 +199,7 @@ function render(): void {
   paintFaces($('#pcard'), p);
   paintFaces($('#year'), p);
   renderData();
-  setHTML('#others', othersPanel(S.others, aiOthersLines()));
+  renderOthers();
   const st = aiStatus();
   const badge = $('#aibadge');
   if (badge) {
@@ -203,6 +207,18 @@ function render(): void {
     badge.textContent = st.error ? 'AI ⚠' : st.waiting > 0 ? 'AI …' : 'AI';
     badge.title = st.error ? L(`AIの呼び出しに失敗: ${st.error}`, `AI call failed: ${st.error}`) : L('AIが出来事を書いている', 'AI is writing events');
   }
+}
+
+// 同じ1秒に生まれた人たち。1人を開いていれば、その人の今の年までの記録・輪・比べ
+function renderOthers(): void {
+  if (!S) return;
+  const o = S.other === undefined ? undefined : S.others[S.other];
+  if (!o) { setHTML('#others', othersPanel(S.others, aiOthersLines())); return; }
+  const lists = [...document.querySelectorAll('#others .kinlist')].map((x) => x.scrollTop);
+  setHTML('#others', otherHtml(o, briefOf(S.p), { sel: S.osel, life: S.olife, upto: S.p.birthYear + S.p.age }));
+  document.querySelectorAll('#others .kinlist').forEach((x, i) => { x.scrollTop = lists[i] ?? 0; });
+  mountRing($('#others .oring'), o, S.osel);
+  paintFaces($('#others'), o);
 }
 
 // 「データ」の欄は開いている1つだけ作る
@@ -241,8 +257,9 @@ function onClick(e: MouseEvent): void {
     case 'music': S.music = !S.music; save('music', S.music); setMusic(S.music); break;
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;
-    case 'person': S.sel = v ? Number(v) : undefined; break;
-    case 'kinlife': S.life = !S.life; break;
+    case 'person': if (t.closest('#others')) S.osel = v ? Number(v) : undefined; else S.sel = v ? Number(v) : undefined; break;
+    case 'kinlife': if (t.closest('#others')) S.olife = !S.olife; else S.life = !S.life; break;
+    case 'other': S.other = v ? Number(v) : undefined; S.osel = undefined; break;
     case 'tab': S.tab = S.tab === v ? '' : (v as Tab); break;
     case 'exit': confirmExit(); return;
     default: return;

@@ -161,7 +161,8 @@ function fixedDeaths(rp: Person): void {
   }
 }
 
-function build(rec: Ledger, id: number): KinLife | undefined {
+// upto: この暦年より先は作らない (同じ1秒に生まれた人の輪を、主人公の今の年までで見るとき)
+function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
   const p = rec.p;
   const m = rec.byId.get(id);
   if (!m || m.r.age < 0) return undefined;
@@ -169,7 +170,8 @@ function build(rec: Ledger, id: number): KinLife | undefined {
   const role = m.role;
   const born = rec.born(t);
   const code = rec.country(m);
-  const fate = rec.fate(id);
+  const sampled = rec.fate(id);
+  const fate = sampled.dies !== undefined && born + sampled.dies > upto ? {} : sampled;
   const rp = createPerson({ seed: mix(p.seed, id, 0x4b1d), basis: 'births', auto: true, country: code, year: born, month: 1 + (mix(p.seed, id, 0x30a) % 12), gender: t.sex });
   rp.given = rp.name = t.name ?? rp.given;
   const pa = () => yearOf(rp) - p.birthYear; // 今の暦年での、主人公の年齢
@@ -295,7 +297,7 @@ function build(rec: Ledger, id: number): KinLife | undefined {
   };
   rp.anchor = anchor;
   // 主人公が生きている間は、今わかっているところまで
-  const stop = fate.dies === undefined ? rec.known(m) : Infinity;
+  const stop = fate.dies === undefined ? (p.alive ? rec.known(m) : upto - born) : Infinity;
   for (let i = 0; rp.alive && rp.age < stop && i <= MAX_AGE + 1; i++) advanceYear(rp);
   rp.anchor = undefined;
 
@@ -321,7 +323,7 @@ function build(rec: Ledger, id: number): KinLife | undefined {
 }
 
 // 同じ記録 (同じ人生の同じ年) のあいだは作り直さない
-const cache = new WeakMap<Person, { key: string; rec: Ledger; lives: Map<number, KinLife | undefined> }>();
+const cache = new WeakMap<Person, { key: string; rec: Ledger; lives: Map<string, KinLife | undefined> }>();
 
 function recordOf(p: Person) {
   const key = `${p.age}|${p.alive}|${p.log.length}`;
@@ -333,10 +335,11 @@ function recordOf(p: Person) {
   return hit;
 }
 
-export function lifeOf(p: Person, id: number): KinLife | undefined {
+export function lifeOf(p: Person, id: number, upto?: number): KinLife | undefined {
   const hit = recordOf(p);
-  if (!hit.lives.has(id)) hit.lives.set(id, build(hit.rec, id));
-  return hit.lives.get(id);
+  const key = `${id}|${upto ?? ''}`;
+  if (!hit.lives.has(key)) hit.lives.set(key, build(hit.rec, id, upto));
+  return hit.lives.get(key);
 }
 
 // 輪の全員の一生 (テストと計測用)

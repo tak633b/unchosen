@@ -15,6 +15,8 @@ import { jobName, majorName } from '../engine/jobs';
 import { causeName } from '../engine/causes';
 import { people } from '../engine/bonds';
 import { lastWordsHtml, mountRing, paintFaces, personCard } from './ring';
+import { briefOf, otherHtml, type Brief } from './otherview';
+import { createPerson, liveOut } from '../engine/life';
 
 const MAX_PAST = 10;
 
@@ -22,7 +24,9 @@ export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
   birthCountry: string; country: string; birthYear: number; age: number; cause: string;
   story: string; log: Person['log']; kinds: Person['kinds']; happyByAge: number[];
-  questions: Person['questions']; facts: [string, string][]; others: { name: string; country: string; age: number; story: string }[];
+  questions: Person['questions']; facts: [string, string][];
+  others: { name: string; country: string; age: number; story: string; seed?: number; birthYear?: number; birthMonth?: number }[]; // seed などは、詳しい記録を作り直すため
+  me?: Brief;                  // 同じ1秒に生まれた人と比べるための、この人生の要約
   message?: string; date: string;
   scene?: SceneData;
   aiStory?: { title: string; story: string };
@@ -90,7 +94,8 @@ function toPast(p: Person, others: Person[], basis: BirthBasis): PastLife {
     seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
     birthYear: p.birthYear, age: p.age, cause: p.cause ?? '', story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
     questions: p.questions, facts: factsOf(p),
-    others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o) })),
+    others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o), seed: o.seed, birthYear: o.birthYear, birthMonth: o.birthMonth })),
+    me: briefOf(p),
     date: new Date().toISOString(),
     scene: toData(sceneOf(p)),
     words: lastWords(p),
@@ -112,7 +117,7 @@ export function deathRecord(l: PastLife): string {
   const real = load<string | null>('realCountry', null);
   const r = real ? countryAt(real, l.birthYear) : null;
   const rl = r ? bornTable(r, l.sex, l.birthYear).l[Math.min(110, l.age + 1)] : 0;
-  const five = [{ name: l.name, country: l.birthCountry, age: l.age, story: '' }, ...l.others].sort((a, c) => a.age - c.age);
+  const five = [{ name: l.name, country: l.birthCountry, age: l.age, story: '', i: -1, seed: undefined as number | undefined }, ...l.others.map((o, i) => ({ ...o, i }))].sort((a, c) => a.age - c.age);
   const answers = l.questions.filter((q) => q.a);
   return `
   <article class="record">
@@ -142,15 +147,17 @@ export function deathRecord(l: PastLife): string {
   </section>` : ''}
   <section class="panel">
     <h3>${L('同じ1秒に生まれた5人', 'Five born in the same second')} <small>${L('短く生きた順', 'shortest life first')}</small></h3>
-    <ol class="five">${five.map((o) => `<li><span class="age">${L(`${o.age}歳`, `${o.age}`)}</span><div><b>${esc(o.name)}</b>${L('・', ' · ')}${esc(byCode(o.country).name)}${o.story ? '' : L('・この人生のあなた', ' · you, this life')}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
+    <ol class="five">${five.map((o) => `<li><span class="age">${L(`${o.age}歳`, `${o.age}`)}</span><div>${o.seed !== undefined && l.me ? `<button class="link olink" data-o="${o.i}">${esc(o.name)}</button>` : `<b>${esc(o.name)}</b>`}${L('・', ' · ')}${esc(byCode(o.country).name)}${o.story ? '' : L('・この人生のあなた', ' · you, this life')}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
     <p class="note">${L(`同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。`, `The five born in the same second lived to ${five.map((o) => o.age).join(', ')}. None of them chose where to be born.`)}</p>
+    ${l.me && l.others.some((o) => o.seed !== undefined) ? `<p class="note">${L('名前を押すと、その人の一生を詳しく読める。', 'Tap a name to read that life in detail.')}</p><div class="otherdetail"></div>` : ''}
   </section>`;
 }
 
 // deathRecord を置いたあとに呼ぶ: 場面・顔・輪を描く。
 // 亡くなった直後で本人 (p) がいれば、輪の顔を押してその人の一生を読める
-export function paintLife(root: HTMLElement, l: PastLife, p?: Person): void {
+export function paintLife(root: HTMLElement, l: PastLife, p?: Person, others?: Person[]): void {
   paintScenes(root);
+  paintOthers(root, l, others);
   if (!l.circle) return;
   const me = standIn(l);
   const ties = l.circle as Tie[];
@@ -172,6 +179,39 @@ export function paintLife(root: HTMLElement, l: PastLife, p?: Person): void {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-act]');
     if (a?.dataset.act === 'person') show(a.dataset.v ? Number(a.dataset.v) : undefined);
     else if (a?.dataset.act === 'kinlife') { open = !open; show(Number(box.dataset.sel)); }
+  });
+}
+
+// 同じ1秒に生まれた人の詳しい記録。亡くなった直後はその Person を、前世の記録からは seed で作り直す
+function paintOthers(root: HTMLElement, l: PastLife, given?: Person[]): void {
+  const box = root.querySelector<HTMLElement>('.otherdetail');
+  if (!box || !l.me) return;
+  const made = new Map<number, Person>();
+  const personOf = (i: number): Person | undefined => {
+    if (given?.[i]) return given[i];
+    const o = l.others[i];
+    if (o?.seed === undefined) return undefined;
+    if (!made.has(i)) made.set(i, liveOut(createPerson({ seed: o.seed, basis: l.basis, auto: true, year: o.birthYear, month: o.birthMonth })));
+    return made.get(i);
+  };
+  let cur: number | undefined, sel: number | undefined, open = true;
+  const show = () => {
+    const o = cur === undefined ? undefined : personOf(cur);
+    box.innerHTML = o ? otherHtml(o, l.me!, { sel, life: open }) : '';
+    if (!o) return;
+    mountRing(box.querySelector<HTMLElement>('.oring')!, o, sel);
+    paintFaces(box, o);
+  };
+  root.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    const pick = t.closest<HTMLElement>('[data-o]');
+    if (pick) { cur = Number(pick.dataset.o); sel = undefined; show(); box.scrollIntoView({ block: 'start' }); return; }
+    const a = t.closest<HTMLElement>('[data-act]');
+    if (!a || !box.contains(a)) return;
+    if (a.dataset.act === 'other') cur = undefined;
+    else if (a.dataset.act === 'person') sel = a.dataset.v ? Number(a.dataset.v) : undefined;
+    else if (a.dataset.act === 'kinlife') open = !open;
+    show();
   });
 }
 
@@ -200,7 +240,7 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       </div>
     </section></main>`;
   window.scrollTo(0, 0);
-  paintLife(app, life, p);
+  paintLife(app, life, p, others);
   if (aiOn('story') && life.words?.length) {
     const box = app.querySelector<HTMLElement>('.lastwords')!;
     void lastWordsAi(p).then((words) => {
