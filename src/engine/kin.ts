@@ -237,7 +237,8 @@ function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
     const other = rec.otherParent(t);
     if (other !== undefined && rec.byId.has(other)) parentsOf(0, other);
     else if (p.sex === 'F') rp.mother = relOf(rec, 0, born); else rp.father = relOf(rec, 0, born);
-    rp.siblings = p.children.filter((k) => k.id !== id).map((k) => relOf(rec, k.id!, born));
+    // きょうだいは同じ両親の子だけ (別の連れ合いとの子は、半分血のつながったきょうだいとして輪に入れない)
+    rp.siblings = p.children.filter((k) => k.id !== id && rec.otherParent(k) === other).map((k) => relOf(rec, k.id!, born));
     // ponytail: 子が生まれた時の主人公の暮らし向きは記録に無いので、主人公の生まれた家の位置を引き継ぐ (途中で見ても変わらない値)
     const home = rec.homeP();
     Object.assign(rp, { familyP: home, incomeP: home, religion: p.religion, pool: p.pool, familyIndex: p.familyIndex }, rec.stayed ? { city: p.city, rural: p.rural } : {});
@@ -246,7 +247,10 @@ function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
     if (of !== undefined && rec.byId.has(of)) {
       const r = relOf(rec, of, born);
       if (r.sex === 'F') rp.mother = r; else rp.father = r;
-      rp.siblings = grandsOf([of]).filter((g) => g.id !== id).map((g) => relOf(rec, g.id!, born));
+      // もう一人の親は記録に無い (乱数の親)。その親が産める・持てる年に生まれた孫だけを、同じ両親のきょうだいにする
+      const other = r.sex === 'F' ? rp.father : rp.mother;
+      const ob = born - other.age;
+      rp.siblings = grandsOf([of]).filter((g) => g.id !== id && rec.born(g) >= ob + 15 && rec.born(g) <= ob + (other.sex === 'F' ? 45 : 60)).map((g) => relOf(rec, g.id!, born));
     }
   }
   // 生まれた時の記録を、入れ替えた家族で書き直す

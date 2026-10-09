@@ -1,5 +1,6 @@
 // 幼い日々: 気質・好きなこと・ペット・学校に上がるか。
 import type { Country } from '../countries';
+import { petJoined } from '../pets';
 import { bump, countryOf, decide, log, type Person, type Stats } from '../person';
 import { clamp, normal, pick } from '../rng';
 import { isRich } from './common';
@@ -80,6 +81,7 @@ export function getPet(p: Person, kind: '犬' | '猫'): void {
   p.pet = { kind, name, age: 0, life: kind === '犬' ? 10 + Math.floor(p.rng() * 6) : 12 + Math.floor(p.rng() * 7) };
   p.petsHad++;
   log(p, L(`${kind}の${name}が家族になった。`, `${name} the ${kind === '犬' ? 'dog' : 'cat'} joined the family.`), 'family');
+  petJoined(p, p.log[p.log.length - 1].text);
   bump(p, { happy: 6, bond: 3 });
 }
 

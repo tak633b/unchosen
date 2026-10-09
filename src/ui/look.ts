@@ -161,7 +161,7 @@ function makeLook(g: Genes, c: Country, sex: 'F' | 'M', age: number, religion: s
 
 // ---- 人ごとの入り口 ---------------------------------------------------------
 
-const ROLE_N: Record<Role, number> = { mother: 1, father: 2, sibling: 3, spouse: 4, partner: 5, child: 6, friend: 7, mentor: 8, rival: 9, ex: 10, grandchild: 11 };
+const ROLE_N: Record<Role, number> = { mother: 1, father: 2, sibling: 3, spouse: 4, partner: 5, child: 6, friend: 7, mentor: 8, rival: 9, ex: 10, grandchild: 11, grandparent: 12, pet: 13 };
 const keyOf = (p: Person, r: Relative, role: Role) => hash(p.seed, 0x7a11, r.id ?? ROLE_N[role] * 1000 + (r.sex === 'F' ? 1 : 0));
 const myGenes = (p: Person) => genesFor(byCode(p.birthCountry), makeRng(hash(p.seed, 0x5eed)));
 

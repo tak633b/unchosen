@@ -33,7 +33,11 @@ export interface Relative {
   since?: number;     // 輪に入った時の主人公の年齢 (Tie では必須)
   country?: string;   // 出会った時・生まれた時に主人公がいた国 (その人の一生を作るときの生まれた国)
   fixed?: Fixed;      // その人の一生の中に出てくる、主人公の記録で決まっている人
+  pet?: '犬' | '猫';   // 人の輪に並べるペット (role 'pet') の種類
+  gen?: number;       // 前の世代の主人公 (この人で続けた一つ前の人生)。その世代の番号
 }
+// 家系の一人。顔を描き、年と続き柄を出す分だけ持つ。rel は次の主人公がこの人から見て何にあたるか
+export interface LineEntry { seed: number; name: string; given: string; sex: Sex; gender?: 'X'; birthYear: number; age: number; cause: string; birthCountry: string; country: string; religion: string; rel?: Role } // rel が無いのは家系の最後 (記録の本人)
 // 主人公の輪の人の一生 (kin.ts) で、記録から決まっている人。乱数では死なず、決まった年に亡くなる
 export interface Fixed { ref: number; born: number; dies?: number; cause?: string } // ref: 主人公の輪での id (0 は主人公)。born: 生まれた暦年。dies: 亡くなる年齢
 // 輪の人の一生を、主人公の記録に合わせるための手綱。主人公の人生には付かない
@@ -45,11 +49,13 @@ export interface Anchor {
   each: (p: Person) => void;                                       // 毎年、家族の時間のあとに: 決まった結婚・子・死
 }
 // 主人公から見た関係。family 系は Person の mother/father/siblings/spouse/children に、それ以外は ties に入る
-export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild';
+export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild' | 'grandparent' | 'pet'; // pet は飼った犬・猫 (人の輪に並べるだけ)。grandparent は、孫として一生を続けた人から見た前の主人公だけ
 export interface Memory { age: number; text: string; d: number; k?: string } // d: その時の近さの変化。k: 出来事の種類 (最後の言葉を、語る人の目線で組むため)
 export interface Tie extends Relative { role: Role; since: number; until?: number; of?: number } // since/until は主人公の年齢。of は孫の親 (子) の id
 export interface Illness { name: string; years: number; mult: number }
 export interface Pet { kind: '犬' | '猫'; name: string; age: number; life: number }
+// 飼ったペットの記録 (pets.ts)。since・diedAt は主人公の年齢、age はペットの年齢
+export interface PetLife { id: number; kind: '犬' | '猫'; name: string; since: number; age: number; alive: boolean; diedAt?: number; bond: number; mem: Memory[] }
 
 // 学歴の段階: 0 なし / 1 小学校 / 2 中学校 / 3 高校 / 4 大学 / 5 大学院
 export type EduLevel = 0 | 1 | 2 | 3 | 4 | 5;
@@ -111,6 +117,7 @@ export interface Person {
   children: Relative[];
   pet?: Pet;
   petsHad: number;
+  pets?: PetLife[];  // 飼ったペット全員の記録 (人の輪に並べる分)。古いセーブには無い
   temperament?: string;
   hobbies: string[];
   friend?: string;
@@ -136,6 +143,7 @@ export interface Person {
   reflect?: boolean; // 5・15・30・50・70歳の問いを出すか (プレイヤーだけ)
   recent: Record<string, number>; // 日常の出来事を最後に見た年齢 (同じ話の繰り返しを避ける)
   anchor?: Anchor;   // 輪の人の一生を作っている時だけ
+  line?: LineEntry[]; // 家系: この人の前に続けてきた主人公たち (1世代目から順に)。1世代目には無い
 }
 
 export const yearOf = (p: Person): number => p.birthYear + p.age;

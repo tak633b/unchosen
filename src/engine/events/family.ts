@@ -8,6 +8,7 @@ import { qAt } from './common';
 import { pickCause } from '../causes';
 import { isEn, L } from '../../i18n';
 import { because, deathWhy } from '../why';
+import { petAged, petDied } from '../pets';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -81,8 +82,10 @@ export function family(p: Person): void {
   }
   if (p.pet) {
     p.pet.age++;
+    petAged(p);
     if (p.pet.age >= p.pet.life) {
       log(p, L(`${p.pet.kind}の${p.pet.name}が${p.pet.age}歳で死んだ。`, `${p.pet.name} the ${p.pet.kind === '犬' ? 'dog' : 'cat'} died at ${p.pet.age}.`), 'loss');
+      petDied(p, p.log[p.log.length - 1].text);
       bump(p, { happy: -6 });
       p.pet = undefined;
     }

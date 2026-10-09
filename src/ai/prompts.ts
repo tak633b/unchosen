@@ -77,8 +77,8 @@ function facts(p: Person): string {
 
 export interface YearAsk { moments: number; event: boolean; decision: boolean; bond?: BondAsk }
 
-const ROLE_JA: Record<Role, string> = { mother: '母', father: '父', sibling: 'きょうだい', spouse: '連れ合い', partner: '恋人', child: '子ども', friend: '友だち', mentor: '恩師', rival: 'ライバル', ex: '昔の恋人', grandchild: '孫' };
-const ROLE_EN: Record<Role, string> = { mother: 'mother', father: 'father', sibling: 'sibling', spouse: 'spouse', partner: 'partner', child: 'child', friend: 'friend', mentor: 'mentor', rival: 'rival', ex: 'former partner', grandchild: 'grandchild' };
+const ROLE_JA: Record<Role, string> = { mother: '母', father: '父', sibling: 'きょうだい', spouse: '連れ合い', partner: '恋人', child: '子ども', friend: '友だち', mentor: '恩師', rival: 'ライバル', ex: '昔の恋人', grandchild: '孫', grandparent: '祖父母', pet: 'ペット' };
+const ROLE_EN: Record<Role, string> = { mother: 'mother', father: 'father', sibling: 'sibling', spouse: 'spouse', partner: 'partner', child: 'child', friend: 'friend', mentor: 'mentor', rival: 'rival', ex: 'former partner', grandchild: 'grandchild', grandparent: 'grandparent', pet: 'pet' };
 const WHY_JA: Record<BondAsk['why'], string> = { moved: 'この1年で関係が大きく動いた', long: 'しばらく一緒に過ごしていない', old: '年老いた親', lost: '連絡が途絶えている', close: 'いま近しい人' };
 const WHY_EN: Record<BondAsk['why'], string> = { moved: 'the relationship shifted a lot this past year', long: 'they have not spent time together in years', old: 'an aging parent', lost: 'they have lost touch', close: 'one of the closest people now' };
 const TONE_LIST = 'warm, help, reunion, reconcile, worry, distant, quarrel, hurt';

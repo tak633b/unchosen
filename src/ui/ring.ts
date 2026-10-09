@@ -6,9 +6,10 @@ import { esc } from './dom';
 import { isEn, L } from '../i18n';
 import { drawPortrait, drawTiePortrait } from './pixel';
 import { lifeHtml } from './lifeview';
+import { petTies } from '../engine/pets';
 
-type Kind = 'family' | 'love' | 'friend' | 'rival';
-const kindOf = (r: Role): Kind =>
+type Kind = 'family' | 'love' | 'friend' | 'rival' | 'pet';
+const kindOf = (r: Role): Kind => r === 'pet' ? 'pet' :
   r === 'spouse' || r === 'partner' || r === 'ex' ? 'love' : r === 'friend' || r === 'mentor' ? 'friend' : r === 'rival' ? 'rival' : 'family';
 
 export function roleName(t: Tie, p: Person): string {
@@ -22,6 +23,8 @@ export function roleName(t: Tie, p: Person): string {
     case 'partner': return L('恋人', 'Partner');
     case 'child': return f ? L('娘', 'Daughter') : L('息子', 'Son');
     case 'grandchild': return L('孫', f ? 'Granddaughter' : 'Grandson');
+    case 'grandparent': return f ? L('祖母', 'Grandmother') : L('祖父', 'Grandfather');
+    case 'pet': return t.pet === '猫' ? L('猫', 'Cat') : L('犬', 'Dog');
     case 'friend': return L('友だち', 'Friend');
     case 'mentor': return L('恩師', 'Mentor');
     case 'rival': return L('ライバル', 'Rival');
@@ -29,8 +32,10 @@ export function roleName(t: Tie, p: Person): string {
   }
 }
 
-const ORDER: Role[] = ['mother', 'father', 'spouse', 'partner', 'child', 'grandchild', 'friend', 'mentor', 'rival', 'ex', 'sibling'];
-const gone = (t: Tie) => t.until !== undefined || t.role === 'ex';
+const ORDER: Role[] = ['mother', 'father', 'grandparent', 'spouse', 'partner', 'child', 'grandchild', 'friend', 'mentor', 'rival', 'ex', 'sibling'];
+const gone = (t: Tie) => t.until !== undefined || t.role === 'ex' || (t.role === 'pet' && !t.alive); // 亡くなったペットは外の輪へ
+// 人の輪に並べる全員: 人と、飼ったペット
+export const everyone = (p: Person): Tie[] => [...people(p), ...petTies(p)];
 const INNER_MAX = 16;
 
 interface Spot { t: Tie; x: number; y: number; size: number; r: number; deg: number; outer: boolean }
@@ -61,7 +66,7 @@ const mounted = new WeakMap<HTMLElement, Map<number, NodeEls>>();
 
 // interactive なら顔を押すと data-act=person で選べる。sel は選ばれている人の id。
 // ties を渡せば (前世の記録の要約など) people(p) の代わりにそれを並べる
-export function mountRing(el: HTMLElement, p: Person, sel?: number, interactive = true, ties: Tie[] = people(p)): void {
+export function mountRing(el: HTMLElement, p: Person, sel?: number, interactive = true, ties: Tie[] = everyone(p)): void {
   let nodes = mounted.get(el);
   if (!nodes || !el.querySelector('.rcenter')) {
     el.innerHTML = `<div class="ring"><div class="rlines"></div><div class="rcenter"><canvas class="pix"></canvas><b>${esc(p.given)}</b></div></div>`;
@@ -110,7 +115,7 @@ export function mountRing(el: HTMLElement, p: Person, sel?: number, interactive 
 }
 
 // data-face="id" のキャンバスに顔を描く。0 は主人公
-export function paintFaces(root: ParentNode, p: Person, ties: Tie[] = people(p)): void {
+export function paintFaces(root: ParentNode, p: Person, ties: Tie[] = everyone(p)): void {
   const byId = new Map(ties.map((t) => [t.id!, t]));
   root.querySelectorAll<HTMLCanvasElement>('canvas[data-face]').forEach((cv) => {
     const id = Number(cv.dataset.face);
@@ -131,15 +136,31 @@ function together(p: Person, t: Tie): { age: number; text: string; d?: number }[
   return rows.sort((a, b) => b.age - a.age);
 }
 
+// ペットの欄: 種類・名前・年齢 (亡くなっていれば何歳で)・一緒にいた年・一緒の出来事
+function petCard(p: Person, t: Tie): string {
+  const end = t.diedAt ?? p.age;
+  const together = Math.max(0, end - t.since);
+  const kind = t.pet === '猫' ? L('猫', 'Cat') : L('犬', 'Dog');
+  const status = t.alive ? L(`${t.age}歳`, `Age ${t.age}`) : L(`${t.age}歳で死んだ`, `Died at ${t.age}`);
+  const rows = [...(t.mem ?? [])].sort((a, b) => b.age - a.age);
+  return `<div class="pchead">${face(t.id!, 'big')}<div>
+      <p class="kicker">${kind}</p><h3 class="pname">${esc(t.name ?? '')}</h3>
+      <p class="note">${status}${L('・', ' · ')}${L(`${p.given}が${t.since}歳の時から${yearsWord(together)}いっしょ`, `${yearsWord(together)} together, from when ${p.given} was ${t.since}`)}</p></div>
+      <button class="link close" data-act="person" data-v="" aria-label="${L('閉じる', 'Close')}">×</button></div>
+    <div class="stat"><span>${L('近さ', 'Closeness')}</span><div class="meter"><i class="m-bond" style="width:${Math.round(t.bond ?? 50)}%"></i></div><b>${Math.round(t.bond ?? 50)}</b></div>
+    ${rows.length ? `<ol class="log together">${rows.map((m) => `<li><span class="age">${L(`${m.age}歳`, `${m.age}`)}</span><span>${esc(m.text)}${m.d ? ` <i class="dd ${m.d > 0 ? 'up' : 'down'}">${m.d > 0 ? '▲' : '▼'}</i>` : ''}</span></li>`).join('')}</ol>` : ''}`;
+}
+
 const yearsWord = (n: number) => L(`${n}年`, `${n} ${n === 1 ? 'year' : 'years'}`);
 
 // life: その人の一生を開いているか
 // upto: その人の一生をこの暦年までにする (同じ1秒に生まれた人の輪を、遊んでいる間に見るとき)
 export function personCard(p: Person, id?: number, life = false, upto?: number): string {
-  const t = id === undefined ? undefined : people(p).find((x) => x.id === id);
+  const t = id === undefined ? undefined : everyone(p).find((x) => x.id === id);
+  if (t?.role === 'pet') return petCard(p, t);
   if (!t) {
     return `<p class="note">${L('顔を押すと、その人と過ごした時間が読める。', 'Tap a face to read the time spent with that person.')}</p>
-      <p class="rlegend"><span class="r-family"></span>${L('家族', 'Family')}<span class="r-love"></span>${L('恋人・連れ合い', 'Love')}<span class="r-friend"></span>${L('友だち・恩師', 'Friends')}<span class="r-rival"></span>${L('ライバル', 'Rival')}</p>
+      <p class="rlegend"><span class="r-family"></span>${L('家族', 'Family')}<span class="r-love"></span>${L('恋人・連れ合い', 'Love')}<span class="r-friend"></span>${L('友だち・恩師', 'Friends')}<span class="r-rival"></span>${L('ライバル', 'Rival')}<span class="r-pet"></span>${L('ペット', 'Pets')}</p>
       <p class="note">${L('線が太いほど近い。薄い顔は亡くなった人、外の輪は離れた人。', 'Thicker line, closer bond. Faded faces have died; the outer ring is people who drifted away.')}</p>`;
   }
   const end = t.until ?? t.diedAt ?? p.age;

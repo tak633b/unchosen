@@ -1,5 +1,6 @@
 // 日常の小さな出来事 (src/data/moments.json) と、節目の生存率の記録。
 import data from '../../data/moments.json';
+import { petMoment } from '../pets';
 import { bornTable } from '../lifetable';
 import { countryAt } from '../countries';
 import { bump, countryOf, log, place, yearOf, type Person, type Stats } from '../person';
@@ -134,6 +135,7 @@ export function moments(p: Person): void {
     if (stat) p.recent[`stat:${m.id}`] = p.age;
     log(p, text, m.cost && m.cost < -0.08 ? 'hard' : p.kinds[p.age] ?? 'family', false, stat);
     p.log[p.log.length - 1].tpl = true; // 用意した文から選んだもの (AI の出来事が届いた年は減らす)
+    if (textOf(m).includes('{pet}')) petMoment(p, text); // ペットとの出来事は、ペットの記録にも残す
     const f = textOf(m).includes('{friend}') ? friend : undefined;
     if (f) { p.log[p.log.length - 1].who = [f.id!]; remember(p, f, text, 1, 'moment'); }
     if (f && m.id === FRIEND_DIES) { f.alive = false; f.diedAt = p.age; because(p, deathWhy(countryOf(p), f.sex, f.age));

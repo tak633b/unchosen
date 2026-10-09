@@ -13,6 +13,9 @@ const divider = (text: string, cls = '') => `<li class="kindiv${cls}"><span>${te
 
 // upto: この暦年より先は出さない (同じ1秒に生まれた人の輪を、遊んでいる間に見るとき)
 export function lifeHtml(p: Person, id: number, upto?: number): string {
+  // 前の世代の主人公は、作り直さずに前世の記録を指す (実際に生きた一生はそこにある)
+  const prev = people(p).find((t) => t.id === id && t.gen);
+  if (prev) return `<section class="kinlife"><h3>${L('その人の一生', 'Their whole life')}</h3><p class="note">${L(`${esc(prev.name ?? '')}は、${prev.gen}世代目の主人公だった。その一生は「前世の記録」にある。`, `${esc(prev.name ?? '')} was the protagonist of generation ${prev.gen}. That life is in Past lives.`)}</p></section>`;
   const l = lifeOf(p, id, upto);
   if (!l) return '';
   const c = byCode(l.country).name;
@@ -34,7 +37,7 @@ export function lifeHtml(p: Person, id: number, upto?: number): string {
   const unheard = l.full && lost && tie!.alive && l.born + l.age <= p.birthYear + p.age;
   const tail = l.full ? '' : `<p class="note">${lost ? L('連絡が途絶えてからのことは、まだ分からない。', 'Nothing is known yet about the years after they lost touch.') : L('この先は、まだ分からない。', 'What comes next is not known yet.')}</p>`;
   return `<section class="kinlife"><h3>${L('その人の一生', 'Their whole life')} <small>${esc(head)}</small></h3>
-    <p class="rlegend kinlegend"><span class="kinkey shared"></span>${L(`${esc(given)}と一緒の出来事 (印のある行は${esc(given)}の側の文)`, `Moments with ${esc(given)} (tagged rows are in ${esc(given)}'s words)`)}${after ? `<span class="kinkey after"></span>${L('その後', 'Afterward')}` : ''}</p>
+    <p class="kinlegend"><span><i class="kinkey shared"></i>${L(`${esc(given)}と一緒の出来事 (印のある行は${esc(given)}の側の文)`, `Moments with ${esc(given)} (tagged rows are in ${esc(given)}'s words)`)}</span>${after ? `<span><i class="kinkey after"></i>${L('その後', 'Afterward')}</span>` : ''}</p>
     ${unheard ? `<p class="note">${L(`${esc(given)}は、この人が亡くなったことを知らなかった。`, `${esc(given)} never learned of this death.`)}</p>` : ''}
     <ol class="log kinlist">${before ? divider(L(`${esc(given)}が生まれる前`, `Before ${esc(given)} was born`)) : ''}${rows.join('')}</ol>${tail}</section>`;
 }

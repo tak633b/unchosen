@@ -2,6 +2,7 @@
 import type { Person, Tie } from '../engine/person';
 import { lookOfMe, lookOfRel, type Look } from './look';
 import { BAYER, dith, mixc, Pix, tones } from './raster';
+import { drawPet } from './petportrait';
 
 export const PW = 48;
 export const PH = 56;
@@ -141,5 +142,6 @@ export function drawPortrait(cv: HTMLCanvasElement, p: Person): void {
 
 // 人の輪の顔 (家族・友人など)。同じ人は何度描いても同じ顔。亡くなった人の扱いは画面側でする
 export function drawTiePortrait(cv: HTMLCanvasElement, t: Tie, p: Person): void {
+  if (t.role === 'pet') return drawPet(cv, t.pet ?? '犬', (p.seed ^ Math.imul(t.id ?? 0, 0x9e3779b1)) >>> 0);
   paintPortrait(lookOfRel(p, t, t.role)).put(cv);
 }

@@ -27,6 +27,8 @@ function pCall(v: Voice): string {
     case 'mother': case 'father': return `子どもの${p}`;
     case 'child': return f ? '母' : '父';
     case 'grandchild': return f ? '祖母' : '祖父';
+    case 'grandparent': return `孫の${p}`;
+    case 'pet': return p;
     case 'sibling': return `きょうだいの${p}`;
     case 'spouse': return `連れ合いの${p}`;
     case 'partner': return `恋人の${p}`;
@@ -55,6 +57,7 @@ const JA: Rule[] = [
   ['{R}が看病に来てくれた。', '{P}の看病に行った。'],
   ['{R}が、買い物や通院に付き添ってくれるようになった。', '{P}の買い物や通院に、付き添うようになった。'],
   ['{R}が見舞いに来てくれた。', '{P}の見舞いに行った。'],
+  ['{X}に頼まれて、孫の{R}をしばらく預かった。', 'しばらく{P}のところに預けられた。'],
   ['{R}に頼まれて、孫の{X}をしばらく預かった。', '{P}に、子どもの{X}をしばらく預かってもらった。'],
   ['{R}に頼まれて、引っ越しを手伝った。', '{P}に、引っ越しを手伝ってもらった。'],
   ['{R}に頼まれて、しばらく子どもを預かった。', '{P}に、しばらく子どもを預かってもらった。'],
@@ -87,6 +90,7 @@ const EN: Rule[] = [
   ['{R} came to help with the illness.', 'Went to help {P} through an illness.'],
   ['{R} started coming along to the shops and the doctor.', 'Started going along with {P} to the shops and the doctor.'],
   ['{R} came to visit while {X} was ill.', 'Visited {P}, who was ill.'],
+  ["Looked after {R}, {X}'s child, for a while.", 'Stayed with {P} for a while.'],
   ["Looked after {X}, {R}'s child, for a while.", '{P} looked after {X} for a while.'],
   ['Helped {R} move house.', '{P} helped with the move.'],
   ["Looked after {R}'s children for a while.", '{P} looked after the children for a while.'],
@@ -103,19 +107,20 @@ const EN: Rule[] = [
 ];
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// 型は一度だけ正規表現にする。{R} と {p} は、文の側で印 (\u0001・\u0002) に置き換えてから比べる
 const compiled = new Map<string, RegExp>();
-function match(tpl: string, text: string, v: Voice): string[] | null {
-  const key = `${tpl}\u0000${v.rCall}\u0000${v.rName}\u0000${v.pGiven}`;
-  let re = compiled.get(key);
+function match(tpl: string, text: string): string[] | null {
+  let re = compiled.get(tpl);
   if (!re) {
-    const who = [v.rCall, v.rName].filter(Boolean).map(escape).join('|');
     re = new RegExp(`^${tpl.split(/(\{[RXp]\})/).map((part) =>
-      part === '{R}' ? `(?:${who})` : part === '{X}' ? '(.*?)' : part === '{p}' ? escape(v.pGiven) : escape(part)).join('')}$`, 's');
-    compiled.set(key, re);
+      part === '{R}' ? '\u0001' : part === '{X}' ? '(.*?)' : part === '{p}' ? '\u0002' : escape(part)).join('')}$`, 's');
+    compiled.set(tpl, re);
   }
   const m = text.match(re);
   return m ? m.slice(1) : null;
 }
+const mark = (text: string, v: Voice) => [v.rCall, v.rName].filter(Boolean).reduce((t, n) => t.split(n).join('\u0001'), text).split(v.pGiven).join('\u0002');
+const unmark = (s: string, v: Voice) => s.replaceAll('\u0001', v.rName).replaceAll('\u0002', v.pGiven);
 
 // 向きのない出来事 (けんか・仲直り・出会い・再会・付き合い・別れ) は、名前を入れ替えるだけで読める
 function swap(text: string, v: Voice): string | undefined {
@@ -134,8 +139,9 @@ function swap(text: string, v: Voice): string | undefined {
 }
 
 export function voice(text: string, v: Voice): string | null | undefined {
+  const marked = mark(text, v);
   for (const [tpl, out] of isEn ? EN : JA) {
-    const got = match(tpl, text, v);
+    const got = match(tpl, marked)?.map((x) => unmark(x, v));
     if (!got) continue;
     if (out === null) return null;
     let i = 0;

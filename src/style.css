@@ -233,7 +233,10 @@ canvas.mini { width: 26px; height: auto; border-radius: 50%; border: 1px solid v
 .kindiv span { display: inline-block; border-bottom: 1px solid var(--line); padding: 0 10px 3px; }
 .kinlist li.kindiv.after { color: var(--accent); }
 .kindiv.after span { border-bottom-color: var(--accent); }
-.kinlegend .kinkey { width: 14px; height: 10px; border: 0; border-left: 3px solid var(--accent); }
+/* 凡例: 色見本と文字を1組にして、狭い幅でも見本だけが別の行に残らないようにする */
+.kinlegend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 8px; font-size: 12px; color: var(--sub); }
+.kinlegend > span { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.kinlegend .kinkey { flex: none; display: inline-block; width: 14px; height: 10px; border: 0; border-left: 3px solid var(--accent); }
 .kinlegend .kinkey.shared { background: var(--glow); }
 .kinlegend .kinkey.after { border-left: 3px dashed var(--sub); }
 .deathkin { margin-top: 12px; }
@@ -443,3 +446,19 @@ button.olink:hover b { color: var(--text); }
 .oring { max-width: 420px; margin: 0 auto; }
 .opcard { margin-top: 12px; }
 .otherdetail:not(:empty) { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+
+/* この人で続ける・家系 */
+.heirs { margin-top: 14px; }
+.heirs .choices button { display: inline-grid; justify-items: center; gap: 2px; }
+.heirs .choices button small { font-size: 11px; color: var(--sub); }
+.lineage { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 14px; padding: 0; margin: 12px 0 4px; }
+.lineage li { display: grid; justify-items: center; gap: 2px; min-width: 64px; font-size: 13px; }
+.lineage canvas { width: 44px; height: auto; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface2); }
+.lineage small { color: var(--sub); font-size: 11px; }
+.lineage .linerel { font-style: normal; font-size: 11px; color: var(--accent); }
+
+/* ペット: 人の輪の中の犬と猫 */
+:root { --r-pet: #a8c070; }
+.rline.r-pet { border-top-color: var(--r-pet); }
+.rnode.r-pet canvas { border-color: var(--r-pet); }
+.rlegend .r-pet { border-top-color: var(--r-pet); }

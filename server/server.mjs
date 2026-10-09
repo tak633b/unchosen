@@ -34,6 +34,10 @@ db.exec(`CREATE TABLE IF NOT EXISTS memorial (
 if (!db.prepare('PRAGMA table_info(memorial)').all().some((c) => c.name === 'lang')) {
   db.exec("ALTER TABLE memorial ADD COLUMN lang TEXT NOT NULL DEFAULT 'ja'");
 }
+// 家系 (この人で続けた人生) の列。前の DB にはないので足す。1世代目は gen 1・family 空
+const cols = db.prepare('PRAGMA table_info(memorial)').all().map((c) => c.name);
+if (!cols.includes('gen')) db.exec('ALTER TABLE memorial ADD COLUMN gen INTEGER NOT NULL DEFAULT 1');
+if (!cols.includes('family')) db.exec("ALTER TABLE memorial ADD COLUMN family TEXT NOT NULL DEFAULT ''");
 const langOf = (v) => (v === 'en' ? 'en' : 'ja');
 
 // 1つの IP からの書き込みは 1分に10回まで
@@ -73,9 +77,11 @@ function validEntry(b) {
   if (!cause) return null;
   if (b.lang !== undefined && !['ja', 'en'].includes(b.lang)) return null;
   const birthYear = Number(b.birthYear);
+  const gen = Number(b.gen);
   return {
     rural: b.rural ? 1 : 0, name: str(b.name, 60), birthYear: Number.isInteger(birthYear) ? birthYear : 0, job: str(b.job, 40),
     country, sex: b.sex, age, cause, line: str(b.line, 400), message: str(b.message, 200), lang: langOf(b.lang),
+    gen: Number.isInteger(gen) && gen >= 1 && gen <= 999 ? gen : 1, family: str(b.family, 400),
   };
 }
 
@@ -215,7 +221,7 @@ async function api(req, res, url) {
   if (req.method === 'POST' && url.pathname === '/api/ai/models') return aiModels(req, res);
   const ip = req.socket.remoteAddress ?? '';
   if (req.method === 'GET' && url.pathname === '/api/memorial') {
-    const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, created_at AS createdAt
+    const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, gen, family, created_at AS createdAt
       FROM memorial WHERE lang = ? ORDER BY id DESC LIMIT 100`).all(langOf(url.searchParams.get('lang')));
     return send(res, 200, { success: true, data: rows });
   }
@@ -225,8 +231,8 @@ async function api(req, res, url) {
     try { body = await readJson(req); } catch { return send(res, 400, { success: false, error: 'bad json' }); }
     const e = validEntry(body);
     if (!e) return send(res, 400, { success: false, error: 'invalid entry' });
-    const r = db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-      .run(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message, e.lang);
+    const r = db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message, lang, gen, family) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+      .run(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message, e.lang, e.gen, e.family);
     return send(res, 201, { success: true, data: { id: Number(r.lastInsertRowid) } });
   }
   const m = url.pathname.match(/^\/api\/memorial\/(\d+)\/candle$/);

@@ -24,7 +24,7 @@ document.documentElement.lang = lang;
 if (isEn) document.title = 'Unchosen. You don’t choose where you’re born.';
 const sexWord = (s: 'F' | 'M' | 'X') => genderWord(s);
 
-interface Shared { id: number; rural: number; job: string; name: string; country: string; sex: 'F' | 'M' | 'X'; age: number; cause: string; line: string; message: string; candles: number; createdAt: string }
+interface Shared { id: number; rural: number; job: string; name: string; country: string; sex: 'F' | 'M' | 'X'; age: number; cause: string; line: string; message: string; candles: number; createdAt: string; gen?: number; family?: string }
 
 async function fetchShared(): Promise<Shared[]> {
   try {
@@ -40,7 +40,7 @@ const sharedCard = (m: Shared) => {
   const c = COUNTRIES.find((x) => x.code === m.country);
   const scene = c ? `<canvas class="pixscene" data-scene="${sceneAttr(toData(sceneFromSummary({ id: m.id, country: m.country, sex: m.sex === 'X' ? (m.id % 2 ? 'F' : 'M') : m.sex, age: m.age, rural: !!m.rural, job: m.job })))}"></canvas>` : '';
   return `<li>${scene}<p><b>${esc(m.name || L('ある人', 'Someone'))}</b>　<small>${esc(c?.name ?? m.country)}${L('・', ', ')}${sexWord(m.sex)}${L('・', ', ')}${L(`${Number(m.age)}歳`, `age ${Number(m.age)}`)}</small></p>
-    <p class="note">${esc(m.line)}</p>${m.message ? `<p class="message">${L('「', '"')}${esc(m.message)}${L('」', '"')}</p>` : ''}
+    ${Number(m.gen) > 1 ? `<p class="note family">${L(`第${Number(m.gen)}世代`, `Generation ${Number(m.gen)}`)}${m.family ? `${L('・', ' · ')}${esc(m.family)}` : ''}</p>` : ''}<p class="note">${esc(m.line)}</p>${m.message ? `<p class="message">${L('「', '"')}${esc(m.message)}${L('」', '"')}</p>` : ''}
     <button data-candle="${Number(m.id)}">${L('ろうそくを灯す', 'Light a candle')} ${Number(m.candles)}</button></li>`;
 };
 

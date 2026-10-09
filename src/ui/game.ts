@@ -15,6 +15,7 @@ import { drawPortrait, drawScene, sceneOf, type Scene } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
 import { mountRing, paintFaces, personCard } from './ring';
 import { briefOf, otherHtml } from './otherview';
+import { continueAs, generation, othersFor } from '../engine/lineage';
 
 const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
 const SPEEDS = [1, 2, 4, 8, 16];
@@ -178,7 +179,8 @@ function render(): void {
   const { p } = S;
   $('#age').textContent = L(`${p.age}歳`, `Age ${p.age}`);
   const secs = Math.round(YEAR_MS / 1000 / S.speed);
-  setHTML('#wholine', L(`${p.birthYear + p.age}年・${esc(p.name)}・1年 ≈ ${secs}秒`, `${p.birthYear + p.age} · ${esc(p.name)} · 1 yr ≈ ${secs}s`));
+  const gen = generation(p) > 1 ? L(`・第${generation(p)}世代`, ` · gen ${generation(p)}`) : '';
+  setHTML('#wholine', L(`${p.birthYear + p.age}年・${esc(p.name)}${gen}・1年 ≈ ${secs}秒`, `${p.birthYear + p.age} · ${esc(p.name)}${gen} · 1 yr ≈ ${secs}s`));
   $('#pausebtn').textContent = S.paused ? L('▶ 再開', '▶ Resume') : L('❚❚ 止める', '❚❚ Pause');
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
   $('#autobtn').classList.toggle('on', p.auto);
@@ -397,5 +399,10 @@ function finish(): void {
   S.io?.disconnect();
   if (S.music) setMusic(false);
   S = null;
-  showDeath(p, others, basis, onExit);
+  // 輪の誰かで続けるなら、その人のここまでの一生を次の主人公にして、同じ画面で始める
+  showDeath(p, others, basis, onExit, (id) => {
+    const q = continueAs(p, id);
+    run(q, othersFor(q, basis), basis, 1, onExit);
+    window.scrollTo(0, 0);
+  });
 }
