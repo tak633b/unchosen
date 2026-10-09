@@ -8,6 +8,9 @@ import { lifeBand, survivalChart } from './charts';
 import { showDeath } from './death';
 import { $, esc, load, save, setHTML } from './dom';
 import { setMusic } from './music';
+import { playCrisis, playFarewell } from './crisis';
+import { crisisScript, declineScript, farewell } from './farewell';
+import { isAcute } from '../engine/crisis';
 import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
 import { isEn, L } from '../i18n';
@@ -135,6 +138,19 @@ function tick(): void {
     S.p.log = S.p.log.filter((e) => !(e.age === age && e.tpl && kept++ >= 1));
   }
   render();
+  // 九死に一生の年は、その場面を見せてから先へ進む
+  const near = S.p.alive ? S.p.log.find((e) => e.age === S!.p.age && e.crisis) : undefined;
+  if (near) {
+    S.modal = true;
+    S.ff = false;
+    void playCrisis(crisisScript(S.p, near.crisis!, true), S.music).then(() => {
+      if (!S) return;
+      S.modal = false;
+      nextModal();
+      if (S && !S.modal) persist();
+    });
+    return;
+  }
   nextModal();
   if (S && !S.modal) persist();
 }
@@ -393,17 +409,21 @@ function leave(): void {
 // 自分が亡くなったあとも、同じ1秒の人たちは最後まで生きる
 function finish(): void {
   if (!S) return;
-  const { p, others, basis, onExit } = S;
+  const { p, others, basis, onExit, music } = S;
   for (const o of others) while (o.alive) advanceYear(o);
   clearSaved();
   cancelAnimationFrame(S.raf);
   S.io?.disconnect();
-  if (S.music) setMusic(false);
+  if (music) setMusic(false);
   S = null;
-  // 輪の誰かで続けるなら、その人のここまでの一生を次の主人公にして、同じ画面で始める
-  showDeath(p, others, basis, onExit, (id) => {
-    const q = continueAs(p, id);
-    run(q, othersFor(q, basis), basis, 1, onExit);
-    window.scrollTo(0, 0);
+  // 急な死は、九死に一生と同じ場面で始まる (最後の一拍まで、どちらになるか分からない)。病や老いは静かな場面
+  const scene = isAcute(p.cause) ? crisisScript(p, p.cause!, false) : declineScript(p);
+  void playCrisis(scene, music).then(() => playFarewell(p, farewell(p), music)).then(() => {
+    // 輪の誰かで続けるなら、その人のここまでの一生を次の主人公にして、同じ画面で始める
+    showDeath(p, others, basis, onExit, (id) => {
+      const q = continueAs(p, id);
+      run(q, othersFor(q, basis), basis, 1, onExit);
+      window.scrollTo(0, 0);
+    });
   });
 }

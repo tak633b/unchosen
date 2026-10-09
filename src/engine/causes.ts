@@ -74,3 +74,11 @@ export function pickCause(rng: Rng, c: Country, sex: Sex, age: number, q: number
   const rows = BANDS.find(([max]) => age <= max)![1];
   return causeName(pickWeighted(rng, rows, ([, w, tag]) => w * tagWeight(tag, c, smoker))[0]);
 }
+
+// 死因の内訳 (日本語の名前と割合)。pickCause と同じ重みで、乱数は使わない
+export function causeShares(c: Country, sex: Sex, age: number, q: number, smoker: boolean): [string, number][] {
+  const h = Math.min(0.9, homicideHazard(c, sex, age) / q);
+  const rows = BANDS.find(([max]) => age <= max)![1];
+  const total = rows.reduce((t, [, w, tag]) => t + w * tagWeight(tag, c, smoker), 0);
+  return [[HOMICIDE, h], ...rows.map(([n, w, tag]) => [n, (1 - h) * (w * tagWeight(tag, c, smoker)) / total] as [string, number])];
+}

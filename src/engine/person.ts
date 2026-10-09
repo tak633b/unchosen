@@ -6,7 +6,7 @@ import { isEn, L } from '../i18n';
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
 
-export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string }
+export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string; crisis?: string } // crisis: 九死に一生の年 (engine/crisis.ts)。危うかった死因の日本語の名前
 export interface Stats { health: number; happy: number; money: number; learn: number; bond: number }
 
 export interface Option {

@@ -17,6 +17,7 @@ import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
 import { choices } from './events/choices';
+import { logNearMiss, nearMiss } from './crisis';
 import { bonds } from './events/bonds';
 import { because, birthWhy, deathWhy, joinWhy } from './why';
 import { ensureBonds, freshName } from './bonds';
@@ -182,7 +183,8 @@ export function advanceYear(p: Person): void {
   const c = countryOf(p);
   const q = deathRisk(p);
   // 輪の人の一生では、亡くなる年は主人公の記録 (または先に決めた運命) で決まっている
-  if (p.anchor ? p.age >= p.anchor.dies : p.rng() < q) {
+  const roll = p.anchor ? 1 : p.rng();
+  if (p.anchor ? p.age >= p.anchor.dies : roll < q) {
     let cause: string;
     if (p.anchor?.cause) cause = p.anchor.cause;
     else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
@@ -191,6 +193,7 @@ export function advanceYear(p: Person): void {
     die(p, cause);
     return;
   }
+  const near = nearMiss(p, roll, q);
   p.age++;
   milestone(p);
   family(p);
@@ -216,6 +219,7 @@ export function advanceYear(p: Person): void {
   bonds(p);
   if (p.age === 62 && p.hobbies.length < 3 && p.rng() < 0.5) chooseHobby(p, L('新しい趣味を始める？', 'Take up a new hobby?'));
   drift(p);
+  if (near && p.alive) logNearMiss(p, near, q);
   if (!p.kinds[p.age]) p.kinds[p.age] = baseKind(p);
   if (PAUSE_AGES.includes(p.age) && p.reflect) p.questions.push({ age: p.age, q: '' });
 }

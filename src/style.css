@@ -476,3 +476,36 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 .certothers canvas.mini, .others canvas.mini, .five canvas.mini { display: inline-block; vertical-align: middle; width: 24px; margin-right: 6px; }
 .others .olink { display: grid; grid-template-columns: 30px 1fr; align-items: center; text-align: left; }
 .others .olink canvas.mini { grid-row: span 2; }
+
+/* 命が危うい場面と最期のふりかえり (ui/crisis.ts)。暗転して、真ん中に文が一つずつ灯る */
+.crisis { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; padding: 24px 16px; background: rgb(4 5 8 / 0.94); color: var(--text); opacity: 0; transition: opacity 0.6s; cursor: pointer; }
+.crisis.in { opacity: 1; }
+.crisis.cr-farewell { background: #050608; transition-duration: 1.4s; }
+.cr-body { width: min(460px, 100%); text-align: center; font-family: var(--serif); font-size: 18px; line-height: 1.9; }
+.cr-step { opacity: 0; transform: translateY(6px); transition: opacity 0.8s, transform 0.8s; }
+.cr-step.on { opacity: 1; transform: none; }
+.cr-step p { margin: 0 0 10px; }
+.cr-head { color: var(--sub); font-family: var(--sans); font-size: 13px; letter-spacing: 0.08em; }
+.cr-big { font-size: 20px; }
+.cr-age { color: var(--accent); font-family: var(--sans); font-size: 13px; margin-bottom: 4px !important; }
+.cr-scene { display: block; width: 100%; height: auto; image-rendering: pixelated; border-radius: 6px; margin: 0 auto; }
+.cr-faces { display: flex; justify-content: center; gap: 10px; margin-top: 8px; }
+.cr-faces canvas, .cr-step > canvas.pix { width: 56px; height: auto; border-radius: 50%; background: var(--surface2); }
+.cr-step > canvas.pix { width: 72px; margin-bottom: 10px; }
+.cr-words { text-align: left; font-size: 15px; }
+.cr-skip { position: absolute; right: 16px; bottom: 16px; background: none; border: 1px solid var(--line); color: var(--sub); border-radius: 999px; padding: 6px 14px; font-size: 13px; }
+/* 脈。速い・ゆっくり・弱い・止まる・戻る */
+.cr-heart { position: absolute; top: 18%; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #c2564f; box-shadow: 0 0 24px #c2564f; opacity: 0; }
+.cr-heart.p-fast { opacity: 1; animation: crbeat 0.45s infinite; }
+.cr-heart.p-slow, .cr-heart.p-back { opacity: 0.9; animation: crbeat 0.9s infinite; }
+.cr-heart.p-back { animation-duration: 0.7s; }
+.cr-heart.p-weak { opacity: 0.45; animation: crbeat 1.3s infinite; }
+.cr-heart.p-flat { opacity: 0.6; width: 160px; height: 2px; margin-left: -80px; border-radius: 0; box-shadow: none; animation: none; }
+@keyframes crbeat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.7); } 24% { transform: scale(1.05); } 36% { transform: scale(1.4); } }
+.crisis:has(.p-fast) { animation: crdim 0.45s infinite; }
+@keyframes crdim { 50% { background: rgb(4 5 8 / 0.88); } }
+@media (prefers-reduced-motion: reduce) {
+  .crisis, .cr-step { transition: none; }
+  .cr-step { transform: none; }
+  .cr-heart, .crisis:has(.p-fast) { animation: none !important; }
+}

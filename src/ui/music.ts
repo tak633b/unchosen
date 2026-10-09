@@ -50,3 +50,27 @@ export function setMusic(on: boolean): void {
     void ctx?.suspend();
   }
 }
+
+// 命が危うい場面の音。音楽を入れている人にだけ鳴らす (game.ts が判断する)
+function tone(freq: number, len: number, vol: number, type: OscillatorType = 'sine'): void {
+  ctx ??= new AudioContext();
+  void ctx.resume();
+  const now = ctx.currentTime;
+  const osc = ctx.createOscillator();
+  const g = ctx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  g.gain.setValueAtTime(0, now);
+  g.gain.linearRampToValueAtTime(vol, now + 0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, now + len);
+  osc.connect(g).connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + len + 0.05);
+}
+// 心臓の音: 低い二拍
+export function thump(): void {
+  tone(60, 0.18, 0.5);
+  window.setTimeout(() => tone(52, 0.2, 0.35), 160);
+}
+// 止まった心臓の音: 細く長い一音
+export const flatline = () => tone(880, 2.2, 0.05, 'triangle');
