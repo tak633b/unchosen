@@ -192,6 +192,11 @@ export function eduLevel(p: Person): EduLevel {
   return y >= 12 ? 3 : y >= 9 ? 2 : y >= 6 ? 1 : 0;
 }
 
+// 学校に通った年数。大学は専攻で4年か6年 (医学)、大学院は2年 (events/school.ts)
+const uniLen = (p: Person) => (p.school.major === '医学' ? 6 : 4);
+export const schoolYears = (p: Person): number => p.school.years
+  + (p.school.uni === 'done' ? uniLen(p) : p.school.uni === 'studying' ? p.school.uniYears : 0)
+  + (p.school.grad === 'done' ? 2 : p.school.grad === 'studying' ? p.school.uniYears : 0);
 export const EDU_LABEL = isEn
   ? ['No schooling', 'Primary school', 'Middle school', 'High school', 'University', 'Graduate school']
   : ['学校に通えなかった', '小学校', '中学校', '高校', '大学', '大学院'];

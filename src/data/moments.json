@@ -4788,6 +4788,13 @@
     {
       "id": "pet-walk-neighbors",
       "text": "雨の日も{pet}の散歩に出た。近所の人の顔は、ほとんど{pet}を通じて覚えた。",
+      "pet": "犬",
+      "other": {
+        "text": "雨の日は{pet}と窓辺に並んで、通りを眺めて過ごした。近所の人の顔は、ほとんどその窓から覚えた。",
+        "en": {
+          "text": "On rainy days {name} and {pet} sat by the window watching the street. Most of the neighbors' faces became familiar from that window."
+        }
+      },
       "minAge": 25,
       "maxAge": 80,
       "weight": 1,
@@ -7429,6 +7436,13 @@
     {
       "id": "slow-walk-pet",
       "text": "{pet}と{name}は、同じくらいゆっくり歩くようになった。",
+      "pet": "犬",
+      "other": {
+        "text": "{pet}と{name}は、日だまりで同じくらい長く昼寝をするようになった。",
+        "en": {
+          "text": "{pet} and {name} now napped in the sunny spot for about the same long stretch."
+        }
+      },
       "minAge": 72,
       "maxAge": 95,
       "weight": 1,

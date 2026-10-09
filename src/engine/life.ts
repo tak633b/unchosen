@@ -127,17 +127,23 @@ function smokeAvg(p: Person): number {
 }
 
 // その年に亡くなる確率。生命表の値に、健康・所得・喫煙・病気の倍率をかける
-export function deathRisk(p: Person): number {
+// 死亡率の内訳 (自分の欄で「なぜ」を見せるため)。q が deathRisk の値。ほかは掛け合わせる前の倍率
+export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number }
+
+export const deathRisk = (p: Person): number => riskParts(p).q;
+
+export function riskParts(p: Person): RiskParts {
+  const one = { cal: 1, healthK: 1, wealthK: 1, smokeK: 1, drinkK: 1, illK: 1, hivAdd: 0 };
   const c = countryOf(p);
   // 生命表の終わりでは必ず亡くなる (倍率で 1 を割ると MAX_AGE を超えて生きてしまう)
-  if (p.age >= MAX_AGE) return 1;
+  if (p.age >= MAX_AGE) return { q: 1, table: 1, ...one };
   // 生命表には出産での死も入っているが、ここでは出産のたびに別に引く (love.ts の giveBirth)。
   // 二重に数えないよう、15〜49歳の女性からは、1年あたりの見込み (出生率/35 × 妊産婦死亡率) を差し引く
   // ponytail: 結婚していない人も同じだけ引く。未婚率の高い国・時代では、少し長く生きる側にずれる
   const maternal = p.sex === 'F' && p.age >= 15 && p.age < 50 ? (c.tfr / 35) * (c.mmr / 1e5) : 0;
   const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal);
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
-  if (p.age < 5) return base;
+  if (p.age < 5) return { q: base, table: base, ...one };
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
   const usual = p.age < 45 ? 80 : 80 - 0.7 * (Math.min(p.age, 70) - 45) - 1.4 * Math.max(0, p.age - 70);
   const healthK = 1.4 ** ((usual - p.stats.health) / 25);
@@ -148,7 +154,8 @@ export function deathRisk(p: Person): number {
   const drinkK = p.drinker ? 1.25 : 1;
   const illK = (p.illness?.mult ?? careQuality(c)) / careQuality(c);
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
-  return Math.min(1, calibration(p.age) * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd);
+  const cal = calibration(p.age);
+  return { q: Math.min(1, cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd };
 }
 
 function die(p: Person, cause: string): void {

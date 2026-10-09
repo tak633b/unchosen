@@ -5,7 +5,7 @@ import { currentIncome } from '../engine/events/common';
 import { causeName } from '../engine/causes';
 import { jobName } from '../engine/jobs';
 import { homeWord } from '../engine/life';
-import { EDU_LABEL, eduLevel, type Person } from '../engine/person';
+import { EDU_LABEL, eduLevel, schoolYears, type Person } from '../engine/person';
 import { nowLine } from '../engine/summary';
 import { esc } from './dom';
 import { recordHtml } from './lifeview';
@@ -14,11 +14,6 @@ import { L } from '../i18n';
 
 // 比べるための要約。前世の記録には Person が残らないので、主人公の分はこの形で残す (death.ts)
 export interface Brief { given: string; age: number; alive: boolean; edu: number; school: number; peak: number; kids: number; countries: string[]; familyP: number }
-// 学校に通った年数。大学は専攻で4年か6年 (医学)、大学院は2年 (events/school.ts)
-const uniLen = (p: Person) => (p.school.major === '医学' ? 6 : 4);
-export const schoolYears = (p: Person): number => p.school.years
-  + (p.school.uni === 'done' ? uniLen(p) : p.school.uni === 'studying' ? p.school.uniYears : 0)
-  + (p.school.grad === 'done' ? 2 : p.school.grad === 'studying' ? p.school.uniYears : 0);
 export const briefOf = (p: Person): Brief => ({
   given: p.given, age: p.age, alive: p.alive, edu: p.age < 6 ? -1 : eduLevel(p), school: schoolYears(p), peak: Math.round(p.peakIncome),
   kids: p.children.length, countries: p.countriesLived, familyP: p.birthP ?? p.familyP,

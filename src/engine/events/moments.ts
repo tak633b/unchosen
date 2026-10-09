@@ -20,6 +20,8 @@ interface Moment {
   id: string;
   text: string;
   en?: { text: string; stat?: string };
+  pet?: '犬' | '猫';                              // その種類のペットを思って書いた出来事
+  other?: { text: string; en?: { text: string } }; // もう一方の種類のペットのときの文 (選ばれ方は同じ)
   minAge: number;
   maxAge: number;
   weight: number;
@@ -104,6 +106,8 @@ const fill = (p: Person, text: string) => text
   .replaceAll('{pet}', p.pet?.name ?? '');
 
 const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
+// 犬の散歩のような出来事は、猫のときは猫の文にする。選ぶ候補と重みは変えない (乱数の並びが同じになる)
+const petText = (p: Person, m: Moment) => (m.pet && m.other && p.pet && p.pet.kind !== m.pet ? (isEn ? m.other.en?.text ?? m.other.text : m.other.text) : textOf(m));
 // 注釈の統計は、その数字の年が出来事の年から15年以上離れていたら出さない (1965年の出来事に「2023年に世界で…」は添えない)
 const STAT_SPAN = 15;
 const statOf = (m: Moment, year: number) => {
@@ -126,7 +130,7 @@ export function moments(p: Person): void {
     const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1) * techWeight(p, x));
     pool.splice(pool.indexOf(m), 1);
     p.recent[m.id] = p.age;
-    const text = fill(p, textOf(m));
+    const text = fill(p, petText(p, m));
     // 子どもの出来事のお金は親の家計の話なので、本人の財布は動かさない
     if (m.cost && independent(p)) p.wealth += scaleOf(p) * m.cost;
     if (m.effects) bump(p, m.effects);

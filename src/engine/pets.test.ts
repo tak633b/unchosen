@@ -50,3 +50,17 @@ describe('飼ったペットが人の輪に並ぶ', () => {
     expect(carried).toBeGreaterThan(0);
   }, 120_000);
 });
+
+// 犬を思って書いた出来事 (雨の日の散歩・同じ速さで歩く) は、猫のときは猫の文になる。選ばれ方は同じ (乱数の並びは変わらない)
+describe('ペットの出来事は、その種類に合う', () => {
+  it('猫に散歩の文が出ず、犬に昼寝・窓辺の文が出ない', () => {
+    const dogOnly = /散歩|ゆっくり歩く/, catOnly = /窓辺|日だまり/;
+    let cat = 0, dog = 0;
+    for (const p of lives(600, 2000)) for (const t of p.pets ?? []) for (const m of t.mem) {
+      if (t.kind === '猫') { expect(m.text).not.toMatch(dogOnly); if (catOnly.test(m.text)) cat++; }
+      else { expect(m.text).not.toMatch(catOnly); if (dogOnly.test(m.text)) dog++; }
+    }
+    expect(cat).toBeGreaterThan(0);
+    expect(dog).toBeGreaterThan(0);
+  }, 120_000);
+});

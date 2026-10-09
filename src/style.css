@@ -462,3 +462,13 @@ button.olink:hover b { color: var(--text); }
 .rline.r-pet { border-top-color: var(--r-pet); }
 .rnode.r-pet canvas { border-color: var(--r-pet); }
 .rlegend .r-pet { border-top-color: var(--r-pet); }
+
+/* 自分の欄 */
+button.rcenter { border: 0; background: none; padding: 0; color: inherit; font: inherit; cursor: pointer; border-radius: 50%; }
+button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0 0 0 3px var(--accent), 0 0 30px var(--glow); }
+.selfcard { display: grid; gap: 4px; }
+.selfsec { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 8px; }
+.selfsec h4 { margin: 0 0 8px; font-size: 13px; color: var(--accent); letter-spacing: 0.06em; }
+.selfkv { grid-template-columns: max-content minmax(0, 1fr); overflow-wrap: anywhere; }
+.selfsec .why { margin: 8px 0 0; color: var(--sub); font-size: 12px; padding-left: 8px; border-left: 2px solid var(--glow); }
+.selfwork { font-size: 13px; }

@@ -7,6 +7,7 @@ import { isEn, L } from '../i18n';
 import { drawPortrait, drawTiePortrait } from './pixel';
 import { lifeHtml } from './lifeview';
 import { petTies } from '../engine/pets';
+import { selfCard } from './selfview';
 
 type Kind = 'family' | 'love' | 'friend' | 'rival' | 'pet';
 const kindOf = (r: Role): Kind => r === 'pet' ? 'pet' :
@@ -69,7 +70,9 @@ const mounted = new WeakMap<HTMLElement, Map<number, NodeEls>>();
 export function mountRing(el: HTMLElement, p: Person, sel?: number, interactive = true, ties: Tie[] = everyone(p)): void {
   let nodes = mounted.get(el);
   if (!nodes || !el.querySelector('.rcenter')) {
-    el.innerHTML = `<div class="ring"><div class="rlines"></div><div class="rcenter"><canvas class="pix"></canvas><b>${esc(p.given)}</b></div></div>`;
+    // 押せる輪では、真ん中の顔 (主人公) も押せる。id 0 は自分の欄
+    const center = interactive ? `<button class="rcenter" data-act="person" data-v="0" title="${esc(L(`${p.given}の詳しい記録`, `${p.given}: details`))}">` : '<div class="rcenter">';
+    el.innerHTML = `<div class="ring"><div class="rlines"></div>${center}<canvas class="pix"></canvas><b>${esc(p.given)}</b>${interactive ? '</button>' : '</div>'}</div>`;
     nodes = new Map();
     mounted.set(el, nodes);
   }
@@ -157,6 +160,7 @@ const yearsWord = (n: number) => L(`${n}年`, `${n} ${n === 1 ? 'year' : 'years'
 // upto: その人の一生をこの暦年までにする (同じ1秒に生まれた人の輪を、遊んでいる間に見るとき)
 export function personCard(p: Person, id?: number, life = false, upto?: number): string {
   const t = id === undefined ? undefined : everyone(p).find((x) => x.id === id);
+  if (id === 0) return selfCard(p); // 真ん中の顔: 自分の欄
   if (t?.role === 'pet') return petCard(p, t);
   if (!t) {
     return `<p class="note">${L('顔を押すと、その人と過ごした時間が読める。', 'Tap a face to read the time spent with that person.')}</p>
