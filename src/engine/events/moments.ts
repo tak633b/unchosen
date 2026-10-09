@@ -148,7 +148,7 @@ export function milestone(p: Person): void {
   const born = countryAt(p.birthCountry, p.birthYear);
   const alive = bornTable(born, p.sex, p.birthYear).l[p.age];
   const u5 = 1 - bornTable(born, p.sex, p.birthYear).l[5];
-  const who = p.sex === 'F' ? L('女の子', 'girls') : L('男の子', 'boys');
+  const who = p.gender === 'X' ? L('子ども', 'children') : p.sex === 'F' ? L('女の子', 'girls') : L('男の子', 'boys');
   const text = isEn
     ? (p.age === 5
       ? `Fifth birthday. About ${(u5 * 100).toFixed(1)}% of children born in ${born.name} die before age 5. This child made it past that point.`

@@ -4,13 +4,13 @@ import { homeWord } from './life';
 import { causeName } from './causes';
 import { jobName, majorName } from './jobs';
 import { isEn, L } from '../i18n';
-import { childWord, eduLevel, type Person } from './person';
+import { childWord, eduLevel, genderOf, type Person } from './person';
 
 function lifeStoryEn(p: Person): string {
   const c = byCode(p.birthCountry);
   const where = p.city && p.country === p.birthCountry ? `${p.city}, ${c.name}` : p.rural ? `a rural area of ${c.name}` : c.name;
   const home = p.familyP >= 0.8 ? 'one of the richest families' : `${p.familyP >= 0.4 && p.familyP < 0.8 ? 'an' : 'a'} ${homeWord(p.familyP)}`;
-  const parts = [`Born a ${childWord(p.sex)} into ${home} in ${where}.`];
+  const parts = [`Born a ${childWord(genderOf(p))} into ${home} in ${where}.`];
   const died = `Died at ${p.age} (${causeName(p.cause ?? '')}).`;
   if (p.age < 6) {
     parts.push(p.age === 0 ? `Died before the first birthday (${causeName(p.cause ?? '')}).` : died);
@@ -37,7 +37,7 @@ export function lifeStory(p: Person): string {
   if (isEn) return lifeStoryEn(p);
   const c = byCode(p.birthCountry);
   const where = p.city && p.country === p.birthCountry ? `${c.name}の${p.city}` : `${c.name}${p.rural ? 'の農村' : ''}`;
-  const parts = [`${where}の${p.familyP >= 0.8 ? 'いちばん裕福な層の家' : homeWord(p.familyP)}に${childWord(p.sex)}として生まれた。`];
+  const parts = [`${where}の${p.familyP >= 0.8 ? 'いちばん裕福な層の家' : homeWord(p.familyP)}に${childWord(genderOf(p))}として生まれた。`];
   if (p.age < 6) {
     parts.push(p.age === 0 ? `最初の誕生日を迎えられず、${causeName(p.cause ?? '')}で亡くなった。` : `${p.age}歳で、${causeName(p.cause ?? '')}で亡くなった。`);
     return parts.join('');

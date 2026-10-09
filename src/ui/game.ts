@@ -11,7 +11,7 @@ import { setMusic } from './music';
 import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
 import { isEn, L } from '../i18n';
-import { drawPortrait, drawScene, sceneOf } from './pixel';
+import { drawPortrait, drawScene, sceneOf, type Scene } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
 import { mountRing, paintFaces, personCard } from './ring';
 
@@ -20,6 +20,7 @@ const SPEEDS = [1, 2, 4, 8, 16];
 const OTHERS = 4;
 const AUTO_WAIT_MS = 4000; // 自動で決めるとき、選択肢を見せておく時間
 const SAVE_KEY = 'current';
+const SCENE_MS = 100; // 場面の動きは1秒に10コマ
 
 type Tab = '' | 'me' | 'band' | 'compare' | 'log';
 const TABS: [Exclude<Tab, ''>, string][] = [['me', L('いまの状態', 'Status')], ['band', L('人生の帯', 'Life band')], ['compare', L('比べる', 'Compare')], ['log', L('全部の記録', 'Full record')]];
@@ -43,6 +44,11 @@ interface GameState {
   last: number;
   timer?: number;
   onExit: () => void;
+  scene?: Scene;     // いま見えている場面。動かすときはこれを描き直す
+  tk: number;        // 場面の動きのコマ
+  tkAt: number;
+  seen: boolean;     // 場面が画面の中にあるか
+  io?: IntersectionObserver;
 }
 
 let S: GameState | null = null;
@@ -66,8 +72,10 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, tab: '', raf: 0, last: performance.now(), onExit };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
   $('#app').innerHTML = shell();
+  S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
+  S.io.observe($('#scene'));
   $('#app').onclick = onClick;
   if (S.music) setMusic(true);
   render();
@@ -95,7 +103,18 @@ function frame(t: number): void {
   if (!S) return;
   const bar = $('#yearbar');
   if (bar) bar.style.width = `${S.progress * 100}%`;
+  animScene(t);
   S.raf = requestAnimationFrame(frame);
+}
+
+// 場面を少しだけ動かす。止めている間・問いの間・タブが隠れている間・画面の外・動きを減らす設定では動かさない
+const calm = typeof matchMedia === 'function' ? matchMedia('(prefers-reduced-motion: reduce)') : null;
+function animScene(t: number): void {
+  if (!S?.scene || calm?.matches || S.paused || S.modal || !S.p.alive || !S.seen || document.hidden || t - S.tkAt < SCENE_MS) return;
+  S.tkAt = t;
+  S.tk++;
+  const cv = document.querySelector<HTMLCanvasElement>('#scenecv');
+  if (cv) drawScene(cv, S.scene, S.tk);
 }
 
 function tick(): void {
@@ -163,7 +182,8 @@ function render(): void {
   setHTML('#pcard', personCard(p, S.sel));
   setHTML('#scene', scenePanel(p));
   const scv = $<HTMLCanvasElement>('#scenecv');
-  drawScene(scv, sceneOf(p));
+  S.scene = sceneOf(p);
+  drawScene(scv, S.scene, calm?.matches ? 0 : S.tk);
   fitPixels(scv);
   setHTML('#focus', focusPanel(p));
   setHTML('#year', yearPanel(p));
@@ -337,6 +357,7 @@ function leave(): void {
   if (!S) return;
   cancelAnimationFrame(S.raf);
   window.clearTimeout(S.timer);
+  S.io?.disconnect();
   if (S.music) setMusic(false);
   const exit = S.onExit;
   S = null;
@@ -350,6 +371,7 @@ function finish(): void {
   for (const o of others) while (o.alive) advanceYear(o);
   clearSaved();
   cancelAnimationFrame(S.raf);
+  S.io?.disconnect();
   if (S.music) setMusic(false);
   S = null;
   showDeath(p, others, basis, onExit);

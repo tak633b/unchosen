@@ -49,7 +49,8 @@ export interface Person {
   name: string;      // 姓名
   pool: string;      // 命名の伝統 (identity.json の pools)
   familyIndex: number;
-  sex: Sex;
+  sex: Sex;          // 生まれた時の性別 (統計はこれで引く)
+  gender?: 'X';      // 性別に「その他」を選んだ人だけ
   birthCountry: string;
   country: string;
   city: string | null; // null は農村
@@ -154,8 +155,12 @@ export function choose(p: Person, d: Decision, i: number): void {
   d.options[i].apply(p);
 }
 
-export const he = (p: Person) => (p.sex === 'F' ? L('彼女', 'she') : L('彼', 'he'));
-export const childWord = (sex: Sex) => (sex === 'F' ? L('女の子', 'girl') : L('男の子', 'boy'));
+// 性別。'X' は「その他」: 文と表示ではどちらでもない言い方にし、統計 (生命表・出産など) は生まれた時の性別 sex で引く
+export type Gender = Sex | 'X';
+export const genderOf = (p: { sex: Sex; gender?: 'X' }): Gender => p.gender ?? p.sex;
+export const he = (p: Person) => (p.gender === 'X' ? p.given : p.sex === 'F' ? L('彼女', 'she') : L('彼', 'he'));
+export const childWord = (g: Gender) => (g === 'X' ? L('子ども', 'child') : g === 'F' ? L('女の子', 'girl') : L('男の子', 'boy'));
+export const genderWord = (g: Gender) => (g === 'X' ? L('その他', 'other') : g === 'F' ? L('女性', 'female') : L('男性', 'male'));
 export const place = (p: Person) => p.city ?? L('村', 'the village');
 
 export function eduLevel(p: Person): EduLevel {

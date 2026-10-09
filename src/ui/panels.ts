@@ -3,7 +3,7 @@ import { byCode, countryAt, type Country } from '../engine/countries';
 import { perDay, yen } from '../engine/economy';
 import { currentIncome } from '../engine/events/common';
 import { netWorth } from '../engine/events/money';
-import { EDU_LABEL, eduLevel, yearOf, type Focus, type Person } from '../engine/person';
+import { EDU_LABEL, eduLevel, genderOf, genderWord, yearOf, type Focus, type Person } from '../engine/person';
 import { nowLine } from '../engine/summary';
 import { esc, load, pct } from './dom';
 import { isEn, L, religionName } from '../i18n';
@@ -35,7 +35,7 @@ const mrz = (p: Person) => {
 export function idCard(p: Person): string {
   const c = byCode(p.country);
   const rows: [string, string][] = [
-    [L('性別', 'Sex'), p.sex === 'F' ? L('女性', 'Female') : L('男性', 'Male')],
+    [L('性別', 'Gender'), genderWord(genderOf(p))],
     [L('出生', 'Born'), isEn
       ? `${byCode(p.birthCountry).name}, ${new Date(p.birthYear, p.birthMonth - 1).toLocaleString('en', { month: 'short' })} ${p.birthYear}`
       : `${byCode(p.birthCountry).name}・${p.birthYear}年${p.birthMonth}月`],

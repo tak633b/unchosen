@@ -14,8 +14,9 @@ export function because(p: Person, why: string): void {
 }
 
 const pct = (x: number) => (x >= 0.1 ? Math.round(x * 100).toString() : (x * 100).toFixed(x >= 0.01 ? 1 : 2));
-const sexJa = (s: Sex) => (s === 'F' ? '女性' : '男性');
-const sexEn = (s: Sex) => (s === 'F' ? 'women' : 'men');
+// neutral: 性別に「その他」を選んだ本人の死では、生まれた時の性別を書かない (数字はその性別の表のまま)
+const sexJa = (s: Sex, neutral = false) => (neutral ? '人' : s === 'F' ? '女性' : '男性');
+const sexEn = (s: Sex, neutral = false) => (neutral ? 'people' : s === 'F' ? 'women' : 'men');
 
 export function homeWhy(p: Person, c: Country): string {
   const n = Math.round(p.familyP * 100);
@@ -25,7 +26,7 @@ export function homeWhy(p: Person, c: Country): string {
 }
 
 // 人が亡くなったとき。5歳未満は国の5歳未満死亡率、それ以外はその年齢・性別の1年の死亡率と平均寿命
-export function deathWhy(c: Country, sex: Sex, age: number): string {
+export function deathWhy(c: Country, sex: Sex, age: number, neutral = false): string {
   if (age < 5) {
     const one = Math.max(2, Math.round(1 / c.u5mr));
     return L(`${c.name}では、子どものおよそ${one}人に1人が5歳までに亡くなる`, `In ${c.name}, about 1 child in ${one} dies before turning 5`);
@@ -34,8 +35,8 @@ export function deathWhy(c: Country, sex: Sex, age: number): string {
   const q = pct(qAt(c, sex, age));
   const by = (c.year ?? new Date().getFullYear()) - age; // その人が生まれた年
   const reach = pct(bornTable(countryAt(c.code, by), sex, by).l[Math.min(age, MAX_AGE)]);
-  return L(`${c.name}で生まれた${sexJa(sex)}のうち、${age}歳まで生きるのは約${reach}%。${age}歳の1年で亡くなる確率は約${q}%`,
-    `Of ${sexEn(sex)} born in ${c.name}, about ${reach}% live to ${age}. At ${age}, the chance of dying within a year is about ${q}%`);
+  return L(`${c.name}で生まれた${sexJa(sex, neutral)}のうち、${age}歳まで生きるのは約${reach}%。${age}歳の1年で亡くなる確率は約${q}%`,
+    `Of ${sexEn(sex, neutral)} born in ${c.name}, about ${reach}% live to ${age}. At ${age}, the chance of dying within a year is about ${q}%`);
 }
 
 export const joinWhy = (parts: (string | false | undefined)[]) => parts.filter(Boolean).join(L('。', '; '));

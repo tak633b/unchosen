@@ -3,7 +3,7 @@ import { ERA_NOW, byCode, countriesAt, countryAt, type BirthBasis } from '../eng
 import { formatMoney, monthlyYen, yen } from '../engine/economy';
 import { netWorth } from '../engine/events/money';
 import { bornTable } from '../engine/lifetable';
-import { EDU_LABEL, eduLevel, type Person, type Tie } from '../engine/person';
+import { EDU_LABEL, eduLevel, type Person, type Tie, genderOf, genderWord } from '../engine/person';
 import { lifeStory } from '../engine/summary';
 import { drawCard, shareCard } from './cards';
 import { paintScenes, sceneAttr, sceneOf, toData, type SceneData } from './pixel';
@@ -19,7 +19,7 @@ import { lastWordsHtml, mountRing, paintFaces } from './ring';
 const MAX_PAST = 10;
 
 export interface PastLife {
-  seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex'];
+  seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
   birthCountry: string; country: string; birthYear: number; age: number; cause: string;
   story: string; log: Person['log']; kinds: Person['kinds']; happyByAge: number[];
   questions: Person['questions']; facts: [string, string][]; others: { name: string; country: string; age: number; story: string }[];
@@ -38,7 +38,7 @@ const toCircle = (p: Person): CircleTie[] =>
 
 // 前世の記録から顔を描くための、主人公の代わり。lookOfMe / lookOfRel と人の輪が読む欄だけを持つ
 function standIn(l: PastLife): Person {
-  return { seed: l.seed, given: l.given, sex: l.sex, age: l.age, alive: false, birthCountry: l.birthCountry, country: l.country, religion: l.religion ?? '', spouse: l.spouse } as unknown as Person;
+  return { seed: l.seed, given: l.given, sex: l.sex, gender: l.gender, age: l.age, alive: false, birthCountry: l.birthCountry, country: l.country, religion: l.religion ?? '', spouse: l.spouse } as unknown as Person;
 }
 
 export const pastLives = () => load<PastLife[]>('lives', []);
@@ -87,7 +87,7 @@ function factsOf(p: Person): [string, string][] {
 
 function toPast(p: Person, others: Person[], basis: BirthBasis): PastLife {
   return {
-    seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, birthCountry: p.birthCountry, country: p.country,
+    seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
     birthYear: p.birthYear, age: p.age, cause: p.cause ?? '', story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
     questions: p.questions, facts: factsOf(p),
     others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o) })),
@@ -118,15 +118,15 @@ export function deathRecord(l: PastLife): string {
   <article class="record">
     <header><span>${L('死亡記録', 'Death record')}</span><span>No. ${l.birthCountry}-${l.birthYear}-${String(l.age).padStart(3, '0')}</span></header>
     ${l.scene ? `<canvas class="pixscene" data-scene="${sceneAttr(l.scene)}"></canvas>` : ''}
-    <p class="kicker">${esc(b.name)}${L('・', ' · ')}${l.sex === 'F' ? L('女性', 'Female') : L('男性', 'Male')}</p>
+    <p class="kicker">${esc(b.name)}${L('・', ' · ')}${genderWord(genderOf(l))}</p>
     <h1>${esc(l.name)}</h1>
     <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}${L(`・享年${l.age}歳`, ` · died at ${l.age}`)}</p>
     <p class="story">${esc(l.story)}</p>
     <section id="aistory">${l.aiStory ? aiStoryHtml(l.aiStory) : ''}</section>
     <div class="cause"><b>${L('死因', 'Cause of death:')} ${esc(causeName(l.cause ?? ''))}</b>
       <p>${isEn
-        ? `Of the ${l.sex === 'F' ? 'girls' : 'boys'} born in ${esc(b.name)} that year, about ${pct(longer)} live longer than this (${pct(outlive)} die sooner). On average they live to ${e0.toFixed(1)}; ${l.sex === 'F' ? 'she' : 'he'} lived ${Math.abs(diff).toFixed(1)} years ${diff >= 0 ? 'longer' : 'less'}.`
-        : `同じ年に${esc(b.name)}で生まれた${l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。その平均${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。`}</p></div>
+        ? `Of the ${l.gender === 'X' ? 'children' : l.sex === 'F' ? 'girls' : 'boys'} born in ${esc(b.name)} that year, about ${pct(longer)} live longer than this (${pct(outlive)} die sooner). On average they live to ${e0.toFixed(1)}; ${l.sex === 'F' ? 'she' : 'he'} lived ${Math.abs(diff).toFixed(1)} years ${diff >= 0 ? 'longer' : 'less'}.`
+        : `同じ年に${esc(b.name)}で生まれた${l.gender === 'X' ? '子ども' : l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。その平均${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。`}</p></div>
     <dl class="kv facts">${l.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
     ${r && r.code !== b.code ? `<p class="note">${L(`あなたの生まれた${esc(r.name)}では、同じ年に生まれた人の${pct(rl)}が${l.age}歳を越えて生きる。${esc(b.name)}では${pct(longer)}。`, `In ${esc(r.name)}, where you were born, ${pct(rl)} of people born that year live past ${l.age}. In ${esc(b.name)}, ${pct(longer)}.`)}</p>` : ''}
     ${answers.length ? `<h3>${L('止まった時間に書いたこと', 'Written when time stopped')}</h3><ul class="answers">${answers.map((q) => `<li><small>${L(`${q.age}歳・`, `Age ${q.age} · `)}${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul>` : ''}
@@ -221,7 +221,7 @@ async function postMemorial(l: PastLife, p: Person): Promise<void> {
     await fetch('/api/memorial', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ rural: p.rural, name: l.name, country: l.birthCountry, sex: l.sex, age: l.age, cause: l.cause, line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '', lang }),
+      body: JSON.stringify({ rural: p.rural, name: l.name, country: l.birthCountry, sex: l.gender ?? l.sex, age: l.age, cause: l.cause, line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '', lang }),
     });
   } catch {
     // 届かなくても、前世の記録には残っている

@@ -5,7 +5,7 @@ import { bornTable } from './engine/lifetable';
 import { earnings, formatMoney } from './engine/economy';
 import { causeName } from './engine/causes';
 import { createPerson, homeWord } from './engine/life';
-import type { Person } from './engine/person';
+import { genderOf, genderWord, type Gender, type Person } from './engine/person';
 import { makeRng, pickWeighted, randomSeed } from './engine/rng';
 import { drawCard, shareCard } from './ui/cards';
 import { deathCard, deathRecord, paintLife, pastLives } from './ui/death';
@@ -22,9 +22,9 @@ const DEATHS_PER_SEC = 2.0;
 let counterTimer: number | undefined;
 document.documentElement.lang = lang;
 if (isEn) document.title = 'Unchosen. You don’t choose where you’re born.';
-const sexWord = (s: 'F' | 'M') => (s === 'F' ? L('女性', 'female') : L('男性', 'male'));
+const sexWord = (s: 'F' | 'M' | 'X') => genderWord(s);
 
-interface Shared { id: number; rural: number; job: string; name: string; country: string; sex: 'F' | 'M'; age: number; cause: string; line: string; message: string; candles: number; createdAt: string }
+interface Shared { id: number; rural: number; job: string; name: string; country: string; sex: 'F' | 'M' | 'X'; age: number; cause: string; line: string; message: string; candles: number; createdAt: string }
 
 async function fetchShared(): Promise<Shared[]> {
   try {
@@ -38,7 +38,7 @@ async function fetchShared(): Promise<Shared[]> {
 
 const sharedCard = (m: Shared) => {
   const c = COUNTRIES.find((x) => x.code === m.country);
-  const scene = c ? `<canvas class="pixscene" data-scene="${sceneAttr(toData(sceneFromSummary({ id: m.id, country: m.country, sex: m.sex, age: m.age, rural: !!m.rural, job: m.job })))}"></canvas>` : '';
+  const scene = c ? `<canvas class="pixscene" data-scene="${sceneAttr(toData(sceneFromSummary({ id: m.id, country: m.country, sex: m.sex === 'X' ? (m.id % 2 ? 'F' : 'M') : m.sex, age: m.age, rural: !!m.rural, job: m.job })))}"></canvas>` : '';
   return `<li>${scene}<p><b>${esc(m.name || L('ある人', 'Someone'))}</b>　<small>${esc(c?.name ?? m.country)}${L('・', ', ')}${sexWord(m.sex)}${L('・', ', ')}${L(`${Number(m.age)}歳`, `age ${Number(m.age)}`)}</small></p>
     <p class="note">${esc(m.line)}</p>${m.message ? `<p class="message">${L('「', '"')}${esc(m.message)}${L('」', '"')}</p>` : ''}
     <button data-candle="${Number(m.id)}">${L('ろうそくを灯す', 'Light a candle')} ${Number(m.candles)}</button></li>`;
@@ -49,6 +49,7 @@ const sharedCard = (m: Shared) => {
 // 生まれる年と国は、選ばなければくじで決まる (年は1950〜2100年の出生数に比例)。選んだ値はこの端末に残す
 const THIS_YEAR = new Date().getFullYear();
 const chosenYear = (): number | null => { const y = load<number | null>('birthYear', null); return y === null ? null : Math.min(ERA_TO, Math.max(ERA_FROM, y)); };
+const chosenGender = (): Gender | null => { const g = load<Gender | null>('gender', null); return g === 'F' || g === 'M' || g === 'X' ? g : null; };
 const chosenCountry = (): string | null => { const c = load<string | null>('birthCountry', null); return c && COUNTRIES.some((x) => x.code === c) ? c : null; };
 // 「今生まれる」「1980年に生まれる」のように、年を入れた言い方
 const bornWhen = (y: number) => (y === THIS_YEAR ? L('今生まれる', 'born today') : L(`${y}年に生まれる`, `born in ${y}`));
@@ -66,7 +67,8 @@ function home(): void {
   const rest = 1 - top.reduce((s, c) => s + c[basis], 0) / total;
   const sorted = [...COUNTRIES].sort((a, b) => a.name.localeCompare(b.name, lang));
   const opts = (sel: string | null) => sorted.map((c) => `<option value="${c.code}" ${c.code === sel ? 'selected' : ''}>${esc(c.name)}</option>`).join('');
-  const custom = year !== null || country !== null;
+  const gender = chosenGender();
+  const custom = year !== null || country !== null || gender !== null;
   app.onclick = null;
   app.innerHTML = `
   <main class="home wide">
@@ -101,6 +103,9 @@ function home(): void {
         <label class="field">${L('生まれる国', 'Country of birth')}
           <select id="bcountry"><option value="">${L('くじで決める', 'Leave it to chance')}</option>${opts(country)}</select>
           <span class="note">${L('選ぶと、その国に生まれる。家や性別はくじのまま。', 'If set, you are born there. Family and sex are still drawn.')}</span></label>
+        <fieldset><legend>${L('性別', 'Gender')}</legend>
+          <div class="seg">${([[null, L('くじで決める', 'Leave it to chance')], ['F', L('女', 'Female')], ['M', L('男', 'Male')], ['X', L('その他', 'Other')]] as [Gender | null, string][]).map(([g, label]) => `<button data-gender="${g ?? ''}" class="${gender === g ? 'on' : ''}">${label}</button>`).join('')}</div>
+          <p class="note">${L('くじなら、生まれた時の男女の比で決まる。その他を選ぶと、文はどちらでもない言い方になる (寿命などの統計は、くじで決まる生まれた時の性別で引く)。', 'By chance, by the sex ratio at birth. Other uses neutral wording; statistics such as lifespan still follow a sex at birth drawn by chance.')}</p></fieldset>
         <fieldset><legend>${L('くじの重み', 'How the draw is weighted')}</legend>
           <div class="seg"><button data-basis="births" class="${basis === 'births' ? 'on' : ''}">${L('出生数', 'Births')}</button><button data-basis="pop" class="${basis === 'pop' ? 'on' : ''}">${L('人口', 'Population')}</button></div>
           <p class="note">${L('出生数なら国ごとのその年の出生数で、人口ならその年の人口の割合で国を選ぶ。どちらでも0歳から始まる。', 'By births, weighted by each country’s births that year. By population, by its share of people alive that year. Either way you start at age 0.')}</p></fieldset>
@@ -144,6 +149,8 @@ function home(): void {
     const candle = t.closest<HTMLButtonElement>('[data-candle]');
     if (candle && !candle.disabled) { await light(candle); return; }
     const go = t.closest<HTMLElement>('[data-go]')?.dataset.go;
+    const gb = t.closest<HTMLElement>('[data-gender]');
+    if (gb) { save('gender', gb.dataset.gender || null); home(); return; }
     const ym = t.closest<HTMLElement>('[data-year]')?.dataset.year;
     if (ym) { save('birthYear', ym === 'random' ? null : ym === 'now' ? THIS_YEAR : chosenYear() ?? THIS_YEAR); home(); return; }
     if (go === 'born') {
@@ -151,7 +158,7 @@ function home(): void {
       await loadWorld();
       const seed = randomSeed();
       const year = chosenYear() ?? pickBirthYear(makeRng(seed ^ 0x5eed));
-      roll(createPerson({ seed, basis, year, country: chosenCountry() ?? undefined }), basis);
+      roll(createPerson({ seed, basis, year, country: chosenCountry() ?? undefined, gender: chosenGender() ?? undefined }), basis);
     }
     if (go === 'resume') { await loadWorld(); resumeGame(home); }
     if (go === 'past') past();
@@ -231,7 +238,7 @@ function roll(p: Person, basis: BirthBasis): void {
   const facts = [
     p.city ? L(`${p.city}の街で`, `In the city of ${p.city}`) : L('農村で', 'In a rural village'),
     L(`${homeWord(p.familyP)}に`, `Into a ${homeWord(p.familyP)}`),
-    p.sex === 'F' ? L('女の子として', 'A girl') : L('男の子として', 'A boy'),
+    p.gender === 'X' ? L('ひとりの子として', 'A child') : p.sex === 'F' ? L('女の子として', 'A girl') : L('男の子として', 'A boy'),
   ];
   facts.forEach((f, i) => at(landed + 1500 + i * 800, () => {
     const li = document.createElement('li');
@@ -281,7 +288,7 @@ function born(p: Person, basis: BirthBasis): void {
   const r = real ? countryAt(real, p.birthYear) : null;
   const quint = Math.min(5, Math.floor(p.familyP * 5) + 1);
   const fields: [string, string][] = [
-    [L('性別', 'Sex'), sexWord(p.sex)], [L('出生国', 'Country'), c.name], [L('出生地', 'Birthplace'), p.city ? L(`${p.city}(都市)`, `${p.city} (city)`) : L('農村', 'Rural')],
+    [L('性別', 'Gender'), sexWord(genderOf(p))], [L('出生国', 'Country'), c.name], [L('出生地', 'Birthplace'), p.city ? L(`${p.city}(都市)`, `${p.city} (city)`) : L('農村', 'Rural')],
     [L('生まれた家', 'Family income'), `${'●'.repeat(quint)} ${L(`${quint}分位`, `quintile ${quint} of 5`)}`],
     [L('親の年齢', 'Parents’ ages'), L(`母 ${p.mother.age}歳・父 ${p.father.age}歳`, `mother ${p.mother.age}, father ${p.father.age}`)], [L('宗教', 'Religion'), religionName(p.religion)],
     [L('同じ年に生まれた人の平均寿命', 'Expected lifespan of this birth year'), L(`${bornE0.toFixed(1)}歳`, bornE0.toFixed(1))], [L('5歳までに亡くなる確率', 'Chance of dying before 5'), pct(bornU5, 1)],
@@ -344,7 +351,7 @@ function past(): void {
     <h1>${L('前世の記録', 'Past lives')}</h1>
     <p class="note">${L(`最近の${lives.length}つの人生(最大10)。この端末にだけ残っている。`, `Your last ${lives.length} ${lives.length === 1 ? 'life' : 'lives'} (up to 10). Kept only on this device.`)}</p>
     <ul class="pastlist">${lives.map((l, i) => `
-      <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(l.sex)}${L('・', ', ')}${L(`${l.age}歳(${esc(l.cause)})`, `age ${l.age} (${esc(causeName(l.cause ?? ''))})`)}
+      <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${L(`${l.age}歳(${esc(l.cause)})`, `age ${l.age} (${esc(causeName(l.cause ?? ''))})`)}
       <small>${new Date(l.date).toLocaleDateString(isEn ? 'en-US' : 'ja-JP')}</small></button></li>`).join('') || `<li>${L('まだない。', 'None yet.')}</li>`}</ul>
     <div id="pastdetail"></div>
     <button data-go="home">${L('戻る', 'Back')}</button>

@@ -57,8 +57,8 @@ export function sceneOf(p: Person): Scene {
 }
 
 // 1枚 1–3ms なのでキャッシュはしない
-export function drawScene(cv: HTMLCanvasElement, s: Scene): void {
-  paintScene(s).put(cv);
+export function drawScene(cv: HTMLCanvasElement, s: Scene, tick = 0): void {
+  paintScene(s, tick).put(cv);
 }
 
 // 小さなキャンバスを1つ作って描く (追悼館や共有カード用)

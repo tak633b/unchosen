@@ -68,7 +68,7 @@ function validEntry(b) {
   if (!b || typeof b !== 'object') return null;
   const country = str(b.country, 3);
   const age = Number(b.age);
-  if (!/^[A-Z]{3}$/.test(country) || !['F', 'M'].includes(b.sex) || !Number.isInteger(age) || age < 0 || age > 120) return null;
+  if (!/^[A-Z]{3}$/.test(country) || !['F', 'M', 'X'].includes(b.sex) || !Number.isInteger(age) || age < 0 || age > 120) return null;
   const cause = str(b.cause, 40);
   if (!cause) return null;
   if (b.lang !== undefined && !['ja', 'en'].includes(b.lang)) return null;

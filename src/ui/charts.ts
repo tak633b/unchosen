@@ -29,7 +29,7 @@ export function lifeBand(p: Person): string {
     .map((k) => `<span><i class="cell k-${k}"></i>${KIND_LABEL[k]}</span>`)
     .join('');
   return `<div class="band">${bars}</div><div class="bandticks">${ticks}</div><div class="legend">${legend}</div>
-    <p class="note">${L(`高い年ほど幸せだった。印の年 = ${esc(born.name)}の${p.sex === 'F' ? '女性' : '男性'}の平均寿命 ${e0}歳`, `Taller means a happier year. Marked year = life expectancy for ${p.sex === 'F' ? 'women' : 'men'} in ${esc(born.name)}, ${e0}`)}</p>`;
+    <p class="note">${L(`高い年ほど幸せだった。印の年 = ${esc(born.name)}の${p.gender === 'X' ? '' : p.sex === 'F' ? '女性の' : '男性の'}平均寿命 ${e0}歳`, `Taller means a happier year. Marked year = life expectancy for ${p.gender === 'X' ? 'people' : p.sex === 'F' ? 'women' : 'men'} in ${esc(born.name)}, ${e0}`)}</p>`;
 }
 
 // 出生数で重み付けした、同じ年に世界で生まれた人の生存曲線
@@ -66,6 +66,6 @@ export function survivalChart(p: Person): string {
     <circle cx="${x(age)}" cy="${y(alive)}" r="4" class="dot ${p.alive ? '' : 'dead'}"/>
     ${ticks}
   </svg>
-  <p class="note"><span class="sw mine"></span>${L(`${esc(c.name)}の${p.sex === 'F' ? '女性' : '男性'}`, `${p.sex === 'F' ? 'Women' : 'Men'} in ${esc(c.name)}`)}　<span class="sw world"></span>${L('世界全体', 'World')}</p>
-  <p>${L(`同じ年に${esc(c.name)}で生まれた${p.sex === 'F' ? '女の子' : '男の子'}のうち、<b>${(alive * 100).toFixed(1)}%</b> が${age}歳まで生きる。`, `Of ${p.sex === 'F' ? 'girls' : 'boys'} born in ${esc(c.name)} the same year, <b>${(alive * 100).toFixed(1)}%</b> live to age ${age}.`)}</p>`;
+  <p class="note"><span class="sw mine"></span>${L(`${esc(c.name)}${p.gender === 'X' ? 'で生まれた人' : p.sex === 'F' ? 'の女性' : 'の男性'}`, `${p.gender === 'X' ? 'People' : p.sex === 'F' ? 'Women' : 'Men'} in ${esc(c.name)}`)}　<span class="sw world"></span>${L('世界全体', 'World')}</p>
+  <p>${L(`同じ年に${esc(c.name)}で生まれた${p.gender === 'X' ? '子ども' : p.sex === 'F' ? '女の子' : '男の子'}のうち、<b>${(alive * 100).toFixed(1)}%</b> が${age}歳まで生きる。`, `Of ${p.gender === 'X' ? 'children' : p.sex === 'F' ? 'girls' : 'boys'} born in ${esc(c.name)} the same year, <b>${(alive * 100).toFixed(1)}%</b> live to age ${age}.`)}</p>`;
 }

@@ -93,6 +93,7 @@ const tier = (k: string) => (COMMON.has(k) ? 2 : MILESTONE.has(k) ? 1 : 0);
 // 語る人から見た主人公の呼び方
 function heroRef(p: Person, t: Tie): string {
   const f = p.sex === 'F';
+  if (p.gender === 'X') return p.given; // 性別に「その他」を選んだ人は、子も孫もきょうだいも名前で呼ぶ
   if (t.role === 'child') return isEn ? (f ? 'Mom' : 'Dad') : f ? '母さん' : '父さん';
   if (t.role === 'grandchild') return isEn ? (f ? 'Grandma' : 'Grandpa') : f ? 'おばあちゃん' : 'おじいちゃん';
   if (t.role === 'sibling' && !isEn && p.age > t.age) return f ? '姉さん' : '兄さん';
@@ -100,7 +101,8 @@ function heroRef(p: Person, t: Tie): string {
 }
 
 const fill = (s: string, p: Person, h: string) => {
-  const [sj, o, ps] = p.sex === 'F' ? ['she', 'her', 'her'] : ['he', 'him', 'his'];
+  // 性別に「その他」を選んだ人は名前で呼ぶ (they にすると動詞の形が合わない文が出る)
+  const [sj, o, ps] = p.gender === 'X' ? [p.given, p.given, `${p.given}'s`] : p.sex === 'F' ? ['she', 'her', 'her'] : ['he', 'him', 'his'];
   return s.replace(/\{h\}/g, h).replace(/\{S\}/g, sj[0].toUpperCase() + sj.slice(1)).replace(/\{s\}/g, sj).replace(/\{o\}/g, o).replace(/\{ps\}/g, ps);
 };
 

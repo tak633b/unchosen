@@ -28,7 +28,7 @@ const RULES_EN = `You are the narrator of "Unchosen", a life simulator built on 
 - English. Past tense, third person, short and concrete. No exclamation marks, emoji or dashes. Avoid words like "journey", "testament", "tapestry", "vibrant", "cherish".
 - Output JSON only. No preamble or explanation.`;
 const rules = () => (isEn ? RULES_EN : RULES);
-const sexWord = (s: 'F' | 'M') => (s === 'F' ? L('女性', 'female') : L('男性', 'male'));
+const sexWord = (s: 'F' | 'M' | 'X') => (s === 'X' ? L('性別はその他 (男女どちらでもない言い方で書く)', 'gender: other (use neutral wording, refer by name)') : s === 'F' ? L('女性', 'female') : L('男性', 'male'));
 const PET_EN: Record<string, string> = { 犬: 'dog', 猫: 'cat' };
 
 function factsEn(p: Person): string {
@@ -39,7 +39,7 @@ function factsEn(p: Person): string {
   const kids = p.children.map(rel).join(', ') || 'none';
   const recent = p.log.slice(-10).map((e) => `Age ${e.age}: ${e.text}`).join('\n');
   return [
-    `Name: ${p.name} (goes by ${p.given}), ${sexWord(p.sex)}, age ${p.age}, year ${p.birthYear + p.age}`,
+    `Name: ${p.name} (goes by ${p.given}), ${sexWord(p.gender ?? p.sex)}, age ${p.age}, year ${p.birthYear + p.age}`,
     ...(p.birthYear + p.age > ERA_NOW ? ['This year is in the future. The figures follow UN projections. Do not name specific future events, products or technologies; describe everyday life plainly.'] : []),
     `Born in: ${born.name} (${regionName(born.region)})${p.country !== p.birthCountry ? `, now lives in ${c.name}` : ''}. Lives in: ${p.city ?? 'a rural area'}. Religion: ${religionName(p.religion)}`,
     `Country: GDP per person $${Math.round(c.gdp).toLocaleString()} (PPP), life expectancy ${(p.sex === 'F' ? c.leF : c.leM).toFixed(0)}`,
@@ -61,7 +61,7 @@ function facts(p: Person): string {
   const kids = p.children.map((k) => `${k.name}(${k.alive ? `${k.age}歳` : '他界'})`).join('、') || 'なし';
   const recent = p.log.slice(-10).map((e) => `${e.age}歳: ${e.text}`).join('\n');
   return [
-    `名前: ${p.name}(呼び名 ${p.given})・${p.sex === 'F' ? '女性' : '男性'}・${p.age}歳・${p.birthYear + p.age}年`,
+    `名前: ${p.name}(呼び名 ${p.given})・${sexWord(p.gender ?? p.sex)}・${p.age}歳・${p.birthYear + p.age}年`,
     ...(p.birthYear + p.age > ERA_NOW ? ['この年は未来。数字は国連の予測にもとづく。未来の具体的な出来事・製品・技術の名前は作らず、ふだんの暮らしとして書く。'] : []),
     `生まれ: ${born.name}${p.country !== p.birthCountry ? ` → 今は${c.name}に住む` : ''}・住まい: ${p.city ?? '農村'}・宗教: ${religionName(p.religion)}`,
     `国の暮らし: 1人当たりGDP $${Math.round(c.gdp).toLocaleString()}(購買力平価)・平均寿命 ${(p.sex === 'F' ? c.leF : c.leM).toFixed(0)}歳`,

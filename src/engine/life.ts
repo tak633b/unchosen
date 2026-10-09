@@ -4,7 +4,7 @@ import { causeName, homicideHazard, pickCause } from './causes';
 import { isEn, L, religionName } from '../i18n';
 import { makeName, pickCity, pickReligion } from './identity';
 import { lifeTable, MAX_AGE, type Sex } from './lifetable';
-import { bump, childWord, countryOf, log, type Person } from './person';
+import { bump, childWord, countryOf, genderOf, log, type Gender, type Person } from './person';
 import { clamp, makeRng, normal, poisson } from './rng';
 import { family } from './events/family';
 import { adultPet, childhood, chooseHobby } from './events/childhood';
@@ -38,13 +38,15 @@ export function pauseQuestion(p: Person, age = p.age): string | null {
   }
 }
 
-export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean; country?: string; year?: number; month?: number }
+export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean; country?: string; year?: number; month?: number; gender?: Gender }
 
 export function createPerson(o: BirthOptions): Person {
   const rng = makeRng(o.seed);
   const year = o.year ?? new Date().getFullYear();
   const c = o.country ? countryAt(o.country, year) : pickBirthCountry(rng, o.basis, year);
-  const sex: Sex = rng() < 0.512 ? 'M' : 'F';
+  // 乱数は性別を選んでも同じだけ引く (同じ seed で、性別のほかは同じ人生になる)
+  const drawn: Sex = rng() < 0.512 ? 'M' : 'F';
+  const sex: Sex = o.gender === 'F' || o.gender === 'M' ? o.gender : drawn;
   const familyP = clamp(rng(), 0.01, 0.99);
   // 農業で働く人が多い国ほど、貧しい家ほど農村に生まれやすい
   const rural = rng() < clamp(c.agri * 1.3 * (1.4 - familyP * 0.8), 0.02, 0.95);
@@ -61,7 +63,7 @@ export function createPerson(o: BirthOptions): Person {
   };
   const now = new Date();
   const p: Person = {
-    seed: o.seed, rng, given: name.given, name: name.full, pool: name.pool, familyIndex: name.familyIndex, sex,
+    seed: o.seed, rng, given: name.given, ...(o.gender === 'X' ? { gender: 'X' as const } : {}), name: name.full, pool: name.pool, familyIndex: name.familyIndex, sex,
     birthCountry: c.code, country: c.code, city: rural ? null : pickCity(rng, c.code), religion: pickReligion(rng, c.code),
     birthYear: year, birthMonth: o.month ?? now.getMonth() + 1,
     age: 0, alive: true, rural, familyP, incomeP: familyP,
@@ -98,7 +100,7 @@ function birthStoryEn(p: Person, older: number): string {
   const home = p.familyP >= 0.8 ? 'a family in the top 20% of incomes' : `${p.familyP >= 0.4 && p.familyP < 0.8 ? 'an' : 'a'} ${homeWord(p.familyP)}`;
   const sibs = older ? `There ${older === 1 ? 'was 1 older sibling' : `were ${older} older siblings`}.` : 'The first child.';
   const faith = p.religion === '無宗教' ? 'The family followed no particular religion.' : `Family religion: ${religionName(p.religion)}.`;
-  return `Born a ${childWord(p.sex)} in ${MONTHS_EN[p.birthMonth - 1]} ${p.birthYear}, in ${where}, into ${home}. ${sibs} ${faith}`;
+  return `Born a ${childWord(genderOf(p))} in ${MONTHS_EN[p.birthMonth - 1]} ${p.birthYear}, in ${where}, into ${home}. ${sibs} ${faith}`;
 }
 
 export function birthStory(p: Person): string {
@@ -107,7 +109,7 @@ export function birthStory(p: Person): string {
   if (isEn) return birthStoryEn(p, older);
   const where = p.city ? `${c.name}の${p.city}` : `${c.name}の農村`;
   const top = p.familyP >= 0.8 ? 'で、所得の上位20%に入る家' : `の${homeWord(p.familyP)}`;
-  return `${p.birthYear}年${p.birthMonth}月、${where}${top}に${childWord(p.sex)}として生まれた。${older ? `上に${older}人のきょうだいがいる。` : '最初の子どもだった。'}家は${p.religion === '無宗教' ? '特定の宗教を持たない' : `${p.religion}を信じている`}。`;
+  return `${p.birthYear}年${p.birthMonth}月、${where}${top}に${childWord(genderOf(p))}として生まれた。${older ? `上に${older}人のきょうだいがいる。` : '最初の子どもだった。'}家は${p.religion === '無宗教' ? '特定の宗教を持たない' : `${p.religion}を信じている`}。`;
 }
 
 // 生命表は病気や喫煙をすでに含むので、個人の倍率を重ねたぶんを全体で割り戻す。
@@ -160,7 +162,7 @@ export function settle(p: Person): void {
   if (p.alive || p.log.at(-1)?.kind === 'death') return;
   log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
   because(p, p.cause === causeName('出産時の合併症') ? birthWhy(p, countryOf(p), p.age) : joinWhy([
-    deathWhy(countryOf(p), p.sex, p.age),
+    deathWhy(countryOf(p), p.sex, p.age, p.gender === 'X'),
     p.smoker && L('タバコを吸っていた', 'smoked'),
     p.illness && L(`${p.illness.name}を患っていた`, `was living with ${p.illness.name}`),
     p.hiv === 'untreated' && L('HIVの治療を受けられなかった', 'never got HIV treatment'),
