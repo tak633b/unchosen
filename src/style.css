@@ -472,3 +472,7 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 .selfkv { grid-template-columns: max-content minmax(0, 1fr); overflow-wrap: anywhere; }
 .selfsec .why { margin: 8px 0 0; color: var(--sub); font-size: 12px; padding-left: 8px; border-left: 2px solid var(--glow); }
 .selfwork { font-size: 13px; }
+/* 同じ1秒に生まれた人の名前の横の顔 */
+.certothers canvas.mini, .others canvas.mini, .five canvas.mini { display: inline-block; vertical-align: middle; width: 24px; margin-right: 6px; }
+.others .olink { display: grid; grid-template-columns: 30px 1fr; align-items: center; text-align: left; }
+.others .olink canvas.mini { grid-row: span 2; }

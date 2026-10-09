@@ -13,6 +13,7 @@ import { $, esc, load, pct, save } from './ui/dom';
 import { clearSaved, hasSaved, resumeGame, sameSecondOthers, startWithOthers } from './ui/game';
 import { aiPanel, bindAiPanel, handleAiClick } from './ui/aipanel';
 import { paintScenes, sceneAttr, sceneFromSummary, sceneOf, toData } from './ui/pixel';
+import { paintOtherFaces } from './ui/portrait';
 import { isEn, L, lang, religionName, setLang } from './i18n';
 
 const app = $('#app');
@@ -321,7 +322,7 @@ function born(p: Person, basis: BirthBasis): void {
         : `${bornWhen(p.birthYear)}赤ちゃんの ${pct(c.births / total('births'), 1)} が${esc(c.name)}で生まれる。年に約${perYear.toLocaleString()}万人、${oneIn}人に1人。${share !== c.births / total('births') ? `(人口で数えると ${pct(share, 1)})` : ''}`}</p>
       ${r ? `<table class="cmp"><tr><th>${L('同じ日に生まれたら', 'Born the same day')}</th><th>${L(`あなたの${esc(r.name)}`, `Your ${esc(r.name)}`)}</th><th>${L(`この子の${esc(c.name)}`, `This child’s ${esc(c.name)}`)}</th></tr>${cmp.map(([k, f]) => `<tr><td>${k}</td><td>${f(r)}</td><td><b>${f(c)}</b></td></tr>`).join('')}</table>` : ''}
       <h3>${L('同じ1秒に、地球のどこかで生まれた人たち', 'Others born somewhere on Earth in the same second')}</h3>
-      <ul class="certothers">${others.map((o) => `<li><b>${esc(o.name)}</b><span>${esc(byCode(o.birthCountry).name)}${o.city ? ` ${esc(o.city)}` : L('・農村', ', rural')}${L('・', ', ')}${o.sex === 'F' ? L('女', 'girl') : L('男', 'boy')}${L('・', ', ')}${o.familyP < 0.2 ? L('いちばん貧しい家', 'poorest family') : o.familyP < 0.4 ? L('余裕のない家', 'struggling family') : o.familyP < 0.8 ? L('ふつうの家', 'average family') : L('裕福な家', 'well-off family')}</span></li>`).join('')}</ul>
+      <ul class="certothers">${others.map((o, i) => `<li><b><canvas class="pix mini" data-oface="${i}" aria-hidden="true"></canvas>${esc(o.name)}</b><span>${esc(byCode(o.birthCountry).name)}${o.city ? ` ${esc(o.city)}` : L('・農村', ', rural')}${L('・', ', ')}${o.sex === 'F' ? L('女', 'girl') : L('男', 'boy')}${L('・', ', ')}${o.familyP < 0.2 ? L('いちばん貧しい家', 'poorest family') : o.familyP < 0.4 ? L('余裕のない家', 'struggling family') : o.familyP < 0.8 ? L('ふつうの家', 'average family') : L('裕福な家', 'well-off family')}</span></li>`).join('')}</ul>
       <p class="note">${L('この人たちの人生も同じ統計にしたがって最後まで流れていく。あなたのそばで一緒に見ていく。', 'Their lives follow the same statistics to the end. You will see them alongside yours.')}</p>
       <p class="note">${L('所得の真ん中の人の年収', 'Median annual income')}: ${formatMoney(earnings(c, 0.5))}</p>
       <div class="choices">
@@ -333,6 +334,7 @@ function born(p: Person, basis: BirthBasis): void {
   </main>`;
   window.scrollTo(0, 0);
   paintScenes(app);
+  paintOtherFaces(app, others);
   app.onclick = async (e) => {
     const go = (e.target as HTMLElement).closest<HTMLElement>('[data-go]')?.dataset.go;
     if (go === 'live') startWithOthers(p, others, basis, home);

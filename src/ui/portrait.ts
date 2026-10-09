@@ -140,6 +140,11 @@ export function drawPortrait(cv: HTMLCanvasElement, p: Person): void {
   P.put(cv);
 }
 
+// 同じ1秒に生まれた人の顔 (名前の横の小さな顔)。canvas[data-oface=i] に people[i] を描く
+export function paintOtherFaces(root: ParentNode, people: (Person | undefined)[]): void {
+  root.querySelectorAll<HTMLCanvasElement>('canvas[data-oface]').forEach((cv) => { const o = people[Number(cv.dataset.oface)]; if (o) drawPortrait(cv, o); });
+}
+
 // 人の輪の顔 (家族・友人など)。同じ人は何度描いても同じ顔。亡くなった人の扱いは画面側でする
 export function drawTiePortrait(cv: HTMLCanvasElement, t: Tie, p: Person): void {
   if (t.role === 'pet') return drawPet(cv, t.pet ?? '犬', (p.seed ^ Math.imul(t.id ?? 0, 0x9e3779b1)) >>> 0);

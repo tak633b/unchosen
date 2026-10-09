@@ -21,6 +21,7 @@ import { createPerson, liveOut } from '../engine/life';
 import { worldIncomeTopAt } from './worldrank';
 import { heirs, lineEntry } from '../engine/lineage';
 import { drawPortrait } from './pixel';
+import { paintOtherFaces } from './portrait';
 
 const MAX_PAST = 10;
 
@@ -139,7 +140,7 @@ export function deathRecord(l: PastLife): string {
   </section>` : ''}
   <section class="panel">
     <h3>${L('同じ1秒に生まれた5人', 'Five born in the same second')} <small>${L('短く生きた順', 'shortest life first')}</small></h3>
-    <ol class="five">${five.map((o) => `<li><span class="age">${L(`${o.age}歳`, `${o.age}`)}</span><div>${o.seed !== undefined && l.me ? `<button class="link olink" data-o="${o.i}">${esc(o.name)}</button>` : `<b>${esc(o.name)}</b>`}${L('・', ' · ')}${esc(byCode(o.country).name)}${o.story ? '' : L('・この人生のあなた', ' · you, this life')}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
+    <ol class="five">${five.map((o) => `<li><span class="age">${L(`${o.age}歳`, `${o.age}`)}</span><div>${o.seed !== undefined || o.i < 0 ? `<canvas class="pix mini" data-oface="${o.i}" aria-hidden="true"></canvas>` : ''}${o.seed !== undefined && l.me ? `<button class="link olink" data-o="${o.i}">${esc(o.name)}</button>` : `<b>${esc(o.name)}</b>`}${L('・', ' · ')}${esc(byCode(o.country).name)}${o.story ? '' : L('・この人生のあなた', ' · you, this life')}${o.story ? `<p class="note">${esc(o.story)}</p>` : ''}</div></li>`).join('')}</ol>
     <p class="note">${L(`同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。`, `The five born in the same second lived to ${five.map((o) => o.age).join(', ')}. None of them chose where to be born.`)}</p>
     ${l.me && l.others.some((o) => o.seed !== undefined) ? `<p class="note">${L('名前を押すと、その人の一生を詳しく読める。', 'Tap a name to read that life in detail.')}</p><div class="otherdetail"></div>` : ''}
   </section>`;
@@ -161,6 +162,11 @@ export function paintLife(root: HTMLElement, l: PastLife, p?: Person, others?: P
   paintScenes(root);
   root.querySelectorAll<HTMLCanvasElement>('canvas[data-gen]').forEach((cv) => { const g = l.line?.[Number(cv.dataset.gen)]; if (g) drawPortrait(cv, lineStandIn(g)); });
   paintOthers(root, l, others);
+  // 同じ1秒に生まれた人の小さな顔。一生を作り直さず、生まれと享年だけで顔を決める
+  const oface = root.querySelector<HTMLCanvasElement>('canvas[data-oface="-1"]');
+  if (oface) drawPortrait(oface, p ?? standIn(l));
+  paintOtherFaces(root, l.others.map((o, i) => others?.[i] ?? (o.seed === undefined ? undefined
+    : Object.assign(createPerson({ seed: o.seed, basis: l.basis, auto: true, year: o.birthYear, month: o.birthMonth }), { age: o.age, alive: false }))));
   if (!l.circle) return;
   const me = standIn(l);
   const ties = l.circle as Tie[];

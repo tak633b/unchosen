@@ -14,6 +14,7 @@ import { isEn, L } from '../i18n';
 import { drawPortrait, drawScene, sceneOf, type Scene } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
 import { mountRing, paintFaces, personCard } from './ring';
+import { paintOtherFaces } from './portrait';
 import { briefOf, otherHtml } from './otherview';
 import { continueAs, generation, othersFor } from '../engine/lineage';
 
@@ -215,7 +216,7 @@ function render(): void {
 function renderOthers(): void {
   if (!S) return;
   const o = S.other === undefined ? undefined : S.others[S.other];
-  if (!o) { setHTML('#others', othersPanel(S.others, aiOthersLines())); return; }
+  if (!o) { setHTML('#others', othersPanel(S.others, aiOthersLines())); paintOtherFaces($('#others'), S.others); return; }
   const lists = [...document.querySelectorAll('#others .kinlist')].map((x) => x.scrollTop);
   setHTML('#others', otherHtml(o, briefOf(S.p), { sel: S.osel, life: S.olife, upto: S.p.birthYear + S.p.age }));
   document.querySelectorAll('#others .kinlist').forEach((x, i) => { x.scrollTop = lists[i] ?? 0; });
