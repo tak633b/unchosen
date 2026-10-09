@@ -122,31 +122,36 @@ export const careQuality = (c: Country) => (c.gdp < 5000 ? 2 : c.gdp < 20000 ? 1
 export const smokeStart = (c: Country, sex: Sex) => clamp(c.smoke * (sex === 'M' ? 1.6 : 0.4), 0.01, 0.9);
 
 // 病院で治すか、安い手で済ませるか、何もしないか
-function treat(p: Person, name: string, years: number, severity: number): void {
+export function treat(p: Person, name: string, years: number, severity: number): void {
   const c = countryOf(p);
   const r = p.rng;
   const cost = c.gdp * (0.3 + r() * 1.0) * severity;
   const share = cost * c.oop;
   const income = Math.max(currentIncome(p), subsistence(c));
   const ratio = share / income;
+  // 貯えで払える分は貯えから。借りるのは足りない分だけ
+  const saved = Math.max(0, Math.min(p.wealth, share));
+  const owe = ratio > 1 ? share - saved : 0;
+  const oweRatio = owe / income;
   const quality = careQuality(c);
   bump(p, { health: -15 * severity });
   const traditional = c.gdp < 15000;
   decide(p, {
     title: L(`${name}と診断された`, `Diagnosed with ${name}`),
-    text: L(`治療費は ${formatMoney(cost)}。そのうち自分で払うのは ${formatMoney(share)} で、年収の約${Math.round(ratio * 100)}%にあたる。`,
-      `Treatment costs ${formatMoney(cost)}. The out-of-pocket share is ${formatMoney(share)}, about ${Math.round(ratio * 100)}% of a year's income.`),
+    text: L(`治療費は ${formatMoney(cost)}。そのうち自分で払うのは ${formatMoney(share)} で、年収の約${Math.round(ratio * 100)}%にあたる。${ratio > 1 && saved > 0 ? (owe > 0 ? `貯えで払えるのは ${formatMoney(saved)} まで。` : '貯えで払える。') : ''}`,
+      `Treatment costs ${formatMoney(cost)}. The out-of-pocket share is ${formatMoney(share)}, about ${Math.round(ratio * 100)}% of a year's income.${ratio > 1 && saved > 0 ? (owe > 0 ? ` Savings cover ${formatMoney(saved)} of it.` : ' Savings can cover it.') : ''}`),
     stat: L(`${c.name}では医療費のおよそ${Math.round(c.oop * 100)}%を患者が自分で払っている (WHO)`, `In ${c.name}, patients pay about ${Math.round(c.oop * 100)}% of health spending out of pocket (WHO)`),
     options: [
       {
-        label: ratio > 1 ? L('借金をして病院で治療を受ける', 'Borrow and go to hospital') : L('病院で治療を受ける', 'Go to hospital'),
+        label: owe > 0 ? (saved > 0 ? L('貯えを崩し、足りない分は借りて治療を受ける', 'Use savings, borrow the rest, go to hospital') : L('借金をして病院で治療を受ける', 'Borrow and go to hospital'))
+          : ratio > 1 ? L('貯えを崩して病院で治療を受ける', 'Use savings and go to hospital') : L('病院で治療を受ける', 'Go to hospital'),
         apply: (q) => {
           q.illness = { name, years, mult: quality };
           q.wealth -= share;
-          q.familyP = clamp(q.familyP - Math.min(0.15, ratio * 0.05), 0.01, 0.99);
+          q.familyP = clamp(q.familyP - Math.min(0.15, oweRatio * 0.05), 0.01, 0.99);
           log(q, L(`${name}の治療を受けた。${ratio > 0.3 ? `自己負担は ${formatMoney(share)}。` : ''}`,
             `Got treatment for ${name}.${ratio > 0.3 ? ` Paid ${formatMoney(share)} out of pocket.` : ''}`), 'ill', true);
-          bump(q, { happy: ratio > 1 ? -8 : -3 });
+          bump(q, { happy: oweRatio > 1 ? -8 : -3 });
         },
       },
       {
@@ -163,7 +168,7 @@ function treat(p: Person, name: string, years: number, severity: number): void {
         apply: (q) => { q.illness = { name, years, mult: 3 }; log(q, L(`${name}と分かったが、治療は受けなかった。`, `Learned it was ${name}, but did not get treatment.`), 'ill', true); },
       },
     ],
-    auto: (q) => (ratio < 1 || q.rng() < 0.4 ? 0 : q.rng() < 0.7 ? 1 : 2),
+    auto: (q) => (oweRatio < 1 || q.rng() < 0.4 ? 0 : q.rng() < 0.7 ? 1 : 2),
   });
 }
 
