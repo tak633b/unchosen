@@ -155,15 +155,20 @@ function home(): void {
     if (ym) { save('birthYear', ym === 'random' ? null : ym === 'now' ? THIS_YEAR : chosenYear() ?? THIS_YEAR); home(); return; }
     if (go === 'born') {
       if (saved) clearSaved();
-      await loadWorld();
-      const seed = randomSeed();
-      const year = chosenYear() ?? pickBirthYear(makeRng(seed ^ 0x5eed));
-      roll(createPerson({ seed, basis, year, country: chosenCountry() ?? undefined, gender: chosenGender() ?? undefined }), basis);
+      await newBirth(basis);
     }
     if (go === 'resume') { await loadWorld(); resumeGame(home); }
     if (go === 'past') past();
     if (go === 'about') about();
   };
+}
+
+// 新しい人生をくじで引く (トップの「生まれる」と、出生届の「引き直す」)
+async function newBirth(basis: BirthBasis): Promise<void> {
+  await loadWorld();
+  const seed = randomSeed();
+  const year = chosenYear() ?? pickBirthYear(makeRng(seed ^ 0x5eed));
+  roll(createPerson({ seed, basis, year, country: chosenCountry() ?? undefined, gender: chosenGender() ?? undefined }), basis);
 }
 
 async function light(btn: HTMLButtonElement): Promise<void> {
@@ -321,6 +326,7 @@ function born(p: Person, basis: BirthBasis): void {
       <p class="note">${L('所得の真ん中の人の年収', 'Median annual income')}: ${formatMoney(earnings(c, 0.5))}</p>
       <div class="choices">
         <button data-go="card">${L('出生カードを保存', 'Save birth card')}</button>
+        <button data-go="reroll">${L('別の人生を引き直す', 'Draw another life')}</button>
         <button class="primary" data-go="live">${L('人生を始める', 'Start this life')}</button>
       </div>
     </article>
@@ -330,6 +336,7 @@ function born(p: Person, basis: BirthBasis): void {
   app.onclick = async (e) => {
     const go = (e.target as HTMLElement).closest<HTMLElement>('[data-go]')?.dataset.go;
     if (go === 'live') startWithOthers(p, others, basis, home);
+    if (go === 'reroll') await newBirth(basis);
     if (go === 'card') {
       await shareCard(drawCard({
         kicker: L(`出生届・${p.birthYear}年${p.birthMonth}月`, `Birth record, ${new Date(2000, p.birthMonth - 1).toLocaleString('en-US', { month: 'long' })} ${p.birthYear}`), title: p.name,
