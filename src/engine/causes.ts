@@ -10,28 +10,28 @@ type Row = [name: string, weight: number, tag?: Tag];
 
 const BANDS: [maxAge: number, rows: Row[]][] = [
   [0, [
-    ['早産・低出生体重', 30], ['出生時の仮死', 20], ['新生児の敗血症', 12, 'inf'], ['肺炎', 12, 'inf'],
-    ['先天的な病気', 12], ['下痢症', 6, 'inf'], ['マラリア', 4, 'mal'],
+    ['早く小さく生まれたこと', 30], ['お産のときの酸素不足', 20], ['生まれてすぐの重い感染症', 12, 'inf'], ['肺炎', 12, 'inf'],
+    ['生まれつきの病気', 12], ['下痢による脱水', 6, 'inf'], ['マラリア', 4, 'mal'],
   ]],
   [4, [
-    ['肺炎', 25, 'inf'], ['下痢症', 20, 'inf'], ['マラリア', 18, 'mal'], ['栄養失調', 8, 'inf'],
-    ['溺水', 8], ['先天的な病気', 8], ['はしか', 5, 'inf'], ['交通事故', 5, 'road'],
+    ['肺炎', 25, 'inf'], ['下痢による脱水', 20, 'inf'], ['マラリア', 18, 'mal'], ['栄養失調', 8, 'inf'],
+    ['溺水', 8], ['生まれつきの病気', 8], ['はしか', 5, 'inf'], ['交通事故', 5, 'road'],
   ]],
   [14, [
-    ['交通事故', 15, 'road'], ['溺水', 10], ['マラリア', 10, 'mal'], ['下痢症', 8, 'inf'], ['肺炎', 8, 'inf'],
+    ['交通事故', 15, 'road'], ['溺水', 10], ['マラリア', 10, 'mal'], ['下痢による脱水', 8, 'inf'], ['肺炎', 8, 'inf'],
     ['白血病などのがん', 12], ['結核', 5, 'inf'], ['髄膜炎', 5, 'inf'],
   ]],
   [49, [
     ['交通事故', 14, 'road'], ['心臓病', 12], ['がん', 12], ['結核', 8, 'inf'], ['肝臓の病気', 6], ['脳卒中', 6],
-    ['転落などの事故', 5], ['肺炎', 4, 'inf'], ['下痢症', 3, 'inf'], ['腎臓病', 4], ['糖尿病', 3],
+    ['転落などの事故', 5], ['肺炎', 4, 'inf'], ['下痢による脱水', 3, 'inf'], ['腎臓病', 4], ['糖尿病', 3],
   ]],
   [69, [
-    ['心臓病', 26], ['脳卒中', 16], ['がん', 22], ['肺がん', 6, 'smoke'], ['慢性閉塞性肺疾患', 6, 'smoke'],
+    ['心臓病', 26], ['脳卒中', 16], ['がん', 22], ['肺がん', 6, 'smoke'], ['肺の慢性の病気 (COPD)', 6, 'smoke'],
     ['糖尿病', 6], ['肝硬変', 4], ['腎臓病', 4], ['結核', 3, 'inf'], ['肺炎', 3, 'inf'],
   ]],
   [999, [
     ['心臓病', 26], ['脳卒中', 16], ['がん', 14], ['肺がん', 3, 'smoke'], ['認知症', 10, 'old'],
-    ['慢性閉塞性肺疾患', 7, 'smoke'], ['肺炎', 8], ['腎臓病', 4], ['糖尿病', 4], ['老衰', 8, 'old'], ['転倒', 2],
+    ['肺の慢性の病気 (COPD)', 7, 'smoke'], ['肺炎', 8], ['腎臓病', 4], ['糖尿病', 4], ['老衰', 8, 'old'], ['転倒', 2],
   ]],
 ];
 
@@ -39,12 +39,12 @@ export const HOMICIDE = '他殺';
 
 // 死因は内部では日本語で持ち、決まった時に今の言語の名前にする
 const CAUSE_EN: Record<string, string> = {
-  早産・低出生体重: 'preterm birth and low birth weight', 出生時の仮死: 'birth asphyxia', 新生児の敗血症: 'neonatal sepsis',
-  肺炎: 'pneumonia', 先天的な病気: 'congenital condition', 下痢症: 'diarrheal disease', マラリア: 'malaria',
+  '早く小さく生まれたこと': 'being born too early or too small', 'お産のときの酸素不足': 'lack of oxygen during birth', '生まれてすぐの重い感染症': 'severe infection after birth',
+  肺炎: 'pneumonia', '生まれつきの病気': 'a condition from birth', '下痢による脱水': 'diarrhea and dehydration', マラリア: 'malaria',
   栄養失調: 'malnutrition', 溺水: 'drowning', はしか: 'measles', 交通事故: 'road accident',
   白血病などのがん: 'childhood cancer', 結核: 'tuberculosis', 髄膜炎: 'meningitis', 心臓病: 'heart disease',
   がん: 'cancer', 肝臓の病気: 'liver disease', 脳卒中: 'stroke', 転落などの事故: 'fall or other accident',
-  腎臓病: 'kidney disease', 糖尿病: 'diabetes', 肺がん: 'lung cancer', 慢性閉塞性肺疾患: 'COPD',
+  腎臓病: 'kidney disease', 糖尿病: 'diabetes', 肺がん: 'lung cancer', '肺の慢性の病気 (COPD)': 'chronic lung disease (COPD)',
   肝硬変: 'cirrhosis', 認知症: 'dementia', 老衰: 'old age', 転倒: 'fall', [HOMICIDE]: 'homicide',
   エイズ関連の病気: 'AIDS-related illness', 出産時の合併症: 'complications of childbirth',
 };

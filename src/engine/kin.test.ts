@@ -192,3 +192,21 @@ describe('主人公の記録の年齢と、きょうだいの誕生', () => {
     expect(bad.slice(0, 10)).toEqual([]);
   }, 60_000);
 });
+
+// 主人公の記録から写した一緒の出来事が、その人の一生で「自分と付き合い始めた」のように自分を相手にしない。
+// その人の一生の中で、自分の名前のすぐ後に「と」が続く写しの行を数える (その人自身の出来事の語りは数えない)。
+// 実測 (2026-10-09): 書き直す前は 300人の主人公の輪で 3544 行。書き直した後は、このテストの120人で 0 行
+describe('一緒の出来事は、その人の側から書く', () => {
+  it('写した行に、その人自身を相手にした文が無い', () => {
+    const bad: string[] = [];
+    for (const o of sample(120, 3000)) {
+      const p = liveOut(createPerson({ ...o, basis: 'births', auto: true }));
+      const byId = new Map(people(p).map((t) => [t.id!, t]));
+      for (const l of allLives(p)) {
+        const name = byId.get(l.id)!.name ?? '';
+        for (const e of l.entries) if (e.shared && name && (e.text.includes(`${name}と`) || e.text.includes(`with ${name}`))) bad.push(`seed ${p.seed} #${l.id} ${e.text}`);
+      }
+    }
+    expect(bad.slice(0, 10)).toEqual([]);
+  }, 120_000);
+});

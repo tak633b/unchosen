@@ -86,13 +86,13 @@ export function hiv(p: Person): void {
 }
 
 const CHRONIC: [name: string, minAge: number, poorOnly?: boolean][] = [
-  ['がん', 30], ['心臓病', 40], ['狭心症', 45], ['脳卒中', 45], ['糖尿病の合併症', 35], ['結核', 15, true], ['腎臓病', 40], ['慢性閉塞性肺疾患', 45],
+  ['がん', 30], ['心臓病', 40], ['狭心症', 45], ['脳卒中', 45], ['糖尿病の合併症', 35], ['結核', 15, true], ['腎臓病', 40], ['肺の慢性の病気 (COPD)', 45],
 ];
 const ACUTE: [name: string, minAge: number][] = [['重い肺炎', 50], ['骨折', 55], ['マラリア', 5], ['腸チフス', 5], ['盲腸', 10]];
 // 病名は内部では日本語(上の正規表現で比べる)。p.illness には表示の言葉で入れる
 const ILLNESS_EN: Record<string, string> = {
   がん: 'cancer', 心臓病: 'heart disease', 狭心症: 'angina', 脳卒中: 'stroke', 糖尿病の合併症: 'diabetes complications', 結核: 'tuberculosis',
-  腎臓病: 'kidney disease', 慢性閉塞性肺疾患: 'COPD', 重い肺炎: 'severe pneumonia', 骨折: 'broken bone', マラリア: 'malaria', 腸チフス: 'typhoid', 盲腸: 'appendicitis',
+  腎臓病: 'kidney disease', '肺の慢性の病気 (COPD)': 'chronic lung disease (COPD)', 重い肺炎: 'severe pneumonia', 骨折: 'broken bone', マラリア: 'malaria', 腸チフス: 'typhoid', 盲腸: 'appendicitis',
 };
 const illnessName = (n: string) => (isEn ? ILLNESS_EN[n] ?? n : n);
 

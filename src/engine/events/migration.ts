@@ -13,6 +13,7 @@ export function migration(p: Person): void {
   if (p.age < 18 || p.age > 45 || c.gdp > 20000 || p.school.enrolled || p.school.uni === 'studying') return;
   if (r() >= (p.focus === 'work' ? 0.025 : 0.015)) return;
   const dests = countriesAt(yearOf(p)).filter((d) => d.gdp > Math.max(15000, c.gdp * 2.5));
+  if (!dests.length) return; // 1950年代のように、行き先になる豊かな国がまだ無い年
   const dest = pickWeighted(r, dests, (d) => d.pop * (d.region === c.region ? 3 : 1));
   const destIncome = earnings(dest, 0.2);
   decide(p, {

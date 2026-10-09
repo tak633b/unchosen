@@ -7,7 +7,7 @@ import { esc } from './dom';
 import { L } from '../i18n';
 
 const item = (e: KinEntry, given: string) =>
-  `<li class="k-${e.kind}${e.big ? ' big' : ''}${e.shared ? ' shared' : ''}${e.me ? ' me' : ''}${e.after ? ' after' : ''}"><span class="age">${L(`${e.age}歳`, `${e.age}`)}<small>${e.year}</small></span><span>${e.shared ? `<i class="kintag">${L(`${esc(given)}の記録`, `${esc(given)}'s record`)}</i>` : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span></li>`;
+  `<li class="k-${e.kind}${e.big ? ' big' : ''}${e.shared ? ' shared' : ''}${e.me ? ' me' : ''}${e.after ? ' after' : ''}"><span class="age">${L(`${e.age}歳`, `${e.age}`)}<small>${e.year}</small></span><span>${e.shared && !e.voiced ? `<i class="kintag">${L(`${esc(given)}の記録`, `${esc(given)}'s record`)}</i>` : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span></li>`;
 
 const divider = (text: string, cls = '') => `<li class="kindiv${cls}"><span>${text}</span></li>`;
 
@@ -33,7 +33,7 @@ export function lifeHtml(p: Person, id: number): string {
   const unheard = l.full && lost && tie!.alive && l.born + l.age <= p.birthYear + p.age;
   const tail = l.full ? '' : `<p class="note">${lost ? L('連絡が途絶えてからのことは、まだ分からない。', 'Nothing is known yet about the years after they lost touch.') : L('この先は、まだ分からない。', 'What comes next is not known yet.')}</p>`;
   return `<section class="kinlife"><h3>${L('その人の一生', 'Their whole life')} <small>${esc(head)}</small></h3>
-    <p class="rlegend kinlegend"><span class="kinkey shared"></span>${L(`${esc(given)}の記録にある一緒の出来事 (${esc(given)}の側の文)`, `Shared moments from ${esc(given)}'s record (in ${esc(given)}'s words)`)}${after ? `<span class="kinkey after"></span>${L('その後', 'Afterward')}` : ''}</p>
+    <p class="rlegend kinlegend"><span class="kinkey shared"></span>${L(`${esc(given)}と一緒の出来事 (印のある行は${esc(given)}の側の文)`, `Moments with ${esc(given)} (tagged rows are in ${esc(given)}'s words)`)}${after ? `<span class="kinkey after"></span>${L('その後', 'Afterward')}` : ''}</p>
     ${unheard ? `<p class="note">${L(`${esc(given)}は、この人が亡くなったことを知らなかった。`, `${esc(given)} never learned of this death.`)}</p>` : ''}
     <ol class="log kinlist">${before ? divider(L(`${esc(given)}が生まれる前`, `Before ${esc(given)} was born`)) : ''}${rows.join('')}</ol>${tail}</section>`;
 }

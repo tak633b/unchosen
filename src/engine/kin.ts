@@ -7,7 +7,8 @@ import { countryAt } from './countries';
 import { advanceYear, birthStory, createPerson } from './life';
 import { MAX_AGE, type Sex } from './lifetable';
 import { childWord, countryOf, yearOf, type Anchor, type Fixed, type Person, type Relative, type Role, type Tie, type YearKind } from './person';
-import { addTie, circle, ensureBonds, mourn, newId, shared } from './bonds';
+import { addTie, callName, circle, ensureBonds, mourn, newId, shared } from './bonds';
+import { voice } from './kinvoice';
 import { marry, newPartner } from './events/love';
 import { keepLateSpouse } from './events/bonds';
 import { qAt } from './events/common';
@@ -18,6 +19,7 @@ import { L } from '../i18n';
 export interface KinEntry {
   age: number; year: number; text: string; kind: YearKind; big?: boolean; why?: string; stat?: string;
   shared?: boolean; // 主人公の記録にある、一緒の出来事
+  voiced?: boolean; // その出来事を、その人の側の文に書き直した (書き直せなかった文は主人公の側の文のまま)
   after?: boolean;  // 主人公が亡くなった後
   me?: boolean;     // 主人公が出てくる、その人の側の出来事 (主人公の誕生・死など)
 }
@@ -308,7 +310,9 @@ function build(rec: Ledger, id: number): KinLife | undefined {
   const deathAge = rp.alive ? undefined : rp.age;
   const withMe: KinEntry[] = p.log
     .filter((e) => e.who?.includes(id) && !covered.has(e) && !(e.kind === 'loss' && e.age - off === deathAge && e.who.length === 1))
-    .map((e) => ({ age: e.age - off, year: p.birthYear + e.age, text: e.text, kind: e.kind, big: e.big, why: e.why, stat: e.stat, shared: true }));
+    .map((e) => ({ e, text: voice(e.text, { role, rName: t.name ?? '', rCall: callName(t, role), pGiven: p.given, pSex: p.sex }) }))
+    .filter(({ text }) => text !== null)
+    .map(({ e, text }) => ({ age: e.age - off, year: p.birthYear + e.age, text: text ?? e.text, kind: e.kind, big: e.big, why: e.why, stat: e.stat, shared: true, ...(text ? { voiced: true } : {}) }));
   const entries = [...own, ...withMe]
     .map((e, i) => ({ e, i }))
     .sort((a, b) => a.e.age - b.e.age || Number(!!a.e.shared) - Number(!!b.e.shared) || a.i - b.i)
