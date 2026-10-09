@@ -31,6 +31,18 @@ export interface Relative {
   mem?: Memory[];     // 一緒に過ごした出来事 (新しいものほど後ろ)
   diedAt?: number;    // 亡くなった時の主人公の年齢
   since?: number;     // 輪に入った時の主人公の年齢 (Tie では必須)
+  country?: string;   // 出会った時・生まれた時に主人公がいた国 (その人の一生を作るときの生まれた国)
+  fixed?: Fixed;      // その人の一生の中に出てくる、主人公の記録で決まっている人
+}
+// 主人公の輪の人の一生 (kin.ts) で、記録から決まっている人。乱数では死なず、決まった年に亡くなる
+export interface Fixed { ref: number; born: number; dies?: number; cause?: string } // ref: 主人公の輪での id (0 は主人公)。born: 生まれた暦年。dies: 亡くなる年齢
+// 輪の人の一生を、主人公の記録に合わせるための手綱。主人公の人生には付かない
+export interface Anchor {
+  dies: number;    // この年齢で亡くなる (分からない時は Infinity)
+  cause?: string;
+  school?: number; // 少なくともこの年数は学校に通う
+  hold: (p: Person, what: 'love' | 'birth' | 'move') => boolean; // true の年は、その出来事を乱数で起こさない
+  each: (p: Person) => void;                                       // 毎年、家族の時間のあとに: 決まった結婚・子・死
 }
 // 主人公から見た関係。family 系は Person の mother/father/siblings/spouse/children に、それ以外は ties に入る
 export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild';
@@ -62,6 +74,7 @@ export interface Person {
   cause?: string;
   rural: boolean;
   familyP: number;   // 生まれた家の所得分位 0–1
+  birthP?: number;   // 生まれた時の familyP (familyP は親の早世や治療費で下がる)。古いセーブには無い
   incomeP: number;   // 自分の所得分位 0–1
   working: boolean;
   job?: string;
@@ -122,6 +135,7 @@ export interface Person {
   auto: boolean;
   reflect?: boolean; // 5・15・30・50・70歳の問いを出すか (プレイヤーだけ)
   recent: Record<string, number>; // 日常の出来事を最後に見た年齢 (同じ話の繰り返しを避ける)
+  anchor?: Anchor;   // 輪の人の一生を作っている時だけ
 }
 
 export const yearOf = (p: Person): number => p.birthYear + p.age;

@@ -56,21 +56,21 @@ export function createPerson(o: BirthOptions): Person {
   const fatherAge = Math.round(clamp(motherAge + normal(rng, 4, 3), 16, 70));
   const older = poisson(rng, Math.max(0, (c.tfr - 1) * 0.5));
   const younger = poisson(rng, Math.max(0, (c.tfr - 1) * 0.5));
-  const nameKeys = [name.key]; // きょうだいは主人公とも、きょうだい同士とも同じ名にしない
+  const nameKeys = [name.key]; // 人の輪の中で同じ名にしない (きょうだい・親から。あとで友だちや恋人も足す)
   const sib = (age: number) => {
     const s: Sex = rng() < 0.5 ? 'M' : 'F';
-    return { alive: true, age, sex: s, name: freshName(() => makeName(rng, c.code, s, fam), nameKeys) };
+    return { alive: true, age, sex: s, name: freshName(() => makeName(rng, c.code, s, fam), nameKeys).given };
   };
   const now = new Date();
   const p: Person = {
     seed: o.seed, rng, given: name.given, ...(o.gender === 'X' ? { gender: 'X' as const } : {}), name: name.full, pool: name.pool, familyIndex: name.familyIndex, sex,
     birthCountry: c.code, country: c.code, city: rural ? null : pickCity(rng, c.code), religion: pickReligion(rng, c.code),
     birthYear: year, birthMonth: o.month ?? now.getMonth() + 1,
-    age: 0, alive: true, rural, familyP, incomeP: familyP,
+    age: 0, alive: true, rural, familyP, birthP: familyP, incomeP: familyP,
     working: false, jobYears: 0, formal: false, retired: false, unemployed: 0,
     wealth: 0, peakIncome: 0, house: false, car: false,
-    mother: { alive: true, age: motherAge, sex: 'F', name: makeName(rng, c.code, 'F', fam).given },
-    father: { alive: true, age: fatherAge, sex: 'M', name: makeName(rng, c.code, 'M', fam).given },
+    mother: { alive: true, age: motherAge, sex: 'F', name: freshName(() => makeName(rng, c.code, 'F', fam), nameKeys).given },
+    father: { alive: true, age: fatherAge, sex: 'M', name: freshName(() => makeName(rng, c.code, 'M', fam), nameKeys).given },
     siblings: [
       ...Array.from({ length: older }, (_, i) => sib(2 + i * 2 + Math.floor(rng() * 2))),
       ...Array.from({ length: younger }, (_, i) => sib(-(2 + i * 2 + Math.floor(rng() * 2)))),
@@ -173,9 +173,11 @@ export function advanceYear(p: Person): void {
   if (!p.alive) return;
   const c = countryOf(p);
   const q = deathRisk(p);
-  if (p.rng() < q) {
+  // 輪の人の一生では、亡くなる年は主人公の記録 (または先に決めた運命) で決まっている
+  if (p.anchor ? p.age >= p.anchor.dies : p.rng() < q) {
     let cause: string;
-    if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
+    if (p.anchor?.cause) cause = p.anchor.cause;
+    else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;
     else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker);
     die(p, cause);
@@ -184,18 +186,19 @@ export function advanceYear(p: Person): void {
   p.age++;
   milestone(p);
   family(p);
+  p.anchor?.each(p);
   childhood(p);
-  childMarriage(p);
+  if (!p.anchor?.hold(p, 'love')) childMarriage(p);
   schooling(p);
   military(p);
   work(p);
-  love(p);
-  births(p);
+  if (!p.anchor?.hold(p, 'love')) love(p);
+  if (!p.anchor?.hold(p, 'birth')) births(p);
   if (!p.alive) { settle(p); return; }
   habits(p);
   hiv(p);
   illness(p);
-  migration(p);
+  if (!p.anchor?.hold(p, 'move')) migration(p);
   finances(p);
   crime(p);
   dilemmas(p);

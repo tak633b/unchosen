@@ -11,7 +11,7 @@ import { because, deathWhy } from '../why';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
-  if (p.rng() >= qAt(c, rel.sex, rel.age)) return null;
+  if (p.rng() >= qAt(c, rel.sex, rel.age) || rel.fixed) return null; // 記録で決まっている人は、決まった年に亡くなる (kin.ts)
   rel.alive = false;
   rel.diedAt = p.age;
   return pickCause(p.rng, c, rel.sex, rel.age, qAt(c, rel.sex, rel.age), false);
@@ -29,6 +29,8 @@ export function family(p: Person): void {
     log(p, L(`${word}が${rel.age}歳で亡くなった(${cause})。`, `${wordEn} died at ${rel.age} (${cause}).`), 'loss', true, undefined, [rel.id!]);
     because(p, deathWhy(countryOf(p), rel.sex, rel.age));
     mourn(p, rel, young ? -18 : -8, young ? -10 : -4);
+    // まだ生まれていないきょうだいは、母が亡くなれば生まれない。父が亡くなった後は、その年のうちに生まれる子まで
+    if (p.siblings.some((s) => s.age < 0)) p.siblings = p.siblings.filter((s) => s.age >= (rel === p.mother ? 0 : -1));
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
     if (!p.mother.alive && !p.father.alive && p.age >= 18) inherit(p);
   }
@@ -65,12 +67,14 @@ export function family(p: Person): void {
       because(p, deathWhy(countryOf(p), k.sex, k.age));
       mourn(p, k, -25, -5);
     }
-    if (k.age === 18 && p.age < 80 && k.alive) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');
+    if (k.age === 18 && p.age < 80 && k.alive && !k.fixed) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');
   }
-  if (p.age >= 50 && p.children.some((k) => k.alive && k.age >= 20) && r() < 0.12) {
-    const parent = pick(r, p.children.filter((k) => k.alive && k.age >= 20));
+  // 記録で決まっている子の子は記録どおりに足すので (kin.ts)、ここでは数えない
+  const grown = p.children.filter((k) => k.alive && k.age >= 20 && !k.fixed);
+  if (p.age >= 50 && grown.length && r() < 0.12) {
+    const parent = pick(r, grown);
     const sex = r() < 0.512 ? 'M' : 'F';
-    const name = freshName(() => makeName(r, p.country, sex), (p.nameKeys ??= []));
+    const name = freshName(() => makeName(r, p.country, sex), (p.nameKeys ??= [])).given;
     const g = addTie(p, { alive: true, age: 0, sex, name, role: 'grandchild', since: p.age, of: parent.id });
     shared(p, [g, parent], L(`孫が生まれた。${parent.name}の子で、名前は${g.name}。`, `A grandchild was born: ${parent.name}'s ${sex === 'F' ? 'daughter' : 'son'}, ${g.name}.`), 'family', 3, false, undefined, 'grandbirth');
     bump(p, { happy: 6, bond: 5 });

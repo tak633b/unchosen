@@ -1,6 +1,5 @@
 // 幼い日々: 気質・好きなこと・ペット・学校に上がるか。
 import type { Country } from '../countries';
-import { makeName } from '../identity';
 import { bump, countryOf, decide, log, type Person, type Stats } from '../person';
 import { clamp, normal, pick } from '../rng';
 import { isRich } from './common';
@@ -133,7 +132,7 @@ export function childhood(p: Person): void {
 function startSchool(p: Person, c: Country): void {
   const r = p.rng;
   const girlGap = p.sex === 'F' && c.gdp < 5000 ? -1.2 : 0;
-  p.school.target = clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3), 0, 12);
+  p.school.target = Math.max(p.anchor?.school ?? 0, clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3), 0, 12));
   if (p.school.target < 1) {
     log(p, L('みんなが学校へ行く年になったが、通えなかった。', 'Reached school age, but could not go.'), 'hard', true);
     because(p, schoolWhy(p, c));
@@ -142,10 +141,6 @@ function startSchool(p: Person, c: Country): void {
   p.school.enrolled = true;
   log(p, isRich(p) && c.gdp > 8000 ? L('私立の小学校に入学した。', 'Started at a private primary school.') : L('小学校に入学した。', 'Started primary school.'), 'school');
 }
-
-// 子どもやきょうだいの名前は、自分と同じ命名の伝統から
-export const kinName = (p: Person, sex: 'F' | 'M', poolHint: string) =>
-  makeName(p.rng, p.birthCountry, sex, { pool: poolHint, index: 0 }).given;
 
 // 大人になってからペットを迎えるか
 export function adultPet(p: Person): void {

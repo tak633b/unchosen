@@ -14,7 +14,7 @@ import { isEn, L, lang } from '../i18n';
 import { jobName, majorName } from '../engine/jobs';
 import { causeName } from '../engine/causes';
 import { people } from '../engine/bonds';
-import { lastWordsHtml, mountRing, paintFaces } from './ring';
+import { lastWordsHtml, mountRing, paintFaces, personCard } from './ring';
 
 const MAX_PAST = 10;
 
@@ -147,15 +147,32 @@ export function deathRecord(l: PastLife): string {
   </section>`;
 }
 
-// deathRecord を置いたあとに呼ぶ: 場面・顔・輪を描く
-export function paintLife(root: HTMLElement, l: PastLife): void {
+// deathRecord を置いたあとに呼ぶ: 場面・顔・輪を描く。
+// 亡くなった直後で本人 (p) がいれば、輪の顔を押してその人の一生を読める
+export function paintLife(root: HTMLElement, l: PastLife, p?: Person): void {
   paintScenes(root);
   if (!l.circle) return;
   const me = standIn(l);
   const ties = l.circle as Tie[];
   root.querySelectorAll<HTMLElement>('.lastwords').forEach((el) => paintFaces(el, me, ties));
   const ring = root.querySelector<HTMLElement>('.finalring');
-  if (ring) mountRing(ring, me, undefined, false, ties);
+  if (!ring) return;
+  if (!p) return mountRing(ring, me, undefined, false, ties);
+  ring.insertAdjacentHTML('afterend', `<p class="note">${L('顔を押すと、その人の一生が読める。', 'Tap a face to read that person\'s whole life.')}</p><div class="deathkin" id="deathkin"></div>`);
+  const box = root.querySelector<HTMLElement>('#deathkin')!;
+  let open = true;
+  const show = (id?: number) => {
+    mountRing(ring, p, id, true);
+    box.innerHTML = id === undefined ? '' : personCard(p, id, open);
+    box.dataset.sel = id === undefined ? '' : String(id);
+    paintFaces(box, p);
+  };
+  show();
+  ring.parentElement!.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLElement>('[data-act]');
+    if (a?.dataset.act === 'person') show(a.dataset.v ? Number(a.dataset.v) : undefined);
+    else if (a?.dataset.act === 'kinlife') { open = !open; show(Number(box.dataset.sel)); }
+  });
 }
 
 const aiStoryHtml = (s: { title: string; story: string }) =>
@@ -183,7 +200,7 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       </div>
     </section></main>`;
   window.scrollTo(0, 0);
-  paintLife(app, life);
+  paintLife(app, life, p);
   if (aiOn('story') && life.words?.length) {
     const box = app.querySelector<HTMLElement>('.lastwords')!;
     void lastWordsAi(p).then((words) => {

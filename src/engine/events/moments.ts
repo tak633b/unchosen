@@ -39,6 +39,7 @@ interface Moment {
     parentAlive?: boolean;
     fatherAlive?: boolean;
     motherAlive?: boolean;
+    sibling?: 'olderBrother' | 'olderSister' | 'younger'; // 文に出てくるきょうだいがいるときだけ
     teenChild?: boolean;
     livingAlone?: boolean;
     job?: 'office' | 'manual' | 'farm' | 'none';
@@ -87,6 +88,7 @@ function matches(p: Person, m: Moment): boolean {
   if (w.parentAlive && !p.mother.alive && !p.father.alive) return false;
   if (w.fatherAlive && !p.father.alive) return false;
   if (w.motherAlive && !p.mother.alive) return false;
+  if (w.sibling && !p.siblings.some((b) => b.alive && (w.sibling === 'younger' ? b.age >= 0 && b.age < p.age : b.age > p.age && b.sex === (w.sibling === 'olderBrother' ? 'M' : 'F')))) return false;
   if (w.teenChild && !p.children.some((k) => k.alive && k.age >= 13 && k.age <= 19)) return false;
   if (w.livingAlone && !(p.working && p.age >= 18 && !p.spouse?.alive)) return false;
   if (w.job && w.job !== (p.working && !p.retired && p.unemployed === 0 ? p.jobKind ?? 'manual' : 'none')) return false;

@@ -219,6 +219,24 @@ canvas.mini { width: 26px; height: auto; border-radius: 50%; border: 1px solid v
 .rlegend .r-friend { border-top-color: var(--r-friend); }
 .rlegend .r-rival { border-top-color: var(--r-rival); border-top-style: dashed; }
 .together { max-height: 340px; overflow: auto; margin-top: 12px; }
+/* その人の一生 */
+.kinbtn { margin-top: 10px; }
+.kinlife { margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+.kinlist { max-height: 60vh; overflow: auto; overscroll-behavior: contain; padding-right: 4px; }
+.log.kinlist li { grid-template-columns: 4.2em minmax(0, 1fr); overflow-wrap: anywhere; }
+.kinlist .age small { display: block; color: var(--faint); font-size: 11px; }
+.log.kinlist li.shared { border-left-color: var(--accent); background: linear-gradient(90deg, var(--glow), transparent 75%); padding-top: 3px; padding-bottom: 3px; }
+.kinlist li.after { border-left-style: dashed; }
+.log.kinlist li.me:not(.shared) { border-left-color: var(--accent); }
+.kintag { font-style: normal; font-size: 11px; font-weight: 700; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 0 7px; margin-right: 6px; white-space: nowrap; }
+.kinlist li.kindiv { display: block; border-left: 0; text-align: center; font-size: 12px; color: var(--sub); padding: 6px 0 2px; }
+.kindiv span { display: inline-block; border-bottom: 1px solid var(--line); padding: 0 10px 3px; }
+.kinlist li.kindiv.after { color: var(--accent); }
+.kindiv.after span { border-bottom-color: var(--accent); }
+.kinlegend .kinkey { width: 14px; height: 10px; border: 0; border-left: 3px solid var(--accent); }
+.kinlegend .kinkey.shared { background: var(--glow); }
+.kinlegend .kinkey.after { border-left: 3px dashed var(--sub); }
+.deathkin { margin-top: 12px; }
 .dd { font-style: normal; font-size: 10px; }
 .dd.up { color: var(--m-health); }
 .dd.down { color: var(--m-bond); }

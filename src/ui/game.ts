@@ -39,6 +39,7 @@ interface GameState {
   modal: boolean;
   logOpen: boolean;
   sel?: number;      // 人の輪で選んでいる人の id
+  life: boolean;     // 選んだ人の一生を開いているか
   tab: Tab;          // 開いている「データ」の欄。'' なら閉じている
   raf: number;
   last: number;
@@ -72,7 +73,7 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, life: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
   $('#app').innerHTML = shell();
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
@@ -179,7 +180,11 @@ function render(): void {
   $('#autobtn').classList.toggle('on', p.auto);
   $('#musicbtn').classList.toggle('on', S.music);
   mountRing($('#ring'), p, S.sel);
-  setHTML('#pcard', personCard(p, S.sel));
+  // 一生の欄は毎年書き直すので、読んでいた位置を保つ
+  const kinTop = document.querySelector('#pcard .kinlist')?.scrollTop ?? 0;
+  setHTML('#pcard', personCard(p, S.sel, S.life));
+  const kin = document.querySelector('#pcard .kinlist');
+  if (kin) kin.scrollTop = kinTop;
   setHTML('#scene', scenePanel(p));
   const scv = $<HTMLCanvasElement>('#scenecv');
   S.scene = sceneOf(p);
@@ -237,6 +242,7 @@ function onClick(e: MouseEvent): void {
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;
     case 'person': S.sel = v ? Number(v) : undefined; break;
+    case 'kinlife': S.life = !S.life; break;
     case 'tab': S.tab = S.tab === v ? '' : (v as Tab); break;
     case 'exit': confirmExit(); return;
     default: return;

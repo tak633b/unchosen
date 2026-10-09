@@ -93,7 +93,7 @@ export function mourn(p: Person, r: Relative, happy: number, bond = 0): void {
 
 // 家族以外の人を輪に加える
 export function addTie(p: Person, t: Omit<Tie, 'id' | 'bond'> & { bond?: number }): Tie {
-  const tie: Tie = { ...t, id: newId(p), bond: t.bond ?? initialBond(p, t, t.role) };
+  const tie: Tie = { ...t, id: newId(p), bond: t.bond ?? initialBond(p, t, t.role), country: t.country ?? p.country };
   p.ties = [...(p.ties ?? []), tie];
   return tie;
 }
@@ -108,11 +108,11 @@ export function callName(r: Relative, role: Role): string {
   return L(ja[role], role === 'mother' ? 'Mother' : role === 'father' ? 'Father' : n);
 }
 
-// 同じ家の中で名前がかぶらないよう、空いている名前が出るまで引き直す (8回まで)。
+// 人の輪 (家族・友だち・恋人・恩師など) の中で名前がかぶらないよう、空いている名前が出るまで引き直す (8回まで)。
 // 比べるのは元の文字の名 (key) なので、引き直しの回数は日英で変わらない。使った key は keys に足す
-export function freshName(draw: () => { given: string; key: string }, keys: string[]): string {
+export function freshName<N extends { key: string }>(draw: () => N, keys: string[]): N {
   let n = draw();
   for (let i = 0; i < 7 && keys.includes(n.key); i++) n = draw();
   keys.push(n.key);
-  return n.given;
+  return n;
 }

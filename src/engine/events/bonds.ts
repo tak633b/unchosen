@@ -1,5 +1,5 @@
 // 人との間の時間: 出会い、近さの移ろい、けんかと仲直り、疎遠と再会。家族以外の人の死もここで。
-import { addTie, callName, circle, mourn, shared } from '../bonds';
+import { addTie, callName, circle, freshName, mourn, shared } from '../bonds';
 import { makeName } from '../identity';
 import { bump, countryOf, log, type Person, type Relative, type Role, type Tie } from '../person';
 import { clamp, normal, pick } from '../rng';
@@ -28,7 +28,7 @@ function meet(p: Person): void {
   const friends = tiesOf(p, 'friend');
   const name = (full = false) => {
     const sex = r() < 0.65 ? p.sex : p.sex === 'F' ? 'M' : 'F';
-    const n = makeName(r, p.country, sex);
+    const n = freshName(() => makeName(r, p.country, sex), (p.nameKeys ??= []));
     return { sex, name: full ? n.full : n.given } as const;
   };
   if (p.age === 12 && !friends.length) {
@@ -61,7 +61,8 @@ const GRIEF: Partial<Record<Role, number>> = { friend: -7, mentor: -4, rival: -2
 function ageTies(p: Person): void {
   for (const t of p.ties ?? []) {
     if (!t.alive) continue;
-    t.age++;
+    // この年にもう歳をとった人は進めない: 今年生まれた孫 (family.ts で0歳で足す) と、今年別れた相手 (love.ts で恋人として歳をとった)
+    if (!(t.role === 'grandchild' && t.since === p.age) && !(t.role === 'ex' && t.until === p.age)) t.age++;
     if (t.role === 'ex' || t.until !== undefined || !relDies(p, t)) continue;
     log(p, L(`${callName(t, t.role)}が${t.age}歳で亡くなった。`, `${t.name} died at ${t.age}.`), 'loss', (t.bond ?? 0) >= 60, undefined, [t.id!]);
     because(p, deathWhy(countryOf(p), t.sex, t.age));
@@ -94,7 +95,8 @@ type Happening = () => void;
 function happen(p: Person): void {
   const r = p.rng;
   if (p.age < 6 || r() >= 0.22) return;
-  const all = circle(p).filter(([x]) => x.alive);
+  // 輪の人の一生 (kin.ts) では、主人公との出来事は主人公の記録にあるものだけにする
+  const all = circle(p).filter(([x]) => x.alive && x.fixed?.ref !== 0);
   const close = all.filter(([x, role]) => (x.bond ?? 0) > 20 && role !== 'ex' && role !== 'rival' && (x as Tie).until === undefined && (role !== 'child' || x.age >= 12) && (role !== 'grandchild' || x.age >= 12));
   const list: Happening[] = [];
 
@@ -188,7 +190,7 @@ function happen(p: Person): void {
   });
 
   const little = tiesOf(p, 'grandchild').filter((t) => t.alive && t.age >= 1 && t.age <= 8)
-    .map((t) => [t, p.children.find((k) => k.id === t.of && k.alive)] as const).filter(([, k]) => k);
+    .map((t) => [t, p.children.find((k) => k.id === t.of && k.alive && k.fixed?.ref !== 0)] as const).filter(([, k]) => k);
   if (little.length) list.push(() => {
     const [g, k] = pick(r, little);
     shared(p, [g, k!], L(`${k!.name}に頼まれて、孫の${g.name}をしばらく預かった。`, `Looked after ${g.name}, ${k!.name}'s child, for a while.`), 'family', 4, false, undefined, 'babysit');
@@ -206,7 +208,7 @@ function happen(p: Person): void {
     false, undefined, p.age < 18 ? (story ? 'parent_story' : 'parent_outing') : home ? 'parent_meal' : 'parent_call');
   });
 
-  if (p.spouse?.alive) list.push(() => {
+  if (p.spouse?.alive && p.spouse.fixed?.ref !== 0) list.push(() => {
     shared(p, [p.spouse!], L(`${callName(p.spouse!, 'spouse')}と二人で出かけた。`, `Spent a day out with ${p.spouse!.name}.`), p.kinds[p.age] ?? 'family', 3, false, undefined, 'outing_spouse');
   });
 
@@ -226,7 +228,7 @@ function childDays(p: Person): void {
   const r = p.rng;
   const c = countryOf(p);
   for (const k of p.children) {
-    if (!k.alive) continue;
+    if (!k.alive || k.fixed) continue; // 記録で決まっている子の節目は、その子自身の一生にある
     const once = (key: string, chance: number, text: string, d: number) => {
       if (p.recent[`${key}:${k.id}`] !== undefined || r() >= chance) return false;
       p.recent[`${key}:${k.id}`] = p.age;

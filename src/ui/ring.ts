@@ -5,6 +5,7 @@ import type { Person, Role, Tie } from '../engine/person';
 import { esc } from './dom';
 import { isEn, L } from '../i18n';
 import { drawPortrait, drawTiePortrait } from './pixel';
+import { lifeHtml } from './lifeview';
 
 type Kind = 'family' | 'love' | 'friend' | 'rival';
 const kindOf = (r: Role): Kind =>
@@ -132,7 +133,8 @@ function together(p: Person, t: Tie): { age: number; text: string; d?: number }[
 
 const yearsWord = (n: number) => L(`${n}年`, `${n} ${n === 1 ? 'year' : 'years'}`);
 
-export function personCard(p: Person, id?: number): string {
+// life: その人の一生を開いているか
+export function personCard(p: Person, id?: number, life = false): string {
   const t = id === undefined ? undefined : people(p).find((x) => x.id === id);
   if (!t) {
     return `<p class="note">${L('顔を押すと、その人と過ごした時間が読める。', 'Tap a face to read the time spent with that person.')}</p>
@@ -153,7 +155,9 @@ export function personCard(p: Person, id?: number): string {
       <button class="link close" data-act="person" data-v="" aria-label="${L('閉じる', 'Close')}">×</button></div>
     <div class="stat"><span>${L('近さ', 'Closeness')}</span><div class="meter"><i class="m-bond" style="width:${bond}%"></i></div><b>${bond}</b></div>
     ${rows.length ? `<ol class="log together">${rows.map((m) => `<li><span class="age">${L(`${m.age}歳`, `${m.age}`)}</span><span>${esc(m.text)}${m.d ? ` <i class="dd ${m.d > 0 ? 'up' : 'down'}">${m.d > 0 ? '▲' : '▼'}</i>` : ''}</span></li>`).join('')}</ol>`
-      : `<p class="note">${L('まだ一緒の出来事は記録されていない。', 'No shared moments recorded yet.')}</p>`}`;
+      : `<p class="note">${L('まだ一緒の出来事は記録されていない。', 'No shared moments recorded yet.')}</p>`}
+    <button class="link kinbtn" data-act="kinlife" aria-expanded="${life}">${life ? L('その人の一生を閉じる', 'Close their whole life') : L('その人の一生を読む', 'Read their whole life')}</button>
+    ${life ? lifeHtml(p, t.id!) : ''}`;
 }
 
 // 最後にそばにいた人: 顔と、その人の最後の言葉。AI が書いた言葉には「想像」の印
