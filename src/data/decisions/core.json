@@ -1,0 +1,3986 @@
+{
+  "decisions": [
+    {
+      "id": "broken-window",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "place": "urban"
+      },
+      "title": "割れた窓",
+      "text": "空き地で蹴ったボールが、隣の家の窓ガラスを割った。まだ誰も出てこない。",
+      "en": {
+        "title": "The broken window",
+        "text": "A ball kicked in the empty lot just smashed the neighbor's window. Nobody has come out yet."
+      },
+      "options": [
+        {
+          "label": "呼び鈴を押して謝る",
+          "hint": "叱られるのは確実",
+          "en": {
+            "label": "Ring the bell and own up",
+            "hint": "A scolding is certain"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "隣の人は怒ったが、正直に来たからと、ガラス代は半分でいいと言った。",
+              "en": {
+                "text": "The neighbor was angry, but said that since {name} came and admitted it, half the cost of the glass would do."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "隣の人は笑って、自分も子どもの頃に同じことをしたと話した。それから会うたびに声をかけてくれた。",
+              "en": {
+                "text": "The neighbor laughed and said they had done the same thing as a kid. After that, they always said hello."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "親にこっぴどく叱られ、小遣いが三か月なくなった。",
+              "en": {
+                "text": "Got a serious scolding at home and lost pocket money for three months."
+              },
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "走って逃げる",
+          "en": {
+            "label": "Run"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "誰にも見られていなかった。その家の前を通るたびに、早足になった。",
+              "en": {
+                "text": "Nobody saw. From then on, {name} walked faster past that house."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "次の日、隣の人が家に来た。窓から見ていたらしい。親の前で謝ることになった。",
+              "en": {
+                "text": "The next day the neighbor came over. They had seen it from the window. {name} had to apologize in front of the parents."
+              },
+              "effects": {
+                "happy": -4,
+                "bond": -2
+              }
+            },
+            {
+              "weight": 1,
+              "text": "何年もたってから、あれは自分だったと隣の人に打ち明けた。もう覚えていないと言われた。",
+              "en": {
+                "text": "Years later, {name} told the neighbor it had been them. The neighbor said they did not remember."
+              },
+              "after": 12,
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "found-wallet",
+      "minAge": 8,
+      "maxAge": 16,
+      "weight": 1,
+      "title": "落ちていた財布",
+      "text": "帰り道に財布が落ちていた。中には現金と、知らない人の身分証が入っている。",
+      "stat": "40か国で財布を落とす実験をすると、入っているお金が多いほど、持ち主に返ってくる割合が高かった (Cohn ほか, Science, 2019)",
+      "en": {
+        "title": "A wallet on the ground",
+        "text": "There is a wallet on the road home. Inside: cash, and a stranger's ID card.",
+        "stat": "In an experiment across 40 countries, wallets with more money in them were returned more often, not less (Cohn et al., Science, 2019)"
+      },
+      "options": [
+        {
+          "label": "交番か大人に届ける",
+          "en": {
+            "label": "Hand it in"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "持ち主から電話があり、親と一緒にお礼を言われた。",
+              "en": {
+                "text": "The owner called and thanked {name} and the parents."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "届けたきり、何の知らせもなかった。",
+              "en": {
+                "text": "Handed it in and never heard anything back."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 1,
+              "text": "持ち主がお礼にと、お金の一部をくれた。{name}は使わずに缶にしまった。",
+              "en": {
+                "text": "The owner gave {name} some of the money as thanks. It went, unspent, into a tin."
+              },
+              "effects": {
+                "happy": 4
+              }
+            }
+          ]
+        },
+        {
+          "label": "お金だけ抜いて捨てる",
+          "en": {
+            "label": "Keep the cash, toss the wallet"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "お菓子を買って、友だちに配った。財布のことは誰にも言わなかった。",
+              "en": {
+                "text": "Bought sweets and shared them with friends. Told nobody about the wallet."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "持ち主の写真が頭から離れず、数日よく眠れなかった。",
+              "en": {
+                "text": "The owner's photo would not leave {name}'s head. Did not sleep well for days."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 1,
+              "text": "近所で持ち主を探す貼り紙を見た。子どもの薬代が入っていたと書いてあった。",
+              "en": {
+                "text": "Saw a notice in the neighborhood from the owner. It said the money had been for a child's medicine."
+              },
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "river-swim",
+      "minAge": 8,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "title": "川で泳ぐ",
+      "text": "友だちが、大人のいない川で泳ごうと誘ってきた。雨のあとで流れが速い。",
+      "stat": "溺死は世界で年に約24万人。多くは低・中所得国の子どもと若者だ (WHO, 2019年)",
+      "en": {
+        "title": "Swimming in the river",
+        "text": "Friends want to swim in the river with no adults around. It rained, and the current is fast.",
+        "stat": "About 236,000 people drown every year, most of them children and young people in low- and middle-income countries (WHO, 2019)"
+      },
+      "options": [
+        {
+          "label": "一緒に行く",
+          "hint": "流れが速い",
+          "en": {
+            "label": "Go along",
+            "hint": "The current is strong"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "夕方まで泳いで、服が乾くまで岩の上で寝転んだ。",
+              "en": {
+                "text": "Swam until evening, then lay on the rocks until the clothes dried."
+              },
+              "effects": {
+                "happy": 4,
+                "health": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "足がつかない深みに流され、年上の子に引っぱり上げられた。誰にも話さなかった。",
+              "en": {
+                "text": "Got swept into deep water and was pulled out by an older kid. Never told anyone."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "濡れた髪で帰って、母にばれた。一週間、外に出してもらえなかった。",
+              "en": {
+                "text": "Came home with wet hair and Mother found out. Not allowed out for a week."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "今日はやめておく",
+          "en": {
+            "label": "Not today"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "次の日、みんなが楽しかったと話すのを黙って聞いていた。",
+              "en": {
+                "text": "The next day, {name} listened quietly while everyone talked about how fun it was."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "その日、隣の村の子が流されたと聞いた。",
+              "en": {
+                "text": "Heard that day that a child from the next village had been swept away."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "class-pet",
+      "minAge": 7,
+      "maxAge": 11,
+      "weight": 1,
+      "when": {
+        "income": "high",
+        "state": "school"
+      },
+      "title": "教室の生き物",
+      "text": "夏休みのあいだ、教室で飼っている生き物を誰かの家で預かることになった。手を挙げる？",
+      "en": {
+        "title": "The class animal",
+        "text": "Someone has to take the class animal home for the summer break. Raise a hand?"
+      },
+      "options": [
+        {
+          "label": "手を挙げる",
+          "en": {
+            "label": "Raise a hand"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "毎朝えさをやり、家族もいつのまにか名前で呼ぶようになった。",
+              "en": {
+                "text": "Fed it every morning. Before long the whole family called it by name."
+              },
+              "effects": {
+                "happy": 3,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "休みの終わりに死なせてしまった。担任は責めなかったが、{name}は泣いた。",
+              "en": {
+                "text": "It died near the end of the break. The teacher did not blame {name}, but {name} cried."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "夜中に逃げ出し、家じゅうで探した。冷蔵庫の裏にいた。",
+              "en": {
+                "text": "It escaped one night and the whole family searched. It was behind the fridge."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "黙っている",
+          "en": {
+            "label": "Stay quiet"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 1
+            },
+            {
+              "weight": 1,
+              "text": "預かった子が、休み明けにその生き物の絵日記を発表した。少しうらやましかった。",
+              "en": {
+                "text": "The kid who took it home presented a picture diary about it after the break. {name} was a little jealous."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grandma-secret",
+      "minAge": 6,
+      "maxAge": 11,
+      "weight": 1,
+      "who": "mother",
+      "title": "祖母の内緒",
+      "text": "祖母が「お母さんには内緒」と、こっそりお金を握らせてくれた。",
+      "en": {
+        "title": "Grandma's secret",
+        "text": "Grandmother slipped {name} some money and said, \"Don't tell your mother.\""
+      },
+      "options": [
+        {
+          "label": "言われたとおり内緒にする",
+          "en": {
+            "label": "Keep the secret"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "お祭りの夜に使った。祖母と目が合うと、二人で少し笑った。",
+              "en": {
+                "text": "Spent it on festival night. Whenever {name} caught Grandmother's eye, they both smiled a little."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "数年後、あの日のことを母に話した。母は、自分も子どもの頃に祖母から同じことをされたと言った。",
+              "en": {
+                "text": "Years later, {name} told Mother about that day. Mother said Grandmother had done the same thing to her as a child."
+              },
+              "after": 8,
+              "effects": {
+                "bond": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "母に話す",
+          "en": {
+            "label": "Tell Mother"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "母はお金を祖母に返しに行った。祖母はしばらく口をきいてくれなかった。",
+              "en": {
+                "text": "Mother took the money back to Grandmother, who did not speak to {name} for a while."
+              },
+              "effects": {
+                "bond": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "母は苦笑いして、そのまま持っていなさいと言った。",
+              "en": {
+                "text": "Mother gave a wry smile and said to keep it."
+              },
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bully-friend",
+      "minAge": 9,
+      "maxAge": 15,
+      "weight": 1,
+      "who": "friend",
+      "when": {
+        "state": "school"
+      },
+      "title": "からかわれている友だち",
+      "text": "{who}が、クラスのみんなの前で服のことを笑われている。",
+      "en": {
+        "title": "A friend being laughed at",
+        "text": "{who} is being mocked in front of the whole class for their clothes."
+      },
+      "options": [
+        {
+          "label": "間に入る",
+          "hint": "次は自分かもしれない",
+          "en": {
+            "label": "Step in",
+            "hint": "Could be next in line"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "笑い声は止まった。帰り道、{whoName}は何も言わずに隣を歩いた。",
+              "en": {
+                "text": "The laughing stopped. On the walk home, {whoName} walked beside {name} without saying anything."
+              },
+              "d": 8
+            },
+            {
+              "weight": 3,
+              "text": "今度は{name}が笑われる番になった。しばらく二人で昼を食べた。",
+              "en": {
+                "text": "Now it was {name}'s turn to be laughed at. The two ate lunch together, apart, for a while."
+              },
+              "d": 10,
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "取っ組み合いになり、二人とも職員室に呼ばれた。",
+              "en": {
+                "text": "It turned into a scuffle, and both were called to the teachers' room."
+              },
+              "d": 4,
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "先生に知らせる",
+          "en": {
+            "label": "Tell a teacher"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "先生がクラス全員に話をした。からかいは表向きには止まった。",
+              "en": {
+                "text": "The teacher spoke to the whole class. The mocking stopped, at least on the surface."
+              },
+              "d": 3
+            },
+            {
+              "weight": 3,
+              "text": "告げ口したと噂になり、{whoName}にまで避けられた。",
+              "en": {
+                "text": "Word got around that {name} had snitched. Even {whoName} kept away."
+              },
+              "d": -4,
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "見ないふりをする",
+          "en": {
+            "label": "Look away"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "{whoName}とは、その後あまり話さなくなった。",
+              "en": {
+                "text": "{name} and {whoName} did not talk much after that."
+              },
+              "d": -8,
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "何年もたって{whoName}にあの日のことを謝った。覚えていたが、もういいと言われた。",
+              "en": {
+                "text": "Years later, {name} apologized to {whoName} for that day. {whoName} remembered, and said it was fine now."
+              },
+              "after": 15,
+              "d": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "market-errand",
+      "minAge": 7,
+      "maxAge": 12,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ]
+      },
+      "title": "市場のおつかい",
+      "text": "おつかいで市場へ行ったら、頼まれた分より少しお金が余った。",
+      "en": {
+        "title": "Change from the market",
+        "text": "Sent to the market on an errand, {name} has some money left over."
+      },
+      "options": [
+        {
+          "label": "全部返す",
+          "en": {
+            "label": "Give it all back"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "母は数えもせずに受け取った。",
+              "en": {
+                "text": "Mother took it without counting."
+              },
+              "effects": {
+                "bond": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "次からは大事な買い物も任されるようになった。",
+              "en": {
+                "text": "From then on, {name} was trusted with the important shopping too."
+              },
+              "effects": {
+                "bond": 2,
+                "learn": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "揚げ菓子を買って食べる",
+          "en": {
+            "label": "Buy a fried snack"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "家に着く前に食べ終えた。誰にも気づかれなかった。",
+              "en": {
+                "text": "Finished it before reaching home. No one noticed."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "お釣りが合わないと母に言われ、正直に話した。しばらく、おつかいは頼まれなくなった。",
+              "en": {
+                "text": "Mother said the change was short, and {name} confessed. No more errands for a while."
+              },
+              "effects": {
+                "bond": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "motorbike-helmet",
+      "minAge": 14,
+      "maxAge": 22,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ]
+      },
+      "from": 1970,
+      "title": "ヘルメットなしのバイク",
+      "text": "友だちがバイクの後ろに乗れと言う。ヘルメットは一つしかなく、友だちがかぶっている。",
+      "stat": "ヘルメットをかぶっていると、事故で亡くなる危険は約4割、頭のけがは約7割減る (コクラン・レビュー, 2008)",
+      "en": {
+        "title": "No helmet",
+        "text": "A friend says to hop on the back of the motorbike. There is only one helmet, and the friend is wearing it.",
+        "stat": "Wearing a helmet cuts the risk of death in a crash by about 40% and of head injury by about 70% (Cochrane review, 2008)"
+      },
+      "options": [
+        {
+          "label": "乗る",
+          "hint": "ヘルメットなし",
+          "en": {
+            "label": "Get on",
+            "hint": "No helmet"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 85,
+              "text": "風を切って町を一周した。帰りに屋台で麺をおごってもらった。",
+              "en": {
+                "text": "Rode a loop around town with the wind in {name}'s face. The friend bought noodles from a stall on the way back."
+              },
+              "effects": {
+                "happy": 3
+              }
+            },
+            {
+              "weight": 12,
+              "text": "角で転倒した。腕を何針も縫った。",
+              "en": {
+                "text": "Skidded out on a corner. The arm needed stitches."
+              },
+              "effects": {
+                "health": -6,
+                "happy": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 3,
+              "text": "大きな事故になった。頭を打ち、何週間も入院した。",
+              "en": {
+                "text": "A serious crash. {name} hit their head and spent weeks in the hospital."
+              },
+              "effects": {
+                "health": -15,
+                "happy": -6,
+                "learn": -2
+              },
+              "kind": "ill",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "歩いて帰る",
+          "en": {
+            "label": "Walk home"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "家まで40分歩いた。",
+              "en": {
+                "text": "Walked forty minutes home."
+              },
+              "effects": {
+                "health": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "臆病だとからかわれた。言い返さなかった。",
+              "en": {
+                "text": "Got teased for being scared. Did not argue."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam-answers",
+      "minAge": 14,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "title": "出回った答え",
+      "text": "明日の試験の答えが、こっそり回ってきた。",
+      "en": {
+        "title": "Leaked answers",
+        "text": "The answers to tomorrow's exam are being passed around in secret."
+      },
+      "options": [
+        {
+          "label": "見る",
+          "en": {
+            "label": "Look"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "点はよかった。でも、どこを解いたかは何も覚えていなかった。",
+              "en": {
+                "text": "Got a good mark. Could not remember a single thing about the questions."
+              },
+              "effects": {
+                "learn": -2,
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "答えは偽物だった。何も勉強していなかった。",
+              "en": {
+                "text": "The answers were fake. {name} had not studied at all."
+              },
+              "effects": {
+                "learn": -2,
+                "happy": -4
+              }
+            },
+            {
+              "weight": 2,
+              "text": "答えを見た生徒全員が呼び出され、試験はやり直しになった。",
+              "en": {
+                "text": "Everyone who had seen the answers was called in, and the exam was redone."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "見ないで勉強する",
+          "en": {
+            "label": "Ignore them and study"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "平均より少し上だった。答えを見た子たちのほうが点は高かった。",
+              "en": {
+                "text": "Scored a little above average. The kids who looked scored higher."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "あとで不正が発覚して、まじめに受けた点数だけが残った。",
+              "en": {
+                "text": "The cheating was found out later. Only honest marks counted."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first-job-or-exam",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ],
+        "state": "school"
+      },
+      "title": "働くか、受験か",
+      "text": "近所の店で人手が足りず、住み込みで働かないかと言われた。上の学校の試験は三か月後だ。",
+      "en": {
+        "title": "A job or the exam",
+        "text": "A shop nearby is short of hands and has offered a live-in job. The entrance exam is in three months."
+      },
+      "options": [
+        {
+          "label": "働く",
+          "en": {
+            "label": "Take the job"
+          },
+          "cost": 0.05,
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "初めての給料を、そっくり家に入れた。",
+              "en": {
+                "text": "Handed the whole first paycheck to the family."
+              },
+              "effects": {
+                "bond": 3,
+                "money": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "店の主人に気に入られ、帳簿のつけ方を教わった。",
+              "en": {
+                "text": "The shopkeeper took a liking to {name} and taught them to keep the books."
+              },
+              "effects": {
+                "learn": 2,
+                "money": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "朝から晩まで働き、半年で辞めた。試験の時期はもう過ぎていた。",
+              "en": {
+                "text": "Worked dawn to dusk and quit after six months. The exam had already come and gone."
+              },
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "試験の勉強を続ける",
+          "en": {
+            "label": "Keep studying"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "受かった。合格の紙を見て、父は黙ってうなずいた。",
+              "en": {
+                "text": "Passed. Father looked at the results sheet and nodded without a word."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 4
+              }
+            },
+            {
+              "weight": 4,
+              "text": "落ちた。店の仕事は、もう別の人に決まっていた。",
+              "en": {
+                "text": "Failed. The shop job had gone to someone else."
+              },
+              "effects": {
+                "happy": -4
+              }
+            },
+            {
+              "weight": 1,
+              "text": "受かったが、学費が足りないと分かった。",
+              "en": {
+                "text": "Passed, then found out the school fees were out of reach."
+              },
+              "effects": {
+                "happy": -2,
+                "learn": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "confess",
+      "minAge": 14,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "income": "high"
+      },
+      "title": "気持ちを伝える",
+      "text": "ずっと気になっている人がいる。文化祭の片付けで、二人きりになった。",
+      "en": {
+        "title": "Saying something",
+        "text": "There is someone {name} has liked for a long time. Clearing up after the school festival, the two end up alone."
+      },
+      "options": [
+        {
+          "label": "気持ちを伝える",
+          "en": {
+            "label": "Say it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 3,
+              "text": "「知ってた」と言われた。その週末、二人で出かけた。",
+              "en": {
+                "text": "\"I knew,\" came the reply. They went out together that weekend."
+              },
+              "effects": {
+                "happy": 6
+              },
+              "kind": "love"
+            },
+            {
+              "weight": 5,
+              "text": "困った顔で、友だちのままでいたいと言われた。",
+              "en": {
+                "text": "A troubled look, then: \"Can we stay friends?\""
+              },
+              "effects": {
+                "happy": -4
+              }
+            },
+            {
+              "weight": 2,
+              "text": "返事はなかった。次の日から、廊下で目をそらされた。",
+              "en": {
+                "text": "No answer. From the next day, they avoided {name}'s eyes in the hallway."
+              },
+              "effects": {
+                "happy": -5
+              }
+            }
+          ]
+        },
+        {
+          "label": "黙って片付けを続ける",
+          "en": {
+            "label": "Keep tidying, say nothing"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "ゴミ袋を二つずつ持って、別々の方向に帰った。",
+              "en": {
+                "text": "Each carried two trash bags and went home different ways."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "何十年かたって同窓会で会うと、相手も同じことを考えていたと笑った。",
+              "en": {
+                "text": "Decades later at a reunion, the other one laughed and said they had been thinking the same thing that day."
+              },
+              "after": 25,
+              "effects": {
+                "happy": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smartphone-photo",
+      "minAge": 13,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "tech": [
+        "smartphone"
+      ],
+      "title": "回ってきた写真",
+      "text": "同級生の恥ずかしい写真が、クラスのグループに流れてきた。",
+      "en": {
+        "title": "A photo going round",
+        "text": "An embarrassing photo of a classmate has been posted in the class group chat."
+      },
+      "options": [
+        {
+          "label": "回さずに消す",
+          "en": {
+            "label": "Delete it, don't pass it on"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "写真はそれでも学校中に広まった。",
+              "en": {
+                "text": "It spread around the school anyway."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "その子が卒業式の日に、あの時回さなかったのを知っていると言った。",
+              "en": {
+                "text": "On graduation day, the classmate said they knew {name} had not passed it on."
+              },
+              "after": 2,
+              "effects": {
+                "happy": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "面白いので回す",
+          "en": {
+            "label": "Forward it, it's funny"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "みんなで笑った。その子は何日か学校を休んだ。",
+              "en": {
+                "text": "Everyone laughed. The classmate stayed home from school for a few days."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "送った人の名前が学校に知られ、親が呼び出された。",
+              "en": {
+                "text": "The school found out who had forwarded it, and the parents were called in."
+              },
+              "effects": {
+                "happy": -4,
+                "bond": -2
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "teacher-recommend",
+      "minAge": 15,
+      "maxAge": 18,
+      "weight": 1,
+      "when": {
+        "place": "rural",
+        "state": "school"
+      },
+      "title": "先生のすすめ",
+      "text": "担任が、都会の学校の奨学金に応募してみないかと言ってきた。家族とは離れて暮らすことになる。",
+      "en": {
+        "title": "A teacher's suggestion",
+        "text": "The homeroom teacher suggests applying for a scholarship to a school in the city. It would mean living away from the family."
+      },
+      "options": [
+        {
+          "label": "応募する",
+          "en": {
+            "label": "Apply"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 3,
+              "text": "受かった。出発の朝、村の人たちが道まで見送りに来た。",
+              "en": {
+                "text": "Got it. On the morning {name} left, people from the village came out to the road to see them off."
+              },
+              "effects": {
+                "learn": 5,
+                "happy": 4
+              },
+              "big": true,
+              "kind": "school"
+            },
+            {
+              "weight": 6,
+              "text": "落ちた。担任は来年もあると言った。",
+              "en": {
+                "text": "Did not get it. The teacher said there was always next year."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 1,
+              "text": "受かったが、親が許さなかった。",
+              "en": {
+                "text": "Got it, but the parents would not allow it."
+              },
+              "effects": {
+                "happy": -6,
+                "bond": -3
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "家に残る",
+          "en": {
+            "label": "Stay home"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "家の仕事を手伝いながら、地元の学校を続けた。",
+              "en": {
+                "text": "Kept going to the local school while helping at home."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "同じ学年の子が応募して受かった。手紙が一度だけ来た。",
+              "en": {
+                "text": "A classmate applied instead and got it. A letter came once."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "part-time-cash",
+      "minAge": 16,
+      "maxAge": 19,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "title": "アルバイト代の使い道",
+      "text": "アルバイトで初めてまとまったお金ができた。",
+      "en": {
+        "title": "First real wages",
+        "text": "A part-time job has left {name} with a real sum of money for the first time."
+      },
+      "options": [
+        {
+          "label": "欲しかった物を買う",
+          "en": {
+            "label": "Buy the thing"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "ずっと店の前で眺めていた靴を買った。雨の日は履かなかった。",
+              "en": {
+                "text": "Bought the shoes {name} had been staring at in the shop window. Never wore them in the rain."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 3,
+              "text": "買って一週間で飽きた。",
+              "en": {
+                "text": "Got bored of it within a week."
+              },
+              "effects": {
+                "happy": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "家に入れる",
+          "en": {
+            "label": "Give it to the family"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "母は受け取らず、貯めておきなさいと言った。",
+              "en": {
+                "text": "Mother would not take it and said to save it."
+              },
+              "effects": {
+                "bond": 3
+              }
+            },
+            {
+              "weight": 4,
+              "text": "その月、電気代が払えた。誰もそのことを口にしなかった。",
+              "en": {
+                "text": "That month the electricity bill got paid. Nobody mentioned it."
+              },
+              "effects": {
+                "bond": 4
+              }
+            }
+          ]
+        },
+        {
+          "label": "貯める",
+          "en": {
+            "label": "Save it"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "缶に入れて、ベッドの下に置いた。数えるのが週末の楽しみになった。",
+              "en": {
+                "text": "Put it in a tin under the bed. Counting it became the weekend treat."
+              },
+              "effects": {
+                "happy": 1,
+                "money": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lend-friend",
+      "minAge": 18,
+      "maxAge": 60,
+      "weight": 1,
+      "who": "friend",
+      "amount": 0.15,
+      "title": "友だちの頼み",
+      "text": "{who}が、家賃が払えないので{money}貸してほしいと言ってきた。",
+      "en": {
+        "title": "A friend's request",
+        "text": "{who} can't make rent and asks to borrow {money}."
+      },
+      "options": [
+        {
+          "label": "貸す",
+          "en": {
+            "label": "Lend it"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "{whoName}は半年で全部返してくれた。",
+              "en": {
+                "text": "{whoName} paid it all back within six months."
+              },
+              "d": 5
+            },
+            {
+              "weight": 3,
+              "text": "返ってこなかった。会うと、お互いその話を避けた。",
+              "en": {
+                "text": "The money never came back. When they met, they both avoided the subject."
+              },
+              "cost": -0.1,
+              "d": -6
+            },
+            {
+              "weight": 2,
+              "text": "返ってこないまま、{whoName}と連絡がとれなくなった。",
+              "en": {
+                "text": "The money never came back, and then {whoName} stopped answering."
+              },
+              "cost": -0.1,
+              "d": -15,
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "何年もたって、{whoName}が利子をつけて返しに来た。あの時のおかげで今があると言った。",
+              "en": {
+                "text": "Years later, {whoName} turned up and paid it back with interest, saying that money had got them through."
+              },
+              "after": 7,
+              "cost": 0.03,
+              "d": 10,
+              "effects": {
+                "happy": 4
+              }
+            }
+          ]
+        },
+        {
+          "label": "断る",
+          "en": {
+            "label": "Say no"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "{whoName}はわかったと言った。そのあと、少し連絡が減った。",
+              "en": {
+                "text": "{whoName} said they understood. They were in touch a little less after that."
+              },
+              "d": -5
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}はほかの人に借りて、なんとかしのいだらしい。",
+              "en": {
+                "text": "{whoName} borrowed from someone else and got by, it seemed."
+              },
+              "d": -2
+            },
+            {
+              "weight": 2,
+              "text": "数か月後、{whoName}が引っ越したと人づてに聞いた。",
+              "en": {
+                "text": "A few months later, {name} heard secondhand that {whoName} had moved away."
+              },
+              "d": -8
+            }
+          ]
+        },
+        {
+          "label": "半分だけ渡す。返さなくていいと言う",
+          "en": {
+            "label": "Give half, as a gift"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "{whoName}は黙って受け取り、しばらくしてから家に夕食を作りに来た。",
+              "en": {
+                "text": "{whoName} took it without a word, and a while later came over to cook dinner."
+              },
+              "cost": -0.05,
+              "d": 8
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}は施しはいらないと怒って、受け取らなかった。",
+              "en": {
+                "text": "{whoName} said they didn't need charity and refused it."
+              },
+              "d": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cosign",
+      "minAge": 22,
+      "maxAge": 55,
+      "weight": 1,
+      "who": "sibling",
+      "title": "保証人",
+      "text": "{who}が事業のお金を借りるので、保証人になってほしいと頼んできた。",
+      "stat": "アメリカでは新しい事業所の約2割が1年以内に、約半数が5年以内になくなる (米国労働統計局)",
+      "en": {
+        "title": "Co-signing",
+        "text": "{who} is taking out a business loan and asks {name} to co-sign.",
+        "stat": "In the United States, about 20% of new businesses close within a year and about half within five (US Bureau of Labor Statistics)"
+      },
+      "options": [
+        {
+          "label": "引き受ける",
+          "hint": "返せなければ自分が払う",
+          "en": {
+            "label": "Sign",
+            "hint": "If they can't pay, you will"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "店はなんとか続き、借金は返し終わったと聞いた。",
+              "en": {
+                "text": "The business kept going, and word came that the loan was paid off."
+              },
+              "after": 5,
+              "d": 4
+            },
+            {
+              "weight": 3,
+              "text": "店がつぶれ、取り立ての手紙が{name}のところに届いた。",
+              "en": {
+                "text": "The business folded, and the debt collector's letters started coming to {name}."
+              },
+              "after": 3,
+              "cost": -0.6,
+              "d": -10,
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "返済が遅れがちになり、そのたびに銀行から電話が来た。",
+              "en": {
+                "text": "Payments kept running late, and each time the bank called {name}."
+              },
+              "after": 2,
+              "d": -4,
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "断る",
+          "en": {
+            "label": "Refuse"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "{whoName}は別の人に頼んだ。親戚の集まりでは、少し目を合わせにくかった。",
+              "en": {
+                "text": "{whoName} asked someone else. At family gatherings, it was a little hard to meet their eyes."
+              },
+              "d": -6
+            },
+            {
+              "weight": 4,
+              "text": "店はうまくいった。開店の日に、{whoName}は{name}を呼ばなかった。",
+              "en": {
+                "text": "The business did well. {whoName} did not invite {name} to the opening."
+              },
+              "after": 2,
+              "d": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "savings-circle",
+      "minAge": 20,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ]
+      },
+      "title": "近所の積み立て",
+      "text": "近所の人たちが、毎月お金を出し合って順番に受け取る集まりに誘ってくれた。",
+      "stat": "仲間で出し合って順番に受け取る講(ROSCA)は、アフリカやアジアの多くの国で、銀行に口座のない人の主な貯金の手段になっている (世界銀行)",
+      "en": {
+        "title": "The savings circle",
+        "text": "The neighbors invite {name} into a circle where everyone pays in each month and takes turns collecting the pot.",
+        "stat": "Rotating savings groups, where members pay in and take turns collecting, are a main way to save for people without bank accounts in much of Africa and Asia (World Bank)"
+      },
+      "options": [
+        {
+          "label": "入る",
+          "en": {
+            "label": "Join"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "自分の番が来た月に、まとまったお金で屋根を直した。",
+              "en": {
+                "text": "When {name}'s turn came, the lump sum went on fixing the roof."
+              },
+              "effects": {
+                "happy": 4,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "毎月の集まりが楽しみになり、近所の噂はみんなそこで知った。",
+              "en": {
+                "text": "The monthly meeting became something to look forward to. All the neighborhood news came from there."
+              },
+              "effects": {
+                "bond": 4
+              }
+            },
+            {
+              "weight": 1,
+              "text": "まとめ役が、集めたお金を持っていなくなった。",
+              "en": {
+                "text": "The organizer disappeared with the pot."
+              },
+              "cost": -0.15,
+              "effects": {
+                "happy": -5,
+                "bond": -2
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "断る",
+          "en": {
+            "label": "Decline"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "お金は自分の手元に置いておいた。",
+              "en": {
+                "text": "Kept the money close to home."
+              },
+              "effects": {}
+            },
+            {
+              "weight": 3,
+              "text": "急な出費のとき、頼める先がなかった。",
+              "en": {
+                "text": "When an unexpected bill came, there was nobody to turn to."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask-raise",
+      "minAge": 25,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "job": "office"
+      },
+      "title": "給料を上げてほしい",
+      "text": "同じ仕事をしている同僚の方が、給料が多いと知った。",
+      "stat": "給料を上げてほしいと頼んだ人の約7割は何らかの昇給を得て、約4割は頼んだ額どおりだった (PayScale, 2018年)",
+      "en": {
+        "title": "Asking for a raise",
+        "text": "{name} found out a coworker doing the same job is paid more.",
+        "stat": "About 70% of people who asked for a raise got one of some kind, and about 40% got the full amount they asked for (PayScale, 2018)"
+      },
+      "options": [
+        {
+          "label": "上司に掛け合う",
+          "en": {
+            "label": "Ask the boss"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "少し上がった。言ってみるものだった。",
+              "en": {
+                "text": "Got a small raise."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "言った分だけ、そのまま上がった。",
+              "en": {
+                "text": "Got exactly the amount asked for."
+              },
+              "effects": {
+                "money": 5,
+                "happy": 5
+              }
+            },
+            {
+              "weight": 3,
+              "text": "今は無理だと言われた。それから上司の態度が少し冷たくなった。",
+              "en": {
+                "text": "Was told now was not the time. The boss was a little cooler after that."
+              },
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "黙って働く",
+          "en": {
+            "label": "Say nothing"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "そのまま働き続けた。給料日のたびに、同僚の額を思い出した。",
+              "en": {
+                "text": "Kept working. Every payday, {name} thought of the coworker's number."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "半年後、何も言わないのに昇給の知らせが来た。",
+              "en": {
+                "text": "Six months later, a raise came through without asking."
+              },
+              "after": 1,
+              "effects": {
+                "money": 3,
+                "happy": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyramid-pitch",
+      "minAge": 20,
+      "maxAge": 45,
+      "weight": 1,
+      "who": "friend",
+      "amount": 0.2,
+      "tech": [
+        "mobile"
+      ],
+      "title": "うまい話",
+      "text": "{who}から、知り合いを誘うだけで月収が倍になるという商売に誘われた。始めるには{money}の商品を買う必要がある。",
+      "en": {
+        "title": "An opportunity",
+        "text": "{who} pitches a business where you just recruit people you know and double your income. Getting started means buying {money} of products."
+      },
+      "options": [
+        {
+          "label": "始めてみる",
+          "en": {
+            "label": "Give it a try"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "商品の箱が部屋に積み上がった。誘った人たちとは疎遠になった。",
+              "en": {
+                "text": "Boxes of product piled up in the room. The people {name} recruited stopped calling."
+              },
+              "cost": -0.2,
+              "d": -4,
+              "effects": {
+                "happy": -4,
+                "bond": -3
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "最初の数か月は少し儲かったが、すぐに頭打ちになった。",
+              "en": {
+                "text": "Made a little in the first few months, then it stalled."
+              },
+              "cost": -0.05
+            },
+            {
+              "weight": 1,
+              "text": "上の人に気に入られ、本当に月収が倍になった。誘った友だちのほうは損をした。",
+              "en": {
+                "text": "The people at the top liked {name}, and the income really did double. The friends {name} signed up lost money."
+              },
+              "cost": 0.3,
+              "effects": {
+                "bond": -4
+              }
+            }
+          ]
+        },
+        {
+          "label": "断る",
+          "en": {
+            "label": "Pass"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "{whoName}は、また誘うと言って帰った。",
+              "en": {
+                "text": "{whoName} left, saying they would ask again."
+              },
+              "d": -2
+            },
+            {
+              "weight": 3,
+              "text": "一年後、{whoName}がやめたと聞いた。借金が残ったらしい。",
+              "en": {
+                "text": "A year later, word came that {whoName} had quit, with debts left over."
+              },
+              "after": 1,
+              "d": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "night-bus-seat",
+      "minAge": 18,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ]
+      },
+      "title": "夜行バスの席",
+      "text": "夜行バスで、赤ちゃんを抱いた人が立っている。座っているのは{name}だけではないが、誰も立たない。",
+      "en": {
+        "title": "The night bus",
+        "text": "On the night bus, someone holding a baby is standing. Plenty of people are sitting, but no one gets up."
+      },
+      "options": [
+        {
+          "label": "席を譲る",
+          "en": {
+            "label": "Give up the seat"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "八時間立ったままだった。朝、その人が揚げパンを分けてくれた。",
+              "en": {
+                "text": "Stood for eight hours. In the morning, the person shared some fried bread."
+              },
+              "effects": {
+                "health": -1,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "その人と話しこみ、同じ町の出身だと分かった。今でも年に一度は電話がある。",
+              "en": {
+                "text": "Got talking and found out they came from the same town. They still call once a year."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "寝たふりをする",
+          "en": {
+            "label": "Pretend to sleep"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "目を閉じたまま、朝まで眠れなかった。",
+              "en": {
+                "text": "Kept the eyes shut and did not sleep until morning."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "隣の老人が立って席を譲った。{name}は窓の外を見ていた。",
+              "en": {
+                "text": "The old man next to {name} stood up instead. {name} looked out the window."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "move-city-job",
+      "minAge": 19,
+      "maxAge": 30,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "title": "都会の仕事",
+      "text": "{city}を出て都会で働かないかと、遠い親戚が声をかけてきた。",
+      "en": {
+        "title": "A job in the city",
+        "text": "A distant relative says there is work in the city, if {name} is willing to leave {city}."
+      },
+      "options": [
+        {
+          "label": "行く",
+          "en": {
+            "label": "Go"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "最初の一年は狭い部屋に四人で寝た。仕送りは毎月欠かさなかった。",
+              "en": {
+                "text": "The first year, four people shared one small room. The money home never missed a month."
+              },
+              "effects": {
+                "money": 3,
+                "happy": -2,
+                "bond": 1
+              },
+              "kind": "move"
+            },
+            {
+              "weight": 3,
+              "text": "話と違う仕事だった。三か月で戻ってきた。",
+              "en": {
+                "text": "The job was not what was promised. Came back after three months."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "cost": -0.05,
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "仕事場で出会った人たちと気が合い、休みの日はいつも一緒にいた。",
+              "en": {
+                "text": "Got on well with the people at work and spent every day off with them."
+              },
+              "effects": {
+                "happy": 4,
+                "money": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "残る",
+          "en": {
+            "label": "Stay"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "{city}で暮らし続けた。都会に出た同級生は、祭りのときだけ戻ってきた。",
+              "en": {
+                "text": "Stayed in {city}. Classmates who left only came back for festivals."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "その親戚は、別の若者を連れていった。その子は二度と戻らなかった。",
+              "en": {
+                "text": "The relative took another young person instead. That one never came back."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stray-puppy",
+      "minAge": 18,
+      "maxAge": 50,
+      "weight": 1,
+      "title": "けがをした子犬",
+      "text": "道ばたで、足をひきずる子犬が{name}の後をついてくる。",
+      "en": {
+        "title": "An injured puppy",
+        "text": "A limping puppy is following {name} down the road."
+      },
+      "options": [
+        {
+          "label": "連れて帰る",
+          "en": {
+            "label": "Take it home"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "足は治った。家族は文句を言いながら、残り物をやった。",
+              "en": {
+                "text": "The leg healed. The family grumbled and fed it scraps."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 3,
+              "text": "獣医に診せたら、思ったよりお金がかかった。",
+              "en": {
+                "text": "The vet cost more than expected."
+              },
+              "cost": -0.03,
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "一週間後、飼い主だという人が迎えに来た。",
+              "en": {
+                "text": "A week later, someone came to say it was theirs."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        },
+        {
+          "label": "食べ物だけやる",
+          "en": {
+            "label": "Just feed it"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "それから毎日、同じ角で待っていた。",
+              "en": {
+                "text": "After that, it waited at the same corner every day."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "次の日にはもういなかった。",
+              "en": {
+                "text": "It was gone the next day."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whistle",
+      "minAge": 28,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "job": "manual"
+      },
+      "title": "見てしまった不正",
+      "text": "会社が、安全検査の数字を書き換えているのを見つけた。",
+      "en": {
+        "title": "What {name} saw",
+        "text": "{name} has found out the company is falsifying safety inspection figures."
+      },
+      "options": [
+        {
+          "label": "外部に知らせる",
+          "hint": "自分の仕事を失うかもしれない",
+          "en": {
+            "label": "Report it outside",
+            "hint": "Might cost the job"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 3,
+              "text": "調査が入り、会社は罰金を払った。{name}が知らせたことは、誰にも知られなかった。",
+              "en": {
+                "text": "An investigation followed and the company was fined. No one found out it was {name}."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 4,
+              "text": "知らせたのが誰か分かり、遠くの支社に回された。",
+              "en": {
+                "text": "They worked out who had reported it, and {name} was transferred to a far-off branch."
+              },
+              "effects": {
+                "happy": -5,
+                "money": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 3,
+              "text": "何も起きなかった。数字は今も書き換えられている。",
+              "en": {
+                "text": "Nothing happened. The figures are still being changed."
+              },
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "上司に言う",
+          "en": {
+            "label": "Raise it with the boss"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "上司は、見なかったことにしろと言った。",
+              "en": {
+                "text": "The boss said to forget what {name} had seen."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "上司も知らなかった。検査はやり直しになった。",
+              "en": {
+                "text": "The boss had not known. The inspection was redone."
+              },
+              "effects": {
+                "happy": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "数年後、その設備で事故が起き、{name}の名前が当時の記録に残っていた。",
+              "en": {
+                "text": "Years later, the equipment failed and there was an accident. {name}'s name was there in the old records."
+              },
+              "after": 4,
+              "effects": {
+                "happy": -2
+              },
+              "kind": "work"
+            }
+          ]
+        },
+        {
+          "label": "黙っている",
+          "en": {
+            "label": "Keep quiet"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "仕事は続いた。検査の日が来るたびに胃が痛んだ。",
+              "en": {
+                "text": "The job went on. Every inspection day, {name}'s stomach hurt."
+              },
+              "effects": {
+                "happy": -2,
+                "health": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "数年後、その設備で事故が起き、新聞に会社の名前が載った。",
+              "en": {
+                "text": "A few years later, there was an accident with that equipment, and the company was in the papers."
+              },
+              "after": 3,
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fertilizer-loan",
+      "minAge": 25,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "job": "farm"
+      },
+      "title": "肥料の借金",
+      "text": "肥料を買えば収穫は増える。ただ、今年は種まきの前に借金をしないと買えない。",
+      "stat": "サハラ以南のアフリカでは、肥料の使用量は1ヘクタールあたり20kg前後で、世界平均の約7分の1にとどまる (世界銀行)",
+      "en": {
+        "title": "Borrowing for fertilizer",
+        "text": "Fertilizer would mean a bigger harvest, but this year buying it means borrowing before planting.",
+        "stat": "In sub-Saharan Africa, farmers use about 20 kg of fertilizer per hectare, roughly a seventh of the world average (World Bank)"
+      },
+      "options": [
+        {
+          "label": "借りて肥料を買う",
+          "en": {
+            "label": "Borrow and buy"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "雨に恵まれ、収穫は去年の倍近くになった。借金は秋に返した。",
+              "en": {
+                "text": "The rains were good and the harvest nearly doubled. The loan was paid off in autumn."
+              },
+              "cost": 0.2,
+              "effects": {
+                "happy": 5
+              }
+            },
+            {
+              "weight": 3,
+              "text": "雨が少なく、肥料の分だけ損をした。借金は翌年に持ち越した。",
+              "en": {
+                "text": "Too little rain. The fertilizer was money lost, and the debt carried over."
+              },
+              "cost": -0.2,
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "そこそこの収穫だった。借金を返すと、手元には去年と同じだけ残った。",
+              "en": {
+                "text": "An ordinary harvest. After paying back the loan, there was about the same left as last year."
+              },
+              "effects": {}
+            }
+          ]
+        },
+        {
+          "label": "今まで通りにやる",
+          "en": {
+            "label": "Farm as usual"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "いつもの年と同じだけ穫れた。",
+              "en": {
+                "text": "Got the same as any other year."
+              },
+              "effects": {}
+            },
+            {
+              "weight": 4,
+              "text": "隣の畑は肥料を入れて、見るからに背が高かった。",
+              "en": {
+                "text": "The neighbor's fertilized field was visibly taller."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lump",
+      "minAge": 35,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "title": "しこり",
+      "text": "風呂上がりに、首のつけ根に小さなしこりがあるのに気づいた。痛くはない。",
+      "en": {
+        "title": "A lump",
+        "text": "After a bath, {name} notices a small lump at the base of the neck. It doesn't hurt."
+      },
+      "options": [
+        {
+          "label": "すぐ医者に行く",
+          "en": {
+            "label": "See a doctor now"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "ただの脂肪のかたまりだった。待合室で半日つぶれた。",
+              "en": {
+                "text": "Just a fatty lump. Lost half a day in the waiting room."
+              },
+              "cost": -0.01,
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "早いうちに見つかった腫瘍だった。手術で取り、それきりだった。",
+              "en": {
+                "text": "It was a tumor, caught early. Surgery took it out, and that was the end of it."
+              },
+              "cost": -0.1,
+              "effects": {
+                "health": -3,
+                "happy": -2
+              },
+              "kind": "ill",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "しばらく様子を見る",
+          "en": {
+            "label": "Wait and see"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "いつのまにか消えていた。",
+              "en": {
+                "text": "One day it was gone."
+              },
+              "effects": {}
+            },
+            {
+              "weight": 2,
+              "text": "半年後、しこりは大きくなっていた。手術は思ったより長くかかった。",
+              "en": {
+                "text": "Six months later it was bigger. The surgery took longer than expected."
+              },
+              "after": 1,
+              "cost": -0.2,
+              "effects": {
+                "health": -10,
+                "happy": -4
+              },
+              "kind": "ill",
+              "big": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parent-move-in",
+      "minAge": 35,
+      "maxAge": 65,
+      "weight": 1,
+      "who": "mother",
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "title": "親を呼び寄せる",
+      "text": "{who}が一人で暮らすのが難しくなってきた。",
+      "en": {
+        "title": "Bringing a parent home",
+        "text": "{who} is finding it hard to live alone."
+      },
+      "options": [
+        {
+          "label": "一緒に暮らす",
+          "en": {
+            "label": "Move them in"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "台所の使い方で毎日もめた。夕方には一緒にテレビを見た。",
+              "en": {
+                "text": "There were daily arguments about how to use the kitchen. In the evenings they watched TV together."
+              },
+              "d": 6,
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "家に人の出入りが増え、{whoName}は前より元気になった。",
+              "en": {
+                "text": "With people coming and going all day, {whoName} perked up."
+              },
+              "d": 8,
+              "effects": {
+                "happy": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "世話が重なり、{name}のほうが先に体を壊しかけた。",
+              "en": {
+                "text": "The caregiving piled up, and {name} nearly broke down first."
+              },
+              "d": 4,
+              "effects": {
+                "health": -5,
+                "happy": -3
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "近くに通って世話をする",
+          "en": {
+            "label": "Visit and help"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "週に三回、仕事の帰りに寄った。",
+              "en": {
+                "text": "Dropped by three times a week after work."
+              },
+              "d": 4,
+              "effects": {
+                "health": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "ある朝、電話に出ないので駆けつけると、{whoName}は床で転んでいた。",
+              "en": {
+                "text": "One morning there was no answer on the phone. {name} rushed over and found {whoName} on the floor after a fall."
+              },
+              "d": 2,
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "施設を探す",
+          "en": {
+            "label": "Look for a care home"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "{whoName}は最初は嫌がったが、そこでトランプの相手を見つけた。",
+              "en": {
+                "text": "{whoName} hated the idea at first, then found a regular card partner there."
+              },
+              "cost": -0.15,
+              "d": -2
+            },
+            {
+              "weight": 4,
+              "text": "{whoName}は見舞いのたびに、家に帰りたいと言った。",
+              "en": {
+                "text": "Every visit, {whoName} asked to go home."
+              },
+              "cost": -0.15,
+              "d": -6,
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "father-letter",
+      "minAge": 30,
+      "maxAge": 60,
+      "weight": 1,
+      "who": "father",
+      "title": "父への手紙",
+      "text": "長いあいだ口をきいていない{who}から、短い手紙が届いた。",
+      "en": {
+        "title": "A letter from Father",
+        "text": "A short letter arrives from {who}, who {name} has not spoken to in years."
+      },
+      "options": [
+        {
+          "label": "返事を書く",
+          "en": {
+            "label": "Write back"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "何通かやりとりして、一度だけ会った。話したのは天気のことばかりだった。",
+              "en": {
+                "text": "A few letters went back and forth, and they met once. They talked mostly about the weather."
+              },
+              "d": 10,
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "返事は来なかった。",
+              "en": {
+                "text": "No reply came."
+              },
+              "d": 0,
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "返事を出した年の冬、{whoName}は電話をくれた。声が昔より小さかった。",
+              "en": {
+                "text": "That winter {whoName} called. The voice was quieter than {name} remembered."
+              },
+              "d": 12,
+              "effects": {
+                "happy": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "引き出しにしまう",
+          "en": {
+            "label": "Put it in a drawer"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "手紙はそのまま引き出しに残った。",
+              "en": {
+                "text": "The letter stayed in the drawer."
+              },
+              "effects": {}
+            },
+            {
+              "weight": 3,
+              "text": "何年かして、引き出しを片付けた時に読み返した。",
+              "en": {
+                "text": "Years later, clearing out the drawer, {name} read it again."
+              },
+              "after": 6,
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "child-abroad",
+      "minAge": 40,
+      "maxAge": 60,
+      "weight": 1,
+      "who": "child",
+      "whoAge": [
+        16,
+        22
+      ],
+      "amount": 1.0,
+      "when": {
+        "wealth": [
+          "middle",
+          "rich"
+        ]
+      },
+      "title": "子どもの留学",
+      "text": "{who}が外国の大学に行きたいと言い出した。学費は{money}ほどかかる。",
+      "en": {
+        "title": "A child wants to study abroad",
+        "text": "{who} wants to go to a university abroad. The cost is about {money}."
+      },
+      "options": [
+        {
+          "label": "貯金をはたいて送り出す",
+          "hint": "老後の貯えが減る",
+          "en": {
+            "label": "Spend the savings and send them",
+            "hint": "Eats into retirement savings"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "空港で見送った。最初の冬、毎週電話がかかってきた。",
+              "en": {
+                "text": "Saw them off at the airport. The first winter, they called every week."
+              },
+              "cost": -1.0,
+              "d": 6,
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "向こうで就職し、そのまま暮らすことになった。",
+              "en": {
+                "text": "They found work over there and stayed."
+              },
+              "after": 5,
+              "cost": -1.0,
+              "d": 2,
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "一年で戻ってきた。合わなかったと言った。",
+              "en": {
+                "text": "They came back after a year, saying it hadn't worked out."
+              },
+              "cost": -0.6,
+              "d": 0,
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "国内の大学にしてもらう",
+          "en": {
+            "label": "Ask them to study at home"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "{whoName}は不満そうだったが、近くの大学に通った。",
+              "en": {
+                "text": "{whoName} was unhappy but went to a nearby university."
+              },
+              "d": -4
+            },
+            {
+              "weight": 4,
+              "text": "{whoName}は自分で奨学金を見つけ、結局外国へ行った。",
+              "en": {
+                "text": "{whoName} found a scholarship on their own and went abroad anyway."
+              },
+              "d": -2,
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sick-kid-day",
+      "minAge": 28,
+      "maxAge": 50,
+      "weight": 1,
+      "who": "child",
+      "whoAge": [
+        1,
+        8
+      ],
+      "when": {
+        "state": "work"
+      },
+      "title": "熱を出した子",
+      "text": "朝、{who}が熱を出した。今日は大事な仕事がある。",
+      "en": {
+        "title": "A feverish child",
+        "text": "{who} woke up with a fever. Today is an important day at work."
+      },
+      "options": [
+        {
+          "label": "仕事を休む",
+          "en": {
+            "label": "Stay home"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "一日中そばにいた。夕方には熱が下がり、二人でお粥を食べた。",
+              "en": {
+                "text": "Stayed by them all day. By evening the fever was down, and they ate rice porridge together."
+              },
+              "d": 4,
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "上司は何も言わなかったが、次の仕事は別の人に回った。",
+              "en": {
+                "text": "The boss said nothing, but the next project went to someone else."
+              },
+              "d": 4,
+              "effects": {
+                "money": -1,
+                "happy": -1
+              }
+            }
+          ]
+        },
+        {
+          "label": "誰かに預けて仕事に行く",
+          "en": {
+            "label": "Find someone to watch them"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "隣の人が見てくれた。帰ると、子どもはもう元気に走り回っていた。",
+              "en": {
+                "text": "A neighbor watched them. By the time {name} got home, the child was running around again."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "昼に電話があり、熱が上がったので結局早退した。",
+              "en": {
+                "text": "A call came at noon: the fever was up. {name} left work early anyway."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 1,
+              "text": "その夜、子どもが「今日はいてほしかった」と言った。",
+              "en": {
+                "text": "That night the child said, \"I wanted you here today.\""
+              },
+              "d": -4,
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "remit-or-save",
+      "minAge": 22,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "migrated": true
+      },
+      "title": "仕送り",
+      "text": "故郷の家族から、屋根を直すお金を送ってほしいと連絡が来た。ここで貯めているお金のほぼ全部だ。",
+      "stat": "2023年、低・中所得国への送金は約6,560億ドルで、海外からの直接投資や援助を上回った (世界銀行)",
+      "en": {
+        "title": "Money home",
+        "text": "The family back home asks for money to fix the roof. It is nearly everything {name} has saved here.",
+        "stat": "In 2023, remittances to low- and middle-income countries reached about $656 billion, more than foreign direct investment or aid (World Bank)"
+      },
+      "options": [
+        {
+          "label": "送る",
+          "en": {
+            "label": "Send it"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "新しいトタン屋根の写真が届いた。みんながその前に並んでいた。",
+              "en": {
+                "text": "A photo came of the new tin roof, with everyone lined up in front of it."
+              },
+              "cost": -0.3,
+              "effects": {
+                "bond": 5,
+                "happy": 3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "屋根は直らず、お金は親戚の結婚式に使われたと後で知った。",
+              "en": {
+                "text": "The roof never got fixed. {name} found out later the money went on a cousin's wedding."
+              },
+              "cost": -0.3,
+              "effects": {
+                "happy": -4,
+                "bond": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "その年の雨季、村で屋根が残ったのはうちだけだったと聞いた。",
+              "en": {
+                "text": "That rainy season, word came that theirs was the only roof in the village still standing."
+              },
+              "cost": -0.3,
+              "effects": {
+                "happy": 5,
+                "bond": 6
+              }
+            }
+          ]
+        },
+        {
+          "label": "半分だけ送る",
+          "en": {
+            "label": "Send half"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "残りは来年と書き添えた。返事は短かった。",
+              "en": {
+                "text": "Added a note saying the rest would come next year. The reply was short."
+              },
+              "cost": -0.15,
+              "effects": {
+                "bond": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "半分で直せる大工が見つかったと連絡があった。",
+              "en": {
+                "text": "They found a carpenter who could do it for half."
+              },
+              "cost": -0.15,
+              "effects": {
+                "bond": 3,
+                "happy": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mobile-money",
+      "minAge": 20,
+      "maxAge": 60,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KEN",
+          "TZA",
+          "UGA",
+          "RWA",
+          "GHA",
+          "ZMB",
+          "MOZ",
+          "COD",
+          "SEN",
+          "CIV"
+        ]
+      },
+      "tech": [
+        "mobile"
+      ],
+      "from": 2010,
+      "title": "電話で届いたお金",
+      "text": "知らない番号から、間違えて送金したので返してほしいとメッセージが来た。たしかに入金がある。",
+      "en": {
+        "title": "Money by phone",
+        "text": "A message from an unknown number says they sent money by mistake and asks for it back. There is a deposit."
+      },
+      "options": [
+        {
+          "label": "言われた番号に返す",
+          "en": {
+            "label": "Send it back to the number"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "入金は偽物の通知だった。返した分だけ、自分のお金がなくなった。",
+              "en": {
+                "text": "The deposit was a fake notification. What {name} \"returned\" was their own money."
+              },
+              "cost": -0.05,
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 5,
+              "text": "本当の間違いだった。相手からお礼のメッセージが来た。",
+              "en": {
+                "text": "It really was a mistake. A thank-you message came back."
+              },
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "販売店で確かめる",
+          "en": {
+            "label": "Check at the agent's kiosk"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "店員は画面を見て笑った。最近よくある手口だと言った。",
+              "en": {
+                "text": "The agent looked at the screen and laughed. A common trick these days."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "本当の入金だった。店員を通して返した。",
+              "en": {
+                "text": "It was a real deposit. {name} returned it through the agent."
+              },
+              "effects": {
+                "happy": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neighbor-fence",
+      "minAge": 30,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "title": "境界線",
+      "text": "隣の家が建てた塀が、{name}の土地に一歩分はみ出している。",
+      "en": {
+        "title": "The fence",
+        "text": "The neighbor's new wall sits a step over onto {name}'s land."
+      },
+      "options": [
+        {
+          "label": "話をつけに行く",
+          "en": {
+            "label": "Go and talk it through"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "隣の人は測り直し、塀を作り直した。それから口数が減った。",
+              "en": {
+                "text": "The neighbor measured again and rebuilt the wall. Spoke less after that."
+              },
+              "effects": {
+                "happy": 1,
+                "bond": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "測ってみると、間違っていたのは{name}の方だった。",
+              "en": {
+                "text": "After measuring, it turned out {name} had it wrong."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "役場まで話がこじれ、二年かかった。",
+              "en": {
+                "text": "It went all the way to the local office and took two years."
+              },
+              "cost": -0.05,
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "一歩分なら譲る",
+          "en": {
+            "label": "Let them have the step"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "何も言わなかった。翌年、隣から果物が一箱届いた。",
+              "en": {
+                "text": "Said nothing. The next year, a box of fruit came from next door."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "代が替わってから、その一歩分でまた揉めた。",
+              "en": {
+                "text": "A generation later, the families fought over that one step again."
+              },
+              "after": 20,
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "night-school",
+      "minAge": 30,
+      "maxAge": 55,
+      "weight": 1,
+      "when": {
+        "state": "work"
+      },
+      "title": "夜間学校",
+      "text": "町の学校で、働く大人のための夜の授業が始まると聞いた。",
+      "en": {
+        "title": "Night classes",
+        "text": "The school in town is starting evening classes for working adults."
+      },
+      "options": [
+        {
+          "label": "通う",
+          "en": {
+            "label": "Enroll"
+          },
+          "cost": -0.03,
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "二年かけて卒業した。証書は額に入れて壁に掛けた。",
+              "en": {
+                "text": "Graduated after two years. The certificate went in a frame on the wall."
+              },
+              "effects": {
+                "learn": 6,
+                "happy": 4
+              },
+              "kind": "school",
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "半年は通ったが、仕事が忙しくなってやめた。",
+              "en": {
+                "text": "Kept it up for six months, then work got busy and {name} stopped."
+              },
+              "effects": {
+                "learn": 2,
+                "health": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "同じ教室にいた人の紹介で、いい仕事に移れた。",
+              "en": {
+                "text": "Someone from the class put in a word, and {name} moved to a better job."
+              },
+              "effects": {
+                "learn": 3,
+                "money": 4
+              }
+            }
+          ]
+        },
+        {
+          "label": "今さら勉強はいい",
+          "en": {
+            "label": "Too late for that"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "その春も、いつものように仕事から帰って寝た。",
+              "en": {
+                "text": "That spring, like any other, {name} came home from work and went to bed."
+              },
+              "effects": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "affair-temptation",
+      "minAge": 30,
+      "maxAge": 55,
+      "weight": 1,
+      "who": "spouse",
+      "title": "誘い",
+      "text": "昔の知り合いと仕事で再会した。食事に誘われた。{who}には話していない。",
+      "en": {
+        "title": "An invitation",
+        "text": "{name} has run into an old acquaintance through work, and been invited to dinner. {who} doesn't know."
+      },
+      "options": [
+        {
+          "label": "行く",
+          "en": {
+            "label": "Go"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "食事をして、昔の話をして、それぞれ家に帰った。",
+              "en": {
+                "text": "They ate, talked about the old days, and went home."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "それから何度か会った。家での口数が減った。",
+              "en": {
+                "text": "They met a few more times. {name} talked less at home."
+              },
+              "d": -8,
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "誰かが見ていて、{whoName}の耳に入った。",
+              "en": {
+                "text": "Someone saw them, and it got back to {whoName}."
+              },
+              "d": -20,
+              "effects": {
+                "happy": -8
+              },
+              "kind": "hard",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "断る",
+          "en": {
+            "label": "Decline"
+          },
+          "auto": 8,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "その晩は早く帰り、家族で夕食を食べた。",
+              "en": {
+                "text": "Went home early that night and had dinner with the family."
+              },
+              "d": 2
+            },
+            {
+              "weight": 2,
+              "text": "家に帰ってからも、しばらくその人のことを考えた。",
+              "en": {
+                "text": "Kept thinking about that person for a while after getting home."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ore-ore",
+      "minAge": 65,
+      "maxAge": 95,
+      "weight": 1,
+      "amount": 1.5,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "hasChildren": true
+      },
+      "from": 2003,
+      "title": "孫からの電話",
+      "text": "「もしもし、俺だけど」。孫を名乗る声が、会社のお金をなくしたので今日中に{money}要ると言っている。",
+      "stat": "2023年の日本の特殊詐欺の被害額は約450億円で、被害者の約8割が65歳以上だった (警察庁)",
+      "en": {
+        "title": "A call from a grandchild",
+        "text": "\"Hi, it's me.\" A voice claiming to be a grandchild says they lost money from work and need {money} by tonight.",
+        "stat": "In 2023, phone scams in Japan took about 45 billion yen, and roughly 80% of the victims were 65 or older (National Police Agency)"
+      },
+      "options": [
+        {
+          "label": "言われた口座に振り込む",
+          "en": {
+            "label": "Transfer the money"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 9,
+              "text": "本物の孫に電話すると、何も知らなかった。警察に届けたが、お金は戻らなかった。",
+              "en": {
+                "text": "When {name} called the real grandchild, they knew nothing about it. The police took a report. The money never came back."
+              },
+              "cost": -1.0,
+              "effects": {
+                "happy": -8
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 1,
+              "text": "銀行の窓口の人が止めてくれた。",
+              "en": {
+                "text": "The bank teller stopped the transfer."
+              },
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "一度切って、孫にかけ直す",
+          "en": {
+            "label": "Hang up and call the grandchild back"
+          },
+          "auto": 9,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "孫は会社で普通に働いていた。その晩、家族みんなに電話して話した。",
+              "en": {
+                "text": "The grandchild was at work, perfectly fine. That night {name} phoned the whole family about it."
+              },
+              "effects": {
+                "happy": 1,
+                "bond": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learn-smartphone",
+      "minAge": 60,
+      "maxAge": 85,
+      "weight": 1,
+      "who": "child",
+      "whoAge": [
+        20,
+        70
+      ],
+      "tech": [
+        "smartphone"
+      ],
+      "title": "スマートフォン",
+      "text": "{who}が、スマートフォンの使い方を教えると言ってきた。",
+      "en": {
+        "title": "A smartphone",
+        "text": "{who} offers to teach {name} how to use a smartphone."
+      },
+      "options": [
+        {
+          "label": "教わる",
+          "en": {
+            "label": "Learn"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "ビデオ通話を覚えた。毎週日曜、孫の顔を見るのが決まりになった。",
+              "en": {
+                "text": "Learned video calls. Seeing the grandchildren every Sunday became the routine."
+              },
+              "d": 6,
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 3,
+              "text": "文字を打つのに一分かかる。それでも毎朝「おはよう」を送った。",
+              "en": {
+                "text": "Typing one message took a minute. {name} still sent \"good morning\" every day."
+              },
+              "d": 4,
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "知らない番号からのメッセージのリンクを押してしまい、口座のお金が抜かれた。",
+              "en": {
+                "text": "Tapped a link in a message from a stranger, and money was taken from the account."
+              },
+              "cost": -0.2,
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "今のままでいい",
+          "en": {
+            "label": "Not interested"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "家族の集まりでは、みんなが画面を見ている間、外で煙草を吸う人と話した。",
+              "en": {
+                "text": "At family gatherings, while everyone looked at screens, {name} went out and chatted with the smokers."
+              },
+              "effects": {}
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}は二度と勧めてこなかった。",
+              "en": {
+                "text": "{whoName} never offered again."
+              },
+              "d": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reunion",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "title": "同窓会",
+      "text": "卒業から四十年の同窓会の案内が届いた。",
+      "en": {
+        "title": "The reunion",
+        "text": "An invitation arrives for the forty-year school reunion."
+      },
+      "options": [
+        {
+          "label": "出る",
+          "en": {
+            "label": "Go"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "名札を見るまで、誰が誰だか分からなかった。帰りは三次会まで残った。",
+              "en": {
+                "text": "Could not tell who was who until reading the name tags. Stayed until the third bar."
+              },
+              "effects": {
+                "happy": 5,
+                "bond": 3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "クラスの三分の一が、もう亡くなっていた。",
+              "en": {
+                "text": "A third of the class had already died."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "昔いじめていた相手に謝られた。{name}は覚えていなかった。",
+              "en": {
+                "text": "Someone apologized for bullying {name} back then. {name} had no memory of it."
+              },
+              "effects": {
+                "happy": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "欠席にする",
+          "en": {
+            "label": "Skip it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "後日、集合写真が送られてきた。何人かは見覚えがあった。",
+              "en": {
+                "text": "A group photo arrived afterwards. A few faces were familiar."
+              },
+              "effects": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "license-return",
+      "minAge": 75,
+      "maxAge": 95,
+      "weight": 1,
+      "who": "child",
+      "whoAge": [
+        30,
+        80
+      ],
+      "when": {
+        "income": "high"
+      },
+      "tech": [
+        "car"
+      ],
+      "title": "運転免許",
+      "text": "車をこすることが増えた。{who}が、そろそろ免許を返したらどうかと言う。",
+      "en": {
+        "title": "The driver's license",
+        "text": "{name} has been scraping the car more often. {who} suggests it might be time to give up the license."
+      },
+      "options": [
+        {
+          "label": "返す",
+          "en": {
+            "label": "Give it up"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "買い物はバスになった。運転手と顔なじみになった。",
+              "en": {
+                "text": "Shopping meant the bus now. {name} got to know the drivers."
+              },
+              "d": 4,
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "出かける回数が目に見えて減った。",
+              "en": {
+                "text": "{name} went out noticeably less."
+              },
+              "d": 2,
+              "effects": {
+                "happy": -4,
+                "health": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "まだ運転する",
+          "en": {
+            "label": "Keep driving"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "近所の店までだけ、昼間だけ運転すると決めた。",
+              "en": {
+                "text": "Decided to drive only to the local shops, and only in daylight."
+              },
+              "d": -3,
+              "effects": {}
+            },
+            {
+              "weight": 3,
+              "text": "駐車場でアクセルとブレーキを踏み間違え、店の壁にぶつけた。けが人はいなかった。",
+              "en": {
+                "text": "Pressed the accelerator instead of the brake in a parking lot and hit a shop wall. No one was hurt."
+              },
+              "d": -2,
+              "cost": -0.1,
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plant-tree",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "place": "rural"
+      },
+      "title": "庭の苗木",
+      "text": "市場で果物の木の苗を売っていた。実がなるまで十年かかるという。",
+      "en": {
+        "title": "A sapling",
+        "text": "There is a fruit tree sapling for sale at the market. It takes ten years to bear fruit, the seller says."
+      },
+      "options": [
+        {
+          "label": "買って植える",
+          "en": {
+            "label": "Buy it and plant it"
+          },
+          "cost": -0.005,
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "十年後、初めて実がなった。近所の子どもたちと一緒に数えた。",
+              "en": {
+                "text": "Ten years later, it fruited for the first time. {name} counted them with the neighborhood kids."
+              },
+              "after": 10,
+              "effects": {
+                "happy": 5
+              }
+            },
+            {
+              "weight": 3,
+              "text": "最初の夏、ヤギに食べられた。",
+              "en": {
+                "text": "A goat ate it the first summer."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 1,
+              "text": "木は育ったが、実は酸っぱくて誰も食べなかった。日陰だけは気持ちよかった。",
+              "en": {
+                "text": "The tree grew, but the fruit was so sour no one ate it. The shade was nice, though."
+              },
+              "after": 8,
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "見るだけにする",
+          "en": {
+            "label": "Just look"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "帰り道で、苗の値段を少し後悔した。",
+              "en": {
+                "text": "On the way home, {name} half regretted not buying it."
+              },
+              "effects": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grandkids-care",
+      "minAge": 55,
+      "maxAge": 75,
+      "weight": 1,
+      "who": "child",
+      "whoAge": [
+        22,
+        50
+      ],
+      "title": "孫を預かる",
+      "text": "{who}が、働きに出るので孫を毎日預かってほしいと言ってきた。",
+      "en": {
+        "title": "Minding the grandchildren",
+        "text": "{who} is going back to work and asks {name} to look after the grandchildren every day."
+      },
+      "options": [
+        {
+          "label": "引き受ける",
+          "en": {
+            "label": "Say yes"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "毎日がにぎやかになった。夜は孫より先に寝た。",
+              "en": {
+                "text": "Every day got noisy. {name} fell asleep before the grandchildren did."
+              },
+              "d": 6,
+              "effects": {
+                "happy": 4,
+                "health": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "孫の一人が、最初に覚えた歌は{name}の故郷の歌だった。",
+              "en": {
+                "text": "The first song one of the grandchildren learned was a song from {name}'s home."
+              },
+              "d": 8,
+              "effects": {
+                "happy": 5
+              }
+            },
+            {
+              "weight": 1,
+              "text": "目を離したすきに孫が階段から落ち、腕を折った。",
+              "en": {
+                "text": "A grandchild fell down the stairs in the moment {name} looked away, and broke an arm."
+              },
+              "d": -4,
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "週に何日かだけにしてもらう",
+          "en": {
+            "label": "Only a few days a week"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "残りの日は保育所に行くことになった。費用は折半した。",
+              "en": {
+                "text": "The other days went to daycare, and they split the cost."
+              },
+              "cost": -0.03,
+              "d": 1
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}は困った顔をした。結局ほかの親戚に頼んだ。",
+              "en": {
+                "text": "{whoName} looked troubled, then asked another relative."
+              },
+              "d": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "checkup-elder",
+      "minAge": 55,
+      "maxAge": 80,
+      "weight": 1,
+      "when": {
+        "income": "high"
+      },
+      "title": "検診の知らせ",
+      "text": "大腸がん検診の案内が届いた。便を取って送るだけだという。",
+      "stat": "便潜血検査による大腸がん検診で、大腸がんで亡くなる人は約16%、6人に1人ほど減る (コクラン・レビュー, 2007)",
+      "en": {
+        "title": "A screening letter",
+        "text": "A letter invites {name} to bowel cancer screening. Just send in a sample.",
+        "stat": "Screening with stool tests cuts deaths from bowel cancer by about 16%, roughly one death in six (Cochrane review, 2007)"
+      },
+      "options": [
+        {
+          "label": "受ける",
+          "en": {
+            "label": "Do it"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 93,
+              "text": "異常なしの通知が届いた。冷蔵庫に貼っておいた。",
+              "en": {
+                "text": "The all-clear came in the mail. It went on the fridge."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 6,
+              "text": "精密検査になり、ポリープを一つ取った。",
+              "en": {
+                "text": "Called in for a follow-up. One polyp was removed."
+              },
+              "cost": -0.02,
+              "effects": {
+                "health": 1
+              }
+            },
+            {
+              "weight": 1,
+              "text": "早い段階のがんが見つかった。手術を受け、五年後の検査も問題なかった。",
+              "en": {
+                "text": "Early-stage cancer was found. After surgery, the five-year check was clear."
+              },
+              "cost": -0.1,
+              "effects": {
+                "health": -4
+              },
+              "kind": "ill",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "気が進まないので捨てる",
+          "en": {
+            "label": "Bin the letter"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 97,
+              "text": "封筒は、ほかの広告と一緒に捨てた。",
+              "en": {
+                "text": "The envelope went out with the junk mail."
+              },
+              "effects": {}
+            },
+            {
+              "weight": 3,
+              "text": "数年後、お腹の具合が悪くなり、病院で進んだがんだと言われた。",
+              "en": {
+                "text": "A few years later, stomach trouble led to a hospital visit, and an advanced cancer."
+              },
+              "after": 4,
+              "cost": -0.3,
+              "effects": {
+                "health": -15,
+                "happy": -8
+              },
+              "kind": "ill",
+              "big": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "retire-hobby-shop",
+      "minAge": 58,
+      "maxAge": 70,
+      "weight": 1,
+      "when": {
+        "state": "retired",
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "title": "退職金の使い道",
+      "text": "退職金が入った。前から、小さな店を開きたいと思っていた。",
+      "en": {
+        "title": "The retirement money",
+        "text": "The retirement payout has come in. {name} has always wanted to open a little shop."
+      },
+      "options": [
+        {
+          "label": "店を開く",
+          "hint": "新しい店の多くは数年で閉まる",
+          "en": {
+            "label": "Open the shop",
+            "hint": "Most new shops close within a few years"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "一年で閉めた。売れ残りは近所に配った。",
+              "en": {
+                "text": "Closed it within a year. Gave the leftover stock to the neighbors."
+              },
+              "cost": -0.6,
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "儲けはほとんどなかったが、常連が毎日顔を出した。",
+              "en": {
+                "text": "Barely made a profit, but the regulars came by every day."
+              },
+              "cost": -0.2,
+              "effects": {
+                "happy": 6,
+                "bond": 4
+              }
+            },
+            {
+              "weight": 2,
+              "text": "思いがけず流行った。七十を過ぎても店に立っていた。",
+              "en": {
+                "text": "It did surprisingly well. {name} was still behind the counter past seventy."
+              },
+              "cost": 0.2,
+              "effects": {
+                "happy": 7
+              }
+            }
+          ]
+        },
+        {
+          "label": "預けておく",
+          "en": {
+            "label": "Keep it in the bank"
+          },
+          "auto": 7,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "店の名前だけは、ずっと手帳に書いたままにした。",
+              "en": {
+                "text": "Kept the name of the shop written in a notebook."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "数年後、そのお金で入院の費用がまかなえた。",
+              "en": {
+                "text": "A few years later, the money covered a hospital stay."
+              },
+              "after": 4,
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sibling-land",
+      "minAge": 40,
+      "maxAge": 75,
+      "weight": 1,
+      "who": "sibling",
+      "when": {
+        "place": "rural"
+      },
+      "title": "親の土地",
+      "text": "親が遺した土地を、{who}が売ろうと言っている。{name}は残したい。",
+      "en": {
+        "title": "The family land",
+        "text": "{who} wants to sell the land the parents left. {name} wants to keep it."
+      },
+      "options": [
+        {
+          "label": "売るのに同意する",
+          "en": {
+            "label": "Agree to sell"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "お金は等分した。最後に一度、二人で土地を見に行った。",
+              "en": {
+                "text": "The money was split evenly. The two went to look at the land one last time."
+              },
+              "cost": 0.5,
+              "d": 4,
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "数年後、そこに大きな道路が通り、土地の値段が何倍にもなった。",
+              "en": {
+                "text": "A few years later a highway went through, and the land's value went up several times over."
+              },
+              "after": 5,
+              "d": -4,
+              "effects": {
+                "happy": -4
+              }
+            }
+          ]
+        },
+        {
+          "label": "自分の取り分で買い取る",
+          "en": {
+            "label": "Buy them out"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "畑は残った。{whoName}は、それから正月にしか来なくなった。",
+              "en": {
+                "text": "The land stayed. {whoName} only came at New Year after that."
+              },
+              "cost": -0.5,
+              "d": -4,
+              "effects": {
+                "happy": 3
+              }
+            },
+            {
+              "weight": 4,
+              "text": "{whoName}は喜んだ。手にしたお金で、子どもを学校にやれたと言った。",
+              "en": {
+                "text": "{whoName} was glad, saying the money put their kids through school."
+              },
+              "cost": -0.5,
+              "d": 6,
+              "effects": {
+                "happy": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "話し合いを先に延ばす",
+          "en": {
+            "label": "Put off deciding"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "話は何年も宙に浮いたままになった。",
+              "en": {
+                "text": "The matter hung in the air for years."
+              },
+              "d": -3
+            },
+            {
+              "weight": 4,
+              "text": "延ばしているうちに、親戚まで巻き込んだ争いになった。",
+              "en": {
+                "text": "While it was put off, other relatives got involved and it turned into a feud."
+              },
+              "after": 3,
+              "d": -15,
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

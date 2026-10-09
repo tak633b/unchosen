@@ -25,28 +25,7 @@ interface Moment {
   minAge: number;
   maxAge: number;
   weight: number;
-  when?: {
-    place?: 'rural' | 'urban';
-    wealth?: Wealth | Wealth[];
-    income?: Income | Income[];
-    region?: string[];
-    countries?: string[];
-    religion?: string[];
-    state?: 'school' | 'work' | 'retired' | 'child';
-    sex?: 'F' | 'M';
-    married?: boolean;
-    hasChildren?: boolean;
-    hasPet?: boolean;
-    migrated?: boolean;
-    youngChild?: boolean;
-    parentAlive?: boolean;
-    fatherAlive?: boolean;
-    motherAlive?: boolean;
-    sibling?: 'olderBrother' | 'olderSister' | 'younger'; // 文に出てくるきょうだいがいるときだけ
-    teenChild?: boolean;
-    livingAlone?: boolean;
-    job?: 'office' | 'manual' | 'farm' | 'none';
-  };
+  when?: When;
   effects?: Partial<Stats>;
   cost?: number;
   stat?: string;
@@ -54,6 +33,31 @@ interface Moment {
   tech?: Tech[];     // 要る道具。その国その年の普及率に比例して出やすくなる
   from?: number;     // 出てよい暦年の範囲
   to?: number;
+}
+
+// 出来事が起きてよい暮らしの条件。分かれ道 (choices.ts) も同じ語彙を使う
+export interface When {
+  place?: 'rural' | 'urban';
+  wealth?: Wealth | Wealth[];
+  income?: Income | Income[];
+  region?: string[];
+  countries?: string[];
+  religion?: string[];
+  state?: 'school' | 'work' | 'retired' | 'child';
+  sex?: 'F' | 'M';
+  married?: boolean;
+  widowed?: boolean;  // 連れ合いを亡くし、今は連れ合いがいない (再婚していれば false)
+  hasChildren?: boolean;
+  hasPet?: boolean;
+  migrated?: boolean;
+  youngChild?: boolean;
+  parentAlive?: boolean;
+  fatherAlive?: boolean;
+  motherAlive?: boolean;
+  sibling?: 'olderBrother' | 'olderSister' | 'younger'; // 文に出てくるきょうだいがいるときだけ
+  teenChild?: boolean;
+  livingAlone?: boolean;
+  job?: 'office' | 'manual' | 'farm' | 'none';
 }
 
 const MOMENTS = (data as { moments: Moment[] }).moments;
@@ -72,8 +76,10 @@ function matches(p: Person, m: Moment): boolean {
   if ((m.from !== undefined && year < m.from) || (m.to !== undefined && year > m.to)) return false;
   const last = p.recent[m.id];
   if (last !== undefined && (m.once || p.age - last < REPEAT_GAP)) return false;
-  const w = m.when;
-  if (!w) return true;
+  return !m.when || fits(p, m.when);
+}
+
+export function fits(p: Person, w: When): boolean {
   const c = countryOf(p);
   if (w.place && (w.place === 'rural') !== (p.city === null)) return false;
   if (w.wealth && !oneOf<Wealth>(w.wealth, isPoor(p) ? 'poor' : isRich(p) ? 'rich' : 'middle')) return false;
@@ -84,21 +90,25 @@ function matches(p: Person, m: Moment): boolean {
   if (w.state && w.state !== stateOf(p)) return false;
   if (w.sex && w.sex !== p.sex) return false;
   if (w.married !== undefined && w.married !== !!p.spouse?.alive) return false;
-  if (w.hasChildren && !p.children.some((k) => k.alive)) return false;
-  if (w.hasPet && !p.pet) return false;
+  // 亡くなった連れ合いは p.spouse (alive: false) か、再婚のときに移す ties の 'spouse' に残る。離婚は無い
+  if (w.widowed !== undefined && w.widowed !== (!p.spouse?.alive && (!!p.spouse || (p.ties ?? []).some((t) => t.role === 'spouse')))) return false;
+  // 真偽の条件は false も効く (false は「いない」「亡くなった」)
+  const is = (want: boolean | undefined, have: boolean) => want === undefined || want === have;
+  if (!is(w.hasChildren, p.children.some((k) => k.alive))) return false;
+  if (!is(w.hasPet, !!p.pet)) return false;
   if (w.migrated !== undefined && w.migrated !== !!p.migratedTo) return false;
-  if (w.youngChild && !p.children.some((k) => k.alive && k.age < 4)) return false;
-  if (w.parentAlive && !p.mother.alive && !p.father.alive) return false;
-  if (w.fatherAlive && !p.father.alive) return false;
-  if (w.motherAlive && !p.mother.alive) return false;
+  if (!is(w.youngChild, p.children.some((k) => k.alive && k.age < 4))) return false;
+  if (!is(w.parentAlive, p.mother.alive || p.father.alive)) return false;
+  if (!is(w.fatherAlive, p.father.alive)) return false;
+  if (!is(w.motherAlive, p.mother.alive)) return false;
   if (w.sibling && !p.siblings.some((b) => b.alive && (w.sibling === 'younger' ? b.age >= 0 && b.age < p.age : b.age > p.age && b.sex === (w.sibling === 'olderBrother' ? 'M' : 'F')))) return false;
-  if (w.teenChild && !p.children.some((k) => k.alive && k.age >= 13 && k.age <= 19)) return false;
-  if (w.livingAlone && !(p.working && p.age >= 18 && !p.spouse?.alive)) return false;
+  if (!is(w.teenChild, p.children.some((k) => k.alive && k.age >= 13 && k.age <= 19))) return false;
+  if (!is(w.livingAlone, p.working && p.age >= 18 && !p.spouse?.alive)) return false;
   if (w.job && w.job !== (p.working && !p.retired && p.unemployed === 0 ? p.jobKind ?? 'manual' : 'none')) return false;
   return true;
 }
 
-const fill = (p: Person, text: string) => text
+export const fill = (p: Person, text: string) => text
   .replaceAll('{name}', p.given)
   .replaceAll('{city}', place(p))
   .replaceAll('{country}', countryOf(p).name)
@@ -110,13 +120,13 @@ const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
 const petText = (p: Person, m: Moment) => (m.pet && m.other && p.pet && p.pet.kind !== m.pet ? (isEn ? m.other.en?.text ?? m.other.text : m.other.text) : textOf(m));
 // 注釈の統計は、その数字の年が出来事の年から15年以上離れていたら出さない (1965年の出来事に「2023年に世界で…」は添えない)
 const STAT_SPAN = 15;
-const statOf = (m: Moment, year: number) => {
+export const statOf = (m: { stat?: string; en?: { stat?: string } }, year: number) => {
   const s = isEn ? m.en?.stat ?? m.stat : m.stat;
   const y = Number(s?.match(/(?:19|20)\d\d(?!.*(?:19|20)\d\d)/)?.[0]);
   return s && (!y || Math.abs(year - y) <= STAT_SPAN) ? s : undefined;
 };
 // その出来事に要る道具が、この人の暮らしにどれだけありそうか (0–1)
-const techWeight = (p: Person, m: Moment) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, p.city === null), 1);
+export const techWeight = (p: Person, m: { tech?: Tech[] }) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, p.city === null), 1);
 
 const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。輪の上でも亡くなったことにする
 

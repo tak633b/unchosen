@@ -52,6 +52,8 @@ export interface Anchor {
 export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild' | 'grandparent' | 'pet'; // pet は飼った犬・猫 (人の輪に並べるだけ)。grandparent は、孫として一生を続けた人から見た前の主人公だけ
 export interface Memory { age: number; text: string; d: number; k?: string } // d: その時の近さの変化。k: 出来事の種類 (最後の言葉を、語る人の目線で組むため)
 export interface Tie extends Relative { role: Role; since: number; until?: number; of?: number } // since/until は主人公の年齢。of は孫の親 (子) の id
+// 分かれ道の結果のうち、何年か後に起きるもの。age 歳で decisions/*.json の id・選択肢 o・結果 r が起きる。w は出てくる人の id
+export interface Later { age: number; id: string; o: number; r: number; w?: number }
 export interface Illness { name: string; years: number; mult: number }
 export interface Pet { kind: '犬' | '猫'; name: string; age: number; life: number }
 // 飼ったペットの記録 (pets.ts)。since・diedAt は主人公の年齢、age はペットの年齢
@@ -142,6 +144,7 @@ export interface Person {
   auto: boolean;
   reflect?: boolean; // 5・15・30・50・70歳の問いを出すか (プレイヤーだけ)
   recent: Record<string, number>; // 日常の出来事を最後に見た年齢 (同じ話の繰り返しを避ける)
+  later?: Later[];   // 分かれ道 (events/choices.ts) の、何年か後に起きる結果
   anchor?: Anchor;   // 輪の人の一生を作っている時だけ
   line?: LineEntry[]; // 家系: この人の前に続けてきた主人公たち (1世代目から順に)。1世代目には無い
 }

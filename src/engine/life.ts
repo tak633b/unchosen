@@ -16,6 +16,7 @@ import { careQuality, drift, habits, hiv, illness, smokeStart } from './events/h
 import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
+import { choices } from './events/choices';
 import { bonds } from './events/bonds';
 import { because, birthWhy, deathWhy, joinWhy } from './why';
 import { ensureBonds, freshName } from './bonds';
@@ -209,6 +210,7 @@ export function advanceYear(p: Person): void {
   finances(p);
   crime(p);
   dilemmas(p);
+  choices(p);
   adultPet(p);
   moments(p);
   bonds(p);

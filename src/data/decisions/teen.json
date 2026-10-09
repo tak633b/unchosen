@@ -1,0 +1,5981 @@
+{
+  "decisions": [
+    {
+      "id": "t-marriage-offer",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NER",
+          "TCD",
+          "MLI",
+          "BGD",
+          "IND",
+          "NPL",
+          "MOZ"
+        ],
+        "sex": "F",
+        "state": "school"
+      },
+      "title": "縁談",
+      "text": "親戚が、隣の村の家との縁談を持ってきた。相手は二十代で、親はもう半分乗り気だ。学校はあと二年残っている。",
+      "stat": "18歳になる前に結婚した20〜24歳の女性は、ニジェールで76%、バングラデシュで51% (UNICEF, 2023年)",
+      "en": {
+        "title": "A marriage offer",
+        "text": "A relative has brought an offer of marriage from a family in the next village. The man is in his twenties, and the parents are already half convinced. There are two years of school left.",
+        "stat": "Among women aged 20 to 24, 76% in Niger and 51% in Bangladesh were married before 18 (UNICEF, 2023)"
+      },
+      "options": [
+        {
+          "label": "親の決めたとおりにする",
+          "en": {
+            "label": "Go along with it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "式は三か月後だった。教科書は近所の子に回った。",
+              "en": {
+                "text": "The wedding was three months later. The schoolbooks went to a neighbor's kid."
+              },
+              "effects": {
+                "learn": -3,
+                "happy": -3
+              },
+              "kind": "love",
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "相手の家は思ったより穏やかで、義理の母が読み書きの続きを教えてくれた。",
+              "en": {
+                "text": "The new household was calmer than expected, and the mother-in-law kept teaching reading and writing."
+              },
+              "effects": {
+                "happy": 1,
+                "learn": 1
+              },
+              "kind": "love"
+            },
+            {
+              "weight": 2,
+              "text": "式の直前に相手の家と持参金でもめ、話は流れた。",
+              "en": {
+                "text": "Just before the wedding the two families fell out over the dowry, and it was called off."
+              },
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "卒業まで待ってほしいと頼む",
+          "en": {
+            "label": "Ask them to wait until graduation"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "父は渋い顔をしたが、二年だけ待つと言った。",
+              "en": {
+                "text": "Father frowned, but agreed to wait two years."
+              },
+              "effects": {
+                "happy": 3,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "頼みは聞いてもらえなかった。話はそのまま進んだ。",
+              "en": {
+                "text": "The request was ignored. Things went ahead as planned."
+              },
+              "effects": {
+                "happy": -4,
+                "learn": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "待っている間に相手は別の人と結婚した。母はほっとした顔をした。",
+              "en": {
+                "text": "While they waited, the man married someone else. Mother looked relieved."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "先生に親と話してもらう",
+          "en": {
+            "label": "Ask a teacher to talk to the parents"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "先生が家に来て、奨学金の話をした。縁談は立ち消えになった。",
+              "en": {
+                "text": "The teacher came to the house and talked about a scholarship. The marriage talk faded away."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 3,
+                "bond": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "父は家の話に口を出すなと怒り、しばらく口をきいてくれなかった。",
+              "en": {
+                "text": "Father was furious that an outsider meddled in family business and stopped speaking to {name} for a while."
+              },
+              "effects": {
+                "bond": -4,
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "何年もたって、同じ先生から、近所の子の親を説得するのを手伝ってほしいと頼まれた。",
+              "en": {
+                "text": "Years later, the same teacher asked {name} to help persuade the parents of a neighbor girl."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              },
+              "after": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-kota-coaching",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND"
+        ],
+        "state": "school"
+      },
+      "from": 1995,
+      "title": "コタの予備校",
+      "text": "工学部の入試のために、コタの予備校の寮に入らないかと親が言う。家から遠く、費用は家の一年分の稼ぎに近い。",
+      "stat": "インド工科大学の入試の一次試験 (JEE Main) を受けたのは約110万人、インド工科大学の席は約1万7千 (2023年)",
+      "en": {
+        "title": "Coaching in Kota",
+        "text": "The parents want {name} to move into a hostel in Kota and attend a coaching center for the engineering entrance exam. It is far from home and costs close to a year of family income.",
+        "stat": "About 1.1 million students sat the JEE Main in 2023, for roughly 17,000 seats at the IITs"
+      },
+      "options": [
+        {
+          "label": "コタへ行く",
+          "en": {
+            "label": "Go to Kota"
+          },
+          "auto": 5,
+          "cost": -0.4,
+          "outcomes": [
+            {
+              "weight": 2,
+              "text": "二年目に合格した。駅で母は、近所の人に配る菓子を山ほど抱えていた。",
+              "en": {
+                "text": "Got in on the second try. At the station Mother was holding a mountain of sweets for the neighbors."
+              },
+              "effects": {
+                "learn": 5,
+                "happy": 5
+              },
+              "after": 2,
+              "kind": "school",
+              "big": true
+            },
+            {
+              "weight": 5,
+              "text": "朝六時から夜十時まで授業と模試が続いた。結果は地元の大学に届く点数だった。",
+              "en": {
+                "text": "Classes and mock tests from six in the morning to ten at night. The final score was enough for a local college."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": -2
+              },
+              "kind": "school"
+            },
+            {
+              "weight": 2,
+              "text": "寮の部屋で眠れない夜が続き、母が迎えに来た。",
+              "en": {
+                "text": "Night after sleepless night in the hostel room, until Mother came to bring {name} home."
+              },
+              "effects": {
+                "health": -3,
+                "happy": -4
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "同じ寮の子と、毎晩屋上で星を見るようになった。その子とは今も連絡を取っている。",
+              "en": {
+                "text": "Started watching the stars from the hostel roof every night with a roommate. They still keep in touch."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "家で動画の講義を見て勉強する",
+          "hint": "費用は小さい",
+          "en": {
+            "label": "Study at home with video lectures",
+            "hint": "Much cheaper"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "停電の多い夏だったが、録画の講義は止めてやり直せた。州の工科大学に入った。",
+              "en": {
+                "text": "There were many power cuts that summer, but recorded lectures could be paused. Got into the state engineering college."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "一人だと、つい別の動画を見てしまった。点数は伸びなかった。",
+              "en": {
+                "text": "Alone, it was too easy to drift to other videos. The score did not move."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "講義の解き方を自分の言葉でノートにまとめ、近所の後輩に売った。",
+              "en": {
+                "text": "Rewrote the lecture solutions in plain notes and sold copies to younger kids nearby."
+              },
+              "effects": {
+                "money": 2,
+                "learn": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "工学ではない道を言い出す",
+          "en": {
+            "label": "Say engineering is not the plan"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "父は一晩黙っていた。翌朝、何を学びたいのか聞いてきた。",
+              "en": {
+                "text": "Father said nothing all night. The next morning he asked what {name} wanted to study instead."
+              },
+              "effects": {
+                "happy": 4,
+                "bond": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "親戚が集まるたびに、その話を蒸し返された。",
+              "en": {
+                "text": "Every family gathering brought it up again."
+              },
+              "effects": {
+                "happy": -3,
+                "bond": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "選んだ会計の資格で、いとこより先に給料をもらうようになった。",
+              "en": {
+                "text": "The accounting certificate {name} chose paid a salary sooner than the cousins' engineering degrees."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 3
+              },
+              "after": 5,
+              "kind": "work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-school-fees-goat",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ"
+        ],
+        "income": "low",
+        "place": "rural",
+        "state": "school"
+      },
+      "from": 1970,
+      "title": "山羊を売るか",
+      "text": "中学の学費の締め切りが来週だ。払うには、家の山羊を一頭売るしかない。子山羊を産む予定の一頭だ。",
+      "stat": "サハラ以南アフリカでは、中学生の年齢の子の約3人に1人が学校に通っていない (UNESCO, 2022年)",
+      "en": {
+        "title": "Sell the goat?",
+        "text": "Secondary school fees are due next week. The only way to pay is to sell one of the family goats, the one that is about to give birth.",
+        "stat": "In sub-Saharan Africa, about one in three children of lower-secondary age is out of school (UNESCO, 2022)"
+      },
+      "options": [
+        {
+          "label": "山羊を売ってもらう",
+          "en": {
+            "label": "Sell the goat"
+          },
+          "auto": 5,
+          "cost": -0.15,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "市場で山羊を売った帰り、父はノートを二冊買ってくれた。",
+              "en": {
+                "text": "On the way back from selling the goat at market, Father bought two notebooks."
+              },
+              "effects": {
+                "learn": 2,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "買い手に値切られ、学費に少し足りなかった。残りは先生が待ってくれた。",
+              "en": {
+                "text": "The buyer haggled the price down and it fell a little short. The teacher let the rest wait."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "後で聞くと、買い手の家ではその山羊が双子を産んだらしい。",
+              "en": {
+                "text": "Later they heard the goat had twins at the buyer's place."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "一学期休んで畑を手伝う",
+          "en": {
+            "label": "Skip a term and work the fields"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "子山羊が二頭生まれ、次の学期には学費が払えた。",
+              "en": {
+                "text": "Two kids were born, and the next term's fees were paid."
+              },
+              "effects": {
+                "learn": -1,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "一学期のつもりが、一年になった。",
+              "en": {
+                "text": "One term turned into a whole year."
+              },
+              "effects": {
+                "learn": -3,
+                "happy": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "畑仕事のあいだに、隣の人から接ぎ木を教わった。",
+              "en": {
+                "text": "Between field work, a neighbor taught {name} how to graft trees."
+              },
+              "effects": {
+                "learn": 1,
+                "money": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "教会の奨学金に申し込む",
+          "en": {
+            "label": "Apply for the church bursary"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 3,
+              "text": "牧師の面接を受けて、学費の半分が出た。",
+              "en": {
+                "text": "After an interview with the pastor, half the fees were covered."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 3
+              }
+            },
+            {
+              "weight": 5,
+              "text": "申し込みは多く、選ばれなかった。結局、山羊を売った。",
+              "en": {
+                "text": "Too many applied, and {name} was not chosen. The goat was sold after all."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 1,
+              "text": "同じ奨学金で学んだ人の集まりから、何年もたって仕事の紹介が来た。",
+              "en": {
+                "text": "Years later, a job lead came through the network of former bursary students."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 2
+              },
+              "after": 8,
+              "kind": "work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-sahel-route",
+      "minAge": 16,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "SEN",
+          "GMB",
+          "GIN",
+          "MLI",
+          "NER"
+        ]
+      },
+      "who": "friend",
+      "from": 2000,
+      "title": "北へ行く話",
+      "text": "{who}が、アガデスを越えて北へ行くと打ち明けた。仲介人に払うお金はもう集めたという。一緒に来ないかと誘われた。",
+      "stat": "地中海を渡ろうとして亡くなったか行方不明になった人は、2023年に約3,100人 (IOM 行方不明移民プロジェクト)",
+      "en": {
+        "title": "Going north",
+        "text": "{who} has confided a plan to head north past Agadez. The money for the smuggler is already saved. {whoName} asks {name} to come along.",
+        "stat": "About 3,100 people died or went missing trying to cross the Mediterranean in 2023 (IOM Missing Migrants Project)"
+      },
+      "options": [
+        {
+          "label": "一緒に行く",
+          "hint": "道は長い",
+          "en": {
+            "label": "Go too",
+            "hint": "A long road"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "リビアの手前で捕まり、三か月後に送り返された。",
+              "en": {
+                "text": "Caught before reaching Libya and sent back three months later."
+              },
+              "effects": {
+                "health": -3,
+                "happy": -4
+              },
+              "kind": "hard",
+              "big": true,
+              "d": 4
+            },
+            {
+              "weight": 3,
+              "text": "砂漠の途中で仲介人が消えた。二人で歩いて国境の町に戻った。",
+              "en": {
+                "text": "The smuggler vanished halfway across the desert. The two of them walked back to a border town."
+              },
+              "effects": {
+                "health": -4,
+                "happy": -3
+              },
+              "kind": "hard",
+              "d": 6
+            },
+            {
+              "weight": 2,
+              "text": "イタリアの施設に着いた。電話で母の声を聞くまで、一年かかった。",
+              "en": {
+                "text": "Reached a reception center in Italy. It took a year before {name} heard Mother's voice on the phone."
+              },
+              "effects": {
+                "happy": -2,
+                "learn": 1
+              },
+              "kind": "move",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "残る",
+          "en": {
+            "label": "Stay"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "{whoName}は夜明け前に出ていった。半年後、知らない番号から写真が届いた。",
+              "en": {
+                "text": "{whoName} left before dawn. Six months later, a photo arrived from an unknown number."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "d": 1
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}からの連絡は途絶えた。母親が、毎週{name}の家に聞きに来た。",
+              "en": {
+                "text": "No word from {whoName}. Their mother came by every week to ask {name} for news."
+              },
+              "effects": {
+                "happy": -5
+              },
+              "kind": "loss"
+            },
+            {
+              "weight": 2,
+              "text": "{whoName}は三年後に帰ってきて、そのお金で二人で仕立て屋を始めようと言った。",
+              "en": {
+                "text": "{whoName} came back three years later and suggested they open a tailoring shop together with the savings."
+              },
+              "effects": {
+                "happy": 3,
+                "money": 2
+              },
+              "after": 3,
+              "d": 5
+            }
+          ]
+        },
+        {
+          "label": "行かないでと止める",
+          "en": {
+            "label": "Try to stop {whoName}"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "{whoName}は聞かなかった。最後に会った日は気まずいままだった。",
+              "en": {
+                "text": "{whoName} would not listen. Their last meeting ended awkwardly."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "d": -5
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}は迷って、一年だけ様子を見ると言った。",
+              "en": {
+                "text": "{whoName} hesitated, then said they would wait a year and see."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "d": 4
+            },
+            {
+              "weight": 1,
+              "text": "集めたお金で、{whoName}は中古のバイクを買い、町でタクシーを始めた。",
+              "en": {
+                "text": "With the saved money, {whoName} bought a used motorbike and started a taxi business in town."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 1,
+              "d": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-gulf-sibling",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NPL",
+          "BGD",
+          "PAK",
+          "LKA"
+        ],
+        "state": "school"
+      },
+      "who": "sibling",
+      "from": 1990,
+      "title": "湾岸からの電話",
+      "text": "カタールの工事現場で働く{who}から電話があった。仕送りで学費を払うから、お前は勉強しろと言う。ただ、借金の返済がまだ半分残っているらしい。",
+      "stat": "ネパールでは、海外からの仕送りが国内総生産の約4分の1にあたる (世界銀行, 2023年)",
+      "en": {
+        "title": "A call from the Gulf",
+        "text": "{who} works on a construction site in Qatar and has called. They will send money for school fees, they say; {name} should just study. But half the recruitment debt is still unpaid.",
+        "stat": "In Nepal, remittances from abroad equal about a quarter of GDP (World Bank, 2023)"
+      },
+      "options": [
+        {
+          "label": "その分、勉強に打ちこむ",
+          "en": {
+            "label": "Study hard for it"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "成績表の写真を送ると、{whoName}から笑った顔の絵文字が十個返ってきた。",
+              "en": {
+                "text": "Sent a photo of the report card. {whoName} replied with ten laughing faces."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 2
+              },
+              "d": 4
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}が熱中症で倒れたと聞き、教科書が開けなくなった週があった。",
+              "en": {
+                "text": "There was a week {name} could not open a schoolbook after hearing {whoName} had collapsed from the heat."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard",
+              "d": 2
+            },
+            {
+              "weight": 2,
+              "text": "大学を出た年、帰ってきた{whoName}の借金の残りを、{name}の給料で返した。",
+              "en": {
+                "text": "The year {name} graduated, the rest of {whoName}'s debt was paid from {name}'s salary."
+              },
+              "effects": {
+                "money": -2,
+                "happy": 3
+              },
+              "after": 6,
+              "d": 6,
+              "kind": "family"
+            }
+          ]
+        },
+        {
+          "label": "自分も働きに出ると言う",
+          "en": {
+            "label": "Offer to go work abroad too"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "{whoName}に電話口で怒鳴られた。こんな所に来るなと。",
+              "en": {
+                "text": "{whoName} shouted down the line: do not come to a place like this."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "d": 2
+            },
+            {
+              "weight": 3,
+              "text": "仲介業者の事務所に行くと、年が若すぎると言われた。",
+              "en": {
+                "text": "The recruitment agent said {name} was too young."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "十八になると、{whoName}と同じ会社でドバイへ出た。",
+              "en": {
+                "text": "At eighteen, {name} went to Dubai with the same company as {whoName}."
+              },
+              "effects": {
+                "money": 2,
+                "learn": -2
+              },
+              "after": 2,
+              "kind": "move"
+            }
+          ]
+        },
+        {
+          "label": "仕送りは借金に回してと頼む",
+          "en": {
+            "label": "Ask them to pay off the debt first"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "{whoName}は一年で借金を返し終え、次の年から仕送りが届き始めた。",
+              "en": {
+                "text": "{whoName} cleared the debt in a year, and the money for school started the year after."
+              },
+              "effects": {
+                "learn": -1,
+                "happy": 1
+              },
+              "d": 3
+            },
+            {
+              "weight": 3,
+              "text": "その間、村の夜学で英語を習った。",
+              "en": {
+                "text": "In the meantime, {name} learned English at the village night class."
+              },
+              "effects": {
+                "learn": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "{whoName}は言われたとおりにせず、こっそり学費を送り続けた。",
+              "en": {
+                "text": "{whoName} did not listen and kept sending the fees in secret."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "d": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-quince-money",
+      "minAge": 13,
+      "maxAge": 14,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "MEX",
+          "GTM",
+          "SLV",
+          "HND",
+          "COL",
+          "PER",
+          "ECU"
+        ],
+        "sex": "F"
+      },
+      "amount": 0.3,
+      "title": "十五歳の祝い",
+      "text": "来年の十五歳の祝いのために、親が{money}ほど貯めていた。ドレスと会場と楽団の分だ。その使い道を、本人に選んでいいと言う。",
+      "en": {
+        "title": "The fifteenth birthday",
+        "text": "The parents have saved about {money} for next year's quinceañera: the dress, the hall, the band. They say {name} can decide how it is spent."
+      },
+      "options": [
+        {
+          "label": "盛大に祝う",
+          "en": {
+            "label": "Have the big party"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "親戚が三つの町から集まり、明け方まで踊った。写真は今も居間に飾ってある。",
+              "en": {
+                "text": "Relatives came from three towns and danced until dawn. The photo still hangs in the living room."
+              },
+              "effects": {
+                "happy": 5,
+                "bond": 3
+              },
+              "after": 1,
+              "kind": "family"
+            },
+            {
+              "weight": 3,
+              "text": "当日に大雨が降り、会場の半分が水につかった。それでも誰も帰らなかった。",
+              "en": {
+                "text": "It poured that day and half the hall flooded. Nobody went home."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              },
+              "after": 1
+            },
+            {
+              "weight": 2,
+              "text": "お祝いの後、父がその費用を借りていたと知った。",
+              "en": {
+                "text": "After the party, {name} found out Father had borrowed for it."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "after": 1,
+              "cost": -0.1
+            }
+          ]
+        },
+        {
+          "label": "小さく祝って、残りでパソコンを買う",
+          "en": {
+            "label": "A small party, and a computer with the rest"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "祖母は少し寂しそうだったが、パソコンで遠くのいとこと話せると喜んだ。",
+              "en": {
+                "text": "Grandmother seemed a little sad, but was happy to video-call distant cousins on the computer."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "独学で表計算を覚え、近所の店の帳簿を手伝うようになった。",
+              "en": {
+                "text": "Taught themself spreadsheets and started helping a local shop with its books."
+              },
+              "effects": {
+                "learn": 3,
+                "money": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "大学の願書は、そのパソコンで書いた。",
+              "en": {
+                "text": "Wrote the university application on that computer."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              },
+              "after": 3
+            }
+          ]
+        },
+        {
+          "label": "お金は貯めておいてもらう",
+          "en": {
+            "label": "Keep the money saved"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "そのお金は、三年後の学費の最初の分になった。",
+              "en": {
+                "text": "The money became the first semester's fees three years later."
+              },
+              "effects": {
+                "learn": 2
+              },
+              "after": 3
+            },
+            {
+              "weight": 3,
+              "text": "翌年、父が仕事を失い、そのお金で半年をしのいだ。",
+              "en": {
+                "text": "The next year Father lost his job, and the money got the family through six months."
+              },
+              "effects": {
+                "bond": 3
+              },
+              "after": 1,
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "友だちのお祝いに呼ばれるたびに、少しうらやましかった。",
+              "en": {
+                "text": "Every time a friend's party came around, {name} felt a little envious."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-lookout-job",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "BRA",
+          "COL",
+          "MEX",
+          "HND",
+          "SLV",
+          "GTM"
+        ],
+        "place": "urban"
+      },
+      "title": "見張りの仕事",
+      "text": "近所の若い男が、角に立って警察が来たら口笛を吹くだけで、一晩で母の一週間分の稼ぎをくれると言う。",
+      "stat": "ブラジルの殺人の被害者のうち、15〜29歳が半数をこえる (Atlas da Violência, 2021年)",
+      "en": {
+        "title": "A lookout job",
+        "text": "A young man from the block says {name} only has to stand on the corner and whistle if police come. One night pays what Mother earns in a week.",
+        "stat": "More than half of homicide victims in Brazil are aged 15 to 29 (Atlas da Violência, 2021)"
+      },
+      "options": [
+        {
+          "label": "断る",
+          "en": {
+            "label": "Say no"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "男は肩をすくめて、別の子に声をかけた。",
+              "en": {
+                "text": "The man shrugged and asked another kid."
+              },
+              "effects": {
+                "happy": 0
+              }
+            },
+            {
+              "weight": 3,
+              "text": "しばらく、通りを歩くたびにじろじろ見られた。",
+              "en": {
+                "text": "For a while, {name} got stared at every time they walked down the street."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "断ったことを知った近所の女性が、教会のサッカー教室に誘ってくれた。",
+              "en": {
+                "text": "A neighbor who heard about it invited {name} to the church football program."
+              },
+              "effects": {
+                "happy": 3,
+                "health": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "一晩だけやる",
+          "en": {
+            "label": "Just one night"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "お金を受け取ったが、母には言えず、靴の中に隠した。",
+              "en": {
+                "text": "Took the money, could not tell Mother, and hid it in a shoe."
+              },
+              "effects": {
+                "money": 1,
+                "happy": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "次の週も、その次の週も頼まれた。断り方が分からなくなった。",
+              "en": {
+                "text": "They asked again the next week, and the next. {name} no longer knew how to refuse."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "その夜、警察の手入れがあった。{name}は走って逃げ、三日家から出なかった。",
+              "en": {
+                "text": "There was a police raid that night. {name} ran and did not leave the house for three days."
+              },
+              "effects": {
+                "happy": -5,
+                "health": -1
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "母に話す",
+          "en": {
+            "label": "Tell Mother"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "母は次の月、{name}を叔母の住む別の地区へ移した。",
+              "en": {
+                "text": "The next month, Mother sent {name} to live with an aunt in another district."
+              },
+              "effects": {
+                "happy": -1,
+                "bond": 2
+              },
+              "kind": "move"
+            },
+            {
+              "weight": 4,
+              "text": "母は顔色を変えて、毎晩門の前で{name}の帰りを待つようになった。",
+              "en": {
+                "text": "Mother went pale and started waiting at the gate every night until {name} got home."
+              },
+              "effects": {
+                "bond": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "母がその男の母親と話をつけた。男は{name}に二度と声をかけなかった。",
+              "en": {
+                "text": "Mother had a word with the man's own mother. He never approached {name} again."
+              },
+              "effects": {
+                "happy": 2,
+                "bond": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-climate-strike",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": "high",
+        "state": "school"
+      },
+      "from": 2018,
+      "to": 2020,
+      "title": "金曜日の授業",
+      "text": "金曜の朝、友だちが授業を休んで気候のデモに行こうと言う。学校は欠席として記録すると言っている。",
+      "stat": "2019年9月の気候ストライキには、世界で約600万人が参加したとされる (主催者発表)",
+      "en": {
+        "title": "Friday classes",
+        "text": "On Friday morning, friends want to skip class and join the climate strike. The school says it will be marked as an absence.",
+        "stat": "Organizers estimated about 6 million people joined the global climate strikes in September 2019"
+      },
+      "options": [
+        {
+          "label": "デモに行く",
+          "en": {
+            "label": "Go to the strike"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "自分で作った段ボールの看板が、地元の新聞の写真に写った。",
+              "en": {
+                "text": "{name}'s cardboard sign ended up in a photo in the local paper."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 3,
+              "text": "欠席の連絡が親に届き、夕食がやけに静かだった。",
+              "en": {
+                "text": "The absence notice reached the parents, and dinner was very quiet."
+              },
+              "effects": {
+                "happy": -1,
+                "bond": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "デモで知り合った人の紹介で、大学では環境工学を選んだ。",
+              "en": {
+                "text": "Someone met at the strike led {name} to choose environmental engineering at university."
+              },
+              "effects": {
+                "learn": 3
+              },
+              "after": 2
+            }
+          ]
+        },
+        {
+          "label": "授業に出る",
+          "en": {
+            "label": "Go to class"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "教室は半分空いていて、先生は授業を自習にした。",
+              "en": {
+                "text": "Half the classroom was empty, and the teacher turned it into study hall."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "昼休みに、行った子たちの写真がずっと回ってきた。",
+              "en": {
+                "text": "All through lunch, photos from the strike kept coming in."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        },
+        {
+          "label": "学校の中で何かやると提案する",
+          "en": {
+            "label": "Propose something at school instead"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "食堂の肉の日を週一回減らす案が、生徒会で通った。",
+              "en": {
+                "text": "A plan to cut one meat day a week from the cafeteria passed the student council."
+              },
+              "effects": {
+                "happy": 3,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "校長は話を聞いたが、何も変わらなかった。",
+              "en": {
+                "text": "The principal listened, and nothing changed."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "屋上に太陽光パネルを置く計画が、{name}の卒業から四年後に動いた。",
+              "en": {
+                "text": "The rooftop solar plan finally happened four years after {name} graduated."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-headscarf",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "religion": [
+          "イスラム教"
+        ]
+      },
+      "title": "スカーフ",
+      "text": "同じ学年の何人かが、髪を覆うスカーフをつけ始めた。母は本人が決めればいいと言う。祖母は早くつけてほしそうだ。",
+      "en": {
+        "title": "The headscarf",
+        "text": "A few classmates have started wearing the headscarf. Mother says it is {name}'s decision. Grandmother clearly hopes it will be soon."
+      },
+      "options": [
+        {
+          "label": "つけ始める",
+          "en": {
+            "label": "Start wearing it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "最初の日、鏡の前で何度も巻き直して学校に遅れそうになった。",
+              "en": {
+                "text": "On the first day, rewrapped it so many times in the mirror that {name} was nearly late for school."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "祖母が自分の若い頃のスカーフを一枚くれた。少し樟脳の匂いがした。",
+              "en": {
+                "text": "Grandmother gave {name} one of her own scarves from when she was young. It smelled faintly of camphor."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "近くの町の工場では、スカーフを理由に採用を断られたと後で知った。",
+              "en": {
+                "text": "Later learned that a factory in the next town had turned applicants away over it."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "after": 3
+            }
+          ]
+        },
+        {
+          "label": "まだ決めない",
+          "en": {
+            "label": "Not yet"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "祖母は何も言わず、誕生日にきれいな布を一枚置いていった。",
+              "en": {
+                "text": "Grandmother said nothing and left a beautiful piece of cloth on {name}'s birthday."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "数年後、自分の考えで決めた。誰にも急かされなかったことを覚えている。",
+              "en": {
+                "text": "Decided a few years later on {name}'s own terms. Nobody had rushed it."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "after": 4
+            }
+          ]
+        },
+        {
+          "label": "モスクに行く日だけつける",
+          "en": {
+            "label": "Wear it only to the mosque"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "金曜日の朝だけ、鞄にきちんとたたんで入れておいた。",
+              "en": {
+                "text": "Only on Friday mornings, folded neatly in the bag."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "親戚の集まりで、どちらかに決めなさいと言われた。",
+              "en": {
+                "text": "At a family gathering, someone said {name} should pick one or the other."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "モスクで年上の女性たちとクルアーンの勉強会に通うようになった。",
+              "en": {
+                "text": "Started going to a Quran study circle with older women at the mosque."
+              },
+              "effects": {
+                "learn": 2,
+                "bond": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-madrasa-offer",
+      "minAge": 13,
+      "maxAge": 15,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PAK",
+          "AFG",
+          "BGD"
+        ],
+        "religion": [
+          "イスラム教"
+        ],
+        "state": "school"
+      },
+      "title": "マドラサの話",
+      "text": "おじが、クルアーンを暗唱する学校に入れば寮も食事もただだと言う。いまの公立校の授業は、先生が来ない日が多い。",
+      "en": {
+        "title": "The madrasa",
+        "text": "An uncle says a Quran memorization school would cover the dormitory and meals for free. At the government school, the teacher often does not show up."
+      },
+      "options": [
+        {
+          "label": "マドラサに移る",
+          "en": {
+            "label": "Move to the madrasa"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "三年で全部を暗唱した。村のモスクで初めて礼拝の前に立った日、父が泣いた。",
+              "en": {
+                "text": "Memorized the whole Quran in three years. The day {name} first led prayers at the village mosque, Father wept."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 4,
+                "bond": 3
+              },
+              "after": 3,
+              "big": true
+            },
+            {
+              "weight": 4,
+              "text": "朝は暗唱、昼も暗唱。算数の仕方を少しずつ忘れた。",
+              "en": {
+                "text": "Recitation in the morning, recitation at noon. Arithmetic slowly slipped away."
+              },
+              "effects": {
+                "learn": -1,
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "寮の先生が、こっそり英語の本を貸してくれた。",
+              "en": {
+                "text": "A teacher at the dormitory quietly lent {name} books in English."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "公立校に残る",
+          "en": {
+            "label": "Stay at the government school"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "先生が来ない日は、年上の子が黒板の前に立った。",
+              "en": {
+                "text": "On days the teacher did not come, an older student stood at the blackboard."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "試験に通って、町の高校に入った。おじはしばらく不機嫌だった。",
+              "en": {
+                "text": "Passed the exam into a high school in town. The uncle sulked for a while."
+              },
+              "effects": {
+                "learn": 3,
+                "bond": -1
+              },
+              "after": 2
+            },
+            {
+              "weight": 2,
+              "text": "学校が閉鎖になり、結局マドラサに入った。",
+              "en": {
+                "text": "The school closed, and {name} ended up at the madrasa anyway."
+              },
+              "effects": {
+                "learn": -1
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "両方通う",
+          "en": {
+            "label": "Do both"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "夜明け前にマドラサ、昼に学校。いつも眠かった。",
+              "en": {
+                "text": "Madrasa before dawn, school in the day. Always sleepy."
+              },
+              "effects": {
+                "learn": 2,
+                "health": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "アラビア語と英語の両方ができると、通訳の仕事を頼まれるようになった。",
+              "en": {
+                "text": "Knowing both Arabic and English, {name} started getting asked to translate."
+              },
+              "effects": {
+                "learn": 2,
+                "money": 2
+              },
+              "after": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-cricket-trial",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PAK",
+          "IND",
+          "LKA",
+          "BGD"
+        ],
+        "state": "school"
+      },
+      "from": 1975,
+      "title": "選考会と試験",
+      "text": "地区のクリケットの選考会に呼ばれた。日にちは、学期末試験と同じ日だ。",
+      "en": {
+        "title": "Trial day",
+        "text": "{name} has been called to the district cricket trials. They fall on the same day as the end-of-term exam."
+      },
+      "options": [
+        {
+          "label": "選考会に行く",
+          "en": {
+            "label": "Go to the trial"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 3,
+              "text": "地区の十六歳以下の代表に選ばれた。新聞の小さな欄に名前が載った。",
+              "en": {
+                "text": "Made the district under-16 side. The name appeared in a small box in the newspaper."
+              },
+              "effects": {
+                "happy": 5,
+                "health": 2
+              },
+              "big": true
+            },
+            {
+              "weight": 5,
+              "text": "二球目でアウトになった。帰りのバスで、試験のことを考えないようにした。",
+              "en": {
+                "text": "Out on the second ball. On the bus home, {name} tried not to think about the exam."
+              },
+              "effects": {
+                "happy": -3,
+                "learn": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "選ばれなかったが、審判をしていた人に、子どもの指導を手伝わないかと言われた。",
+              "en": {
+                "text": "Not picked, but the umpire asked if {name} would help coach the younger kids."
+              },
+              "effects": {
+                "happy": 2,
+                "money": 1
+              },
+              "after": 2
+            }
+          ]
+        },
+        {
+          "label": "試験を受ける",
+          "en": {
+            "label": "Sit the exam"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "試験はまずまずだった。夕方、選考会に行った友だちの結果を聞いた。",
+              "en": {
+                "text": "The exam went fine. In the evening, {name} heard how the friends at the trial did."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "次の年の選考会にも呼ばれた。今度は試験の前の週だった。",
+              "en": {
+                "text": "Got called again the following year. That time it was the week before exams."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "先生に試験の日を変えてもらう",
+          "en": {
+            "label": "Ask the teacher to move the exam"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "校長が、学校の名前が出るならと別の日に受けさせてくれた。",
+              "en": {
+                "text": "The principal allowed a different date, as long as the school's name got mentioned."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 4,
+              "text": "例外は認めないと言われた。",
+              "en": {
+                "text": "No exceptions, they said."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-football-agent",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "GHA",
+          "NGA",
+          "CIV",
+          "SEN",
+          "CMR"
+        ]
+      },
+      "from": 1995,
+      "amount": 0.5,
+      "title": "ヨーロッパの入団テスト",
+      "text": "試合を見ていた男が、ヨーロッパのクラブのテストを受けさせてやると言う。渡航の手配に{money}かかるらしい。",
+      "stat": "西アフリカから「プロ契約」を約束されて国を出る若い選手は年に約1万5千人と推計される (Foot Solidaire, 2010年代)",
+      "en": {
+        "title": "A trial in Europe",
+        "text": "A man who watched the match says he can get {name} a trial with a European club. The travel arrangements will cost {money}.",
+        "stat": "An estimated 15,000 young players leave West Africa each year on promises of professional contracts (Foot Solidaire, 2010s)"
+      },
+      "options": [
+        {
+          "label": "家族にお金を集めてもらう",
+          "en": {
+            "label": "Ask the family to raise the money"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "パリの空港に着くと、男は電話に出なくなった。",
+              "en": {
+                "text": "At the airport in Paris, the man stopped answering his phone."
+              },
+              "effects": {
+                "happy": -6,
+                "money": -2
+              },
+              "kind": "hard",
+              "big": true,
+              "cost": -0.5
+            },
+            {
+              "weight": 3,
+              "text": "テストは本物だった。二部のクラブの下部組織に一年いた。",
+              "en": {
+                "text": "The trial was real. {name} spent a year in a second-division club's youth team."
+              },
+              "effects": {
+                "happy": 4,
+                "learn": 1
+              },
+              "kind": "move",
+              "cost": -0.5
+            },
+            {
+              "weight": 1,
+              "text": "ベルギーのクラブと契約できた。最初の給料で、母に冷蔵庫を送った。",
+              "en": {
+                "text": "Signed with a club in Belgium. The first paycheck bought Mother a refrigerator."
+              },
+              "effects": {
+                "happy": 6,
+                "money": 4
+              },
+              "after": 2,
+              "kind": "work",
+              "big": true,
+              "cost": -0.5
+            }
+          ]
+        },
+        {
+          "label": "地元のコーチに確かめてもらう",
+          "en": {
+            "label": "Have the local coach check him out"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "コーチが連絡すると、そのクラブは男のことを知らないと答えた。",
+              "en": {
+                "text": "When the coach called, the club said it had never heard of the man."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "コーチの紹介で、国内のアカデミーの入団テストを受けられた。",
+              "en": {
+                "text": "The coach arranged a trial at a domestic academy instead."
+              },
+              "effects": {
+                "happy": 3,
+                "health": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "確かめているうちに、男は別の子を連れて行ってしまった。",
+              "en": {
+                "text": "By the time they checked, the man had left with another kid."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "断ってボールを蹴り続ける",
+          "en": {
+            "label": "Turn him down and keep playing"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "町の大会で得点王になった。賞品は鶏一羽だった。",
+              "en": {
+                "text": "Top scorer in the town tournament. The prize was a chicken."
+              },
+              "effects": {
+                "happy": 3
+              }
+            },
+            {
+              "weight": 4,
+              "text": "数年後、地元のクラブの体育の先生になった。",
+              "en": {
+                "text": "Years later, became a PE teacher attached to the local club."
+              },
+              "effects": {
+                "happy": 2,
+                "money": 2
+              },
+              "after": 6,
+              "kind": "work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-kpop-trainee",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "KOR"
+        ]
+      },
+      "from": 2000,
+      "title": "練習生の誘い",
+      "text": "ダンス大会の動画を見た事務所から、練習生にならないかと連絡が来た。学校の後、毎晩遅くまでの練習になる。",
+      "en": {
+        "title": "A trainee offer",
+        "text": "An entertainment agency saw a dance competition video and offered {name} a trainee spot. Practice every night after school, until late."
+      },
+      "options": [
+        {
+          "label": "練習生になる",
+          "en": {
+            "label": "Become a trainee"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "三年練習して、デビューの組からは外れた。体の使い方は今も体が覚えている。",
+              "en": {
+                "text": "Trained for three years and was cut from the debut lineup. The body still remembers every move."
+              },
+              "effects": {
+                "health": 2,
+                "happy": -3
+              },
+              "after": 3
+            },
+            {
+              "weight": 3,
+              "text": "月に一度の評価の前は、水しか飲まない日があった。",
+              "en": {
+                "text": "Before each monthly evaluation there were days of nothing but water."
+              },
+              "effects": {
+                "health": -4,
+                "happy": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "デビューした。最初の音楽番組の収録は、朝の四時だった。",
+              "en": {
+                "text": "Debuted. The first music show taping was at four in the morning."
+              },
+              "effects": {
+                "happy": 6,
+                "money": 2
+              },
+              "after": 4,
+              "kind": "work",
+              "big": true
+            },
+            {
+              "weight": 1,
+              "text": "同じ練習生だった子と、後に振付の会社を立ち上げた。",
+              "en": {
+                "text": "Later started a choreography company with a fellow trainee."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 3
+              },
+              "after": 8,
+              "kind": "work"
+            }
+          ]
+        },
+        {
+          "label": "学校を優先する",
+          "en": {
+            "label": "Put school first"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "修能の勉強の合間に、ときどき事務所のグループの動画を見た。",
+              "en": {
+                "text": "Between exam prep, {name} sometimes watched videos of the agency's groups."
+              },
+              "effects": {
+                "learn": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "大学のダンスサークルで、誰よりも振付が早かった。",
+              "en": {
+                "text": "In the university dance club, nobody learned choreography faster."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 3
+            }
+          ]
+        },
+        {
+          "label": "自分で動画を出し続ける",
+          "en": {
+            "label": "Keep posting videos independently"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "再生数は伸びたり止まったりした。",
+              "en": {
+                "text": "The view counts rose and stalled."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "海外のファンから、知らない言語の応援が届くようになった。",
+              "en": {
+                "text": "Encouragement started arriving from fans abroad, in languages {name} could not read."
+              },
+              "effects": {
+                "happy": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "振付の動画が、別の国の歌手に使われた。名前は出なかった。",
+              "en": {
+                "text": "One routine was copied by a singer in another country. {name} got no credit."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-extra-class",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "VNM"
+        ],
+        "state": "school"
+      },
+      "from": 1990,
+      "amount": 0.05,
+      "title": "担任の補習",
+      "text": "担任が、放課後に自宅で補習をしている。月に{money}。通っている子は、試験の問題に見覚えがあるらしい。",
+      "en": {
+        "title": "The teacher's extra class",
+        "text": "The homeroom teacher runs paid lessons at home after school, {money} a month. The kids who go seem to recognize the exam questions."
+      },
+      "options": [
+        {
+          "label": "通う",
+          "en": {
+            "label": "Join"
+          },
+          "auto": 5,
+          "cost": -0.05,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "点数が上がった。ただ、問題を前に見たことがあるような気がした。",
+              "en": {
+                "text": "The score went up, though {name} felt they had seen the questions before."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "補習の席で、隣の学区の子と友だちになった。",
+              "en": {
+                "text": "Made a friend from another district at the extra class."
+              },
+              "effects": {
+                "happy": 2,
+                "bond": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "補習が規則で禁止になり、先生は教室で別人のように丁寧になった。",
+              "en": {
+                "text": "A new rule banned the paid classes, and the teacher became noticeably more thorough in regular lessons."
+              },
+              "effects": {
+                "learn": 1
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "通わない",
+          "en": {
+            "label": "Don't join"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "授業中、当てられる回数が減った気がした。",
+              "en": {
+                "text": "It felt like the teacher called on {name} less often."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "自分で過去問を集めて解いた。結果は通っている子と変わらなかった。",
+              "en": {
+                "text": "Collected old exams and worked through them alone. The result matched the kids who went."
+              },
+              "effects": {
+                "learn": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "親が学校に話しに行き、少し気まずい一年になった。",
+              "en": {
+                "text": "A parent went to complain at the school. It made for an awkward year."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        },
+        {
+          "label": "友だちに内容を教えてもらう",
+          "en": {
+            "label": "Get the notes from a friend who goes"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "友だちは毎週ノートを貸してくれた。お返しに英語を教えた。",
+              "en": {
+                "text": "The friend lent the notes every week. {name} paid them back with English help."
+              },
+              "effects": {
+                "learn": 2,
+                "bond": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "先生に気づかれ、友だちが注意された。",
+              "en": {
+                "text": "The teacher noticed, and the friend got told off."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-nursing-course",
+      "minAge": 16,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PHL"
+        ],
+        "state": "school"
+      },
+      "from": 1990,
+      "title": "何を学ぶか",
+      "text": "大学で何を学ぶか決める時期だ。親は看護学科を勧める。資格があれば外国の病院で働けるからだ。{name}は絵を描くのが好きだ。",
+      "stat": "フィリピンからは、看護師を中心に年に1万3千人ほどの医療職が海外へ出ていく (POEA)",
+      "en": {
+        "title": "What to study",
+        "text": "Time to choose a college course. The parents want nursing, because the license can get you hired in hospitals abroad. {name} loves to draw.",
+        "stat": "About 13,000 health workers, mostly nurses, leave the Philippines each year to work overseas (POEA)"
+      },
+      "options": [
+        {
+          "label": "看護学科に進む",
+          "en": {
+            "label": "Take nursing"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "資格を取って三年後、ロンドンの病院で働き始めた。最初の冬は、指先がいつも冷たかった。",
+              "en": {
+                "text": "Three years after the license, {name} started at a hospital in London. That first winter, the fingertips were always cold."
+              },
+              "effects": {
+                "money": 4,
+                "happy": 1
+              },
+              "after": 6,
+              "kind": "move",
+              "big": true
+            },
+            {
+              "weight": 4,
+              "text": "国家試験に二度落ちた。三度目で通った。",
+              "en": {
+                "text": "Failed the licensing exam twice and passed on the third try."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": -1
+              },
+              "after": 4
+            },
+            {
+              "weight": 2,
+              "text": "病棟の掲示物の絵を描いたら、院長室に飾られた。",
+              "en": {
+                "text": "Drew a poster for the ward. It ended up framed in the director's office."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 5
+            }
+          ]
+        },
+        {
+          "label": "美術を学ぶ",
+          "en": {
+            "label": "Study fine arts"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "親戚に、それで食べていけるのかと何度も聞かれた。",
+              "en": {
+                "text": "Relatives kept asking whether that would put food on the table."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "マニラのアニメ下請けの会社に入った。海外の作品の背景を描いている。",
+              "en": {
+                "text": "Joined a Manila studio doing outsourced animation. {name} draws backgrounds for foreign shows."
+              },
+              "effects": {
+                "money": 2,
+                "happy": 3
+              },
+              "after": 4,
+              "kind": "work"
+            },
+            {
+              "weight": 2,
+              "text": "看護師になった同級生たちが国を出ていくのを、空港で三回見送った。",
+              "en": {
+                "text": "Saw off three nursing classmates at the airport, one by one."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "after": 6
+            }
+          ]
+        },
+        {
+          "label": "職業訓練校で資格を取る",
+          "en": {
+            "label": "Go to a vocational school"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "溶接の資格を取り、一年後には現場で働いていた。",
+              "en": {
+                "text": "Got a welding certificate and was on a job site within a year."
+              },
+              "effects": {
+                "money": 3
+              },
+              "after": 1,
+              "kind": "work"
+            },
+            {
+              "weight": 4,
+              "text": "料理の資格で、クルーズ船の仕事に応募した。",
+              "en": {
+                "text": "With a cooking certificate, applied for work on a cruise ship."
+              },
+              "effects": {
+                "money": 2,
+                "happy": 2
+              },
+              "after": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-private-tutor",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "EGY",
+          "TUN",
+          "JOR"
+        ],
+        "state": "school"
+      },
+      "amount": 0.12,
+      "title": "家庭教師",
+      "text": "高校の卒業試験の点数で、入れる学部が決まる。クラスのほとんどが家庭教師についている。親は{money}かけるかどうか迷っている。",
+      "en": {
+        "title": "A private tutor",
+        "text": "The final secondary exam score decides which university faculty {name} can enter. Nearly everyone in class has a private tutor. The parents are weighing whether to spend {money}."
+      },
+      "options": [
+        {
+          "label": "家庭教師をつける",
+          "en": {
+            "label": "Hire the tutor"
+          },
+          "auto": 5,
+          "cost": -0.12,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "点数は医学部に二点届かなかった。薬学部に入った。",
+              "en": {
+                "text": "Two points short of medicine. Got into pharmacy."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 1
+              },
+              "kind": "school"
+            },
+            {
+              "weight": 3,
+              "text": "母は一年間、自分の新しい服を買わなかった。",
+              "en": {
+                "text": "Mother did not buy herself new clothes for a year."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "先生が、問題の解き方より答えの覚え方を教えると気づいた。",
+              "en": {
+                "text": "Realized the tutor taught how to memorize answers, not how to solve problems."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": -1
+              }
+            }
+          ]
+        },
+        {
+          "label": "友だちと集まって勉強する",
+          "en": {
+            "label": "Study in a group with friends"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "誰かの家の屋上で、毎晩お茶を飲みながら解き合った。",
+              "en": {
+                "text": "Every night on someone's roof, working problems over tea."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 3,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "集まると、話の方が長くなった。",
+              "en": {
+                "text": "When they met, the chatting went on longer than the studying."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "その仲間の一人と、何年もたって一緒に事務所を開いた。",
+              "en": {
+                "text": "Years later, {name} opened an office with one of that study group."
+              },
+              "effects": {
+                "money": 3
+              },
+              "after": 10,
+              "kind": "work"
+            }
+          ]
+        },
+        {
+          "label": "モスクや教会の無料の講座に行く",
+          "en": {
+            "label": "Go to the free classes at the mosque or church"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "教えていたのは退職した数学の先生で、誰よりも分かりやすかった。",
+              "en": {
+                "text": "The teacher was a retired math teacher, clearer than anyone."
+              },
+              "effects": {
+                "learn": 3
+              }
+            },
+            {
+              "weight": 5,
+              "text": "教室は満員で、後ろの席からは黒板が見えなかった。",
+              "en": {
+                "text": "The room was packed, and the blackboard was invisible from the back."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-basement-school",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "SYR"
+        ],
+        "state": "school"
+      },
+      "from": 2012,
+      "to": 2019,
+      "title": "地下の教室",
+      "text": "町の学校が砲撃で壊れた。近所の人たちが、地下室に教室を作ったという。行くには、検問を一つ越えなければならない。",
+      "stat": "シリアでは、学校の3校に1校が壊されたり別の用途に使われたりして、使えない状態だった (UNICEF, 2021)",
+      "en": {
+        "title": "The basement classroom",
+        "text": "Shelling destroyed the town school. Neighbors have set up a classroom in a basement. Getting there means passing one checkpoint.",
+        "stat": "One in three schools in Syria could not be used because they were destroyed, damaged or used for other purposes (UNICEF, 2021)"
+      },
+      "options": [
+        {
+          "label": "通う",
+          "en": {
+            "label": "Go"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "電気がない日は、懐中電灯で黒板を照らした。",
+              "en": {
+                "text": "On days without electricity, they lit the blackboard with flashlights."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "試験の日、教えていた大学生がいなかった。何があったのか誰も言わなかった。",
+              "en": {
+                "text": "On exam day, the university student who taught them was gone. Nobody said what happened."
+              },
+              "effects": {
+                "happy": -5
+              },
+              "kind": "loss"
+            },
+            {
+              "weight": 2,
+              "text": "数年後、避難先の国で、地下の教室の修了証が学年の証明として認められた。",
+              "en": {
+                "text": "Years later, in another country, the basement class certificate was accepted as proof of grade level."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 3
+              },
+              "after": 3
+            }
+          ]
+        },
+        {
+          "label": "家で近所の小さい子たちに教える",
+          "en": {
+            "label": "Teach the little kids next door at home"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "家にあった古い教科書を、何度も最初から読ませた。",
+              "en": {
+                "text": "Made the little ones read old textbooks from the start, over and over."
+              },
+              "effects": {
+                "learn": 1,
+                "bond": 3
+              }
+            },
+            {
+              "weight": 5,
+              "text": "教えているうちに、自分も忘れていたことを思い出した。",
+              "en": {
+                "text": "Teaching them, {name} remembered things they had forgotten."
+              },
+              "effects": {
+                "learn": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "家計のために働く",
+          "en": {
+            "label": "Work for the family instead"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "パン屋で朝四時から働いた。焼きたての匂いを家に持ち帰った。",
+              "en": {
+                "text": "Worked at a bakery from four in the morning and carried the smell of fresh bread home."
+              },
+              "effects": {
+                "money": 2,
+                "learn": -2
+              },
+              "kind": "work"
+            },
+            {
+              "weight": 5,
+              "text": "一年のつもりが、学校に戻る年を越えた。",
+              "en": {
+                "text": "Meant to be a year. It went past the age to go back."
+              },
+              "effects": {
+                "learn": -3,
+                "happy": -2
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-data-bundle",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ"
+        ],
+        "income": "low",
+        "state": "school"
+      },
+      "tech": [
+        "smartphone"
+      ],
+      "title": "昼ごはんか通信量か",
+      "text": "一週間の昼ごはん代で、携帯電話の通信量が一ギガ買える。友だちのグループで、今夜から試験の過去問が回るらしい。",
+      "stat": "アフリカでは、1GBの通信量が平均で月収の約6%にあたる (A4AI, 2021年)",
+      "en": {
+        "title": "Lunch or data",
+        "text": "A week of lunch money buys one gigabyte of mobile data. Tonight, the friends' group chat will start sharing past exam papers.",
+        "stat": "In Africa, 1GB of mobile data costs on average about 6% of monthly income (A4AI, 2021)"
+      },
+      "options": [
+        {
+          "label": "通信量を買う",
+          "en": {
+            "label": "Buy the data"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "過去問は役に立った。昼は水で我慢した。",
+              "en": {
+                "text": "The past papers helped. Lunch was water."
+              },
+              "effects": {
+                "learn": 2,
+                "health": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "気づいたら動画で半分使っていた。",
+              "en": {
+                "text": "Half of it went on videos before {name} noticed."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "過去問を紙に写して、通信量のない子に売った。昼ごはん代が戻ってきた。",
+              "en": {
+                "text": "Copied the papers by hand and sold them to kids without data. The lunch money came back."
+              },
+              "effects": {
+                "money": 1,
+                "learn": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "昼ごはんを食べる",
+          "en": {
+            "label": "Eat lunch"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "翌日、友だちの画面を肩越しに見せてもらった。",
+              "en": {
+                "text": "The next day, read the papers over a friend's shoulder."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 5,
+              "text": "学校の無料のWi-Fiの前に、放課後みんなで座った。",
+              "en": {
+                "text": "After school, everyone sat by the school's free Wi-Fi."
+              },
+              "effects": {
+                "learn": 1,
+                "bond": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-concussion",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "USA",
+          "CAN"
+        ],
+        "state": "school"
+      },
+      "title": "頭を打った",
+      "text": "アメフトの練習で頭を強く打った。少しふらつくが、コーチは週末の試合に出てほしいと言う。スカウトが来るらしい。",
+      "stat": "アメリカの高校生の約15%が、1年のうちにスポーツで脳震盪を経験している (CDC, 2017年)",
+      "en": {
+        "title": "A hit to the head",
+        "text": "Took a hard hit to the head at football practice. Still a bit dizzy, but the coach wants {name} in the weekend game. A scout might be there.",
+        "stat": "About 15% of US high school students reported a sports-related concussion in the past year (CDC, 2017)"
+      },
+      "options": [
+        {
+          "label": "試合に出る",
+          "en": {
+            "label": "Play the game"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "試合は何事もなく終わった。家に帰ってから、ひどい頭痛が二日続いた。",
+              "en": {
+                "text": "The game went fine. At home, a bad headache lasted two days."
+              },
+              "effects": {
+                "health": -2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "第三クォーターで記憶が飛んだ。気づいたら救急車の中だった。",
+              "en": {
+                "text": "Memory went blank in the third quarter. Woke up in an ambulance."
+              },
+              "effects": {
+                "health": -6,
+                "happy": -3
+              },
+              "kind": "ill",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "スカウトの名刺をもらった。",
+              "en": {
+                "text": "Got the scout's card."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 1,
+              "text": "三十代になって、ときどき言葉が出てこない日があった。あの秋のことを考えた。",
+              "en": {
+                "text": "In their thirties, {name} had days when words would not come, and thought about that autumn."
+              },
+              "effects": {
+                "health": -3,
+                "happy": -2
+              },
+              "after": 18,
+              "kind": "ill"
+            }
+          ]
+        },
+        {
+          "label": "検査を受けて休む",
+          "en": {
+            "label": "Get checked and sit out"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "医者は二週間の休みを言い渡した。ベンチで声を出し続けた。",
+              "en": {
+                "text": "The doctor ordered two weeks off. {name} cheered from the bench."
+              },
+              "effects": {
+                "health": 1,
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "その試合で代わりに出た子が、スカウトの目にとまった。",
+              "en": {
+                "text": "The backup who played instead caught the scout's eye."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "休んでいる間に、試合のデータを数えるのを手伝った。それが大学の専攻になった。",
+              "en": {
+                "text": "While sitting out, helped track game stats. It became the college major."
+              },
+              "effects": {
+                "learn": 3
+              },
+              "after": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-ai-essay",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "tech": [
+        "internet"
+      ],
+      "from": 2023,
+      "title": "作文の宿題",
+      "text": "明日までの作文がまだ一行も書けていない。友だちは、AIに書かせて少し直せばばれないと言う。",
+      "en": {
+        "title": "The essay",
+        "text": "The essay due tomorrow does not have a single line yet. A friend says to have an AI write it and tweak a few words; nobody will know."
+      },
+      "options": [
+        {
+          "label": "AIに書かせる",
+          "en": {
+            "label": "Have the AI write it"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "点数は普通だった。先生の赤字は、{name}の書いていない文に付いていた。",
+              "en": {
+                "text": "An average grade. The teacher's comments were on sentences {name} had not written."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "先生に呼ばれ、内容を口で説明するように言われた。答えられなかった。",
+              "en": {
+                "text": "The teacher asked {name} to explain the essay out loud. {name} could not."
+              },
+              "effects": {
+                "happy": -4,
+                "learn": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "書かれた文を読んでいるうちに、反論を書きたくなった。結局、全部書き直した。",
+              "en": {
+                "text": "Reading the generated text made {name} want to argue with it. Ended up rewriting everything."
+              },
+              "effects": {
+                "learn": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "徹夜で自分で書く",
+          "en": {
+            "label": "Stay up and write it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "眠い目で出した作文に、短く「あなたの声がある」と書かれて戻ってきた。",
+              "en": {
+                "text": "The bleary-eyed essay came back with a short note: there is a real voice here."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "自分で書いたのに、AIの検出ツールで疑われた。下書きの履歴を見せて晴れた。",
+              "en": {
+                "text": "Wrote it all, yet an AI detector flagged it. The draft history cleared {name}."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "翌日の授業中に眠ってしまった。",
+              "en": {
+                "text": "Fell asleep in class the next day."
+              },
+              "effects": {
+                "health": -1
+              }
+            }
+          ]
+        },
+        {
+          "label": "締め切りを延ばしてもらう",
+          "en": {
+            "label": "Ask for an extension"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "先生は一日だけ延ばしてくれた。",
+              "en": {
+                "text": "The teacher gave one extra day."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 5,
+              "text": "理由を聞かれて、正直に言った。減点はされたが、それ以上は言われなかった。",
+              "en": {
+                "text": "Asked why, {name} told the truth. Points were taken off, nothing more."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-online-stranger",
+      "minAge": 13,
+      "maxAge": 15,
+      "weight": 1,
+      "tech": [
+        "internet"
+      ],
+      "from": 2005,
+      "title": "ゲームの友だち",
+      "text": "オンラインゲームで一年遊んでいる相手が、同じ町に住んでいると分かった。週末に会わないかと言う。",
+      "en": {
+        "title": "The gaming friend",
+        "text": "Someone {name} has played an online game with for a year turns out to live in the same city. They want to meet this weekend."
+      },
+      "options": [
+        {
+          "label": "一人で会いに行く",
+          "en": {
+            "label": "Go meet them alone"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "来たのは本当に同い年の子で、ゲームより下手なくらい無口だった。",
+              "en": {
+                "text": "It really was someone the same age, even quieter than in the game."
+              },
+              "effects": {
+                "happy": 4
+              }
+            },
+            {
+              "weight": 3,
+              "text": "待ち合わせの店に来たのは、話と年の違う大人だった。{name}はトイレの窓から外に出た。",
+              "en": {
+                "text": "An adult showed up, much older than claimed. {name} left through the restroom window."
+              },
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "相手は来なかった。翌日、アカウントは消えていた。",
+              "en": {
+                "text": "They never came. The next day the account was gone."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "友だちと一緒に、人の多い所で会う",
+          "en": {
+            "label": "Meet in a busy place, with a friend"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "三人でゲームセンターに行った。夕方には、もう昔からの友だちのようだった。",
+              "en": {
+                "text": "The three of them went to an arcade. By evening, it felt like they had been friends forever."
+              },
+              "effects": {
+                "happy": 4,
+                "bond": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "相手は写真と少し違ったが、話はゲームの中と同じだった。",
+              "en": {
+                "text": "They looked a bit different from the picture, but talked just like in the game."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 1,
+              "text": "その相手とは、十年後も同じゲームで毎週遊んでいる。",
+              "en": {
+                "text": "Ten years on, they still play the same game together every week."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              },
+              "after": 10
+            }
+          ]
+        },
+        {
+          "label": "会わずにゲームだけ続ける",
+          "en": {
+            "label": "Just keep playing online"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "何も変わらず、毎晩一緒に遊んだ。",
+              "en": {
+                "text": "Nothing changed. They kept playing every night."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "相手は少し寂しそうだったが、それきりその話はしなかった。",
+              "en": {
+                "text": "They seemed a little hurt, but never brought it up again."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-crypto-savings",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "tech": [
+        "smartphone"
+      ],
+      "from": 2017,
+      "to": 2022,
+      "title": "仮想通貨",
+      "text": "友だちが、アルバイト代を仮想通貨に入れたら三倍になったと画面を見せてくる。{name}の貯金は、自転車を買うためのものだ。",
+      "en": {
+        "title": "Crypto",
+        "text": "A friend shows a screen: the part-time pay they put into crypto has tripled. {name}'s savings are meant for a bicycle."
+      },
+      "options": [
+        {
+          "label": "貯金を全部入れる",
+          "en": {
+            "label": "Put it all in"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "二か月で半分になった。自転車は一年遅れた。",
+              "en": {
+                "text": "Halved in two months. The bike came a year late."
+              },
+              "effects": {
+                "money": -1,
+                "happy": -3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "一度は四倍になったが、売る前に元に戻った。",
+              "en": {
+                "text": "At one point it was four times as much. It fell back before {name} sold."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "忘れていたその口座を、五年後に開いた。自転車が十台買えた。",
+              "en": {
+                "text": "Opened the forgotten account five years later. It could have bought ten bikes."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 4
+              },
+              "after": 5
+            },
+            {
+              "weight": 1,
+              "text": "取引所ごと消えた。",
+              "en": {
+                "text": "The whole exchange vanished."
+              },
+              "effects": {
+                "money": -1,
+                "happy": -4
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "少しだけ試す",
+          "en": {
+            "label": "Try a little"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "増えたり減ったりを毎日見て、勉強に手がつかなかった。結局、同じ額で売った。",
+              "en": {
+                "text": "Watching it go up and down every day, {name} could not study. Sold for the same amount in the end."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "値動きの仕組みを調べているうちに、経済の授業が面白くなった。",
+              "en": {
+                "text": "Looking into how prices moved, economics class suddenly got interesting."
+              },
+              "effects": {
+                "learn": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "自転車を買う",
+          "en": {
+            "label": "Buy the bike"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "夏じゅう、その自転車で海まで走った。",
+              "en": {
+                "text": "Rode that bike to the sea all summer."
+              },
+              "effects": {
+                "happy": 3,
+                "health": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "友だちはその後、増えた分を全部失った。{name}は何も言わなかった。",
+              "en": {
+                "text": "The friend later lost all the gains. {name} said nothing."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "after": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-sibling-blame",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "who": "sibling",
+      "title": "身代わり",
+      "text": "{who}が親の大事な時計を壊した。親は{name}がやったと思いこんで怒っている。{whoName}は黙っている。",
+      "en": {
+        "title": "Taking the blame",
+        "text": "{who} broke a parent's good watch. The parent thinks {name} did it and is furious. {whoName} is saying nothing."
+      },
+      "options": [
+        {
+          "label": "黙って叱られる",
+          "en": {
+            "label": "Take the scolding"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "二週間外出を禁じられた。その夜、{whoName}がこっそりお菓子を持ってきた。",
+              "en": {
+                "text": "Grounded for two weeks. That night {whoName} brought snacks in secret."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "d": 6
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}は一言も礼を言わなかった。",
+              "en": {
+                "text": "{whoName} never said thank you."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "d": -3
+            },
+            {
+              "weight": 2,
+              "text": "何年もたった家族の食事で、{whoName}が笑いながら本当のことを話した。",
+              "en": {
+                "text": "Years later at a family dinner, {whoName} laughed and told the truth."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              },
+              "after": 12,
+              "d": 5
+            }
+          ]
+        },
+        {
+          "label": "本当のことを言う",
+          "en": {
+            "label": "Tell the truth"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "親は{whoName}を叱り、{name}にも謝った。{whoName}はしばらく口をきかなかった。",
+              "en": {
+                "text": "The parent scolded {whoName} and apologized to {name}. {whoName} would not speak to {name} for a while."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "d": -4
+            },
+            {
+              "weight": 3,
+              "text": "親は信じなかった。二人とも叱られた。",
+              "en": {
+                "text": "The parent did not believe it. Both got scolded."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "d": -1
+            },
+            {
+              "weight": 2,
+              "text": "{whoName}が泣き出して、自分から白状した。",
+              "en": {
+                "text": "{whoName} burst into tears and confessed."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "d": 3
+            }
+          ]
+        },
+        {
+          "label": "{whoName}に自分で言うよう迫る",
+          "en": {
+            "label": "Push {whoName} to confess"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "{whoName}は渋々言いに行った。思ったより叱られなかった。",
+              "en": {
+                "text": "{whoName} went and confessed reluctantly. The scolding was milder than expected."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "d": 2
+            },
+            {
+              "weight": 4,
+              "text": "言い合いになり、二人とも叱られた。",
+              "en": {
+                "text": "It turned into a fight, and both got scolded."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "d": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-quechua-grandma",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PER",
+          "BOL",
+          "ECU"
+        ]
+      },
+      "title": "祖母のことば",
+      "text": "祖母はケチュア語で話しかけてくる。学校ではスペイン語と英語の方が大事だと言われる。祖母が、少しずつ教えようかと言う。",
+      "stat": "ケチュア語を話す人は、アンデスの国々に合わせて800万〜1000万人ほどいるとされる。ペルーの国勢調査で母語とした人は約380万人 (2017年)",
+      "en": {
+        "title": "Grandmother's language",
+        "text": "Grandmother speaks to {name} in Quechua. At school, Spanish and English are what counts. Grandmother offers to teach a little at a time.",
+        "stat": "Quechua is thought to have 8 to 10 million speakers across the Andean countries; about 3.8 million Peruvians gave it as their mother tongue (2017 census)"
+      },
+      "options": [
+        {
+          "label": "教えてもらう",
+          "en": {
+            "label": "Learn from her"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "夕方、祖母の機織りの横で、毎日五つずつ言葉を覚えた。",
+              "en": {
+                "text": "Every evening beside her loom, {name} learned five words."
+              },
+              "effects": {
+                "learn": 1,
+                "bond": 4
+              }
+            },
+            {
+              "weight": 3,
+              "text": "病院で、ケチュア語しか話さない患者の通訳を頼まれるようになった。",
+              "en": {
+                "text": "Started being asked to interpret for patients at the clinic who spoke only Quechua."
+              },
+              "effects": {
+                "learn": 2,
+                "money": 2
+              },
+              "after": 6,
+              "kind": "work"
+            },
+            {
+              "weight": 2,
+              "text": "祖母が亡くなった後、録音していた昔話を、町のラジオが流した。",
+              "en": {
+                "text": "After Grandmother died, the town radio played the folktales {name} had recorded."
+              },
+              "effects": {
+                "happy": 2,
+                "bond": 2
+              },
+              "after": 9,
+              "kind": "loss"
+            }
+          ]
+        },
+        {
+          "label": "英語の勉強を優先する",
+          "en": {
+            "label": "Focus on English"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "英語の試験で学年一番になった。祖母はその紙をずっと壁に貼っていた。",
+              "en": {
+                "text": "Top of the year in English. Grandmother kept the certificate on her wall."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "祖母の話がだんだん分からなくなった。祖母は話しかけるのを少なくした。",
+              "en": {
+                "text": "Grandmother's words got harder to follow. She started speaking to {name} less."
+              },
+              "effects": {
+                "happy": -2,
+                "bond": -2
+              }
+            }
+          ]
+        },
+        {
+          "label": "両方やる",
+          "en": {
+            "label": "Do both"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "英語の先生に、ケチュア語の単語を教えた。先生はそれを授業で使った。",
+              "en": {
+                "text": "Taught some Quechua words to the English teacher, who used them in class."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 5,
+              "text": "どちらも中途半端になった。",
+              "en": {
+                "text": "Ended up half-learned in both."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-exchange-year",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": "high",
+        "state": "school"
+      },
+      "from": 1970,
+      "title": "留学の一年",
+      "text": "学校の交換留学で、一年間外国の家庭に住めると知った。友だちとは一年ずれて卒業することになる。",
+      "en": {
+        "title": "A year abroad",
+        "text": "The school offers an exchange year living with a family abroad. It means graduating a year behind friends."
+      },
+      "options": [
+        {
+          "label": "行く",
+          "en": {
+            "label": "Go"
+          },
+          "auto": 4,
+          "cost": -0.1,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "ホストファミリーの末っ子が、{name}を本当の兄弟のように扱った。",
+              "en": {
+                "text": "The host family's youngest treated {name} like a real sibling."
+              },
+              "effects": {
+                "happy": 4,
+                "learn": 3
+              },
+              "kind": "move"
+            },
+            {
+              "weight": 3,
+              "text": "最初の三か月、誰とも話せず、昼ごはんを図書室で食べた。",
+              "en": {
+                "text": "For the first three months {name} could not talk to anyone and ate lunch in the library."
+              },
+              "effects": {
+                "happy": -3,
+                "learn": 2
+              },
+              "kind": "move"
+            },
+            {
+              "weight": 2,
+              "text": "二十年後、ホストファミリーの娘の結婚式に呼ばれた。",
+              "en": {
+                "text": "Twenty years later, {name} was invited to the host family daughter's wedding."
+              },
+              "effects": {
+                "happy": 4,
+                "bond": 2
+              },
+              "after": 20
+            },
+            {
+              "weight": 1,
+              "text": "帰ってから、自分の町の何もかもが少し小さく見えた。",
+              "en": {
+                "text": "Back home, everything in the town looked a little smaller."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "行かない",
+          "en": {
+            "label": "Stay"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "最後の学年を友だちと過ごした。卒業旅行は雨だった。",
+              "en": {
+                "text": "Spent the final year with friends. It rained on the graduation trip."
+              },
+              "effects": {
+                "happy": 2,
+                "bond": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "うちに留学生が来ることになり、一年間部屋を貸した。",
+              "en": {
+                "text": "The family hosted an exchange student instead, and {name} gave up their room for a year."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-cotton-harvest",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "UZB",
+          "TKM"
+        ],
+        "state": "school"
+      },
+      "from": 1960,
+      "to": 2014,
+      "title": "綿摘み",
+      "text": "秋になり、学校ごと綿畑に送られることになった。一日のノルマがある。医者の証明があれば行かなくてよいと聞いた。",
+      "stat": "ウズベキスタンの綿花収穫では、学生や子どもの動員が長く続き、国際労働機関は2021年に組織的な強制労働はなくなったと報告した (ILO, 2022年)",
+      "en": {
+        "title": "The cotton harvest",
+        "text": "Autumn has come, and the whole school is being sent to the cotton fields, with a daily quota. A doctor's note would get {name} out of it.",
+        "stat": "Students and children were mobilized for Uzbekistan's cotton harvest for decades; the ILO reported in 2022 that systemic forced labor had ended in 2021"
+      },
+      "options": [
+        {
+          "label": "畑に行く",
+          "en": {
+            "label": "Go to the fields"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "一か月、指先の傷が治らなかった。夜はみんなで歌った。",
+              "en": {
+                "text": "For a month the fingertips never healed. At night everyone sang."
+              },
+              "effects": {
+                "health": -2,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "ノルマを超えた日、班長が配給のメロンを一つ多くくれた。",
+              "en": {
+                "text": "On the day {name} beat the quota, the team leader handed over an extra melon."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "畑の宿舎で、のちに結婚する人と出会った。",
+              "en": {
+                "text": "In the field barracks, {name} met the person they would later marry."
+              },
+              "effects": {
+                "happy": 4
+              },
+              "after": 5,
+              "kind": "love"
+            }
+          ]
+        },
+        {
+          "label": "医者の証明をもらう",
+          "en": {
+            "label": "Get a doctor's note"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "親が医者に贈り物をして証明をもらった。家で一人で教科書を読んだ。",
+              "en": {
+                "text": "The parents gave the doctor a gift for the note. {name} read textbooks alone at home."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": -1
+              },
+              "cost": -0.05
+            },
+            {
+              "weight": 4,
+              "text": "証明は認められず、一週間遅れて畑に行った。",
+              "en": {
+                "text": "The note was rejected, and {name} went to the fields a week late."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "休んだことが知られ、秋の間ずっと同級生から冷たくされた。",
+              "en": {
+                "text": "Word got out, and classmates were cold the whole autumn."
+              },
+              "effects": {
+                "happy": -3,
+                "bond": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-caring-mother",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ],
+        "state": "school"
+      },
+      "who": "mother",
+      "title": "母の看病",
+      "text": "{who}が病気で寝こんで三週間になる。下の子の世話と家事をする人がいない。学校の先生は、もう欠席が多すぎると言う。",
+      "en": {
+        "title": "Looking after Mother",
+        "text": "{who} has been bedridden for three weeks. Nobody else can cook or look after the little ones. The teacher says {name} has already missed too many days."
+      },
+      "options": [
+        {
+          "label": "しばらく学校を休む",
+          "en": {
+            "label": "Stay home for now"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "{whoName}は春に起き上がれるようになった。{name}は一学年やり直した。",
+              "en": {
+                "text": "By spring {whoName} was up again. {name} repeated the year."
+              },
+              "effects": {
+                "learn": -2,
+                "bond": 3
+              },
+              "d": 6
+            },
+            {
+              "weight": 3,
+              "text": "休んでいる間、同級生がノートを届けてくれた。",
+              "en": {
+                "text": "A classmate brought the notes while {name} was out."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": 2
+              },
+              "d": 4
+            },
+            {
+              "weight": 2,
+              "text": "台所で覚えた料理で、何年も後に小さな食堂を出した。",
+              "en": {
+                "text": "The cooking learned that winter turned into a small eatery years later."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 3
+              },
+              "after": 10,
+              "kind": "work"
+            }
+          ]
+        },
+        {
+          "label": "朝と夜に家事をして学校へ行く",
+          "en": {
+            "label": "Do the chores before and after school"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "毎朝四時に起きた。教室ではいつも眠かった。",
+              "en": {
+                "text": "Up at four every morning. Always sleepy in class."
+              },
+              "effects": {
+                "health": -2,
+                "learn": 1
+              },
+              "d": 4
+            },
+            {
+              "weight": 3,
+              "text": "近所の人が気づいて、昼の間だけ下の子を見てくれた。",
+              "en": {
+                "text": "A neighbor noticed and looked after the little ones during the day."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "d": 3
+            },
+            {
+              "weight": 2,
+              "text": "体を壊し、一週間寝こんだ。今度は{whoName}が台所に立った。",
+              "en": {
+                "text": "{name} got sick and was in bed a week. This time {whoName} got up to cook."
+              },
+              "effects": {
+                "health": -3
+              },
+              "d": 5,
+              "kind": "ill"
+            }
+          ]
+        },
+        {
+          "label": "親戚に助けを頼む",
+          "en": {
+            "label": "Ask relatives for help"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "叔母が村から来て、一か月いてくれた。",
+              "en": {
+                "text": "An aunt came from the village and stayed a month."
+              },
+              "effects": {
+                "happy": 2,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 5,
+              "text": "誰も来られなかった。",
+              "en": {
+                "text": "Nobody could come."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-ebola-closure",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "SLE",
+          "LBR",
+          "GIN"
+        ],
+        "state": "school"
+      },
+      "from": 2014,
+      "to": 2015,
+      "title": "学校が閉まった",
+      "text": "エボラ出血熱が広がり、学校が閉まった。ラジオで授業が流れている。市場では、家の商売を手伝ってほしいと言われる。",
+      "stat": "シエラレオネでは2014〜15年のエボラ流行で学校が閉鎖された。その間、十代の妊娠が増えたと報告されている (J-PAL)",
+      "en": {
+        "title": "Schools closed",
+        "text": "Ebola is spreading and the schools are shut. Lessons are broadcast on the radio. At the market, the family wants help with the stall.",
+        "stat": "Schools in Sierra Leone closed during the 2014-15 Ebola outbreak, and teenage pregnancies rose during that time (J-PAL)"
+      },
+      "options": [
+        {
+          "label": "ラジオの授業を聞く",
+          "en": {
+            "label": "Follow the radio lessons"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "電池が切れるたびに、隣の家のラジオに耳を寄せた。",
+              "en": {
+                "text": "Every time the batteries died, {name} listened through the neighbor's wall."
+              },
+              "effects": {
+                "learn": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "学校が再開した日、教室の半分の席が空いていた。",
+              "en": {
+                "text": "On the day school reopened, half the seats were empty."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "after": 1,
+              "kind": "loss"
+            },
+            {
+              "weight": 2,
+              "text": "数学の先生がラジオで{name}の手紙を読み上げた。",
+              "en": {
+                "text": "The radio math teacher read out a letter {name} had sent in."
+              },
+              "effects": {
+                "happy": 4
+              }
+            }
+          ]
+        },
+        {
+          "label": "家の商売を手伝う",
+          "en": {
+            "label": "Help at the stall"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "手を洗う塩素の水を、店の前に置くことを提案した。客が増えた。",
+              "en": {
+                "text": "Suggested putting a bucket of chlorine water by the stall for handwashing. More customers came."
+              },
+              "effects": {
+                "money": 2,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "学校が再開しても、商売から抜けられなかった。",
+              "en": {
+                "text": "When schools reopened, {name} could not leave the business."
+              },
+              "effects": {
+                "learn": -3
+              },
+              "after": 1
+            },
+            {
+              "weight": 2,
+              "text": "計算が速くなり、再開後の数学の点が上がった。",
+              "en": {
+                "text": "Got quicker at sums, and math scores went up after school reopened."
+              },
+              "effects": {
+                "learn": 2
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "地域の啓発の手伝いをする",
+          "en": {
+            "label": "Volunteer with the awareness team"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "家々を回って、熱が出たらどこに電話するかを伝えた。",
+              "en": {
+                "text": "Went door to door telling people who to call if a fever started."
+              },
+              "effects": {
+                "happy": 2,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "一緒に回った大人の一人が感染した。{name}は三週間、家から出られなかった。",
+              "en": {
+                "text": "One of the adults on the team got infected. {name} was quarantined at home for three weeks."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "その経験を書いた作文で、看護学校の奨学金をもらった。",
+              "en": {
+                "text": "An essay about that work won a nursing school scholarship."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 3
+              },
+              "after": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-school-shut-2020",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "income": [
+          "low",
+          "mid"
+        ],
+        "state": "school"
+      },
+      "from": 2020,
+      "to": 2021,
+      "title": "休校",
+      "text": "感染症で学校が閉まった。授業はスマートフォンで配信されるが、家に一台しかなく、親が仕事に使っている。",
+      "stat": "2020年4月には、世界で約16億人の子どもと学生の学校が閉まっていた (UNESCO)",
+      "en": {
+        "title": "School closure",
+        "text": "Schools have closed because of the pandemic. Lessons go out by phone, but the family has one smartphone and a parent needs it for work.",
+        "stat": "In April 2020, schools were closed for about 1.6 billion students worldwide (UNESCO)"
+      },
+      "options": [
+        {
+          "label": "夜に親の電話で授業を見る",
+          "en": {
+            "label": "Watch lessons on the parent's phone at night"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "一日分の授業を、夜九時から見た。",
+              "en": {
+                "text": "Watched each day's lessons starting at nine at night."
+              },
+              "effects": {
+                "learn": 1,
+                "health": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "画面が割れていて、黒板の右半分が読めなかった。",
+              "en": {
+                "text": "The screen was cracked, and the right half of the blackboard was unreadable."
+              },
+              "effects": {
+                "learn": -1,
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "近所の子も見に来るようになり、夜の居間が教室になった。",
+              "en": {
+                "text": "Neighbor kids started coming over, and the living room became a night classroom."
+              },
+              "effects": {
+                "learn": 2,
+                "bond": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "働いて家計を助ける",
+          "en": {
+            "label": "Work to help the household"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "配達の手伝いをした。学校が再開しても、半分しか戻らなかった。",
+              "en": {
+                "text": "Did deliveries. When school reopened, {name} went back only half the time."
+              },
+              "effects": {
+                "money": 2,
+                "learn": -2
+              },
+              "kind": "work"
+            },
+            {
+              "weight": 3,
+              "text": "休校が終わると、そのまま学校に戻らなかった。",
+              "en": {
+                "text": "When the closure ended, {name} did not go back."
+              },
+              "effects": {
+                "learn": -4,
+                "money": 1
+              },
+              "after": 1,
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "配達先のお年寄りに、英語を教えてもらうようになった。",
+              "en": {
+                "text": "An elderly customer started teaching {name} English."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "教科書だけで自習する",
+          "en": {
+            "label": "Study from the textbooks alone"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "分からない所に印をつけた。再開の日、先生にまとめて聞いた。",
+              "en": {
+                "text": "Marked everything that made no sense, then asked it all on the first day back."
+              },
+              "effects": {
+                "learn": 2
+              },
+              "after": 1
+            },
+            {
+              "weight": 5,
+              "text": "一人では続かなかった。",
+              "en": {
+                "text": "Could not keep it up alone."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-fishing-season",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "PHL",
+          "IDN",
+          "MDG",
+          "MMR",
+          "KHM",
+          "SEN"
+        ],
+        "place": "rural"
+      },
+      "title": "漁の季節",
+      "text": "おじの漁船が、一季節の手伝いを探している。二か月、海の上で寝泊まりする。学期の途中だ。",
+      "en": {
+        "title": "Fishing season",
+        "text": "An uncle's fishing boat needs a hand for the season: two months living at sea, in the middle of the school term."
+      },
+      "options": [
+        {
+          "label": "船に乗る",
+          "en": {
+            "label": "Go out on the boat"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "最初の一週間は吐いてばかりだった。最後の週には網を一人で上げた。",
+              "en": {
+                "text": "Seasick the whole first week. By the last week, {name} hauled the net alone."
+              },
+              "effects": {
+                "health": 1,
+                "money": 2
+              },
+              "kind": "work"
+            },
+            {
+              "weight": 3,
+              "text": "嵐で三日港に戻れなかった。家では葬式の準備が始まっていた。",
+              "en": {
+                "text": "A storm kept them from port for three days. At home, they had started preparing a funeral."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "星の位置で方角を読む方法を、おじが教えてくれた。",
+              "en": {
+                "text": "The uncle taught {name} to read direction from the stars."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "学校に残る",
+          "en": {
+            "label": "Stay in school"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "おじは別の子を乗せた。帰ってきたその子は、肩幅が倍になっていた。",
+              "en": {
+                "text": "The uncle took another kid. When they came back, their shoulders looked twice as wide."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "理科の時間に、海の温度が上がっている話を聞き、おじの漁の話と合っていると思った。",
+              "en": {
+                "text": "In science class, a lesson on warming seas matched the uncle's stories exactly."
+              },
+              "effects": {
+                "learn": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "週末だけ港で手伝う",
+          "en": {
+            "label": "Help at the harbor on weekends"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "魚の仕分けを覚え、週末ごとに小遣いができた。",
+              "en": {
+                "text": "Learned to sort the catch and earned pocket money every weekend."
+              },
+              "effects": {
+                "money": 1
+              }
+            },
+            {
+              "weight": 5,
+              "text": "港の冷凍庫の会社の人に、卒業したら来いと言われた。",
+              "en": {
+                "text": "Someone from the harbor cold-storage company said to come see them after graduation."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "after": 3,
+              "kind": "work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-samizdat",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "RUS",
+          "UKR",
+          "POL",
+          "CZE",
+          "HUN",
+          "ROU",
+          "BGR",
+          "SVK"
+        ]
+      },
+      "from": 1960,
+      "to": 1989,
+      "title": "手書きの本",
+      "text": "友だちが、タイプ打ちを何度も写した禁じられた小説を貸してくれた。三日で返す約束だ。",
+      "en": {
+        "title": "The typed copy",
+        "text": "A friend lends {name} a banned novel, a typed copy of a copy of a copy. It has to be returned in three days."
+      },
+      "options": [
+        {
+          "label": "徹夜で読む",
+          "en": {
+            "label": "Read it all night"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "布団の中で懐中電灯をつけて読んだ。三日目の朝に返した。",
+              "en": {
+                "text": "Read it under the blanket by flashlight and returned it on the third morning."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "母に見つかった。母は黙ってそれを読み終えてから、返しなさいと言った。",
+              "en": {
+                "text": "Mother found it. She read it to the end in silence, then said to give it back."
+              },
+              "effects": {
+                "happy": 2,
+                "bond": 3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "何年もたって、その小説は書店に並んだ。{name}は買わなかった。",
+              "en": {
+                "text": "Years later the novel was sold openly in bookstores. {name} did not buy it."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "after": 12
+            }
+          ]
+        },
+        {
+          "label": "自分でも写しを作る",
+          "en": {
+            "label": "Make a copy too"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "カーボン紙で二部作り、一部を別の友だちに回した。",
+              "en": {
+                "text": "Made two carbon copies and passed one to another friend."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "学校の青年組織の集まりで、名前を出された。進学の推薦が取り消された。",
+              "en": {
+                "text": "The name came up at the school youth organization meeting. The university recommendation was withdrawn."
+              },
+              "effects": {
+                "happy": -5,
+                "learn": -2
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "その写しは、壁が倒れた後、地元の博物館に寄贈された。",
+              "en": {
+                "text": "After the regime fell, that copy went to the local museum."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "after": 15
+            }
+          ]
+        },
+        {
+          "label": "読まずに返す",
+          "en": {
+            "label": "Give it back unread"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "友だちは何も言わずに受け取った。",
+              "en": {
+                "text": "The friend took it back without a word."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "友だちが取り調べを受けた。{name}の名前は出なかった。",
+              "en": {
+                "text": "The friend was questioned. {name}'s name never came up."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-soweto-march",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "ZAF"
+        ],
+        "state": "school"
+      },
+      "from": 1976,
+      "to": 1976,
+      "title": "六月の行進",
+      "text": "授業の半分をアフリカーンス語で受けるように決まった。明日の朝、生徒たちが学校から行進するという。",
+      "stat": "1976年6月16日、ソウェトで1万〜2万人の生徒が行進し、警察の発砲で多くの子どもが亡くなった (ネルソン・マンデラ財団)",
+      "en": {
+        "title": "The June march",
+        "text": "Half of all lessons are now to be taught in Afrikaans. Tomorrow morning, students plan to march out of the schools.",
+        "stat": "On 16 June 1976, between 10,000 and 20,000 students marched in Soweto; police opened fire and many children were killed (Nelson Mandela Foundation)"
+      },
+      "options": [
+        {
+          "label": "行進に加わる",
+          "en": {
+            "label": "Join the march"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "催涙ガスで目が開かなくなった。知らない家の人が水をかけてくれた。",
+              "en": {
+                "text": "Tear gas sealed {name}'s eyes. Someone from a stranger's house poured water over them."
+              },
+              "effects": {
+                "health": -2,
+                "happy": -3
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "一緒に歩いていた同級生が、帰ってこなかった。",
+              "en": {
+                "text": "A classmate who walked beside {name} never came home."
+              },
+              "effects": {
+                "happy": -7
+              },
+              "kind": "loss",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "二十年後、その日の写真の中に自分の姿を見つけた。",
+              "en": {
+                "text": "Twenty years later, {name} found themself in a photo from that day."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "after": 20
+            }
+          ]
+        },
+        {
+          "label": "家にいる",
+          "en": {
+            "label": "Stay home"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "母が戸に鍵をかけた。昼すぎ、通りから煙が見えた。",
+              "en": {
+                "text": "Mother locked the door. In the afternoon, smoke rose from the street."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 5,
+              "text": "学校はその年、ほとんど開かなかった。",
+              "en": {
+                "text": "The schools barely opened again that year."
+              },
+              "effects": {
+                "learn": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-literacy-crusade",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "NIC"
+        ],
+        "state": "school"
+      },
+      "from": 1980,
+      "to": 1980,
+      "title": "識字運動",
+      "text": "学校が五か月休みになり、生徒が農村に住み込んで読み書きを教えるという。親は遠い山の村に行かせるのを不安がっている。",
+      "stat": "1980年のニカラグア識字運動では、約6万人の若者が農村で読み書きを教え、非識字率は約50%から13%に下がったとされる (UNESCO)",
+      "en": {
+        "title": "The literacy crusade",
+        "text": "Schools are closing for five months so students can live in the countryside and teach reading. The parents are uneasy about sending {name} to a far mountain village.",
+        "stat": "In Nicaragua's 1980 literacy crusade, about 60,000 young people taught reading in rural areas, and illiteracy reportedly fell from about 50% to 13% (UNESCO)"
+      },
+      "options": [
+        {
+          "label": "村へ行く",
+          "en": {
+            "label": "Go to the village"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "泊めてくれた家の父親が、五か月で自分の名前を書けるようになった。",
+              "en": {
+                "text": "The father of the host family learned to write his own name in five months."
+              },
+              "effects": {
+                "happy": 5,
+                "learn": 2
+              },
+              "kind": "move",
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "雨季の山道で、マラリアにかかった。",
+              "en": {
+                "text": "Caught malaria on the mountain trails in the rainy season."
+              },
+              "effects": {
+                "health": -4
+              },
+              "kind": "ill"
+            },
+            {
+              "weight": 2,
+              "text": "三十年後、その家の孫から手紙が届いた。教師になったと書いてあった。",
+              "en": {
+                "text": "Thirty years later, a letter came from that family's grandchild. They had become a teacher."
+              },
+              "effects": {
+                "happy": 5
+              },
+              "after": 30
+            }
+          ]
+        },
+        {
+          "label": "町で手伝う",
+          "en": {
+            "label": "Help in town"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "町の夜学で、年配の人たちに文字を教えた。",
+              "en": {
+                "text": "Taught letters to older people at a night class in town."
+              },
+              "effects": {
+                "happy": 2,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "村に行った友だちの話を聞くたびに、少しうらやましかった。",
+              "en": {
+                "text": "Every story from friends who went made {name} a little envious."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-pen-pal",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "state": "school"
+      },
+      "from": 1955,
+      "to": 1995,
+      "title": "文通相手",
+      "text": "雑誌の文通欄に、遠い国の同い年が載っていた。切手代は一通で昼ごはん二回分だ。",
+      "en": {
+        "title": "A pen pal",
+        "text": "A magazine pen-pal column lists someone the same age in a faraway country. Each letter costs two lunches in stamps."
+      },
+      "options": [
+        {
+          "label": "手紙を書く",
+          "en": {
+            "label": "Write to them"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "返事が三か月後に来た。押し花が一枚入っていた。",
+              "en": {
+                "text": "A reply came three months later, with a pressed flower inside."
+              },
+              "effects": {
+                "happy": 4,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "二通やりとりして、それきりになった。",
+              "en": {
+                "text": "Two letters each way, then nothing."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "三十年後、相手の国に旅行して、初めて顔を合わせた。",
+              "en": {
+                "text": "Thirty years later, {name} traveled to that country and they met face to face."
+              },
+              "effects": {
+                "happy": 5
+              },
+              "after": 30,
+              "big": true
+            },
+            {
+              "weight": 1,
+              "text": "相手の国でクーデターが起き、手紙が途中で開けられるようになった。",
+              "en": {
+                "text": "A coup in the other country, and the letters started arriving already opened."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "after": 2
+            }
+          ]
+        },
+        {
+          "label": "やめておく",
+          "en": {
+            "label": "Don't bother"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "雑誌はそのまま、本棚のどこかへ消えた。",
+              "en": {
+                "text": "The magazine vanished somewhere on the bookshelf."
+              },
+              "effects": {
+                "happy": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-piercing",
+      "minAge": 14,
+      "maxAge": 16,
+      "weight": 1,
+      "when": {
+        "income": [
+          "mid",
+          "high"
+        ]
+      },
+      "title": "ピアス",
+      "text": "友だちと、ピアスの穴を開けに行こうと決めた。親の同意書が要る店と、要らない店がある。",
+      "en": {
+        "title": "Piercing",
+        "text": "Friends have decided to get piercings. One shop needs a parent's signature; another does not ask."
+      },
+      "options": [
+        {
+          "label": "親に頼んで同意してもらう",
+          "en": {
+            "label": "Ask a parent to sign"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "親は少し考えて、耳たぶだけならと言った。",
+              "en": {
+                "text": "The parent thought about it and said: only the earlobe."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "だめだと言われた。友だちは三人とも開けてきた。",
+              "en": {
+                "text": "The answer was no. All three friends came back pierced."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "親が、自分も若い頃に開けていたと言い、古い写真を出してきた。",
+              "en": {
+                "text": "The parent said they had done the same when young and dug out an old photo."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "同意の要らない店で開ける",
+          "en": {
+            "label": "Go to the shop that does not ask"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "一週間、髪で隠し通した。",
+              "en": {
+                "text": "Hid it under the hair for a week."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "化膿して、結局病院に行き、親にばれた。",
+              "en": {
+                "text": "It got infected, then the hospital, then the parents found out."
+              },
+              "effects": {
+                "health": -2,
+                "happy": -3,
+                "bond": -2
+              },
+              "kind": "ill"
+            },
+            {
+              "weight": 2,
+              "text": "親は気づいていたが、何も言わなかった。",
+              "en": {
+                "text": "The parents noticed and said nothing."
+              },
+              "effects": {
+                "happy": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "やめておく",
+          "en": {
+            "label": "Skip it"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "三人の新しい耳を見て、少し後悔した。",
+              "en": {
+                "text": "Looking at three freshly pierced ears, {name} felt a little regret."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-friend-pregnant",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "who": "friend",
+      "title": "打ち明けられたこと",
+      "text": "{who}が、妊娠しているかもしれないと打ち明けた。誰にも言わないでほしいという。",
+      "en": {
+        "title": "A secret",
+        "text": "{who} has confided that they might be pregnant, and begs {name} not to tell anyone."
+      },
+      "options": [
+        {
+          "label": "一緒に診療所へ行く",
+          "en": {
+            "label": "Go to the clinic together"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "検査の結果は陰性だった。帰り道、二人で大笑いした。",
+              "en": {
+                "text": "The test was negative. They laughed all the way home."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "d": 6
+            },
+            {
+              "weight": 4,
+              "text": "本当だった。看護師は、学校を続ける方法を一緒に考えてくれた。",
+              "en": {
+                "text": "It was true. The nurse helped them work out how {whoName} could stay in school."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "d": 8,
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "数年後、{whoName}の子の名付け親を頼まれた。",
+              "en": {
+                "text": "A few years later, {whoName} asked {name} to be the child's godparent."
+              },
+              "effects": {
+                "happy": 4
+              },
+              "after": 4,
+              "d": 8
+            }
+          ]
+        },
+        {
+          "label": "信頼できる大人に相談するよう勧める",
+          "en": {
+            "label": "Urge them to tell a trusted adult"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "{whoName}は保健の先生に話した。{name}のおかげだと後で言った。",
+              "en": {
+                "text": "{whoName} talked to the school nurse, and later said it was thanks to {name}."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "d": 5
+            },
+            {
+              "weight": 5,
+              "text": "{whoName}は怒って、しばらく連絡をくれなかった。",
+              "en": {
+                "text": "{whoName} got angry and stopped answering for a while."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "d": -5
+            }
+          ]
+        },
+        {
+          "label": "黙って見守る",
+          "en": {
+            "label": "Keep the secret and wait"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "{whoName}は一人で決めて、一人で済ませた。後になって{name}に話した。",
+              "en": {
+                "text": "{whoName} decided and handled it alone, and only told {name} afterward."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "d": 2
+            },
+            {
+              "weight": 4,
+              "text": "学年の終わりに、{whoName}は学校に来なくなった。",
+              "en": {
+                "text": "By the end of the year, {whoName} had stopped coming to school."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "d": -2,
+              "kind": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-vote-at-16",
+      "minAge": 16,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "BRA",
+          "AUT",
+          "ARG",
+          "ECU"
+        ]
+      },
+      "from": 1989,
+      "title": "十六歳の投票",
+      "text": "この国では十六歳から投票できる。登録は任意だ。友だちの半分は、どうせ何も変わらないと言っている。",
+      "stat": "ブラジルでは1988年の憲法で、16〜17歳の投票が任意で認められた",
+      "en": {
+        "title": "Voting at sixteen",
+        "text": "Here you can vote from sixteen, and registering is optional. Half of {name}'s friends say nothing will change anyway.",
+        "stat": "Brazil's 1988 constitution made voting optional for 16- and 17-year-olds"
+      },
+      "options": [
+        {
+          "label": "登録して投票する",
+          "en": {
+            "label": "Register and vote"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "投票所で、祖父の隣に並んだ。祖父は何度も{name}の手元をのぞいた。",
+              "en": {
+                "text": "Stood in line next to Grandfather, who kept peeking at {name}'s ballot."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "選んだ候補は落ちた。",
+              "en": {
+                "text": "The candidate {name} picked lost."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "地元の議員の選挙で、{name}の地区は十二票差で決まった。",
+              "en": {
+                "text": "The local council seat in {name}'s district was decided by twelve votes."
+              },
+              "effects": {
+                "happy": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "今回は見送る",
+          "en": {
+            "label": "Sit this one out"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "選挙の日は、家でサッカーの中継を見た。",
+              "en": {
+                "text": "Watched football on TV at home on election day."
+              },
+              "effects": {
+                "happy": 1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "結果を見て、行けばよかったと思った。",
+              "en": {
+                "text": "Seeing the results, {name} wished they had gone."
+              },
+              "effects": {
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-sibling-wedding",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "IND",
+          "PAK",
+          "BGD",
+          "NPL"
+        ],
+        "state": "school"
+      },
+      "who": "sibling",
+      "amount": 0.6,
+      "title": "きょうだいの結婚式",
+      "text": "{who}の結婚式の費用が{money}かかる。親は、{name}の来年の学費を後回しにするかどうか話している。",
+      "en": {
+        "title": "A sibling's wedding",
+        "text": "{who}'s wedding will cost {money}. The parents are discussing whether {name}'s fees for next year can wait."
+      },
+      "options": [
+        {
+          "label": "自分の学費を後回しにしていいと言う",
+          "en": {
+            "label": "Say the fees can wait"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "結婚式は三日続いた。{name}は一年遅れて学校に戻った。",
+              "en": {
+                "text": "The wedding went on for three days. {name} went back to school a year later."
+              },
+              "effects": {
+                "happy": 2,
+                "learn": -2
+              },
+              "d": 5
+            },
+            {
+              "weight": 3,
+              "text": "{whoName}が式の後、相手の家と相談して、{name}の学費を半分出してくれた。",
+              "en": {
+                "text": "After the wedding, {whoName} arranged with the new in-laws to pay half of {name}'s fees."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": 3
+              },
+              "after": 1,
+              "d": 8
+            },
+            {
+              "weight": 2,
+              "text": "一年のつもりが、学校には戻れなかった。",
+              "en": {
+                "text": "It was supposed to be a year. {name} never went back."
+              },
+              "effects": {
+                "learn": -4,
+                "happy": -3
+              },
+              "after": 1,
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "学費は譲れないと言う",
+          "en": {
+            "label": "Insist on the fees"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "式は小さくなった。{whoName}は少し不満そうだった。",
+              "en": {
+                "text": "The wedding was scaled down. {whoName} seemed a little put out."
+              },
+              "effects": {
+                "learn": 1
+              },
+              "d": -4
+            },
+            {
+              "weight": 3,
+              "text": "父が親戚から借りて、両方まかなった。返済に五年かかった。",
+              "en": {
+                "text": "Father borrowed from relatives to cover both. It took five years to repay."
+              },
+              "effects": {
+                "bond": 1
+              },
+              "cost": -0.1
+            },
+            {
+              "weight": 2,
+              "text": "{whoName}が自分から式を小さくすると言った。",
+              "en": {
+                "text": "{whoName} offered to have a smaller wedding."
+              },
+              "effects": {
+                "happy": 3
+              },
+              "d": 6
+            }
+          ]
+        },
+        {
+          "label": "式の準備を手伝って費用を抑える",
+          "en": {
+            "label": "Help with the wedding to save money"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "飾りの花を全部自分たちで編んだ。業者に頼むより安くできた。",
+              "en": {
+                "text": "Strung all the flower garlands themselves. Much cheaper than hiring someone."
+              },
+              "effects": {
+                "happy": 3,
+                "bond": 3
+              },
+              "d": 4
+            },
+            {
+              "weight": 5,
+              "text": "準備に追われて、学期末の試験を落とした。",
+              "en": {
+                "text": "Swamped by preparations, {name} failed the end-of-term exam."
+              },
+              "effects": {
+                "learn": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-phone-charging",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "region": [
+          "アフリカ"
+        ],
+        "place": "rural"
+      },
+      "tech": [
+        "mobile"
+      ],
+      "title": "充電の商売",
+      "text": "村には電気が来ていない。いとこが古い太陽光パネルを安く売ると言う。隣の人たちは、携帯電話を充電するために町まで歩いている。",
+      "en": {
+        "title": "A charging business",
+        "text": "The village has no grid power. A cousin is selling an old solar panel cheap. The neighbors walk to town just to charge their phones."
+      },
+      "options": [
+        {
+          "label": "パネルを買って充電屋を始める",
+          "en": {
+            "label": "Buy the panel and charge phones for a fee"
+          },
+          "auto": 4,
+          "cost": -0.08,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "一日に十台、二十台と増えた。木の下に、いつも人が集まるようになった。",
+              "en": {
+                "text": "Ten phones a day, then twenty. People always gathered under {name}'s tree."
+              },
+              "effects": {
+                "money": 3,
+                "happy": 3
+              },
+              "kind": "work"
+            },
+            {
+              "weight": 3,
+              "text": "パネルは一か月で壊れた。いとこはもう町にいなかった。",
+              "en": {
+                "text": "The panel broke within a month, and the cousin had left town."
+              },
+              "effects": {
+                "money": -1,
+                "happy": -3
+              },
+              "cost": -0.05
+            },
+            {
+              "weight": 2,
+              "text": "二年後、村に電線が来た。その日から客は来なくなった。",
+              "en": {
+                "text": "Two years later the power line reached the village. The customers stopped coming that same day."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "after": 2
+            },
+            {
+              "weight": 1,
+              "text": "充電の待ち時間に、電話の修理を覚えた。それが本業になった。",
+              "en": {
+                "text": "In the waiting time between charges, {name} learned to fix phones. That became the real business."
+              },
+              "effects": {
+                "money": 4,
+                "learn": 2
+              },
+              "after": 3,
+              "kind": "work"
+            }
+          ]
+        },
+        {
+          "label": "学費のために貯めておく",
+          "en": {
+            "label": "Save the money for school"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "貯金で次の学期の制服を買った。",
+              "en": {
+                "text": "The savings paid for next term's uniform."
+              },
+              "effects": {
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "近所の別の子が同じパネルを買い、商売を始めた。",
+              "en": {
+                "text": "Another kid nearby bought the panel and started the business."
+              },
+              "effects": {
+                "happy": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-war-volunteer",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "UKR"
+        ],
+        "state": "school"
+      },
+      "from": 2022,
+      "to": 2026,
+      "title": "放課後の網",
+      "text": "授業はオンラインになった。放課後、町の図書館で偽装用の網を編む人を集めている。母は、隣の国の親戚の家に移ることも考えている。",
+      "en": {
+        "title": "Nets after school",
+        "text": "Classes have moved online. After school, the town library gathers volunteers to weave camouflage nets. Mother is thinking about moving to relatives in a neighboring country."
+      },
+      "options": [
+        {
+          "label": "網を編みに行く",
+          "en": {
+            "label": "Go weave nets"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "布を裂いて結ぶ作業を、年配の女性たちと毎日続けた。指の皮が厚くなった。",
+              "en": {
+                "text": "Tore and knotted fabric with older women every day. The skin on the fingers thickened."
+              },
+              "effects": {
+                "happy": 2,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "空襲警報で、作業の途中に何度も地下へ降りた。",
+              "en": {
+                "text": "Air-raid sirens sent them down to the basement again and again."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "一緒に編んだ女性の息子の名前を、追悼の掲示板で見つけた。",
+              "en": {
+                "text": "Found the son of one of the women on the memorial board."
+              },
+              "effects": {
+                "happy": -5
+              },
+              "kind": "loss"
+            }
+          ]
+        },
+        {
+          "label": "勉強に集中する",
+          "en": {
+            "label": "Focus on studies"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "停電の夜は、発電機のあるカフェで課題を出した。",
+              "en": {
+                "text": "On blackout nights, {name} turned in assignments from a café with a generator."
+              },
+              "effects": {
+                "learn": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "国の統一試験は、地下鉄の駅で受けた。",
+              "en": {
+                "text": "Sat the national exam in a metro station."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 1
+              },
+              "after": 1
+            }
+          ]
+        },
+        {
+          "label": "母と国を出る",
+          "en": {
+            "label": "Leave the country with Mother"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "新しい学校で、言葉が分からないまま半年過ごした。夜はオンラインで元の学校の授業を受けた。",
+              "en": {
+                "text": "Spent six months at a new school without the language, and took the old school's online classes at night."
+              },
+              "effects": {
+                "learn": 1,
+                "happy": -2
+              },
+              "kind": "move",
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "一年後、母と町に戻った。図書館の網の部屋はまだ開いていた。",
+              "en": {
+                "text": "A year later they came back. The net room at the library was still open."
+              },
+              "effects": {
+                "happy": 2
+              },
+              "after": 1,
+              "kind": "move"
+            },
+            {
+              "weight": 2,
+              "text": "向こうの国で大学に入った。帰る話は、だんだんしなくなった。",
+              "en": {
+                "text": "Entered university there. Talk of going back faded."
+              },
+              "effects": {
+                "learn": 3
+              },
+              "after": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-olympiad-fare",
+      "minAge": 13,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "state": "school",
+        "income": [
+          "low",
+          "mid"
+        ]
+      },
+      "amount": 0.08,
+      "title": "数学の大会",
+      "text": "地域の数学の大会で入賞し、首都の全国大会に呼ばれた。交通費と宿代で{money}かかる。学校は半分しか出せないという。",
+      "en": {
+        "title": "The math competition",
+        "text": "Placed in the regional math competition and got invited to the national round in the capital. Travel and lodging cost {money}, and the school can cover only half."
+      },
+      "options": [
+        {
+          "label": "家族に頼んで行く",
+          "en": {
+            "label": "Ask the family and go"
+          },
+          "auto": 4,
+          "cost": -0.04,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "全国では真ん中くらいだった。首都の高層ビルを、首が痛くなるまで見上げた。",
+              "en": {
+                "text": "Finished somewhere in the middle. Stared up at the capital's tall buildings until the neck hurt."
+              },
+              "effects": {
+                "happy": 3,
+                "learn": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "同じ部屋の子と、問題の解き方で朝まで言い合った。",
+              "en": {
+                "text": "Argued about solutions with a roommate until dawn."
+              },
+              "effects": {
+                "learn": 3,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "大会に来ていた大学の先生が、{name}の名前を覚えていた。三年後の入試の面接官だった。",
+              "en": {
+                "text": "A professor at the competition remembered {name}. Three years later, they were on the admissions panel."
+              },
+              "effects": {
+                "learn": 2,
+                "happy": 4
+              },
+              "after": 3
+            },
+            {
+              "weight": 1,
+              "text": "銅賞を取った。村に戻ると、役場の前に横断幕が張ってあった。",
+              "en": {
+                "text": "Won bronze. Back home, a banner hung in front of the town office."
+              },
+              "effects": {
+                "happy": 6
+              },
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "辞退する",
+          "en": {
+            "label": "Decline"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "代わりに行った子の結果を、新聞で読んだ。",
+              "en": {
+                "text": "Read about the replacement's result in the newspaper."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "数学の先生が、自分の財布から残りを出すと言いに来た。",
+              "en": {
+                "text": "The math teacher came to the house to offer the rest out of their own pocket."
+              },
+              "effects": {
+                "happy": 3
+              }
+            }
+          ]
+        },
+        {
+          "label": "町で募金を集める",
+          "en": {
+            "label": "Raise the money in town"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "市場の人たちが小銭を出し合い、三日で集まった。",
+              "en": {
+                "text": "Market vendors chipped in coins, and it was raised in three days."
+              },
+              "effects": {
+                "happy": 4,
+                "bond": 2
+              }
+            },
+            {
+              "weight": 5,
+              "text": "集まりきらず、足りない分は親が出した。",
+              "en": {
+                "text": "It fell short, and the parents covered the rest."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "cost": -0.03
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-unpaid-wage",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "state": "work",
+        "income": [
+          "low",
+          "mid"
+        ]
+      },
+      "title": "払われない給料",
+      "text": "働いている店の主人が、今月の給料を来月まとめて払うと言う。先月もそう言っていた。",
+      "en": {
+        "title": "Unpaid wages",
+        "text": "The shop owner says this month's pay will come next month, all together. He said that last month too."
+      },
+      "options": [
+        {
+          "label": "払ってくれるまで待つ",
+          "en": {
+            "label": "Wait for it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "三か月目に、全額ではないが払ってくれた。",
+              "en": {
+                "text": "In the third month, he paid. Not all of it."
+              },
+              "effects": {
+                "money": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "店が夜逃げした。シャッターに貼り紙もなかった。",
+              "en": {
+                "text": "The shop closed overnight, without even a note on the shutter."
+              },
+              "effects": {
+                "money": -2,
+                "happy": -4
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "主人は払えない代わりに、古い自転車をくれた。",
+              "en": {
+                "text": "Unable to pay, the owner gave {name} an old bicycle instead."
+              },
+              "effects": {
+                "happy": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "はっきり請求する",
+          "en": {
+            "label": "Demand it"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "主人はしぶしぶ半分を払った。翌週、シフトを減らされた。",
+              "en": {
+                "text": "He grudgingly paid half. The next week, the shifts were cut."
+              },
+              "effects": {
+                "money": 1,
+                "happy": -1
+              }
+            },
+            {
+              "weight": 3,
+              "text": "その場で首になった。",
+              "en": {
+                "text": "Fired on the spot."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "他の店員も一緒に言い出し、主人は全員に払った。",
+              "en": {
+                "text": "The other workers joined in, and he paid everyone."
+              },
+              "effects": {
+                "money": 2,
+                "happy": 4,
+                "bond": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "辞めて別の店を探す",
+          "en": {
+            "label": "Quit and find another job"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "向かいの店に雇われた。給料は少し安いが、毎週払われた。",
+              "en": {
+                "text": "Got hired across the street. Slightly lower pay, but every week."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 5,
+              "text": "次の仕事が見つかるまで、二か月かかった。",
+              "en": {
+                "text": "It took two months to find the next job."
+              },
+              "effects": {
+                "money": -1,
+                "happy": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-runaway-friend",
+      "minAge": 13,
+      "maxAge": 16,
+      "weight": 1,
+      "who": "friend",
+      "title": "家出",
+      "text": "{who}が夜中に訪ねてきた。家にいたくないので、何日か泊めてほしいと言う。顔にあざがある。",
+      "en": {
+        "title": "Running away",
+        "text": "{who} turns up in the middle of the night. They cannot stay at home, they say; can they sleep here a few days? There is a bruise on their face."
+      },
+      "options": [
+        {
+          "label": "こっそり泊める",
+          "en": {
+            "label": "Hide them in the room"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "二日後、親に見つかった。親は事情を聞いて、何も言わずに布団をもう一組出した。",
+              "en": {
+                "text": "Two days later, a parent found out, listened, and quietly brought out another mattress."
+              },
+              "effects": {
+                "bond": 3
+              },
+              "d": 8
+            },
+            {
+              "weight": 4,
+              "text": "三日目に{whoName}は自分の家に帰った。それきりその話はしなかった。",
+              "en": {
+                "text": "On the third day {whoName} went home. They never talked about it."
+              },
+              "effects": {
+                "happy": -1
+              },
+              "d": 4
+            },
+            {
+              "weight": 2,
+              "text": "{whoName}の親が怒鳴りこんできた。",
+              "en": {
+                "text": "{whoName}'s parent came storming over."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard",
+              "d": 3
+            }
+          ]
+        },
+        {
+          "label": "親に正直に話して泊める",
+          "en": {
+            "label": "Tell the parents and let them stay"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "親は{whoName}を泊め、翌日、学校の相談員に連絡した。",
+              "en": {
+                "text": "The parents let {whoName} stay and called the school counselor the next day."
+              },
+              "effects": {
+                "bond": 2
+              },
+              "d": 6
+            },
+            {
+              "weight": 3,
+              "text": "親は泊めるのを断った。{whoName}は夜の道を歩いて帰った。",
+              "en": {
+                "text": "The parents said no. {whoName} walked back out into the night."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "d": -2
+            },
+            {
+              "weight": 2,
+              "text": "大人になった{whoName}から、あの夜のことを覚えていると連絡が来た。",
+              "en": {
+                "text": "As an adult, {whoName} got in touch to say they still remembered that night."
+              },
+              "effects": {
+                "happy": 4
+              },
+              "after": 15,
+              "d": 6
+            }
+          ]
+        },
+        {
+          "label": "先生に知らせる",
+          "en": {
+            "label": "Tell a teacher"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "相談員が家庭を訪ね、{whoName}はしばらく親戚の家で暮らすことになった。",
+              "en": {
+                "text": "A counselor visited the home, and {whoName} went to live with relatives for a while."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "d": 2
+            },
+            {
+              "weight": 5,
+              "text": "{whoName}は、裏切られたと言った。",
+              "en": {
+                "text": "{whoName} said {name} had betrayed them."
+              },
+              "effects": {
+                "happy": -3
+              },
+              "d": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-faith-doubt",
+      "minAge": 14,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "parentAlive": true
+      },
+      "title": "礼拝に行く朝",
+      "text": "小さいころから毎週家族と礼拝に通ってきた。最近、祈っても何も感じない。今朝も親が支度を急かしている。",
+      "en": {
+        "title": "The morning of worship",
+        "text": "Every week since childhood, the family has gone to worship together. Lately {name} feels nothing when praying. This morning, the parents are hurrying everyone along again."
+      },
+      "options": [
+        {
+          "label": "今までどおり行く",
+          "en": {
+            "label": "Go as always"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "説教は聞き流したが、帰りに家族で食べる朝ごはんは好きだった。",
+              "en": {
+                "text": "Tuned out the sermon, but liked the family breakfast afterward."
+              },
+              "effects": {
+                "bond": 2
+              }
+            },
+            {
+              "weight": 3,
+              "text": "同じように迷っている年上の人と、帰り道に話すようになった。",
+              "en": {
+                "text": "Started talking on the way home with an older member who had the same doubts."
+              },
+              "effects": {
+                "happy": 2,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "何年もたって、親を亡くした日、昔覚えた祈りの言葉が自然に出てきた。",
+              "en": {
+                "text": "Years later, on the day a parent died, the old prayers came back by themselves."
+              },
+              "effects": {
+                "happy": 1
+              },
+              "after": 20
+            }
+          ]
+        },
+        {
+          "label": "行かないと言う",
+          "en": {
+            "label": "Say you're not going"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "親は何も言わずに出かけた。帰ってきてからも何も言わなかった。",
+              "en": {
+                "text": "The parents left without a word, and said nothing when they returned."
+              },
+              "effects": {
+                "bond": -2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "大げんかになった。翌週、結局行った。",
+              "en": {
+                "text": "A huge argument. The next week, {name} went anyway."
+              },
+              "effects": {
+                "happy": -3,
+                "bond": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "親も実は迷っていたと、何年もしてから聞いた。",
+              "en": {
+                "text": "Years later, a parent admitted to having doubts too."
+              },
+              "effects": {
+                "bond": 3
+              },
+              "after": 8
+            }
+          ]
+        },
+        {
+          "label": "親に正直に話してみる",
+          "en": {
+            "label": "Tell the parents how it feels"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "親は少し黙ってから、自分も若いころそうだったと言った。",
+              "en": {
+                "text": "The parent was quiet a moment, then said they had felt the same when young."
+              },
+              "effects": {
+                "bond": 4,
+                "happy": 2
+              }
+            },
+            {
+              "weight": 5,
+              "text": "親は泣いた。{name}はそれ以上言えなかった。",
+              "en": {
+                "text": "The parent cried, and {name} could not say more."
+              },
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-arab-spring",
+      "minAge": 15,
+      "maxAge": 17,
+      "weight": 1,
+      "when": {
+        "countries": [
+          "TUN",
+          "EGY"
+        ]
+      },
+      "from": 2011,
+      "to": 2011,
+      "title": "広場へ",
+      "text": "友だちが、今日は広場に行こうとメッセージを回している。親はテレビの前から離れず、外に出るなと言う。",
+      "en": {
+        "title": "To the square",
+        "text": "Friends are passing around messages: go to the square today. The parents are glued to the TV and say not to go out."
+      },
+      "options": [
+        {
+          "label": "広場に行く",
+          "en": {
+            "label": "Go to the square"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "知らない人たちとパンを分け、夜まで声を上げた。",
+              "en": {
+                "text": "Shared bread with strangers and chanted until nightfall."
+              },
+              "effects": {
+                "happy": 5
+              },
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "催涙ガスを浴びて、知らない薬剤師に目を洗ってもらった。",
+              "en": {
+                "text": "Hit by tear gas. A pharmacist {name} had never met rinsed their eyes."
+              },
+              "effects": {
+                "health": -2,
+                "happy": -1
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "何年もたって、あの日のことを話すのを避けるようになった。",
+              "en": {
+                "text": "Years later, {name} began avoiding talk of that day."
+              },
+              "effects": {
+                "happy": -2
+              },
+              "after": 6
+            }
+          ]
+        },
+        {
+          "label": "家で様子を見る",
+          "en": {
+            "label": "Watch from home"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "屋上から、遠くの煙と人の声を聞いていた。",
+              "en": {
+                "text": "Listened from the roof to distant voices and smoke."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "広場に行った友だちの写真が、世界中のニュースに載った。",
+              "en": {
+                "text": "A friend's photo from the square ran in news around the world."
+              },
+              "effects": {
+                "happy": 2
+              }
+            }
+          ]
+        },
+        {
+          "label": "近所のけが人の手当てを手伝う",
+          "en": {
+            "label": "Help treat the injured nearby"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "モスクに作られた臨時の救護所で、包帯を巻き続けた。",
+              "en": {
+                "text": "Wrapped bandages at a makeshift aid station in a mosque."
+              },
+              "effects": {
+                "happy": 2,
+                "learn": 1
+              }
+            },
+            {
+              "weight": 4,
+              "text": "その時一緒にいた医学生に勧められ、救急医療の道に進んだ。",
+              "en": {
+                "text": "A medical student there encouraged {name} into emergency medicine."
+              },
+              "effects": {
+                "learn": 3
+              },
+              "after": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
