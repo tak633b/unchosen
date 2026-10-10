@@ -7,7 +7,7 @@ import { nowLine } from '../engine/summary';
 import { lifeBand, survivalChart } from './charts';
 import { showDeath } from './death';
 import { $, esc, load, save, setHTML } from './dom';
-import { setMusic } from './music';
+import { musicScene, musicVolume, setMusic, setVolume } from './music';
 import { playCrisis, playFarewell } from './crisis';
 import { crisisScript, declineScript, farewell } from './farewell';
 import { isAcute } from '../engine/crisis';
@@ -87,6 +87,8 @@ function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onEx
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
   $('#app').onclick = onClick;
+  $<HTMLInputElement>('#musicvol').oninput = (e) => setVolume(Number((e.target as HTMLInputElement).value));
+  musicScene(p.seed % 2 ? 'life2' : 'life'); // 人生ごとに2曲のどちらか
   if (S.music) setMusic(true);
   render();
   persist();
@@ -143,8 +145,10 @@ function tick(): void {
   if (near) {
     S.modal = true;
     S.ff = false;
+    musicScene('crisis');
     void playCrisis(crisisScript(S.p, near.crisis!, true), S.music).then(() => {
       if (!S) return;
+      musicScene(S.p.seed % 2 ? 'life2' : 'life');
       S.modal = false;
       nextModal();
       if (S && !S.modal) persist();
@@ -167,7 +171,7 @@ function shell(): string {
       <button data-act="ff" title="${L('次に決めることが来るまで早送り', 'Fast-forward to the next decision')}">${L('次の決定まで', 'Next decision')} »</button>
       <button data-act="auto" id="autobtn">${L('自動で決める', 'Auto')}</button>
       <span class="aibadge" id="aibadge" hidden>AI</span>
-      <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button>
+      <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button><input type="range" id="musicvol" min="0" max="100" step="5" value="${musicVolume()}" aria-label="${L('音量', 'Volume')}">
       <button data-act="exit">${L('中断', 'Quit')}</button>
     </div>
     <div class="yeartrack"><div id="yearbar"></div></div>
@@ -202,6 +206,7 @@ function render(): void {
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
   $('#autobtn').classList.toggle('on', p.auto);
   $('#musicbtn').classList.toggle('on', S.music);
+  $<HTMLInputElement>('#musicvol').hidden = !S.music;
   mountRing($('#ring'), p, S.sel);
   // 一生の欄は毎年書き直すので、読んでいた位置を保つ
   const kinTop = document.querySelector('#pcard .kinlist')?.scrollTop ?? 0;
@@ -400,7 +405,6 @@ function leave(): void {
   cancelAnimationFrame(S.raf);
   window.clearTimeout(S.timer);
   S.io?.disconnect();
-  if (S.music) setMusic(false);
   const exit = S.onExit;
   S = null;
   exit();
@@ -414,11 +418,11 @@ function finish(): void {
   clearSaved();
   cancelAnimationFrame(S.raf);
   S.io?.disconnect();
-  if (music) setMusic(false);
   S = null;
   // 急な死は、九死に一生と同じ場面で始まる (最後の一拍まで、どちらになるか分からない)。病や老いは静かな場面
   const scene = isAcute(p.cause) ? crisisScript(p, p.cause!, false) : declineScript(p);
-  void playCrisis(scene, music).then(() => playFarewell(p, farewell(p), music)).then(() => {
+  musicScene(isAcute(p.cause) ? 'crisis' : 'farewell');
+  void playCrisis(scene, music).then(() => { musicScene('farewell'); return playFarewell(p, farewell(p), music); }).then(() => {
     // 輪の誰かで続けるなら、その人のここまでの一生を次の主人公にして、同じ画面で始める
     showDeath(p, others, basis, onExit, (id) => {
       const q = continueAs(p, id);

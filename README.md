@@ -92,3 +92,13 @@ Inspired by the Korean web game "80억 분의 1" (1 in 8 billion). This is an in
 ## License
 
 [MIT](LICENSE). The statistical data is under Our World in Data's CC BY 4.0.
+
+### Music
+
+Licensed under [Creative Commons: By Attribution 4.0](https://creativecommons.org/licenses/by/4.0/). Files in `public/audio/` are shortened, loudness-normalized and faded at both ends.
+
+- "Reawakening" by Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400017)), title screen
+- "Gymnopedie No. 1" by Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100787)), a life (one of two)
+- "Meditation Impromptu 02" by Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100162)), a life (one of two)
+- "Thunder Dreams" by Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200063)), close calls
+- "Sad Trio" by Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100089)), farewell

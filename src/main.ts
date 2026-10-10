@@ -15,6 +15,7 @@ import { aiPanel, bindAiPanel, handleAiClick } from './ui/aipanel';
 import { paintScenes, sceneAttr, sceneFromSummary, sceneOf, toData } from './ui/pixel';
 import { paintOtherFaces } from './ui/portrait';
 import { isEn, L, lang, religionName, setLang } from './i18n';
+import { TRACKS, musicScene, setMusic, sfx } from './ui/music';
 
 const app = $('#app');
 // 世界では1秒に約4.2人が生まれ、約2人が亡くなる (国連世界人口推計 2024)
@@ -57,6 +58,8 @@ const bornWhen = (y: number) => (y === THIS_YEAR ? L('今生まれる', 'born to
 
 function home(): void {
   window.clearInterval(counterTimer);
+  musicScene('title');
+  if (load('music', false)) setMusic(true); // 自動再生が止められていれば、最初に触れたときに鳴る
   const basis = load<BirthBasis>('basis', 'births');
   const real = load<string | null>('realCountry', null);
   const saved = hasSaved();
@@ -204,6 +207,7 @@ function roll(p: Person, basis: BirthBasis): void {
     <p class="b-cry" id="bcry"></p><div class="b-flash" id="bflash"></div>
     <span class="b-skip">${L('押すと飛ばせる', 'Tap to skip')}</span></main>`;
   const timers: number[] = [];
+  setMusic(false); // 鼓動だけを聞かせる
   const beat = load('music', false) ? heartbeat() : null;
   let done = false;
   const finish = () => { if (done) return; done = true; timers.forEach((t) => window.clearTimeout(t)); beat?.stop(); born(p, basis); };
@@ -271,7 +275,7 @@ function heartbeat(): { stop: () => void; faster: () => void } {
   const thump = (at: number, vol: number) => {
     const o = ctx.createOscillator(), g = ctx.createGain();
     o.frequency.setValueAtTime(58, at); o.frequency.exponentialRampToValueAtTime(38, at + 0.18);
-    g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(vol, at + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.22);
+    g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(Math.max(0.0002, vol * sfx()), at + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.22);
     o.connect(g).connect(ctx.destination); o.start(at); o.stop(at + 0.25);
   };
   const loop = () => { if (!on) return; const t = ctx.currentTime; thump(t, 0.5); thump(t + 0.24, 0.32); timer = window.setTimeout(loop, gap); };
@@ -398,6 +402,8 @@ function about(): void {
     <p>死因: 年齢帯ごとの構成(WHO・GBD のおおまかな形)を、国の豊かさや地域、喫煙で重み付けしている。他殺は殺人発生率から。交通事故の重みは所得からの推計。</p>
     <p>所得: 国ごとの所得分布(ジニ係数から決めた対数正規分布)の中で、家と仕事の位置が決まる。金額は購買力平価ドルと、日本の物価での円換算(1ドル≒95円)を並べている。</p>
     <p>欠けている値は、同じ地域で1人当たりGDPが近い国から推計している。高所得国の児童婚率は1%としている。自殺は実際には主要な死因の一つだが、このゲームでは扱わない。</p>`}
+    <h2>${L('音楽', 'Music')}</h2>
+    <ul>${Object.values(TRACKS).map((t) => `<li>“<a href="${t.url}" rel="noopener">${t.title}</a>” ${t.artist} (incompetech.com), <a href="${t.licenseUrl}" rel="noopener">${t.license}</a></li>`).join('')}</ul>
     <button data-go="home">${L('戻る', 'Back')}</button>
   </main>`;
   app.onclick = (e) => { if ((e.target as HTMLElement).closest('[data-go=home]')) home(); };

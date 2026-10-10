@@ -117,3 +117,13 @@ npm run data:build   # src/data/countries.json を作る
 ## ライセンス
 
 [MIT](LICENSE)。統計データには Our World in Data の CC BY 4.0 が適用されます。
+
+### 音楽
+
+[Creative Commons: By Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) で使っています。`public/audio/` の曲は、短く切り、音量をそろえ、頭と終わりをフェードしています。
+
+- "Reawakening" Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400017))、タイトル
+- "Gymnopedie No. 1" Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100787))、一生(2曲のどちらか)
+- "Meditation Impromptu 02" Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100162))、一生(2曲のどちらか)
+- "Thunder Dreams" Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200063))、命が危うい場面
+- "Sad Trio" Kevin MacLeod ([incompetech.com](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100089))、最期のふりかえり

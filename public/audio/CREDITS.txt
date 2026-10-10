@@ -1,0 +1,10 @@
+Music by Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+Edited: shortened, loudness-normalized, faded in/out, re-encoded at 80 kbps.
+
+reawakening.mp3  "Reawakening"  https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400017
+gymnopedie-no-1.mp3  "Gymnopedie No. 1"  https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100787
+meditation-impromptu-02.mp3  "Meditation Impromptu 02"  https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100162
+thunder-dreams.mp3  "Thunder Dreams"  https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200063
+sad-trio.mp3  "Sad Trio"  https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100089
