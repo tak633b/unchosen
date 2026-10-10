@@ -41,9 +41,19 @@ function start(): void {
   gain.gain.value = 0;
   ctx.createMediaElementSource(el).connect(gain).connect(master);
   cur = { scene, el, gain };
-  // 自動再生が止められたら、次に画面に触れたときに鳴らす
-  el.play().then(() => fadeTo(gain, 1), () => document.addEventListener('pointerdown', () => { void ctx?.resume(); if (cur?.el === el && on) void el.play().then(() => fadeTo(gain, 1)); }, { once: true }));
+  play(el, gain);
 }
+// 鳴らす。止められたら (自動再生の決まり・Safari の手順など)、次に画面を押したときにもう一度 (wake)
+function play(el: HTMLAudioElement, gain: GainNode): void {
+  el.play().then(() => fadeTo(gain, 1), () => { /* wake が拾う */ });
+}
+function wake(): void {
+  if (!on || !ctx) return;
+  if (ctx.state !== 'running') void ctx.resume();
+  if (cur?.el.paused) play(cur.el, cur.gain);
+}
+// click と keydown は Safari でも「ユーザーの操作」として数えられる (pointerdown は iPhone では数えられない)
+if (typeof document !== 'undefined') { document.addEventListener('click', wake, true); document.addEventListener('keydown', wake, true); }
 
 /** 今の場面の曲。音楽が切ってあれば覚えておくだけ */
 export function musicScene(s: Scene): void {
@@ -54,8 +64,11 @@ export function musicScene(s: Scene): void {
 export function setMusic(v: boolean): void {
   on = v;
   if (on) {
+    // iPhone の消音スイッチで Web Audio が黙らないよう、再生の扱いにする (Safari 16.4+)
+    const nav = navigator as Navigator & { audioSession?: { type: string } };
+    if (nav.audioSession) nav.audioSession.type = 'playback';
     ctx ??= new AudioContext();
-    if (!master) { master = ctx.createGain(); master.gain.value = vol / 100; master.connect(ctx.destination); }
+    if (!master) { master = ctx.createGain(); master.gain.value = gainOf(vol); master.connect(ctx.destination); }
     void ctx.resume();
     start();
   } else if (cur) {
@@ -66,6 +79,8 @@ export function setMusic(v: boolean): void {
   }
 }
 
+/** つまみ (0〜100) から音の大きさへ。耳の感じ方に合わせて2乗、最大でも 0.4 */
+export const gainOf = (v: number): number => 0.4 * (v / 100) ** 2;
 function clampVol(v: unknown): number {
   const n = Number(v);
   return Number.isFinite(n) ? Math.min(100, Math.max(0, Math.round(n))) : 35;
@@ -75,10 +90,10 @@ export const musicVolume = (): number => vol;
 export function setVolume(v: number): void {
   vol = clampVol(v);
   save('musicVol', vol);
-  if (ctx && master) master.gain.setTargetAtTime(vol / 100, ctx.currentTime, 0.05);
+  if (ctx && master) master.gain.setTargetAtTime(gainOf(vol), ctx.currentTime, 0.05);
 }
-/** 効果音の倍率。既定の音量 (35) で 1 */
-export const sfx = (): number => Math.min(1.5, vol / 35);
+/** 効果音の倍率。曲と同じ曲線 (最大 100 で元の大きさくらい) */
+export const sfx = (): number => gainOf(vol) / 0.35;
 
 // 命が危うい場面の音。音楽を入れている人にだけ鳴らす (game.ts が判断する)
 function tone(freq: number, len: number, loud: number, type: OscillatorType = 'sine'): void {
