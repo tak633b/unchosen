@@ -2,7 +2,7 @@
 import { L } from '../../i18n';
 import { yen } from '../economy';
 import { bump, countryOf, decide, log, type Person, yearOf } from '../person';
-import { normal } from '../rng';
+import { debtRate, depositRate, houseReturn, stockReturn } from '../market';
 import { currentIncome, subsistence } from './common';
 
 // 実質 (物価上昇を引いた) の利回り
@@ -43,7 +43,7 @@ export function finances(p: Person): void {
 
   if (p.mortgage) {
     p.wealth -= p.mortgage.pay;
-    p.mortgage.value *= 1 + normal(r, 0.01, 0.05);
+    p.mortgage.value *= 1 + houseReturn(p, 0.01, 0.05);
     if (--p.mortgage.years <= 0) {
       log(p, L('住宅ローンを払い終えた。家は自分のものになった。', 'Paid off the mortgage. The house is now fully owned.'), 'family');
       p.wealth += p.mortgage.value;
@@ -52,7 +52,7 @@ export function finances(p: Person): void {
     }
   }
   if (p.wealth > 0) p.wealth *= 1 + returnOf(p, c.gdp < 25000);
-  else p.wealth *= 1 + DEBT_RATE;
+  else p.wealth *= 1 + debtRate(p, DEBT_RATE);
   // 借金が膨らみすぎたら、取り立てと切り詰めで暮らしを縮める
   const cap = -3 * Math.max(income, floor);
   if (p.wealth < cap) {
@@ -64,13 +64,20 @@ export function finances(p: Person): void {
   carOffer(p, income);
 }
 
+// 過去の年は実際の相場、これから先は景気の波で動く (market.ts)
 function returnOf(p: Person, emerging: boolean): number {
-  const r = p.rng;
   switch (p.invest) {
-    case 'stock': return normal(r, 0.04, emerging ? 0.22 : 0.16);
-    case 'realestate': return normal(r, 0.02, 0.07);
-    default: return DEPOSIT;
+    case 'stock': return stockMove(p, stockReturn(p, emerging));
+    case 'realestate': return houseReturn(p, 0.02, 0.07);
+    default: return depositRate(p, DEPOSIT);
   }
+}
+
+// 株を持っている人には、大きく動いた年を一行残す
+function stockMove(p: Person, ret: number): number {
+  if (ret <= -0.25) log(p, L(`持っている株の値打ちが、1年で${Math.round(-ret * 100)}%下がった。`, `The shares ${p.given} held lost ${Math.round(-ret * 100)}% of their value in a year.`), 'hard');
+  else if (ret >= 0.35) log(p, L(`持っている株が、1年で${Math.round(ret * 100)}%値上がりした。`, `The shares ${p.given} held rose ${Math.round(ret * 100)}% in a year.`), 'family');
+  return ret;
 }
 
 function investOffer(p: Person, income: number): void {

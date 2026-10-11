@@ -17,6 +17,7 @@ import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
 import { choices } from './events/choices';
+import { history } from './history';
 import { logNearMiss, nearMiss } from './crisis';
 import { bonds } from './events/bonds';
 import { because, birthWhy, deathWhy, joinWhy } from './why';
@@ -214,6 +215,7 @@ export function advanceYear(p: Person): void {
   crime(p);
   dilemmas(p);
   choices(p);
+  history(p);
   adultPet(p);
   moments(p);
   bonds(p);

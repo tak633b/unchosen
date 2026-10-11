@@ -1,0 +1,1002 @@
+{
+  "decisions": [
+    {
+      "id": "h-cn-denounce",
+      "minAge": 11,
+      "maxAge": 19,
+      "weight": 1,
+      "from": 1966,
+      "to": 1968,
+      "chance": 0.6,
+      "when": {
+        "countries": [
+          "CHN"
+        ],
+        "state": "school"
+      },
+      "title": "先生を批判する集会",
+      "text": "学校の壁に、担任の先生を「反動的な学術権威」と呼ぶ大字報が貼られた。明日の集会では、クラスの一人ひとりが先生の「罪」を述べることになっている。",
+      "stat": "1966年の8月と9月だけで、北京では1,772人が殺された (のちに北京市が公表した数字)",
+      "en": {
+        "title": "The meeting about the teacher",
+        "text": "A big-character poster on the school wall calls {name}'s homeroom teacher a \"reactionary academic authority\". At tomorrow's meeting every student is expected to stand up and name the teacher's \"crimes\".",
+        "stat": "In August and September 1966 alone, 1,772 people were killed in Beijing (figure later released by the Beijing authorities)"
+      },
+      "options": [
+        {
+          "label": "批判の言葉を述べる",
+          "en": {
+            "label": "Speak against the teacher"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "集会が終わると、先生は翌日から校舎の便所掃除をさせられた。",
+              "en": {
+                "text": "After the meeting the teacher was set to cleaning the school latrines."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "note": "結果の割合は回想録・研究から読み取れる大まかな傾向。正確な統計はない"
+            },
+            {
+              "weight": 3,
+              "text": "紅衛兵の赤い腕章を渡された。",
+              "en": {
+                "text": "{name} was handed the red armband of the Red Guards."
+              },
+              "effects": {
+                "happy": 1,
+                "learn": -2
+              }
+            },
+            {
+              "weight": 1,
+              "text": "述べた言葉が壁新聞に書き写され、何年たってもその壁から消えなかった。",
+              "en": {
+                "text": "The words {name} spoke were copied onto a wall poster, and stayed on that wall for years."
+              },
+              "effects": {
+                "happy": -6
+              }
+            }
+          ]
+        },
+        {
+          "label": "黙っている",
+          "en": {
+            "label": "Stay silent"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "誰も{name}のことは気に留めなかった。",
+              "en": {
+                "text": "Nobody paid any attention to {name}."
+              }
+            },
+            {
+              "weight": 3,
+              "text": "「立場があいまいだ」と名指しされ、自己批判の文を三晩かけて書かされた。",
+              "en": {
+                "text": "{name} was singled out for an \"unclear stance\" and spent three nights writing a self-criticism."
+              },
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 1,
+              "text": "家の出身まで調べられ、父の昔の勤め先が壁新聞に書かれた。",
+              "en": {
+                "text": "Even the family's background was investigated, and the father's old employer appeared on a wall poster."
+              },
+              "effects": {
+                "happy": -8,
+                "bond": -2
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "こっそり先生を助ける",
+          "en": {
+            "label": "Quietly help the teacher"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "夜、先生の家の戸口に饅頭を置いて帰った。誰にも見られなかった。",
+              "en": {
+                "text": "At night {name} left steamed buns at the teacher's door. No one saw."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 4,
+              "text": "それが見つかり、次の集会では先生の隣に立たされた。",
+              "en": {
+                "text": "It was found out. At the next meeting {name} was made to stand beside the teacher."
+              },
+              "effects": {
+                "happy": -12,
+                "health": -3
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "cn-labelled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-cn-1989",
+      "minAge": 17,
+      "maxAge": 32,
+      "weight": 1,
+      "from": 1989,
+      "to": 1989,
+      "chance": 0.8,
+      "when": {
+        "countries": [
+          "CHN"
+        ]
+      },
+      "need": [
+        "uni"
+      ],
+      "title": "1989年の春",
+      "text": "4月、胡耀邦の死をきっかけに、学生たちが広場に集まり始めた。5月には北京の学生が天安門広場でハンガーストライキを始め、{city}の大学でも授業が止まった。",
+      "stat": "6月4日の鎮圧による死者を、政府は兵士を含めて約200人と発表した。数百人から千人を超えるとする推計もある",
+      "en": {
+        "title": "Spring 1989",
+        "text": "In April, after Hu Yaobang died, students began gathering in the squares. In May students in Beijing went on hunger strike in Tiananmen Square, and classes stopped at the university in {city} too.",
+        "stat": "The government put the death toll of the June 4 crackdown at about 200, soldiers included. Other estimates run from several hundred to over a thousand"
+      },
+      "options": [
+        {
+          "label": "デモの列に加わる",
+          "en": {
+            "label": "Join the marches"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "6月のあと大学に戻ると、全員がその春の自分の行動を書いて提出させられた。",
+              "en": {
+                "text": "Back at university after June, every student had to write down and hand in what they had done that spring."
+              },
+              "effects": {
+                "happy": -6
+              },
+              "kind": "school",
+              "note": "鎮圧のあと、学生と教員には「表態」(自分の立場と行動の報告) が求められた。結果の割合は目安"
+            },
+            {
+              "weight": 2,
+              "text": "名前が学内の名簿に残り、卒業のあとの配属先は遠い地方の工場になった。",
+              "en": {
+                "text": "{name}'s name stayed on a university list. After graduation the assigned job was at a factory in a distant province."
+              },
+              "effects": {
+                "happy": -8
+              },
+              "kind": "work"
+            },
+            {
+              "weight": 1,
+              "text": "6月の半ばに仲間と一緒に連行され、数か月を拘置所で過ごした。",
+              "en": {
+                "text": "In mid-June {name} was taken away with friends and spent several months in detention."
+              },
+              "effects": {
+                "happy": -14,
+                "health": -5
+              },
+              "kind": "hard",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "寮に残る",
+          "en": {
+            "label": "Stay in the dorm"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "6月のあと、政治学習の時間が週に何時間も増えた。",
+              "en": {
+                "text": "After June, political study took up several more hours every week."
+              },
+              "effects": {
+                "learn": -1
+              }
+            },
+            {
+              "weight": 1,
+              "text": "ルームメイトの一人が夏休みのあと戻ってこなかった。",
+              "en": {
+                "text": "One of the roommates did not come back after the summer."
+              },
+              "effects": {
+                "happy": -6
+              }
+            }
+          ]
+        },
+        {
+          "label": "天安門広場へ行く",
+          "en": {
+            "label": "Go to Tiananmen Square"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "広場で三日を過ごし、6月の初めに列車で戻った。",
+              "en": {
+                "text": "{name} spent three days in the square and came back by train at the start of June."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 2,
+              "text": "6月3日の夜、長安街の近くにいた。銃声のなかを走って逃げた。",
+              "en": {
+                "text": "On the night of June 3 {name} was near Chang'an Avenue, and ran from the gunfire."
+              },
+              "effects": {
+                "happy": -15,
+                "health": -4
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 1,
+              "text": "広場で知り合った学生の名前を、のちに指名手配の名簿の中に見つけた。",
+              "en": {
+                "text": "Later {name} found the name of a student met in the square on a wanted list."
+              },
+              "effects": {
+                "happy": -8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-kr-yusin",
+      "minAge": 17,
+      "maxAge": 28,
+      "weight": 1,
+      "from": 1974,
+      "to": 1979,
+      "chance": 0.3,
+      "when": {
+        "countries": [
+          "KOR"
+        ]
+      },
+      "need": [
+        "uni"
+      ],
+      "title": "維新体制のキャンパス",
+      "text": "緊急措置のもとでは、憲法を批判しただけで令状なしに逮捕される。それでも構内には毎週のようにビラがまかれる。今日、同じ学科の先輩に集会に誘われた。",
+      "stat": "1975〜79年の緊急措置9号のもとで、800人を超える人が拘束され、その多くが学生だった (韓国 真実・和解のための過去事整理委員会)",
+      "en": {
+        "title": "Campus under Yushin",
+        "text": "Under the emergency decrees, criticizing the constitution is enough for arrest without a warrant. Leaflets still turn up on campus almost every week. Today an older student from the department asked {name} to come to a rally.",
+        "stat": "More than 800 people were detained under Emergency Decree No. 9 between 1975 and 1979, many of them students (Truth and Reconciliation Commission, Korea)"
+      },
+      "options": [
+        {
+          "label": "先頭に立つ",
+          "en": {
+            "label": "Stand at the front"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 6,
+              "text": "集会は30分で警察に散らされた。",
+              "en": {
+                "text": "The police broke up the rally in thirty minutes."
+              },
+              "effects": {
+                "happy": -2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "連行され、緊急措置違反で起訴された。懲役の判決を受けた。",
+              "en": {
+                "text": "{name} was taken in, charged under the emergency decree and sentenced to prison."
+              },
+              "effects": {
+                "happy": -15,
+                "health": -4
+              },
+              "kind": "hard",
+              "big": true,
+              "note": "前に立った学生のうち起訴・除籍になった割合は記録から読み取れる目安"
+            },
+            {
+              "weight": 2,
+              "text": "大学から除籍された。",
+              "en": {
+                "text": "{name} was expelled from the university."
+              },
+              "effects": {
+                "happy": -10
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "kr-expelled"
+            }
+          ]
+        },
+        {
+          "label": "後ろから加わる",
+          "en": {
+            "label": "Join at the back"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "催涙ガスで目が腫れ、三日間講義に出られなかった。",
+              "en": {
+                "text": "Tear gas swelled {name}'s eyes shut; three days of lectures were missed."
+              },
+              "effects": {
+                "health": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "名前を控えられ、指導教授に呼び出された。",
+              "en": {
+                "text": "{name}'s name was taken down, and the faculty adviser called {name} in."
+              },
+              "effects": {
+                "happy": -3
+              }
+            }
+          ]
+        },
+        {
+          "label": "加わらない",
+          "en": {
+            "label": "Stay away"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "図書館で試験の勉強を続けた。",
+              "en": {
+                "text": "{name} kept studying for exams in the library."
+              },
+              "effects": {
+                "learn": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-kr-80s-draft",
+      "minAge": 17,
+      "maxAge": 28,
+      "weight": 1,
+      "from": 1980,
+      "to": 1984,
+      "chance": 0.3,
+      "when": {
+        "countries": [
+          "KOR"
+        ],
+        "sex": "M"
+      },
+      "need": [
+        "uni"
+      ],
+      "title": "80年代のキャンパス",
+      "text": "構内には私服の警察官が常駐している。光州で何があったのかを書いたビラが、便所の壁にまで貼られていた。今日の昼、正門の前でデモがある。",
+      "stat": "1980〜84年、学生運動に関わった学生のうち1,152人が軍に強制的に入隊させられた (国防部 過去事真相究明委員会)",
+      "en": {
+        "title": "Campus in the 1980s",
+        "text": "Plainclothes police are stationed on campus. Leaflets about what happened in Gwangju are taped up even on the bathroom walls. There is a demonstration at the main gate at noon.",
+        "stat": "Between 1980 and 1984, 1,152 students involved in protests were forcibly drafted into the army (Ministry of National Defense truth commission)"
+      },
+      "options": [
+        {
+          "label": "デモの先頭に立つ",
+          "en": {
+            "label": "March at the front"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "火炎瓶と催涙弾のなかを走った。けがはなかった。",
+              "en": {
+                "text": "{name} ran through the firebombs and tear gas, unhurt."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "連行され、29日間留置された。",
+              "en": {
+                "text": "{name} was arrested and held for 29 days."
+              },
+              "effects": {
+                "happy": -10,
+                "health": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "大学から除籍された。",
+              "en": {
+                "text": "{name} was expelled from the university."
+              },
+              "effects": {
+                "happy": -10
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "kr-expelled"
+            },
+            {
+              "weight": 2,
+              "text": "家に帰ると入営の通知が届いていた。翌週には前線の部隊にいた。",
+              "en": {
+                "text": "At home a draft notice was waiting. A week later {name} was with a frontline unit."
+              },
+              "effects": {
+                "happy": -12
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "kr-drafted",
+              "note": "1980〜84年、学生運動に関わった学生1,152人が強制的に入隊させられた (国防部 過去事真相究明委員会)"
+            }
+          ]
+        },
+        {
+          "label": "後ろから加わる",
+          "en": {
+            "label": "Join at the back"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "催涙弾の煙のなかで、知らない学生と肩を組んで歌った。",
+              "en": {
+                "text": "In the tear gas {name} sang arm in arm with students they had never met."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "撮られた写真で顔が割れ、刑事が下宿に来た。",
+              "en": {
+                "text": "A photo gave {name}'s face away, and a detective came to the lodging house."
+              },
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "加わらない",
+          "en": {
+            "label": "Stay out of it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "就職のための試験勉強を続けた。友だちの何人かとは話さなくなった。",
+              "en": {
+                "text": "{name} kept studying for job exams, and stopped talking to some friends."
+              },
+              "effects": {
+                "learn": 2,
+                "bond": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-kr-80s",
+      "minAge": 17,
+      "maxAge": 28,
+      "weight": 1,
+      "from": 1980,
+      "to": 1987,
+      "chance": 0.3,
+      "when": {
+        "countries": [
+          "KOR"
+        ]
+      },
+      "need": [
+        "uni",
+        "notDrafted"
+      ],
+      "title": "80年代のキャンパス",
+      "text": "構内には私服の警察官が常駐している。光州で何があったのかを書いたビラが、便所の壁にまで貼られていた。今日の昼、正門の前でデモがある。",
+      "stat": "1987年6月、全国で数百万人が街に出て、大統領の直接選挙を求めた",
+      "en": {
+        "title": "Campus in the 1980s",
+        "text": "Plainclothes police are stationed on campus. Leaflets about what happened in Gwangju are taped up even on the bathroom walls. There is a demonstration at the main gate at noon.",
+        "stat": "In June 1987 millions took to the streets across the country to demand direct presidential elections"
+      },
+      "options": [
+        {
+          "label": "デモの先頭に立つ",
+          "en": {
+            "label": "March at the front"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "火炎瓶と催涙弾のなかを走った。けがはなかった。",
+              "en": {
+                "text": "{name} ran through the firebombs and tear gas, unhurt."
+              },
+              "effects": {
+                "happy": -1
+              }
+            },
+            {
+              "weight": 2,
+              "text": "連行され、29日間留置された。",
+              "en": {
+                "text": "{name} was arrested and held for 29 days."
+              },
+              "effects": {
+                "happy": -10,
+                "health": -2
+              },
+              "kind": "hard"
+            },
+            {
+              "weight": 2,
+              "text": "大学から除籍された。",
+              "en": {
+                "text": "{name} was expelled from the university."
+              },
+              "effects": {
+                "happy": -10
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "kr-expelled"
+            }
+          ]
+        },
+        {
+          "label": "後ろから加わる",
+          "en": {
+            "label": "Join at the back"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "催涙弾の煙のなかで、知らない学生と肩を組んで歌った。",
+              "en": {
+                "text": "In the tear gas {name} sang arm in arm with students they had never met."
+              },
+              "effects": {
+                "happy": 2
+              }
+            },
+            {
+              "weight": 2,
+              "text": "撮られた写真で顔が割れ、刑事が下宿に来た。",
+              "en": {
+                "text": "A photo gave {name}'s face away, and a detective came to the lodging house."
+              },
+              "effects": {
+                "happy": -5
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "加わらない",
+          "en": {
+            "label": "Stay out of it"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "就職のための試験勉強を続けた。友だちの何人かとは話さなくなった。",
+              "en": {
+                "text": "{name} kept studying for job exams, and stopped talking to some friends."
+              },
+              "effects": {
+                "learn": 2,
+                "bond": -2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-ar-junta",
+      "minAge": 17,
+      "maxAge": 60,
+      "weight": 1,
+      "from": 1976,
+      "to": 1979,
+      "chance": 0.15,
+      "when": {
+        "countries": [
+          "ARG"
+        ]
+      },
+      "need": [
+        "target"
+      ],
+      "title": "名簿のうわさ",
+      "text": "知り合いの一人が、夜中に緑のフォード・ファルコンに乗せられたまま戻ってこない。組合や学部の名簿が軍の手に渡ったといううわさが流れている。",
+      "stat": "国家失踪者委員会 (CONADEP、1984年) が記録した失踪者は8,961人で、うち労働者が30%、学生が21%、教員が6%だった。人権団体は3万人と推計している",
+      "en": {
+        "title": "The list",
+        "text": "Someone {name} knows was bundled into a green Ford Falcon one night and never came back. There are rumors that union and faculty membership lists are in the army's hands.",
+        "stat": "The National Commission on the Disappeared (CONADEP, 1984) documented 8,961 disappeared: 30% workers, 21% students, 6% teachers. Human rights groups estimate 30,000"
+      },
+      "options": [
+        {
+          "label": "国を出る",
+          "hint": "家族とは離れる",
+          "en": {
+            "label": "Leave the country",
+            "hint": "Leaving family behind"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "書類を一つずつそろえ、夜行バスで国境を越えた。",
+              "en": {
+                "text": "{name} gathered the papers one by one and crossed the border on a night bus."
+              },
+              "effects": {
+                "happy": -10,
+                "bond": -6
+              },
+              "kind": "move",
+              "big": true,
+              "mark": "exile",
+              "note": "アルゼンチンから国外へ逃れた人は数十万人と推計される。割合は目安"
+            }
+          ]
+        },
+        {
+          "label": "目立たないように暮らす",
+          "en": {
+            "label": "Lie low"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "集まりに出るのをやめ、住所録を燃やした。",
+              "en": {
+                "text": "{name} stopped going to meetings and burned the address book."
+              },
+              "effects": {
+                "happy": -4
+              }
+            },
+            {
+              "weight": 1,
+              "text": "夜中に兵士が来て、本棚を調べていった。何も持っていかなかった。",
+              "en": {
+                "text": "Soldiers came in the night and went through the bookshelves. They took nothing."
+              },
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "活動を続ける",
+          "en": {
+            "label": "Keep organizing"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "集まりの場所を変え、偽の名前で続けた。",
+              "en": {
+                "text": "The meetings moved, and {name} carried on under a false name."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "連行され、裁判のないまま1年あまり収容された。",
+              "en": {
+                "text": "{name} was taken away and held for over a year without trial."
+              },
+              "effects": {
+                "happy": -15,
+                "health": -8
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "連行され、何週間も尋問された。釈放されたその月に国を出た。",
+              "en": {
+                "text": "{name} was taken away and interrogated for weeks, and left the country the month of release."
+              },
+              "effects": {
+                "happy": -15,
+                "health": -8
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "exile"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-cl-junta",
+      "minAge": 17,
+      "maxAge": 60,
+      "weight": 1,
+      "from": 1973,
+      "to": 1977,
+      "chance": 0.15,
+      "when": {
+        "countries": [
+          "CHL"
+        ]
+      },
+      "need": [
+        "target"
+      ],
+      "title": "競技場のうわさ",
+      "text": "サンティアゴの国立競技場に、捕らえられた人が何千人も入れられているという。職場の組合の名簿が軍に渡ったといううわさがある。",
+      "stat": "ヴァレチ委員会 は約38,000人を政治犯・拷問の被害者と認めた。亡くなった人と行方不明者は3,200人あまり",
+      "en": {
+        "title": "The stadium",
+        "text": "People say thousands of detainees are being held in the National Stadium in Santiago. The rumor is that the union's membership list has reached the army.",
+        "stat": "The Valech Commission recognized about 38,000 people as political prisoners or torture survivors. More than 3,200 were killed or disappeared"
+      },
+      "options": [
+        {
+          "label": "国を出る",
+          "hint": "家族とは離れる",
+          "en": {
+            "label": "Leave the country",
+            "hint": "Leaving family behind"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "書類を一つずつそろえ、夜行バスで国境を越えた。",
+              "en": {
+                "text": "{name} gathered the papers one by one and crossed the border on a night bus."
+              },
+              "effects": {
+                "happy": -10,
+                "bond": -6
+              },
+              "kind": "move",
+              "big": true,
+              "mark": "exile",
+              "note": "チリから国外へ逃れた人は20万人前後と推計される。割合は目安"
+            }
+          ]
+        },
+        {
+          "label": "目立たないように暮らす",
+          "en": {
+            "label": "Lie low"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 8,
+              "text": "集まりに出るのをやめ、住所録を燃やした。",
+              "en": {
+                "text": "{name} stopped going to meetings and burned the address book."
+              },
+              "effects": {
+                "happy": -4
+              }
+            },
+            {
+              "weight": 1,
+              "text": "夜中に兵士が来て、本棚を調べていった。何も持っていかなかった。",
+              "en": {
+                "text": "Soldiers came in the night and went through the bookshelves. They took nothing."
+              },
+              "effects": {
+                "happy": -6
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "活動を続ける",
+          "en": {
+            "label": "Keep organizing"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 5,
+              "text": "集まりの場所を変え、偽の名前で続けた。",
+              "en": {
+                "text": "The meetings moved, and {name} carried on under a false name."
+              },
+              "effects": {
+                "happy": -3
+              }
+            },
+            {
+              "weight": 3,
+              "text": "連行され、裁判のないまま1年あまり収容された。",
+              "en": {
+                "text": "{name} was taken away and held for over a year without trial."
+              },
+              "effects": {
+                "happy": -15,
+                "health": -8
+              },
+              "kind": "hard",
+              "big": true
+            },
+            {
+              "weight": 2,
+              "text": "連行され、何週間も尋問された。釈放されたその月に国を出た。",
+              "en": {
+                "text": "{name} was taken away and interrogated for weeks, and left the country the month of release."
+              },
+              "effects": {
+                "happy": -15,
+                "health": -8
+              },
+              "kind": "hard",
+              "big": true,
+              "mark": "exile"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-kh-educated",
+      "minAge": 16,
+      "maxAge": 70,
+      "weight": 1,
+      "from": 1975,
+      "to": 1976,
+      "chance": 0.6,
+      "when": {
+        "countries": [
+          "KHM"
+        ]
+      },
+      "need": [
+        "educated"
+      ],
+      "title": "名乗り出る者",
+      "text": "協同組合の集会で幹部が言った。「教師、学生、役人だった者は名乗り出よ。オンカーは国の建て直しに、学のある者を必要としている」",
+      "stat": "1975〜79年に、人口の4分の1近い約170万人が処刑・飢え・病気で亡くなった (イェール大学 カンボジア虐殺研究プログラム)",
+      "en": {
+        "title": "Those who come forward",
+        "text": "At the cooperative meeting the cadre said: \"Former teachers, students and officials, step forward. Angkar needs educated people to rebuild the country.\"",
+        "stat": "Between 1975 and 1979 about 1.7 million people, nearly a quarter of the population, died from execution, starvation and disease (Yale Cambodian Genocide Program)"
+      },
+      "options": [
+        {
+          "label": "黙って、字が読めないふりをする",
+          "en": {
+            "label": "Stay silent and pretend not to read"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "眼鏡を捨て、手のひらにまめを作って田んぼで働いた。",
+              "en": {
+                "text": "{name} threw away the glasses and worked the paddies until the hands were callused."
+              },
+              "effects": {
+                "health": -4,
+                "happy": -4
+              }
+            },
+            {
+              "weight": 2,
+              "text": "昔の教え子に顔を見られた。その子は何も言わなかった。",
+              "en": {
+                "text": "A former pupil recognized {name}. The child said nothing."
+              },
+              "effects": {
+                "happy": -5
+              }
+            }
+          ]
+        },
+        {
+          "label": "名乗り出る",
+          "en": {
+            "label": "Step forward"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "「学習」のために連れていかれた先は、収容所だった。",
+              "en": {
+                "text": "The place {name} was taken for \"study\" was a prison camp."
+              },
+              "effects": {
+                "health": -35,
+                "happy": -25
+              },
+              "kind": "hard",
+              "big": true,
+              "note": "名乗り出た人の多くは戻らなかった。死は生命表と健康の悪化を通してシミュレーションが決める"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

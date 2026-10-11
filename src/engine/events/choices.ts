@@ -39,7 +39,7 @@ import { fill, fits, statOf, techWeight, type When } from './moments';
 import type { Tech } from '../tech';
 
 export type WhoRole = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend';
-interface Effect { effects?: Partial<Stats>; cost?: number; d?: number }
+interface Effect { effects?: Partial<Stats>; cost?: number; d?: number; mark?: string } // mark: 起きたことの印 (p.recent の mark:…)。歴史の続き (history.ts) が読む
 export interface Outcome extends Effect { weight: number; text?: string; en?: { text: string }; after?: number; kind?: YearKind; big?: boolean; note?: string }
 export interface ChoiceOption extends Effect { label: string; hint?: string; en: { label: string; hint?: string; text?: string }; auto?: number; text?: string; outcomes: Outcome[] }
 export interface Choice {
@@ -49,6 +49,8 @@ export interface Choice {
   title: string; text: string; stat?: string;
   en: { title: string; text: string; stat?: string };
   options: ChoiceOption[];
+  chance?: number;  // 歴史の出来事 (decisions/history.json)。条件に合う年にこの確率で出す。ふだんの分かれ道には混ぜない
+  need?: string[];  // 歴史の出来事の、when で書けない条件 (history.ts の NEED)
 }
 
 const FILES = import.meta.glob<{ decisions: Choice[] }>('../../data/decisions/*.json', { eager: true, import: 'default' });
@@ -94,6 +96,7 @@ function say(p: Person, c: Choice, ja: string, en: string | undefined, who?: Rel
 
 // 起きたことを記す。who がいれば、その人の思い出にも残り、近さが d だけ動く
 function apply(p: Person, c: Choice, e: Effect & { text?: string; kind?: YearKind; big?: boolean }, en: string | undefined, who?: Relative): void {
+  if (e.mark) p.recent[`mark:${e.mark}`] = p.age;
   if (e.effects) bump(p, e.effects);
   // 子どもの選択のお金は親の家計の話なので、本人の財布は動かさない (moments と同じ)
   if (e.cost && independent(p)) p.wealth += scaleOf(p) * e.cost;
@@ -145,7 +148,7 @@ export function toDecision(p: Person, c: Choice): Decision {
 export function choices(p: Person): void {
   due(p);
   if (p.rng() >= RATE) return;
-  const pool = CHOICES.filter((c) => eligible(p, c) && techWeight(p, c) > 0.005);
+  const pool = CHOICES.filter((c) => !c.chance && eligible(p, c) && techWeight(p, c) > 0.005);
   if (!pool.length) return;
   const c = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1) * techWeight(p, x));
   p.recent[seenKey(c.id)] = p.age;
