@@ -25,7 +25,13 @@ interface CountryIdentity {
   religions: [string, number][];
 }
 
-const POOLS = data.pools as Record<string, Pool>;
+// from のある伝統は、名をその伝統から借りて、姓だけを自分で持つ (scripts/build-roots-pools.mjs)
+const RAW = data.pools as unknown as Record<string, Pool & { from?: string }>;
+const POOLS: Record<string, Pool> = Object.fromEntries(Object.entries(RAW).map(([k, v]) => [k, v.from
+  ? { ...RAW[v.from], familyEn: undefined, familyFemale: undefined, familyFemaleEn: undefined, ...v }
+  : v]));
+// 姓の一覧 (元の文字)。家の姓を選び直すとき (roots.ts)
+export const familyNames = (pool: string): string[] => POOLS[pool]?.family ?? [];
 const COUNTRIES = data.countries as unknown as Record<string, CountryIdentity>;
 const FALLBACK: CountryIdentity = { pool: 'english', cities: [], religions: [['その他', 1]] };
 
@@ -63,6 +69,7 @@ export function pickCity(rng: Rng, code: string): string | null {
 
 const cityAt = (ci: CountryIdentity, i: number): string => (isEn && ci.citiesEn?.[i]) || ci.cities[i];
 
+export const religionsOf = (code: string): [string, number][] => idOf(code).religions;
 export const pickReligion = (rng: Rng, code: string): string => pickWeighted(rng, idOf(code).religions, ([, w]) => w)[0];
 
 export const firstCity = (code: string): string | null => (idOf(code).cities.length ? cityAt(idOf(code), 0) : null);

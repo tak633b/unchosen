@@ -21,6 +21,9 @@ import { logNearMiss, nearMiss } from './crisis';
 import { bonds } from './events/bonds';
 import { because, birthWhy, deathWhy, joinWhy } from './why';
 import { ensureBonds, freshName } from './bonds';
+import { origin, roots, rootsMortality } from './roots';
+import { rootsYear } from './events/roots';
+import { faith } from './events/faith';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -40,7 +43,7 @@ export function pauseQuestion(p: Person, age = p.age): string | null {
   }
 }
 
-export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean; country?: string; year?: number; month?: number; gender?: Gender }
+export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean; country?: string; year?: number; month?: number; gender?: Gender; plain?: boolean } // plain: 輪の人の一生 (kin.ts)。生まれの区分・養子・双子を決めない
 
 export function createPerson(o: BirthOptions): Person {
   const rng = makeRng(o.seed);
@@ -86,7 +89,9 @@ export function createPerson(o: BirthOptions): Person {
   };
   if (c.u5mr > 0.05 && familyP < 0.3) bump(p, { health: -10 });
   ensureBonds(p);
+  if (!o.plain) origin(p);
   log(p, birthStory(p), 'child', true, undefined, [p.mother.id!, p.father.id!]);
+  if (!o.plain) roots(p);
   return p;
 }
 
@@ -143,7 +148,8 @@ export function riskParts(p: Person): RiskParts {
   // 二重に数えないよう、15〜49歳の女性からは、1年あたりの見込み (出生率/35 × 妊産婦死亡率) を差し引く
   // ponytail: 結婚していない人も同じだけ引く。未婚率の高い国・時代では、少し長く生きる側にずれる
   const maternal = p.sex === 'F' && p.age >= 15 && p.age < 50 ? (c.tfr / 35) * (c.mmr / 1e5) : 0;
-  const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal);
+  // ウイグル族・チベット族は、住む自治区の平均寿命の差を倍率でかける (roots.ts)
+  const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal) * rootsMortality(p);
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
   if (p.age < 5) return { q: base, table: base, ...one };
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
@@ -217,6 +223,8 @@ export function advanceYear(p: Person): void {
   adultPet(p);
   moments(p);
   bonds(p);
+  rootsYear(p);
+  faith(p);
   if (p.age === 62 && p.hobbies.length < 3 && p.rng() < 0.5) chooseHobby(p, L('新しい趣味を始める？', 'Take up a new hobby?'));
   drift(p);
   if (near && p.alive) logNearMiss(p, near, q);

@@ -85,7 +85,7 @@ function chooseTrack(p: Person, c: Country): void {
 export const uniChance = (p: Person, c: Country) =>
   clamp(Math.min(1, c.tertiary) * (0.5 + p.familyP) * (0.4 + p.stats.learn / 100) * (p.school.track === 'vocational' ? 0.6 : 1), 0.02, 0.95);
 
-const tuitionOf = (c: Country, abroad: boolean) => earnings(c, 0.5) * (abroad ? 0.9 : 0.25);
+export const tuitionOf = (c: Country, abroad: boolean) => earnings(c, 0.5) * (abroad ? 0.9 : 0.25);
 
 // 留学先: 留学生を多く受け入れる豊かな国
 const studyDest = (p: Person) => pickWeighted(p.rng, countriesAt(yearOf(p)).filter((d) => d.gdp > 35000 && d.code !== p.country), (d) => d.pop * (['USA', 'GBR', 'AUS', 'CAN', 'DEU', 'FRA', 'JPN'].includes(d.code) ? 4 : 1));
