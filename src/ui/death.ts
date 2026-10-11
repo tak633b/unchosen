@@ -12,7 +12,8 @@ import { aiOn } from '../ai/settings';
 import { $, esc, load, pct } from './dom';
 import { isEn, L, lang } from '../i18n';
 import { jobName, majorName } from '../engine/jobs';
-import { causeName } from '../engine/causes';
+import { causeLabel, causeName, isSuicide } from '../engine/causes';
+import { helpline } from '../engine/suicide';
 import { people } from '../engine/bonds';
 import { petTies } from '../engine/pets';
 import { lastWordsHtml, mountRing, paintFaces, personCard, roleName } from './ring';
@@ -87,7 +88,7 @@ function factsOf(p: Person): [string, string][] {
 function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[]): PastLife {
   return {
     seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
-    birthYear: p.birthYear, age: p.age, cause: p.cause ?? '', story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
+    birthYear: p.birthYear, age: p.age, cause: causeLabel(p.cause), story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
     questions: p.questions, facts: factsOf(p),
     others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o), seed: o.seed, birthYear: o.birthYear, birthMonth: o.birthMonth })),
     me: briefOf(p),
@@ -124,11 +125,12 @@ export function deathRecord(l: PastLife, slot = ''): string {
     <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}${L(`・享年${l.age}歳`, ` · died at ${l.age}`)}${l.line ? L(`・第${l.line.length}世代`, ` · generation ${l.line.length}`) : ''}</p>
     <p class="story">${esc(l.story)}</p>
     <section id="aistory">${l.aiStory ? aiStoryHtml(l.aiStory) : ''}</section>
-    <div class="cause"><b>${L('死因', 'Cause of death:')} ${esc(causeName(l.cause ?? ''))}</b>
+    <div class="cause"><b>${l.cause ? `${L('死因', 'Cause of death:')} ${esc(causeName(l.cause))}` : L(`${l.age}歳で亡くなった`, `Died at ${l.age}`)}</b>
       <p>${isEn
         ? `Of the ${l.gender === 'X' ? 'children' : l.sex === 'F' ? 'girls' : 'boys'} born in ${esc(b.name)} that year, about ${pct(longer)} live longer than this (${pct(outlive)} die sooner). On average they live to ${e0.toFixed(1)}; ${l.sex === 'F' ? 'she' : 'he'} lived ${Math.abs(diff).toFixed(1)} years ${diff >= 0 ? 'longer' : 'less'}.`
         : `同じ年に${esc(b.name)}で生まれた${l.gender === 'X' ? '子ども' : l.sex === 'F' ? '女の子' : '男の子'}のうち、約${pct(longer)}がこの人より長く生きる(${pct(outlive)}はこれより早く亡くなる)。その平均${e0.toFixed(1)}歳より${Math.abs(diff).toFixed(1)}年${diff >= 0 ? '長く' : '短く'}生きた。`}</p></div>
     ${l.message ? `<p class="message">${L(`「${esc(l.message)}」`, `"${esc(l.message)}"`)}</p>` : ''}
+    <p class="note">${esc(helpline())}</p>
   </article>
   ${l.circle ? `<section class="panel">
     <h3>${L('最後にそばにいた人', 'Who was there at the end')}</h3>
@@ -281,7 +283,9 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
   window.scrollTo(0, 0);
   paintLife(app, life, onContinue ? p : undefined, others);
   if (!onContinue) app.querySelector('.heirs')?.remove();
-  if (aiOn('story') && life.words?.length) {
+  // 自死の人生は AI に語らせない (ai/prompts.ts の決まりと同じ)
+  const aiOk = !isSuicide(p.cause);
+  if (aiOk && aiOn('story') && life.words?.length) {
     const box = app.querySelector<HTMLElement>('.lastwords')!;
     void lastWordsAi(p).then((words) => {
       if (!document.body.contains(box) || !words.some((w) => w.ai)) return;
@@ -291,7 +295,7 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       paintFaces(box, standIn(life), life.circle as Tie[]);
     });
   }
-  if (aiOn('story')) {
+  if (aiOk && aiOn('story')) {
     const box = $('#aistory');
     box.innerHTML = `<p class="note"><i class="aitag">AI</i>${L('この人の一生を物語にしている…', 'Writing this life as a story…')}</p>`;
     void lifeStoryAi(p).then((s) => {
@@ -323,7 +327,7 @@ async function postMemorial(l: PastLife, p: Person): Promise<void> {
     await fetch('/api/memorial', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gen: l.line?.length ?? 1, family: familyLine(l), rural: p.rural, name: l.name, country: l.birthCountry, sex: l.gender ?? l.sex, age: l.age, cause: l.cause, line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '', lang }),
+      body: JSON.stringify({ gen: l.line?.length ?? 1, family: familyLine(l), rural: p.rural, name: l.name, country: l.birthCountry, sex: l.gender ?? l.sex, age: l.age, cause: l.cause || L('亡くなった', 'passed away'), line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '', lang }),
     });
   } catch {
     // 届かなくても、前世の記録には残っている

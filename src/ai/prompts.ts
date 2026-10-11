@@ -7,6 +7,7 @@ import { EDU_LABEL, countryOf, eduLevel, type Person, type Relative } from '../e
 import { isEn, L, regionName, religionName } from '../i18n';
 import type { Msg } from './client';
 import { kindNote } from './words';
+import { causeLabel } from '../engine/causes';
 import type { BondAsk } from './apply';
 import type { Role, Tie } from '../engine/person';
 
@@ -27,6 +28,8 @@ const RULES_EN = `You are the narrator of "Unchosen", a life simulator built on 
 - Write small, concrete events true to the realities of that country, region, religion and standard of living. Avoid tourist-brochure clichés.
 - English. Past tense, third person, short and concrete. No exclamation marks, emoji or dashes. Avoid words like "journey", "testament", "tapestry", "vibrant", "cherish".
 - Output JSON only. No preamble or explanation.`;
+// AI に渡す記録。自死での死別 (quiet) は渡さない。自死は AI に語らせない (RULES の「自殺・自傷は扱わない」と同じ)
+const told = (p: Person) => p.log.filter((e) => !e.quiet);
 const rules = () => (isEn ? RULES_EN : RULES);
 const sexWord = (s: 'F' | 'M' | 'X') => (s === 'X' ? L('性別はその他 (男女どちらでもない言い方で書く)', 'gender: other (use neutral wording, refer by name)') : s === 'F' ? L('女性', 'female') : L('男性', 'male'));
 const PET_EN: Record<string, string> = { 犬: 'dog', 猫: 'cat' };
@@ -37,7 +40,7 @@ function factsEn(p: Person): string {
   const income = currentIncome(p);
   const rel = (r: Relative) => `${r.name ?? 'unnamed'} (${r.alive ? `age ${r.age}` : 'deceased'})`;
   const kids = p.children.map(rel).join(', ') || 'none';
-  const recent = p.log.slice(-10).map((e) => `Age ${e.age}: ${e.text}`).join('\n');
+  const recent = told(p).slice(-10).map((e) => `Age ${e.age}: ${e.text}`).join('\n');
   return [
     `Name: ${p.name} (goes by ${p.given}), ${sexWord(p.gender ?? p.sex)}, age ${p.age}, year ${p.birthYear + p.age}`,
     ...(p.birthYear + p.age > ERA_NOW ? ['This year is in the future. The figures follow UN projections. Do not name specific future events, products or technologies; describe everyday life plainly.'] : []),
@@ -59,7 +62,7 @@ function facts(p: Person): string {
   const born = byCode(p.birthCountry);
   const income = currentIncome(p);
   const kids = p.children.map((k) => `${k.name}(${k.alive ? `${k.age}歳` : '他界'})`).join('、') || 'なし';
-  const recent = p.log.slice(-10).map((e) => `${e.age}歳: ${e.text}`).join('\n');
+  const recent = told(p).slice(-10).map((e) => `${e.age}歳: ${e.text}`).join('\n');
   return [
     `名前: ${p.name}(呼び名 ${p.given})・${sexWord(p.gender ?? p.sex)}・${p.age}歳・${p.birthYear + p.age}年`,
     ...(p.birthYear + p.age > ERA_NOW ? ['この年は未来。数字は国連の予測にもとづく。未来の具体的な出来事・製品・技術の名前は作らず、ふだんの暮らしとして書く。'] : []),
@@ -161,13 +164,13 @@ function yearPromptEn(p: Person, ask: YearAsk): Msg[] {
 
 export function storyPrompt(p: Person): Msg[] {
   if (isEn) return storyPromptEn(p);
-  const all = p.log.filter((e) => e.big || e.kind === 'loss' || e.kind === 'love').map((e) => `${e.age}歳: ${e.text}`).slice(-60).join('\n');
+  const all = told(p).filter((e) => e.big || e.kind === 'loss' || e.kind === 'love').map((e) => `${e.age}歳: ${e.text}`).slice(-60).join('\n');
   const answers = p.questions.filter((q) => q.a).map((q) => `${q.age}歳の問い「${q.q}」への答え: ${q.a}`).join('\n');
   return [
     { role: 'system', content: RULES.replace('主人公を死なせない。', '') },
     {
       role: 'user',
-      content: `${facts(p)}\n\nこの人は${p.age}歳で亡くなりました(死因: ${p.cause})。\n人生の主な出来事:\n${all}\n${answers ? `本人が書き留めたこと:\n${answers}\n` : ''}
+      content: `${facts(p)}\n\nこの人は${p.age}歳で亡くなりました${causeLabel(p.cause) ? `(死因: ${causeLabel(p.cause)})` : ''}。\n人生の主な出来事:\n${all}\n${answers ? `本人が書き留めたこと:\n${answers}\n` : ''}
 この一生を、3〜4段落の短い物語にしてください。出来事を並べるのではなく、その人が生きた土地と時代の手触りが残るように。最後の段落は、見送る人の一言で静かに終える。
 次の形の JSON で答えてください: {"title": "物語の題(20字以内)", "story": "本文(段落の間は\\n\\n)"}`,
     },
@@ -175,13 +178,13 @@ export function storyPrompt(p: Person): Msg[] {
 }
 
 function storyPromptEn(p: Person): Msg[] {
-  const all = p.log.filter((e) => e.big || e.kind === 'loss' || e.kind === 'love').map((e) => `Age ${e.age}: ${e.text}`).slice(-60).join('\n');
+  const all = told(p).filter((e) => e.big || e.kind === 'loss' || e.kind === 'love').map((e) => `Age ${e.age}: ${e.text}`).slice(-60).join('\n');
   const answers = p.questions.filter((q) => q.a).map((q) => `At ${q.age}, asked "${q.q}", they wrote: ${q.a}`).join('\n');
   return [
     { role: 'system', content: RULES_EN.replace('Do not let the main character die. ', '') },
     {
       role: 'user',
-      content: `${facts(p)}\n\nThis person died at age ${p.age} (cause: ${p.cause}).\nMain events of their life:\n${all}\n${answers ? `What they wrote down:\n${answers}\n` : ''}
+      content: `${facts(p)}\n\nThis person died at age ${p.age}${causeLabel(p.cause) ? ` (cause: ${causeLabel(p.cause)})` : ''}.\nMain events of their life:\n${all}\n${answers ? `What they wrote down:\n${answers}\n` : ''}
 Turn this life into a short story of 3 or 4 paragraphs. Do not list events; let the feel of the place and time they lived in come through. End the last paragraph quietly, with a few words from someone seeing them off.
 Answer with JSON in this shape: {"title": "title of the story (at most 6 words)", "story": "the text (\\n\\n between paragraphs)"}`,
     },
@@ -190,13 +193,13 @@ Answer with JSON in this shape: {"title": "title of the story (at most 6 words)"
 
 export function othersPrompt(others: Person[]): Msg[] {
   if (isEn) {
-    const list = others.map((o, i) => `${i}: ${o.name}, ${byCode(o.country).name}, ${sexWord(o.sex)}, age ${o.age}, ${o.alive ? (o.job ? jobName(o.job) : (o.school.enrolled ? 'student' : 'at home')) : `died at ${o.age}`}\n   Recent: ${o.log.slice(-4).map((e) => e.text).join(' / ')}`).join('\n');
+    const list = others.map((o, i) => `${i}: ${o.name}, ${byCode(o.country).name}, ${sexWord(o.sex)}, age ${o.age}, ${o.alive ? (o.job ? jobName(o.job) : (o.school.enrolled ? 'student' : 'at home')) : `died at ${o.age}`}\n   Recent: ${told(o).slice(-4).map((e) => e.text).join(' / ')}`).join('\n');
     return [
       { role: 'system', content: RULES_EN },
       { role: 'user', content: `Four people born in the same second. One line each on how they are now (at most 8 words). For someone who has died, describe those left behind.\n${list}\nAnswer with JSON in this shape: {"lines": ["…", "…", "…", "…"]}` },
     ];
   }
-  const list = others.map((o, i) => `${i}: ${o.name}・${byCode(o.country).name}・${o.sex === 'F' ? '女性' : '男性'}・${o.age}歳・${o.alive ? (o.job ?? (o.school.enrolled ? '学生' : '家で暮らす')) : `${o.age}歳で他界`}\n   最近: ${o.log.slice(-4).map((e) => e.text).join(' / ')}`).join('\n');
+  const list = others.map((o, i) => `${i}: ${o.name}・${byCode(o.country).name}・${o.sex === 'F' ? '女性' : '男性'}・${o.age}歳・${o.alive ? (o.job ?? (o.school.enrolled ? '学生' : '家で暮らす')) : `${o.age}歳で他界`}\n   最近: ${told(o).slice(-4).map((e) => e.text).join(' / ')}`).join('\n');
   return [
     { role: 'system', content: RULES },
     { role: 'user', content: `同じ1秒に生まれた4人の、いまの様子を一言ずつ(30字以内)。亡くなった人は、残された人の様子で。\n${list}\n次の形の JSON で答えてください: {"lines": ["…", "…", "…", "…"]}` },

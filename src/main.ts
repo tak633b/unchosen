@@ -3,7 +3,7 @@ import { COUNTRIES, ERA_FROM, ERA_NOW, ERA_TO, byCode, countriesAcrossYears, cou
 import { loadWorld } from './engine/world';
 import { bornTable } from './engine/lifetable';
 import { earnings, formatMoney } from './engine/economy';
-import { causeName } from './engine/causes';
+import { causeLabel } from './engine/causes';
 import { createPerson, homeWord } from './engine/life';
 import { genderOf, genderWord, type Gender, type Person } from './engine/person';
 import { makeRng, pickWeighted, randomSeed } from './engine/rng';
@@ -364,7 +364,7 @@ function past(): void {
     <h1>${L('前世の記録', 'Past lives')}</h1>
     <p class="note">${L(`最近の${lives.length}つの人生(最大10)。この端末にだけ残っている。`, `Your last ${lives.length} ${lives.length === 1 ? 'life' : 'lives'} (up to 10). Kept only on this device.`)}</p>
     <ul class="pastlist">${lives.map((l, i) => `
-      <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${L(`${l.age}歳(${esc(l.cause)})`, `age ${l.age} (${esc(causeName(l.cause ?? ''))})`)}
+      <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${causeLabel(l.cause) ? L(`${l.age}歳(${esc(causeLabel(l.cause))})`, `age ${l.age} (${esc(causeLabel(l.cause))})`) : L(`${l.age}歳`, `age ${l.age}`)}
       <small>${new Date(l.date).toLocaleDateString(isEn ? 'en-US' : 'ja-JP')}</small></button></li>`).join('') || `<li>${L('まだない。', 'None yet.')}</li>`}</ul>
     <div id="pastdetail"></div>
     <button data-go="home">${L('戻る', 'Back')}</button>
@@ -395,13 +395,17 @@ function about(): void {
     <p>When people die: a life table is built for each country and sex to match infant and under-5 mortality and life expectancy by sex. Health, income, smoking, drinking and treatment of illness move a person's own risk up or down.</p>
     <p>Causes of death: the mix by age group (a rough shape from WHO and GBD) is weighted by the country's income, region and smoking. Homicide comes from the homicide rate. The weight of road deaths is estimated from income.</p>
     <p>Income: a person's family and job sit within the country's income distribution (a log-normal shaped by the Gini index). Amounts are shown in purchasing-power-parity dollars.</p>
-    <p>Missing values are estimated from countries in the same region with similar GDP per person. Child marriage in high-income countries is set at 1%. Suicide is in reality one of the leading causes of death, but this game does not include it.</p>` : `
+    <p>Missing values are estimated from countries in the same region with similar GDP per person. Child marriage in high-income countries is set at 1%.</p>
+    <p>Suicide: it is one of the leading causes of death, so it is included at each country's rate by age and sex (WHO Global Health Estimates 2021), from age 10 up, without changing overall mortality. It is never shown as a cause on records, cards or the memorial, and no method or reason is ever described. If things feel heavy, you can talk to someone: in the US, call or text 988; elsewhere, findahelpline.com.</p>
+    <p>Crime and justice: drink-driving, fights, teen mistakes and theft in hard years are choices with costs, never gains. A record fades after a time modeled on Japanese law (fines 5 years, suspended sentences at the end of probation, prison 10 years after release). Family imprisonment uses prison population rates from the World Prison Brief.</p>` : `
     <p>国ごとの指標(${COUNTRIES.length}か国、人口50万人以上): 年間出生数・人口、男女別の平均寿命、乳児死亡率・5歳未満死亡率、1人当たりGDP(購買力平価)、ジニ係数、平均教育年数、高等教育就学率、農業従事者の割合、合計特殊出生率、妊産婦死亡率、HIV陽性率、殺人発生率、喫煙率、医療費の自己負担割合、18歳未満で結婚した女性の割合、生活満足度。</p>
     <p>出典: 国連世界人口推計、UN IGME、世界銀行 WDI、WHO、UNESCO UIS、UNDP、ILO、UNAIDS、UNODC、UNICEF、World Happiness Report(いずれも Our World in Data 経由)。2024年以前で最新の値を使っている。</p>
     <p>亡くなる時期: 乳児・5歳未満死亡率と男女別の平均寿命に合うよう、国と性別ごとに生命表を組み立てている。健康・所得・喫煙・酒・病気の治療で、その人の死亡率は上下する。</p>
     <p>死因: 年齢帯ごとの構成(WHO・GBD のおおまかな形)を、国の豊かさや地域、喫煙で重み付けしている。他殺は殺人発生率から。交通事故の重みは所得からの推計。</p>
     <p>所得: 国ごとの所得分布(ジニ係数から決めた対数正規分布)の中で、家と仕事の位置が決まる。金額は購買力平価ドルと、日本の物価での円換算(1ドル≒95円)を並べている。</p>
-    <p>欠けている値は、同じ地域で1人当たりGDPが近い国から推計している。高所得国の児童婚率は1%としている。自殺は実際には主要な死因の一つだが、このゲームでは扱わない。</p>`}
+    <p>欠けている値は、同じ地域で1人当たりGDPが近い国から推計している。高所得国の児童婚率は1%としている。</p>
+    <p>自死: 実際に主要な死因の一つなので、国・年齢・性別ごとの率(WHO Global Health Estimates 2021)で、10歳以上にだけ起こる。全体の死亡率は変えず、ほかの死因から取り分けている。記録・カード・追悼館には死因として出さず、方法や理由も書かない。つらい気持ちを話せる場所があります: いのちSOS 0120-061-338、10代の人は24時間子供SOSダイヤル 0120-0-78310。</p>
+    <p>罪と償い: 飲酒運転・けんか・10代のあやまち・食べ物のない年の盗みは、代償のある選択として出てくる。罪で得をすることはない。前科は日本の刑法にならって消える(罰金は5年、執行猶予は猶予期間の終わり、刑務所は出てから10年)。家族の収監は World Prison Brief の収容率から。</p>`}
     <h2>${L('音楽', 'Music')}</h2>
     <ul>${Object.values(TRACKS).map((t) => `<li>“<a href="${t.url}" rel="noopener">${t.title}</a>” ${t.artist} (incompetech.com), <a href="${t.licenseUrl}" rel="noopener">${t.license}</a></li>`).join('')}</ul>
     <button data-go="home">${L('戻る', 'Back')}</button>

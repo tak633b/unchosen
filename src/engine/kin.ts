@@ -2,7 +2,8 @@
 // 主人公の記録で決まっていること (関係の時期・一緒の出来事・亡くなった年と死因・結婚・子・きょうだいの家・親の年齢・国) は
 // 手綱 (Anchor) で守る。乱数は主人公とは別に、seed と その人の id から作る。主人公の人生にも、その乱数にも触れない。
 // 保存はしない。見るときに作り、同じ記録のあいだは覚えておく
-import { causeName, pickCause } from './causes';
+import { causeLabel, causeName, isSuicide, pickCause, SUICIDE } from './causes';
+import { afterSuicideLoss } from './events/strain';
 import { countryAt } from './countries';
 import { advanceYear, birthStory, createPerson } from './life';
 import { MAX_AGE, type Sex } from './lifetable';
@@ -61,8 +62,9 @@ class Ledger {
   }
   // 記録に残る死因。親と連れ合いの死は「(死因)」で書かれている (events/family.ts)
   private recordedCause(m: Member): string | undefined {
-    if (m.role !== 'mother' && m.role !== 'father' && m.role !== 'spouse') return;
     const e = this.p.log.find((x) => x.kind === 'loss' && x.age === m.r.diedAt && x.who?.includes(m.r.id!));
+    if (e?.quiet) return causeName(SUICIDE); // 自死は記録に死因を書かない (events/strain.ts の afterSuicideLoss)
+    if (m.role !== 'mother' && m.role !== 'father' && m.role !== 'spouse') return;
     const hit = e?.text.match(/\(([^()]+)\)[。.]?$/);
     if (hit) return hit[1];
     if (m.role === 'spouse' && e?.stat) return causeName('出産時の合併症'); // events/love.ts の giveBirth
@@ -144,7 +146,8 @@ function fixedDeaths(rp: Person): void {
     if (!fx || !rel.alive || fx.dies === undefined || yr < fx.born + fx.dies) continue;
     rel.alive = false;
     rel.age = fx.dies;
-    const why = fx.cause ? L(`(${fx.cause})`, ` (${fx.cause})`) : '';
+    const label = causeLabel(fx.cause);
+    const why = label ? L(`(${label})`, ` (${label})`) : '';
     const n = rel.name ?? '';
     const text = role === 'mother' || role === 'father'
       ? L(`${role === 'mother' ? '母' : '父'}が${rel.age}歳で亡くなった${why}。`, `${role === 'mother' ? 'Mother' : 'Father'} died at ${rel.age}${why}.`)
@@ -154,6 +157,7 @@ function fixedDeaths(rp: Person): void {
             : L(`孫の${n}が${rel.age}歳で亡くなった${why}。`, `Grandchild ${n} died at ${rel.age}${why}.`);
     shared(rp, [rel], text, 'loss', 0, true, undefined, 'loss');
     because(rp, deathWhy(countryOf(rp), rel.sex, rel.age));
+    if (isSuicide(fx.cause)) afterSuicideLoss(rp);
     rel.diedAt = rp.age;
     const young = (role === 'mother' || role === 'father') && rp.age < 18;
     mourn(rp, rel, young ? -18 : GRIEF[role] ?? -4);

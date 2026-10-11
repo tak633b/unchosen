@@ -1,6 +1,9 @@
 // 一つの人生を、1年ずつ進める。
 import { byCode, countryAt, pickBirthCountry, type BirthBasis } from './countries';
-import { causeName, homicideHazard, pickCause } from './causes';
+import { causeName, homicideHazard, isSuicide, pickCause } from './causes';
+import { helpline, suicideHazard } from './suicide';
+import { reachOut, strain, strainK } from './events/strain';
+import { justice } from './events/justice';
 import { isEn, L, religionName } from '../i18n';
 import { makeName, pickCity, pickReligion } from './identity';
 import { lifeTable, MAX_AGE, type Sex } from './lifetable';
@@ -131,12 +134,12 @@ function smokeAvg(p: Person): number {
 
 // その年に亡くなる確率。生命表の値に、健康・所得・喫煙・病気の倍率をかける
 // 死亡率の内訳 (自分の欄で「なぜ」を見せるため)。q が deathRisk の値。ほかは掛け合わせる前の倍率
-export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number }
+export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number; strainAdd: number }
 
 export const deathRisk = (p: Person): number => riskParts(p).q;
 
 export function riskParts(p: Person): RiskParts {
-  const one = { cal: 1, healthK: 1, wealthK: 1, smokeK: 1, drinkK: 1, illK: 1, hivAdd: 0 };
+  const one = { cal: 1, healthK: 1, wealthK: 1, smokeK: 1, drinkK: 1, illK: 1, hivAdd: 0, strainAdd: 0 };
   const c = countryOf(p);
   // 生命表の終わりでは必ず亡くなる (倍率で 1 を割ると MAX_AGE を超えて生きてしまう)
   if (p.age >= MAX_AGE) return { q: 1, table: 1, ...one };
@@ -157,8 +160,10 @@ export function riskParts(p: Person): RiskParts {
   const drinkK = p.drinker ? 1.25 : 1;
   const illK = (p.illness?.mult ?? careQuality(c)) / careQuality(c);
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
+  // つらい時期 (events/strain.ts) には、自死の率をその倍率のぶんだけ動かす。時期の外では 0 なので、ふだんの死亡率は変わらない
+  const strainAdd = (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
   const cal = calibration(p.age);
-  return { q: Math.min(1, cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd };
+  return { q: clamp(cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + strainAdd, 0, 1), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, strainAdd };
 }
 
 function die(p: Person, cause: string): void {
@@ -170,6 +175,12 @@ function die(p: Person, cause: string): void {
 // 出産のように意思決定の中で亡くなることもあるので、死亡の記録はここで一度だけ付ける
 export function settle(p: Person): void {
   if (p.alive || p.log.at(-1)?.kind === 'death') return;
+  // 自死は死因を書かず、理由も書かない。「なぜ」の欄には相談先を置く (suicide.ts)
+  if (isSuicide(p.cause)) {
+    log(p, L(`${p.age}歳で亡くなった。`, `Died at ${p.age}.`), 'death', true);
+    because(p, helpline());
+    return;
+  }
   log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
   because(p, p.cause === causeName('出産時の合併症') ? birthWhy(p, countryOf(p), p.age) : joinWhy([
     deathWhy(countryOf(p), p.sex, p.age, p.gender === 'X'),
@@ -190,7 +201,7 @@ export function advanceYear(p: Person): void {
     if (p.anchor?.cause) cause = p.anchor.cause;
     else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;
-    else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker);
+    else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker, strainK(p));
     die(p, cause);
     return;
   }
@@ -212,8 +223,11 @@ export function advanceYear(p: Person): void {
   illness(p);
   if (!p.anchor?.hold(p, 'move')) migration(p);
   finances(p);
+  strain(p);
   crime(p);
+  justice(p);
   dilemmas(p);
+  reachOut(p);
   choices(p);
   history(p);
   adultPet(p);
