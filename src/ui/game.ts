@@ -41,6 +41,8 @@ interface GameState {
   ff: boolean;       // 次の決定まで早送り
   paused: boolean;
   music: boolean;
+  bg: boolean;       // 別のタブに移っても進める (この端末に覚える)
+  bgTimer?: number;
   progress: number;
   modal: boolean;
   logOpen: boolean;
@@ -82,7 +84,7 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
   $('#app').innerHTML = shell();
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
@@ -93,6 +95,8 @@ function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onEx
   render();
   persist();
   S.raf = requestAnimationFrame(frame);
+  // タブが隠れると requestAnimationFrame が止まる。裏でも進めるときは、1秒ごとのタイマーで同じ frame を回す
+  S.bgTimer = window.setInterval(() => { if (S?.bg && document.hidden) { cancelAnimationFrame(S.raf); frame(performance.now()); } }, 1000);
 }
 
 function persist(): void {
@@ -102,7 +106,8 @@ function persist(): void {
 
 function frame(t: number): void {
   if (!S) return;
-  const dt = Math.min(250, t - S.last);
+  // 裏で回すタイマーはブラウザに間引かれる (1秒〜1分おき) ので、そのあいだの時間をまとめて進める
+  const dt = Math.min(document.hidden ? 60_000 : 250, t - S.last);
   S.last = t;
   if (!S.paused && !S.modal && S.p.alive) {
     S.progress += (dt * (S.ff ? 400 : S.speed)) / YEAR_MS;
@@ -171,6 +176,7 @@ function shell(): string {
       <button data-act="ff" title="${L('次に決めることが来るまで早送り', 'Fast-forward to the next decision')}">${L('次の決定まで', 'Next decision')} »</button>
       <button data-act="auto" id="autobtn">${L('自動で決める', 'Auto')}</button>
       <span class="aibadge" id="aibadge" hidden>AI</span>
+      <button data-act="bg" id="bgbtn" title="${L('ONなら別のタブに移っても進み続ける (決めることが来たら止まる)', 'When on, keeps going in a background tab (stops at decisions)')}">${L('裏でも進める', 'Run in background')}</button>
       <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button><input type="range" id="musicvol" min="0" max="100" step="5" value="${musicVolume()}" aria-label="${L('音量', 'Volume')}">
       <button data-act="exit">${L('中断', 'Quit')}</button>
     </div>
@@ -206,6 +212,8 @@ function render(): void {
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
   $('#autobtn').classList.toggle('on', p.auto);
   $('#musicbtn').classList.toggle('on', S.music);
+  $('#bgbtn').classList.toggle('on', S.bg);
+  $('#bgbtn').setAttribute('aria-pressed', String(S.bg));
   $<HTMLInputElement>('#musicvol').hidden = !S.music;
   mountRing($('#ring'), p, S.sel);
   // 一生の欄は毎年書き直すので、読んでいた位置を保つ
@@ -278,6 +286,7 @@ function onClick(e: MouseEvent): void {
     case 'speed': S.speed = Number(v); S.ff = false; break;
     case 'ff': S.ff = true; S.paused = false; break;
     case 'auto': S.p.auto = !S.p.auto; break;
+    case 'bg': S.bg = !S.bg; save('bg', S.bg); break;
     case 'music': S.music = !S.music; save('music', S.music); setMusic(S.music); break;
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;
@@ -403,6 +412,7 @@ function confirmExit(): void {
 function leave(): void {
   if (!S) return;
   cancelAnimationFrame(S.raf);
+  window.clearInterval(S.bgTimer);
   window.clearTimeout(S.timer);
   S.io?.disconnect();
   const exit = S.onExit;
@@ -417,6 +427,7 @@ function finish(): void {
   for (const o of others) while (o.alive) advanceYear(o);
   clearSaved();
   cancelAnimationFrame(S.raf);
+  window.clearInterval(S.bgTimer);
   S.io?.disconnect();
   S = null;
   // 急な死は、九死に一生と同じ場面で始まる (最後の一拍まで、どちらになるか分からない)。病や老いは静かな場面
