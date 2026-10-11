@@ -5,7 +5,8 @@ import { clamp, pick } from '../rng';
 import { addTie, freshName, mourn, shared } from '../bonds';
 import { makeName } from '../identity';
 import { qAt } from './common';
-import { pickCause } from '../causes';
+import { isSuicide, pickCause } from '../causes';
+import { afterSuicideLoss } from './strain';
 import { isEn, L } from '../../i18n';
 import { because, deathWhy } from '../why';
 import { petAged, petDied } from '../pets';
@@ -27,8 +28,10 @@ export function family(p: Person): void {
     const cause = relDies(p, rel);
     if (!cause) continue;
     const young = p.age < 18;
-    log(p, L(`${word}が${rel.age}歳で亡くなった(${cause})。`, `${wordEn} died at ${rel.age} (${cause}).`), 'loss', true, undefined, [rel.id!]);
+    const quiet = isSuicide(cause);
+    log(p, L(`${word}が${rel.age}歳で亡くなった${quiet ? '' : `(${cause})`}。`, `${wordEn} died at ${rel.age}${quiet ? '' : ` (${cause})`}.`), 'loss', true, undefined, [rel.id!]);
     because(p, deathWhy(countryOf(p), rel.sex, rel.age));
+    if (quiet) afterSuicideLoss(p);
     mourn(p, rel, young ? -18 : -8, young ? -10 : -4);
     // まだ生まれていないきょうだいは、母が亡くなれば生まれない。父が亡くなった後は、その年のうちに生まれる子まで
     if (p.siblings.some((s) => s.age < 0)) p.siblings = p.siblings.filter((s) => s.age >= (rel === p.mother ? 0 : -1));
@@ -43,11 +46,13 @@ export function family(p: Person): void {
     }
     if (!s.alive) continue;
     s.age++;
-    if (relDies(p, s)) {
+    const sCause = relDies(p, s);
+    if (sCause) {
       log(p, isEn
         ? `${s.sex === 'F' ? 'Sister' : 'Brother'} ${s.name} died ${s.age <= 1 ? 'as a newborn' : `at ${s.age}`}.`
         : `${s.age <= 1 ? '生まれたばかりの' : `${s.age}歳の`}きょうだい、${s.name}が亡くなった。`, 'loss', true, undefined, [s.id!]);
       because(p, deathWhy(countryOf(p), s.sex, s.age));
+      if (isSuicide(sCause)) afterSuicideLoss(p);
       mourn(p, s, -10);
     }
   }
@@ -55,17 +60,21 @@ export function family(p: Person): void {
     p.spouse.age++;
     const cause = relDies(p, p.spouse);
     if (cause) {
-      log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった(${cause})。`, `Spouse ${p.spouse.name} died at ${p.spouse.age} (${cause}).`), 'loss', true, undefined, [p.spouse.id!]);
+      const quiet = isSuicide(cause);
+      log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった${quiet ? '' : `(${cause})`}。`, `Spouse ${p.spouse.name} died at ${p.spouse.age}${quiet ? '' : ` (${cause})`}.`), 'loss', true, undefined, [p.spouse.id!]);
       because(p, deathWhy(countryOf(p), p.spouse.sex, p.spouse.age));
+      if (quiet) afterSuicideLoss(p);
       mourn(p, p.spouse, -20, -15);
     }
   }
   for (const k of p.children) {
     if (!k.alive) continue;
     k.age++;
-    if (relDies(p, k)) {
+    const kCause = relDies(p, k);
+    if (kCause) {
       log(p, L(`子どもの${k.name}が${k.age <= 1 ? '1歳になる前に' : `${k.age}歳で`}亡くなった。`, `Child ${k.name} died ${k.age <= 1 ? 'before turning 1' : `at ${k.age}`}.`), 'loss', true, undefined, [k.id!]);
       because(p, deathWhy(countryOf(p), k.sex, k.age));
+      if (isSuicide(kCause)) afterSuicideLoss(p);
       mourn(p, k, -25, -5);
     }
     if (k.age === 18 && p.age < 80 && k.alive && !k.fixed) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');

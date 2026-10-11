@@ -3,7 +3,8 @@
 import { byCode, countryAt } from '../engine/countries';
 import { acuteKey, showRng } from '../engine/crisis';
 import { callName } from '../engine/bonds';
-import { causeName } from '../engine/causes';
+import { causeName, isSuicide } from '../engine/causes';
+import { helpline } from '../engine/suicide';
 import { techShare } from '../engine/tech';
 import { lastWords, type LastWord } from '../ai/words';
 import { pick } from '../engine/rng';
@@ -84,6 +85,7 @@ export function crisisScript(p: Person, cause: string, survive: boolean, age = p
 
 // 病や老いで、ゆっくり亡くなるときの静かな場面
 export function declineScript(p: Person): CrisisScript {
+  if (isSuicide(p.cause)) return quietScript(p);
   const cause = p.cause ?? '';
   const old = cause === causeName('老衰') || cause === causeName('認知症');
   const r = showRng(p.seed, p.age, 2);
@@ -102,6 +104,20 @@ export function declineScript(p: Person): CrisisScript {
       { text: p.age < 1 ? (p.mother.alive ? L('母の腕の中だった。', 'In Mother\'s arms.') : L('誰かの腕の中だった。', 'In someone\'s arms.')) : kinLine(p, p.age).replace(/駆けつけた。$/, 'そばにいた。').replace(/came running\.$/, 'was there.'), ms: 2200, pulse: 'weak' },
     ],
     end: [{ text: L('ある朝、静かに息をしなくなった。', 'One morning, quietly, the breathing stopped.'), ms: 2400, pulse: 'flat' }],
+    survive: false,
+  };
+}
+
+// 自死のとき。どう亡くなったかは描かず、残された人と相談先だけを置く (engine/suicide.ts の方針)
+function quietScript(p: Person): CrisisScript {
+  return {
+    head: L(`${p.age}歳・${p.birthYear + p.age}年`, `Age ${p.age} · ${p.birthYear + p.age}`),
+    beats: [
+      { text: L('その知らせは、突然だった。', 'The news came without warning.'), ms: 2200, pulse: 'slow' },
+      { text: L('残された人たちは、もっと話を聞きたかったと思った。誰のせいでもなかった。', 'Those left behind wished they could have listened a little longer. It was nobody\'s fault.'), ms: 2600, pulse: 'weak' },
+      { text: helpline(), ms: 3200, pulse: 'weak' },
+    ],
+    end: [{ text: L(`${p.given}は、${p.age}歳で亡くなった。`, `${p.given} died at ${p.age}.`), ms: 2400, pulse: 'flat' }],
     survive: false,
   };
 }

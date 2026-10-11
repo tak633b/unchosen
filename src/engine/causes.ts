@@ -4,6 +4,7 @@ import type { Country } from './countries';
 import { isEn } from '../i18n';
 import { pickWeighted, type Rng } from './rng';
 import type { Sex } from './lifetable';
+import { suicideHazard } from './suicide';
 
 type Tag = 'inf' | 'mal' | 'smoke' | 'old' | 'road';
 type Row = [name: string, weight: number, tag?: Tag];
@@ -36,6 +37,8 @@ const BANDS: [maxAge: number, rows: Row[]][] = [
 ];
 
 export const HOMICIDE = '他殺';
+// 自死。内部の名前で、画面・共有・追悼館には出さない (causeLabel)。率と扱いは suicide.ts
+export const SUICIDE = '自死';
 
 // 死因は内部では日本語で持ち、決まった時に今の言語の名前にする
 const CAUSE_EN: Record<string, string> = {
@@ -46,9 +49,12 @@ const CAUSE_EN: Record<string, string> = {
   がん: 'cancer', 肝臓の病気: 'liver disease', 脳卒中: 'stroke', 転落などの事故: 'fall or other accident',
   腎臓病: 'kidney disease', 糖尿病: 'diabetes', 肺がん: 'lung cancer', '肺の慢性の病気 (COPD)': 'chronic lung disease (COPD)',
   肝硬変: 'cirrhosis', 認知症: 'dementia', 老衰: 'old age', 転倒: 'fall', [HOMICIDE]: 'homicide',
-  エイズ関連の病気: 'AIDS-related illness', 出産時の合併症: 'complications of childbirth',
+  エイズ関連の病気: 'AIDS-related illness', 出産時の合併症: 'complications of childbirth', [SUICIDE]: 'suicide',
 };
 export const causeName = (n: string): string => (isEn ? CAUSE_EN[n] ?? n : n);
+export const isSuicide = (cause: string | undefined): boolean => cause === SUICIDE || cause === CAUSE_EN[SUICIDE];
+// 人に見せる死因の名前。自死は '' (「亡くなった」とだけ書く)
+export const causeLabel = (cause: string | undefined): string => (!cause || isSuicide(cause) ? '' : causeName(cause));
 
 function tagWeight(tag: Tag | undefined, c: Country, smoker: boolean): number {
   switch (tag) {
@@ -69,16 +75,27 @@ export function homicideHazard(c: Country, sex: Sex, age: number): number {
   return (c.homicide / 1e5) * ageK * sexK;
 }
 
-export function pickCause(rng: Rng, c: Country, sex: Sex, age: number, q: number, smoker: boolean): string {
-  if (rng() < Math.min(0.9, homicideHazard(c, sex, age) / q)) return causeName(HOMICIDE);
+// 他殺と自死の割合。生命表の死亡率は両方を含むので、ほかの死因から取り分けるだけで、亡くなる確率は変えない。
+// suicideK: つらい時期 (events/strain.ts) の倍率
+function violentShares(c: Country, sex: Sex, age: number, q: number, suicideK: number): [h: number, s: number] {
+  const h = Math.min(0.9, homicideHazard(c, sex, age) / q);
+  return [h, Math.min(0.95 - h, (suicideHazard(c, sex, age) * suicideK) / q)];
+}
+
+export function pickCause(rng: Rng, c: Country, sex: Sex, age: number, q: number, smoker: boolean, suicideK = 1): string {
+  // 乱数は他殺のときと同じ1回だけ引く (自死を足しても、ほかの死因の引き方は変わらない)
+  const [h, s] = violentShares(c, sex, age, q, suicideK);
+  const u = rng();
+  if (u < h) return causeName(HOMICIDE);
+  if (u < h + s) return causeName(SUICIDE);
   const rows = BANDS.find(([max]) => age <= max)![1];
   return causeName(pickWeighted(rng, rows, ([, w, tag]) => w * tagWeight(tag, c, smoker))[0]);
 }
 
 // 死因の内訳 (日本語の名前と割合)。pickCause と同じ重みで、乱数は使わない
-export function causeShares(c: Country, sex: Sex, age: number, q: number, smoker: boolean): [string, number][] {
-  const h = Math.min(0.9, homicideHazard(c, sex, age) / q);
+export function causeShares(c: Country, sex: Sex, age: number, q: number, smoker: boolean, suicideK = 1): [string, number][] {
+  const [h, s] = violentShares(c, sex, age, q, suicideK);
   const rows = BANDS.find(([max]) => age <= max)![1];
   const total = rows.reduce((t, [, w, tag]) => t + w * tagWeight(tag, c, smoker), 0);
-  return [[HOMICIDE, h], ...rows.map(([n, w, tag]) => [n, (1 - h) * (w * tagWeight(tag, c, smoker)) / total] as [string, number])];
+  return [[HOMICIDE, h], [SUICIDE, s], ...rows.map(([n, w, tag]) => [n, (1 - h - s) * (w * tagWeight(tag, c, smoker)) / total] as [string, number])];
 }

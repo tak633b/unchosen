@@ -2,7 +2,7 @@
 // 遊んでいる間は今の年まで (この人たちは主人公と同じ年ずつ進む)。亡くなった後の記録では一生のすべて
 import { byCode } from '../engine/countries';
 import { currentIncome } from '../engine/events/common';
-import { causeName } from '../engine/causes';
+import { causeLabel } from '../engine/causes';
 import { jobName } from '../engine/jobs';
 import { homeWord } from '../engine/life';
 import { EDU_LABEL, eduLevel, schoolYears, type Person } from '../engine/person';
@@ -44,7 +44,7 @@ function facts(o: Person): [string, string][] {
     [L('子ども', 'Children'), o.children.length ? L(`${o.children.length}人${lost ? `(うち${lost}人が他界)` : ''}`, `${o.children.length}${lost ? ` (${lost} died)` : ''}`) : L('いない', 'None')],
     [L('暮らした国', 'Countries'), o.countriesLived.map((c) => byCode(c).name).join(' → ')],
     ...(o.alive ? (nowLine(o) === jobName(o.job ?? '') ? [] : [[L('いま', 'Now'), nowLine(o)] as [string, string]])
-      : [[L('死', 'Death'), `${L(`${o.age}歳`, `At ${o.age}`)}${L('・死因 ', ', ')}${causeName(o.cause ?? '')}${death?.why ? `${L('。', '. ')}${death.why}` : ''}`] as [string, string]]),
+      : [[L('死', 'Death'), `${L(`${o.age}歳`, `At ${o.age}`)}${causeLabel(o.cause) ? `${L('・死因 ', ', ')}${causeLabel(o.cause)}` : ''}${death?.why ? `${L('。', '. ')}${death.why}` : ''}`] as [string, string]]),
   ];
 }
 

@@ -1,6 +1,7 @@
 // この人で続ける: 主人公が亡くなったあと、輪の誰かを次の主人公にする。
 // その人のここまでは、記録に合わせた一生 (kin.ts) そのもの。ここから先は手綱を外した、ふつうの人生として進む
 import { addTie, circle, MEM_MAX, people } from './bonds';
+import { causeLabel } from './causes';
 import { lifeOf } from './kin';
 import { PET_ID, petRec } from './pets';
 import { createPerson, fromSaved, toSaved } from './life';
@@ -25,7 +26,7 @@ export const generation = (p: Person) => (p.line?.length ?? 0) + 1;
 export function lineEntry(p: Person, rel?: Role): LineEntry {
   return {
     seed: p.seed, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthYear: p.birthYear, age: p.age,
-    cause: p.cause ?? '', birthCountry: p.birthCountry, country: p.country, religion: p.religion, ...(rel ? { rel } : {}),
+    cause: causeLabel(p.cause), birthCountry: p.birthCountry, country: p.country, religion: p.religion, ...(rel ? { rel } : {}),
   };
 }
 

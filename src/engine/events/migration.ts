@@ -5,6 +5,7 @@ import { pickCity } from '../identity';
 import { bump, countryOf, decide, log, yearOf, type Person } from '../person';
 import { clamp, normal, pickWeighted } from '../rng';
 import { L } from '../../i18n';
+import { visaBarred } from './justice';
 
 export function migration(p: Person): void {
   if (p.migratedTo) return homesick(p);
@@ -12,6 +13,7 @@ export function migration(p: Person): void {
   const r = p.rng;
   if (p.age < 18 || p.age > 45 || c.gdp > 20000 || p.school.enrolled || p.school.uni === 'studying') return;
   if (r() >= (p.focus === 'work' ? 0.025 : 0.015)) return;
+  if (visaBarred(p)) return; // 前科が残っている間は、外国で働く話が来てもビザが下りない (justice.ts)
   const dests = countriesAt(yearOf(p)).filter((d) => d.gdp > Math.max(15000, c.gdp * 2.5));
   if (!dests.length) return; // 1950年代のように、行き先になる豊かな国がまだ無い年
   const dest = pickWeighted(r, dests, (d) => d.pop * (d.region === c.region ? 3 : 1));

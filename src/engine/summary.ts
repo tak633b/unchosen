@@ -1,7 +1,7 @@
 // 一生を数行にまとめる。死亡記録・追悼館・同じ1秒の人たちの結末に使う。
 import { byCode } from './countries';
 import { homeWord } from './life';
-import { causeName } from './causes';
+import { causeLabel } from './causes';
 import { jobName, majorName } from './jobs';
 import { isEn, L } from '../i18n';
 import { childWord, eduLevel, genderOf, type Person } from './person';
@@ -11,9 +11,10 @@ function lifeStoryEn(p: Person): string {
   const where = p.city && p.country === p.birthCountry ? `${p.city}, ${c.name}` : p.rural ? `a rural area of ${c.name}` : c.name;
   const home = p.familyP >= 0.8 ? 'one of the richest families' : `${p.familyP >= 0.4 && p.familyP < 0.8 ? 'an' : 'a'} ${homeWord(p.familyP)}`;
   const parts = [`Born a ${childWord(genderOf(p))} into ${home} in ${where}.`];
-  const died = `Died at ${p.age} (${causeName(p.cause ?? '')}).`;
+  const cause = causeLabel(p.cause);
+  const died = `Died at ${p.age}${cause ? ` (${cause})` : ''}.`;
   if (p.age < 6) {
-    parts.push(p.age === 0 ? `Died before the first birthday (${causeName(p.cause ?? '')}).` : died);
+    parts.push(p.age === 0 ? `Died before the first birthday (${cause}).` : died);
     return parts.join(' ');
   }
   const edu = eduLevel(p);
@@ -39,7 +40,7 @@ export function lifeStory(p: Person): string {
   const where = p.city && p.country === p.birthCountry ? `${c.name}の${p.city}` : `${c.name}${p.rural ? 'の農村' : ''}`;
   const parts = [`${where}の${p.familyP >= 0.8 ? 'いちばん裕福な層の家' : homeWord(p.familyP)}に${childWord(genderOf(p))}として生まれた。`];
   if (p.age < 6) {
-    parts.push(p.age === 0 ? `最初の誕生日を迎えられず、${causeName(p.cause ?? '')}で亡くなった。` : `${p.age}歳で、${causeName(p.cause ?? '')}で亡くなった。`);
+    parts.push(p.age === 0 ? `最初の誕生日を迎えられず、${causeLabel(p.cause)}で亡くなった。` : diedJa(p));
     return parts.join('');
   }
   const edu = eduLevel(p);
@@ -51,13 +52,16 @@ export function lifeStory(p: Person): string {
   const lost = p.children.filter((k) => !k.alive).length;
   if (kids) parts.push(`子どもを${kids}人育て${lost ? `、そのうち${lost}人を先に亡くした` : 'た'}。`);
   if (p.countriesLived.length > 1) parts.push(`${p.countriesLived.slice(1).map((k) => byCode(k).name).join('、')}でも暮らした。`);
-  parts.push(`${p.age}歳で、${causeName(p.cause ?? '')}で亡くなった。`);
+  parts.push(diedJa(p));
   return parts.join('');
 }
 
+// 自死は死因を書かず「亡くなった」とだけ書く (causes.ts の causeLabel)
+const diedJa = (p: Person) => { const c = causeLabel(p.cause); return c ? `${p.age}歳で、${c}で亡くなった。` : `${p.age}歳で亡くなった。`; };
+
 // 生きている途中の人のいまを一言で
 export function nowLine(p: Person): string {
-  if (!p.alive) return L(`${p.age}歳で亡くなった(${causeName(p.cause ?? '')})`, `Died at ${p.age} (${causeName(p.cause ?? '')})`);
+  if (!p.alive) { const c = causeLabel(p.cause); return c ? L(`${p.age}歳で亡くなった(${c})`, `Died at ${p.age} (${c})`) : L(`${p.age}歳で亡くなった`, `Died at ${p.age}`); }
   if (p.age < 6) return L('幼い日々', 'Early childhood');
   if (p.school.enrolled) return L('学校に通っている', 'In school');
   if (p.school.uni === 'studying' || p.school.grad === 'studying') return L('大学で学んでいる', 'At university');

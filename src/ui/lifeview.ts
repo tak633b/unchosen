@@ -5,6 +5,7 @@ import { lifeOf, type KinEntry } from '../engine/kin';
 import type { LogEntry, Person } from '../engine/person';
 import { esc } from './dom';
 import { L } from '../i18n';
+import { causeLabel } from '../engine/causes';
 
 const item = (e: KinEntry, given: string) =>
   `<li class="k-${e.kind}${e.big ? ' big' : ''}${e.shared ? ' shared' : ''}${e.me ? ' me' : ''}${e.after ? ' after' : ''}"><span class="age">${L(`${e.age}歳`, `${e.age}`)}<small>${e.year}</small></span><span>${e.shared && !e.voiced ? `<i class="kintag">${L(`${esc(given)}の記録`, `${esc(given)}'s record`)}</i>` : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span></li>`;
@@ -21,7 +22,7 @@ export function lifeHtml(p: Person, id: number, upto?: number): string {
   const c = byCode(l.country).name;
   const given = p.given;
   const head = l.full
-    ? L(`${l.born}–${l.born + l.age}・${c}生まれ・享年${l.age}歳${l.cause ? `・死因 ${l.cause}` : ''}`, `${l.born}–${l.born + l.age} · born in ${c} · died at ${l.age}${l.cause ? ` · ${l.cause}` : ''}`)
+    ? L(`${l.born}–${l.born + l.age}・${c}生まれ・享年${l.age}歳${causeLabel(l.cause) ? `・死因 ${causeLabel(l.cause)}` : ''}`, `${l.born}–${l.born + l.age} · born in ${c} · died at ${l.age}${causeLabel(l.cause) ? ` · ${causeLabel(l.cause)}` : ''}`)
     : L(`${l.born}年・${c}生まれ・今${l.age}歳`, `Born ${l.born} in ${c} · ${l.age} now`);
   const rows: string[] = [];
   let before = false, met = false, after = false;

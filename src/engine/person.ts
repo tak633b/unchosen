@@ -6,7 +6,7 @@ import { isEn, L } from '../i18n';
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
 
-export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string; crisis?: string } // crisis: 九死に一生の年 (engine/crisis.ts)。危うかった死因の日本語の名前
+export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string; crisis?: string; quiet?: boolean } // crisis: 九死に一生の年 (engine/crisis.ts)。危うかった死因の日本語の名前。quiet: 自死での死別の記録 (AI に渡さない・輪の人の死因を合わせる)
 export interface Stats { health: number; happy: number; money: number; learn: number; bond: number }
 
 export interface Option {
@@ -147,6 +147,9 @@ export interface Person {
   later?: Later[];   // 分かれ道 (events/choices.ts) の、何年か後に起きる結果
   anchor?: Anchor;   // 輪の人の一生を作っている時だけ
   line?: LineEntry[]; // 家系: この人の前に続けてきた主人公たち (1世代目から順に)。1世代目には無い
+  strain?: { until: number; k: number };  // つらい時期 (events/strain.ts)。until の年齢で抜ける。k は自死の率にかける倍率
+  record?: { kind: 'fine' | 'suspended' | 'prison'; until: number }; // 前科 (events/justice.ts)。until の年齢で効力を失う
+  jailed?: { id: number; until: number; retrial?: boolean }; // 刑務所にいる家族 (events/justice.ts)
 }
 
 export const yearOf = (p: Person): number => p.birthYear + p.age;

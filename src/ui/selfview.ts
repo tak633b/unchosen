@@ -2,7 +2,7 @@
 // 遊んでいる間は今の姿だけ (この先のことは出さない)。エンジンが持っていない数値は作らない
 import { byCode, countryAt } from '../engine/countries';
 import { closest, people } from '../engine/bonds';
-import { causeName } from '../engine/causes';
+import { causeLabel } from '../engine/causes';
 import { formatMoney, monthlyYen, perDay, yen } from '../engine/economy';
 import { currentIncome } from '../engine/events/common';
 import { netWorth } from '../engine/events/money';
@@ -69,7 +69,7 @@ function condition(p: Person): string {
   const death = [...p.log].reverse().find((e) => e.kind === 'death');
   const end = p.alive
     ? `<p class="why">${L('この1年で亡くなる確率', 'Chance of dying this year')} <b>${pct(riskParts(p).q)}</b>${L('。', '. ')}${esc(riskLine(p))}</p>`
-    : `<p class="why">${esc(L(`${p.age}歳で亡くなった。死因: ${causeName(p.cause ?? '')}`, `Died at ${p.age}. Cause: ${causeName(p.cause ?? '')}`))}${death?.why ? `${L('。', '. ')}${esc(death.why)}` : ''}</p>`;
+    : `<p class="why">${esc(causeLabel(p.cause) ? L(`${p.age}歳で亡くなった。死因: ${causeLabel(p.cause)}`, `Died at ${p.age}. Cause: ${causeLabel(p.cause)}`) : L(`${p.age}歳で亡くなった`, `Died at ${p.age}`))}${death?.why ? `${L('。', '. ')}${esc(death.why)}` : ''}</p>`;
   return sec(L('状態', 'Condition'), `${bar(L('健康', 'Health'), p.stats.health, 'm-health')}${bar(L('幸福', 'Happiness'), p.stats.happy, 'm-happy')}${rows(list)}${end}`);
 }
 
