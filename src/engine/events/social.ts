@@ -18,7 +18,7 @@ export function crime(p: Person): void {
 
 export function dilemmas(p: Person): void {
   const r = p.rng;
-  if (p.age < 16 || r() > 0.07) return;
+  if (p.age < 16 || p.age > 65 || r() > 0.07) return; // 65歳を過ぎたら小さな選択のカードは出さない
   const which = Math.floor(r() * 3);
   const key = `dilemma-${which}`;
   if (p.age - (p.recent[key] ?? -99) < 15) return;

@@ -3,6 +3,7 @@ import { formatMoney } from '../economy';
 import { bump, countryOf, decide, log, type Person } from '../person';
 import { clamp, pick } from '../rng';
 import { currentIncome, subsistence } from './common';
+import { outOfPocket } from './insurance';
 import { isEn, L } from '../../i18n';
 import type { Country } from '../countries';
 import type { Sex } from '../lifetable';
@@ -126,7 +127,7 @@ export function treat(p: Person, name: string, years: number, severity: number):
   const c = countryOf(p);
   const r = p.rng;
   const cost = c.gdp * (0.3 + r() * 1.0) * severity;
-  const share = cost * c.oop;
+  const share = outOfPocket(p, cost * c.oop); // 保険に入っていれば自己負担が3割に (insurance.ts)
   const income = Math.max(currentIncome(p), subsistence(c));
   const ratio = share / income;
   // 貯えで払える分は貯えから。借りるのは足りない分だけ

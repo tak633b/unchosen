@@ -146,7 +146,7 @@ function startSchool(p: Person, c: Country): void {
 
 // 大人になってからペットを迎えるか
 export function adultPet(p: Person): void {
-  if (p.pet || p.age < 22 || p.age > 72 || p.rng() > 0.035) return;
+  if (p.pet || p.age < 22 || p.age > 65 || p.rng() > 0.035) return; // 65歳を過ぎたら小さな選択のカードは出さない
   const c = countryOf(p);
   const share = c.gdp > 25000 ? 45 : c.gdp > 8000 ? 30 : 15;
   decide(p, {

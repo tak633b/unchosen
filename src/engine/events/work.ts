@@ -7,6 +7,7 @@ import { bump, countryOf, decide, eduLevel, log, type Person } from '../person';
 import { clamp, normal } from '../rng';
 import { shared } from '../bonds';
 import { layoffK } from '../market';
+import { businessRetire, career, leaveReason } from './career';
 
 function takeJob(p: Person, o: Offer, first: boolean): void {
   p.working = true;
@@ -121,14 +122,16 @@ export function work(p: Person): void {
     bump(p, { happy: -8 });
     return;
   }
-  if (r() < (p.focus === 'work' ? 0.08 : 0.03)) {
+  // 資格をとって3年は、昇進が少ししやすい (events/career.ts)
+  if (r() < (p.focus === 'work' ? 0.08 : 0.03) + ((p.certUntil ?? -1) >= p.age ? 0.02 : 0)) {
     p.incomeP = clamp(p.incomeP + 0.06, 0, 0.99);
     log(p, L(`働きぶりが認められ、収入が上がった(年収 ${formatMoney(earnings(c, p.incomeP))})。`, `Good work was noticed; pay went up (${formatMoney(earnings(c, p.incomeP))} a year).`), 'work');
     bump(p, { happy: 4 });
   }
   if (!p.selfEmployed && p.age >= 33 && p.age <= 55 && p.jobYears >= 5 && r() < 0.06) leadOffer(p, c);
   if (!p.selfEmployed && p.age >= 28 && p.age <= 55 && r() < 0.03) moveOffer(p, c);
-  retirement(p, c);
+  career(p);
+  if (p.working && !p.retired && p.unemployed === 0) retirement(p, c);
 }
 
 function leadOffer(p: Person, c: Country): void {
@@ -168,6 +171,14 @@ function moveOffer(p: Person, c: Country): void {
 }
 
 function retirement(p: Person, c: Country): void {
+  // 会社の持ち主は、経営を任せて配当で暮らすかを自分で決める
+  if (p.business) {
+    if (!businessRetire(p) && (p.age >= 80 || p.stats.health < 30)) retire(p, L('体が利かなくなり、会社を人に任せた。', 'The body gave out, and the company passed to other hands.'));
+    return;
+  }
+  // 職ごとの定年や、介護・体・契約の終わり
+  const why = leaveReason(p, c);
+  if (why) { retire(p, why); return; }
   const pensionCountry = c.gdp > 15000 && p.formal;
   if (pensionCountry && p.age >= 60) {
     if (p.age >= 68) { retire(p, L('定年で仕事を引退した。', 'Retired at the mandatory age.')); return; }

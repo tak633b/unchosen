@@ -12,10 +12,24 @@ export function currentIncome(p: Person): number {
   const c = countryOf(p);
   if (p.retired) return pension(p, c);
   if (!p.working || p.unemployed > 0) return 0;
-  return earnings(c, p.incomeP);
+  // 雇われて正規で働く人は、最低賃金より下には落ちない (自営と非正規には届かない)
+  const floor = p.formal && !p.selfEmployed ? minimumWage(c) : 0;
+  return Math.max(earnings(c, p.incomeP), floor);
 }
 
+// 最低賃金 ÷ フルタイムの賃金の中央値 (OECD 2022 の Kaitz 指数の目安)。0 は国の最低賃金が無い国
+// (北欧・オーストリア・イタリア・スイスは労使の協約で決め、シンガポールは一部の職種だけ)。表に無い国は0.45とする
+// (ILO: 世界の国のおよそ9割に何らかの最低賃金がある)
+const KAITZ: Record<string, number> = {
+  FRA: 0.61, KOR: 0.62, GBR: 0.58, JPN: 0.46, USA: 0.28, DEU: 0.52, AUS: 0.53, CAN: 0.5, ESP: 0.5, NLD: 0.47, NZL: 0.69,
+  POL: 0.56, PRT: 0.67, TUR: 0.72, COL: 0.92, CHL: 0.68, MEX: 0.6, ISR: 0.55, GRC: 0.5, IRL: 0.5, BEL: 0.45, CZE: 0.44,
+  SWE: 0, NOR: 0, DNK: 0, FIN: 0, ISL: 0, AUT: 0, ITA: 0, CHE: 0, SGP: 0,
+};
+export const minimumWage = (c: Country): number => (KAITZ[c.code] ?? 0.45) * earnings(c, 0.5);
+
 export function pension(p: Person, c: Country): number {
+  // 自分の会社を人に任せて退いた人は、年金の代わりに配当を受け取る (利益の分け前で、給料の4割ほど)
+  if (p.business) return earnings(c, p.incomeP) * 0.4;
   const rate = p.formal ? (c.gdp > 15000 ? 0.55 : 0.3) : c.gdp > 30000 ? 0.3 : 0;
   return earnings(c, p.incomeP) * rate;
 }

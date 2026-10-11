@@ -49,7 +49,7 @@ const CAUSE_EN: Record<string, string> = {
   がん: 'cancer', 肝臓の病気: 'liver disease', 脳卒中: 'stroke', 転落などの事故: 'fall or other accident',
   腎臓病: 'kidney disease', 糖尿病: 'diabetes', 肺がん: 'lung cancer', '肺の慢性の病気 (COPD)': 'chronic lung disease (COPD)',
   肝硬変: 'cirrhosis', 認知症: 'dementia', 老衰: 'old age', 転倒: 'fall', [HOMICIDE]: 'homicide',
-  エイズ関連の病気: 'AIDS-related illness', 出産時の合併症: 'complications of childbirth', [SUICIDE]: 'suicide',
+  エイズ関連の病気: 'AIDS-related illness', 海の事故: 'accident at sea', 出産時の合併症: 'complications of childbirth', [SUICIDE]: 'suicide',
 };
 export const causeName = (n: string): string => (isEn ? CAUSE_EN[n] ?? n : n);
 export const isSuicide = (cause: string | undefined): boolean => cause === SUICIDE || cause === CAUSE_EN[SUICIDE];

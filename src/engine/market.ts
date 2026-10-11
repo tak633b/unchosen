@@ -1,8 +1,40 @@
-// 相場と景気。過去の年は実際の値動き、これから先の年は景気の波 (不況と金融危機) で動く。
-// 利回りはどれも実質 (物価上昇を引いた値)。
+// お金の置き場所と、その年の市場の値動き。利回りはどれも物価上昇を引いた実質。
+//
+// marketReturn(asset, year, country, rng) が「その年・その国で、その資産が何%動いたか」を返す唯一の関数。
+// ふだんは historyReturn: 過去の年は実際の値動きと経済危機、これから先の年は景気の波 (不況と金融危機)、
+// 表のない国・資産は長い目で見た統計 (下の LONG_RUN)。
+// テストなどで setMarketReturn(fn) を差し替えられる。fn が undefined を返した年・資産は historyReturn に戻る。
+// 預金・債券・株・不動産ファンド・家の値段の5つだけを聞く。バランス型と個別株はここから組み立てる (fundReturn)
+import type { Country } from './countries';
 import { L } from '../i18n';
 import { countryOf, log, yearOf, type Person } from './person';
 import { makeRng, normal, type Rng } from './rng';
+
+export type MarketAsset = 'deposit' | 'bond' | 'stock' | 'realestate' | 'house';
+export type MarketReturn = (asset: MarketAsset, year: number, c: Country, rng: Rng) => number | undefined;
+
+// 預けたお金の置き場所。'stock' は株価指数に連動するインデックスファンド (古いセーブの「株」もこれになる)
+export type Holding = 'deposit' | 'bond' | 'balanced' | 'stock' | 'realestate' | 'picker';
+export const HOLDINGS: Holding[] = ['deposit', 'bond', 'balanced', 'stock', 'realestate', 'picker'];
+
+// 長い目で見た実質の利回り。mean は1年ごとの平均 (算術)、ばらつき sd を引いた複利ではおよそ mean - sd²/2 になる
+// 世界の株 1900–2022 年率 実質5.0%・標準偏差17%前後、債券 1.7%・10%前後、短期金利 0.8% (UBS Global Investment Returns Yearbook 2023)
+// 新興国の株は年に±22%ほど動く (同)。家の値段は長期で実質年1%前後 (Knoll, Schularick & Steger 2017)
+// 不動産ファンドは家賃込みの住宅の総収益 (実質年7%前後、Jordà ほか 2019 "The Rate of Return on Everything") から手数料と空室を引いた目安
+const LONG_RUN: Record<Exclude<MarketAsset, 'deposit'>, [mean: number, sd: number, sdEmerging: number]> = {
+  bond: [0.022, 0.1, 0.12],
+  stock: [0.065, 0.17, 0.22],
+  realestate: [0.045, 0.12, 0.15],
+  house: [0.01, 0.05, 0.07],
+};
+export const DEPOSIT = 0.005;
+
+// 統計どおりの1年。預金は乱数を引かない (以前の版と同じ)
+export function longRunReturn(asset: MarketAsset, _year: number, c: Country, rng: Rng): number {
+  if (asset === 'deposit') return DEPOSIT;
+  const [mean, sd, sdEm] = LONG_RUN[asset];
+  return normal(rng, mean, c.gdp < 25000 ? sdEm : sd);
+}
 
 // ---- 過去の値動き (年ごとの実質の利回り、%) ----------------------------------------
 // 株: 米国 = S&P500 配当込み (Damodaran, NYU Stern "Historical Returns" 2026年1月版) を米国の消費者物価 (BLS / 世界銀行) で割り引いた値。
@@ -114,27 +146,82 @@ export const layoffOf = (code: string, year: number): number => {
   return ph === 'normal' ? LAYOFF_NORMAL : LAYOFF[ph];
 };
 
-// ---- 個人の利回り -----------------------------------------------------------------
-// 株: 過去は実際の値動き + 銘柄の違いによるぶれ。表のない国は世界の相場に、その国の危機と新興国らしい揺れを足す
-export function stockReturn(p: Person, emerging: boolean): number {
-  const year = yearOf(p);
-  const code = p.country;
-  if (year > HISTORY_TO) return normal(p.rng, 0.04 + shift(DROP.stock, phaseOf(code, year)), emerging ? 0.22 : 0.16);
-  const own = at(STOCK, code, year);
-  if (own !== undefined) return normal(p.rng, own, 0.04);
-  const world = at(STOCK, 'WLD', year) ?? at(STOCK, 'USA', year) ?? 0.04;
-  return normal(p.rng, world + (pick(code, year, 'stock') ?? 0), emerging ? 0.15 : 0.06);
+// ---- ふだんの値動き -------------------------------------------------------------------
+// 不動産ファンドの家賃のぶん (総収益と家の値上がりの差)
+const RENT = LONG_RUN.realestate[0] - LONG_RUN.house[0];
+
+export function historyReturn(asset: MarketAsset, year: number, c: Country, rng: Rng): number {
+  const code = c.code;
+  const emerging = c.gdp < 25000;
+  if (year > HISTORY_TO) {
+    if (asset === 'deposit' || asset === 'bond') return longRunReturn(asset, year, c, rng);
+    const [mean, sd, sdEm] = LONG_RUN[asset];
+    const ph = phaseOf(code, year);
+    return normal(rng, mean + shift(asset === 'stock' ? DROP.stock : DROP.house, ph), emerging ? sdEm : sd);
+  }
+  const dep = pick(code, year, 'dep');
+  switch (asset) {
+    case 'deposit': return dep ?? DEPOSIT;
+    // 物価が急に上がった年は、債券も預金と同じだけ目減りする
+    case 'bond': return longRunReturn('bond', year, c, rng) + (dep === undefined ? 0 : dep - DEPOSIT);
+    case 'stock': {
+      // 表のある国は実際の値動き + 銘柄の違いによるぶれ。ない国は世界の相場に、その国の危機と新興国らしい揺れを足す
+      const own = at(STOCK, code, year);
+      if (own !== undefined) return normal(rng, own, 0.04);
+      const world = at(STOCK, 'WLD', year) ?? at(STOCK, 'USA', year);
+      if (world === undefined) return longRunReturn('stock', year, c, rng) + (pick(code, year, 'stock') ?? 0);
+      return normal(rng, world + (pick(code, year, 'stock') ?? 0), emerging ? 0.15 : 0.06);
+    }
+    // 米国と韓国の過去は実際の家の値動き。不動産ファンドはそこに家賃が乗る
+    case 'house': case 'realestate': {
+      const own = at(HOUSE, code, year);
+      if (own === undefined) return longRunReturn(asset, year, c, rng);
+      return asset === 'house' ? normal(rng, own, 0.03) : normal(rng, own + RENT, 0.06);
+    }
+  }
 }
 
-// 家: mean と sd は今の統計での平均とぶれ。米国と韓国の過去は実際の値動き
-export function houseReturn(p: Person, mean: number, sd: number): number {
-  const year = yearOf(p);
-  if (year > HISTORY_TO) return normal(p.rng, mean + shift(DROP.house, phaseOf(p.country, year)), sd);
-  const own = at(HOUSE, p.country, year);
-  return own !== undefined ? normal(p.rng, own, 0.03) : normal(p.rng, mean, sd);
+let source: MarketReturn | null = null;
+// 差し替える。null でふだんの値動き (historyReturn) に戻す
+export function setMarketReturn(fn: MarketReturn | null): void { source = fn; }
+
+export function marketReturn(asset: MarketAsset, year: number, c: Country, rng: Rng): number {
+  return source?.(asset, year, c, rng) ?? historyReturn(asset, year, c, rng);
 }
 
-export const depositRate = (p: Person, usual: number) => (yearOf(p) <= HISTORY_TO ? pick(p.country, yearOf(p), 'dep') : undefined) ?? usual;
+// 自分で株を選ぶ人は、平均すると指数より年1.5%ほど負け (Barber & Odean 2000, 手数料と売買のしすぎ)、
+// 銘柄が少ないぶん指数のまわりで大きくぶれる。20年で指数に勝つのは3割弱 (market.test.ts で実測。SPIVA: 15年で9割の運用者が指数に負ける)
+const PICKER_EDGE = -0.015;
+const PICKER_SD = 0.1;
+
+export function fundReturn(h: Holding, year: number, c: Country, rng: Rng): number {
+  switch (h) {
+    case 'bond': return marketReturn('bond', year, c, rng);
+    case 'stock': return marketReturn('stock', year, c, rng);
+    case 'realestate': return marketReturn('realestate', year, c, rng);
+    // 株と債券を半分ずつ。毎年はじめに半々へ戻す
+    case 'balanced': return (marketReturn('stock', year, c, rng) + marketReturn('bond', year, c, rng)) / 2;
+    case 'picker': return marketReturn('stock', year, c, rng) + normal(rng, PICKER_EDGE, PICKER_SD);
+    default: return marketReturn('deposit', year, c, rng);
+  }
+}
+
+// ---- 売るときにかかるもの -----------------------------------------------------------------
+// 乗り換えは一度売って買い直す。売買の手数料と値幅で1%ほど
+export const SWITCH_FEE = 0.01;
+
+// 株や投資信託の売却益への税率 (個人・長期保有のおおよそ)。
+// 日本20.315% (申告分離)・ドイツ26.375% (分離課税+連帯付加税)・フランス30% (一律課税)・米国15% (長期の連邦税の主な段)・
+// 英国20%前後・カナダは益の半分に所得税で13%前後・豪州は半分に所得税で15%前後・インド12.5% (2024年からの長期)・ブラジル15%。
+// 韓国の上場株は大株主でなければかからない。中国A株の個人の売却益・シンガポール・香港・スイス (個人)・NZ・湾岸諸国もかからない
+const CGT: Record<string, number> = {
+  JPN: 0.20315, DEU: 0.26375, FRA: 0.3, USA: 0.15, GBR: 0.2, CAN: 0.13, AUS: 0.15, IND: 0.125, BRA: 0.15,
+  KOR: 0, CHN: 0, SGP: 0, HKG: 0, CHE: 0, NZL: 0, ARE: 0, SAU: 0, QAT: 0, KWT: 0,
+};
+export const capitalGainsTax = (c: Country): number => CGT[c.code] ?? (c.gdp >= 15000 ? 0.15 : 0.1);
+
+
+// 借金の金利。過去の経済危機の年 (韓国1998年など) はその年の金利に置き換える
 export const debtRate = (p: Person, usual: number) => (yearOf(p) <= HISTORY_TO ? pick(p.country, yearOf(p), 'debt') : undefined) ?? usual;
 export const layoffK = (p: Person) => layoffOf(p.country, yearOf(p));
 

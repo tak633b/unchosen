@@ -5,6 +5,7 @@ import { isEn } from '../i18n';
 import { countryOf, type EduLevel, type Person } from './person';
 import { techShare, type Tech } from './tech';
 import { clamp, normal, type Rng } from './rng';
+import { talentEdge } from './talent';
 
 export type JobKind = 'office' | 'manual' | 'farm';
 
@@ -17,14 +18,18 @@ export interface Job {
   where?: 'rural' | 'urban';
   maxEdu?: EduLevel;  // 学歴が高すぎる人には勧めない
   tech?: Tech;        // 要る道具。その国その年に少しでも広まっていなければ勧めない
+  rare?: number;      // 求人に出てくる確率 (働き手が少ない仕事)
 }
 
-export const MAJORS = ['人文学', '経営・経済', '法学', '工学', '情報科学', '医学', '看護・保健', '教育', '農学'] as const;
+export const MAJORS = ['人文学', '経営・経済', '法学', '工学', '情報科学', '医学', '看護・保健', '教育', '農学', '音楽', '美術', '舞踊'] as const;
+// 実技の試験 (オーディション) で入る専攻
+export const ARTS_MAJORS = ['音楽', '美術', '舞踊'];
 
 // 専攻の英語名。内部(p.school.major・JOBS の majors)は日本語のまま持ち、表示の時だけ訳す
 const MAJOR_EN: Record<string, string> = {
   人文学: 'Humanities', '経営・経済': 'Business & Economics', 法学: 'Law', 工学: 'Engineering', 情報科学: 'Computer Science',
   医学: 'Medicine', '看護・保健': 'Nursing & Health', 教育: 'Education', 農学: 'Agriculture',
+  音楽: 'Music', 美術: 'Fine Arts & Design', 舞踊: 'Dance', 防衛学: 'Military Science',
 };
 export const majorName = (m: string): string => (isEn ? MAJOR_EN[m] ?? m : m);
 
@@ -39,6 +44,10 @@ const JOB_EN: Record<string, string> = {
   '会計・金融の専門職': 'Accountant / finance professional', '会社員(営業・企画)': 'Office worker (sales, planning)',
   公務員: 'Civil servant', 農業技術者: 'Agricultural technician', '記者・編集者': 'Journalist / editor', 弁護士: 'Lawyer',
   医師: 'Doctor', 研究者: 'Researcher', 大学の教員: 'University lecturer',
+  遠洋漁業の船員: 'Deep-sea fishing crew', 警察官: 'Police officer', 音楽家: 'Musician', 舞踊団のダンサー: 'Dancer in a dance company', デザイナー: 'Designer',
+  // JOBS の外で、道の先で就く仕事 (events/career.ts)
+  プロのスポーツ選手: 'Professional athlete', スポーツの指導者: 'Sports coach', 舞踊の講師: 'Dance teacher',
+  陸軍の将校: 'Army officer', 海軍の将校: 'Navy officer', 空軍のパイロット: 'Air force pilot', 空軍の将校: 'Air force officer', 宇宙飛行士: 'Astronaut', 自分の会社の経営者: 'Owner of a small company',
   // JOBS の外で p.job に入る名前
   日雇いの仕事: 'Day labor', 家の仕事: 'Work at home', 家事と畑仕事: 'Housework and farm work',
   畑と家畜の世話: 'Tending fields and animals', 家の仕事と物売り: 'Housework and street selling',
@@ -74,7 +83,13 @@ export const JOBS: Job[] = [
   { name: '販売員', kind: 'office', edu: 3, pay: 0.02, maxEdu: 4 },
   { name: '介護士', kind: 'manual', edu: 3, pay: -0.02, maxEdu: 4 },
   { name: '銀行の窓口係', kind: 'office', edu: 3, pay: 0.1, where: 'urban', maxEdu: 4 },
-  { name: '教師', kind: 'office', edu: 4, pay: 0.12, majors: ['教育', '人文学'] },
+  // 遠洋の漁船は給料が高いが、何か月も家に帰れず、事故で亡くなる人が多い (events/career.ts)
+  { name: '遠洋漁業の船員', kind: 'manual', edu: 1, pay: 0.1, maxEdu: 3, rare: 0.15 },
+  { name: '警察官', kind: 'manual', edu: 3, pay: 0.08, maxEdu: 4, rare: 0.4 },
+  { name: '音楽家', kind: 'office', edu: 4, pay: -0.05, majors: ['音楽'] },
+  { name: '舞踊団のダンサー', kind: 'office', edu: 4, pay: -0.08, majors: ['舞踊'], where: 'urban' },
+  { name: 'デザイナー', kind: 'office', edu: 4, pay: 0.08, majors: ['美術'], where: 'urban' },
+  { name: '教師', kind: 'office', edu: 4, pay: 0.12, majors: ['教育', '人文学', '音楽', '美術', '舞踊'] },
   { name: '看護師', kind: 'office', edu: 4, pay: 0.14, majors: ['看護・保健', '医学'] },
   { name: 'エンジニア', kind: 'office', edu: 4, pay: 0.25, majors: ['工学', '情報科学'] },
   { name: 'プログラマー', kind: 'office', edu: 4, pay: 0.27, majors: ['情報科学', '工学'], where: 'urban', tech: 'computer' },
@@ -93,7 +108,7 @@ export interface Offer { job: Job; p: number; pay: number; formal: boolean }
 
 // 学歴・家の豊かさ・運で、その人がその国の所得分布のどこに入るかが決まる
 export function offerFor(p: Person, c: Country, job: Job, rng: Rng): Offer {
-  const pos = clamp(0.5 + job.pay * 1.4 + (p.familyP - 0.5) * 0.25 + (p.stats.learn - 50) / 600 + normal(rng, 0, 0.06), 0.01, 0.99);
+  const pos = clamp(0.5 + job.pay * 1.4 + (p.familyP - 0.5) * 0.25 + (p.stats.learn - 50) / 600 + talentEdge(p, job.name) + normal(rng, 0, 0.06), 0.01, 0.99);
   // 低所得国ほど、学歴の低い仕事は非正規 (年金や保険なし) が多い
   const informalShare = c.gdp < 5000 ? 0.85 : c.gdp < 15000 ? 0.6 : c.gdp < 30000 ? 0.3 : 0.12;
   const formal = job.edu >= 4 || rng() > informalShare * (1 - job.edu * 0.2);
@@ -111,13 +126,13 @@ export function eligibleJobs(p: Person, edu: EduLevel): Job[] {
 }
 
 // 働き手の多くが男性/女性の仕事。逆の性別には、4回に1回だけ勧める
-const MOSTLY_MEN = /運転手|建設|警備|整備|電気工|漁師/;
+const MOSTLY_MEN = /運転手|建設|警備|整備|電気工|漁|警察/;
 const MOSTLY_WOMEN = /縫製|家事手伝い|美容師|看護師|介護士/;
 const fitsSex = (j: Job, p: Person, rng: Rng) =>
   !(p.sex === 'F' ? MOSTLY_MEN : MOSTLY_WOMEN).test(j.name) || rng() < 0.25;
 
 // 学歴に一番合う仕事から順に、3つまで選ぶ
 export function pickOffers(p: Person, c: Country, edu: EduLevel, rng: Rng, n = 3): Offer[] {
-  const pool = eligibleJobs(p, edu).filter((j) => fitsSex(j, p, rng)).sort((a, b) => b.edu - a.edu + (rng() - 0.5) * 2.5);
+  const pool = eligibleJobs(p, edu).filter((j) => fitsSex(j, p, rng) && (!j.rare || rng() < j.rare)).sort((a, b) => b.edu - a.edu + (rng() - 0.5) * 2.5);
   return pool.slice(0, n).map((j) => offerFor(p, c, j, rng)).sort((a, b) => b.pay - a.pay);
 }
