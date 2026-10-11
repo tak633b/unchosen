@@ -11,6 +11,7 @@ import { adultPet, childhood, chooseHobby } from './events/childhood';
 import { military, schooling } from './events/school';
 import { work } from './events/work';
 import { finances } from './events/money';
+import { lifePayout } from './events/insurance';
 import { births, childMarriage, love } from './events/love';
 import { careQuality, drift, habits, hiv, illness, smokeStart } from './events/health';
 import { migration } from './events/migration';
@@ -21,6 +22,8 @@ import { logNearMiss, nearMiss } from './crisis';
 import { bonds } from './events/bonds';
 import { because, birthWhy, deathWhy, joinWhy } from './why';
 import { ensureBonds, freshName } from './bonds';
+import { childTalent } from './talent';
+import { DEEP_SEA, DEEP_SEA_RISK } from './events/career';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -130,7 +133,7 @@ function smokeAvg(p: Person): number {
 
 // その年に亡くなる確率。生命表の値に、健康・所得・喫煙・病気の倍率をかける
 // 死亡率の内訳 (自分の欄で「なぜ」を見せるため)。q が deathRisk の値。ほかは掛け合わせる前の倍率
-export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number }
+export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number; jobAdd?: number } // jobAdd: 危ない仕事の事故 (遠洋漁業)
 
 export const deathRisk = (p: Person): number => riskParts(p).q;
 
@@ -157,7 +160,8 @@ export function riskParts(p: Person): RiskParts {
   const illK = (p.illness?.mult ?? careQuality(c)) / careQuality(c);
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
   const cal = calibration(p.age);
-  return { q: Math.min(1, cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd };
+  const jobAdd = p.working && !p.retired && p.job === DEEP_SEA ? DEEP_SEA_RISK : 0;
+  return { q: Math.min(1, cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + jobAdd), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, ...(jobAdd ? { jobAdd } : {}) };
 }
 
 function die(p: Person, cause: string): void {
@@ -169,6 +173,7 @@ function die(p: Person, cause: string): void {
 // 出産のように意思決定の中で亡くなることもあるので、死亡の記録はここで一度だけ付ける
 export function settle(p: Person): void {
   if (p.alive || p.log.at(-1)?.kind === 'death') return;
+  lifePayout(p, countryOf(p));
   log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
   because(p, p.cause === causeName('出産時の合併症') ? birthWhy(p, countryOf(p), p.age) : joinWhy([
     deathWhy(countryOf(p), p.sex, p.age, p.gender === 'X'),
@@ -188,6 +193,7 @@ export function advanceYear(p: Person): void {
     let cause: string;
     if (p.anchor?.cause) cause = p.anchor.cause;
     else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
+    else if (p.job === DEEP_SEA && p.working && !p.retired && p.rng() < DEEP_SEA_RISK / q) cause = causeName('海の事故');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;
     else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker);
     die(p, cause);
@@ -199,6 +205,7 @@ export function advanceYear(p: Person): void {
   family(p);
   p.anchor?.each(p);
   childhood(p);
+  childTalent(p);
   if (!p.anchor?.hold(p, 'love')) childMarriage(p);
   schooling(p);
   military(p);

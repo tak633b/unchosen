@@ -2,6 +2,7 @@ import { countryAt, type Country } from './countries';
 import type { Sex } from './lifetable';
 import { clamp, type Rng } from './rng';
 import { isEn, L } from '../i18n';
+import type { Holding } from './market';
 
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
@@ -97,15 +98,28 @@ export interface Person {
   peakIncome: number;
   peakYear?: number; // いちばん稼いだ暦年 (世界の中の位置をその年の世界と比べるため)
   house: boolean;
+  homeValue?: number; // ローンを払い終えた・現金で買った家の値打ち (古いセーブには無い)
+  homeSince?: number; // その家を手に入れた年齢 (古い家ほど値上がりが鈍い)
   car: boolean;
-  mortgage?: { years: number; pay: number; value: number };
-  invest?: 'deposit' | 'stock' | 'realestate';
+  mortgage?: { years: number; pay: number; value: number; rate?: number; since?: number }; // rate: 実質金利 (古いセーブには無い)。since: 買った年齢
+  invest?: Holding;
+  gain?: number;     // 今の置き場所に移してからの値上がり益 (売るときの税のもと)
+  rental?: { value: number; price: number; years: number; pay: number; rate: number; since: number }; // 人に貸している家 (events/rental.ts)
+  insured?: boolean; // 医療と死亡の保険に入っている (events/insurance.ts)
+  dream?: string;    // 子どものころになりたかった仕事 (JOBS の名前)
+  national?: boolean; // スポーツの国の代表に選ばれた
+  branch?: 'army' | 'navy' | 'air'; // 士官学校で選んだ軍
+  certUntil?: number; // この年齢まで、取った資格が昇進に少し効く
+  business?: boolean; // 自分の会社を持っている
+  refugee?: boolean;  // 難民として逃れてきた家 (立てるのは移住・家族の側。留学は奨学金になる)
   mother: Relative;
   father: Relative;
   siblings: Relative[];
   school: {
     years: number; target: number; enrolled: boolean;
-    track?: 'general' | 'vocational';
+    track?: 'general' | 'vocational' | 'arts';
+    dept?: 'music' | 'art' | 'dance'; // 芸術高校の科
+    langYear?: boolean; // 留学先の言葉を学ぶ1年を足した
     uni: 'no' | 'studying' | 'done'; uniYears: number;
     grad: 'no' | 'studying' | 'done';
     major?: string;
@@ -196,7 +210,7 @@ export function eduLevel(p: Person): EduLevel {
 }
 
 // 学校に通った年数。大学は専攻で4年か6年 (医学)、大学院は2年 (events/school.ts)
-const uniLen = (p: Person) => (p.school.major === '医学' ? 6 : 4);
+const uniLen = (p: Person) => (p.school.major === '医学' ? 6 : 4) + (p.school.langYear ? 1 : 0);
 export const schoolYears = (p: Person): number => p.school.years
   + (p.school.uni === 'done' ? uniLen(p) : p.school.uni === 'studying' ? p.school.uniYears : 0)
   + (p.school.grad === 'done' ? 2 : p.school.grad === 'studying' ? p.school.uniYears : 0);

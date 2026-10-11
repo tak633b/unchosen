@@ -142,9 +142,12 @@ export function toDecision(p: Person, c: Choice): Decision {
   };
 }
 
+// 65歳を過ぎたら、小さな分かれ道のカードは出さない (前に選んだことの結果は届く)
+export const CHOICE_MAX_AGE = 65;
+
 export function choices(p: Person): void {
   due(p);
-  if (p.rng() >= RATE) return;
+  if (p.age > CHOICE_MAX_AGE || p.rng() >= RATE) return;
   const pool = CHOICES.filter((c) => eligible(p, c) && techWeight(p, c) > 0.005);
   if (!pool.length) return;
   const c = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1) * techWeight(p, x));
