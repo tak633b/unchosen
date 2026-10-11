@@ -4,6 +4,7 @@ import { earnings, formatMoney } from '../economy';
 import { L, isEn } from '../../i18n';
 import { MAJORS, majorName } from '../jobs';
 import { bump, countryOf, decide, log, yearOf, type Person } from '../person';
+import { uniK, visaRefused } from '../history';
 import { clamp, pickWeighted } from '../rng';
 import { startWork } from './work';
 import { because, schoolWhy } from '../why';
@@ -83,7 +84,7 @@ function chooseTrack(p: Person, c: Country): void {
 // ---- 高校のあと ----------------------------------------------------------
 
 export const uniChance = (p: Person, c: Country) =>
-  clamp(Math.min(1, c.tertiary) * (0.5 + p.familyP) * (0.4 + p.stats.learn / 100) * (p.school.track === 'vocational' ? 0.6 : 1), 0.02, 0.95);
+  clamp(Math.min(1, c.tertiary) * (0.5 + p.familyP) * (0.4 + p.stats.learn / 100) * (p.school.track === 'vocational' ? 0.6 : 1), 0.02, 0.95) * uniK(p); // uniK: 歴史で大学が閉ざされた年 (history.ts)
 
 const tuitionOf = (c: Country, abroad: boolean) => earnings(c, 0.5) * (abroad ? 0.9 : 0.25);
 
@@ -111,7 +112,12 @@ function afterHighSchool(p: Person, c: Country): void {
       { label: L('働き始める', 'Start working'), hint: L('早くからお金を稼ぐ', 'Earn money sooner'), apply: (q) => startWork(q) },
       ...(abroad ? [{
         label: L(`${abroad.name}に留学する`, `Study in ${abroad.name}`), hint: L('お金はかかるが、道も広がる', 'Costly, but opens doors'),
-        apply: (q: Person) => enterUni(q, c, abroad),
+        apply: (q: Person) => {
+          if (!visaRefused(q, abroad.code)) { enterUni(q, c, abroad); return; }
+          // 学生ビザが下りなければ、国内の大学を受ける
+          log(q, L(`${abroad.name}の学生ビザが下りなかった。国内の大学を受けることにした。`, `The student visa for ${abroad.name} was refused. Applied to a university at home instead.`), 'school');
+          if (q.rng() < chance) enterUni(q, c, null); else startWork(q);
+        },
       }] : []),
     ],
     auto: (q) => (abroad && q.rng() < 0.15 ? 2 : q.rng() < chance * 1.1 ? 0 : 1),
