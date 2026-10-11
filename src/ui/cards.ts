@@ -6,7 +6,17 @@ import { isEn } from '../i18n';
 const FONT = isEn ? 'system-ui, "Helvetica Neue", Arial, sans-serif' : '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif';
 const SERIF = '"Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif';
 
-export interface CardText { kicker: string; title: string; lines: string[]; foot: string; scene?: SceneData }
+// years: 1年ずつの色の名前 (人生地図と同じ k-*)。あればカードの下の縁に1年1本の帯で描く
+export interface CardText { kicker: string; title: string; lines: string[]; foot: string; scene?: SceneData; years?: string[] }
+
+function strip(g: CanvasRenderingContext2D, years: string[]): void {
+  const css = getComputedStyle(document.documentElement);
+  const w = W / years.length;
+  years.forEach((k, i) => {
+    g.fillStyle = css.getPropertyValue(`--k-${k}`).trim() || '#2d3446';
+    g.fillRect(Math.floor(i * w), H - 10, Math.ceil(w), 10);
+  });
+}
 
 export function drawCard(t: CardText): HTMLCanvasElement {
   const cv = document.createElement('canvas');
@@ -33,6 +43,7 @@ export function drawCard(t: CardText): HTMLCanvasElement {
     g.fillStyle = '#e9a64c';
     g.font = `bold 20px ${FONT}`;
     g.fillText(t.foot, W - 60 - g.measureText(t.foot).width, H - 22);
+    if (t.years?.length) strip(g, t.years);
     return cv;
   }
   g.fillStyle = '#e9a64c';
@@ -48,6 +59,7 @@ export function drawCard(t: CardText): HTMLCanvasElement {
   g.fillStyle = '#e9a64c';
   g.font = `bold 26px ${FONT}`;
   g.fillText(t.foot, 80, H - 60);
+  if (t.years?.length) strip(g, t.years);
   return cv;
 }
 

@@ -1,6 +1,6 @@
 // ゲームの進行: 時間・意思決定・止まった時間の問い・保存。
 import { byCode, countryAt, type BirthBasis } from '../engine/countries';
-import { advanceYear, createPerson, fromSaved, pauseQuestion, settle, toSaved, type SavedPerson } from '../engine/life';
+import { advanceYear, createPerson, fromSaved, settle, toSaved, type SavedPerson } from '../engine/life';
 import { choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
 import { randomSeed } from '../engine/rng';
 import { nowLine } from '../engine/summary';
@@ -20,18 +20,23 @@ import { mountRing, paintFaces, personCard } from './ring';
 import { paintOtherFaces } from './portrait';
 import { briefOf, otherHtml } from './otherview';
 import { continueAs, generation, othersFor } from '../engine/lineage';
+import { pickQuestion } from './pause';
+import { lifeMap } from './lifemap';
+import { addMoment, momentOf, type Moment } from './album';
 
 const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
 const SPEEDS = [1, 2, 4, 8, 16];
 const OTHERS = 4;
 const AUTO_WAIT_MS = 4000; // 自動で決めるとき、選択肢を見せておく時間
+const PAUSE_WAIT_MS = 7000; // 自動か速い速さのとき、ひと息の問いを見せておく時間 (書き始めたら待つ)
+const FAST = 8;             // この速さ以上なら、ひと息は待たずに先へ進める
 const SAVE_KEY = 'current';
 const SCENE_MS = 100; // 場面の動きは1秒に10コマ
 
 type Tab = '' | 'me' | 'band' | 'compare' | 'log';
 const TABS: [Exclude<Tab, ''>, string][] = [['me', L('いまの状態', 'Status')], ['band', L('人生の帯', 'Life band')], ['compare', L('比べる', 'Compare')], ['log', L('全部の記録', 'Full record')]];
 
-interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[] }
+interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[]; album?: Moment[] }
 
 interface GameState {
   p: Person;
@@ -61,6 +66,7 @@ interface GameState {
   tkAt: number;
   seen: boolean;     // 場面が画面の中にあるか
   io?: IntersectionObserver;
+  album: Moment[];   // 思い出のアルバムに撮った場面 (album.ts)
 }
 
 let S: GameState | null = null;
@@ -71,7 +77,7 @@ export const clearSaved = () => save(SAVE_KEY, null);
 export function resumeGame(onExit: () => void): void {
   const s = hasSaved();
   if (!s) return onExit();
-  run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit);
+  run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit, s.album);
 }
 
 export const sameSecondOthers = (basis: BirthBasis, year?: number) =>
@@ -81,10 +87,10 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
   run(p, others, basis, 1, onExit);
 }
 
-function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void): void {
+function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void, album: Moment[] = []): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true, album: addMoment(album, momentOf(p)) };
   $('#app').innerHTML = shell();
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
@@ -101,7 +107,7 @@ function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onEx
 
 function persist(): void {
   if (!S || !S.p.alive) return;
-  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved) } satisfies Saved);
+  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved), album: S.album } satisfies Saved);
 }
 
 function frame(t: number): void {
@@ -144,6 +150,7 @@ function tick(): void {
     let kept = 0;
     S.p.log = S.p.log.filter((e) => !(e.age === age && e.tpl && kept++ >= 1));
   }
+  if (S.p.alive) S.album = addMoment(S.album, momentOf(S.p));
   render();
   // 九死に一生の年は、その場面を見せてから先へ進む
   const near = S.p.alive ? S.p.log.find((e) => e.age === S!.p.age && e.crisis) : undefined;
@@ -259,7 +266,7 @@ function renderData(): void {
   const { p, tab } = S;
   document.querySelectorAll<HTMLButtonElement>('[data-act=tab]').forEach((b) => b.classList.toggle('on', b.dataset.v === tab));
   const html = tab === 'me' ? `<div class="datagrid"><div class="panel idcard">${idCard(p)}</div><div class="panel">${statsPanel(p)}</div><div class="panel">${familyPanel(p)}</div></div>`
-    : tab === 'band' ? `<div class="datagrid two"><div class="panel"><h3>${L('人生の帯', 'Life band')} <small>${L('1本 = 1年', '1 bar = 1 year')}</small></h3>${lifeBand(p)}</div><div class="panel"><h3>${L('生存曲線', 'Survival curve')} <small>${L('同じ年に生まれた人のうち生きている割合', 'Share of the same birth cohort still alive')}</small></h3>${survivalChart(p)}</div></div>`
+    : tab === 'band' ? `<div class="datagrid two"><div class="panel"><h3>${L('人生の帯', 'Life band')} <small>${L('1本 = 1年', '1 bar = 1 year')}</small></h3>${lifeBand(p)}<h3>${L('人生地図', 'Life map')} <small>${L('1マス = 1年', '1 square = 1 year')}</small></h3>${lifeMap({ kinds: p.kinds, age: p.age, alive: p.alive, noted: p.questions.filter((q) => q.a).map((q) => q.age) })}</div><div class="panel"><h3>${L('生存曲線', 'Survival curve')} <small>${L('同じ年に生まれた人のうち生きている割合', 'Share of the same birth cohort still alive')}</small></h3>${survivalChart(p)}</div></div>`
     : tab === 'compare' ? `<div class="datagrid two"><div class="panel">${comparePanel(p)}</div><div class="panel">${countryPanel(p)}</div></div>`
     : tab === 'log' ? `<div class="panel">${logPanel(p, S.logOpen)}</div>` : '';
   setHTML('#data', html);
@@ -378,22 +385,37 @@ function questionContext(q: Question): string {
 
 function showQuestion(q: Question): void {
   const p = S!.p;
-  q.q ||= pauseQuestion(p, q.age) ?? '';
+  q.q ||= pickQuestion(p, q.age);
+  // 自動で決めているときや速いときも止まるが、しばらくしたら書かずに先へ進む。書き始めたら待つ
+  const quick = p.auto || S!.speed >= FAST;
   openModal(`<p class="kicker">${L(`時間が止まった・${q.age}歳・${p.birthYear + q.age}年`, `Time stopped · age ${q.age} · ${p.birthYear + q.age}`)}</p><h2>${esc(p.given)}${L(`、${q.age}歳`, `, ${q.age}`)}</h2>
     <div class="context">${questionContext(q)}</div>
     <p class="q">${esc(q.q)}</p>
     <textarea id="answer" maxlength="140" rows="3" placeholder="${L('一行だけ(書かなくてもいい)', 'One line (optional)')}"></textarea>
     <div class="cards"><button data-a="write"><span class="num">1</span><b>${L('書き留めて生き続ける', 'Write it down, live on')}</b><small>${L('この人生の記録に残る', 'Kept in this life\'s record')}</small></button>
-    <button data-a="keep"><span class="num">2</span><b>${L('胸にしまって生き続ける', 'Keep it to myself, live on')}</b></button></div>`);
+    <button data-a="keep"><span class="num">2</span><b>${L('胸にしまって生き続ける', 'Keep it to myself, live on')}</b></button></div>
+    <div class="modalfoot">${quick ? `<span class="countdown" id="pausewait">${L('まもなく先へ進む・書き始めると待つ', 'Moving on shortly. Start typing to stay.')}</span>` : `<span class="note">${L('書かなくても先へ進める', 'You can go on without writing')}</span>`}</div>`);
+  if (quick) {
+    S!.timer = window.setTimeout(() => answerNow(q, 'keep'), PAUSE_WAIT_MS);
+    $<HTMLTextAreaElement>('#answer').addEventListener('input', () => {
+      window.clearTimeout(S?.timer);
+      $('#pausewait')?.remove();
+    }, { once: true });
+  }
   $('#modalbody').onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (!a || !S) return;
-    const text = $<HTMLTextAreaElement>('#answer').value.trim();
-    q.a = a === 'write' ? text : '';
-    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: L(`「${text}」`, `"${text}"`), kind: S.p.kinds[S.p.age] ?? 'family' });
-    render();
-    nextModal();
+    if (a) answerNow(q, a);
   };
+}
+
+function answerNow(q: Question, a: string): void {
+  if (!S || q.a !== undefined) return;
+  window.clearTimeout(S.timer);
+  const text = $<HTMLTextAreaElement>('#answer')?.value.trim() ?? '';
+  q.a = a === 'write' ? text : '';
+  if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: L(`「${text}」`, `"${text}"`), kind: S.p.kinds[S.p.age] ?? 'family' });
+  render();
+  nextModal();
 }
 
 function confirmExit(): void {
@@ -423,7 +445,7 @@ function leave(): void {
 // 自分が亡くなったあとも、同じ1秒の人たちは最後まで生きる
 function finish(): void {
   if (!S) return;
-  const { p, others, basis, onExit, music } = S;
+  const { p, others, basis, onExit, music, album } = S;
   for (const o of others) while (o.alive) advanceYear(o);
   clearSaved();
   cancelAnimationFrame(S.raf);
@@ -439,6 +461,6 @@ function finish(): void {
       const q = continueAs(p, id);
       run(q, othersFor(q, basis), basis, 1, onExit);
       window.scrollTo(0, 0);
-    });
+    }, album);
   });
 }

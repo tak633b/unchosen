@@ -373,7 +373,7 @@ function past(): void {
     const t = e.target as HTMLElement;
     const i = t.closest<HTMLElement>('[data-i]')?.dataset.i;
     if (i !== undefined) {
-      $('#pastdetail').innerHTML = `${deathRecord(lives[Number(i)])}<div class="choices"><button data-card="${Number(i)}">${L('記録カードを保存', 'Save record card')}</button></div>`;
+      $('#pastdetail').innerHTML = `${deathRecord(lives[Number(i)], `<div class="choices"><button data-card="${Number(i)}">${L('記録カードを保存', 'Save record card')}</button></div>`)}`;
       paintLife($('#pastdetail'), lives[Number(i)]);
       $('#pastdetail').scrollIntoView();
     }

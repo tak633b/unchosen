@@ -510,3 +510,29 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
   .cr-step { transform: none; }
   .cr-heart, .crisis:has(.p-fast) { animation: none !important; }
 }
+
+/* 人生地図: 1マス = 1年、10年で1行 */
+.lifemap { display: grid; gap: 3px; max-width: 360px; }
+.lmrow { display: grid; grid-template-columns: 2.2em repeat(10, minmax(0, 1fr)); gap: 3px; align-items: center; }
+.lmdec { font-size: 10px; color: var(--faint); text-align: right; padding-right: 4px; }
+.lm { display: block; aspect-ratio: 1; border-radius: 2px; position: relative; }
+.lm.now { outline: 2px solid var(--accent); outline-offset: 1px; }
+.lm.note::after { content: ''; position: absolute; inset: 35%; border-radius: 50%; background: var(--bg); }
+
+/* 思い出のアルバム */
+.album { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 12px; }
+.memory { margin: 0; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.memory canvas.pixscene { display: block; width: 100%; image-rendering: pixelated; }
+.memory figcaption { padding: 8px 10px 10px; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.memory figcaption b { display: flex; justify-content: space-between; color: var(--accent); font-size: 12px; margin-bottom: 2px; }
+.memory figcaption small { color: var(--faint); font-weight: 400; }
+
+/* 死亡記録: 細かいところは「もっと詳しく」に閉じておく */
+.more { margin: 16px 0; }
+.more > summary { cursor: pointer; color: var(--sub); font-size: 15px; padding: 10px 0; list-style: none; }
+.more > summary::before { content: '＋ '; color: var(--accent); }
+.more[open] > summary::before { content: '− '; }
+.homepick { margin-top: 12px; }
+.homepick select { max-width: 100%; }
+.record, .panel { min-width: 0; overflow-wrap: anywhere; }
+.survwrap { max-width: 520px; }
