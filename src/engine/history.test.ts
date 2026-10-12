@@ -102,6 +102,7 @@ describe('過去の世界の出来事', () => {
       if (back !== undefined) expect(p.birthYear + back).toBeGreaterThanOrEqual(1984);
     }
     // 1950年生まれ300人で実測 (2026-10-11)。お金と仕事の出来事が加わって乱数の並びが変わり 13→8。2000人での割合は合流の前後で 59→62 人と変わらない
-    expect(exiled).toBe(8);
+    // 2026-10-12: 犯罪と事故の出来事 (events/incidents.ts) が毎年の乱数を引くようになり 8→10
+    expect(exiled).toBe(10);
   });
 });

@@ -123,7 +123,11 @@ describe('一緒の出来事は、その人の側から書く', () => {
       const byId = new Map(people(p).map((t) => [t.id!, t]));
       for (const l of allLives(p)) {
         const name = byId.get(l.id)!.name ?? '';
-        for (const e of l.entries) if (e.shared && name && (e.text.includes(`${name}と`) || e.text.includes(`with ${name}`))) bad.push(`seed ${p.seed} #${l.id} ${e.text}`);
+        // 主人公の名を除いてから探す (主人公「結翔」と友だち「翔」のように、名が名の中に含まれることがある)
+        for (const e of l.entries) {
+          const t = e.text.split(p.given).join('');
+          if (e.shared && name && (t.includes(`${name}と`) || t.includes(`with ${name}`))) bad.push(`seed ${p.seed} #${l.id} ${e.text}`);
+        }
       }
     }
     expect(bad.slice(0, 10)).toEqual([]);

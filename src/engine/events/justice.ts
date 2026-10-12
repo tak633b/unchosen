@@ -16,7 +16,7 @@ export function visaBarred(p: Person): boolean {
   return !!r && p.age < r.until + (r.kind === 'prison' ? 5 : 0);
 }
 
-function sentence(p: Person, kind: Kind, years = 0): void {
+export function sentence(p: Person, kind: Kind, years = 0): void {
   // 刑務所にいる間は働けない (仕事を探している扱いにして、出たあと探し直す)
   if (kind === 'prison' && p.working) p.unemployed = Math.max(p.unemployed, years);
   const until = p.age + years + FADE[kind];

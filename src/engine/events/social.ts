@@ -1,6 +1,6 @@
 // 人との間で起きること: 治安、見知らぬ人、友だちの頼みごと。
 import { yen } from '../economy';
-import { bump, countryOf, decide, log, type Person } from '../person';
+import { bump, decide, log, type Person } from '../person';
 import { scaleOf } from './common';
 import { L } from '../../i18n';
 import { remember } from '../bonds';
@@ -8,13 +8,8 @@ import { remember } from '../bonds';
 // 頼みごとをしてくる友だちは、人の輪の中の一番近い友だち (p.friend はその名前)
 const friendTie = (p: Person) => (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend && t.alive && t.until === undefined);
 
-export function crime(p: Person): void {
-  const c = countryOf(p);
-  if (p.age >= 12 && p.rng() < (c.homicide / 1e5) * 25) {
-    log(p, L('強盗にあい、けがをした。', 'Was robbed and hurt.'), 'hard');
-    bump(p, { happy: -6, health: -4 });
-  }
-}
+// 犯罪や事故に巻き込まれること (events/incidents.ts)
+export { crime } from './incidents';
 
 export function dilemmas(p: Person): void {
   const r = p.rng;
