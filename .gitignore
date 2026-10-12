@@ -4,3 +4,4 @@ data/memorial.db
 data/raw
 .claude-flow/
 .gstack/
+.wrangler

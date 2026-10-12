@@ -70,6 +70,10 @@ npm start        # serves dist/ and the API on http://localhost:8787
 
 Memorial entries are stored in `data/memorial.db` (SQLite).
 
+## Hosted version
+
+You can play it at https://unchosen.pages.dev. It runs on Cloudflare Pages, with the memorial on D1, and is deployed by GitHub Actions on every push to `main`. The hosted server relays AI requests only to OpenRouter and OpenAI. To use a local LLM there, choose "Connect directly from the browser" in the AI settings (the LLM must allow CORS). Setup steps are in [docs/DEPLOY.md](docs/DEPLOY.md).
+
 ## Data and how it works
 
 Country statistics come from [Our World in Data](https://ourworldindata.org/) (CC BY 4.0), which compiles data from the UN, the World Bank, WHO, UNICEF, ILO, UNODC, IHME, the World Happiness Report and others. The latest value up to 2024 is used. Missing values are estimated from countries in the same region with similar income.
