@@ -169,5 +169,5 @@ export function yearPanel(p: Person): string {
   const recent = p.log.filter((e) => e.age >= p.age - 2).reverse();
   const ages = [...new Set(recent.map((e) => e.age))];
   return `<h3>${L('このごろ', 'Lately')} <small>${L('最近3年の出来事', 'the last three years')}</small></h3>${ages.map((a) => `<div class="yr"><span class="yrage">${L(`${a}歳`, `Age ${a}`)}</span><ol class="log">${recent.filter((e) => e.age === a).map((e) =>
-    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span>${e.who?.length ? `<span class="whos">${e.who.map((id) => `<button data-act="person" data-v="${id}">${face(id)}</button>`).join('')}</span>` : ''}</li>`).join('')}</ol></div>`).join('')}`;
+    `<li class="k-${e.kind}${e.big ? ' big' : ''}"><span>${e.ai ? '<i class="aitag">AI</i>' : ''}${esc(e.text)}${e.stat ? `<small class="stat">${esc(e.stat)}</small>` : ''}${e.why ? `<small class="why">${esc(e.why)}</small>` : ''}</span>${e.who?.length ? `<span class="whos">${e.who.map((id) => `<button data-act="person" data-v="${id}">${face(id, 'mini', e.kind === 'loss' ? 'sad' : e.kind === 'love' ? 'happy' : undefined)}</button>`).join('')}</span>` : ''}</li>`).join('')}</ol></div>`).join('')}`;
 }

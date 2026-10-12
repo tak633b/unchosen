@@ -5,6 +5,7 @@ import type { Person, Role, Tie } from '../engine/person';
 import { esc } from './dom';
 import { isEn, L } from '../i18n';
 import { drawPortrait, drawTiePortrait } from './pixel';
+import type { Expr } from './chibi';
 import { lifeHtml } from './lifeview';
 import { petTies } from '../engine/pets';
 import { selfCard } from './selfview';
@@ -122,13 +123,15 @@ export function paintFaces(root: ParentNode, p: Person, ties: Tie[] = everyone(p
   const byId = new Map(ties.map((t) => [t.id!, t]));
   root.querySelectorAll<HTMLCanvasElement>('canvas[data-face]').forEach((cv) => {
     const id = Number(cv.dataset.face);
-    if (id === 0) return drawPortrait(cv, p);
+    const expr = cv.dataset.expr as Expr | undefined;
+    if (id === 0) return drawPortrait(cv, p, expr);
     const t = byId.get(id);
-    if (t) drawTiePortrait(cv, t, p);
+    if (t) drawTiePortrait(cv, t, p, expr);
   });
 }
 
-export const face = (id: number, cls = 'mini') => `<canvas class="pix ${cls}" data-face="${id}" aria-hidden="true"></canvas>`;
+// expr: 顔つき (別れの行は悲しい顔、恋の行は笑顔など)。省けば、その人のいつもの顔
+export const face = (id: number, cls = 'mini', expr?: Expr) => `<canvas class="pix ${cls}" data-face="${id}"${expr ? ` data-expr="${expr}"` : ''} aria-hidden="true"></canvas>`;
 
 // その人との時間: mem と、その人が関わった記録を合わせて新しい順に
 function together(p: Person, t: Tie): { age: number; text: string; d?: number }[] {

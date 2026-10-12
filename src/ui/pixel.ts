@@ -15,9 +15,13 @@ const kindOf = (age: number): Figure['kind'] => (age < 2 ? 'baby' : age < 13 ? '
 const heightOf = (age: number) => (age < 2 ? 6 : age < 13 ? 8 + age * 0.25 : age < 16 ? 14 : 15);
 
 function figureOf(l: Look, me = false): Figure {
+  // 立ち絵の服・帽子など。記録 (SceneData) に入るので、値のある欄だけ持つ
+  const look: Figure['look'] = { age: l.age };
+  for (const k of ['wear', 'trim', 'hat', 'hatC', 'item', 'glasses', 'long', 'patch', 'tie', 'ar', 'eye', 'narrow', 'smile', 'earring'] as const) if (l[k]) (look as Record<string, unknown>)[k] = l[k];
+  if (l.beard && l.beard !== 'full') look.whisk = l.beard;
   return {
     kind: kindOf(l.age), sex: l.sex, height: heightOf(l.age), skin: l.skin, hair: l.hair, shirt: l.cloth, pants: l.pants, me,
-    style: l.style, cover: l.cover, skirt: l.skirt && l.age >= 5, beard: l.beard === 'full',
+    style: l.style, cover: l.cover, skirt: l.skirt && l.age >= 5, beard: l.beard === 'full', look,
   };
 }
 const relFig = (p: Person, r: Relative, role: Role) => figureOf(lookOfRel(p, r, role));
@@ -72,7 +76,7 @@ export function sceneCanvas(s: Scene): HTMLCanvasElement {
 export function sceneFromSummary(o: { id: number; country: string; sex: 'F' | 'M'; age: number; rural: boolean; job?: string }): Scene {
   const c = byCode(o.country);
   const rng = makeRng(o.id * 2654435761);
-  const me = figureOf(lookOfId(o.id, c, o.sex, o.age), true);
+  const me = figureOf(lookOfId(o.id, c, o.sex, o.age, 0, { job: o.job, rural: o.rural }), true);
   const partner = figureOf(lookOfId(o.id, c, o.sex === 'F' ? 'M' : 'F', o.age, 1));
   const figures = o.age >= 20 ? [partner, me] : [me];
   const kind = o.job ? (/農|畑|漁|家畜/.test(o.job) ? 'field' : /店|露天|市場/.test(o.job) ? 'stall' : /工|建設|縫製|整備|電気/.test(o.job) ? 'factory' : 'office') : 'none';

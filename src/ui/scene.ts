@@ -6,8 +6,9 @@
 import type { Country } from '../engine/countries';
 import { techShare } from '../engine/tech';
 import { makeRng, type Rng } from '../engine/rng';
-import { climateOf, type Climate, type Style } from './look';
+import { climateOf, type Climate, type Look, type Style } from './look';
 import { dith, hash, mixc, Pix, tones } from './raster';
+import { paintChibiSprite, spriteWidth, SPH } from './chibisprite';
 
 export const W = 320;
 export const H = 100;
@@ -21,6 +22,8 @@ export type Tod = 'morning' | 'day' | 'dusk' | 'night';
 export interface Figure {
   kind: 'adult' | 'child' | 'baby' | 'elder'; sex: 'F' | 'M'; height: number; skin: string; hair: string; shirt: string; pants: string; me?: boolean;
   style?: Style; cover?: string; skirt?: boolean; beard?: boolean;
+  // ちびキャラの立ち絵の服・帽子など (look.ts / wear.ts)。古い記録には無いので、無ければふだん着で描く
+  look?: Partial<Pick<Look, 'age' | 'wear' | 'trim' | 'hat' | 'hatC' | 'item' | 'glasses' | 'long' | 'patch' | 'tie' | 'ar' | 'eye' | 'narrow' | 'smile' | 'earring'>> & { whisk?: Look['beard'] };
 }
 export interface Scene {
   seed: number; country: Country; urban: boolean; home: Home; place: Place;
@@ -509,70 +512,31 @@ function pole(c: Ctx): void {
   for (const dy of [0, 3]) for (let x = 0; x < W; x++) P.px(x, BY - 50 + dy + Math.sin((((x + 64) % 160) / 160) * Math.PI) * 5, '#2a2a30');
 }
 
-// 人: 3段の陰影。dir の側から光が当たり、影は反対へ伸びる
+// 人: ちびキャラの立ち絵 (chibisprite.ts)。光は dir の側から (左から当たる時は左右を反転)、影は反対へ伸びる
+const AGE_OF: Record<Figure['kind'], number> = { baby: 1, child: 8, adult: 35, elder: 72 };
+export function lookOfFigure(f: Figure): Look {
+  const { whisk, ...l } = f.look ?? {};
+  return {
+    sex: f.sex, age: AGE_OF[f.kind], skin: f.skin, hair: f.hair, style: f.style ?? (f.sex === 'F' ? 'long' : 'side'),
+    beard: whisk ?? (f.beard ? 'full' : undefined), cloth: f.shirt, pants: f.pants, cover: f.cover, skirt: f.skirt ?? (f.sex === 'F' && f.kind !== 'child'), bg: '#000000',
+    ...l,
+  };
+}
+const figW = (f: Figure) => (f.kind === 'baby' ? 0 : spriteWidth(f.look?.age ?? AGE_OF[f.kind]));
+
 function figure(c: Ctx, x: number, f: Figure): { w: number; h: number } {
   const { P, dir } = c;
-  const h = Math.round(f.height * 1.75);
-  if (f.kind === 'baby') return { w: 0, h };
-  const s = tones(f.skin), hr = tones(f.hair), cl = tones(f.shirt), pt = tones(f.pants);
+  if (f.kind === 'baby') return { w: 0, h: 0 };
   const breath = c.tk && (c.tk + x * 7) % 26 < 11 ? 1 : 0; // 息をすると上半身が1px上がる
-  const hd = Math.max(3, Math.round(h / 6.6)), headTop = GY - h - breath, sh = headTop + hd + 1;
-  const bw = Math.max(3, Math.round(h * 0.26)), legT = GY - Math.round(h * 0.46);
-  const litK = (k: number, w: number) => (dir > 0 ? (k >= w - 1 - Math.floor(w * 0.25) ? 2 : k <= Math.floor(w * 0.2) ? 0 : 1) : (k <= Math.floor(w * 0.25) ? 2 : k >= w - 1 - Math.floor(w * 0.2) ? 0 : 1));
+  const spr = paintChibiSprite(lookOfFigure(f), { bob: breath, expr: c.s.place === 'grave' ? 'sad' : undefined });
+  let t = spr.h;
+  for (let i = 3; i < spr.d.length; i += 4) if (spr.d[i]) { t = Math.floor(i / 4 / spr.w); break; }
+  const w = figW(f), h = SPH - t;
   // 影
   const len = c.tod === 'day' ? h * 0.25 : c.tod === 'night' ? 3 : h * 0.95;
-  for (let i = 0; i < len; i++) { P.dark(x + bw / 2 - dir * i, GY - 1, 0.4); P.dark(x + bw / 2 - dir * i, GY, 0.3); }
-  const skirt = f.skirt ?? (f.sex === 'F' && f.kind !== 'child');
-  if (!skirt) { P.box(x, legT, Math.floor(bw / 2), GY - legT, pt[dir > 0 ? 0 : 1]); P.box(x + Math.ceil(bw / 2), legT, Math.floor(bw / 2), GY - legT, pt[dir > 0 ? 1 : 0]); }
-  else P.box(x + 1, GY - 2, bw - 2, 2, s[0]);
-  const bottom = skirt ? GY - 2 : legT;
-  for (let y = sh; y < bottom; y++) {
-    const spread = skirt ? Math.floor(((y - sh) / (bottom - sh)) * 2) : 0;
-    for (let k = -spread; k < bw + spread; k++) P.px(x + k, y, cl[litK(k + spread, bw + spread * 2)]);
-  }
-  if (skirt) for (let k = -2; k < bw + 2; k++) P.px(x + k, GY - 2, cl[0]);
-  if (skirt && c.tk) P.px(wave(c, 14, x) ? x + bw + 2 : x - 3, GY - 2, cl[0]); // 裾が揺れる
-  P.box(x, GY - 1, Math.floor(bw / 2) - (bw > 4 ? 1 : 0), 1, '#2a2220'); P.box(x + Math.ceil(bw / 2) + (bw > 4 ? 1 : 0), GY - 1, Math.floor(bw / 2) - (bw > 4 ? 1 : 0), 1, '#2a2220');
-  // 腕
-  const armB = sh + Math.round(h * 0.34);
-  for (let y = sh + 1; y < armB; y++) { P.px(x - 1, y, cl[dir > 0 ? 0 : 2]); P.px(x + bw, y, cl[dir > 0 ? 2 : 0]); }
-  P.px(x - 1, armB, s[0]); P.px(x + bw, armB, s[1]);
-  // 首と頭
-  P.px(x + Math.floor(bw / 2), sh - 1, s[0]);
-  const hx = x + Math.floor((bw - hd) / 2);
-  for (let y = 0; y < hd; y++) for (let k = 0; k < hd; k++) {
-    if ((y === 0 || y === hd - 1) && (k === 0 || k === hd - 1)) continue;
-    P.px(hx + k, headTop + y, k === (dir > 0 ? hd - 1 : 0) ? s[2] : k === (dir > 0 ? 0 : hd - 1) ? s[0] : s[1]);
-  }
-  hairOn(c, hx, headTop, hd, f, hr);
-  if (f.beard) for (let k = 1; k < hd - 1; k++) P.px(hx + k, headTop + hd - 1, hr[0]);
-  if (f.kind === 'elder') for (let y = sh + 4; y < GY; y++) P.px(x + (dir > 0 ? bw + 2 : -3), y, '#4a3420');
-  return { w: bw, h };
-}
-
-function hairOn(c: Ctx, hx: number, top: number, hd: number, f: Figure, hr: string[]): void {
-  const { P, dir } = c;
-  const st = f.style ?? (f.sex === 'F' ? 'long' : 'side');
-  const lit = (k: number) => hr[k === (dir > 0 ? hd - 1 : 0) ? 2 : 0];
-  const row = (y: number, from = 0, to = hd) => { for (let k = from; k < to; k++) P.px(hx + k, y, lit(k)); };
-  const tip = (y: number) => { if (c.tk) P.px(wave(c, 18, hx) ? hx + hd + 1 : hx - 2, top + y, hr[0]); }; // 髪の先が揺れる
-  const sides = (y0: number, y1: number, col = hr[0]) => { for (let y = y0; y < y1; y++) { P.px(hx - 1, top + y, col); P.px(hx + hd, top + y, col); } };
-  switch (st) {
-    case 'bald': for (let k = 1; k < hd - 1; k++) P.px(hx + k, top, tones(f.skin)[2]); P.px(hx, top + 1, hr[0]); P.px(hx + hd - 1, top + 1, hr[0]); return;
-    case 'receding': P.px(hx, top, hr[0]); P.px(hx + hd - 1, top, hr[0]); P.px(hx, top + 1, hr[0]); return;
-    case 'buzz': for (let k = 0; k < hd; k++) P.px(hx + k, top, mixc(f.hair, f.skin, 0.35)); return;
-    case 'cap': { const t = tones(f.cover ?? '#2a3a5a'); row(top - 1, 0, hd); for (let k = 0; k < hd; k++) P.px(hx + k, top, t[1]); P.px(hx + (dir > 0 ? hd : -1), top + 1, t[0]); return; }
-    case 'turban': { const t = tones(f.cover ?? '#c84a2a'); for (let y = -1; y < 2; y++) for (let k = -1; k <= hd; k++) P.px(hx + k, top + y, t[(k + y) % 3 === 0 ? 0 : k === (dir > 0 ? hd : -1) ? 2 : 1]); return; }
-    case 'hijab': { const t = tones(f.cover ?? '#3a5a7a'); for (let k = -1; k <= hd; k++) P.px(hx + k, top - 1 + (k < 0 || k >= hd ? 1 : 0), t[1]); for (let k = 0; k < hd; k++) P.px(hx + k, top, t[1]); for (let y = 0; y < hd + 3; y++) { P.px(hx - 1, top + y, t[dir > 0 ? 0 : 2]); P.px(hx + hd, top + y, t[dir > 0 ? 2 : 0]); } P.box(hx - 1, top + hd + 1, hd + 2, 2, t[1]); return; }
-    case 'afro': case 'curly': row(top - 1); row(top); sides(0, st === 'afro' ? 3 : 2); return;
-    case 'bun': row(top); P.box(hx + Math.floor(hd / 2) - 1, top - 2, 2, 2, hr[0]); return;
-    case 'long': case 'center': case 'locs': row(top); row(top + 1, 0, 1); row(top + 1, hd - 1, hd); sides(1, hd + 3, st === 'locs' ? hr[1] : hr[0]); tip(hd + 2); return;
-    case 'bob': row(top); sides(1, hd + 1); return;
-    case 'braids': row(top); sides(1, hd + 5, hr[1]); tip(hd + 4); return;
-    case 'pony': row(top); for (let y = 1; y < hd + 2; y++) P.px(hx + (dir > 0 ? -1 : hd), top + y, hr[0]); if (c.tk) P.px(hx + (dir > 0 ? -1 : hd) - (wave(c, 18, hx) ? dir : 0), top + hd + 2, hr[0]); return;
-    case 'fringe': row(top); row(top + 1); return;
-    default: row(top); row(top + 1, 0, 2);
-  }
+  for (let i = 0; i < len; i++) { P.dark(x + w / 2 - dir * i, GY - 1, 0.4); P.dark(x + w / 2 - dir * i, GY, 0.3); }
+  P.blit(spr, Math.round(x + w / 2 - spr.w / 2), GY - SPH + 1, dir < 0);
+  return { w, h };
 }
 
 function baby(c: Ctx, x: number, y: number, f: Figure): void {
@@ -671,19 +635,19 @@ export function paintScene(s: Scene, tick = 0): Pix {
   if (!s.urban && s.poor && c.r() < 0.6 && s.place !== 'field') goat(c, 186);
   if (c.fut > 0) drones(c);
   // 家族: 真ん中に並べる。赤ちゃんは隣の大人が抱く
-  const widths = s.figures.map((f) => (f.kind === 'baby' ? 0 : Math.max(3, Math.round(f.height * 1.75 * 0.26)) + 5));
+  const widths = s.figures.map((f) => (f.kind === 'baby' ? 0 : figW(f) + 4));
   const span = widths.reduce((a, b) => a + b, 0) + (s.pet ? 14 : 0);
   let x = Math.round(156 - span / 2);
   let prev: { x: number; w: number; h: number } | null = null;
   for (const f of s.figures) {
     if (f.kind === 'baby') {
-      if (prev) baby(c, prev.x + prev.w - 3, GY - Math.round(prev.h * 0.62) - (wave(c, 12, prev.x) ? 1 : 0), f); // 抱いた腕でゆっくり揺らす
+      if (prev) baby(c, prev.x + prev.w - 4, GY - Math.round(prev.h * 0.48) - (wave(c, 12, prev.x) ? 1 : 0), f); // 抱いた腕でゆっくり揺らす
       else { baby(c, x, GY - 4, f); x += 9; }
       continue;
     }
     const d = figure(c, x, f);
     prev = { x, w: d.w, h: d.h };
-    x += d.w + 5;
+    x += d.w + 4;
   }
   if (s.pet) pet(c, x + 1, s.pet);
   return P;
