@@ -19,3 +19,17 @@ export function validEntry(b) {
     gen: Number.isInteger(gen) && gen >= 1 && gen <= 999 ? gen : 1, family: str(b.family, 400),
   };
 }
+
+// いま遊ばれている人生 (/api/life/*)。id は crypto.randomUUID()、ほかは人生のことだけ
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+export const lifeId = (v) => (typeof v === 'string' && UUID.test(v) ? v : null);
+export const lifeAge = (v) => (Number.isInteger(v) && v >= 0 && v <= 130 ? v : null);
+export const countryCode = (v) => (typeof v === 'string' && /^[A-Z]{3}$/.test(v) ? v : null);
+
+export function validLife(b) {
+  if (!b || typeof b !== 'object') return null;
+  const id = lifeId(b.id), country = countryCode(b.country), age = lifeAge(b.age);
+  const birthYear = b.birthYear;
+  if (!id || !country || age === null || !['F', 'M', 'X'].includes(b.sex) || !Number.isInteger(birthYear) || birthYear < 1800 || birthYear > 2200) return null;
+  return { id, country, birthYear, sex: b.sex, age };
+}

@@ -16,6 +16,7 @@ import { paintScenes, sceneAttr, sceneFromSummary, sceneOf, toData } from './ui/
 import { paintOtherFaces } from './ui/portrait';
 import { isEn, L, lang, religionName, setLang } from './i18n';
 import { TRACKS, musicScene, setMusic, sfx } from './ui/music';
+import { lifeNow, presenceHome } from './ui/presence';
 
 const app = $('#app');
 // 世界では1秒に約4.2人が生まれ、約2人が亡くなる (国連世界人口推計 2024)
@@ -120,6 +121,8 @@ function home(): void {
       <p class="note">${L('平均寿命まで生きると約30分(1倍速で1年 ≈ 26秒)。止めることも早送りもできる。途中で閉じても、この端末に保存される。乳幼児の死、児童婚、病気など重い出来事も統計どおりに起こる。15歳以上向け。', 'A life to average life expectancy takes about 30 minutes (1 year ≈ 26 seconds at 1x). You can pause or speed up. If you close the page, it is saved on this device. Hard events such as infant death, child marriage and illness happen at their real rates. For ages 15 and up.')}</p>
     </div>
     ${aiPanel()}
+    <section id="nowlives" hidden><h2>${L('いま、この中で', 'Right now, in here')}</h2><div id="nowbody"></div>
+      <p class="note">${L('遊んでいる人生の国・生まれた年・性別・年齢だけを送って数えている。あなた自身のことは何も送らない。', 'Only the country, birth year, sex and age of the life being played are sent and counted. Nothing about you.')}</p></section>
     <section><h2>${L('みんなの人生', 'Lives others lived')}</h2><p class="note">${L('それぞれが生きた人生と、その人への一言。プレイした人の名前や連絡先は残らない。', 'Lives that players lived, and a few words for each. No names or contact details of players are kept.')}</p><ul class="memorial" id="shared"><li>${L('読み込み中…', 'Loading…')}</li></ul></section>
     <nav class="homenav"><button data-go="past">${L('前世の記録', 'Past lives')}</button><button data-go="about">${L('データについて', 'About the data')}</button></nav>
   </main>`;
@@ -131,6 +134,12 @@ function home(): void {
     cb.textContent = Math.floor(s * BIRTHS_PER_SEC).toLocaleString();
     $('#cd').textContent = Math.floor(s * DEATHS_PER_SEC).toLocaleString();
   }, 250);
+  void lifeNow().then((d) => {
+    const el = document.getElementById('nowlives');
+    if (!el || !d) return;
+    $('#nowbody').innerHTML = presenceHome(d);
+    el.hidden = false;
+  });
   void fetchShared().then((list) => {
     const el = document.getElementById('shared');
     if (el) { el.innerHTML = list.length ? list.slice(0, 12).map(sharedCard).join('') : `<li>${L('まだ誰もいない。', 'No one yet.')}</li>`; paintScenes(el); }

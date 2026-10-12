@@ -28,6 +28,7 @@ import { lifeMap, lifeMapCells } from './lifemap';
 import { albumHtml, pickMoments, type Moment } from './album';
 import { homeCompare, mountHomeCompare } from './homeland';
 import { addLife, storeLives } from './past';
+import { countryAverage } from './presence';
 
 export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
@@ -281,6 +282,15 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       </div>
     </section>`)}</main>`;
   window.scrollTo(0, 0);
+  // ほかのプレイヤーがこの国で生きた人生の平均 (少ないうちは出さない)
+  void countryAverage(p.birthCountry).then((t) => {
+    const box = app.querySelector('.farewellbox');
+    if (!t || !box || !document.body.contains(box)) return;
+    const el = document.createElement('p');
+    el.className = 'note simstat';
+    el.innerHTML = t;
+    box.before(el);
+  });
   paintLife(app, life, onContinue ? p : undefined, others);
   if (!onContinue) app.querySelector('.heirs')?.remove();
   // 自死の人生は AI に語らせない (ai/prompts.ts の決まりと同じ)

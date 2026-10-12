@@ -23,6 +23,7 @@ import { continueAs, generation, othersFor } from '../engine/lineage';
 import { pickQuestion } from './pause';
 import { lifeMap } from './lifemap';
 import { addMoment, momentOf, type Moment } from './album';
+import { lifeBeat, lifeEnd, lifeNow, lifeStart, newLifeId, presenceLine, type Beat } from './presence';
 
 const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
 const SPEEDS = [1, 2, 4, 8, 16];
@@ -32,11 +33,12 @@ const PAUSE_WAIT_MS = 7000; // 自動か速い速さのとき、ひと息の問�
 const FAST = 8;             // この速さ以上なら、ひと息は待たずに先へ進める
 const SAVE_KEY = 'current';
 const SCENE_MS = 100; // 場面の動きは1秒に10コマ
+const NET_MS = 60_000; // ほかのプレイヤーの数を見に行き、この人生の便りを出す間隔
 
 type Tab = '' | 'me' | 'band' | 'compare' | 'log';
 const TABS: [Exclude<Tab, ''>, string][] = [['me', L('いまの状態', 'Status')], ['band', L('人生の帯', 'Life band')], ['compare', L('比べる', 'Compare')], ['log', L('全部の記録', 'Full record')]];
 
-interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[]; album?: Moment[] }
+interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[]; album?: Moment[]; lifeId?: string }
 
 interface GameState {
   p: Person;
@@ -67,6 +69,8 @@ interface GameState {
   seen: boolean;     // 場面が画面の中にあるか
   io?: IntersectionObserver;
   album: Moment[];   // 思い出のアルバムに撮った場面 (album.ts)
+  beat: Beat;        // この人生の便り (presence.ts)。id は保存データに残す
+  netTimer?: number;
 }
 
 let S: GameState | null = null;
@@ -77,7 +81,7 @@ export const clearSaved = () => save(SAVE_KEY, null);
 export function resumeGame(onExit: () => void): void {
   const s = hasSaved();
   if (!s) return onExit();
-  run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit, s.album);
+  run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit, s.album, s.lifeId);
 }
 
 export const sameSecondOthers = (basis: BirthBasis, year?: number) =>
@@ -87,10 +91,10 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
   run(p, others, basis, 1, onExit);
 }
 
-function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void, album: Moment[] = []): void {
+function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void, album: Moment[] = [], lifeId?: string): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true, album: addMoment(album, momentOf(p)) };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true, album: addMoment(album, momentOf(p)), beat: { id: lifeId ?? newLifeId(), at: 0, age: -1 } };
   $('#app').innerHTML = shell();
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
@@ -103,11 +107,27 @@ function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onEx
   S.raf = requestAnimationFrame(frame);
   // タブが隠れると requestAnimationFrame が止まる。裏でも進めるときは、1秒ごとのタイマーで同じ frame を回す
   S.bgTimer = window.setInterval(() => { if (S?.bg && document.hidden) { cancelAnimationFrame(S.raf); frame(performance.now()); } }, 1000);
+  lifeStart(S.beat, p, !!lifeId);
+  S.netTimer = window.setInterval(net, NET_MS);
+  window.setTimeout(net, 1500); // start が届いてから数える
+}
+
+// ほかのプレイヤーの数と、この人生の便り。タブが隠れている間は、裏でも進める設定のときだけ
+function net(): void {
+  if (!S || (document.hidden && !S.bg)) return;
+  lifeBeat(S.beat, S.p);
+  const country = S.p.birthCountry;
+  void lifeNow(country).then((d) => {
+    const el = document.getElementById('presence');
+    if (!el || !d) return;
+    el.textContent = presenceLine(d, country);
+    el.hidden = false;
+  });
 }
 
 function persist(): void {
   if (!S || !S.p.alive) return;
-  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved), album: S.album } satisfies Saved);
+  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved), album: S.album, lifeId: S.beat.id } satisfies Saved);
 }
 
 function frame(t: number): void {
@@ -195,6 +215,7 @@ function shell(): string {
       <div class="panel pcard" id="pcard"></div>
     </section>
     <section class="side">
+      <p class="presence" id="presence" hidden></p>
       <div class="scenebox" id="scene"></div>
       <div class="panel" id="focus"></div>
       <div class="panel" id="year"></div>
@@ -435,6 +456,7 @@ function leave(): void {
   if (!S) return;
   cancelAnimationFrame(S.raf);
   window.clearInterval(S.bgTimer);
+  window.clearInterval(S.netTimer);
   window.clearTimeout(S.timer);
   S.io?.disconnect();
   const exit = S.onExit;
@@ -446,10 +468,12 @@ function leave(): void {
 function finish(): void {
   if (!S) return;
   const { p, others, basis, onExit, music, album } = S;
+  lifeEnd(S.beat, p);
   for (const o of others) while (o.alive) advanceYear(o);
   clearSaved();
   cancelAnimationFrame(S.raf);
   window.clearInterval(S.bgTimer);
+  window.clearInterval(S.netTimer);
   S.io?.disconnect();
   S = null;
   // 急な死は、九死に一生と同じ場面で始まる (最後の一拍まで、どちらになるか分からない)。病や老いは静かな場面

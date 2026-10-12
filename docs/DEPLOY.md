@@ -9,6 +9,8 @@ Unchosen を https://unchosen.pages.dev (Cloudflare Pages) に出し、追悼館
 | 追悼館のデータ | D1 `unchosen-memorial`。表は `migrations/` |
 | 出す仕組み | `.github/workflows/cloudflare.yml` (テスト → ビルド → D1 マイグレーション → Pages) |
 
+「いま、この中で」(ほかのプレイヤーの人生) は同じ D1 の表 `life` と `life_agg` (`migrations/0002_lives.sql`) で数えます。持つのは人生の国・生まれた年・性別・年齢と時刻だけです。
+
 公開版の AI 中継は OpenRouter と OpenAI (https) だけです。手元・LAN の LLM はブラウザから直接つないでもらいます。送信量の制限は D1 の表 `rate` で数え、IP は `ADMIN_TOKEN` を鍵にした HMAC にしてから使います (IP そのものは残しません)。
 
 ## 手元で確かめる

@@ -1,7 +1,7 @@
 // 追悼館と AI 中継の API の Cloudflare 版 (Pages Functions + D1)。入口は functions/api/[[path]].js。
 // 道と返す形は server/server.mjs と同じ。足したのは 言葉の網・管理者の非表示・/api/health。
 // IP はそのまま残さず、ADMIN_TOKEN を鍵にした HMAC にして制限の数えに使う。
-import { langOf, validEntry } from './validate.mjs';
+import { countryCode, langOf, lifeAge, lifeId, validEntry, validLife } from './validate.mjs';
 import { blocked } from './moderation.mjs';
 
 // 制限: [回数, 窓の長さ]。固定の時間窓を D1 の1行で数える
@@ -11,7 +11,13 @@ export const LIMITS = {
   candleMin: [20, 60_000],
   aiMin: [120, 60_000],
   adminFail: [10, 600_000],
+  lifeMin: [10, 60_000],
 };
+
+// いま生きている = 終わっておらず、この時間のうちに便りがあった
+export const ALIVE_MS = 15 * 60_000;
+// 1つの人生の便りは、この間隔より詰めて書かない (書き込みの制限を表を使わずに)
+export const BEAT_MS = 50_000;
 
 const json = (status, body) => new Response(JSON.stringify(body), {
   status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
@@ -107,8 +113,74 @@ async function route(request, env, now) {
     return row ? json(200, { success: true, data: { candles: row.candles } }) : ng(404, 'not found');
   }
 
+  if (p.startsWith('/api/life/')) return life(request, db, url, m, now, who);
   if (p.startsWith('/api/admin/')) return admin(request, env, db, url, m, now, who);
   return ng(404, 'not found');
+}
+
+// ---- いま遊ばれている人生 ----------------------------------------------------
+// 読むのは索引の範囲と LIMIT だけ。合計は life_agg の国ごとの1行から
+const cached = (body, secs) => new Response(JSON.stringify(body), {
+  status: 200, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': `public, max-age=${secs}` },
+});
+const AGG = 'INSERT INTO life_agg (country, born, finished, age_sum) VALUES (?, ?, ?, ?) ON CONFLICT (country) DO UPDATE SET born = born + excluded.born, finished = finished + excluded.finished, age_sum = age_sum + excluded.age_sum';
+const known = async (db, id) => !!(await db.prepare('SELECT 1 AS x FROM life WHERE id = ?').bind(id).first());
+
+async function life(request, db, url, m, now, who) {
+  const p = url.pathname;
+  if (m === 'GET' && p === '/api/life/now') {
+    const c = countryCode(url.searchParams.get('country'));
+    const cut = now - ALIVE_MS;
+    const [alive, inC, born, died, tot] = await Promise.all([
+      db.prepare('SELECT COUNT(*) AS n FROM life WHERE ended_at IS NULL AND last_seen > ?').bind(cut).first(),
+      c ? db.prepare('SELECT COUNT(*) AS n FROM life WHERE ended_at IS NULL AND last_seen > ? AND country = ?').bind(cut, c).first() : null,
+      db.prepare('SELECT country, started_at AS at FROM life WHERE start_age = 0 ORDER BY started_at DESC LIMIT 10').all(),
+      db.prepare('SELECT country, death_age AS age, ended_at AS at FROM life WHERE ended_at IS NOT NULL ORDER BY ended_at DESC LIMIT 10').all(),
+      db.prepare('SELECT COALESCE(SUM(born), 0) AS born, COALESCE(SUM(finished), 0) AS finished FROM life_agg').first(),
+    ]);
+    const feed = [
+      ...born.results.map((r) => ({ kind: 'born', country: r.country, age: 0, at: r.at })),
+      ...died.results.map((r) => ({ kind: 'died', country: r.country, age: r.age, at: r.at })),
+    ].sort((a, b) => b.at - a.at).slice(0, 10);
+    return cached({ success: true, data: { alive: alive.n, inCountry: inC ? inC.n : null, feed, born: tot.born, finished: tot.finished, now } }, 15);
+  }
+  if (m === 'GET' && p === '/api/life/stats') {
+    const c = countryCode(url.searchParams.get('country'));
+    if (!c) return ng(400, 'invalid country');
+    const r = await db.prepare('SELECT finished AS n, age_sum AS s FROM life_agg WHERE country = ?').bind(c).first();
+    const n = r?.n ?? 0;
+    return cached({ success: true, data: { n, avgAge: n ? r.s / n : null } }, 60);
+  }
+  if (m !== 'POST' || !['/api/life/start', '/api/life/beat', '/api/life/end'].includes(p)) return ng(404, 'not found');
+  let b;
+  try { b = await readJson(request, 1024); } catch (err) {
+    return err instanceof TooLarge ? ng(413, 'too large') : ng(400, 'bad json');
+  }
+  if (p === '/api/life/start') {
+    const e = validLife(b);
+    if (!e) return ng(400, 'invalid life');
+    if (!(await allow(db, 'lifeMin', await who(), now))) return ng(429, 'too many requests');
+    // 保存から続ける人生は同じ id のまま。2度目の start は何もしない
+    const row = await db.prepare('INSERT INTO life (id, country, birth_year, sex, age, start_age, started_at, last_seen) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO NOTHING RETURNING id')
+      .bind(e.id, e.country, e.birthYear, e.sex, e.age, e.age, now, now).first();
+    if (row && e.age === 0) await db.prepare(AGG).bind(e.country, 1, 0, 0).run();
+    return json(row ? 201 : 200, { success: true, data: { created: !!row } });
+  }
+  const id = lifeId(b?.id), age = lifeAge(b?.age);
+  if (!id || age === null) return ng(400, 'invalid life');
+  if (p === '/api/life/beat') {
+    // 同じ人生からは BEAT_MS に1度だけ書く。詰めて来たものは書かずに受け取る
+    const r = await db.prepare('UPDATE life SET age = ?, last_seen = ? WHERE id = ? AND ended_at IS NULL AND last_seen <= ?').bind(age, now, id, now - BEAT_MS).run();
+    if (r.meta.changes) return json(200, { success: true, data: { ok: true } });
+    return (await known(db, id)) ? json(200, { success: true, data: { ok: false } }) : ng(404, 'not found');
+  }
+  const row = await db.prepare('UPDATE life SET age = ?, death_age = ?, ended_at = ?, last_seen = ? WHERE id = ? AND ended_at IS NULL RETURNING country')
+    .bind(age, age, now, now, id).first();
+  if (row) {
+    await db.prepare(AGG).bind(row.country, 0, 1, age).run();
+    return json(200, { success: true, data: { ok: true } });
+  }
+  return (await known(db, id)) ? json(200, { success: true, data: { ok: false } }) : ng(404, 'not found');
 }
 
 // 管理者: Authorization: Bearer <ADMIN_TOKEN>。ADMIN_TOKEN が無ければ管理の道は無いものとする

@@ -90,6 +90,12 @@ fieldset input { width: auto; margin-right: 6px; }
 .pastlist button { width: 100%; text-align: left; border-radius: 10px; }
 .pastlist small { display: block; }
 .memorial li { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; overflow: hidden; }
+/* いま、この中で (本物のプレイヤーの人生) */
+.presencehead { margin-bottom: 8px; }
+.lifefeed { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 4px; font-size: 14px; color: var(--sub); }
+.lifefeed li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding: 4px 0; }
+.lifefeed small { color: var(--faint); white-space: nowrap; }
+.presence { margin: 0 0 10px; font-size: 13px; color: var(--sub); }
 .memorial p { margin: 0 0 4px; }
 .message { font-family: var(--serif); color: var(--accent); }
 

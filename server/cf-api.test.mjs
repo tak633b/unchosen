@@ -149,3 +149,79 @@ describe('AI の中継 (Cloudflare 版)', () => {
     expect(JSON.parse(init.body).max_tokens).toBe(2000);
   });
 });
+
+describe('いま遊ばれている人生 (Cloudflare 版)', () => {
+  const T0 = 1.7e12;
+  const life = (over = {}) => ({ id: crypto.randomUUID(), country: 'JPN', birthYear: 2026, sex: 'F', age: 0, ...over });
+
+  it('start → beat → end。生きている数・国の数・流れ・合計・国の平均が出る', async () => {
+    const { call, env } = api();
+    const a = life(), b = life({ country: 'NGA', sex: 'M' }), c = life({ country: 'JPN', age: 30, birthYear: 1990 });
+    expect((await call('POST', '/api/life/start', { body: a, now: T0 })).status).toBe(201);
+    expect((await call('POST', '/api/life/start', { body: b, now: T0 + 1000 })).status).toBe(201);
+    expect((await call('POST', '/api/life/start', { body: c, now: T0 + 2000 })).status).toBe(201);
+    // 保存から続けた同じ人生の start は増やさない
+    expect((await call('POST', '/api/life/start', { body: a, now: T0 + 3000 })).j).toEqual({ success: true, data: { created: false } });
+
+    const now = await call('GET', '/api/life/now?country=JPN', { now: T0 + 5000 });
+    expect(now.j.data).toMatchObject({ alive: 3, inCountry: 2, born: 2, finished: 0 });
+    // 続きから始めた人生 (c, 30歳から) は「生まれた」に出ない
+    expect(now.j.data.feed.map((e) => [e.kind, e.country])).toEqual([['born', 'NGA'], ['born', 'JPN']]);
+
+    expect((await call('POST', '/api/life/beat', { body: { id: a.id, age: 3 }, now: T0 + 60_000 })).j.data.ok).toBe(true);
+    expect((await call('POST', '/api/life/end', { body: { id: b.id, age: 0 }, now: T0 + 70_000 })).j.data.ok).toBe(true);
+    // 2度目の end は数えない
+    expect((await call('POST', '/api/life/end', { body: { id: b.id, age: 9 }, now: T0 + 71_000 })).j.data.ok).toBe(false);
+    expect((await call('POST', '/api/life/end', { body: { id: a.id, age: 71 }, now: T0 + 80_000 })).status).toBe(200);
+    const after = await call('GET', '/api/life/now', { now: T0 + 90_000 });
+    expect(after.j.data).toMatchObject({ alive: 1, inCountry: null, born: 2, finished: 2 });
+    expect(after.j.data.feed.slice(0, 2)).toEqual([{ kind: 'died', country: 'JPN', age: 71, at: T0 + 80_000 }, { kind: 'died', country: 'NGA', age: 0, at: T0 + 70_000 }]);
+    expect((await call('GET', '/api/life/stats?country=JPN')).j.data).toEqual({ n: 1, avgAge: 71 });
+    expect((await call('GET', '/api/life/stats?country=FRA')).j.data).toEqual({ n: 0, avgAge: null });
+    // 残すのは人生のことだけ
+    const cols = env.DB.raw.prepare('PRAGMA table_info(life)').all().map((r) => r.name);
+    expect(cols).toEqual(['id', 'country', 'birth_year', 'sex', 'age', 'start_age', 'started_at', 'last_seen', 'ended_at', 'death_age']);
+  });
+
+  it('便りが15分ない人生は「いま」から外れ、beat で戻る', async () => {
+    const { call } = api();
+    const a = life();
+    await call('POST', '/api/life/start', { body: a, now: T0 });
+    expect((await call('GET', '/api/life/now', { now: T0 + 14 * 60_000 })).j.data.alive).toBe(1);
+    expect((await call('GET', '/api/life/now', { now: T0 + 16 * 60_000 })).j.data.alive).toBe(0);
+    await call('POST', '/api/life/beat', { body: { id: a.id, age: 1 }, now: T0 + 17 * 60_000 });
+    expect((await call('GET', '/api/life/now', { now: T0 + 18 * 60_000 })).j.data.alive).toBe(1);
+  });
+
+  it('詰めて来た beat は書かず、知らない id は 404。now は短く貯めてよい', async () => {
+    const { call, env } = api();
+    const a = life();
+    await call('POST', '/api/life/start', { body: a, now: T0 });
+    expect((await call('POST', '/api/life/beat', { body: { id: a.id, age: 5 }, now: T0 + 10_000 })).j.data.ok).toBe(false);
+    expect(env.DB.raw.prepare('SELECT age, last_seen FROM life').get()).toEqual({ age: 0, last_seen: T0 });
+    expect((await call('POST', '/api/life/beat', { body: { id: crypto.randomUUID(), age: 5 } })).status).toBe(404);
+    expect((await call('POST', '/api/life/end', { body: { id: crypto.randomUUID(), age: 5 } })).status).toBe(404);
+    const r = await handle(new Request('https://x.test/api/life/now'), env, T0);
+    expect(r.headers.get('Cache-Control')).toBe('public, max-age=15');
+  });
+
+  it('形の悪いものは断る', async () => {
+    const { call } = api();
+    for (const bad of [life({ id: 'abc' }), life({ country: 'jp' }), life({ sex: 'Q' }), life({ age: -1 }), life({ age: 131 }), life({ age: 1.5 }), life({ birthYear: '2000' }), life({ birthYear: 1700 })]) {
+      expect((await call('POST', '/api/life/start', { body: bad })).j).toEqual({ success: false, error: 'invalid life' });
+    }
+    expect((await call('POST', '/api/life/beat', { body: { id: crypto.randomUUID(), age: 'x' } })).status).toBe(400);
+    expect((await call('POST', '/api/life/start', { body: '{' })).status).toBe(400);
+    expect((await call('POST', '/api/life/start', { body: { ...life(), pad: 'x'.repeat(2000) } })).status).toBe(413);
+    expect((await call('GET', '/api/life/stats?country=jp')).status).toBe(400);
+    expect((await call('GET', '/api/life/nope')).status).toBe(404);
+  });
+
+  it('1つの IP から1分に始められる人生には限りがある', async () => {
+    const { call } = api();
+    const [limit] = LIMITS.lifeMin;
+    for (let i = 0; i < limit; i++) expect((await call('POST', '/api/life/start', { body: life(), now: 1e12 })).status).toBe(201);
+    expect((await call('POST', '/api/life/start', { body: life(), now: 1e12 })).status).toBe(429);
+    expect((await call('POST', '/api/life/start', { body: life(), now: 1e12, ip: '198.51.100.7' })).status).toBe(201);
+  });
+});
