@@ -92,12 +92,15 @@ export function countriesAcrossYears(basis: BirthBasis): Country[] {
   const hit = spanMemo.get(basis + eraReady());
   if (hit) return hit;
   const sums = new Map<string, number>();
+  if (basis === 'equal') return COUNTRIES;
   for (const y of ALL_YEARS) for (const c of countriesAt(y)) sums.set(c.code, (sums.get(c.code) ?? 0) + c[basis]);
   const list = COUNTRIES.map((c) => ({ ...c, [basis]: sums.get(c.code)! }));
   spanMemo.set(basis + eraReady(), list);
   return list;
 }
 
-export type BirthBasis = 'births' | 'pop';
-export const totalOf = (basis: BirthBasis, year?: number) => countriesAt(year).reduce((s, c) => s + c[basis], 0);
-export const pickBirthCountry = (rng: Rng, basis: BirthBasis, year?: number) => pickWeighted(rng, countriesAt(year), (c) => c[basis]);
+// equal: 国の大きさによらず、どの国も同じ確率 (いろいろな国を見て回りたい人向け。既定は births)
+export type BirthBasis = 'births' | 'pop' | 'equal';
+export const weightOf = (c: Country, basis: BirthBasis) => (basis === 'equal' ? 1 : c[basis]);
+export const totalOf = (basis: BirthBasis, year?: number) => countriesAt(year).reduce((s, c) => s + weightOf(c, basis), 0);
+export const pickBirthCountry = (rng: Rng, basis: BirthBasis, year?: number) => pickWeighted(rng, countriesAt(year), (c) => weightOf(c, basis));

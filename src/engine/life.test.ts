@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { countryAt } from './countries';
+import { countriesAt, countryAt, pickBirthCountry } from './countries';
+import { makeRng } from './rng';
 import { createPerson, liveOut } from './life';
 import { bornTable, lifeTable, MAX_AGE } from './lifetable';
 
@@ -81,5 +82,18 @@ describe('途中で保存して再開しても同じ人生になる', () => {
     liveOut(b);
     expect(b.log).toEqual(a.log);
     expect(b.age).toBe(a.age);
+  });
+});
+
+describe('くじの重み「どの国も同じ」', () => {
+  it('国の大きさによらず、ほぼ等しく選ばれる', () => {
+    const rng = makeRng(42);
+    const n = countriesAt(2000).length;
+    const hits = new Map<string, number>();
+    for (let i = 0; i < n * 100; i++) { const c = pickBirthCountry(rng, 'equal', 2000).code; hits.set(c, (hits.get(c) ?? 0) + 1); }
+    expect(hits.size).toBe(n);
+    // 1国あたり平均100回。インドも小さな国も、その前後に収まる
+    expect(Math.max(...hits.values())).toBeLessThan(150);
+    expect(Math.min(...hits.values())).toBeGreaterThan(60);
   });
 });
