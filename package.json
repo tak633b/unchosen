@@ -9,13 +9,16 @@
     "start": "node server/server.mjs",
     "test": "vitest run",
     "data:fetch": "node scripts/fetch-data.mjs",
-    "data:build": "node scripts/build-data.mjs && node scripts/build-era.mjs && node scripts/build-mortality.mjs"
+    "data:build": "node scripts/build-data.mjs && node scripts/build-era.mjs && node scripts/build-mortality.mjs",
+    "cf:migrate:local": "wrangler d1 migrations apply unchosen-memorial --local",
+    "cf:dev": "npm run build && npm run cf:migrate:local && wrangler pages dev --port 8788"
   },
   "devDependencies": {
     "concurrently": "^10.0.5",
     "i18n-iso-countries": "^7.14.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.3",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.3",
+    "wrangler": "^4.149.0"
   }
 }

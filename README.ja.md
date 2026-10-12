@@ -95,6 +95,10 @@ npm start        # http://localhost:8787 で dist/ と API を配ります
 
 追悼館のデータは `data/memorial.db`(SQLite)に保存されます。
 
+## 公開版
+
+https://unchosen.pages.dev で遊べます。Cloudflare Pages で動き、追悼館は D1 に置いています。`main` に push するたびに GitHub Actions が出します。公開版のサーバが AI を中継するのは OpenRouter と OpenAI だけです。手元の LLM を使うときは、AI 設定で「ブラウザから直接つなぐ」を選んでください(LLM 側で CORS の許可が要ります)。出し方は [docs/DEPLOY.md](docs/DEPLOY.md) にあります。
+
 ## データと仕組み
 
 国ごとの統計は [Our World in Data](https://ourworldindata.org/)(CC BY 4.0)から取っています。もとは国連、世界銀行、WHO、UNICEF、ILO、UNODC、IHME、World Happiness Report などのデータです。2024年以前の最新の値を使い、欠けている値は同じ地域で所得の近い国から推計しています。

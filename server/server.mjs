@@ -7,6 +7,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { extname, join, normalize } from 'node:path';
 import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
+import { langOf, validEntry } from './validate.mjs';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -38,7 +39,6 @@ if (!db.prepare('PRAGMA table_info(memorial)').all().some((c) => c.name === 'lan
 const cols = db.prepare('PRAGMA table_info(memorial)').all().map((c) => c.name);
 if (!cols.includes('gen')) db.exec('ALTER TABLE memorial ADD COLUMN gen INTEGER NOT NULL DEFAULT 1');
 if (!cols.includes('family')) db.exec("ALTER TABLE memorial ADD COLUMN family TEXT NOT NULL DEFAULT ''");
-const langOf = (v) => (v === 'en' ? 'en' : 'ja');
 
 // 1つの IP からの書き込みは 1分に10回まで
 const hits = new Map();
@@ -64,25 +64,6 @@ async function readJson(req, limit = 8192) {
     chunks.push(c);
   }
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
-}
-
-const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
-
-function validEntry(b) {
-  if (!b || typeof b !== 'object') return null;
-  const country = str(b.country, 3);
-  const age = Number(b.age);
-  if (!/^[A-Z]{3}$/.test(country) || !['F', 'M', 'X'].includes(b.sex) || !Number.isInteger(age) || age < 0 || age > 120) return null;
-  const cause = str(b.cause, 40);
-  if (!cause) return null;
-  if (b.lang !== undefined && !['ja', 'en'].includes(b.lang)) return null;
-  const birthYear = Number(b.birthYear);
-  const gen = Number(b.gen);
-  return {
-    rural: b.rural ? 1 : 0, name: str(b.name, 60), birthYear: Number.isInteger(birthYear) ? birthYear : 0, job: str(b.job, 40),
-    country, sex: b.sex, age, cause, line: str(b.line, 400), message: str(b.message, 200), lang: langOf(b.lang),
-    gen: Number.isInteger(gen) && gen >= 1 && gen <= 999 ? gen : 1, family: str(b.family, 400),
-  };
 }
 
 // ---- AI の中継 ---------------------------------------------------------------

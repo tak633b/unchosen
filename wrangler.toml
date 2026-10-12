@@ -1,0 +1,13 @@
+# Cloudflare Pages の設定 (静的な dist/ + functions/ の API + D1 の追悼館)。手順は docs/DEPLOY.md
+name = "unchosen"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "unchosen-memorial"
+# 作成済みの D1。手元の pages dev は --local でこの id のまま動く
+database_id = "5312d83c-c94a-404b-8116-c62841582e25"
+migrations_dir = "migrations"
+
+# 秘密 (コードに書かない): ADMIN_TOKEN は `npx wrangler pages secret put ADMIN_TOKEN --project-name unchosen`
