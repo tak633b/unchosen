@@ -1,7 +1,7 @@
 // 追悼館と AI 中継の API の Cloudflare 版 (Pages Functions + D1)。入口は functions/api/[[path]].js。
 // 道と返す形は server/server.mjs と同じ。足したのは 言葉の網・管理者の非表示・/api/health。
 // IP はそのまま残さず、ADMIN_TOKEN を鍵にした HMAC にして制限の数えに使う。
-import { langOf, validEntry } from './validate.mjs';
+import { langOf, validEntry, validShare } from './validate.mjs';
 import { blocked } from './moderation.mjs';
 
 // 制限: [回数, 窓の長さ]。固定の時間窓を D1 の1行で数える
@@ -11,6 +11,8 @@ export const LIMITS = {
   candleMin: [20, 60_000],
   aiMin: [120, 60_000],
   adminFail: [10, 600_000],
+  shareMin: [5, 60_000],
+  shareDay: [40, 86_400_000],
 };
 
 const json = (status, body) => new Response(JSON.stringify(body), {
@@ -107,6 +109,26 @@ async function route(request, env, now) {
     return row ? json(200, { success: true, data: { candles: row.candles } }) : ng(404, 'not found');
   }
 
+  if (m === 'POST' && p === '/api/share') {
+    const w = await who();
+    if (!(await allow(db, 'shareMin', w, now)) || !(await allow(db, 'shareDay', w, now))) return ng(429, 'too many requests');
+    let body;
+    try { body = await readJson(request, 800 * 1024); } catch (err) {
+      return err instanceof TooLarge ? ng(413, 'too large') : ng(400, 'bad json');
+    }
+    const e = validShare(body);
+    if (!e) return ng(400, 'invalid share');
+    if ([e.name, e.lines, e.feelings].some(blocked)) return ng(400, 'blocked');
+    const id = newId();
+    await db.prepare('INSERT INTO share (id, lang, name, birth_year, age, lines, stat, feelings, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+      .bind(id, e.lang, e.name, e.birthYear, e.age, e.lines, e.stat, e.feelings, e.image).run();
+    return json(201, { success: true, data: { id } });
+  }
+
+  const s = p.match(/^\/s\/([A-Za-z0-9]{8})(\.png)?$/);
+  if (m === 'GET' && s) return sharePage(db, url, s[1], !!s[2]);
+  if (p.startsWith('/s/')) return html(404, notFoundPage());
+
   if (p.startsWith('/api/admin/')) return admin(request, env, db, url, m, now, who);
   return ng(404, 'not found');
 }
@@ -134,7 +156,80 @@ async function admin(request, env, db, url, m, now, who) {
     const row = await db.prepare('UPDATE memorial SET hidden = ? WHERE id = ? RETURNING id, hidden').bind(b.hidden ? 1 : 0, Number(h[1])).first();
     return row ? json(200, { success: true, data: { id: row.id, hidden: row.hidden === 1 } }) : ng(404, 'not found');
   }
+  // 共有のリンクを消す (非表示にする)
+  const sh = url.pathname.match(/^\/api\/admin\/share\/([A-Za-z0-9]{8})\/hide$/);
+  if (m === 'POST' && sh) {
+    const row = await db.prepare('UPDATE share SET hidden = 1 WHERE id = ? RETURNING id').bind(sh[1]).first();
+    return row ? json(200, { success: true, data: { id: row.id, hidden: true } }) : ng(404, 'not found');
+  }
   return ng(404, 'not found');
+}
+
+// ---- 共有のリンク (/s/<id>) ---------------------------------------------------------
+// 8文字の英数字 (62^8)。ponytail: 重なりは確かめない (INSERT が主キーで落ちて 500)。件数が億に近づいたら長くする
+const ID_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function newId() {
+  const r = crypto.getRandomValues(new Uint8Array(8));
+  return Array.from(r, (b) => ID_CHARS[b % 62]).join('');
+}
+
+const escHtml = (v) => String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const PAGE_HEADERS = {
+  'Content-Type': 'text/html; charset=utf-8',
+  'Content-Security-Policy': "default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'",
+  'X-Content-Type-Options': 'nosniff',
+};
+const html = (status, body) => new Response(body, { status, headers: { ...PAGE_HEADERS, 'Cache-Control': status === 200 ? 'public, max-age=300' : 'no-store' } });
+
+const STYLE = `body{margin:0;background:#11141d;color:#ebe5d8;font:16px/1.7 "Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:24px 16px 48px}header{color:#e9a64c;font-weight:700;letter-spacing:.12em;font-size:13px}
+img{width:100%;height:auto;border-radius:12px;margin:16px 0;image-rendering:pixelated}h1{font-family:"Hiragino Mincho ProN","Yu Mincho",Georgia,serif;font-size:30px;margin:8px 0}
+p{margin:6px 0}.sub{color:#a7a193;font-size:14px}blockquote{margin:18px 0;padding:10px 16px;border-left:3px solid #e9a64c;background:#1b2030;border-radius:0 8px 8px 0}
+.stat{font-size:15px;color:#a7a193}.stat b{color:#e9a64c;font-size:40px;margin-right:8px}
+a.go{display:block;text-align:center;margin:28px 0 8px;padding:14px;border-radius:999px;background:#e9a64c;color:#1a1408;font-weight:700;text-decoration:none;font-size:18px}`;
+
+const PAGE_T = {
+  ja: { brand: 'UNCHOSEN — 生まれは、選べない', go: '自分も生まれてみる', said: 'この人生を生きた人のひとこと',
+    stat: (r) => `生まれた${r.birth_year}年、世界の${r.stat}%の人はこの家より貧しい暮らしだった。`, missing: 'この人生は見つからなかった。', home: 'Unchosen をはじめる' },
+  en: { brand: 'UNCHOSEN — No one chooses where they are born', go: 'Be born yourself', said: 'From the person who lived this life',
+    stat: (r) => `In ${r.birth_year}, ${r.stat}% of the world lived on less than this family.`, missing: 'This life could not be found.', home: 'Start Unchosen' },
+};
+
+function notFoundPage() {
+  const { ja, en } = PAGE_T;
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Unchosen</title><style>${STYLE}</style></head>
+<body><main><header>UNCHOSEN</header><p>${ja.missing} / ${en.missing}</p><a class="go" href="/">${ja.home} / ${en.home}</a></main></body></html>`;
+}
+
+async function sharePage(db, url, id, png) {
+  const r = await db.prepare(`SELECT id, lang, name, birth_year, age, lines, stat, feelings, ${png ? 'image' : "image != '' AS has_image"} FROM share WHERE id = ? AND hidden = 0`).bind(id).first();
+  if (!r) return png ? new Response('not found', { status: 404 }) : html(404, notFoundPage());
+  if (png) {
+    if (!r.image) return new Response('not found', { status: 404 });
+    const bin = Uint8Array.from(atob(r.image), (c) => c.charCodeAt(0));
+    return new Response(bin, { headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=86400', 'X-Content-Type-Options': 'nosniff' } });
+  }
+  const t = PAGE_T[r.lang] ?? PAGE_T.ja;
+  const lines = r.lines.split('\n');
+  const head = `${r.name} (${r.birth_year}–${r.birth_year + r.age})`;
+  const title = `${head} — Unchosen`;
+  const desc = (r.feelings ? (r.lang === 'en' ? `"${r.feelings}" ` : `「${r.feelings}」`) : '') + lines.join(' ');
+  const page = `${url.origin}/s/${r.id}`;
+  const img = r.has_image ? `${page}.png` : '';
+  const tag = (attr, list) => list.map(([k, v]) => `<meta ${attr}="${k}" content="${escHtml(v)}">`).join('');
+  const meta = tag('property', [['og:type', 'website'], ['og:site_name', 'Unchosen'], ['og:title', title], ['og:description', desc], ['og:url', page],
+    ...(img ? [['og:image', img], ['og:image:width', '1200'], ['og:image:height', '630']] : [])])
+    + tag('name', [['twitter:card', img ? 'summary_large_image' : 'summary'], ['twitter:title', title], ['twitter:description', desc], ...(img ? [['twitter:image', img]] : [])]);
+  return html(200, `<!doctype html><html lang="${r.lang === 'en' ? 'en' : 'ja'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>${escHtml(title)}</title><meta name="description" content="${escHtml(desc)}">${meta}<style>${STYLE}</style></head>
+<body><main><header>${escHtml(t.brand)}</header>
+${img ? `<img src="/s/${r.id}.png" width="1200" height="630" alt="">` : ''}
+<h1>${escHtml(head)}</h1>
+${lines.map((l) => `<p>${escHtml(l)}</p>`).join('\n')}
+${r.feelings ? `<blockquote><p class="sub">${escHtml(t.said)}</p><p>${escHtml(r.feelings)}</p></blockquote>` : ''}
+${r.stat !== null && r.stat !== undefined ? `<p class="stat"><b>${Number(r.stat)}%</b>${escHtml(t.stat(r))}</p>` : ''}
+<a class="go" href="/">${escHtml(t.go)}</a>
+</main></body></html>`);
 }
 
 // ---- AI の中継 ---------------------------------------------------------------

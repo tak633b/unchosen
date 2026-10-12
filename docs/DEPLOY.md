@@ -6,6 +6,7 @@ Unchosen を https://unchosen.pages.dev (Cloudflare Pages) に出し、追悼館
 |---|---|
 | ゲーム本体 (静的) | `npm run build` が作る `dist/` |
 | API (追悼館・AI の中継) | `functions/api/[[path]].js` → `server/cf-api.mjs`。道と返す形は `server/server.mjs` (Node 版) と同じ |
+| 共有した人生のページ | `functions/s/[[path]].js` → 同じ `server/cf-api.mjs`。`/s/<id>` (OGP 付きの HTML) と `/s/<id>.png` (その画像)。データは D1 の表 `share` (`migrations/0003_share.sql`) |
 | 追悼館のデータ | D1 `unchosen-memorial`。表は `migrations/` |
 | 出す仕組み | `.github/workflows/cloudflare.yml` (テスト → ビルド → D1 マイグレーション → Pages) |
 
@@ -47,6 +48,7 @@ npx wrangler pages secret put ADMIN_TOKEN --project-name unchosen
 SITE=https://unchosen.pages.dev
 curl -H "Authorization: Bearer $TOKEN" $SITE/api/admin/memorial                     # 新しい順に100件 (非表示も)
 curl -X POST -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d '{"hidden":true}' $SITE/api/admin/memorial/123/hide
+curl -X POST -H "Authorization: Bearer $TOKEN" $SITE/api/admin/share/AbCd1234/hide  # 共有のリンク /s/AbCd1234 を消す
 ```
 
 ## 3. GitHub の秘密
