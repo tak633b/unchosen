@@ -1,6 +1,7 @@
 // 家族の時間: 親・きょうだい・連れ合い・子ども・ペットが歳をとり、時に亡くなる。
 import { earnings, formatMoney } from '../economy';
-import { bump, childWord, countryOf, log, type Person, type Relative } from '../person';
+import { bump, childWord, countryOf, log, yearOf, type Person, type Relative } from '../person';
+import { eventCause, excessQ } from '../worldevents';
 import { clamp, pick } from '../rng';
 import { addTie, freshName, mourn, shared } from '../bonds';
 import { makeName } from '../identity';
@@ -14,10 +15,13 @@ import { orphans } from './roots';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
-  if (p.rng() >= qAt(c, rel.sex, rel.age) || rel.fixed) return null; // 記録で決まっている人は、決まった年に亡くなる (kin.ts)
+  const y = yearOf(p);
+  // 1949年までの戦争・飢饉・疫病の死は生命表に無いので足す。それより後は表の中の内訳として死因だけ付け替える (worldevents.ts)
+  const u = p.rng();
+  if (u >= qAt(c, rel.sex, rel.age) + excessQ(p.country, y, rel.sex, rel.age) || rel.fixed) return null; // 記録で決まっている人は、決まった年に亡くなる (kin.ts)
   rel.alive = false;
   rel.diedAt = p.age;
-  return pickCause(p.rng, c, rel.sex, rel.age, qAt(c, rel.sex, rel.age), false);
+  return eventCause(p.country, y, rel.sex, rel.age, u) ?? pickCause(p.rng, c, rel.sex, rel.age, qAt(c, rel.sex, rel.age), false);
 }
 
 export function family(p: Person): void {

@@ -8,6 +8,7 @@ import { bump, decide, eduLevel, log, yearOf, type Person } from './person';
 import { clamp, pickWeighted } from './rng';
 import { CHOICES, eligible, toDecision } from './events/choices';
 import { economyNews } from './market';
+import { worldEvents } from './worldevents';
 
 // history.json の need に書ける条件
 const uni = (p: Person) => p.school.uni === 'studying' || p.school.grad === 'studying';
@@ -30,8 +31,8 @@ const parentWord = (p: Person) => (p.father.alive ? L('父', 'father') : L('母'
 export function history(p: Person): void {
   economyNews(p);
   if (p.anchor) return; // 輪の人の一生には出さない (主人公の記録とぶつけない)
+  worldEvents(p); // 戦争・災害・疫病・事故など、目録の出来事 (1900年〜) と、これから先の名前のない出来事
   const year = yearOf(p);
-  if (year < 1966 || year > 1990) return; // 今ある出来事はこの間だけ
   for (const c of HISTORY) {
     if (!eligible(p, c) || !(c.need ?? []).every((n) => NEED[n]?.(p))) continue;
     if (p.rng() >= c.chance!) continue;

@@ -7,7 +7,7 @@ import { justice } from './events/justice';
 import { isEn, L, religionName } from '../i18n';
 import { makeName, pickCity, pickReligion } from './identity';
 import { lifeTable, MAX_AGE, type Sex } from './lifetable';
-import { bump, childWord, countryOf, genderOf, log, type Gender, type Person } from './person';
+import { bump, childWord, countryOf, genderOf, log, yearOf, type Gender, type Person } from './person';
 import { clamp, makeRng, normal, poisson } from './rng';
 import { family } from './events/family';
 import { adultPet, childhood, chooseHobby } from './events/childhood';
@@ -31,6 +31,7 @@ import { DEEP_SEA, DEEP_SEA_RISK } from './events/career';
 import { origin, roots, rootsMortality } from './roots';
 import { rootsYear } from './events/roots';
 import { faith } from './events/faith';
+import { eventCause, excessQ } from './worldevents';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -143,7 +144,7 @@ function smokeAvg(p: Person): number {
 
 // その年に亡くなる確率。生命表の値に、健康・所得・喫煙・病気の倍率をかける
 // 死亡率の内訳 (自分の欄で「なぜ」を見せるため)。q が deathRisk の値。ほかは掛け合わせる前の倍率
-export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number; strainAdd: number; jobAdd?: number } // jobAdd: 危ない仕事の事故 (遠洋漁業)
+export interface RiskParts { q: number; table: number; cal: number; healthK: number; wealthK: number; smokeK: number; drinkK: number; illK: number; hivAdd: number; strainAdd: number; jobAdd?: number; histAdd?: number } // jobAdd: 危ない仕事の事故 (遠洋漁業)。histAdd: 1949年までの戦争・飢饉・疫病の死 (worldevents.ts。1950年からは生命表に入っている)
 
 export const deathRisk = (p: Person): number => riskParts(p).q;
 
@@ -159,7 +160,9 @@ export function riskParts(p: Person): RiskParts {
   // ウイグル族・チベット族は、住む自治区の平均寿命の差を倍率でかける (roots.ts)
   const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal) * rootsMortality(p);
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
-  if (p.age < 5) return { q: base, table: base, ...one };
+  const histAdd = excessQ(p.country, yearOf(p), p.sex, p.age);
+  const hist = histAdd ? { histAdd } : {};
+  if (p.age < 5) return { q: clamp(base + histAdd, 0, 1), table: base, ...one, ...hist };
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
   const usual = p.age < 45 ? 80 : 80 - 0.7 * (Math.min(p.age, 70) - 45) - 1.4 * Math.max(0, p.age - 70);
   const healthK = 1.4 ** ((usual - p.stats.health) / 25);
@@ -174,7 +177,7 @@ export function riskParts(p: Person): RiskParts {
   const strainAdd = (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
   const cal = calibration(p.age, p.sex);
   const jobAdd = p.working && !p.retired && p.job === DEEP_SEA ? DEEP_SEA_RISK : 0;
-  return { q: clamp(cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + strainAdd + jobAdd, 0, 1), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, strainAdd, ...(jobAdd ? { jobAdd } : {}) };
+  return { q: clamp(cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + strainAdd + jobAdd + histAdd, 0, 1), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, strainAdd, ...(jobAdd ? { jobAdd } : {}), ...hist };
 }
 
 function die(p: Person, cause: string): void {
@@ -210,7 +213,9 @@ export function advanceYear(p: Person): void {
   const roll = p.anchor ? 1 : p.rng();
   if (p.anchor ? p.age >= p.anchor.dies : roll < q) {
     let cause: string;
+    const ev = p.anchor ? undefined : eventCause(p.country, yearOf(p), p.sex, p.age, roll);
     if (p.anchor?.cause) cause = p.anchor.cause;
+    else if (ev) cause = ev;
     else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
     else if (p.job === DEEP_SEA && p.working && !p.retired && p.rng() < DEEP_SEA_RISK / q) cause = causeName('海の事故');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;

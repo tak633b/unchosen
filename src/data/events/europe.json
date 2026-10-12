@@ -1,0 +1,6601 @@
+{
+ "events": [
+  {
+   "id": "wwi-fra",
+   "type": "war",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.75,
+   "kill": 0.035,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "フランスの第一次世界大戦の戦死者は約140万人で、人口のおよそ3.4%にあたる",
+    "France lost about 1.4 million soldiers in the First World War, some 3.4% of its population"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-deu",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.7,
+   "kill": 0.03,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "ドイツの第一次世界大戦の戦死者は約200万人だった",
+    "Germany lost about 2 million soldiers in the First World War"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-gbr",
+   "type": "war",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.55,
+   "kill": 0.019,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "英国の第一次世界大戦の戦死者は約88万人だった",
+    "Britain lost about 880,000 soldiers in the First World War"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-ita",
+   "type": "war",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1915,
+    1918
+   ],
+   "hit": 0.6,
+   "kill": 0.018,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "イタリアは1915〜18年の戦争で約65万人の兵士を失った",
+    "Italy lost about 650,000 soldiers in the war of 1915-18"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-austria-hungary",
+   "type": "war",
+   "countries": [
+    "AUT",
+    "HUN",
+    "CZE",
+    "SVK",
+    "HRV",
+    "SVN"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.6,
+   "kill": 0.02,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "オーストリア＝ハンガリーの第一次世界大戦の戦死者は110万人を超えた",
+    "Austria-Hungary lost more than 1.1 million soldiers in the First World War"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-rus",
+   "type": "war",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.5,
+   "kill": 0.012,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "ロシア帝国の第一次世界大戦の戦死者は約180万人とされる",
+    "The Russian Empire lost an estimated 1.8 million soldiers in the First World War"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-bgr",
+   "type": "war",
+   "countries": [
+    "BGR"
+   ],
+   "years": [
+    1916,
+    1918
+   ],
+   "hit": 0.6,
+   "kill": 0.015,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "A great war began. The young men left on the trains, and many did not come back."
+    ]
+   },
+   "stat": [
+    "ブルガリアは第一次世界大戦で約8万7,000人の兵士を失った",
+    "Bulgaria lost about 87,000 soldiers in the First World War"
+   ],
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+  },
+  {
+   "id": "wwi-srb",
+   "type": "war",
+   "countries": [
+    "SRB"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.6,
+   "kill": 0.15,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -22
+   },
+   "ja": {
+    "hit": [
+     "冬、軍と一緒に山を越えて南へ逃げた。雪の中で、多くの人が倒れていった。",
+     "発疹チフスが国じゅうに広がり、何週間も熱にうかされた。"
+    ],
+    "news": [
+     "セルビアが占領され、男たちの多くが前線か収容所にいた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In winter, retreated south over the mountains with the army. Many fell in the snow.",
+     "Typhus swept the country, and there were weeks of fever."
+    ],
+    "news": [
+     "Serbia was occupied, and most of the men were at the front or in camps."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で、セルビアは戦闘・飢え・発疹チフスで人口の15%前後を失ったとされる",
+    "Serbia is thought to have lost around 15% of its population to fighting, hunger and typhus in the First World War"
+   ],
+   "src": "Mitrović 2007, Serbia's Great War 1914-1918"
+  },
+  {
+   "id": "wwi-rou",
+   "type": "war",
+   "countries": [
+    "ROU"
+   ],
+   "years": [
+    1916,
+    1918
+   ],
+   "hit": 0.4,
+   "kill": 0.06,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "国の南半分が占領された。家畜も穀物も持ち去られ、飢えとチフスの冬になった。"
+    ],
+    "news": [
+     "軍は北のモルドヴァへ退き、そこへ難民が押しよせた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The southern half of the country was occupied. Livestock and grain were carried off, and a winter of hunger and typhus followed."
+    ],
+    "news": [
+     "The army fell back north into Moldavia, and refugees poured in after it."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦のルーマニアの死者は、兵士と民間人を合わせて50万人を超えたとされる",
+    "Romania's First World War dead, soldiers and civilians together, are thought to have exceeded 500,000"
+   ],
+   "src": "Torrey 1998, Romania and World War I"
+  },
+  {
+   "id": "wwi-bel",
+   "type": "occupation",
+   "countries": [
+    "BEL",
+    "LUX"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.3,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "ドイツ軍が国に入り、家族で国境の向こうへ逃げた。何年も、よその国の配給の列に並んだ。",
+     "占領の4年間、パンは配給の分しかなかった。"
+    ],
+    "news": [
+     "町の広場に、市民が銃殺されたという知らせが貼り出された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The German army invaded, and the family fled across the border. For years the bread came from foreign relief.",
+     "In the four years of occupation, there was only the rationed bread."
+    ],
+    "news": [
+     "A notice in the town square announced that civilians had been shot."
+    ]
+   },
+   "stat": [
+    "1914年、ドイツ軍の侵攻でベルギーの民間人約6,500人が殺され、150万人ほどが国外へ逃れた",
+    "In 1914 the German invasion killed about 6,500 Belgian civilians, and some 1.5 million fled abroad"
+   ],
+   "src": "Horne & Kramer 2001, German Atrocities 1914"
+  },
+  {
+   "id": "wwi-baltic",
+   "type": "war",
+   "countries": [
+    "LVA",
+    "LTU",
+    "EST"
+   ],
+   "years": [
+    1915,
+    1918
+   ],
+   "hit": 0.3,
+   "kill": 0.02,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "前線が近づき、家族でロシアの奥へ避難させられた。故郷に戻れたのは何年もあとだった。"
+    ],
+    "news": [
+     "前線が村の近くを通り、軍に馬と荷車を取られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "As the front approached, the family was evacuated deep into Russia. It was years before they could return home."
+    ],
+    "news": [
+     "The front passed near the village, and the army took the horses and carts."
+    ]
+   },
+   "stat": [
+    "ラトビアの人口は1914年の約250万人から、1920年には約160万人に減った",
+    "Latvia's population fell from about 2.5 million in 1914 to about 1.6 million in 1920"
+   ],
+   "src": "Plakans 1995, The Latvians: A Short History"
+  },
+  {
+   "id": "turnip-winter-deu",
+   "type": "famine",
+   "countries": [
+    "DEU",
+    "AUT"
+   ],
+   "years": [
+    1916,
+    1918
+   ],
+   "hit": 0.5,
+   "kill": 0.008,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 1.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "海上封鎖で食べ物が届かず、冬じゅうカブばかり食べた。",
+     "配給のパンは日ごとに薄くなり、痩せて服が合わなくなった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "The naval blockade cut off food, and the whole winter was turnips.",
+     "The bread ration grew thinner by the day, and clothes stopped fitting."
+    ],
+    "news": []
+   },
+   "stat": [
+    "英国の海上封鎖のもと、ドイツでは1914〜18年に約42万〜76万人の民間人が飢えと病で亡くなったとされる",
+    "Under the British blockade, an estimated 420,000-760,000 German civilians died of hunger and disease in 1914-18"
+   ],
+   "src": "Vincent 1985, The Politics of Hunger; Cox 2015, Economic History Review 68:600"
+  },
+  {
+   "id": "rus-civil-war",
+   "type": "war",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1918,
+    1921
+   ],
+   "hit": 0.4,
+   "kill": 0.04,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -18,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "赤軍と白軍が町を奪い合い、そのたびに家が荒らされた。穀物は徴発され、冬はチフスがはやった。",
+     "内戦のあいだ、食べ物を求めて家族で町から村へ移った。"
+    ],
+    "news": [
+     "夜ごとに銃声が聞こえ、町の支配者が何度も入れ替わった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Reds and Whites fought over the town, and each time the house was plundered. Grain was requisitioned, and typhus came with winter.",
+     "During the civil war the family left the town for the countryside in search of food."
+    ],
+    "news": [
+     "Gunfire every night, and the town changed hands again and again."
+    ]
+   },
+   "stat": [
+    "1918〜21年のロシア内戦では、戦闘・飢え・疫病で700万〜1,000万人が亡くなったとされる",
+    "The Russian Civil War of 1918-21 is thought to have killed 7-10 million people through fighting, hunger and disease"
+   ],
+   "src": "Mawdsley 2007, The Russian Civil War"
+  },
+  {
+   "id": "volga-famine-1921",
+   "type": "famine",
+   "countries": [
+    "RUS",
+    "UKR"
+   ],
+   "years": [
+    1921,
+    1922
+   ],
+   "hit": 0.2,
+   "kill": 0.025,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.5,
+   "poor": 1.5,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "日照りと徴発で畑が空になり、草と木の皮を煮て食べた。",
+     "飢えの年、米国の救済団体の炊き出しで生きのびた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Drought and requisitions left the fields empty. Grass and bark were boiled for food.",
+     "In the famine year, the soup kitchens of an American relief agency kept the family alive."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1921〜22年のヴォルガ流域などの飢饉で、約500万人が亡くなったとされる",
+    "The famine of 1921-22 in the Volga region and beyond is thought to have killed about 5 million people"
+   ],
+   "src": "Patenaude 2002, The Big Show in Bololand"
+  },
+  {
+   "id": "holodomor",
+   "type": "famine",
+   "countries": [
+    "UKR"
+   ],
+   "years": [
+    1932,
+    1933
+   ],
+   "hit": 0.6,
+   "kill": 0.12,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "severity": 5,
+   "effect": {
+    "health": -15,
+    "happy": -25,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "穀物も種もみも取り上げられ、村に食べ物がなくなった。村を出ることも禁じられた。",
+     "飢えの冬、家の中のものはすべて食べ物に換えた。隣の家は春までに空になった。"
+    ],
+    "news": [
+     "町では配給があったが、村から逃げてきた人が駅の前で倒れていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The grain and even the seed were taken, and nothing was left to eat in the village. Leaving the village was forbidden.",
+     "In the winter of hunger, everything in the house was traded for food. By spring the house next door stood empty."
+    ],
+    "news": [
+     "In town there were rations, but people who had fled the villages lay collapsed outside the station."
+    ]
+   },
+   "stat": [
+    "1932〜33年のウクライナの飢饉 (ホロドモール) の超過死亡は、約390万人と推計される",
+    "Excess deaths in the Ukrainian famine of 1932-33 (the Holodomor) are estimated at about 3.9 million"
+   ],
+   "src": "Rudnytskyi et al. 2015, Canadian Studies in Population 42:53"
+  },
+  {
+   "id": "famine-1932-rus",
+   "type": "famine",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    1932,
+    1933
+   ],
+   "hit": 0.12,
+   "kill": 0.01,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "集団農場に穀物を出しきり、冬には食べるものがなかった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "The collective farm handed over all its grain, and by winter there was nothing to eat."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1932〜33年の飢饉で、ロシア共和国 (ヴォルガ・北カフカス・西シベリア) でも100万人以上が亡くなったとされる",
+    "The 1932-33 famine also killed over a million people in the Russian republic, in the Volga, North Caucasus and Western Siberia"
+   ],
+   "src": "Davies & Wheatcroft 2004, The Years of Hunger"
+  },
+  {
+   "id": "great-terror",
+   "type": "unrest",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1937,
+    1938
+   ],
+   "hit": 0.01,
+   "age": [
+    18,
+    75
+   ],
+   "kill": 0.004,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -12,
+    "happy": -25
+   },
+   "ja": {
+    "hit": [
+     "夜中に戸が叩かれ、連れていかれた。でっちあげの罪で、何年も北の収容所で木を切った。"
+    ],
+    "near": [
+     "同じ建物の人が、夜のうちに次々と連れていかれた。家では誰も口をきかなくなった。"
+    ],
+    "news": [
+     "新聞は毎日「人民の敵」の名前を載せた。人々は夜の車の音におびえた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A knock in the night, and the arrest. On invented charges, years felling trees in a northern camp."
+    ],
+    "near": [
+     "People in the same building were taken away one by one in the night. At home no one spoke any more."
+    ],
+    "news": [
+     "Every day the papers printed the names of \"enemies of the people\". People dreaded the sound of a car at night."
+    ]
+   },
+   "stat": [
+    "1937〜38年の大粛清では約150万人が逮捕され、68万1,692人が銃殺された (NKVD の記録)",
+    "In the Great Terror of 1937-38 about 1.5 million people were arrested and 681,692 were shot (NKVD records)"
+   ],
+   "src": "Getty, Rittersporn & Zemskov 1993, American Historical Review 98:1017"
+  },
+  {
+   "id": "hyperinflation-deu-1923",
+   "type": "finance",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1922,
+    1923
+   ],
+   "hit": 0.6,
+   "severity": 4,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.9
+   },
+   "ja": {
+    "hit": [
+     "物価が毎日上がり、貯金はパン一つ分の値打ちもなくなった。",
+     "給料は日に二度払われ、受け取るとすぐ店へ走った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Prices rose every day, and the savings were soon not worth a loaf of bread.",
+     "Wages were paid twice a day, and on payday everyone ran straight to the shops."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1923年11月、1ドルは4兆2,000億マルクになった",
+    "In November 1923 one dollar cost 4.2 trillion marks"
+   ],
+   "src": "Fergusson 1975, When Money Dies; Deutsche Bundesbank"
+  },
+  {
+   "id": "hyperinflation-aut-1922",
+   "type": "finance",
+   "countries": [
+    "AUT"
+   ],
+   "years": [
+    1921,
+    1922
+   ],
+   "hit": 0.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "クローネの値打ちが崩れ、積み立ててきた貯金が消えた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "The krone collapsed, and the savings put by over the years vanished."
+    ],
+    "news": []
+   },
+   "stat": [
+    "オーストリアの物価は1914年から1922年8月までに約1万4,000倍になった",
+    "Austrian prices rose about 14,000-fold between 1914 and August 1922"
+   ],
+   "src": "Sargent 1982, The Ends of Four Big Inflations"
+  },
+  {
+   "id": "asia-minor-1922",
+   "type": "war",
+   "countries": [
+    "GRC"
+   ],
+   "years": [
+    1922,
+    1923
+   ],
+   "hit": 0.2,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "小アジアの町を追われ、着のみ着のままで船に乗った。ギリシャでは長いあいだ、テントと小屋で暮らした。"
+    ],
+    "near": [
+     "港に難民を乗せた船が次々に着き、学校も教会も難民であふれた。"
+    ],
+    "news": [
+     "小アジアから百万人を超える難民が逃れてきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Driven from the town in Asia Minor, boarded a boat with nothing but the clothes on their backs. In Greece, home was a tent and a shack for years."
+    ],
+    "near": [
+     "Boats full of refugees docked one after another, and schools and churches overflowed with them."
+    ],
+    "news": [
+     "More than a million refugees fled across from Asia Minor."
+    ]
+   },
+   "stat": [
+    "1922〜23年、人口500万人ほどのギリシャに、小アジアなどから約120万人の難民が来た",
+    "In 1922-23 about 1.2 million refugees from Asia Minor and elsewhere arrived in Greece, a country of some 5 million"
+   ],
+   "src": "League of Nations Refugee Settlement Commission; Hirschon 1989, Heirs of the Greek Catastrophe"
+  },
+  {
+   "id": "finland-civil-war",
+   "type": "war",
+   "countries": [
+    "FIN"
+   ],
+   "years": [
+    1918,
+    1918
+   ],
+   "hit": 0.08,
+   "kill": 0.01,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    15,
+    60
+   ],
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "内戦のあと、負けた側として収容所に入れられた。飢えとチフスで、まわりの人が次々に倒れた。"
+    ],
+    "near": [
+     "町で赤衛軍と白衛軍が撃ち合い、何日も家から出られなかった。"
+    ],
+    "news": [
+     "独立したばかりの国で、赤と白の内戦が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the civil war, was held in a prison camp on the losing side. Hunger and typhus took the people all around."
+    ],
+    "near": [
+     "Reds and Whites fought in the town, and for days no one could leave the house."
+    ],
+    "news": [
+     "In the newly independent country, a civil war broke out between Reds and Whites."
+    ]
+   },
+   "stat": [
+    "1918年のフィンランド内戦の死者は約3万6,000人で、そのうち1万2,000人ほどは収容所で亡くなった",
+    "The 1918 Finnish Civil War killed about 36,000 people, some 12,000 of them in prison camps"
+   ],
+   "src": "Finnish National Archives, War Victims of Finland 1914-1922"
+  },
+  {
+   "id": "ireland-1919",
+   "type": "war",
+   "countries": [
+    "IRL"
+   ],
+   "years": [
+    1919,
+    1923
+   ],
+   "hit": 0.02,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "夜中に兵隊が来て、家に火をつけた。焼けあとから、使えるものを拾い集めた。"
+    ],
+    "news": [
+     "独立をめぐる戦いと、その後の内戦が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Soldiers came in the night and set the house on fire. Whatever could be used was picked from the ashes."
+    ],
+    "news": [
+     "The fight for independence was followed by a civil war."
+    ]
+   },
+   "stat": [
+    "1919〜23年の独立戦争と内戦で、アイルランドでは約3,500人が亡くなった",
+    "About 3,500 people were killed in Ireland in the war of independence and the civil war of 1919-23"
+   ],
+   "src": "O'Halpin & Ó Corráin 2020, The Dead of the Irish Revolution"
+  },
+  {
+   "id": "spain-civil-war",
+   "type": "war",
+   "countries": [
+    "ESP"
+   ],
+   "years": [
+    1936,
+    1939
+   ],
+   "hit": 0.3,
+   "kill": 0.02,
+   "who": "men",
+   "cause": "戦争",
+   "urban": 1.3,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "内戦で町が爆撃され、地下室で夜を明かした。",
+     "戦線が近づき、家族で荷車を引いて逃げた。終わった年には、国境を越えてフランスの収容所にいた。"
+    ],
+    "near": [
+     "近所の人が夜のうちに連れ出され、戻らなかった。"
+    ],
+    "news": [
+     "スペインで内戦が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town was bombed in the civil war, and the nights were spent in the cellar.",
+     "As the front drew near, the family fled pulling a cart. When the war ended, they were across the border in a French camp."
+    ],
+    "near": [
+     "Neighbors were taken out in the night and never came back."
+    ],
+    "news": [
+     "Civil war broke out in Spain."
+    ]
+   },
+   "stat": [
+    "1936〜39年のスペイン内戦の死者は、戦闘と処刑を合わせて約50万人とされる",
+    "The Spanish Civil War of 1936-39 killed about 500,000 people in battle and executions"
+   ],
+   "src": "Preston 2012, The Spanish Holocaust; Thomas 1961, The Spanish Civil War"
+  },
+  {
+   "id": "spain-hunger-1940s",
+   "type": "famine",
+   "countries": [
+    "ESP"
+   ],
+   "years": [
+    1939,
+    1946
+   ],
+   "hit": 0.3,
+   "kill": 0.006,
+   "who": "frail",
+   "cause": "飢饉",
+   "poor": 1.8,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "戦後の「飢えの年」、配給の手帳だけでは足りず、闇市で高い小麦粉を買った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "In the \"years of hunger\" after the war, the ration book was never enough, and flour came dear from the black market."
+    ],
+    "news": []
+   },
+   "stat": [
+    "内戦後の1939〜45年、スペインでは飢えと病で20万人ほどが余計に亡くなったとされる",
+    "In 1939-45, after the civil war, hunger and disease are thought to have caused some 200,000 extra deaths in Spain"
+   ],
+   "src": "del Arco 2006, Hambre de siglos; Barciela 2003"
+  },
+  {
+   "id": "ww2-pol",
+   "type": "occupation",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.6,
+   "kill": 0.08,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "占領の6年間、家を追い出され、ドイツの工場に働きに送られた。",
+     "村が焼かれ、家族で森に逃げた。夜は凍えながら、明け方を待った。"
+    ],
+    "near": [
+     "毎朝、通りで人狩りがあった。戸口から出るたびに、角の向こうを確かめた。"
+    ],
+    "news": [
+     "9月1日、ドイツ軍がポーランドに入った。17日には東からソ連軍も入ってきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In six years of occupation, the family was thrown out of the house, and then came the transport to forced labor in a German factory.",
+     "The village was burned, and the family fled to the forest. Nights were spent freezing, waiting for dawn."
+    ],
+    "near": [
+     "Every morning there were roundups in the street. Every step out of the door meant checking around the corner first."
+    ],
+    "news": [
+     "On 1 September the German army crossed into Poland. On the 17th the Soviet army came in from the east."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ポーランドは約560万〜580万人 (戦前の人口の16%ほど) を失った。うち約300万人はユダヤ人だった",
+    "Poland lost about 5.6-5.8 million people in the Second World War, some 16% of its pre-war population; about 3 million of them were Jews"
+   ],
+   "src": "Institute of National Remembrance (IPN) 2009, Polska 1939-1945: straty osobowe"
+  },
+  {
+   "id": "warsaw-1944",
+   "type": "war",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1944,
+    1944
+   ],
+   "hit": 0.7,
+   "cities": [
+    "ワルシャワ",
+    "Warsaw"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "8月、ワルシャワで蜂起が起きた。63日間地下室で過ごし、降伏のあとは町を出された。町はほとんど残らなかった。"
+    ],
+    "news": [
+     "ワルシャワで蜂起が起き、2か月の戦いのあと、町は焼き払われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In August the Warsaw Uprising began. Sixty-three days in cellars, and after the surrender everyone was marched out of the city. Hardly any of it was left."
+    ],
+    "news": [
+     "Warsaw rose up, and after two months of fighting the city was burned to the ground."
+    ]
+   },
+   "stat": [
+    "1944年のワルシャワ蜂起で、民間人15万〜20万人が殺され、町の建物の8割以上が壊された",
+    "The 1944 Warsaw Uprising killed 150,000-200,000 civilians, and more than 80% of the city's buildings were destroyed"
+   ],
+   "src": "Warsaw Rising Museum; Davies 2003, Rising '44"
+  },
+  {
+   "id": "pol-resettle-1945",
+   "type": "occupation",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1945,
+    1947
+   ],
+   "hit": 0.08,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "国境が西へ動き、東の故郷を出された。貨車に揺られて、ドイツ人が出ていったばかりの西の町に着いた。"
+    ],
+    "news": [
+     "国境が西へ動き、東の地方から何百万人もの人が移された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The border moved west, and the family had to leave the old home in the east. A freight wagon carried them to a western town the Germans had just left."
+    ],
+    "news": [
+     "The border moved west, and millions were moved out of the eastern lands."
+    ]
+   },
+   "stat": [
+    "1944〜48年、旧ポーランド東部から約120万〜150万人のポーランド人が新しい国境の内側へ移された",
+    "In 1944-48 some 1.2-1.5 million Poles were moved from the former eastern territories to within the new borders"
+   ],
+   "src": "Kersten 1991, The Establishment of Communist Rule in Poland; IPN"
+  },
+  {
+   "id": "holocaust-pol",
+   "type": "genocide",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0,
+   "kill": 0.085,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ナチス・ドイツの占領下で、ポーランドのユダヤ人約300万人が殺された",
+    "Under Nazi German occupation, about 3 million Polish Jews were murdered"
+   ],
+   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
+  },
+  {
+   "id": "holocaust-east",
+   "type": "genocide",
+   "countries": [
+    "LTU",
+    "LVA",
+    "UKR",
+    "BLR",
+    "MDA"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0,
+   "kill": 0.035,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "リトアニアでは、戦前のユダヤ人約21万人のうち9割以上が殺された",
+    "In Lithuania more than 90% of the roughly 210,000 pre-war Jews were murdered"
+   ],
+   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
+  },
+  {
+   "id": "holocaust-hun-svk",
+   "type": "genocide",
+   "countries": [
+    "HUN",
+    "SVK"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0,
+   "kill": 0.025,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "1944年の春から夏、ハンガリーから約43万7,000人のユダヤ人がアウシュヴィッツへ送られた",
+    "In the spring and summer of 1944 about 437,000 Jews were deported from Hungary to Auschwitz"
+   ],
+   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
+  },
+  {
+   "id": "holocaust-central",
+   "type": "genocide",
+   "countries": [
+    "NLD",
+    "AUT",
+    "CZE",
+    "GRC",
+    "HRV",
+    "SRB",
+    "BIH",
+    "ROU"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0,
+   "kill": 0.008,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "オランダのユダヤ人約14万人のうち、約10万2,000人が殺された",
+    "Of about 140,000 Jews in the Netherlands, about 102,000 were murdered"
+   ],
+   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
+  },
+  {
+   "id": "holocaust-west",
+   "type": "genocide",
+   "countries": [
+    "DEU",
+    "FRA",
+    "BEL",
+    "LUX",
+    "ITA",
+    "NOR",
+    "EST"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0,
+   "kill": 0.002,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ドイツのユダヤ人のうち、約16万5,000人が殺された",
+    "About 165,000 German Jews were murdered"
+   ],
+   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
+  },
+  {
+   "id": "ww2-deu-front",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.8,
+   "kill": 0.06,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    17,
+    50
+   ],
+   "sex": "M",
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "召集されて東部戦線へ送られた。何年もあとに、捕虜の収容所から帰ってきた。",
+     "兵隊にとられ、終わりまで前線にいた。仲間の多くは戻らなかった。"
+    ],
+    "news": [
+     "9月、戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the Eastern Front. Years later, came home from a prisoner-of-war camp.",
+     "Was conscripted and stayed at the front to the end. Most of the comrades did not return."
+    ],
+    "news": [
+     "In September the war began."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦のドイツの兵士の死者は約530万人とされる",
+    "German military deaths in the Second World War are estimated at about 5.3 million"
+   ],
+   "src": "Overmans 1999, Deutsche militärische Verluste im Zweiten Weltkrieg"
+  },
+  {
+   "id": "ww2-deu-bombing",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.07,
+   "urban": 4,
+   "kill": 0.006,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "夜の空襲で家が焼けた。地下室から出ると、通りの両側が燃えていた。",
+     "空襲が続き、子どもたちは田舎へ疎開した。町に戻ると家はなかった。"
+    ],
+    "near": [
+     "毎晩サイレンが鳴り、防空壕で朝を待った。"
+    ],
+    "news": [
+     "連合軍の爆撃で、ドイツの町が次々に焼かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The house burned in a night raid. Coming up out of the cellar, both sides of the street were on fire.",
+     "The raids went on, and the children were sent to the countryside. When they came back to the city, the house was gone."
+    ],
+    "near": [
+     "Every night the sirens sounded, and the shelter was where the mornings came."
+    ],
+    "news": [
+     "Allied bombing burned one German city after another."
+    ]
+   },
+   "stat": [
+    "連合軍の空襲で、ドイツでは民間人約35万〜50万人が亡くなり、数百万人が家を失った",
+    "Allied air raids killed some 350,000-500,000 civilians in Germany and left millions homeless"
+   ],
+   "src": "Overy 2013, The Bombing War; Statistisches Bundesamt"
+  },
+  {
+   "id": "hamburg-1943",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1943,
+    1943
+   ],
+   "hit": 0.5,
+   "cities": [
+    "ハンブルク",
+    "Hamburg"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "7月の終わり、火の嵐が町を焼いた。焼けた通りを抜けて、川の方へ逃げた。"
+    ],
+    "news": [
+     "ハンブルクが空襲で燃えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At the end of July a firestorm burned the city. Fled toward the river through burning streets."
+    ],
+    "news": [
+     "Hamburg burned in the air raids."
+    ]
+   },
+   "stat": [
+    "1943年7月のハンブルクの空襲で約3万7,000人が亡くなり、約90万人が家を失った",
+    "The air raids on Hamburg in July 1943 killed about 37,000 people and left some 900,000 homeless"
+   ],
+   "src": "Lowe 2007, Inferno: The Fiery Destruction of Hamburg"
+  },
+  {
+   "id": "berlin-1945",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1945,
+    1945
+   ],
+   "hit": 0.6,
+   "cities": [
+    "ベルリン",
+    "Berlin"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "4月、ベルリンが戦場になった。地下室で砲声を聞きながら、水を汲みに出るのを恐れた。"
+    ],
+    "news": [
+     "ベルリンが陥落し、戦争が終わった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In April Berlin became a battlefield. In the cellar, listening to the shells, and dreading each trip out for water."
+    ],
+    "news": [
+     "Berlin fell, and the war in Europe ended."
+    ]
+   },
+   "stat": [
+    "1945年4〜5月のベルリンの戦いで、民間人約2万2,000人が亡くなった",
+    "About 22,000 civilians died in the Battle of Berlin in April-May 1945"
+   ],
+   "src": "Beevor 2002, Berlin: The Downfall 1945"
+  },
+  {
+   "id": "deu-expulsions",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1945,
+    1947
+   ],
+   "hit": 0.15,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "東の故郷を追われ、手押し車ひとつで西へ歩いた。着いた町では、人の家の一間を借りて暮らした。"
+    ],
+    "news": [
+     "東から追われてきた人たちが、毎日のように駅に着いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Driven from the home in the east, walked west with a single handcart. In the new town, the family lived in one room of a stranger's house."
+    ],
+    "news": [
+     "People driven out of the east arrived at the station almost daily."
+    ]
+   },
+   "stat": [
+    "1945〜50年に、東部の旧領土や東欧から約1,200万人のドイツ人が追われ、ドイツへ逃れた",
+    "In 1945-50 some 12 million Germans were expelled from the former eastern territories and Eastern Europe and fled into Germany"
+   ],
+   "src": "Douglas 2012, Orderly and Humane; Bundesarchiv"
+  },
+  {
+   "id": "ww2-aut-front",
+   "type": "war",
+   "countries": [
+    "AUT"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.7,
+   "kill": 0.035,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    17,
+    50
+   ],
+   "sex": "M",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "3月、ドイツ軍が国境を越え、国はドイツに併合された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "In March the German army crossed the border, and the country was annexed to Germany."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、オーストリア出身の兵士約26万人が亡くなった",
+    "About 260,000 soldiers from Austria died in the Second World War"
+   ],
+   "src": "Austrian State Archives; Overmans 1999"
+  },
+  {
+   "id": "ww2-gbr",
+   "type": "war",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.6,
+   "kill": 0.008,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "召集されて海を渡った。北アフリカとイタリアで4年を過ごした。"
+    ],
+    "news": [
+     "ドイツに宣戦が布告された。配給の手帳が配られ、窓には灯火管制の布が張られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and shipped overseas. Four years in North Africa and Italy."
+    ],
+    "news": [
+     "War was declared on Germany. Ration books were handed out, and blackout cloth went up over the windows."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、英国は兵士約38万人と民間人約7万人を失った",
+    "Britain lost about 380,000 servicemen and about 70,000 civilians in the Second World War"
+   ],
+   "src": "Commonwealth War Graves Commission; UK Office for National Statistics"
+  },
+  {
+   "id": "blitz",
+   "type": "war",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1940,
+    1941
+   ],
+   "hit": 0.2,
+   "cities": [
+    "ロンドン",
+    "London"
+   ],
+   "elsewhere": 0.02,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "空襲で家が崩れ、がれきの下から助け出された。",
+     "夜ごと地下鉄の駅で眠った。ある朝、通りに出ると家がなかった。"
+    ],
+    "near": [
+     "毎晩サイレンが鳴り、防空壕で夜を明かした。"
+    ],
+    "news": [
+     "ドイツ空軍の夜間の爆撃が、ロンドンと各地の町に続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The house came down in a raid, and rescuers dug a way out from under the rubble.",
+     "Night after night was spent sleeping in an Underground station. One morning, the house was no longer there."
+    ],
+    "near": [
+     "Every night the sirens sounded, and the nights were spent in the shelter."
+    ],
+    "news": [
+     "Night after night the Luftwaffe bombed London and other towns."
+    ]
+   },
+   "stat": [
+    "1940〜41年の大空襲 (ブリッツ) で、英国の民間人約4万3,000人が亡くなり、ロンドンでは100万軒以上の家が壊れるか傷んだ",
+    "The Blitz of 1940-41 killed about 43,000 British civilians, and in London more than a million homes were destroyed or damaged"
+   ],
+   "src": "Imperial War Museums; Ziegler 1995, London at War"
+  },
+  {
+   "id": "gbr-evacuation",
+   "type": "war",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1939,
+    1940
+   ],
+   "hit": 0.3,
+   "age": [
+    4,
+    14
+   ],
+   "urban": 2,
+   "severity": 2,
+   "effect": {
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "名札を付けて汽車に乗せられ、田舎の知らない家に預けられた。"
+    ],
+    "news": [
+     "子どもたちが町から田舎へ疎開した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "With a name tag on the coat, put on a train and left with strangers in the countryside."
+    ],
+    "news": [
+     "The children were evacuated from the cities to the countryside."
+    ]
+   },
+   "stat": [
+    "1939年9月の最初の数日で、英国では約150万人 (うち学童約83万人) が町から疎開した",
+    "In the first days of September 1939 about 1.5 million people in Britain, about 830,000 of them schoolchildren, were evacuated from the cities"
+   ],
+   "src": "UK National Archives; Titmuss 1950, Problems of Social Policy"
+  },
+  {
+   "id": "fra-1940",
+   "type": "war",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1940,
+    1940
+   ],
+   "hit": 0.2,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "6月、ドイツ軍が迫り、家族で南へ逃げた。道は車と荷車であふれ、上から機銃が撃ってきた。",
+     "敗戦で捕虜になり、ドイツの収容所で5年を過ごした。"
+    ],
+    "news": [
+     "6月、ドイツ軍が迫り、何百万人もの人が南へ逃げた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June the German army closed in, and the family fled south. The roads were jammed with cars and carts, and planes strafed them from above.",
+     "Taken prisoner in the defeat, and five years in a camp in Germany."
+    ],
+    "news": [
+     "In June, with the German army closing in, millions fled south."
+    ]
+   },
+   "stat": [
+    "1940年5〜6月、800万人ほどのフランス人が南へ逃れ、約180万人の兵士が捕虜になった",
+    "In May-June 1940 some 8 million French people fled south, and about 1.8 million soldiers were taken prisoner"
+   ],
+   "src": "Diamond 2007, Fleeing Hitler: France 1940; Durand 1980, La captivité"
+  },
+  {
+   "id": "fra-occupation",
+   "type": "occupation",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1940,
+    1944
+   ],
+   "hit": 0.12,
+   "kill": 0.01,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "配給は乏しく、冬は寒さと空腹に耐えた。",
+     "ドイツで働くよう命じられ、工場へ送られた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Rations were meager, and the winters meant enduring cold and hunger.",
+     "Was ordered to work in Germany and sent to a factory there."
+    ],
+    "news": []
+   },
+   "stat": [
+    "第二次世界大戦のフランスの死者は、兵士と民間人を合わせて約60万人だった",
+    "France's Second World War dead, soldiers and civilians together, numbered about 600,000"
+   ],
+   "src": "Lagrou 2000, The Legacy of Nazi Occupation; INSEE"
+  },
+  {
+   "id": "ww2-ita",
+   "type": "war",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1940,
+    1945
+   ],
+   "hit": 0.5,
+   "kill": 0.01,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて、ロシアの雪原へ送られた。退却のときには何百キロも歩いた。",
+     "空襲と占領の中で、配給と闇市で暮らした。"
+    ],
+    "news": [
+     "6月、イタリアが参戦した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the snowfields of Russia. In the retreat, walked hundreds of kilometers.",
+     "Lived on rations and the black market through the raids and the occupation."
+    ],
+    "news": [
+     "In June Italy entered the war."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦のイタリアの死者は、兵士と民間人を合わせて約45万人とされる",
+    "Italy's Second World War dead, soldiers and civilians together, are estimated at about 450,000"
+   ],
+   "src": "ISTAT 1957, Morti e dispersi per cause belliche"
+  },
+  {
+   "id": "nld-hunger-winter",
+   "type": "famine",
+   "countries": [
+    "NLD"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.5,
+   "urban": 1.6,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "飢饉",
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "飢えの冬、チューリップの球根を煮て食べた。自転車で遠くの農家まで食べ物を探しに行った。"
+    ],
+    "news": [
+     "国の西部で食べ物が尽き、飢えの冬になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the hunger winter, boiled tulip bulbs were dinner. Cycled to distant farms in search of food."
+    ],
+    "news": [
+     "Food ran out in the west of the country, and a winter of hunger set in."
+    ]
+   },
+   "stat": [
+    "1944〜45年の「飢えの冬」で、オランダ西部では約2万人が亡くなった",
+    "About 20,000 people died in the western Netherlands in the \"hunger winter\" of 1944-45"
+   ],
+   "src": "Banning 1946; Lumey & van Poppel 2013, Early Life Nutrition and Adult Health"
+  },
+  {
+   "id": "rotterdam-1940",
+   "type": "war",
+   "countries": [
+    "NLD"
+   ],
+   "years": [
+    1940,
+    1940
+   ],
+   "hit": 0.13,
+   "cities": [
+    "ロッテルダム",
+    "Rotterdam"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "5月14日の爆撃で町の中心が焼け、家が失われた。"
+    ],
+    "news": [
+     "ドイツ軍が国に入り、5日で降伏した。ロッテルダムは爆撃で焼けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The bombing of 14 May burned the city center, and the house with it."
+    ],
+    "news": [
+     "The German army invaded, and the country surrendered in five days. Rotterdam burned under the bombs."
+    ]
+   },
+   "stat": [
+    "1940年5月14日のロッテルダム爆撃で約850人が亡くなり、約8万人が家を失った",
+    "The bombing of Rotterdam on 14 May 1940 killed about 850 people and left some 80,000 homeless"
+   ],
+   "src": "Rotterdam City Archives"
+  },
+  {
+   "id": "ww2-bel-lux",
+   "type": "occupation",
+   "countries": [
+    "BEL",
+    "LUX",
+    "DNK",
+    "NOR"
+   ],
+   "years": [
+    1940,
+    1945
+   ],
+   "hit": 0.1,
+   "kill": 0.004,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "占領のあいだ、配給の列に並んで暮らした。",
+     "ドイツで働くよう命じられ、工場に送られた。"
+    ],
+    "news": [
+     "ドイツ軍が国に入ってきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Through the occupation, life was the ration queue.",
+     "Was ordered to work in Germany and sent to a factory there."
+    ],
+    "news": [
+     "The German army marched in."
+    ]
+   },
+   "stat": [
+    "1940年4〜5月、ドイツはデンマーク・ノルウェー・オランダ・ベルギー・ルクセンブルクを数週間で占領した",
+    "In April-May 1940 Germany occupied Denmark, Norway, the Netherlands, Belgium and Luxembourg within weeks"
+   ],
+   "src": "Mazower 2008, Hitler's Empire"
+  },
+  {
+   "id": "lux-conscription",
+   "type": "war",
+   "countries": [
+    "LUX"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.4,
+   "age": [
+    18,
+    27
+   ],
+   "sex": "M",
+   "kill": 0.005,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "ドイツ軍に無理に入れられ、東部戦線へ送られた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Was forced into the German army and sent to the Eastern Front."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1942年からルクセンブルクの若者約1万200人がドイツ軍に強制的に入れられ、約2,800人が戻らなかった",
+    "From 1942 about 10,200 young men from Luxembourg were forced into the German army, and about 2,800 did not return"
+   ],
+   "src": "Luxembourg National Resistance Museum"
+  },
+  {
+   "id": "finnmark-1944",
+   "type": "war",
+   "countries": [
+    "NOR"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.02,
+   "severity": 2,
+   "effect": {
+    "happy": -15,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "退くドイツ軍に家を焼かれ、北の町から南へ移された。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "The retreating German army burned the house, and the family was moved south out of the far north."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1944年秋、ドイツ軍はフィンマルクを焼きはらい、約5万人が強制的に移された",
+    "In the autumn of 1944 the German army burned Finnmark, and about 50,000 people were forcibly evacuated"
+   ],
+   "src": "Norwegian Directorate for Cultural Heritage"
+  },
+  {
+   "id": "winter-war",
+   "type": "war",
+   "countries": [
+    "FIN"
+   ],
+   "years": [
+    1939,
+    1940
+   ],
+   "hit": 0.11,
+   "severity": 4,
+   "effect": {
+    "happy": -18,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "カレリアが割譲され、家を置いて西へ移った。荷馬車に積めるものしか持ち出せなかった。"
+    ],
+    "news": [
+     "11月の終わり、ソ連軍が国境を越えてきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Karelia was ceded, and the house had to be left behind for the west. Only what fitted on the horse cart came along."
+    ],
+    "news": [
+     "At the end of November the Soviet army crossed the border."
+    ]
+   },
+   "stat": [
+    "冬戦争のあと、カレリアなどから約42万人 (国の人口の11%ほど) が移された",
+    "After the Winter War about 420,000 people, some 11% of the population, were resettled from Karelia and elsewhere"
+   ],
+   "src": "Finnish National Archives; Kirby 2006, A Concise History of Finland"
+  },
+  {
+   "id": "fin-wars-front",
+   "type": "war",
+   "countries": [
+    "FIN"
+   ],
+   "years": [
+    1939,
+    1944
+   ],
+   "hit": 0.7,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.025,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": []
+   },
+   "stat": [
+    "冬戦争と継続戦争で、フィンランドの兵士約9万人が亡くなった",
+    "About 90,000 Finnish soldiers died in the Winter War and the Continuation War"
+   ],
+   "src": "Finnish National Archives, War Dead of Finland 1939-1945"
+  },
+  {
+   "id": "malta-siege",
+   "type": "war",
+   "countries": [
+    "MLT"
+   ],
+   "years": [
+    1940,
+    1942
+   ],
+   "hit": 0.4,
+   "kill": 0.0055,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "空襲が毎日続き、岩をくり抜いた防空壕で暮らした。家は爆弾で崩れた。"
+    ],
+    "near": [
+     "島は包囲され、食べ物も燃料も尽きかけた。"
+    ],
+    "news": [
+     "マルタが毎日のように空襲を受けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The raids came every day, and life moved into shelters cut into the rock. The house came down under the bombs."
+    ],
+    "near": [
+     "The island was besieged, and food and fuel nearly ran out."
+    ],
+    "news": [
+     "Malta was bombed almost every day."
+    ]
+   },
+   "stat": [
+    "1940〜42年のマルタ包囲戦で、民間人1,493人が亡くなり、約3万の建物が壊された",
+    "In the siege of Malta in 1940-42, 1,493 civilians were killed and some 30,000 buildings destroyed"
+   ],
+   "src": "Holland 2003, Fortress Malta"
+  },
+  {
+   "id": "greek-famine",
+   "type": "famine",
+   "countries": [
+    "GRC"
+   ],
+   "years": [
+    1941,
+    1942
+   ],
+   "hit": 0.3,
+   "cities": [
+    "アテネ",
+    "Athens",
+    "ピレウス",
+    "Piraeus"
+   ],
+   "elsewhere": 0.15,
+   "kill": 0.014,
+   "who": "frail",
+   "cause": "飢饉",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -20
+   },
+   "ja": {
+    "hit": [
+     "占領の冬、食べ物が消えた。毎朝、通りに倒れた人を運ぶ荷車が来た。"
+    ],
+    "near": [
+     "食べ物の配給が止まり、町で飢えが広がった。"
+    ],
+    "news": [
+     "占領下のギリシャで大飢饉が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the winter of occupation, food disappeared. Every morning a cart came to collect those who had fallen in the street."
+    ],
+    "near": [
+     "The food ration stopped, and hunger spread through the city."
+    ],
+    "news": [
+     "A great famine struck occupied Greece."
+    ]
+   },
+   "stat": [
+    "1941〜42年の占領下の飢饉で、アテネとピレウスだけで約4万人が亡くなり、国全体では10万人ほどとされる",
+    "The famine of 1941-42 under occupation killed about 40,000 people in Athens and Piraeus alone, and around 100,000 nationwide"
+   ],
+   "src": "Hionidou 2006, Famine and Death in Occupied Greece"
+  },
+  {
+   "id": "greek-civil-war",
+   "type": "war",
+   "countries": [
+    "GRC"
+   ],
+   "years": [
+    1946,
+    1949
+   ],
+   "hit": 0.08,
+   "kill": 0.006,
+   "who": "men",
+   "cause": "戦争",
+   "urban": 0.4,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "内戦で村が焼かれ、町の親戚の家に逃げた。"
+    ],
+    "news": [
+     "山で政府軍とゲリラの戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village burned in the civil war, and the family fled to relatives in town."
+    ],
+    "news": [
+     "In the mountains, the government army and the guerrillas fought on."
+    ]
+   },
+   "stat": [
+    "1946〜49年のギリシャ内戦で約5万人が亡くなり、約70万人が村を追われた",
+    "The Greek Civil War of 1946-49 killed about 50,000 people and drove some 700,000 from their villages"
+   ],
+   "src": "Close 1995, The Origins of the Greek Civil War; Mazower 2000, After the War Was Over"
+  },
+  {
+   "id": "ww2-yug-high",
+   "type": "war",
+   "countries": [
+    "BIH",
+    "MNE",
+    "HRV"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.4,
+   "kill": 0.07,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.7,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "占領と内戦の中で村が焼かれ、家族で山へ逃げた。",
+     "パルチザンと占領軍の戦いのあいだ、何度も家を捨てて逃げた。"
+    ],
+    "news": [
+     "4月、枢軸国の軍が国に入り、国は分割された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Amid occupation and civil war the village was burned, and the family fled to the mountains.",
+     "In the fighting between partisans and occupiers, the house had to be abandoned again and again."
+    ],
+    "news": [
+     "In April the Axis armies invaded, and the country was carved up."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ユーゴスラビアは約100万人 (人口の6%ほど) を失い、ボスニアでの死者の割合がいちばん高かった",
+    "Yugoslavia lost about a million people, some 6% of its population, in the Second World War; the death rate was highest in Bosnia"
+   ],
+   "src": "Žerjavić 1989, Gubici stanovništva Jugoslavije u drugom svjetskom ratu"
+  },
+  {
+   "id": "ww2-yug-srb",
+   "type": "war",
+   "countries": [
+    "SRB"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.4,
+   "kill": 0.045,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.7,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "占領と内戦の中で村が焼かれ、家族で山へ逃げた。",
+     "パルチザンと占領軍の戦いのあいだ、何度も家を捨てて逃げた。"
+    ],
+    "news": [
+     "4月、枢軸国の軍が国に入り、国は分割された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Amid occupation and civil war the village was burned, and the family fled to the mountains.",
+     "In the fighting between partisans and occupiers, the house had to be abandoned again and again."
+    ],
+    "news": [
+     "In April the Axis armies invaded, and the country was carved up."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ユーゴスラビアは約100万人 (人口の6%ほど) を失った",
+    "Yugoslavia lost about a million people, some 6% of its population, in the Second World War"
+   ],
+   "src": "Žerjavić 1989, Gubici stanovništva Jugoslavije u drugom svjetskom ratu"
+  },
+  {
+   "id": "ww2-yug-low",
+   "type": "war",
+   "countries": [
+    "SVN",
+    "MKD"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.4,
+   "kill": 0.02,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.7,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "占領と内戦の中で村が焼かれ、家族で山へ逃げた。",
+     "パルチザンと占領軍の戦いのあいだ、何度も家を捨てて逃げた。"
+    ],
+    "news": [
+     "4月、枢軸国の軍が国に入り、国は分割された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Amid occupation and civil war the village was burned, and the family fled to the mountains.",
+     "In the fighting between partisans and occupiers, the house had to be abandoned again and again."
+    ],
+    "news": [
+     "In April the Axis armies invaded, and the country was carved up."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ユーゴスラビアは約100万人 (人口の6%ほど) を失った",
+    "Yugoslavia lost about a million people, some 6% of its population, in the Second World War"
+   ],
+   "src": "Žerjavić 1989, Gubici stanovništva Jugoslavije u drugom svjetskom ratu"
+  },
+  {
+   "id": "ww2-alb",
+   "type": "occupation",
+   "countries": [
+    "ALB"
+   ],
+   "years": [
+    1939,
+    1944
+   ],
+   "hit": 0.2,
+   "kill": 0.02,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.6,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "占領のあいだ、村が焼かれ、山へ逃げた。"
+    ],
+    "news": [
+     "4月、イタリア軍が国に入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "During the occupation the village was burned, and the family fled to the mountains."
+    ],
+    "news": [
+     "In April the Italian army invaded."
+    ]
+   },
+   "stat": [
+    "1939〜44年の占領と戦争で、アルバニアでは約2万8,000人が亡くなった",
+    "About 28,000 people died in Albania in the occupation and war of 1939-44"
+   ],
+   "src": "Fischer 1999, Albania at War 1939-1945"
+  },
+  {
+   "id": "ww2-hun-front",
+   "type": "war",
+   "countries": [
+    "HUN",
+    "ROU",
+    "BGR",
+    "SVK"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.5,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.015,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "国が枢軸国の側で戦争に加わった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "The country entered the war on the Axis side."
+    ]
+   },
+   "stat": [
+    "1943年1月のヴォロネジの戦いで、ハンガリー第2軍は約20万人のうち半分ほどを失った",
+    "In the Battle of Voronezh in January 1943, the Hungarian Second Army lost about half of its roughly 200,000 men"
+   ],
+   "src": "Ungváry 2005; Axworthy 1995, Third Axis Fourth Ally"
+  },
+  {
+   "id": "budapest-siege",
+   "type": "war",
+   "countries": [
+    "HUN"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.6,
+   "cities": [
+    "ブダペスト",
+    "Budapest"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "冬のあいだ、町は包囲された。何週間も地下室で暮らし、水は雪を溶かして飲んだ。"
+    ],
+    "news": [
+     "ブダペストが包囲され、ドナウの橋はすべて落とされた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "All winter the city was besieged. Weeks were spent in cellars, and drinking water came from melted snow."
+    ],
+    "news": [
+     "Budapest was besieged, and every bridge over the Danube was blown."
+    ]
+   },
+   "stat": [
+    "1944〜45年のブダペスト包囲戦で、民間人約3万8,000人が亡くなった",
+    "About 38,000 civilians died in the siege of Budapest in 1944-45"
+   ],
+   "src": "Ungváry 2005, The Siege of Budapest"
+  },
+  {
+   "id": "hun-hyperinflation-1946",
+   "type": "finance",
+   "countries": [
+    "HUN"
+   ],
+   "years": [
+    1945,
+    1946
+   ],
+   "hit": 0.9,
+   "severity": 4,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.95
+   },
+   "ja": {
+    "hit": [
+     "物価が一日に何倍にもなり、お金は紙切れになった。給料は受け取ったその時間に使った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Prices multiplied within a single day, and money turned to paper. Wages were spent within the hour."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1946年7月、ハンガリーの物価は1か月で約4京倍 (4×10の16乗) になった。歴史上最悪の物価高とされる",
+    "In July 1946 Hungarian prices rose about 4 x 10^16-fold in a single month, the worst inflation on record"
+   ],
+   "src": "Hanke & Krus 2012, World Hyperinflations (Cato Institute)"
+  },
+  {
+   "id": "protectorate-labor",
+   "type": "occupation",
+   "countries": [
+    "CZE"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.3,
+   "age": [
+    18,
+    30
+   ],
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "ドイツの工場で働くよう命じられ、何年も帰れなかった。"
+    ],
+    "news": [
+     "3月、ドイツ軍がプラハに入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was ordered to work in a German factory, and for years could not come home."
+    ],
+    "news": [
+     "In March the German army entered Prague."
+    ]
+   },
+   "stat": [
+    "占領下のチェコから、約40万人がドイツの工場などに働きに送られた",
+    "Some 400,000 people from occupied Czech lands were sent to work in Germany"
+   ],
+   "src": "Bryant 2007, Prague in Black"
+  },
+  {
+   "id": "slovak-uprising",
+   "type": "war",
+   "countries": [
+    "SVK"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.05,
+   "urban": 0.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "蜂起が鎮圧されたあと、村が焼かれ、山へ逃げた。"
+    ],
+    "news": [
+     "8月、スロバキア民族蜂起が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the uprising was crushed, the village was burned, and the family fled to the mountains."
+    ],
+    "news": [
+     "In August the Slovak National Uprising began."
+    ]
+   },
+   "stat": [
+    "1944年のスロバキア民族蜂起のあと、報復で約5,300人が殺された",
+    "After the 1944 Slovak National Uprising, about 5,300 people were killed in reprisals"
+   ],
+   "src": "Museum of the Slovak National Uprising"
+  },
+  {
+   "id": "ussr-front-west",
+   "type": "war",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.7,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.05,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
+     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+    ],
+    "news": [
+     "6月22日、ドイツ軍が国境を越えて攻めこんできた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
+     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+    ],
+    "news": [
+     "On 22 June the German army crossed the border and attacked."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦 (大祖国戦争) で、ソ連の兵士約870万人が亡くなった",
+    "About 8.7 million Soviet soldiers died in the Second World War (the Great Patriotic War)"
+   ],
+   "src": "Krivosheev 1997, Soviet Casualties and Combat Losses"
+  },
+  {
+   "id": "ussr-front-other",
+   "type": "war",
+   "countries": [
+    "MDA",
+    "LTU",
+    "LVA",
+    "EST",
+    "KAZ",
+    "UZB",
+    "GEO",
+    "ARM",
+    "AZE",
+    "KGZ",
+    "TJK",
+    "TKM"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.6,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.035,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "召集されて、西の前線へ何千キロも汽車で運ばれた。何年もたって、勲章と傷を持って帰ってきた。"
+    ],
+    "news": [
+     "6月、遠い西の国境で戦争が始まった。男たちは次々に駅から出ていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and carried thousands of kilometers west to the front by train. Years later, came home with medals and wounds."
+    ],
+    "news": [
+     "In June war broke out far away on the western border. One after another, the men left from the station."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ソ連の兵士約870万人が亡くなった。中央アジアとカフカスからも数百万人が前線へ送られた",
+    "About 8.7 million Soviet soldiers died in the Second World War; millions were sent to the front from Central Asia and the Caucasus"
+   ],
+   "src": "Krivosheev 1997, Soviet Casualties and Combat Losses"
+  },
+  {
+   "id": "ussr-homefront",
+   "type": "famine",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR",
+    "MDA",
+    "LTU",
+    "LVA",
+    "EST",
+    "KAZ",
+    "UZB",
+    "GEO",
+    "ARM",
+    "AZE",
+    "KGZ",
+    "TJK",
+    "TKM"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.4,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "戦争のあいだ、配給のパンだけで、一日12時間工場で働いた。",
+     "西から逃れてきた家族と一つの部屋を分けて暮らした。食べ物はいつも足りなかった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Through the war, there was only the bread ration and twelve-hour days at the factory.",
+     "Shared a single room with a family evacuated from the west. There was never enough food."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1941〜42年、ソ連では約1,600万人が西部から東へ疎開し、工場も東へ移された",
+    "In 1941-42 about 16 million Soviet citizens were evacuated eastward from the west, along with their factories"
+   ],
+   "src": "Manley 2009, To the Tashkent Station"
+  },
+  {
+   "id": "ussr-occupation-blr",
+   "type": "occupation",
+   "countries": [
+    "BLR"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.6,
+   "kill": 0.12,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.7,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "村がドイツ軍に焼かれ、家族で森のパルチザンのもとへ逃げた。",
+     "占領の3年間、森と地下壕を移り住んだ。"
+    ],
+    "news": [
+     "隣の村が、住む人ごと焼かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The German army burned the village, and the family fled to the partisans in the forest.",
+     "Three years of occupation, moving between forest camps and dugouts."
+    ],
+    "news": [
+     "The next village was burned with its people inside."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ベラルーシは人口の4分の1ほど (約200万人以上) を失った",
+    "Belarus lost about a quarter of its population, more than 2 million people, in the Second World War"
+   ],
+   "src": "Rein 2011, The Kings and the Pawns; National Academy of Sciences of Belarus"
+  },
+  {
+   "id": "ussr-occupation-ukr",
+   "type": "occupation",
+   "countries": [
+    "UKR"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.5,
+   "kill": 0.08,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "占領のあいだ、ドイツへ働きに連れていかれた。",
+     "前線が二度村を通り、家は焼けて土台だけになった。"
+    ],
+    "news": [
+     "占領のあいだ、若い人たちが貨車でドイツへ送られていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "During the occupation, was taken to Germany as a forced laborer.",
+     "The front passed through the village twice, and only the foundations of the house remained."
+    ],
+    "news": [
+     "During the occupation, young people were loaded onto freight cars and sent to Germany."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ウクライナでは兵士と民間人を合わせて700万人ほどが亡くなったとされる",
+    "Some 7 million people in Ukraine, soldiers and civilians together, are thought to have died in the Second World War"
+   ],
+   "src": "Berkhoff 2004, Harvest of Despair; Snyder 2010, Bloodlands"
+  },
+  {
+   "id": "ussr-occupation-rus",
+   "type": "occupation",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.1,
+   "kill": 0.012,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "前線が近づき、家を捨てて東へ逃げた。戻ったとき、村は焼けていた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "As the front approached, the family abandoned the house and fled east. When they came back, the village had been burned."
+    ],
+    "news": []
+   },
+   "stat": [
+    "ソ連全体の民間人の死者は、約1,370万人と推計される (ロシア科学アカデミー)",
+    "Soviet civilian deaths in the war are estimated at about 13.7 million (Russian Academy of Sciences)"
+   ],
+   "src": "Russian Academy of Sciences 1993; Snyder 2010, Bloodlands"
+  },
+  {
+   "id": "leningrad-siege",
+   "type": "famine",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.85,
+   "cities": [
+    "サンクトペテルブルク",
+    "Saint Petersburg"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -15,
+    "happy": -25
+   },
+   "ja": {
+    "hit": [
+     "包囲された町で、配給のパンは一日125グラムになった。凍った川から水を運び、家具を燃やして冬を越した。"
+    ],
+    "news": [
+     "レニングラードが包囲され、町で多くの人が飢えで亡くなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the besieged city the bread ration fell to 125 grams a day. Water was hauled from the frozen river, and the furniture was burned to get through the winter."
+    ],
+    "news": [
+     "Leningrad was besieged, and many in the city died of hunger."
+    ]
+   },
+   "stat": [
+    "872日続いたレニングラード包囲で、民間人約80万人が亡くなった",
+    "About 800,000 civilians died in the 872-day siege of Leningrad"
+   ],
+   "src": "Reid 2011, Leningrad: The Epic Siege of World War II"
+  },
+  {
+   "id": "baltic-deportations",
+   "type": "occupation",
+   "countries": [
+    "EST",
+    "LVA",
+    "LTU"
+   ],
+   "years": [
+    1941,
+    1949
+   ],
+   "hit": 0.05,
+   "kill": 0.008,
+   "who": "frail",
+   "cause": "戦争",
+   "urban": 0.6,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.9
+   },
+   "ja": {
+    "hit": [
+     "夜明けに兵士が来て、家畜用の貨車に乗せられた。シベリアの村で何年も暮らし、帰れたのはずっとあとだった。"
+    ],
+    "near": [
+     "隣の家の人たちが、夜のうちに貨車でシベリアへ送られた。"
+    ],
+    "news": [
+     "何万もの家族が、貨車でシベリアへ送られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Soldiers came at dawn, and the family was loaded into a cattle car. Years in a Siberian village, and the way home came only much later."
+    ],
+    "near": [
+     "The family next door was taken away in the night by freight car to Siberia."
+    ],
+    "news": [
+     "Tens of thousands of families were deported to Siberia in freight cars."
+    ]
+   },
+   "stat": [
+    "1949年3月の強制移送だけで、バルト三国から約9万人がシベリアなどへ送られた",
+    "In the deportation of March 1949 alone, about 90,000 people were sent from the Baltic states to Siberia and elsewhere"
+   ],
+   "src": "Strods & Kott 2002, Journal of Baltic Studies 33:1"
+  },
+  {
+   "id": "famine-1946",
+   "type": "famine",
+   "countries": [
+    "UKR",
+    "MDA",
+    "RUS"
+   ],
+   "years": [
+    1946,
+    1947
+   ],
+   "hit": 0.25,
+   "kill": 0.012,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "戦後の日照りの年、穀物はまた取り上げられ、冬には食べるものがなかった。"
+    ],
+    "news": [
+     "戦争のあとの日照りで、村がまた飢えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the drought year after the war, the grain was taken again, and by winter there was nothing to eat."
+    ],
+    "news": [
+     "After the war, a drought brought hunger back to the villages."
+    ]
+   },
+   "stat": [
+    "1946〜47年のソ連の飢饉で、100万〜150万人が亡くなったとされる。モルドバの被害がとくに大きかった",
+    "The Soviet famine of 1946-47 is thought to have killed 1-1.5 million people; Moldova was especially hard hit"
+   ],
+   "src": "Ellman 2000, Cambridge Journal of Economics 24:603"
+  },
+  {
+   "id": "north-sea-flood-1953",
+   "type": "flood",
+   "countries": [
+    "NLD"
+   ],
+   "years": [
+    1953,
+    1953
+   ],
+   "hit": 0.008,
+   "kill": 0.00017,
+   "who": "frail",
+   "cause": "災害",
+   "urban": 0.3,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "2月1日の夜、高潮で堤防が切れ、家が水に沈んだ。屋根の上で救助の舟を待った。"
+    ],
+    "news": [
+     "2月の高潮で南西部の堤防が切れ、多くの村が水に沈んだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of 1 February a storm surge broke the dikes and the house went under. The family waited on the roof for the rescue boats."
+    ],
+    "news": [
+     "In February a storm surge broke the dikes in the southwest, and many villages went under."
+    ]
+   },
+   "stat": [
+    "1953年2月の北海大洪水で、オランダでは1,836人が亡くなり、約7万2,000人が避難した",
+    "The North Sea flood of February 1953 killed 1,836 people in the Netherlands and forced about 72,000 to evacuate"
+   ],
+   "src": "Rijkswaterstaat; Watersnoodmuseum"
+  },
+  {
+   "id": "hungary-1956",
+   "type": "revolution",
+   "countries": [
+    "HUN"
+   ],
+   "years": [
+    1956,
+    1956
+   ],
+   "hit": 0.03,
+   "cities": [
+    "ブダペスト",
+    "Budapest"
+   ],
+   "elsewhere": 0.005,
+   "age": [
+    14,
+    70
+   ],
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "10月、街に出て声を上げた。11月、ソ連の戦車が戻ってきた。"
+    ],
+    "news": [
+     "10月、ブダペストで人々が立ち上がった。11月、ソ連軍の戦車がそれをつぶし、20万人が国境を越えて逃げた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In October, went out into the streets with the crowds. In November, the Soviet tanks came back."
+    ],
+    "news": [
+     "In October the people of Budapest rose up. In November Soviet tanks crushed them, and 200,000 fled across the border."
+    ]
+   },
+   "stat": [
+    "1956年のハンガリー動乱で約2,500人のハンガリー人が亡くなり、約20万人が国外へ逃れた",
+    "About 2,500 Hungarians were killed in the 1956 revolution, and about 200,000 fled the country"
+   ],
+   "src": "Institute for the History of the 1956 Hungarian Revolution"
+  },
+  {
+   "id": "prague-1968",
+   "type": "unrest",
+   "countries": [
+    "CZE",
+    "SVK"
+   ],
+   "years": [
+    1968,
+    1968
+   ],
+   "hit": 0,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月21日の夜明け、ワルシャワ条約機構の戦車が街に入ってきた。「プラハの春」は終わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "At dawn on 21 August, Warsaw Pact tanks rolled into the streets. The Prague Spring was over."
+    ]
+   },
+   "stat": [
+    "1968年8月の侵攻で、チェコスロバキアの市民108人が亡くなった",
+    "The invasion of August 1968 killed 108 Czechoslovak citizens"
+   ],
+   "src": "Institute for the Study of Totalitarian Regimes (USTR) 2008"
+  },
+  {
+   "id": "skopje-1963",
+   "type": "quake",
+   "countries": [
+    "MKD"
+   ],
+   "years": [
+    1963,
+    1963
+   ],
+   "hit": 0.6,
+   "cities": [
+    "スコピエ",
+    "Skopje"
+   ],
+   "elsewhere": 0,
+   "kill": 0.0008,
+   "who": "all",
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "7月26日の朝、地震で家が崩れた。何か月も、テントと仮の小屋で暮らした。"
+    ],
+    "news": [
+     "スコピエを大きな地震が襲い、町の多くが崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 July an earthquake brought the house down. For months home was a tent and a temporary hut."
+    ],
+    "news": [
+     "A great earthquake struck Skopje, and much of the city collapsed."
+    ]
+   },
+   "stat": [
+    "1963年7月のスコピエ地震で1,070人が亡くなり、町の人の7割ほどが家を失った",
+    "The Skopje earthquake of July 1963 killed 1,070 people and left about 70% of the city's people homeless"
+   ],
+   "src": "UNESCO 1968, Skopje Resurgent"
+  },
+  {
+   "id": "aberfan-1966",
+   "type": "accident",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1966,
+    1966
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ウェールズの炭鉱の村で、ぼた山が崩れて小学校をのみこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In a Welsh mining village, a colliery spoil tip slid down and buried the primary school."
+    ]
+   },
+   "stat": [
+    "1966年10月のアバーファンの災害で、144人が亡くなり、そのうち116人が子どもだった",
+    "The Aberfan disaster of October 1966 killed 144 people, 116 of them children"
+   ],
+   "src": "Tribunal of Inquiry into the Aberfan Disaster 1967"
+  },
+  {
+   "id": "troubles",
+   "type": "unrest",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1969,
+    1998
+   ],
+   "hit": 0.004,
+   "kill": 0.00006,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "北アイルランドで、近くの通りの爆発に巻きこまれ、けがをした。"
+    ],
+    "news": [
+     "北アイルランドで、爆弾と銃撃の「紛争」が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In Northern Ireland, was caught up in a bomb blast in a nearby street and injured."
+    ],
+    "news": [
+     "In Northern Ireland the bombings and shootings of the Troubles went on."
+    ]
+   },
+   "stat": [
+    "1969〜98年の北アイルランド紛争で、3,500人あまりが亡くなり、4万人以上がけがをした",
+    "More than 3,500 people were killed and over 40,000 injured in the Northern Ireland Troubles of 1969-98"
+   ],
+   "src": "CAIN Archive, Ulster University; Sutton Index of Deaths"
+  },
+  {
+   "id": "troubles-irl",
+   "type": "unrest",
+   "countries": [
+    "IRL"
+   ],
+   "years": [
+    1974,
+    1974
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、ダブリンとモナハンで車に仕掛けられた爆弾が爆発した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May, car bombs exploded in Dublin and Monaghan."
+    ]
+   },
+   "stat": [
+    "1974年5月のダブリン・モナハン爆破事件で34人が亡くなった",
+    "The Dublin and Monaghan bombings of May 1974 killed 34 people"
+   ],
+   "src": "Barron Report 2003"
+  },
+  {
+   "id": "portugal-colonial-war",
+   "type": "war",
+   "countries": [
+    "PRT"
+   ],
+   "years": [
+    1961,
+    1974
+   ],
+   "hit": 0.5,
+   "age": [
+    20,
+    25
+   ],
+   "sex": "M",
+   "kill": 0.001,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "兵役でアフリカへ送られ、アンゴラの戦地で2年を過ごした。"
+    ],
+    "news": [
+     "アフリカの植民地で戦争が続き、若い男は次々に送られていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was drafted and sent to Africa, and spent two years at war in Angola."
+    ],
+    "news": [
+     "The colonial wars in Africa dragged on, and the young men were sent one after another."
+    ]
+   },
+   "stat": [
+    "1961〜74年の植民地戦争で、ポルトガルは約80万人の若者を送り、約8,300人が戦死した",
+    "In the colonial wars of 1961-74 Portugal sent about 800,000 young men, and some 8,300 died"
+   ],
+   "src": "Afonso & Gomes 2000, Guerra Colonial"
+  },
+  {
+   "id": "portugal-retornados",
+   "type": "war",
+   "countries": [
+    "PRT"
+   ],
+   "years": [
+    1975,
+    1976
+   ],
+   "hit": 0.05,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "アンゴラの家を置いて、スーツケース二つで本国へ引きあげた。"
+    ],
+    "news": [
+     "革命のあと植民地が独立し、50万人もの人がアフリカから引きあげてきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Left the home in Angola and came back to Portugal with two suitcases."
+    ],
+    "news": [
+     "After the revolution the colonies became independent, and half a million people came back from Africa."
+    ]
+   },
+   "stat": [
+    "1974〜76年、アンゴラやモザンビークから約50万人がポルトガルへ引きあげた",
+    "In 1974-76 about 500,000 people returned to Portugal from Angola, Mozambique and elsewhere"
+   ],
+   "src": "Pires 2003, Migrações e integração"
+  },
+  {
+   "id": "algeria-war-fra",
+   "type": "war",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1955,
+    1962
+   ],
+   "hit": 0.4,
+   "age": [
+    20,
+    27
+   ],
+   "sex": "M",
+   "kill": 0.0005,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "兵役でアルジェリアへ送られた。帰ってからも、そこで見たことを話さなかった。"
+    ],
+    "news": [
+     "アルジェリアで戦争が続き、若者たちが兵役で海を渡った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was drafted and sent to Algeria. Back home, never spoke of what happened there."
+    ],
+    "news": [
+     "The war in Algeria went on, and young conscripts crossed the sea."
+    ]
+   },
+   "stat": [
+    "1954〜62年のアルジェリア戦争に、フランスの若者約150万人が送られ、約2万5,000人が亡くなった",
+    "About 1.5 million young Frenchmen served in the Algerian War of 1954-62, and about 25,000 died"
+   ],
+   "src": "French Ministry of the Armed Forces; Stora 1991"
+  },
+  {
+   "id": "pieds-noirs-1962",
+   "type": "war",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1962,
+    1962
+   ],
+   "hit": 0.015,
+   "severity": 2,
+   "effect": {
+    "happy": -15,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "アルジェリアの家を置いて、スーツケース二つで船に乗った。"
+    ],
+    "news": [
+     "アルジェリアの独立で、何十万もの人が地中海を渡ってきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Left the home in Algeria and boarded a ship with two suitcases."
+    ],
+    "news": [
+     "With Algerian independence, hundreds of thousands crossed the Mediterranean."
+    ]
+   },
+   "stat": [
+    "1962年、アルジェリアから約80万人がフランスへ移ってきた",
+    "In 1962 about 800,000 people came to France from Algeria"
+   ],
+   "src": "INSEE; Shepard 2006, The Invention of Decolonization"
+  },
+  {
+   "id": "cyprus-1974",
+   "type": "war",
+   "countries": [
+    "CYP"
+   ],
+   "years": [
+    1974,
+    1974
+   ],
+   "hit": 0.3,
+   "kill": 0.006,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "7月、戦争で北の町を追われ、南へ逃げた。家に戻れる日は来なかった。"
+    ],
+    "news": [
+     "島は二つに分かれ、境界線の両側で何十万人もが家を失った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July the war drove the family from their town in the north, and they fled south. The day to go home never came."
+    ],
+    "news": [
+     "The island was divided, and on both sides of the line hundreds of thousands lost their homes."
+    ]
+   },
+   "stat": [
+    "1974年のトルコ軍の侵攻で、キプロスのギリシャ系住民約16万〜20万人が北部を追われた",
+    "The Turkish invasion of 1974 drove some 160,000-200,000 Greek Cypriots from the north of Cyprus"
+   ],
+   "src": "UNHCR; Loizos 2008, Iron in the Soul"
+  },
+  {
+   "id": "cyprus-2013",
+   "type": "finance",
+   "countries": [
+    "CYP"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0.08,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.3,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "銀行が閉まり、預金の一部が削られた。勤め先も人を減らした。"
+    ],
+    "news": [
+     "3月、銀行が2週間近く閉まり、大口の預金は半分近くが削られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The banks closed, and part of the savings was taken. The employer cut staff too."
+    ],
+    "news": [
+     "In March the banks closed for nearly two weeks, and large deposits lost almost half their value."
+    ]
+   },
+   "stat": [
+    "2013年、キプロス銀行の10万ユーロを超える預金は47.5%が削られ、失業率は16%近くまで上がった",
+    "In 2013 deposits over 100,000 euros at the Bank of Cyprus were cut by 47.5%, and unemployment rose to nearly 16%"
+   ],
+   "src": "Central Bank of Cyprus; Eurostat"
+  },
+  {
+   "id": "cyprus-1963",
+   "type": "unrest",
+   "countries": [
+    "CYP"
+   ],
+   "years": [
+    1963,
+    1964
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ギリシャ系とトルコ系の住民の衝突が続き、トルコ系の多くの人が村を離れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Clashes between Greek and Turkish Cypriots went on, and many Turkish Cypriots left their villages."
+    ]
+   },
+   "stat": [
+    "1963〜64年の衝突で、トルコ系住民約2万5,000人が村を追われた",
+    "In the clashes of 1963-64 about 25,000 Turkish Cypriots were driven from their villages"
+   ],
+   "src": "UN Secretary-General reports on Cyprus 1964-65"
+  },
+  {
+   "id": "friuli-1976",
+   "type": "quake",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1976,
+    1976
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、北東部のフリウリで大きな地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May a strong earthquake struck Friuli in the northeast."
+    ]
+   },
+   "stat": [
+    "1976年5月のフリウリ地震で989人が亡くなり、約4万5,000人が家を失った",
+    "The Friuli earthquake of May 1976 killed 989 people and left some 45,000 homeless"
+   ],
+   "src": "Protezione Civile"
+  },
+  {
+   "id": "messina-1908",
+   "type": "quake",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1908,
+    1908
+   ],
+   "hit": 0.006,
+   "kill": 0.002,
+   "who": "all",
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "12月28日の明け方、地震と津波で町が崩れた。何か月も、木の小屋で暮らした。"
+    ],
+    "news": [
+     "12月の明け方、メッシーナとレッジョを地震と津波が襲い、二つの町はほとんど崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At dawn on 28 December an earthquake and a tsunami flattened the town. For months home was a wooden hut."
+    ],
+    "news": [
+     "At dawn one December day an earthquake and tsunami struck Messina and Reggio, and both towns all but collapsed."
+    ]
+   },
+   "stat": [
+    "1908年12月のメッシーナ地震では、7万5,000〜8万2,000人が亡くなった",
+    "The Messina earthquake of December 1908 killed 75,000-82,000 people"
+   ],
+   "src": "INGV, Catalogo dei Forti Terremoti in Italia"
+  },
+  {
+   "id": "irpinia-1980",
+   "type": "quake",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1980,
+    1980
+   ],
+   "hit": 0.05,
+   "cities": [
+    "ナポリ",
+    "Naples"
+   ],
+   "elsewhere": 0.003,
+   "kill": 0.00005,
+   "who": "all",
+   "cause": "災害",
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "11月23日の夜、地震で家が崩れ、何年もプレハブの家で暮らした。"
+    ],
+    "news": [
+     "11月の夜、南部のイルピニアで大きな地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of 23 November an earthquake brought the house down, and for years home was a prefab."
+    ],
+    "news": [
+     "One November night a strong earthquake struck Irpinia in the south."
+    ]
+   },
+   "stat": [
+    "1980年11月のイルピニア地震で2,914人が亡くなり、約28万人が家を失った",
+    "The Irpinia earthquake of November 1980 killed 2,914 people and left some 280,000 homeless"
+   ],
+   "src": "INGV; Protezione Civile"
+  },
+  {
+   "id": "vrancea-1977",
+   "type": "quake",
+   "countries": [
+    "ROU"
+   ],
+   "years": [
+    1977,
+    1977
+   ],
+   "hit": 0.03,
+   "cities": [
+    "ブカレスト",
+    "Bucharest"
+   ],
+   "elsewhere": 0.002,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "3月4日の夜、地震で住んでいた建物が崩れた。"
+    ],
+    "news": [
+     "3月の夜、大きな地震がブカレストを揺らし、古い建物が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of 4 March an earthquake brought down the building."
+    ],
+    "news": [
+     "One March night a strong earthquake shook Bucharest, and old buildings collapsed."
+    ]
+   },
+   "stat": [
+    "1977年3月のヴランチャ地震で1,578人が亡くなり、そのうち1,424人がブカレストの人だった",
+    "The Vrancea earthquake of March 1977 killed 1,578 people, 1,424 of them in Bucharest"
+   ],
+   "src": "National Institute for Earth Physics (Romania)"
+  },
+  {
+   "id": "romania-1980s",
+   "type": "unrest",
+   "countries": [
+    "ROU"
+   ],
+   "years": [
+    1982,
+    1989
+   ],
+   "hit": 0.6,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "冬の部屋は暖房が止まり、コートを着て眠った。肉と卵は配給の列の先にしかなかった。"
+    ],
+    "news": [
+     "借金を返すための節約で、電気と暖房が止められ、食べ物の配給が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In winter the heating in the flat was turned off, and everyone slept in their coats. Meat and eggs were only at the end of a ration queue."
+    ],
+    "news": [
+     "To pay off the foreign debt, electricity and heating were cut and food was rationed."
+    ]
+   },
+   "stat": [
+    "チャウシェスク政権は1980年代、約100億ドルの対外債務を返すため、食料と燃料を切りつめた",
+    "In the 1980s the Ceaușescu regime cut food and fuel to pay off some 10 billion dollars of foreign debt"
+   ],
+   "src": "Deletant 1995, Ceaușescu and the Securitate"
+  },
+  {
+   "id": "romania-1989",
+   "type": "revolution",
+   "countries": [
+    "ROU"
+   ],
+   "years": [
+    1989,
+    1989
+   ],
+   "hit": 0.01,
+   "cities": [
+    "ティミショアラ",
+    "Timișoara",
+    "ブカレスト",
+    "Bucharest"
+   ],
+   "elsewhere": 0.002,
+   "age": [
+    14,
+    70
+   ],
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": 5
+   },
+   "ja": {
+    "hit": [
+     "12月、広場で群衆に加わった。銃声のなか、何日も街にいた。"
+    ],
+    "news": [
+     "12月、ティミショアラで始まった抗議がブカレストに広がり、チャウシェスクは倒れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In December, joined the crowds in the square. For days, out in the streets as the shooting went on."
+    ],
+    "news": [
+     "In December the protests that began in Timișoara spread to Bucharest, and Ceaușescu fell."
+    ]
+   },
+   "stat": [
+    "1989年12月のルーマニア革命で、約1,100人が亡くなった",
+    "About 1,100 people were killed in the Romanian revolution of December 1989"
+   ],
+   "src": "Romanian Institute of the Revolution of December 1989"
+  },
+  {
+   "id": "berlin-wall-1961",
+   "type": "unrest",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1961,
+    1961
+   ],
+   "hit": 0.15,
+   "cities": [
+    "ベルリン",
+    "Berlin"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "8月13日の朝、町を分ける壁ができ、通りの向こうの親戚に会えなくなった。"
+    ],
+    "news": [
+     "8月13日、東西ベルリンの境に壁が築かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 13 August a wall went up through the city, and the relatives across the street could no longer be visited."
+    ],
+    "news": [
+     "On 13 August a wall went up between East and West Berlin."
+    ]
+   },
+   "stat": [
+    "1961年に築かれたベルリンの壁は、1989年まで28年間町を分けた",
+    "The Berlin Wall, built in 1961, divided the city for 28 years until 1989"
+   ],
+   "src": "Stiftung Berliner Mauer"
+  },
+  {
+   "id": "hamburg-flood-1962",
+   "type": "flood",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1962,
+    1962
+   ],
+   "hit": 0.03,
+   "cities": [
+    "ハンブルク",
+    "Hamburg"
+   ],
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "2月の夜、高潮で堤防が切れ、家が水につかった。"
+    ],
+    "news": [
+     "2月の高潮でハンブルクの堤防が切れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On a February night a storm surge breached the dikes and flooded the house."
+    ],
+    "news": [
+     "In February a storm surge broke the dikes in Hamburg."
+    ]
+   },
+   "stat": [
+    "1962年2月の高潮で、ハンブルクでは315人が亡くなった",
+    "The storm surge of February 1962 killed 315 people in Hamburg"
+   ],
+   "src": "City of Hamburg"
+  },
+  {
+   "id": "deu-reunification-jobs",
+   "type": "finance",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1990,
+    1993
+   ],
+   "hit": 0.07,
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "統一のあと、東の工場が閉じられ、職を失った。"
+    ],
+    "news": [
+     "壁が開き、翌年、東と西が一つの国になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After reunification the factory in the east was shut down, and the job went with it."
+    ],
+    "news": [
+     "The Wall opened, and the next year East and West became one country."
+    ]
+   },
+   "stat": [
+    "統一から数年で、旧東ドイツの仕事の3分の1ほどが失われた",
+    "Within a few years of reunification, about a third of jobs in the former East Germany had disappeared"
+   ],
+   "src": "Institut für Arbeitsmarkt- und Berufsforschung (IAB)"
+  },
+  {
+   "id": "chernobyl",
+   "type": "nuclear",
+   "countries": [
+    "UKR"
+   ],
+   "years": [
+    1986,
+    1986
+   ],
+   "hit": 0.004,
+   "world": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "4月の終わり、原発の事故で町を出るよう言われた。3日で戻れると聞いたが、戻ることはなかった。"
+    ],
+    "near": [
+     "子どもを外で遊ばせないよう言われ、ヨウ素の錠剤が配られた。"
+    ],
+    "news": [
+     "4月26日、チェルノブイリの原子力発電所で炉が爆発した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At the end of April, the nuclear accident meant orders to leave town. Three days, they said. There was no going back."
+    ],
+    "near": [
+     "Parents were told to keep children indoors, and iodine tablets were handed out."
+    ],
+    "news": [
+     "On 26 April a reactor exploded at the Chernobyl nuclear power plant."
+    ]
+   },
+   "stat": [
+    "チェルノブイリ事故のあと、ウクライナ・ベラルーシ・ロシアで約35万人が住む土地を離れた",
+    "After the Chernobyl accident about 350,000 people in Ukraine, Belarus and Russia were relocated"
+   ],
+   "src": "IAEA/WHO Chernobyl Forum 2005"
+  },
+  {
+   "id": "chernobyl-blr",
+   "type": "nuclear",
+   "countries": [
+    "BLR",
+    "RUS"
+   ],
+   "years": [
+    1986,
+    1987
+   ],
+   "hit": 0.01,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "原発の事故のあと、村は汚染の区域に入り、家を出て移った。"
+    ],
+    "near": [
+     "森のきのこと牛乳を口にしないよう言われた。"
+    ],
+    "news": [
+     "4月、隣の国の原子力発電所の事故で、放射能が流れてきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the nuclear accident the village fell inside the contaminated zone, and the family had to move."
+    ],
+    "near": [
+     "People were told not to eat mushrooms from the forest or drink the milk."
+    ],
+    "news": [
+     "In April radiation drifted in from the nuclear accident across the border."
+    ]
+   },
+   "stat": [
+    "チェルノブイリ事故で、ベラルーシの国土の約23%が汚染された",
+    "The Chernobyl accident contaminated about 23% of the territory of Belarus"
+   ],
+   "src": "IAEA/WHO Chernobyl Forum 2005"
+  },
+  {
+   "id": "postsoviet-hyperinflation",
+   "type": "finance",
+   "countries": [
+    "UKR",
+    "BLR",
+    "MDA"
+   ],
+   "years": [
+    1992,
+    1994
+   ],
+   "hit": 0.6,
+   "severity": 4,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.85
+   },
+   "ja": {
+    "hit": [
+     "物価が月ごとに何倍にもなり、積み立てた貯金は紙くずになった。給料は何か月も遅れて払われた。"
+    ],
+    "news": [
+     "ソ連がなくなり、物価が月ごとに跳ね上がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Prices multiplied month by month, and the savings built up over years turned to waste paper. Wages came months late."
+    ],
+    "news": [
+     "The Soviet Union was gone, and prices leapt month after month."
+    ]
+   },
+   "stat": [
+    "ウクライナの物価は1993年の1年で1万倍を超えて上がった",
+    "Ukrainian prices rose more than 10,000% during 1993"
+   ],
+   "src": "World Bank; IMF 1994, Economic Review: Ukraine"
+  },
+  {
+   "id": "baltic-inflation-1992",
+   "type": "finance",
+   "countries": [
+    "EST",
+    "LVA",
+    "LTU"
+   ],
+   "years": [
+    1992,
+    1992
+   ],
+   "hit": 0.6,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "物価が1年で10倍になり、ルーブルの貯金は消えた。"
+    ],
+    "news": [
+     "独立のあと、物価が1年で10倍になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Prices rose tenfold in a year, and the ruble savings vanished."
+    ],
+    "news": [
+     "After independence, prices rose tenfold within a year."
+    ]
+   },
+   "stat": [
+    "1992年の物価上昇率は、エストニア約1,076%、リトアニア約1,021%、ラトビア約951%だった",
+    "In 1992 inflation reached about 1,076% in Estonia, 1,021% in Lithuania and 951% in Latvia"
+   ],
+   "src": "IMF 1993, Economic Reviews: Baltic States"
+  },
+  {
+   "id": "baltic-independence",
+   "type": "revolution",
+   "countries": [
+    "EST",
+    "LVA",
+    "LTU"
+   ],
+   "years": [
+    1989,
+    1991
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、人々が手をつないで、三つの国を結ぶ人の鎖をつくった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August, people joined hands in a human chain across three countries."
+    ]
+   },
+   "stat": [
+    "1989年8月の「バルトの道」には、約200万人が加わり、600キロを超える人の鎖をつくった",
+    "About two million people joined the Baltic Way of August 1989, a human chain over 600 kilometers long"
+   ],
+   "src": "UNESCO Memory of the World: The Baltic Way",
+   "newsAt": 1989
+  },
+  {
+   "id": "vilnius-1991",
+   "type": "unrest",
+   "countries": [
+    "LTU"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、ソ連軍の戦車がヴィリニュスのテレビ塔を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January, Soviet tanks stormed the television tower in Vilnius."
+    ]
+   },
+   "stat": [
+    "1991年1月13日のヴィリニュスの事件で、市民14人が亡くなった",
+    "Fourteen civilians were killed in Vilnius on 13 January 1991"
+   ],
+   "src": "Seimas of the Republic of Lithuania"
+  },
+  {
+   "id": "estonia-ferry-1994",
+   "type": "transport",
+   "countries": [
+    "EST",
+    "SWE"
+   ],
+   "years": [
+    1994,
+    1994
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、嵐のバルト海でフェリー「エストニア」が沈んだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September the ferry Estonia sank in a storm on the Baltic."
+    ]
+   },
+   "stat": [
+    "1994年9月のフェリー「エストニア」の沈没で852人が亡くなった",
+    "852 people died when the ferry Estonia sank in September 1994"
+   ],
+   "src": "Joint Accident Investigation Commission 1997"
+  },
+  {
+   "id": "bih-war",
+   "type": "war",
+   "countries": [
+    "BIH"
+   ],
+   "years": [
+    1992,
+    1995
+   ],
+   "hit": 0.5,
+   "kill": 0.022,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -28,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "戦争で村を追われ、家族で避難民になった。何年も、よその町の空き家と収容施設を移り住んだ。",
+     "銃声の中で家を捨て、着のみ着のままで逃げた。"
+    ],
+    "news": [
+     "町は前線に囲まれ、配給と援助物資で暮らした。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war drove the family out of the village, and they became refugees. For years, they moved between empty houses and collective centers in other towns.",
+     "Fled the house under gunfire with nothing but the clothes on their backs."
+    ],
+    "news": [
+     "The town was surrounded by the front lines, and life ran on rations and aid parcels."
+    ]
+   },
+   "stat": [
+    "1992〜95年のボスニア戦争で約10万人が亡くなり、人口の半分を超える約220万人が家を追われた",
+    "The Bosnian war of 1992-95 killed about 100,000 people and drove some 2.2 million, more than half the population, from their homes"
+   ],
+   "src": "Research and Documentation Center Sarajevo; UNHCR"
+  },
+  {
+   "id": "sarajevo-siege",
+   "type": "war",
+   "countries": [
+    "BIH"
+   ],
+   "years": [
+    1992,
+    1995
+   ],
+   "hit": 0.8,
+   "cities": [
+    "サラエボ",
+    "Sarajevo"
+   ],
+   "elsewhere": 0,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -25
+   },
+   "ja": {
+    "hit": [
+     "包囲された町で、水を汲みに行くたびに狙撃手の通りを走った。冬は家具と本を燃やした。"
+    ],
+    "news": [
+     "サラエボが包囲された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the besieged city, every trip for water meant running across a sniper's street. In winter the furniture and books were burned."
+    ],
+    "news": [
+     "Sarajevo was under siege."
+    ]
+   },
+   "stat": [
+    "1992〜96年のサラエボ包囲は1,425日続き、1万1,541人が亡くなった",
+    "The siege of Sarajevo lasted 1,425 days in 1992-96 and killed 11,541 people"
+   ],
+   "src": "Research and Documentation Center Sarajevo"
+  },
+  {
+   "id": "srebrenica-1995",
+   "type": "genocide",
+   "countries": [
+    "BIH"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月、スレブレニツァで、8,000人を超える男性と少年が殺された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In July, more than 8,000 men and boys were murdered at Srebrenica."
+    ]
+   },
+   "stat": [
+    "1995年7月のスレブレニツァの虐殺で、8,372人が殺された (国際司法の場でジェノサイドと認定)",
+    "8,372 people were killed in the Srebrenica massacre of July 1995, ruled a genocide by international courts"
+   ],
+   "src": "Srebrenica-Potočari Memorial; ICTY"
+  },
+  {
+   "id": "hrv-war",
+   "type": "war",
+   "countries": [
+    "HRV"
+   ],
+   "years": [
+    1991,
+    1995
+   ],
+   "hit": 0.11,
+   "kill": 0.004,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "戦争で町が砲撃され、家を捨てて逃げた。戻れたのは何年もあとだった。"
+    ],
+    "near": [
+     "町に砲弾が落ち、何か月も地下室で寝起きした。"
+    ],
+    "news": [
+     "独立を宣言したあと、戦争が始まった。ヴコヴァルは3か月の包囲のあとに陥ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town was shelled in the war, and the family abandoned the house and fled. It was years before they could return."
+    ],
+    "near": [
+     "Shells fell on the town, and for months life moved into the cellar."
+    ],
+    "news": [
+     "War broke out after the declaration of independence. Vukovar fell after a three-month siege."
+    ]
+   },
+   "stat": [
+    "1991〜95年のクロアチアの戦争で約2万人が亡くなり、約55万人が家を追われた",
+    "The war in Croatia of 1991-95 killed about 20,000 people and drove some 550,000 from their homes"
+   ],
+   "src": "UNHCR; Croatian Memorial-Documentation Centre of the Homeland War"
+  },
+  {
+   "id": "yug-hyperinflation",
+   "type": "finance",
+   "countries": [
+    "SRB",
+    "MNE"
+   ],
+   "years": [
+    1992,
+    1994
+   ],
+   "hit": 0.8,
+   "severity": 4,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.9
+   },
+   "ja": {
+    "hit": [
+     "物価が一日で倍になり、店の棚は空になった。給料はその日のうちにドイツマルクに替えた。"
+    ],
+    "news": [
+     "国連の制裁の下で、物価が手のつけられないほど上がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Prices doubled in a day, and the shop shelves stood empty. Wages were changed into German marks the moment they were paid."
+    ],
+    "news": [
+     "Under UN sanctions, prices spiraled out of control."
+    ]
+   },
+   "stat": [
+    "1994年1月、ユーゴスラビアの物価は1か月で3億1,300万%上がった",
+    "In January 1994 prices in Yugoslavia rose 313 million percent in a single month"
+   ],
+   "src": "Hanke & Krus 2012, World Hyperinflations (Cato Institute)"
+  },
+  {
+   "id": "serbia-1999",
+   "type": "war",
+   "countries": [
+    "SRB"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0.05,
+   "urban": 2,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "空爆で勤め先の工場が壊され、職を失った。"
+    ],
+    "near": [
+     "夜ごとにサイレンが鳴り、橋と発電所が爆撃された。"
+    ],
+    "news": [
+     "3月から78日間、NATO の空爆が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The factory was destroyed in the air strikes, and with it the job."
+    ],
+    "near": [
+     "The sirens sounded every night, and the bridges and power stations were bombed."
+    ],
+    "news": [
+     "For 78 days from March, NATO air strikes went on."
+    ]
+   },
+   "stat": [
+    "1999年のNATOの空爆は78日間続き、ユーゴスラビアの民間人約500人が亡くなった (ヒューマン・ライツ・ウォッチ)",
+    "The 1999 NATO bombing lasted 78 days and killed about 500 Yugoslav civilians (Human Rights Watch)"
+   ],
+   "src": "Human Rights Watch 2000, Civilian Deaths in the NATO Air Campaign"
+  },
+  {
+   "id": "slovenia-1991",
+   "type": "war",
+   "countries": [
+    "SVN"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月、独立を宣言した直後に、10日間の戦争があった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June, just after the declaration of independence, came a ten-day war."
+    ]
+   },
+   "stat": [
+    "1991年6〜7月の10日間戦争の死者は、両軍と民間人を合わせて約60人だった",
+    "About 60 soldiers and civilians died in the Ten-Day War of June-July 1991"
+   ],
+   "src": "Slovenian Ministry of Defence"
+  },
+  {
+   "id": "mkd-2001",
+   "type": "war",
+   "countries": [
+    "MKD"
+   ],
+   "years": [
+    2001,
+    2001
+   ],
+   "hit": 0.07,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "武力衝突で村を離れ、親戚の家に身を寄せた。"
+    ],
+    "news": [
+     "北部で政府軍と武装勢力の衝突が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fighting drove the family out of the village, and they stayed with relatives."
+    ],
+    "news": [
+     "In the north, government forces and armed rebels fought on."
+    ]
+   },
+   "stat": [
+    "2001年の武力衝突では、約17万人が一時家を離れた (UNHCR)",
+    "In the 2001 conflict about 170,000 people were temporarily displaced (UNHCR)"
+   ],
+   "src": "UNHCR 2001"
+  },
+  {
+   "id": "montenegro-1979",
+   "type": "quake",
+   "countries": [
+    "MNE"
+   ],
+   "years": [
+    1979,
+    1979
+   ],
+   "hit": 0.1,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "4月15日の朝、地震で家が崩れた。"
+    ],
+    "news": [
+     "4月、海沿いの町を大きな地震が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 15 April an earthquake brought the house down."
+    ],
+    "news": [
+     "In April a strong earthquake struck the coastal towns."
+    ]
+   },
+   "stat": [
+    "1979年4月のモンテネグロ地震で101人が亡くなり、約8万人が家を失った",
+    "The Montenegro earthquake of April 1979 killed 101 people and left some 80,000 homeless"
+   ],
+   "src": "USGS; Seismological Institute of Montenegro"
+  },
+  {
+   "id": "albania-1997",
+   "type": "finance",
+   "countries": [
+    "ALB"
+   ],
+   "years": [
+    1997,
+    1997
+   ],
+   "hit": 0.6,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "ねずみ講に預けたお金が、一夜で消えた。家を売ったお金も入れていた。"
+    ],
+    "news": [
+     "ねずみ講が崩れ、国じゅうで暴動が起きた。武器庫が襲われ、銃が出回った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The money put into a pyramid scheme vanished overnight, including what came from selling the house."
+    ],
+    "news": [
+     "The pyramid schemes collapsed, and riots broke out all over the country. Armories were looted and guns were everywhere."
+    ]
+   },
+   "stat": [
+    "1997年に崩れたねずみ講には、国民の3分の2ほどがお金を預けていた。その後の混乱で約2,000人が亡くなった",
+    "About two thirds of Albanians had money in the pyramid schemes that collapsed in 1997; some 2,000 people died in the unrest that followed"
+   ],
+   "src": "Jarvis 2000, IMF Finance & Development 37:1"
+  },
+  {
+   "id": "albania-repression",
+   "type": "unrest",
+   "countries": [
+    "ALB"
+   ],
+   "years": [
+    1946,
+    1985
+   ],
+   "hit": 0.02,
+   "age": [
+    18,
+    70
+   ],
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "health": -10,
+    "happy": -25
+   },
+   "ja": {
+    "hit": [
+     "「人民の敵」とされ、何年も労働収容所に入れられた。"
+    ],
+    "news": [
+     "秘密警察の目が、どの家にも届いていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was branded an \"enemy of the people\" and spent years in a labor camp."
+    ],
+    "news": [
+     "The eyes of the secret police reached into every home."
+    ]
+   },
+   "stat": [
+    "ホッジャの時代、約3万4,000人が政治犯として投獄され、約6,000人が処刑された",
+    "Under Hoxha some 34,000 people were imprisoned as political prisoners and about 6,000 executed"
+   ],
+   "src": "Albanian Institute for the Study of Communist Crimes"
+  },
+  {
+   "id": "transnistria-1992",
+   "type": "war",
+   "countries": [
+    "MDA"
+   ],
+   "years": [
+    1992,
+    1992
+   ],
+   "hit": 0.03,
+   "cities": [
+    "ティラスポリ",
+    "Tiraspol",
+    "ベンデル",
+    "Bender"
+   ],
+   "elsewhere": 0.01,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "ドニエストル川沿いの戦闘で、家を離れて逃げた。"
+    ],
+    "news": [
+     "ドニエストル川の東で戦闘が起き、国は二つに分かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fighting along the Dniester drove the family from home."
+    ],
+    "news": [
+     "Fighting broke out east of the Dniester, and the country split in two."
+    ]
+   },
+   "stat": [
+    "1992年のトランスニストリア紛争で、約1,000人が亡くなった",
+    "About 1,000 people were killed in the Transnistria war of 1992"
+   ],
+   "src": "OSCE Mission to Moldova"
+  },
+  {
+   "id": "chechen-wars",
+   "type": "war",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    1994,
+    2002
+   ],
+   "hit": 0.006,
+   "age": [
+    18,
+    21
+   ],
+   "sex": "M",
+   "kill": 0.0004,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "兵役でチェチェンへ送られた。戻ってから、夜に眠れなくなった。"
+    ],
+    "news": [
+     "チェチェンで戦争が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was drafted and sent to Chechnya. Back home, the nights brought no sleep."
+    ],
+    "news": [
+     "The war in Chechnya went on."
+    ]
+   },
+   "stat": [
+    "2度のチェチェン戦争で、兵士と民間人を合わせて数万人が亡くなった",
+    "Tens of thousands of soldiers and civilians died in the two Chechen wars"
+   ],
+   "src": "Memorial Human Rights Centre; Russian Ministry of Defence"
+  },
+  {
+   "id": "moscow-2002",
+   "type": "terror",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    2002,
+    2002
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、モスクワの劇場が武装した集団に占拠された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October an armed group seized a theater in Moscow."
+    ]
+   },
+   "stat": [
+    "2002年10月のモスクワ劇場占拠事件で、人質130人が亡くなった",
+    "130 hostages died in the Moscow theater siege of October 2002"
+   ],
+   "src": "Prosecutor General of Russia"
+  },
+  {
+   "id": "beslan-2004",
+   "type": "terror",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、北オセチアのベスランで学校が占拠され、子どもたちが人質になった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September a school was seized in Beslan, North Ossetia, and children were taken hostage."
+    ]
+   },
+   "stat": [
+    "2004年9月のベスラン学校占拠事件で、子ども186人を含む334人が亡くなった",
+    "The Beslan school siege of September 2004 killed 334 people, 186 of them children"
+   ],
+   "src": "Russian Parliamentary Commission 2006"
+  },
+  {
+   "id": "russia-heat-2010",
+   "type": "heat",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.05,
+   "cities": [
+    "モスクワ",
+    "Moscow"
+   ],
+   "elsewhere": 0.02,
+   "kill": 0.0004,
+   "who": "frail",
+   "cause": "災害",
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "夏の暑さと森の火事の煙で、何週間も息が苦しかった。"
+    ],
+    "news": [
+     "記録的な暑さで森が燃え、モスクワは煙に包まれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The summer heat and the smoke from the forest fires made breathing hard for weeks."
+    ],
+    "news": [
+     "Record heat set the forests ablaze, and Moscow was wrapped in smoke."
+    ]
+   },
+   "stat": [
+    "2010年夏の熱波と森林火災で、ロシアでは約5万5,000人が余計に亡くなったとされる",
+    "The heat wave and wildfires of summer 2010 are thought to have caused about 55,000 extra deaths in Russia"
+   ],
+   "src": "Munich Re NatCatSERVICE; Shaposhnikov et al. 2014, Epidemiology 25:359"
+  },
+  {
+   "id": "russia-mobilization-2022",
+   "type": "war",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    2022,
+    2025
+   ],
+   "hit": 0.02,
+   "age": [
+    18,
+    50
+   ],
+   "sex": "M",
+   "kill": 0.0008,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "召集令状が届き、ウクライナの前線へ送られた。"
+    ],
+    "news": [
+     "9月、部分的な動員が発表され、国を出る人の車が国境に列をつくった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A call-up notice came, and then the front in Ukraine."
+    ],
+    "news": [
+     "In September a partial mobilization was announced, and cars of those leaving the country queued at the borders."
+    ]
+   },
+   "stat": [
+    "2022年9月の部分動員では、約30万人が召集された (ロシア国防省)",
+    "About 300,000 men were called up in the partial mobilization of September 2022 (Russian Ministry of Defence)"
+   ],
+   "src": "Russian Ministry of Defence"
+  },
+  {
+   "id": "donbas-2014",
+   "type": "war",
+   "countries": [
+    "UKR"
+   ],
+   "years": [
+    2014,
+    2021
+   ],
+   "hit": 0.035,
+   "kill": 0.0003,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "東部の町が戦場になり、家を置いて西へ移った。"
+    ],
+    "near": [
+     "近くの町に砲弾が落ち、夜は窓から離れて眠った。"
+    ],
+    "news": [
+     "クリミアが併合され、東部のドンバスで戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town in the east became a battlefield, and the family left the house and moved west."
+    ],
+    "near": [
+     "Shells fell on a nearby town, and nights were spent sleeping away from the windows."
+    ],
+    "news": [
+     "Crimea was annexed, and war broke out in the Donbas in the east."
+    ]
+   },
+   "stat": [
+    "2014〜21年のドンバスの戦争で約1万4,000人が亡くなり、約150万人が国内で避難民になった (国連人権高等弁務官事務所)",
+    "The war in Donbas of 2014-21 killed about 14,000 people and displaced some 1.5 million within the country (OHCHR)"
+   ],
+   "src": "OHCHR 2022; Ministry of Social Policy of Ukraine"
+  },
+  {
+   "id": "ukraine-2022",
+   "type": "war",
+   "countries": [
+    "UKR"
+   ],
+   "years": [
+    2022,
+    2025
+   ],
+   "hit": 0.3,
+   "kill": 0.003,
+   "who": "men",
+   "cause": "戦争",
+   "world": true,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "明け方、爆発の音で目が覚めた。数日後、リュック一つで西へ向かう列車に乗った。",
+     "ミサイルで住んでいた建物が壊れ、親戚の町へ移った。"
+    ],
+    "near": [
+     "毎晩のように空襲警報が鳴り、地下鉄の駅や廊下で夜を明かした。"
+    ],
+    "news": [
+     "2月24日、ロシア軍がウクライナ全土への侵攻を始めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Woke at dawn to the sound of explosions. A few days later, boarded a train west with a single backpack.",
+     "A missile wrecked the building, and the family moved to a relative's town."
+    ],
+    "near": [
+     "The air raid sirens sounded nearly every night, and the nights were spent in metro stations and corridors."
+    ],
+    "news": [
+     "On 24 February the Russian army began a full-scale invasion of Ukraine."
+    ]
+   },
+   "stat": [
+    "全面侵攻のあと、約650万人が国外へ逃れ、約370万人が国内で避難民になった (UNHCR・IOM、2024年)",
+    "After the full-scale invasion about 6.5 million people fled abroad and about 3.7 million were displaced inside the country (UNHCR, IOM, 2024)"
+   ],
+   "src": "UNHCR Ukraine Refugee Situation; IOM Displacement Tracking Matrix; OHCHR civilian casualty updates"
+  },
+  {
+   "id": "belarus-2020",
+   "type": "unrest",
+   "countries": [
+    "BLR"
+   ],
+   "years": [
+    2020,
+    2020
+   ],
+   "hit": 0.004,
+   "age": [
+    16,
+    70
+   ],
+   "severity": 2,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "選挙のあとの抗議に加わり、拘束されて何日も留置場にいた。"
+    ],
+    "news": [
+     "8月の大統領選挙のあと、抗議の人々が通りを埋めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined the protests after the election, was detained, and spent days in a cell."
+    ],
+    "news": [
+     "After the presidential election in August, protesters filled the streets."
+    ]
+   },
+   "stat": [
+    "2020年8月の選挙のあと、数か月で3万5,000人以上が拘束された (国連人権高等弁務官事務所)",
+    "More than 35,000 people were detained in the months after the August 2020 election (OHCHR)"
+   ],
+   "src": "OHCHR 2021"
+  },
+  {
+   "id": "heatwave-2003",
+   "type": "heat",
+   "countries": [
+    "FRA",
+    "ITA",
+    "ESP",
+    "PRT",
+    "DEU"
+   ],
+   "years": [
+    2003,
+    2003
+   ],
+   "hit": 0.03,
+   "age": [
+    70,
+    110
+   ],
+   "kill": 0.0002,
+   "who": "frail",
+   "cause": "災害",
+   "severity": 2,
+   "effect": {
+    "health": -5,
+    "happy": -5
+   },
+   "ja": {
+    "hit": [
+     "8月の暑さで倒れ、病院に運ばれた。"
+    ],
+    "news": [
+     "8月、記録的な熱波が続き、ひとり暮らしの年寄りが次々に倒れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Collapsed in the August heat and was taken to hospital."
+    ],
+    "news": [
+     "In August a record heat wave went on, and old people living alone collapsed one after another."
+    ]
+   },
+   "stat": [
+    "2003年夏の熱波で、ヨーロッパでは約7万人が余計に亡くなり、フランスだけで約1万5,000人だった",
+    "The heat wave of summer 2003 caused some 70,000 extra deaths in Europe, about 15,000 in France alone"
+   ],
+   "src": "Robine et al. 2008, Comptes Rendus Biologies 331:171; INSERM"
+  },
+  {
+   "id": "madrid-2004",
+   "type": "terror",
+   "countries": [
+    "ESP"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0.0005,
+   "cities": [
+    "マドリード",
+    "Madrid"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "3月11日の朝、乗っていた通勤電車で爆弾が爆発した。けがを負って運び出された。"
+    ],
+    "near": [
+     "3月11日の朝、いつもの電車に乗り遅れた。その電車が爆破された。"
+    ],
+    "news": [
+     "3月11日、マドリードの通勤電車が爆破された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 11 March a bomb exploded on the commuter train. Was carried out injured."
+    ],
+    "near": [
+     "On the morning of 11 March, missed the usual train. That train was bombed."
+    ],
+    "news": [
+     "On 11 March commuter trains in Madrid were bombed."
+    ]
+   },
+   "stat": [
+    "2004年3月11日のマドリード列車爆破事件で193人が亡くなり、約2,000人がけがをした",
+    "The Madrid train bombings of 11 March 2004 killed 193 people and injured about 2,000"
+   ],
+   "src": "Audiencia Nacional 2007"
+  },
+  {
+   "id": "eta",
+   "type": "terror",
+   "countries": [
+    "ESP"
+   ],
+   "years": [
+    1968,
+    2010
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "バスク地方の武装組織による爆弾と銃撃が、何十年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "For decades the Basque armed group ETA carried out bombings and shootings."
+    ]
+   },
+   "stat": [
+    "ETA による死者は、1968〜2010年に850人を超えた",
+    "ETA killed more than 850 people between 1968 and 2010"
+   ],
+   "src": "Spanish Ministry of the Interior"
+  },
+  {
+   "id": "london-2005",
+   "type": "terror",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.0003,
+   "cities": [
+    "ロンドン",
+    "London"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "7月7日の朝、地下鉄の車内で爆弾が爆発し、けがをした。"
+    ],
+    "news": [
+     "7月7日の朝、ロンドンの地下鉄とバスで爆弾が爆発した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 7 July a bomb exploded in the Underground carriage, and there were injuries."
+    ],
+    "news": [
+     "On the morning of 7 July bombs exploded on London Underground trains and a bus."
+    ]
+   },
+   "stat": [
+    "2005年7月7日のロンドン同時爆破事件で52人が亡くなり、700人以上がけがをした",
+    "The London bombings of 7 July 2005 killed 52 people and injured more than 700"
+   ],
+   "src": "UK Home Office 2006, Report of the Official Account"
+  },
+  {
+   "id": "lockerbie-1988",
+   "type": "terror",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1988,
+    1988
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、スコットランドのロッカビーの上空で旅客機が爆破された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December an airliner was blown up over Lockerbie in Scotland."
+    ]
+   },
+   "stat": [
+    "1988年12月のロッカビー事件で、乗客・乗員と町の人を合わせて270人が亡くなった",
+    "The Lockerbie bombing of December 1988 killed 270 people, passengers, crew and townspeople"
+   ],
+   "src": "UK Air Accidents Investigation Branch 1990"
+  },
+  {
+   "id": "paris-2015",
+   "type": "terror",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    2015,
+    2015
+   ],
+   "hit": 0.0004,
+   "cities": [
+    "パリ",
+    "Paris"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -20
+   },
+   "ja": {
+    "hit": [
+     "11月13日の夜、銃撃の現場にいあわせ、けがをした。"
+    ],
+    "news": [
+     "11月13日の夜、パリの劇場やカフェが武装した集団に襲われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of 13 November, was caught in the shooting and injured."
+    ],
+    "news": [
+     "On the night of 13 November, gunmen attacked a concert hall and cafés in Paris."
+    ]
+   },
+   "stat": [
+    "2015年11月13日のパリ同時多発テロで130人が亡くなり、400人以上がけがをした",
+    "The Paris attacks of 13 November 2015 killed 130 people and injured more than 400"
+   ],
+   "src": "French Ministry of the Interior"
+  },
+  {
+   "id": "nice-2016",
+   "type": "terror",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    2016,
+    2016
+   ],
+   "hit": 0.0008,
+   "cities": [
+    "ニース",
+    "Nice"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -20
+   },
+   "ja": {
+    "hit": [
+     "7月14日の夜、花火を見ていた海岸通りにトラックが突っこんできた。"
+    ],
+    "news": [
+     "7月14日の夜、ニースの海岸通りで群衆にトラックが突っこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of 14 July a truck drove into the crowd on the seafront promenade where the fireworks were."
+    ],
+    "news": [
+     "On the night of 14 July a truck drove into the crowd on the seafront in Nice."
+    ]
+   },
+   "stat": [
+    "2016年7月14日のニースのトラック事件で86人が亡くなった",
+    "The truck attack in Nice on 14 July 2016 killed 86 people"
+   ],
+   "src": "Paris Public Prosecutor"
+  },
+  {
+   "id": "brussels-2016",
+   "type": "terror",
+   "countries": [
+    "BEL"
+   ],
+   "years": [
+    2016,
+    2016
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "3月22日、ブリュッセルの空港と地下鉄の駅で爆弾が爆発した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On 22 March bombs exploded at Brussels airport and a metro station."
+    ]
+   },
+   "stat": [
+    "2016年3月のブリュッセル連続爆破事件で32人が亡くなった",
+    "The Brussels bombings of March 2016 killed 32 people"
+   ],
+   "src": "Belgian Federal Prosecutor"
+  },
+  {
+   "id": "norway-2011",
+   "type": "terror",
+   "countries": [
+    "NOR"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月22日、オスロの官庁街で爆弾が爆発し、そのあとウトヤ島で若者たちが撃たれた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On 22 July a bomb exploded in the government quarter of Oslo, and then young people were shot on the island of Utøya."
+    ]
+   },
+   "stat": [
+    "2011年7月22日のノルウェー連続テロで77人が亡くなった",
+    "The attacks in Norway on 22 July 2011 killed 77 people"
+   ],
+   "src": "Norwegian 22 July Commission 2012"
+  },
+  {
+   "id": "floods-2021",
+   "type": "flood",
+   "countries": [
+    "DEU",
+    "BEL"
+   ],
+   "years": [
+    2021,
+    2021
+   ],
+   "hit": 0.03,
+   "cities": [
+    "リエージュ",
+    "Liège",
+    "ケルン",
+    "Cologne"
+   ],
+   "elsewhere": 0.001,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "7月の大雨で川があふれ、家の一階が泥に埋まった。"
+    ],
+    "news": [
+     "7月の大雨で川があふれ、谷の村々が流された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the July downpour the river burst its banks, and the ground floor filled with mud."
+    ],
+    "news": [
+     "In the July downpour the rivers burst their banks, and whole valley villages were swept away."
+    ]
+   },
+   "stat": [
+    "2021年7月の洪水で、ドイツでは184人、ベルギーでは41人が亡くなった",
+    "The floods of July 2021 killed 184 people in Germany and 41 in Belgium"
+   ],
+   "src": "German Federal Statistical Office; Belgian Crisis Centre"
+  },
+  {
+   "id": "swe-crisis-1991",
+   "type": "finance",
+   "countries": [
+    "SWE",
+    "FIN"
+   ],
+   "years": [
+    1991,
+    1993
+   ],
+   "hit": 0.08,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "銀行の危機と不況で、勤め先が人を減らし、職を失った。"
+    ],
+    "news": [
+     "銀行が次々に行きづまり、失業者が急に増えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the banking crisis and the slump the employer cut staff, and the job went."
+    ],
+    "news": [
+     "Banks failed one after another, and unemployment shot up."
+    ]
+   },
+   "stat": [
+    "フィンランドの失業率は1990年の約3%から1994年には約17%になった",
+    "Finland's unemployment rate went from about 3% in 1990 to about 17% in 1994"
+   ],
+   "src": "Statistics Finland; Statistics Sweden"
+  },
+  {
+   "id": "swe-tsunami-2004",
+   "type": "tsunami",
+   "countries": [
+    "SWE",
+    "NOR",
+    "FIN",
+    "DEU"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "クリスマスの翌日、タイの海辺で休暇を過ごしていた多くの人が津波にのまれた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The day after Christmas, the tsunami swept away many people holidaying on the beaches of Thailand."
+    ]
+   },
+   "stat": [
+    "2004年のインド洋大津波で、スウェーデン人543人が亡くなった",
+    "543 Swedes died in the Indian Ocean tsunami of 2004"
+   ],
+   "src": "Swedish Disaster Commission 2005"
+  },
+  {
+   "id": "che-mobilization",
+   "type": "war",
+   "countries": [
+    "CHE"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.5,
+   "age": [
+    20,
+    48
+   ],
+   "sex": "M",
+   "severity": 2,
+   "effect": {
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "召集されて、何年も国境の守りについた。"
+    ],
+    "news": [
+     "国境に軍が動員され、食べ物と燃料が配給になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and spent years guarding the border."
+    ],
+    "news": [
+     "The army was mobilized at the borders, and food and fuel were rationed."
+    ]
+   },
+   "stat": [
+    "1939年9月、スイスは約43万人の兵士を動員した",
+    "In September 1939 Switzerland mobilized about 430,000 soldiers"
+   ],
+   "src": "Swiss Federal Archives"
+  },
+  {
+   "id": "che-general-strike-1918",
+   "type": "unrest",
+   "countries": [
+    "CHE"
+   ],
+   "years": [
+    1918,
+    1918
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、国じゅうで労働者のゼネストが起き、軍が出動した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November a general strike spread across the country, and troops were sent in."
+    ]
+   },
+   "stat": [
+    "1918年11月のスイスのゼネストには約25万人が加わった",
+    "About 250,000 workers joined the Swiss general strike of November 1918"
+   ],
+   "src": "Historical Dictionary of Switzerland"
+  },
+  {
+   "id": "dnk-rescue-1943",
+   "type": "genocide",
+   "countries": [
+    "DNK"
+   ],
+   "years": [
+    1943,
+    1943
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、ユダヤ人の隣人たちが、夜のうちに小舟でスウェーデンへ逃がされた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October Jewish neighbors were smuggled across to Sweden by night in small boats."
+    ]
+   },
+   "stat": [
+    "1943年10月、デンマークのユダヤ人約7,200人が舟でスウェーデンへ逃れた",
+    "In October 1943 some 7,200 Danish Jews escaped to Sweden by boat"
+   ],
+   "src": "USHMM Holocaust Encyclopedia"
+  },
+  {
+   "id": "polish-soviet-war",
+   "type": "war",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1919,
+    1920
+   ],
+   "hit": 0.2,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。"
+    ],
+    "news": [
+     "8月、赤軍がワルシャワの近くまで迫り、ヴィスワ川で押し返された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words."
+    ],
+    "news": [
+     "In August the Red Army reached the outskirts of Warsaw and was driven back at the Vistula."
+    ]
+   },
+   "stat": [
+    "1919〜21年のポーランド・ソビエト戦争で、ポーランド兵約4万7,000人が亡くなった",
+    "About 47,000 Polish soldiers died in the Polish-Soviet War of 1919-21"
+   ],
+   "src": "Davies 1972, White Eagle, Red Star"
+  },
+  {
+   "id": "pol-martial-law",
+   "type": "unrest",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1981,
+    1983
+   ],
+   "hit": 0.002,
+   "age": [
+    18,
+    70
+   ],
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "戒厳令の夜、「連帯」の仲間として連れていかれ、何か月も収容所にいた。"
+    ],
+    "news": [
+     "12月13日、戒厳令が敷かれた。電話は止まり、街に戦車が出た。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night martial law was declared, was taken away as a Solidarity member and held in an internment camp for months."
+    ],
+    "news": [
+     "On 13 December martial law was declared. The phones went dead and tanks were in the streets."
+    ]
+   },
+   "stat": [
+    "1981〜83年の戒厳令のもとで、約1万人が収容された",
+    "Some 10,000 people were interned under martial law in 1981-83"
+   ],
+   "src": "Institute of National Remembrance (IPN)"
+  },
+  {
+   "id": "odra-flood-1997",
+   "type": "flood",
+   "countries": [
+    "POL",
+    "CZE"
+   ],
+   "years": [
+    1997,
+    1997
+   ],
+   "hit": 0.3,
+   "cities": [
+    "ヴロツワフ",
+    "Wrocław",
+    "オストラバ",
+    "Ostrava"
+   ],
+   "elsewhere": 0.003,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "7月、川があふれ、家の一階が水につかった。"
+    ],
+    "news": [
+     "7月、オドラ川の洪水で町の多くが水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July the river burst its banks, and the ground floor went under."
+    ],
+    "news": [
+     "In July the Oder flood put much of the city underwater."
+    ]
+   },
+   "stat": [
+    "1997年7月のオドラ川の洪水で、ポーランドとチェコで110人以上が亡くなった",
+    "The Oder flood of July 1997 killed more than 110 people in Poland and the Czech Republic"
+   ],
+   "src": "Kundzewicz et al. 1999, Hydrological Sciences Journal 44:855"
+  },
+  {
+   "id": "prague-flood-2002",
+   "type": "flood",
+   "countries": [
+    "CZE"
+   ],
+   "years": [
+    2002,
+    2002
+   ],
+   "hit": 0.05,
+   "cities": [
+    "プラハ",
+    "Prague"
+   ],
+   "elsewhere": 0.01,
+   "severity": 2,
+   "effect": {
+    "health": -2,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "8月、ヴルタヴァ川があふれ、住んでいた地区が水につかった。"
+    ],
+    "news": [
+     "8月、大雨でプラハの街が水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In August the Vltava burst its banks, and the neighborhood went under."
+    ],
+    "news": [
+     "In August heavy rains flooded the streets of Prague."
+    ]
+   },
+   "stat": [
+    "2002年8月の洪水で、チェコでは17人が亡くなり、約22万人が避難した",
+    "The floods of August 2002 killed 17 people in the Czech Republic and forced about 220,000 to evacuate"
+   ],
+   "src": "Czech Hydrometeorological Institute"
+  },
+  {
+   "id": "bgr-1997",
+   "type": "finance",
+   "countries": [
+    "BGR"
+   ],
+   "years": [
+    1996,
+    1997
+   ],
+   "hit": 0.6,
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "銀行がつぶれ、物価が月ごとに倍になった。貯金はほとんど残らなかった。"
+    ],
+    "news": [
+     "銀行が次々につぶれ、物価が手のつけられないほど上がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The banks collapsed and prices doubled month by month. Almost nothing was left of the savings."
+    ],
+    "news": [
+     "Banks collapsed one after another, and prices spiraled out of control."
+    ]
+   },
+   "stat": [
+    "ブルガリアの物価は1997年2月に1か月で約240%上がった",
+    "Bulgarian prices rose about 240% in the single month of February 1997"
+   ],
+   "src": "Bulgarian National Bank; Hanke & Krus 2012"
+  },
+  {
+   "id": "bgr-1989-turks",
+   "type": "unrest",
+   "countries": [
+    "BGR"
+   ],
+   "years": [
+    1989,
+    1989
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "夏、トルコ系の隣人たちが国を追われ、トルコへ向かう列が国境に続いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "That summer Turkish neighbors were forced out of the country, and the queues stretched to the Turkish border."
+    ]
+   },
+   "stat": [
+    "1989年夏、ブルガリアのトルコ系住民約36万人がトルコへ出国した",
+    "In the summer of 1989 about 360,000 ethnic Turks left Bulgaria for Turkey"
+   ],
+   "src": "Vasileva 1992, International Migration Review 26:342"
+  },
+  {
+   "id": "irl-stardust-1981",
+   "type": "fire",
+   "countries": [
+    "IRL"
+   ],
+   "years": [
+    1981,
+    1981
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、ダブリンのナイトクラブの火事で、若者たちが亡くなった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February a fire at a Dublin nightclub killed dozens of young people."
+    ]
+   },
+   "stat": [
+    "1981年2月のスターダストの火事で48人が亡くなった",
+    "The Stardust fire of February 1981 killed 48 people"
+   ],
+   "src": "Dublin Coroner's Court 2024"
+  },
+  {
+   "id": "italy-lead-years",
+   "type": "terror",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1969,
+    1982
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、ボローニャ駅の待合室で爆弾が爆発した。「鉛の時代」のテロが続いていた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August a bomb exploded in the waiting room of Bologna station. The terror of the \"Years of Lead\" went on."
+    ]
+   },
+   "stat": [
+    "1980年8月2日のボローニャ駅爆破事件で85人が亡くなった",
+    "The Bologna station bombing of 2 August 1980 killed 85 people"
+   ],
+   "src": "Court of Assizes of Bologna"
+  },
+  {
+   "id": "trianon-1920",
+   "type": "war",
+   "countries": [
+    "HUN"
+   ],
+   "years": [
+    1920,
+    1920
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月、講和条約で国土の3分の2が隣の国々に移された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June a peace treaty handed two thirds of the country's territory to its neighbors."
+    ]
+   },
+   "stat": [
+    "1920年のトリアノン条約で、ハンガリーは国土の約7割を失い、約330万人のハンガリー人が国境の外に残された",
+    "Under the 1920 Treaty of Trianon Hungary lost about 70% of its territory, leaving some 3.3 million Hungarians outside its borders"
+   ],
+   "src": "Macartney 1937, Hungary and Her Successors"
+  },
+  {
+   "id": "anschluss-austria-civil-1934",
+   "type": "unrest",
+   "countries": [
+    "AUT"
+   ],
+   "years": [
+    1934,
+    1934
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、ウィーンの労働者の住宅に政府軍の砲弾が撃ちこまれた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February government artillery shelled workers' housing in Vienna."
+    ]
+   },
+   "stat": [
+    "1934年2月のオーストリア内戦で、数百人が亡くなった",
+    "Several hundred people died in the Austrian civil war of February 1934"
+   ],
+   "src": "Austrian Resistance Documentation Archive (DÖW)"
+  },
+  {
+   "id": "portugal-1910",
+   "type": "revolution",
+   "countries": [
+    "PRT"
+   ],
+   "years": [
+    1910,
+    1910
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、リスボンで革命が起き、王が国を去り、共和国になった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October a revolution broke out in Lisbon, the king left the country, and Portugal became a republic."
+    ]
+   },
+   "stat": [
+    "1910年10月5日、ポルトガルは共和国になった",
+    "On 5 October 1910 Portugal became a republic"
+   ],
+   "src": "Portuguese Presidency of the Republic"
+  },
+  {
+   "id": "portugal-fires-2017",
+   "type": "fire",
+   "countries": [
+    "PRT"
+   ],
+   "years": [
+    2017,
+    2017
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月と10月、山火事が中部の村々を焼いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June and October wildfires burned through the villages of central Portugal."
+    ]
+   },
+   "stat": [
+    "2017年の山火事で、ポルトガルでは100人以上が亡くなった",
+    "More than 100 people died in the wildfires of 2017 in Portugal"
+   ],
+   "src": "Independent Technical Commission, Assembly of the Republic 2017-18"
+  },
+  {
+   "id": "lisbon-flood-1967",
+   "type": "flood",
+   "countries": [
+    "PRT"
+   ],
+   "years": [
+    1967,
+    1967
+   ],
+   "hit": 0.01,
+   "cities": [
+    "リスボン",
+    "Lisbon",
+    "シントラ",
+    "Sintra"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "11月の夜、大雨で家が泥水に流された。"
+    ],
+    "news": [
+     "11月の大雨で、リスボンのまわりの谷が洪水になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On a November night, heavy rain swept the house away in muddy water."
+    ],
+    "news": [
+     "In November, heavy rain flooded the valleys around Lisbon."
+    ]
+   },
+   "stat": [
+    "1967年11月のリスボン周辺の洪水で、少なくとも462人が亡くなった",
+    "The floods around Lisbon in November 1967 killed at least 462 people"
+   ],
+   "src": "Portuguese Environment Agency"
+  },
+  {
+   "id": "athens-quake-1999",
+   "type": "quake",
+   "countries": [
+    "GRC"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0.02,
+   "cities": [
+    "アテネ",
+    "Athens",
+    "ピレウス",
+    "Piraeus"
+   ],
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -2,
+    "happy": -10,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "9月、地震で家にひびが入り、何週間もテントで寝た。"
+    ],
+    "news": [
+     "9月、アテネの近くで地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In September an earthquake cracked the house, and for weeks the family slept in a tent."
+    ],
+    "news": [
+     "In September an earthquake struck near Athens."
+    ]
+   },
+   "stat": [
+    "1999年9月のアテネ地震で143人が亡くなった",
+    "The Athens earthquake of September 1999 killed 143 people"
+   ],
+   "src": "Institute of Geodynamics, National Observatory of Athens"
+  },
+  {
+   "id": "vajont-1963",
+   "type": "accident",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1963,
+    1963
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、北部のヴァイオントのダム湖に山が崩れ落ち、あふれた水が谷の町をのみこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October a mountainside fell into the Vajont reservoir in the north, and the wave that spilled over swallowed the town in the valley."
+    ]
+   },
+   "stat": [
+    "1963年10月のヴァイオント・ダムの災害で、約1,900人が亡くなった",
+    "The Vajont dam disaster of October 1963 killed about 1,900 people"
+   ],
+   "src": "Italian Senate commission of inquiry"
+  },
+  {
+   "id": "marcinelle-1956",
+   "type": "accident",
+   "countries": [
+    "BEL"
+   ],
+   "years": [
+    1956,
+    1956
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、マルシネルの炭鉱で火事が起き、坑夫たちが地下に閉じこめられた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August a fire broke out in the coal mine at Marcinelle, trapping the miners underground."
+    ]
+   },
+   "stat": [
+    "1956年8月のマルシネル炭鉱の事故で262人が亡くなった",
+    "The Marcinelle mine disaster of August 1956 killed 262 people"
+   ],
+   "src": "Bois du Cazier memorial site"
+  },
+  {
+   "id": "smolensk-2010",
+   "type": "transport",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "4月、大統領を乗せた飛行機がスモレンスクで墜落した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In April the plane carrying the president crashed at Smolensk."
+    ]
+   },
+   "stat": [
+    "2010年4月のスモレンスクの墜落事故で、大統領を含む96人が亡くなった",
+    "The Smolensk air crash of April 2010 killed 96 people, including the president"
+   ],
+   "src": "Polish Committee for Investigation of National Aviation Accidents"
+  },
+  {
+   "id": "rus-1917",
+   "type": "revolution",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR",
+    "EST",
+    "LVA",
+    "LTU",
+    "FIN",
+    "POL",
+    "MDA"
+   ],
+   "years": [
+    1917,
+    1917
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "革命が起き、皇帝が退位した。秋には、首都で政府が倒された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Revolution broke out and the tsar abdicated. In the autumn the government in the capital was overthrown."
+    ]
+   },
+   "stat": [
+    "1917年2月の革命で皇帝ニコライ2世が退位し、10月にはボリシェヴィキが権力を握った",
+    "In the February Revolution of 1917 Tsar Nicholas II abdicated, and in October the Bolsheviks seized power"
+   ],
+   "src": "Figes 1996, A People's Tragedy"
+  },
+  {
+   "id": "ussr-collapse-jobs",
+   "type": "finance",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR",
+    "MDA",
+    "LTU",
+    "LVA",
+    "EST"
+   ],
+   "years": [
+    1993,
+    1996
+   ],
+   "hit": 0.15,
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "勤めていた工場が止まり、給料が何か月も払われなかった。やがて職そのものがなくなった。"
+    ],
+    "news": [
+     "ソ連がなくなり、国の工場が次々に止まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The factory ground to a halt, and wages went unpaid for months. Then the job itself was gone."
+    ],
+    "news": [
+     "The Soviet Union was gone, and state factories shut down one after another."
+    ]
+   },
+   "stat": [
+    "ロシアの経済は1990年から1998年までに4割ほど縮んだ (世界銀行)",
+    "Russia's economy shrank by about 40% between 1990 and 1998 (World Bank)"
+   ],
+   "src": "World Bank, World Development Indicators"
+  }
+ ]
+}

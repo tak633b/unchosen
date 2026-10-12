@@ -1,0 +1,3713 @@
+{
+ "events": [
+  {
+   "id": "jp-kanto-quake-1923",
+   "type": "quake",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1923,
+    1923
+   ],
+   "hit": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "cities": [
+    "東京",
+    "横浜",
+    "Tokyo",
+    "Yokohama"
+   ],
+   "elsewhere": 0.01,
+   "kill": 0.0018,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "9月1日の昼前、大きな揺れのあとに町のあちこちから火が出た。家は焼け、何か月も焼け跡のバラックで暮らした。",
+     "9月1日、地震で家が崩れ、火に追われて川の土手まで逃げた。持ち出せたのは着ていた物だけだった。"
+    ],
+    "near": [
+     "9月1日の大地震で家の壁が落ちた。火の手は隣の町内で止まった。"
+    ],
+    "news": [
+     "9月1日、関東で大地震があった。東京と横浜は火に包まれ、町の大半が焼けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Just before noon on 1 September the ground heaved, and fires broke out all over the city. The house burned, and for months home was a shack among the ruins.",
+     "On 1 September the earthquake brought the house down, and the fires drove everyone to the riverbank. Nothing was saved but the clothes they stood in."
+    ],
+    "near": [
+     "The great earthquake of 1 September shook the plaster from the walls. The fire stopped one block away."
+    ],
+    "news": [
+     "On 1 September a great earthquake struck the Kantō region. Tokyo and Yokohama went up in flames, and most of both cities burned."
+    ]
+   },
+   "stat": [
+    "関東大震災の死者・行方不明者は約10万5,000人。その9割近くは火災によるものだった",
+    "The Great Kantō earthquake left about 105,000 dead or missing, nearly 90% of them killed by fire"
+   ],
+   "src": "内閣府 中央防災会議「災害教訓の継承に関する専門調査会報告書 1923 関東大震災」(2006)"
+  },
+  {
+   "id": "jp-war-draft-1937",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1937,
+    1945
+   ],
+   "hit": 0.55,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -15
+   },
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.032,
+   "cause": "戦争",
+   "who": "men",
+   "ja": {
+    "hit": [
+     "召集令状が届いた。町内の人に見送られて入営し、中国大陸へ送られた。",
+     "赤紙が来て兵隊にとられた。南の島で、飢えと病気に苦しみながら終戦を迎えた。",
+     "召集されて入営した。前線の部隊に回され、何年も家に帰れなかった。"
+    ],
+    "news": [
+     "戦争が長びき、町の若い男たちが次々に兵隊にとられていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The call-up papers came. Seen off by the neighborhood, entered the army and was shipped to the Chinese mainland.",
+     "The red draft card came. The war ended on a southern island, amid hunger and sickness.",
+     "Was called up and assigned to a front-line unit. For years there was no going home."
+    ],
+    "news": [
+     "The war dragged on, and one by one the young men of the town were taken for soldiers."
+    ]
+   },
+   "stat": [
+    "日中戦争から太平洋戦争までの日本の軍人・軍属の死者は、約230万人 (厚生労働省)",
+    "About 2.3 million Japanese soldiers and military personnel died in the wars of 1937-45 (Ministry of Health, Labour and Welfare)"
+   ],
+   "src": "厚生労働省 社会・援護局「援護50年史」; 内閣府 戦没者数"
+  },
+  {
+   "id": "jp-air-raids-1944",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.45,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "cities": [
+    "東京",
+    "横浜",
+    "大阪",
+    "名古屋",
+    "Tokyo",
+    "Yokohama",
+    "Osaka",
+    "Nagoya"
+   ],
+   "elsewhere": 0.08,
+   "kill": 0.004,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "夜、焼夷弾が雨のように降り、町が一晩で燃えた。防空壕を出ると、家は焼け跡になっていた。",
+     "空襲で家が焼けた。焼け残った親戚の家の二階に、家族で身を寄せた。"
+    ],
+    "near": [
+     "空襲警報が鳴るたびに防空壕へ走った。焼け跡は隣の町内まで来て止まった。"
+    ],
+    "news": [
+     "B29の編隊が来るようになり、日本の大きな町が焼夷弾で次々に焼かれていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At night incendiaries fell like rain, and the neighborhood burned in a single night. Coming out of the shelter, the house was ash.",
+     "The house burned in an air raid. The family crowded into the upstairs room of relatives whose home had survived."
+    ],
+    "near": [
+     "At every siren, a run to the shelter. The burned-out zone stopped one block away."
+    ],
+    "news": [
+     "Formations of B-29s began to come over, and one after another Japan’s big cities were burned with incendiaries."
+    ]
+   },
+   "stat": [
+    "空襲などで焼けた家は約223万戸、家を失った人は約970万人にのぼった (経済安定本部)",
+    "Air raids destroyed about 2.23 million homes and left some 9.7 million people homeless (Economic Stabilization Board)"
+   ],
+   "src": "経済安定本部「太平洋戦争による我国の被害総合報告書」(1949)"
+  },
+  {
+   "id": "jp-food-shortage-1941",
+   "type": "famine",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1941,
+    1947
+   ],
+   "hit": 0.8,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "urban": 1.2,
+   "rough": true,
+   "ja": {
+    "hit": [
+     "米の配給は少なく、さつまいもの蔓やすいとんでしのいだ。いつもおなかがすいていた。",
+     "食べ物が足りず、着物を持って農家へ買い出しに通った。帰りの汽車で、警察に米を取り上げられたこともあった。"
+    ],
+    "near": [
+     "配給は細り、芋や雑炊の日が続いたが、どうにか食べていけた。"
+    ],
+    "news": [
+     "米が配給になり、店の棚から食べ物が消えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rice ration was tiny. Meals were sweet-potato vines and flour dumplings, and hunger never quite went away.",
+     "There was never enough to eat. Kimonos were carried out to the farms to trade for food, and once the police seized the rice on the train home."
+    ],
+    "near": [
+     "The rations shrank, and it was sweet potatoes and thin gruel day after day, but there was enough to get by."
+    ],
+    "news": [
+     "Rice was rationed, and food vanished from the shop shelves."
+    ]
+   },
+   "stat": [
+    "1945年の米の収穫は約587万トンで、前の年の3分の2ほどだった (農林省)",
+    "The 1945 rice harvest was about 5.87 million tonnes, roughly two-thirds of the year before (Ministry of Agriculture and Forestry)"
+   ],
+   "src": "農林省 作物統計; 大豆生田稔『お米と食の近代史』"
+  },
+  {
+   "id": "jp-evacuation-1944",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.6,
+   "severity": 3,
+   "effect": {
+    "happy": -12
+   },
+   "cities": [
+    "東京",
+    "横浜",
+    "大阪",
+    "名古屋",
+    "Tokyo",
+    "Yokohama",
+    "Osaka",
+    "Nagoya"
+   ],
+   "elsewhere": 0.02,
+   "age": [
+    8,
+    12
+   ],
+   "kind": "move",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "学童疎開で、クラスの子たちと田舎のお寺へ移った。夜になると、家に帰りたくて布団の中で泣いた。",
+     "親元を離れて、遠い村の旅館で先生や同級生と暮らした。食べ物はいつも足りなかった。"
+    ],
+    "news": [
+     "町の子どもたちが、空襲を避けて田舎へ疎開していった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was evacuated with the rest of the class to a temple in the countryside. At night, in the futon, cried to go home.",
+     "Lived far from home at an inn in a distant village, with the teachers and classmates. There was never enough to eat."
+    ],
+    "news": [
+     "The city children were sent off to the countryside to escape the air raids."
+    ]
+   },
+   "stat": [
+    "1944年8月から、大都市の国民学校の子ども約40万人が集団疎開した (文部省)",
+    "From August 1944, some 400,000 schoolchildren from the big cities were evacuated in groups (Ministry of Education)"
+   ],
+   "src": "文部省『学制百年史』; 全国疎開学童連絡協議会"
+  },
+  {
+   "id": "jp-atomic-1945",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1945,
+    1945
+   ],
+   "hit": 0.004,
+   "severity": 5,
+   "effect": {
+    "health": -15,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.8
+   },
+   "urban": 0,
+   "kill": 0.003,
+   "cause": "戦争",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "8月6日の朝、広島の空が白く光った。町は一瞬で崩れ、燃えた。のちに被爆者健康手帳を受けとった。",
+     "8月9日、長崎の空で閃光が走り、爆風で家がつぶれた。その後、長く体のだるさが抜けなかった。"
+    ],
+    "news": [
+     "8月、広島と長崎に新型の爆弾が落とされ、町が一瞬で消えた。そのあと、戦争が終わった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 6 August the sky over Hiroshima flashed white. The city collapsed and burned in an instant. Years later came the survivor's health certificate.",
+     "On 9 August a flash split the sky over Nagasaki and the blast flattened the house. A heavy tiredness lingered for years afterward."
+    ],
+    "news": [
+     "In August new bombs were dropped on Hiroshima and Nagasaki, and the cities vanished in an instant. Then the war ended."
+    ]
+   },
+   "stat": [
+    "1945年末までの死者は、広島で約14万人、長崎で約7万4,000人と推計される",
+    "By the end of 1945 an estimated 140,000 people had died in Hiroshima and about 74,000 in Nagasaki"
+   ],
+   "src": "広島市・長崎市 原爆被災の記録; 放射線影響研究所"
+  },
+  {
+   "id": "jp-isewan-1959",
+   "type": "cyclone",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1959,
+    1959
+   ],
+   "hit": 0.15,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "cities": [
+    "名古屋",
+    "Nagoya"
+   ],
+   "elsewhere": 0.01,
+   "poor": 1.5,
+   "kill": 0.00005,
+   "cause": "災害",
+   "who": "frail",
+   "ja": {
+    "hit": [
+     "9月の夜、台風で堤防が切れ、家が屋根まで水につかった。泥の引いた家に戻れたのは何か月もあとだった。"
+    ],
+    "near": [
+     "伊勢湾台風の夜、風で瓦が飛んだ。水は家の前で止まった。"
+    ],
+    "news": [
+     "伊勢湾台風が名古屋のあたりを襲い、高潮で多くの家が流された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One September night the typhoon broke the levees and the house flooded to the eaves. It was months before the family could move back into the mud."
+    ],
+    "near": [
+     "On the night of the Ise Bay typhoon the roof tiles blew off, but the water stopped at the door."
+    ],
+    "news": [
+     "The Ise Bay typhoon struck the Nagoya area, and the storm surge swept many houses away."
+    ]
+   },
+   "stat": [
+    "伊勢湾台風の死者・行方不明者は5,098人 (気象庁)",
+    "The Ise Bay typhoon left 5,098 people dead or missing (Japan Meteorological Agency)"
+   ],
+   "src": "気象庁 災害をもたらした気象事例; 内閣府 災害教訓の継承に関する専門調査会"
+  },
+  {
+   "id": "jp-kobe-1995",
+   "type": "quake",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0.0025,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "urban": 1.5,
+   "kill": 0.00005,
+   "cause": "災害",
+   "who": "frail",
+   "ja": {
+    "hit": [
+     "1月17日の明け方、突き上げる揺れで家がつぶれた。しばらくは学校の体育館で寝起きした。"
+    ],
+    "news": [
+     "1月17日の明け方、神戸のあたりで大地震があった。高速道路が倒れ、町が燃えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn on 17 January a violent jolt brought the house down. For a while home was a school gymnasium."
+    ],
+    "news": [
+     "Before dawn on 17 January a great earthquake struck around Kobe. An expressway toppled and the city burned."
+    ]
+   },
+   "stat": [
+    "阪神・淡路大震災の死者は6,434人、避難した人は最も多い時で約31万6,000人 (消防庁・兵庫県)",
+    "The Great Hanshin earthquake killed 6,434 people; at its peak some 316,000 were in evacuation shelters (Fire and Disaster Management Agency, Hyogo Prefecture)"
+   ],
+   "src": "消防庁「阪神・淡路大震災について(確定報)」(2006); 兵庫県"
+  },
+  {
+   "id": "jp-sarin-1995",
+   "type": "terror",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0.0005,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -10
+   },
+   "cities": [
+    "東京",
+    "Tokyo"
+   ],
+   "elsewhere": 0,
+   "age": [
+    15,
+    75
+   ],
+   "ja": {
+    "hit": [
+     "3月20日の朝、通勤の地下鉄で目が痛み、息が苦しくなった。病院に運ばれ、何日も目のかすみが続いた。"
+    ],
+    "news": [
+     "3月20日、東京の地下鉄でサリンがまかれた。朝の通勤の電車だった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 20 March, on the subway to work, the eyes began to sting and breathing grew hard. Taken to hospital; the blurred vision lasted for days."
+    ],
+    "news": [
+     "On 20 March sarin gas was released on the Tokyo subway, on the morning commuter trains."
+    ]
+   },
+   "stat": [
+    "地下鉄サリン事件の死者は14人、負傷者は6,000人を超えた",
+    "The Tokyo subway sarin attack killed 14 people and injured more than 6,000"
+   ],
+   "src": "警察庁「平成7年 警察白書」; 東京地方裁判所の判決"
+  },
+  {
+   "id": "jp-tohoku-2011",
+   "type": "tsunami",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.1,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.4
+   },
+   "cities": [
+    "仙台",
+    "Sendai"
+   ],
+   "elsewhere": 0.004,
+   "kill": 0.00017,
+   "cause": "災害",
+   "who": "frail",
+   "ja": {
+    "hit": [
+     "3月11日の午後、長い揺れのあと、津波が町をのみこんだ。家は流され、何か月も避難所と仮設住宅で暮らした。"
+    ],
+    "near": [
+     "3月11日、立っていられないほどの揺れが続いた。高台へ逃げた。家は無事だった。"
+    ],
+    "news": [
+     "3月11日、東北の沖で大地震が起き、津波が海辺の町をのみこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the afternoon of 11 March, after the long shaking, the tsunami swallowed the town. The house was washed away; for months home was an evacuation shelter, then temporary housing."
+    ],
+    "near": [
+     "On 11 March the shaking went on so long it was impossible to stand. Fled to high ground. The house survived."
+    ],
+    "news": [
+     "On 11 March a great earthquake struck off Tōhoku, and a tsunami swallowed the coastal towns."
+    ]
+   },
+   "stat": [
+    "東日本大震災の死者・行方不明者は、災害関連死を含めて2万2,000人を超える (消防庁・復興庁)",
+    "The Great East Japan Earthquake left more than 22,000 dead or missing, including disaster-related deaths (Fire and Disaster Management Agency, Reconstruction Agency)"
+   ],
+   "src": "消防庁 東日本大震災記録集; 復興庁 震災関連死の死者数"
+  },
+  {
+   "id": "jp-fukushima-2011",
+   "type": "nuclear",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.0013,
+   "severity": 4,
+   "effect": {
+    "health": -2,
+    "happy": -20,
+    "home": true,
+    "job": true,
+    "wealth": -0.3
+   },
+   "urban": 0.5,
+   "ja": {
+    "hit": [
+     "原子力発電所の事故で、避難の指示が出た。数日のつもりで家を出たが、何年も戻れなかった。"
+    ],
+    "news": [
+     "福島の原子力発電所で事故が起き、まわりの町の人々が家を離れることになった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the nuclear accident an evacuation order came. Left home expecting to be back in a few days; it was years."
+    ],
+    "news": [
+     "An accident at the nuclear plant in Fukushima forced the people of the surrounding towns to leave their homes."
+    ]
+   },
+   "stat": [
+    "福島県からの避難者は、最も多い2012年5月に約16万4,000人だった (福島県)",
+    "Evacuees from Fukushima Prefecture peaked at about 164,000 in May 2012 (Fukushima Prefecture)"
+   ],
+   "src": "福島県 平成23年東北地方太平洋沖地震による被害状況即報"
+  },
+  {
+   "id": "cn-famine-1928",
+   "type": "famine",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1928,
+    1930
+   ],
+   "hit": 0.08,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -15,
+    "wealth": -0.5
+   },
+   "urban": 0.3,
+   "poor": 1.5,
+   "kill": 0.006,
+   "cause": "飢饉",
+   "who": "frail",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "雨が降らず、畑は乾いてひび割れた。木の皮と草の根を食べ、土地を手放した。"
+    ],
+    "news": [
+     "北の省々で日照りが続き、村々で飢える人が出た。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rain did not come, and the fields cracked. Ate tree bark and grass roots, and the land was sold."
+    ],
+    "news": [
+     "Drought held the northern provinces, and in the villages people began to starve."
+    ]
+   },
+   "stat": [
+    "1928〜30年の華北・西北の飢饉の死者は、少なくとも300万人とされる",
+    "The 1928-30 famine in northern and northwestern China killed at least 3 million people"
+   ],
+   "src": "Li, Lillian M. 2007, Fighting Famine in North China; Ó Gráda 2009, Famine: A Short History"
+  },
+  {
+   "id": "cn-flood-1931",
+   "type": "flood",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1931,
+    1931
+   ],
+   "hit": 0.05,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.5
+   },
+   "urban": 0.6,
+   "poor": 1.5,
+   "kill": 0.001,
+   "cause": "災害",
+   "who": "frail",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "夏、長雨で大きな川があふれ、村は何週間も水の下にあった。小舟と堤防の上で暮らした。"
+    ],
+    "news": [
+     "長江と淮河があふれ、広い土地が水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That summer the long rains burst the great rivers, and the village lay under water for weeks. Life was lived on boats and on the dikes."
+    ],
+    "news": [
+     "The Yangtze and the Huai burst their banks, and vast stretches of land went under water."
+    ]
+   },
+   "stat": [
+    "1931年の長江・淮河の洪水では、2,500万人ほどが被害を受けた",
+    "The 1931 floods on the Yangtze and Huai rivers affected some 25 million people"
+   ],
+   "src": "Courtney, Chris 2018, The Nature of Disaster in China: The 1931 Yangzi River Flood"
+  },
+  {
+   "id": "cn-war-1937",
+   "type": "war",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1937,
+    1945
+   ],
+   "hit": 0.2,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "urban": 1.5,
+   "kill": 0.027,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "日本軍が近づき、家を捨てて西へ逃げた。歩いて、何か月もかけて奥地の町にたどり着いた。",
+     "町が爆撃され、家が焼けた。焼け跡に戻ることはなかった。",
+     "村に兵隊が来て、食べ物と家畜を持っていった。家族は山の中に隠れて暮らした。"
+    ],
+    "near": [
+     "空襲のたびに防空壕へ逃げこんだ。爆弾は隣の通りに落ちた。"
+    ],
+    "news": [
+     "日本との戦争が始まった。南京が落ち、何百万人もが西へ逃れていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "As the Japanese army approached, the family abandoned the house and fled west, walking for months to a town in the interior.",
+     "The town was bombed and the house burned. There was no going back to the ruins.",
+     "Soldiers came to the village and took the food and the animals. The family lived hidden in the hills."
+    ],
+    "near": [
+     "At every raid, a dash into the shelter. The bombs fell on the next street."
+    ],
+    "news": [
+     "War with Japan began. Nanjing fell, and millions fled to the west."
+    ]
+   },
+   "stat": [
+    "日中戦争で家を追われて逃げた人は、8,000万〜1億人にのぼったとされる",
+    "Between 80 and 100 million people are thought to have been driven from their homes by the war with Japan"
+   ],
+   "src": "Mitter, Rana 2013, Forgotten Ally: China's World War II, 1937-1945; MacKinnon 2008, Wuhan 1938"
+  },
+  {
+   "id": "cn-henan-famine-1942",
+   "type": "famine",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1942,
+    1943
+   ],
+   "hit": 0.03,
+   "severity": 4,
+   "effect": {
+    "health": -12,
+    "happy": -18,
+    "wealth": -0.5
+   },
+   "urban": 0.3,
+   "poor": 1.5,
+   "kill": 0.003,
+   "cause": "飢饉",
+   "who": "frail",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "日照りといなごで麦が実らなかった。税の穀物は取り立てられ、村を出て、物乞いをしながら西へ歩いた。"
+    ],
+    "news": [
+     "河南で大飢饉が起き、多くの人が村を捨てて逃げた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drought and locusts left the wheat unharvested, yet the grain tax was still collected. Left the village and walked west, begging along the way."
+    ],
+    "news": [
+     "A great famine struck Henan, and many abandoned their villages and fled."
+    ]
+   },
+   "stat": [
+    "1942〜43年の河南の飢饉では、200万人前後が亡くなったとされる",
+    "The Henan famine of 1942-43 is thought to have killed around 2 million people"
+   ],
+   "src": "Garnaut, Anthony 2013, A Quantitative Description of the Henan Famine of 1942, Modern Asian Studies 47:2014; Mitter 2013"
+  },
+  {
+   "id": "cn-civil-war-1946",
+   "type": "war",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1946,
+    1949
+   ],
+   "hit": 0.1,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "wealth": -0.4
+   },
+   "kill": 0.003,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "内戦で町の取り合いが続き、家族で戦場を避けて逃げまわった。紙幣は値打ちを失った。",
+     "兵隊にとられそうになり、村を出て身を隠した。"
+    ],
+    "news": [
+     "国民党と共産党の内戦が続き、1949年10月、中華人民共和国が生まれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The civil war fought over the town again and again, and the family kept fleeing the front. The paper money lost its worth.",
+     "Facing conscription, left the village and went into hiding."
+    ],
+    "news": [
+     "The civil war between the Nationalists and the Communists dragged on, and in October 1949 the People's Republic was proclaimed."
+    ]
+   },
+   "stat": [
+    "1946〜49年の国共内戦の死者は、少なくとも200万人とされる",
+    "The Chinese Civil War of 1946-49 killed at least 2 million people"
+   ],
+   "src": "Lary, Diana 2015, China's Civil War: A Social History, 1945-1949",
+   "newsAt": 1949
+  },
+  {
+   "id": "cn-great-famine-1959",
+   "type": "famine",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1959,
+    1961
+   ],
+   "hit": 0.6,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -15,
+    "wealth": -0.3
+   },
+   "urban": 0.5,
+   "poor": 1.3,
+   "kill": 0.035,
+   "cause": "飢饉",
+   "who": "frail",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "共同食堂の粥が、日ごとに水のように薄くなった。木の皮と野草を食べ、足がむくんだ。",
+     "村の穀物は国に納めさせられ、春には食べる物がなくなった。何か月も飢えた。"
+    ],
+    "near": [
+     "食べ物は減ったが、町の配給のおかげで、どうにか飢えずにすんだ。"
+    ],
+    "news": [
+     "大躍進の失敗で、国中に飢えが広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Day by day the porridge in the communal canteen grew thinner, until it was like water. Ate tree bark and wild greens, and the legs swelled.",
+     "The village grain was taken for the state, and by spring there was nothing left to eat. Months of hunger followed."
+    ],
+    "near": [
+     "Food was scarce, but the city ration was just enough to stave off hunger."
+    ],
+    "news": [
+     "The Great Leap Forward failed, and hunger spread across the whole country."
+    ]
+   },
+   "stat": [
+    "1959〜61年の大飢饉の死者は、少なくとも1,500万人、多くの推計では3,000万人前後とされる",
+    "The famine of 1959-61 killed at least 15 million people; many estimates put the toll around 30 million"
+   ],
+   "src": "Ashton et al. 1984, Population and Development Review 10:613; Peng Xizhe 1987, PDR 13:639; Yang Jisheng 2012, Tombstone"
+  },
+  {
+   "id": "cn-tangshan-1976",
+   "type": "quake",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1976,
+    1976
+   ],
+   "hit": 0.0015,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.5
+   },
+   "urban": 3,
+   "kill": 0.00026,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "7月28日の明け方、唐山の町が一瞬で崩れた。がれきの下から助け出され、何か月もテントで暮らした。"
+    ],
+    "news": [
+     "7月28日、唐山で大地震があり、町がほとんど崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn on 28 July the city of Tangshan collapsed in an instant. Pulled from the rubble, the family lived for months in a tent."
+    ],
+    "news": [
+     "On 28 July a great earthquake struck Tangshan, and almost the whole city fell."
+    ]
+   },
+   "stat": [
+    "唐山地震の死者は、公式の発表で24万2,000人あまり",
+    "The official death toll of the Tangshan earthquake was more than 242,000"
+   ],
+   "src": "中国地震局; Chen Yong et al. 1988, The Great Tangshan Earthquake of 1976"
+  },
+  {
+   "id": "cn-flood-1998",
+   "type": "flood",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0.01,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -10,
+    "home": true,
+    "wealth": -0.3
+   },
+   "urban": 0.5,
+   "poor": 1.5,
+   "kill": 0.000003,
+   "cause": "災害",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "夏の洪水で堤防が切れ、家が水につかった。高台の学校で寝起きした。"
+    ],
+    "news": [
+     "長江などで大洪水が起き、兵士たちが堤防に土のうを積み続けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That summer the flood broke the levee and the house went under. The family slept in a school on high ground."
+    ],
+    "news": [
+     "Great floods struck the Yangtze and other rivers, and soldiers piled sandbags on the levees day and night."
+    ]
+   },
+   "stat": [
+    "1998年の長江などの洪水の死者は4,150人 (中国政府)",
+    "The 1998 floods on the Yangtze and other rivers killed 4,150 people (Chinese government)"
+   ],
+   "src": "国家防汛抗旱総指揮部; Munich Re NatCatSERVICE"
+  },
+  {
+   "id": "cn-sars-2003",
+   "type": "epidemic",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    2003,
+    2003
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "SARSがはやり、町にマスクの人があふれた。学校が閉まり、熱を測られる日が続いた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "SARS broke out, and the streets filled with masked faces. Schools closed, and temperatures were checked everywhere."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "中国本土のSARSの患者は5,327人、死者は349人 (WHO)",
+    "Mainland China recorded 5,327 SARS cases and 349 deaths (WHO)"
+   ],
+   "src": "WHO 2003, Summary of probable SARS cases with onset of illness from 1 November 2002 to 31 July 2003"
+  },
+  {
+   "id": "cn-sichuan-2008",
+   "type": "quake",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    2008,
+    2008
+   ],
+   "hit": 0.004,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "urban": 0.8,
+   "poor": 1.5,
+   "kill": 0.00007,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "5月12日の午後、地震で家が崩れた。山の道は崩れ、助けが来るまで何日もかかった。何か月も仮設の住まいで暮らした。"
+    ],
+    "news": [
+     "5月12日、四川で大地震があり、学校を含む多くの建物が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the afternoon of 12 May the earthquake brought the house down. The mountain roads had collapsed, and help took days to arrive. For months home was a temporary shelter."
+    ],
+    "news": [
+     "On 12 May a great earthquake struck Sichuan, and many buildings collapsed, schools among them."
+    ]
+   },
+   "stat": [
+    "四川大地震の死者は6万9,000人あまり、行方不明者は1万8,000人 (国務院)",
+    "The Sichuan earthquake killed more than 69,000 people and left 18,000 missing (State Council)"
+   ],
+   "src": "国務院新聞弁公室 2008"
+  },
+  {
+   "id": "kr-march-first-1919",
+   "type": "unrest",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1919,
+    1919
+   ],
+   "hit": 0.003,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "age": [
+    14,
+    70
+   ],
+   "ja": {
+    "hit": [
+     "3月、通りに出て「万歳」を叫んだ。憲兵に捕らえられ、何か月も監獄に入れられた。"
+    ],
+    "news": [
+     "3月1日、独立を求める人々が各地の通りに出て「万歳」を叫んだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In March, went out into the street and shouted \"Manse!\". Arrested by the military police and held in prison for months."
+    ],
+    "news": [
+     "On 1 March people across the country poured into the streets shouting \"Manse!\" for independence."
+    ]
+   },
+   "stat": [
+    "三・一運動では、約4万6,000人が逮捕された (朝鮮総督府の記録)",
+    "About 46,000 people were arrested in the March First Movement (records of the Government-General of Korea)"
+   ],
+   "src": "朝鮮総督府 警務局の記録; 국사편찬위원회 (National Institute of Korean History)"
+  },
+  {
+   "id": "kr-mobilization-1939",
+   "type": "war",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.15,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "age": [
+    16,
+    40
+   ],
+   "sex": "M",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "労務の動員で、日本の炭鉱へ送られた。終戦まで、家には帰れなかった。",
+     "徴用されて、遠くの工場で働かされた。食べ物は少なく、休みもなかった。"
+    ],
+    "news": [
+     "戦争のために、村の若い男たちが日本の炭鉱や工場へ連れていかれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Mobilized for labor and sent to a coal mine in Japan. There was no going home until the war ended.",
+     "Conscripted to work in a distant factory, on little food and no days off."
+    ],
+    "news": [
+     "For the war, the young men of the village were taken away to mines and factories in Japan."
+    ]
+   },
+   "stat": [
+    "1939〜45年に、朝鮮から日本本土へ労務動員された人は約70万人とされる",
+    "About 700,000 Koreans are estimated to have been mobilized for labor in Japan proper in 1939-45"
+   ],
+   "src": "大蔵省管理局「日本人の海外活動に関する歴史的調査」(1947); 外村大『朝鮮人強制連行』(2012)"
+  },
+  {
+   "id": "kr-war-1950",
+   "type": "war",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1950,
+    1953
+   ],
+   "hit": 0.4,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.7
+   },
+   "kill": 0.04,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "戦争が始まり、荷物を背負って避難民の列に加わり、南へ歩いた。釜山の丘のバラックで冬を越した。",
+     "町が戦場になり、家が焼けた。ソウルは何度も取ったり取られたりした。",
+     "兵隊にとられて前線に送られた。冬の山で、凍えながら戦った。"
+    ],
+    "near": [
+     "戦線が近くまで来て、夜通し砲声が聞こえた。家は焼け残った。"
+    ],
+    "news": [
+     "6月25日、北の軍が境を越えて攻めてきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war began. Shouldering what could be carried, joined the columns of refugees walking south, and wintered in a shack on a hillside in Busan.",
+     "The town became a battlefield and the house burned. Seoul changed hands again and again.",
+     "Was drafted and sent to the front, and fought through the winter in the frozen mountains."
+    ],
+    "near": [
+     "The front came close, and the guns could be heard all night. The house was spared."
+    ],
+    "news": [
+     "On 25 June the North’s army crossed the border."
+    ]
+   },
+   "stat": [
+    "朝鮮戦争の死者は、南北の兵士と民間人を合わせて250万人を超えるとされる",
+    "The Korean War is estimated to have killed more than 2.5 million soldiers and civilians, North and South"
+   ],
+   "src": "国防部 軍史編纂研究所『6・25戦争史』; Cumings 2010, The Korean War: A History"
+  },
+  {
+   "id": "kr-sampoong-1995",
+   "type": "accident",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "news": [
+     "6月、ソウルの三豊百貨店が客で混む夕方に崩れ落ちた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "In June the Sampoong department store in Seoul collapsed in the busy evening hours."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "三豊百貨店の崩壊で、502人が亡くなった",
+    "The collapse of the Sampoong department store killed 502 people"
+   ],
+   "src": "서울특별시 삼풍백화점 붕괴사고 백서 (1996)"
+  },
+  {
+   "id": "kr-sewol-2014",
+   "type": "transport",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    2014,
+    2014
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "4月16日、旅客船セウォル号が沈んだ。乗っていたのは、修学旅行の高校生たちだった。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "On 16 April the ferry Sewol sank. On board were high-school students on a class trip."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "セウォル号の沈没で304人が亡くなり、その大半は高校生だった",
+    "The sinking of the Sewol killed 304 people, most of them high-school students"
+   ],
+   "src": "세월호 참사 특별조사위원회 (Special Investigation Commission on the Sewol Ferry Disaster)"
+  },
+  {
+   "id": "mn-purges-1937",
+   "type": "unrest",
+   "countries": [
+    "MNG"
+   ],
+   "years": [
+    1937,
+    1939
+   ],
+   "hit": 0.05,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -18
+   },
+   "age": [
+    12,
+    80
+   ],
+   "kill": 0.03,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "夜、役人が来て、近くの寺の僧が連れていかれた。その後、寺は閉ざされ、壊された。",
+     "「日本の手先」と疑われて取り調べを受け、何か月も拘束された。"
+    ],
+    "news": [
+     "粛清が始まり、僧や役人が次々に捕らえられた。各地の寺が閉ざされた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Officials came at night and took the monks of the nearby monastery. Afterwards the monastery was closed and torn down.",
+     "Accused of being a \"Japanese spy\", was interrogated and held for months."
+    ],
+    "news": [
+     "The purges began. Monks and officials were arrested one after another, and monasteries everywhere were closed."
+    ]
+   },
+   "stat": [
+    "1937〜39年の大粛清で、僧1万7,000人ほどを含む2万〜3万人が処刑されたとされる",
+    "Between 20,000 and 30,000 people, including some 17,000 monks, are thought to have been executed in the purges of 1937-39"
+   ],
+   "src": "Kaplonski, Christopher 2014, The Lama Question; Baabar 1999, Twentieth Century Mongolia"
+  },
+  {
+   "id": "mn-collapse-1991",
+   "type": "finance",
+   "countries": [
+    "MNG"
+   ],
+   "years": [
+    1991,
+    1993
+   ],
+   "hit": 0.15,
+   "severity": 3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.3,
+    "job": true
+   },
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "ja": {
+    "hit": [
+     "ソ連からの援助が止まり、勤め先の工場が動かなくなった。給料は払われなくなった。"
+    ],
+    "news": [
+     "ソ連が崩れ、援助と石油が止まった。店の棚から品物が消え、配給の切符が配られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Soviet aid stopped, and the factory ground to a halt. The wages stopped coming."
+    ],
+    "news": [
+     "The Soviet Union collapsed, and the aid and the oil stopped. Goods vanished from the shelves and ration coupons were handed out."
+    ]
+   },
+   "stat": [
+    "1990〜93年に、モンゴルの経済はおよそ2割縮んだ (世界銀行)",
+    "Between 1990 and 1993 Mongolia's economy shrank by about a fifth (World Bank)"
+   ],
+   "src": "World Bank, World Development Indicators (GDP, constant prices)"
+  },
+  {
+   "id": "mn-dzud-2000",
+   "type": "drought",
+   "countries": [
+    "MNG"
+   ],
+   "years": [
+    2000,
+    2002
+   ],
+   "hit": 0.1,
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.5
+   },
+   "urban": 0.2,
+   "poor": 1.5,
+   "rough": true,
+   "ja": {
+    "hit": [
+     "厳しい冬が続き、雪の下の草を食べられない家畜が次々に死んだ。残った家畜では暮らしが立たず、町へ移った。"
+    ],
+    "news": [
+     "寒害 (ゾド) の冬が続き、草原で多くの家畜が死んだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Harsh winter followed harsh winter, and the herd, unable to reach the grass under the snow, died off. What was left could not support the family, and they moved to town."
+    ],
+    "news": [
+     "Winters of dzud followed one after another, and great numbers of livestock died on the steppe."
+    ]
+   },
+   "stat": [
+    "1999〜2002年の寒害で、家畜約1,100万頭が死んだ",
+    "About 11 million head of livestock died in the dzud winters of 1999-2002"
+   ],
+   "src": "UNDP Mongolia; FAO 2002, Mongolia dzud appeal"
+  },
+  {
+   "id": "mn-dzud-2010",
+   "type": "drought",
+   "countries": [
+    "MNG"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.1,
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.5
+   },
+   "urban": 0.2,
+   "poor": 1.5,
+   "rough": true,
+   "ja": {
+    "hit": [
+     "冬の大雪と寒さで、家畜の半分以上が死んだ。春になって、残りを売り、ウランバートルの郊外のゲルに移った。"
+    ],
+    "news": [
+     "記録的な寒害 (ゾド) で、国じゅうの家畜が大量に死んだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Deep snow and bitter cold killed more than half the herd. In spring the rest were sold, and the family moved to a ger on the edge of Ulaanbaatar."
+    ],
+    "news": [
+     "A record dzud killed vast numbers of livestock across the country."
+    ]
+   },
+   "stat": [
+    "2009〜10年の冬の寒害で、家畜の2割ほどにあたる約850万頭が死んだ",
+    "The dzud of winter 2009-10 killed about 8.5 million animals, around a fifth of all livestock"
+   ],
+   "src": "Mongolia National Statistical Office; UN Mongolia 2010, Dzud appeal"
+  },
+  {
+   "id": "vn-famine-1945",
+   "type": "famine",
+   "countries": [
+    "VNM"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.35,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -18,
+    "wealth": -0.4
+   },
+   "urban": 0.5,
+   "poor": 1.5,
+   "kill": 0.04,
+   "cause": "飢饉",
+   "who": "frail",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "米は取り立てられ、田にはジュートを植えさせられた。冬から春まで、草と木の根で飢えをしのいだ。"
+    ],
+    "news": [
+     "北部で大飢饉が起き、道ばたに倒れる人が出た。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rice was requisitioned, and the paddies were planted with jute. From winter to spring, hunger was held off with grass and roots."
+    ],
+    "news": [
+     "A great famine struck the north, and people collapsed by the roadside."
+    ]
+   },
+   "stat": [
+    "1944〜45年の北部の飢饉の死者は、少なくとも100万人とされる (ベトナム政府は200万人とする)",
+    "The 1944-45 famine in the north killed at least 1 million people (the Vietnamese government puts it at 2 million)"
+   ],
+   "src": "Gunn, Geoffrey 2014, Rice Wars in Colonial Vietnam; Furuta Motoo 1995"
+  },
+  {
+   "id": "vn-indochina-war-1946",
+   "type": "war",
+   "countries": [
+    "VNM"
+   ],
+   "years": [
+    1946,
+    1954
+   ],
+   "hit": 0.1,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true
+   },
+   "kill": 0.012,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "戦闘が村に及び、家が焼かれた。山の方へ逃げ、何年も戻れなかった。",
+     "抗戦に加わり、森の中で何年も暮らした。"
+    ],
+    "news": [
+     "フランスとの戦争が続いた。1954年5月、ディエンビエンフーでフランス軍が降伏した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fighting reached the village and the house was burned. Fled toward the mountains and could not return for years.",
+     "Joined the resistance and lived in the forest for years."
+    ],
+    "news": [
+     "The war with France went on. In May 1954 the French garrison at Dien Bien Phu surrendered."
+    ]
+   },
+   "stat": [
+    "第一次インドシナ戦争のベトナム人の死者は、少なくとも40万人とされる",
+    "At least 400,000 Vietnamese are thought to have died in the First Indochina War"
+   ],
+   "src": "Clodfelter 2017, Warfare and Armed Conflicts; Goscha 2016, The Road to Dien Bien Phu",
+   "newsAt": 1954
+  },
+  {
+   "id": "vn-war-1965",
+   "type": "war",
+   "countries": [
+    "VNM"
+   ],
+   "years": [
+    1965,
+    1975
+   ],
+   "hit": 0.3,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.5
+   },
+   "kill": 0.025,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "爆撃で村が焼かれ、難民として町はずれのキャンプに移った。",
+     "兵隊にとられ、何年も戦った。",
+     "空襲を避けて、田舎へ疎開した。夜は防空壕で眠った。"
+    ],
+    "near": [
+     "近くに爆弾が落ち、窓が割れた。家の者は無事だった。"
+    ],
+    "news": [
+     "戦争が激しくなり、空から爆弾が降り続けた。1975年4月30日、サイゴンが陥落した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Bombing set the village ablaze. Became a refugee in a camp on the edge of town.",
+     "Was drafted and fought for years.",
+     "Evacuated to the countryside to escape the air raids, sleeping at night in a shelter."
+    ],
+    "near": [
+     "A bomb fell close by and shattered the windows. Everyone in the house was unhurt."
+    ],
+    "news": [
+     "The war grew fiercer, and bombs kept falling from the sky. On 30 April 1975 Saigon fell."
+    ]
+   },
+   "stat": [
+    "1965〜75年のベトナム戦争のベトナム人の死者は、約100万人と推計される",
+    "About 1 million Vietnamese are estimated to have died in the war of 1965-75"
+   ],
+   "src": "Hirschman, Preston & Vu 1995, Population and Development Review 21:783",
+   "newsAt": 1975
+  },
+  {
+   "id": "vn-border-war-1979",
+   "type": "war",
+   "countries": [
+    "VNM"
+   ],
+   "years": [
+    1979,
+    1979
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "rough": true,
+   "ja": {
+    "news": [
+     "2月、中国軍が北の国境を越えて攻めてきた。戦いはひと月で終わった。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "In February Chinese troops crossed the northern border. The fighting ended within a month."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "中越戦争の死者は、両軍合わせて数万人とされる。中国軍の死者は約2万6,000人",
+    "The 1979 Sino-Vietnamese war killed tens of thousands; Chinese dead alone numbered about 26,000"
+   ],
+   "src": "Zhang Xiaoming 2015, Deng Xiaoping's Long War"
+  },
+  {
+   "id": "kh-civil-war-1970",
+   "type": "war",
+   "countries": [
+    "KHM"
+   ],
+   "years": [
+    1970,
+    1974
+   ],
+   "hit": 0.3,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "urban": 0.5,
+   "kill": 0.03,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "空からの爆撃と戦闘で村にいられなくなり、プノンペンへ逃れた。川べりの小屋で暮らした。",
+     "戦闘が村に迫り、家を捨てて逃げた。"
+    ],
+    "news": [
+     "内戦が国中に広がり、空からの爆撃が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Bombing and fighting made the village impossible, and the family fled to Phnom Penh to live in a shack by the river.",
+     "The fighting closed in on the village, and the family abandoned the house and ran."
+    ],
+    "news": [
+     "Civil war spread across the country, and the bombing from the air went on and on."
+    ]
+   },
+   "stat": [
+    "1970〜75年の内戦で、200万人ほどが家を追われてプノンペンなどへ逃れた",
+    "Some 2 million people were driven from their homes into Phnom Penh and other towns by the civil war of 1970-75"
+   ],
+   "src": "Kiernan, Ben 2008, The Pol Pot Regime; Heuveline 1998, Population Studies 52:49"
+  },
+  {
+   "id": "kh-khmer-rouge-1975",
+   "type": "genocide",
+   "countries": [
+    "KHM"
+   ],
+   "years": [
+    1975,
+    1978
+   ],
+   "hit": 0,
+   "severity": 5,
+   "effect": {},
+   "kill": 0.2,
+   "cause": "飢饉",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [],
+    "news": []
+   },
+   "en": {
+    "hit": [],
+    "news": []
+   },
+   "stat": [
+    "1975〜79年のクメール・ルージュの支配のもとで、170万〜220万人が亡くなったとされる",
+    "Between 1.7 and 2.2 million people are thought to have died under Khmer Rouge rule in 1975-79"
+   ],
+   "src": "Kiernan, Ben 2003, Journal of Genocide Research 5:585; Heuveline 2015, Population Studies 69:201"
+  },
+  {
+   "id": "kh-landmines-1979",
+   "type": "war",
+   "countries": [
+    "KHM"
+   ],
+   "years": [
+    1979,
+    2000
+   ],
+   "hit": 0.006,
+   "severity": 3,
+   "effect": {
+    "health": -15,
+    "happy": -15,
+    "job": true
+   },
+   "urban": 0.2,
+   "age": [
+    5,
+    70
+   ],
+   "ja": {
+    "hit": [
+     "畑の近くで地雷を踏み、片脚を失った。",
+     "森で薪を集めていて、埋まっていた地雷が爆発した。長いあいだ病院で過ごした。"
+    ],
+    "news": [
+     "内戦のあとの土地には、地雷と不発弾が数えきれないほど残っていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Stepped on a landmine near the fields and lost a leg.",
+     "Gathering firewood in the forest, set off a buried mine. Spent a long time in hospital."
+    ],
+    "news": [
+     "Countless landmines and unexploded bombs lay buried across the land after the wars."
+    ]
+   },
+   "stat": [
+    "1979年からの地雷と不発弾の死傷者は、6万4,000人を超える (カンボジア地雷対策局)",
+    "Landmines and unexploded ordnance have killed or injured more than 64,000 people since 1979 (Cambodian Mine Action and Victim Assistance Authority)"
+   ],
+   "src": "Cambodian Mine Action and Victim Assistance Authority (CMAA), Cambodia Mine/ERW Victim Information System"
+  },
+  {
+   "id": "la-bombing-1964",
+   "type": "war",
+   "countries": [
+    "LAO"
+   ],
+   "years": [
+    1964,
+    1973
+   ],
+   "hit": 0.25,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "urban": 0.3,
+   "rough": true,
+   "ja": {
+    "hit": [
+     "昼は爆撃を避けて洞窟に隠れ、田は夜に耕した。やがて村を捨てて逃げた。",
+     "爆撃で村が焼け、難民として別の州へ移った。"
+    ],
+    "news": [
+     "国の東の山地に、来る日も来る日も爆弾が落とされた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "By day the family hid from the bombers in caves, and worked the fields by night. In the end they abandoned the village.",
+     "Bombs burned the village, and the family became refugees in another province."
+    ],
+    "news": [
+     "Day after day, bombs fell on the mountains in the east of the country."
+    ]
+   },
+   "stat": [
+    "1964〜73年に、ラオスには58万回の爆撃で200万トンあまりの爆弾が落とされた",
+    "Between 1964 and 1973 more than 2 million tons of bombs were dropped on Laos in 580,000 bombing missions"
+   ],
+   "src": "Legacies of War; US Air Force records compiled by the National Regulatory Authority for UXO/Mine Action in Lao PDR"
+  },
+  {
+   "id": "la-uxo-1974",
+   "type": "war",
+   "countries": [
+    "LAO"
+   ],
+   "years": [
+    1974,
+    2020
+   ],
+   "hit": 0.004,
+   "severity": 3,
+   "effect": {
+    "health": -15,
+    "happy": -15
+   },
+   "urban": 0.2,
+   "age": [
+    5,
+    70
+   ],
+   "ja": {
+    "hit": [
+     "畑を耕していて、土の中の不発弾が爆発した。片手を失った。",
+     "子どもたちが拾った小さな爆弾が爆発し、大けがをした。"
+    ],
+    "news": [
+     "戦争のときの不発弾で、畑や道ばたでけがをする人があとを絶たなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Plowing the field, struck an unexploded bomb buried in the soil, and lost a hand.",
+     "A small bomblet the children picked up went off, causing terrible injuries."
+    ],
+    "news": [
+     "Unexploded bombs from the war went on maiming people in fields and by the roadside."
+    ]
+   },
+   "stat": [
+    "1974年から、戦争のあとに残った不発弾による死傷者は2万人を超えた (ラオス国家不発弾対策局)",
+    "Since 1974 unexploded ordnance has killed or injured more than 20,000 people (National Regulatory Authority for UXO/Mine Action, Lao PDR)"
+   ],
+   "src": "National Regulatory Authority for UXO/Mine Action in Lao PDR (NRA)"
+  },
+  {
+   "id": "la-dam-2018",
+   "type": "accident",
+   "countries": [
+    "LAO"
+   ],
+   "years": [
+    2018,
+    2018
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "rough": true,
+   "ja": {
+    "news": [
+     "7月、南部で建設中のダムが決壊し、下流の村々が水にのまれた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "In July a dam under construction in the south collapsed, and the villages downstream were swept away."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "セピアン・セナムノイ・ダムの決壊で、70人あまりが亡くなり、7,000人ほどが家を失った",
+    "The collapse of the Xe-Pian Xe-Namnoy dam killed more than 70 people and left about 7,000 homeless"
+   ],
+   "src": "UN OCHA 2018, Lao PDR flash update; Lao government"
+  },
+  {
+   "id": "th-thammasat-1976",
+   "type": "unrest",
+   "countries": [
+    "THA"
+   ],
+   "years": [
+    1976,
+    1976
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "10月6日、タマサート大学に集まった学生たちに、警察と右派の集団が銃を向けた。その夜、軍が政権を握った。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "On 6 October police and right-wing militias opened fire on students gathered at Thammasat University. That evening the army seized power."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "10月6日の事件の死者は、公式には46人とされる",
+    "The official death toll of the 6 October massacre was 46"
+   ],
+   "src": "Thongchai Winichakul 2020, Moments of Silence: The Unforgetting of the October 6, 1976, Massacre in Bangkok"
+  },
+  {
+   "id": "th-black-may-1992",
+   "type": "unrest",
+   "countries": [
+    "THA"
+   ],
+   "years": [
+    1992,
+    1992
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "rough": true,
+   "ja": {
+    "news": [
+     "5月、軍人の首相に反対してバンコクの通りを埋めた人々に、軍が発砲した。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "In May the army opened fire on the crowds filling Bangkok's streets in protest against a general as prime minister."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "「暗黒の5月」の死者は、公式には52人とされる",
+    "The official death toll of \"Black May\" was 52"
+   ],
+   "src": "Thai government fact-finding committee 1992; Human Rights Watch"
+  },
+  {
+   "id": "th-flood-2011",
+   "type": "flood",
+   "countries": [
+    "THA"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.08,
+   "severity": 4,
+   "effect": {
+    "health": -2,
+    "happy": -12,
+    "wealth": -0.15,
+    "job": true
+   },
+   "poor": 1.5,
+   "kill": 0.00001,
+   "cause": "災害",
+   "ja": {
+    "hit": [
+     "秋の洪水で、家の一階が何週間も水につかった。勤め先の工業団地も水に沈み、仕事がなくなった。",
+     "洪水で家が胸の高さまで水につかった。2階で暮らし、舟で買い物に出た。"
+    ],
+    "news": [
+     "チャオプラヤ川の流域で大洪水が起き、工場もバンコクの一部も水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the autumn floods the ground floor stood in water for weeks. The industrial estate went under too, and the job with it.",
+     "The flood rose chest-high in the house. The family lived upstairs and went shopping by boat."
+    ],
+    "news": [
+     "Great floods swept the Chao Phraya basin, drowning factories and parts of Bangkok."
+    ]
+   },
+   "stat": [
+    "2011年の洪水で815人が亡くなり、1,360万人が被害を受けた (世界銀行)",
+    "The 2011 floods killed 815 people and affected 13.6 million (World Bank)"
+   ],
+   "src": "World Bank 2012, Thai Flood 2011: Rapid Assessment for Resilient Recovery and Reconstruction Planning"
+  },
+  {
+   "id": "mm-ww2-1942",
+   "type": "war",
+   "countries": [
+    "MMR"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.2,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "kill": 0.012,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "日本軍とイギリス軍の戦いが町に及び、家が焼けた。村へ逃れ、物の乏しい年月を過ごした。",
+     "道路と鉄道の工事に駆り出され、何か月も帰れなかった。"
+    ],
+    "news": [
+     "日本軍が攻めこみ、イギリスの軍は退いた。国じゅうが戦場になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fighting between the Japanese and British armies reached the town, and the house burned. Fled to a village and lived through lean years.",
+     "Was pressed into labor on the roads and railways, and could not return home for months."
+    ],
+    "news": [
+     "The Japanese army invaded and the British fell back. The whole country became a battlefield."
+    ]
+   },
+   "stat": [
+    "ビルマの戦いでは、民間人17万〜25万人が亡くなったとされる",
+    "An estimated 170,000 to 250,000 civilians died in the Burma campaign"
+   ],
+   "src": "Clodfelter 2017, Warfare and Armed Conflicts; Bayly & Harper 2004, Forgotten Armies"
+  },
+  {
+   "id": "mm-uprising-1988",
+   "type": "unrest",
+   "countries": [
+    "MMR"
+   ],
+   "years": [
+    1988,
+    1988
+   ],
+   "hit": 0.003,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "urban": 3,
+   "age": [
+    15,
+    40
+   ],
+   "rough": true,
+   "ja": {
+    "hit": [
+     "8月、民主化を求める行進に加わった。軍が発砲し、捕らえられて何か月も拘束された。"
+    ],
+    "news": [
+     "8月8日、民主化を求める人々が国じゅうの通りを埋めた。9月、軍が政権を握り、多くの人が撃たれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In August, joined the marches for democracy. The army opened fire; arrested, was held for months."
+    ],
+    "news": [
+     "On 8 August people demanding democracy filled the streets across the country. In September the army seized power and many were shot."
+    ]
+   },
+   "stat": [
+    "1988年の民主化運動の弾圧で、3,000人ほどが殺されたとされる",
+    "About 3,000 people are thought to have been killed in the crackdown on the 1988 democracy movement"
+   ],
+   "src": "Lintner, Bertil 1989, Outrage: Burma's Struggle for Democracy; Human Rights Watch"
+  },
+  {
+   "id": "mm-nargis-2008",
+   "type": "cyclone",
+   "countries": [
+    "MMR"
+   ],
+   "years": [
+    2008,
+    2008
+   ],
+   "hit": 0.05,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.5
+   },
+   "urban": 0.6,
+   "poor": 1.5,
+   "kill": 0.0028,
+   "cause": "災害",
+   "who": "frail",
+   "ja": {
+    "hit": [
+     "5月の夜、サイクロンの高潮がデルタの村をのみこんだ。家も田も流され、何か月も寺と仮の小屋で暮らした。"
+    ],
+    "near": [
+     "サイクロンの夜、屋根がはがれ、木が倒れた。水は家の手前で止まった。"
+    ],
+    "news": [
+     "5月2日、サイクロン・ナルギスがエーヤワディ・デルタを襲い、多くの村が消えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One night in May the cyclone's storm surge swallowed the delta village. House and paddies were swept away; for months home was a monastery and then a makeshift hut."
+    ],
+    "near": [
+     "On the night of the cyclone the roof tore off and trees came down, but the water stopped short of the house."
+    ],
+    "news": [
+     "On 2 May Cyclone Nargis struck the Ayeyarwady delta, and many villages simply disappeared."
+    ]
+   },
+   "stat": [
+    "サイクロン・ナルギスの死者・行方不明者は約13万8,000人、被災者は約240万人 (国連)",
+    "Cyclone Nargis left about 138,000 dead or missing and affected some 2.4 million people (UN)"
+   ],
+   "src": "Tripartite Core Group (Government of Myanmar, ASEAN, UN) 2008, Post-Nargis Joint Assessment"
+  },
+  {
+   "id": "mm-coup-2021",
+   "type": "coup",
+   "countries": [
+    "MMR"
+   ],
+   "years": [
+    2021,
+    2025
+   ],
+   "hit": 0.06,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "job": true,
+    "wealth": -0.4
+   },
+   "urban": 0.5,
+   "kill": 0.001,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "2月の軍のクーデターのあと、村に兵士が来て家々を焼いた。森へ逃れ、そのまま避難の暮らしが続いた。",
+     "クーデターに抗議して職場を離れ、そのまま仕事を失った。"
+    ],
+    "news": [
+     "2月1日、軍がクーデターで政権を握った。抗議は国じゅうに広がり、やがて内戦になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the February coup soldiers came to the village and burned the houses. Fled to the forest, and life as a displaced person went on and on.",
+     "Walked off the job in protest at the coup, and never got it back."
+    ],
+    "news": [
+     "On 1 February the army seized power in a coup. Protests spread across the country and turned into civil war."
+    ]
+   },
+   "stat": [
+    "2021年2月のクーデターのあと、国内で家を追われた人は300万人を超えた (UNHCR)",
+    "After the February 2021 coup, more than 3 million people were displaced within the country (UNHCR)"
+   ],
+   "src": "UNHCR Myanmar emergency update (2024)"
+  },
+  {
+   "id": "my-occupation-1942",
+   "type": "occupation",
+   "countries": [
+    "MYS"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "wealth": -0.4
+   },
+   "urban": 1.2,
+   "ja": {
+    "hit": [
+     "占領のあいだ、米はほとんど手に入らず、芋とタピオカで暮らした。日本の軍票は紙くず同然になった。",
+     "家の男たちが「検証」に呼び出され、怯えて日々を過ごした。"
+    ],
+    "news": [
+     "日本軍がマラヤに上陸し、2か月でシンガポールまで攻め落とした。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Through the occupation rice was almost impossible to find, and the family lived on sweet potato and tapioca. The Japanese \"banana money\" became next to worthless.",
+     "The men of the house were summoned for \"screening\", and the days passed in fear."
+    ],
+    "news": [
+     "The Japanese army landed in Malaya and within two months had taken Singapore."
+    ]
+   },
+   "stat": [
+    "マラヤは1942年から3年8か月のあいだ、日本の占領下に置かれた",
+    "Malaya was under Japanese occupation for three years and eight months from 1942"
+   ],
+   "src": "Cheah Boon Kheng 1983, Red Star over Malaya; Kratoska 1998, The Japanese Occupation of Malaya"
+  },
+  {
+   "id": "my-emergency-1948",
+   "type": "war",
+   "countries": [
+    "MYS"
+   ],
+   "years": [
+    1948,
+    1960
+   ],
+   "hit": 0.1,
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "home": true
+   },
+   "urban": 0.2,
+   "rough": true,
+   "ja": {
+    "hit": [
+     "森のそばの家を引き払わされ、鉄条網に囲まれた「新村」へ移された。夜は外に出られなかった。"
+    ],
+    "news": [
+     "共産ゲリラと政府の戦いが続き、非常事態が宣言された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Forced to leave the house at the forest edge and resettled in a \"New Village\" behind barbed wire. No one could go out at night."
+    ],
+    "news": [
+     "Fighting between communist guerrillas and the government went on, and a state of emergency was declared."
+    ]
+   },
+   "stat": [
+    "マラヤ非常事態のあいだ、約50万人が「新村」へ移された",
+    "During the Malayan Emergency some 500,000 people were resettled in \"New Villages\""
+   ],
+   "src": "Sandhu, K.S. 1964, Journal of Southeast Asian History 5:143; Harper 1999, The End of Empire and the Making of Malaya"
+  },
+  {
+   "id": "my-may13-1969",
+   "type": "unrest",
+   "countries": [
+    "MYS"
+   ],
+   "years": [
+    1969,
+    1969
+   ],
+   "hit": 0.01,
+   "severity": 2,
+   "effect": {
+    "happy": -12
+   },
+   "cities": [
+    "クアラルンプール",
+    "Kuala Lumpur"
+   ],
+   "elsewhere": 0,
+   "ja": {
+    "hit": [
+     "5月13日、近くの通りで衝突が起き、家々に火がつけられた。何日も外出が禁じられ、家にこもった。"
+    ],
+    "news": [
+     "5月13日、選挙のあとクアラルンプールで民族の衝突が起き、非常事態が宣言された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On 13 May clashes broke out on nearby streets and houses were set on fire. A curfew kept everyone indoors for days."
+    ],
+    "news": [
+     "On 13 May, after the election, communal riots broke out in Kuala Lumpur and a state of emergency was declared."
+    ]
+   },
+   "stat": [
+    "5月13日事件の死者は、公式には196人とされる",
+    "The official death toll of the 13 May incident was 196"
+   ],
+   "src": "National Operations Council 1969, The May 13 Tragedy: A Report"
+  },
+  {
+   "id": "sg-occupation-1942",
+   "type": "occupation",
+   "countries": [
+    "SGP"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.6,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -18,
+    "wealth": -0.5
+   },
+   "kill": 0.03,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "占領のあいだ、米は配給でわずかしかなく、タピオカと芋で暮らした。",
+     "家の男たちが集合場所に呼び出され、何日も「検証」を待たされた。戻らなかった人もいた。"
+    ],
+    "news": [
+     "2月15日、シンガポールが陥落し、「昭南島」と呼ばれるようになった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Through the occupation the rice ration was meager, and the family lived on tapioca and sweet potato.",
+     "The men of the household were summoned to a screening center and kept waiting for days. Some never came back."
+    ],
+    "news": [
+     "On 15 February Singapore fell and was renamed \"Syonan-to\"."
+    ]
+   },
+   "stat": [
+    "1942年2月からの「粛清」で、2万5,000〜5万人の華人の男性が殺されたとされる",
+    "The Sook Ching purge from February 1942 is thought to have killed 25,000 to 50,000 Chinese men"
+   ],
+   "src": "National Heritage Board Singapore; Blackburn & Hack 2004, Did Singapore Have to Fall?"
+  },
+  {
+   "id": "sg-riots-1964",
+   "type": "unrest",
+   "countries": [
+    "SGP"
+   ],
+   "years": [
+    1964,
+    1964
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "7月と9月、民族の衝突が起き、外出が禁じられた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "In July and September communal riots broke out, and a curfew was imposed."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "1964年の2度の衝突で、36人が亡くなった",
+    "The two outbreaks of rioting in 1964 killed 36 people"
+   ],
+   "src": "National Library Board Singapore, Infopedia: 1964 race riots"
+  },
+  {
+   "id": "sg-sars-2003",
+   "type": "epidemic",
+   "countries": [
+    "SGP"
+   ],
+   "years": [
+    2003,
+    2003
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "SARSがはやり、学校が休みになった。病院の入り口で熱を測られた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "SARS broke out and the schools closed. Temperatures were taken at every hospital door."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "シンガポールのSARSの患者は238人、死者は33人 (WHO)",
+    "Singapore recorded 238 SARS cases and 33 deaths (WHO)"
+   ],
+   "src": "WHO 2003, Summary of probable SARS cases"
+  },
+  {
+   "id": "id-occupation-1942",
+   "type": "famine",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -18,
+    "wealth": -0.4
+   },
+   "urban": 0.7,
+   "poor": 1.5,
+   "kill": 0.025,
+   "cause": "飢饉",
+   "who": "frail",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "占領のあいだ、米は軍に取り上げられ、麻袋の服を着て、芋の葉を食べて暮らした。",
+     "食べ物がなく、体がむくんだ。村では毎日のように葬式があった。"
+    ],
+    "news": [
+     "日本軍が上陸し、オランダの支配が終わった。やがて米が取り立てられ、飢えが広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Through the occupation the army took the rice. The family wore clothes made of sacking and ate cassava leaves.",
+     "There was nothing to eat, and the body swelled. In the village there was a funeral almost every day."
+    ],
+    "news": [
+     "The Japanese army landed and Dutch rule ended. Soon the rice was requisitioned and hunger spread."
+    ]
+   },
+   "stat": [
+    "日本の占領下のジャワでは、1944〜45年の飢饉などで約240万人が亡くなったとされる",
+    "About 2.4 million people are thought to have died in Java under Japanese occupation, mostly in the famine of 1944-45"
+   ],
+   "src": "van der Eng, Pierre 2008, Food Supply in Java during War and Decolonisation, 1940-1950 (MPRA 8852)"
+  },
+  {
+   "id": "id-romusha-1943",
+   "type": "war",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    1943,
+    1945
+   ],
+   "hit": 0.25,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -18
+   },
+   "age": [
+    16,
+    45
+   ],
+   "sex": "M",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "労務者 (ロームシャ) として連れていかれ、遠い島の飛行場づくりで働かされた。",
+     "村から集められ、鉄道の工事現場へ送られた。病気と飢えで多くの仲間が倒れた。"
+    ],
+    "news": [
+     "日本軍が村々から男たちを労務者として集め、遠くへ送っていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Taken away as a romusha laborer and set to work building an airfield on a distant island.",
+     "Rounded up from the village and sent to a railway construction site. Many of the others fell to sickness and hunger."
+    ],
+    "news": [
+     "The Japanese army gathered men from the villages as laborers and shipped them far away."
+    ]
+   },
+   "stat": [
+    "占領下で労務者として動員された人は、400万〜1,000万人とされる",
+    "Between 4 and 10 million Indonesians are thought to have been mobilized as romusha laborers under the occupation"
+   ],
+   "src": "Sato, Shigeru 1994, War, Nationalism and Peasants: Java under the Japanese Occupation; Kratoska (ed.) 2005, Asian Labor in the Wartime Japanese Empire"
+  },
+  {
+   "id": "id-revolution-1945",
+   "type": "war",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    1945,
+    1949
+   ],
+   "hit": 0.1,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "kill": 0.002,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "独立をめぐる戦いが町に及び、家族で村へ逃れた。",
+     "独立を守る戦いに加わり、何年も山の中で過ごした。"
+    ],
+    "news": [
+     "8月17日、独立が宣言された。戻ってきたオランダとの戦いが4年続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fighting over independence reached the town, and the family fled to a village.",
+     "Joined the fight for independence and spent years in the hills."
+    ],
+    "news": [
+     "On 17 August independence was proclaimed. Four years of war with the returning Dutch followed."
+    ]
+   },
+   "stat": [
+    "独立戦争 (1945〜49年) のインドネシア側の死者は、10万人を超えるとされる",
+    "More than 100,000 Indonesians are thought to have died in the war of independence (1945-49)"
+   ],
+   "src": "Ricklefs 2008, A History of Modern Indonesia since c. 1200; Kahin 1952"
+  },
+  {
+   "id": "id-killings-1965",
+   "type": "genocide",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    1965,
+    1966
+   ],
+   "hit": 0.01,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -22,
+    "job": true
+   },
+   "age": [
+    16,
+    70
+   ],
+   "kill": 0.005,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "「共産党の関係者」とされて連行され、何年も収容所に入れられた。出てからも、身分証に印が付けられた。"
+    ],
+    "news": [
+     "9月30日の事件のあと、共産党員とされた人々が各地で殺され、捕らえられた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Branded \"involved with the Communists\", was taken away and held in a camp for years. Even after release, the identity card carried a mark."
+    ],
+    "news": [
+     "After the events of 30 September, people branded as communists were killed and arrested all over the country."
+    ]
+   },
+   "stat": [
+    "1965〜66年の虐殺の死者は、50万〜100万人とされる。100万人を超える人が拘束された",
+    "Between 500,000 and 1 million people were killed in 1965-66, and more than a million were detained"
+   ],
+   "src": "Robinson, Geoffrey 2018, The Killing Season; Cribb (ed.) 1990, The Indonesian Killings"
+  },
+  {
+   "id": "id-yogyakarta-2006",
+   "type": "quake",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    2006,
+    2006
+   ],
+   "hit": 0.003,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "poor": 1.5,
+   "kill": 0.00002,
+   "cause": "災害",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "5月27日の早朝、地震で家が崩れた。何か月も、ブルーシートの下で暮らした。"
+    ],
+    "news": [
+     "5月27日、ジャワ島中部のジョグジャカルタのあたりで大地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Early on 27 May the earthquake brought the house down. For months home was a sheet of blue tarpaulin."
+    ],
+    "news": [
+     "On 27 May a strong earthquake struck around Yogyakarta in central Java."
+    ]
+   },
+   "stat": [
+    "ジャワ島中部地震の死者は5,700人あまり",
+    "The central Java earthquake killed more than 5,700 people"
+   ],
+   "src": "BNPB; UN OCHA 2006, Indonesia: Yogyakarta and Central Java earthquake"
+  },
+  {
+   "id": "id-sulawesi-2018",
+   "type": "tsunami",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    2018,
+    2018
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "9月28日、スラウェシ島のパルで大地震と津波があり、地面が液状になって町がのみこまれた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "On 28 September an earthquake and tsunami struck Palu on Sulawesi, and the liquefied ground swallowed whole neighborhoods."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "パルの地震と津波で、4,000人を超える人が亡くなった",
+    "The Palu earthquake and tsunami killed more than 4,000 people"
+   ],
+   "src": "BNPB 2018; UN OCHA Central Sulawesi earthquake situation reports"
+  },
+  {
+   "id": "ph-ww2-1941",
+   "type": "war",
+   "countries": [
+    "PHL"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.4,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "kill": 0.03,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "占領のあいだ、食べ物が乏しく、山の村へ逃れて暮らした。",
+     "町が戦場になり、家が焼け落ちた。焼け跡の教会に身を寄せた。",
+     "兵士として捕らえられ、炎天下を何日も歩かされた。"
+    ],
+    "near": [
+     "砲撃が町を焼いたが、家族の住む通りは焼け残った。"
+    ],
+    "news": [
+     "日本軍が上陸し、占領が始まった。1945年2月、マニラは市街戦で焼け野原になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Food was scarce under the occupation, and the family fled to a mountain village.",
+     "The town became a battlefield and the house burned down. Took refuge in the shell of a church.",
+     "Captured as a soldier, and marched for days under the burning sun."
+    ],
+    "near": [
+     "The shelling burned the town, but the street where the family lived was spared."
+    ],
+    "news": [
+     "The Japanese army landed and the occupation began. In February 1945 Manila was reduced to rubble in the street fighting."
+    ]
+   },
+   "stat": [
+    "1945年2〜3月のマニラの戦いでは、民間人約10万人が亡くなった",
+    "About 100,000 civilians died in the Battle of Manila in February-March 1945"
+   ],
+   "src": "Connaughton, Pimlott & Anderson 1995, The Battle for Manila; Philippine Commission on the Status of War Damage",
+   "newsAt": 1945
+  },
+  {
+   "id": "ph-martial-law-1972",
+   "type": "coup",
+   "countries": [
+    "PHL"
+   ],
+   "years": [
+    1972,
+    1981
+   ],
+   "hit": 0.002,
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -20
+   },
+   "age": [
+    16,
+    60
+   ],
+   "urban": 2,
+   "ja": {
+    "hit": [
+     "戒厳令のもとで、夜中に兵士に連行された。何か月も裁判なしに拘束され、取り調べを受けた。"
+    ],
+    "news": [
+     "9月、大統領が戒厳令を出し、議会は閉じられ、新聞は止められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under martial law, was taken away by soldiers in the night and held for months without trial, under interrogation."
+    ],
+    "news": [
+     "In September the president declared martial law. Congress was shut down and the newspapers silenced."
+    ]
+   },
+   "stat": [
+    "戒厳令のもとで、7万人が投獄され、3万4,000人が拷問を受け、3,240人が殺された (アムネスティ・インターナショナル)",
+    "Under martial law 70,000 people were imprisoned, 34,000 tortured and 3,240 killed (Amnesty International)"
+   ],
+   "src": "Amnesty International; McCoy, Alfred 1999, Closer than Brothers"
+  },
+  {
+   "id": "ph-pinatubo-1991",
+   "type": "volcano",
+   "countries": [
+    "PHL"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0.004,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "urban": 0.5,
+   "rough": true,
+   "ja": {
+    "hit": [
+     "6月、ピナトゥボ山が噴火し、灰の重みで屋根が落ちた。その後も雨のたびに泥流が村を埋めた。"
+    ],
+    "news": [
+     "6月、ピナトゥボ山が大噴火し、空が昼でも暗くなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June Mount Pinatubo erupted, and the roof caved in under the weight of the ash. Afterwards every rain brought mudflows that buried the village."
+    ],
+    "news": [
+     "In June Mount Pinatubo erupted, and the sky went dark at midday."
+    ]
+   },
+   "stat": [
+    "ピナトゥボ山の噴火の死者は847人",
+    "The eruption of Mount Pinatubo killed 847 people"
+   ],
+   "src": "PHIVOLCS; USGS 1996, Fire and Mud: Eruptions and Lahars of Mount Pinatubo"
+  },
+  {
+   "id": "ph-haiyan-2013",
+   "type": "cyclone",
+   "countries": [
+    "PHL"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0.04,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "urban": 0.7,
+   "poor": 1.8,
+   "kill": 0.00006,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "11月、台風の高潮が町をのみこんだ。家は柱しか残らず、何か月もテントで暮らした。"
+    ],
+    "near": [
+     "台風の夜、トタン屋根が飛ばされた。家族は無事だった。"
+    ],
+    "news": [
+     "11月8日、台風ヨランダ (ハイエン) がレイテ島などを襲い、高潮が町をのみこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In November the typhoon's storm surge swallowed the town. Only the posts of the house were left, and for months home was a tent."
+    ],
+    "near": [
+     "On the night of the typhoon the tin roof blew away. Everyone was safe."
+    ],
+    "news": [
+     "On 8 November Typhoon Yolanda (Haiyan) struck Leyte and nearby islands, and the storm surge swallowed whole towns."
+    ]
+   },
+   "stat": [
+    "台風ヨランダの死者は6,300人を超え、410万人が家を追われた (国家防災評議会)",
+    "Typhoon Yolanda killed more than 6,300 people and displaced 4.1 million (National Disaster Risk Reduction and Management Council)"
+   ],
+   "src": "NDRRMC 2014, Final report on Typhoon Yolanda (Haiyan)"
+  },
+  {
+   "id": "tl-occupation-1975",
+   "type": "occupation",
+   "countries": [
+    "TLS"
+   ],
+   "years": [
+    1975,
+    1999
+   ],
+   "hit": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.5
+   },
+   "kill": 0.15,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "インドネシア軍が攻めこみ、家族で山へ逃れた。やがて降りてきて、軍の決めた村に住まわされた。",
+     "軍の決めた村では畑に出られず、何か月も飢えた。"
+    ],
+    "news": [
+     "12月、インドネシア軍がディリに攻めこみ、占領が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The Indonesian army invaded and the family fled into the mountains. When they came down they were made to live in a village of the army's choosing.",
+     "In the army's resettlement village no one was allowed out to the fields, and there were months of hunger."
+    ],
+    "news": [
+     "In December the Indonesian army invaded Dili, and the occupation began."
+    ]
+   },
+   "stat": [
+    "インドネシアによる占領のあいだの紛争に関わる死者は、少なくとも10万2,800人 (受容真実和解委員会)",
+    "Conflict-related deaths during the Indonesian occupation numbered at least 102,800 (Commission for Reception, Truth and Reconciliation, CAVR)"
+   ],
+   "src": "CAVR 2005, Chega! Final Report of the Commission for Reception, Truth and Reconciliation in Timor-Leste"
+  },
+  {
+   "id": "tl-referendum-1999",
+   "type": "unrest",
+   "countries": [
+    "TLS"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0.6,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.7
+   },
+   "kill": 0.002,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "独立を決めた住民投票のあと、民兵が町に火を放った。家は焼かれ、山へ逃れた。",
+     "トラックに乗せられ、国境の向こうの西ティモールのキャンプへ連れていかれた。"
+    ],
+    "news": [
+     "8月30日の住民投票で独立が決まった。そのあと、民兵が国じゅうに火を放った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the referendum chose independence, militias set the town on fire. The house burned, and the family fled to the mountains.",
+     "Was loaded onto a truck and taken to a camp across the border in West Timor."
+    ],
+    "news": [
+     "The referendum of 30 August chose independence. Afterwards militias set fire to the whole country."
+    ]
+   },
+   "stat": [
+    "1999年の住民投票のあと、約1,400人が殺され、建物の7割が壊された",
+    "After the 1999 referendum about 1,400 people were killed and some 70% of buildings were destroyed"
+   ],
+   "src": "CAVR 2005, Chega!; UN Security Council 1999"
+  },
+  {
+   "id": "tl-crisis-2006",
+   "type": "unrest",
+   "countries": [
+    "TLS"
+   ],
+   "years": [
+    2006,
+    2006
+   ],
+   "hit": 0.4,
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "home": true
+   },
+   "cities": [
+    "ディリ",
+    "Dili"
+   ],
+   "elsewhere": 0.03,
+   "ja": {
+    "hit": [
+     "4月からの騒乱で家に火をつけられ、教会の敷地の避難キャンプで暮らした。"
+    ],
+    "news": [
+     "4月、軍の中の争いから騒乱が広がり、ディリで多くの家が焼かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the unrest that began in April the house was set on fire, and the family lived in a displacement camp in a church compound."
+    ],
+    "news": [
+     "In April a dispute inside the army spread into violence, and many houses in Dili were burned."
+    ]
+   },
+   "stat": [
+    "2006年の騒乱で、約15万人が家を追われた (国連)",
+    "About 150,000 people were driven from their homes in the 2006 crisis (UN)"
+   ],
+   "src": "UN Independent Special Commission of Inquiry for Timor-Leste 2006"
+  },
+  {
+   "id": "au-ww1-1914",
+   "type": "war",
+   "countries": [
+    "AUS"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "age": [
+    18,
+    44
+   ],
+   "sex": "M",
+   "kill": 0.0126,
+   "cause": "戦争",
+   "who": "men",
+   "ja": {
+    "hit": [
+     "志願して兵隊になり、ガリポリの浜に上陸した。",
+     "志願してフランスの西部戦線へ送られた。塹壕で泥と砲撃の中を何年も過ごした。"
+    ],
+    "news": [
+     "ヨーロッパで大戦争が始まり、若い男たちが志願して海を渡っていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Volunteered for the army and landed on the beach at Gallipoli.",
+     "Volunteered and was sent to the Western Front in France. Years in the trenches, in mud and under shellfire."
+    ],
+    "news": [
+     "A great war began in Europe, and young men volunteered and sailed away across the sea."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で、オーストラリアからは約41万7,000人が志願して従軍し、約6万2,000人が亡くなった (オーストラリア戦争記念館)",
+    "In the First World War about 417,000 Australians enlisted and some 62,000 died (Australian War Memorial)"
+   ],
+   "src": "Australian War Memorial, First World War 1914-18"
+  },
+  {
+   "id": "au-ww2-1939",
+   "type": "war",
+   "countries": [
+    "AUS"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.55,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.0057,
+   "cause": "戦争",
+   "who": "men",
+   "ja": {
+    "hit": [
+     "兵隊になり、北アフリカの砂漠で戦った。",
+     "兵隊になってニューギニアに送られ、ジャングルの山道で戦った。"
+    ],
+    "news": [
+     "戦争が始まり、日本軍の爆撃機がダーウィンを襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined up and fought in the North African desert.",
+     "Joined up and was sent to New Guinea, to fight along the jungle mountain tracks."
+    ],
+    "news": [
+     "War came, and Japanese bombers struck Darwin."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、オーストラリアの約99万3,000人が従軍し、約3万9,700人が亡くなった (オーストラリア戦争記念館)",
+    "In the Second World War about 993,000 Australians served and some 39,700 died (Australian War Memorial)"
+   ],
+   "src": "Australian War Memorial, Second World War 1939-45"
+  },
+  {
+   "id": "au-black-saturday-2009",
+   "type": "fire",
+   "countries": [
+    "AUS"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0.002,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "cities": [
+    "メルボルン",
+    "Melbourne"
+   ],
+   "elsewhere": 0,
+   "ja": {
+    "hit": [
+     "2月7日、山火事が町を越えていった。家は焼け落ち、残ったのは煙突だけだった。"
+    ],
+    "near": [
+     "2月7日、空が真っ赤になり、灰が降った。火は丘ひとつ向こうで止まった。"
+    ],
+    "news": [
+     "2月7日、ビクトリア州で大きな山火事があり、いくつもの町が焼けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On 7 February the bushfire swept over the town. The house burned to the ground; only the chimney was left."
+    ],
+    "near": [
+     "On 7 February the sky turned blood red and ash fell. The fire stopped one hill away."
+    ],
+    "news": [
+     "On 7 February huge bushfires tore through Victoria, burning several towns."
+    ]
+   },
+   "stat": [
+    "「暗黒の土曜日」の山火事で173人が亡くなり、2,000棟あまりの家が焼けた",
+    "The Black Saturday bushfires killed 173 people and destroyed more than 2,000 homes"
+   ],
+   "src": "2009 Victorian Bushfires Royal Commission, Final Report (2010)"
+  },
+  {
+   "id": "au-bushfires-2019",
+   "type": "fire",
+   "countries": [
+    "AUS"
+   ],
+   "years": [
+    2019,
+    2020
+   ],
+   "hit": 0.0004,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "urban": 0.3,
+   "ja": {
+    "hit": [
+     "夏の山火事で家が焼けた。避難所で年を越した。"
+    ],
+    "news": [
+     "夏じゅう山火事が燃え続け、町の空が煙で茶色くかすんだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The summer bushfires burned the house down. The new year came in at an evacuation center."
+    ],
+    "news": [
+     "Bushfires burned all summer long, and the city skies hung brown with smoke."
+    ]
+   },
+   "stat": [
+    "2019〜20年の山火事で、3,000棟を超える家が焼けた",
+    "The 2019-20 bushfires destroyed more than 3,000 homes"
+   ],
+   "src": "Royal Commission into National Natural Disaster Arrangements, Report (2020)"
+  },
+  {
+   "id": "nz-ww1-1914",
+   "type": "war",
+   "countries": [
+    "NZL"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.4,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.0165,
+   "cause": "戦争",
+   "who": "men",
+   "ja": {
+    "hit": [
+     "兵隊になり、ガリポリの崖の下に上陸した。",
+     "兵隊になってフランスへ送られ、ソンムの塹壕で過ごした。"
+    ],
+    "news": [
+     "ヨーロッパで大戦争が始まり、若い男たちが海を渡っていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined up and landed beneath the cliffs at Gallipoli.",
+     "Joined up and was sent to France, to the trenches of the Somme."
+    ],
+    "news": [
+     "A great war began in Europe, and the young men sailed away across the sea."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で、ニュージーランドからは約10万人が海外に出征し、約1万8,000人が亡くなった (ニュージーランド文化遺産省)",
+    "About 100,000 New Zealanders served overseas in the First World War, and some 18,000 died (Ministry for Culture and Heritage)"
+   ],
+   "src": "NZ Ministry for Culture and Heritage, NZHistory: First World War"
+  },
+  {
+   "id": "nz-ww2-1939",
+   "type": "war",
+   "countries": [
+    "NZL"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.0074,
+   "cause": "戦争",
+   "who": "men",
+   "ja": {
+    "hit": [
+     "兵隊になり、クレタ島とイタリアで戦った。",
+     "兵隊になって北アフリカへ送られた。"
+    ],
+    "news": [
+     "戦争が始まり、若い男たちが再び海を渡っていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined up and fought on Crete and in Italy.",
+     "Joined up and was sent to North Africa."
+    ],
+    "news": [
+     "War came, and once again the young men sailed away."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で、ニュージーランドの約1万2,000人が亡くなった (文化遺産省)",
+    "About 12,000 New Zealanders died in the Second World War (Ministry for Culture and Heritage)"
+   ],
+   "src": "NZ Ministry for Culture and Heritage, NZHistory: Second World War"
+  },
+  {
+   "id": "nz-napier-1931",
+   "type": "quake",
+   "countries": [
+    "NZL"
+   ],
+   "years": [
+    1931,
+    1931
+   ],
+   "hit": 0.01,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "urban": 0.5,
+   "kill": 0.00017,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "2月3日の朝、地震で町の建物が崩れ、火が出た。家を失い、テントで暮らした。"
+    ],
+    "news": [
+     "2月3日、ホークスベーで大地震があり、ネーピアの町が崩れて燃えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 3 February the earthquake brought down the buildings in town, and fire broke out. The house was lost, and the family lived in a tent."
+    ],
+    "news": [
+     "On 3 February a great earthquake struck Hawke's Bay, and the town of Napier collapsed and burned."
+    ]
+   },
+   "stat": [
+    "ホークスベー地震の死者は256人",
+    "The Hawke's Bay earthquake killed 256 people"
+   ],
+   "src": "NZ Ministry for Culture and Heritage, NZHistory: Hawke's Bay earthquake"
+  },
+  {
+   "id": "nz-christchurch-2011",
+   "type": "quake",
+   "countries": [
+    "NZL"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.1,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.3
+   },
+   "cities": [
+    "クライストチャーチ",
+    "Christchurch"
+   ],
+   "elsewhere": 0,
+   "kill": 0.00004,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "2月22日の昼、地震で家が傾き、住めなくなった。家のあった地区は、のちに取り壊されることになった。"
+    ],
+    "near": [
+     "2月22日の地震で、町の中心のビルが崩れた。家は持ちこたえた。"
+    ],
+    "news": [
+     "2月22日、クライストチャーチで大地震があり、町の中心が崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At lunchtime on 22 February the earthquake left the house tilted and unlivable. Later the whole neighborhood was zoned for demolition."
+    ],
+    "near": [
+     "The earthquake of 22 February brought down buildings in the city center. The house held."
+    ],
+    "news": [
+     "On 22 February a strong earthquake struck Christchurch, and the city center collapsed."
+    ]
+   },
+   "stat": [
+    "2月22日のクライストチャーチ地震で185人が亡くなった",
+    "The Christchurch earthquake of 22 February killed 185 people"
+   ],
+   "src": "Canterbury Earthquakes Royal Commission, Final Report (2012)"
+  },
+  {
+   "id": "nz-mosque-2019",
+   "type": "terror",
+   "countries": [
+    "NZL"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "news": [
+     "3月15日、クライストチャーチの2つのモスクで、金曜の礼拝の人々が銃で撃たれた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "On 15 March worshippers at Friday prayers in two Christchurch mosques were shot."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "クライストチャーチのモスク襲撃で51人が亡くなった",
+    "The Christchurch mosque attacks killed 51 people"
+   ],
+   "src": "Royal Commission of Inquiry into the Terrorist Attack on Christchurch Masjidain (2020)"
+  },
+  {
+   "id": "pg-ww2-1942",
+   "type": "war",
+   "countries": [
+    "PNG"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.3,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "home": true
+   },
+   "urban": 0.5,
+   "kill": 0.015,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "村が戦場になり、家族で山の奥へ逃れた。",
+     "運び手として集められ、けが人と荷物を担いで山道を何か月も往復した。"
+    ],
+    "news": [
+     "日本軍と連合軍がニューギニアで戦い、村々が戦場になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village became a battlefield, and the family fled deep into the mountains.",
+     "Rounded up as a carrier, and spent months hauling the wounded and supplies up and down the mountain tracks."
+    ],
+    "news": [
+     "The Japanese and Allied armies fought across New Guinea, and the villages became battlefields."
+    ]
+   },
+   "stat": [
+    "ニューギニアの戦いでは、約5万人の現地の人が運び手や働き手として使われた",
+    "About 50,000 New Guineans were used as carriers and laborers in the New Guinea campaign"
+   ],
+   "src": "Nelson, Hank 1980, Journal of Pacific History; Australian War Memorial"
+  },
+  {
+   "id": "pg-bougainville-1988",
+   "type": "war",
+   "countries": [
+    "PNG"
+   ],
+   "years": [
+    1988,
+    1998
+   ],
+   "hit": 0.04,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -18,
+    "home": true
+   },
+   "urban": 0.3,
+   "kill": 0.004,
+   "cause": "戦争",
+   "who": "all",
+   "rough": true,
+   "ja": {
+    "hit": [
+     "ブーゲンビル島の戦いで村が焼かれ、政府の決めたキャンプで暮らした。島は封鎖され、薬が届かなかった。"
+    ],
+    "news": [
+     "ブーゲンビル島で、鉱山をめぐる争いが内戦になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fighting on Bougainville burned the village, and the family lived in a government care center. The island was blockaded, and medicine did not get through."
+    ],
+    "news": [
+     "On Bougainville a dispute over the mine became a civil war."
+    ]
+   },
+   "stat": [
+    "ブーゲンビルの内戦で、1万5,000〜2万人が亡くなったとされる",
+    "Between 15,000 and 20,000 people are thought to have died in the Bougainville conflict"
+   ],
+   "src": "Regan, Anthony 2010, Light Intervention: Lessons from Bougainville; Braithwaite et al. 2010"
+  },
+  {
+   "id": "pg-aitape-1998",
+   "type": "tsunami",
+   "countries": [
+    "PNG"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "7月17日の夕方、北の海岸を津波が襲い、アイタペの近くのいくつもの村が消えた。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "On the evening of 17 July a tsunami struck the north coast, and several villages near Aitape vanished."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "アイタペの津波で、2,000人を超える人が亡くなった",
+    "The Aitape tsunami killed more than 2,000 people"
+   ],
+   "src": "Davies et al. 1998, Lancet 352:1149; USGS"
+  },
+  {
+   "id": "sb-guadalcanal-1942",
+   "type": "war",
+   "countries": [
+    "SLB"
+   ],
+   "years": [
+    1942,
+    1943
+   ],
+   "hit": 0.25,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "rough": true,
+   "ja": {
+    "hit": [
+     "島が戦場になり、家族で森の奥へ逃れた。",
+     "運び手と道案内として、連合軍のために働いた。"
+    ],
+    "news": [
+     "8月、日本軍と米軍がガダルカナル島で戦い始めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The island became a battlefield, and the family fled deep into the forest.",
+     "Worked for the Allies as a carrier and scout."
+    ],
+    "news": [
+     "In August the Japanese and American armies began fighting over Guadalcanal."
+    ]
+   },
+   "stat": [
+    "ガダルカナル島の戦いでは、日本の兵士2万人あまりと米国の兵士約7,100人が亡くなった",
+    "More than 20,000 Japanese and about 7,100 American servicemen died in the Guadalcanal campaign"
+   ],
+   "src": "Frank, Richard 1990, Guadalcanal; US Marine Corps History Division"
+  },
+  {
+   "id": "sb-tensions-1998",
+   "type": "unrest",
+   "countries": [
+    "SLB"
+   ],
+   "years": [
+    1998,
+    2003
+   ],
+   "hit": 0.08,
+   "severity": 4,
+   "effect": {
+    "happy": -18,
+    "home": true,
+    "job": true
+   },
+   "rough": true,
+   "ja": {
+    "hit": [
+     "島どうしの争いが激しくなり、ガダルカナル島の家を追われた。親の島へ逃れた。"
+    ],
+    "news": [
+     "ガダルカナル島とマライタ島の人々の争いが激しくなり、首都に武装した集団があふれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "As the fighting between the islanders grew worse, the family was driven from their home on Guadalcanal and fled to their home island."
+    ],
+    "news": [
+     "The conflict between the people of Guadalcanal and Malaita grew violent, and armed groups filled the capital."
+    ]
+   },
+   "stat": [
+    "1998〜2003年の争いで、約3万5,000人が家を追われた",
+    "About 35,000 people were driven from their homes by the tensions of 1998-2003"
+   ],
+   "src": "Solomon Islands Truth and Reconciliation Commission, Final Report (2012); Fraenkel 2004, The Manipulation of Custom"
+  },
+  {
+   "id": "sb-tsunami-2007",
+   "type": "tsunami",
+   "countries": [
+    "SLB"
+   ],
+   "years": [
+    2007,
+    2007
+   ],
+   "hit": 0.4,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "cities": [
+    "ギゾ",
+    "Gizo"
+   ],
+   "elsewhere": 0.01,
+   "ja": {
+    "hit": [
+     "4月2日の朝、地震のあとに津波が来て、浜の家が流された。"
+    ],
+    "news": [
+     "4月2日、西部州で地震と津波があり、ギゾの町が水をかぶった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 2 April a tsunami followed the earthquake, and the house on the beach was swept away."
+    ],
+    "news": [
+     "On 2 April an earthquake and tsunami struck the Western Province, flooding the town of Gizo."
+    ]
+   },
+   "stat": [
+    "4月2日の地震と津波で52人が亡くなった",
+    "The earthquake and tsunami of 2 April killed 52 people"
+   ],
+   "src": "UN OCHA 2007, Solomon Islands earthquake and tsunami situation reports"
+  },
+  {
+   "id": "fj-coup-1987",
+   "type": "coup",
+   "countries": [
+    "FJI"
+   ],
+   "years": [
+    1987,
+    1987
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "rough": true,
+   "ja": {
+    "news": [
+     "5月、軍の将校が政権を奪った。その後、多くのインド系の人々が国を離れていった。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "In May an army officer seized power. In the years that followed, many Indo-Fijians left the country."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "1987年の2度のクーデターのあと、数年のうちにインド系住民およそ5万人が国を離れた",
+    "In the years after the two coups of 1987, some 50,000 Indo-Fijians emigrated"
+   ],
+   "src": "Lal, Brij 1988, Power and Prejudice: The Making of the Fiji Crisis; Fiji Bureau of Statistics"
+  },
+  {
+   "id": "fj-coup-2000",
+   "type": "coup",
+   "countries": [
+    "FJI"
+   ],
+   "years": [
+    2000,
+    2000
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "news": [
+     "5月19日、武装した集団が議会を占拠し、首相たちを人質にとった。"
+    ],
+    "hit": []
+   },
+   "en": {
+    "news": [
+     "On 19 May an armed group seized parliament and took the prime minister and others hostage."
+    ],
+    "hit": []
+   },
+   "stat": [
+    "2000年5月、首相たちは56日のあいだ人質にされた",
+    "In May 2000 the prime minister and others were held hostage for 56 days"
+   ],
+   "src": "Lal, Brij & Pretes (eds.) 2001, Coup: Reflections on the Political Crisis in Fiji"
+  },
+  {
+   "id": "fj-winston-2016",
+   "type": "cyclone",
+   "countries": [
+    "FJI"
+   ],
+   "years": [
+    2016,
+    2016
+   ],
+   "hit": 0.06,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "urban": 0.7,
+   "poor": 1.5,
+   "kill": 0.00005,
+   "cause": "災害",
+   "who": "all",
+   "ja": {
+    "hit": [
+     "2月、サイクロンで家が吹き飛ばされた。学校の避難所で何週間も過ごした。"
+    ],
+    "near": [
+     "サイクロンの夜、屋根が鳴り続けた。朝、隣の家がなくなっていた。"
+    ],
+    "news": [
+     "2月20日、サイクロン・ウィンストンがフィジーを襲った。南半球で記録に残る最も強い嵐だった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In February the cyclone blew the house away. Weeks were spent in a school evacuation center."
+    ],
+    "near": [
+     "All night the roof rattled in the cyclone. In the morning the house next door was gone."
+    ],
+    "news": [
+     "On 20 February Cyclone Winston struck Fiji, the strongest storm on record in the Southern Hemisphere."
+    ]
+   },
+   "stat": [
+    "サイクロン・ウィンストンで44人が亡くなり、人口の4割にあたる約35万人が被害を受けた (フィジー政府)",
+    "Cyclone Winston killed 44 people and affected about 350,000, some 40% of the population (Government of Fiji)"
+   ],
+   "src": "Government of Fiji 2016, Post-Disaster Needs Assessment: Tropical Cyclone Winston"
+  }
+ ]
+}
