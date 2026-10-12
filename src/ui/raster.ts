@@ -55,6 +55,18 @@ export class Pix {
     img.data.set(this.d);
     g.putImageData(img, 0, 0);
   }
+  // 透明でない画素だけを (dx, dy) に重ねる。tint を受ける。flip は左右反転
+  blit(src: Pix, dx: number, dy: number, flip = false): void {
+    const m = this.tint, s = src.d, d = this.d;
+    for (let y = 0; y < src.h; y++) for (let x = 0; x < src.w; x++) {
+      const i = (y * src.w + x) * 4;
+      if (!s[i + 3]) continue;
+      const X = Math.floor(dx) + (flip ? src.w - 1 - x : x), Y = Math.floor(dy) + y;
+      if (X < 0 || Y < 0 || X >= this.w || Y >= this.h) continue;
+      const j = (Y * this.w + X) * 4;
+      d[j] = s[i] * m[0]; d[j + 1] = s[i + 1] * m[1]; d[j + 2] = s[i + 2] * m[2]; d[j + 3] = 255;
+    }
+  }
   grey(): void {
     for (let i = 0; i < this.d.length; i += 4) { const v = (this.d[i] + this.d[i + 1] + this.d[i + 2]) / 3; this.d[i] = this.d[i + 1] = this.d[i + 2] = v; }
   }

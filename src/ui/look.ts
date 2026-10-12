@@ -5,6 +5,7 @@ import { byCode, type Country } from '../engine/countries';
 import type { Person, Relative, Role } from '../engine/person';
 import { makeRng, type Rng } from '../engine/rng';
 import { hash, mixc } from './raster';
+import { dressOf, type Dress, type LookCtx } from './wear';
 
 // 肌: 濃い方から薄い方へ
 export const SKINS = ['#4a2c1e', '#5e3826', '#7a4a32', '#9a6444', '#b07a58', '#c68e68', '#d4a07e', '#e8bc9c', '#f2cdb0'];
@@ -88,12 +89,12 @@ function blend(a: Genes, b: Genes, r: Rng): Genes {
 }
 
 export type Style = 'side' | 'fringe' | 'buzz' | 'receding' | 'bald' | 'long' | 'center' | 'bob' | 'braids' | 'pony' | 'bun' | 'afro' | 'curly' | 'locs' | 'hijab' | 'turban' | 'cap';
-export interface Look {
+export type Look = {
   sex: 'F' | 'M'; age: number; skin: string; hair: string; style: Style;
   beard?: 'stubble' | 'mustache' | 'full'; glasses?: 'dark' | 'gold';
   earring?: boolean; necklace?: boolean; collar?: boolean; narrow?: boolean; thickBrow?: boolean; smile?: boolean;
   eye?: string; cloth: string; pants: string; cover?: string; bg: string; skirt?: boolean;
-}
+} & Partial<Omit<Dress, 'cloth' | 'pants'>>; // 服・帽子・持ち物 (wear.ts)。古い場面の記録から作った見た目には無い
 
 const CLOTH = ['#2e4258', '#a8343e', '#4a6a3a', '#5a5a48', '#7a5a3a', '#2e6a5a', '#d8ccb8', '#5a4a6a', '#c08a2a', '#3a5a8a', '#6a3a4a', '#3a4a3a', '#8a8a8a', '#e0d8c8', '#b0583a', '#40607a'];
 const PANTS = ['#2a2c3c', '#3a3028', '#22303a', '#3a3a3a', '#4a3e52', '#5a5040'];
@@ -117,7 +118,7 @@ function hijabRate(c: Country): number {
 }
 
 // 遺伝子と年齢・性別・宗教から、その年の見た目を作る。u は人ごとに固定の乱数なので、年をまたいでも同じ人は同じ
-function makeLook(g: Genes, c: Country, sex: 'F' | 'M', age: number, religion: string, key: number): Look {
+function makeLook(g: Genes, c: Country, sex: 'F' | 'M', age: number, religion: string, key: number, ctx: LookCtx = {}): Look {
   const r = makeRng(key);
   const u = Array.from({ length: 16 }, () => r());
   const area = areaOf(c);
@@ -146,6 +147,8 @@ function makeLook(g: Genes, c: Country, sex: 'F' | 'M', age: number, religion: s
     else style = g.texture === 2 ? choose(u[1], [['braids', 2], ['afro', 1], ['bun', 1.2], ['locs', 0.6], ['curly', 1]]) : choose(u[1], [['long', 3], ['center', 2], ['bob', 2], ['pony', 1.2], ['bun', 1], ['fringe', ea ? 1.5 : 0.4], ['curly', g.texture * 1.5]]);
   }
   const cover = style === 'hijab' ? at(SCARF, u[8]) : style === 'turban' ? at(TURBAN, u[8]) : style === 'cap' ? at(CAP, u[8]) : undefined;
+  const cloth0 = at(CLOTH, u[10] * 7.3 % 1);
+  const { cloth: dCloth, pants: dPants, ...dress } = dressOf({ sex, age, style, cloth: cloth0 }, c, area, religion, ctx, key);
   const glassP = 0.04 + Math.max(0, age - 40) * 0.009 + (c.gdp > 20000 ? 0.06 : 0) + (age >= 10 && age < 30 && ea ? 0.15 : 0);
   return {
     sex, age, skin, hair, style, beard,
@@ -154,8 +157,9 @@ function makeLook(g: Genes, c: Country, sex: 'F' | 'M', age: number, religion: s
     necklace: sex === 'F' && age >= 16 && u[13] < 0.2,
     collar: age >= 18 && u[14] < 0.4,
     narrow: g.narrow, thickBrow: g.brow, smile: u[15] < 0.35, eye: g.eye,
-    cloth: at(CLOTH, u[10] * 7.3 % 1), pants: at(PANTS, u[13] * 5.1 % 1), cover, bg: at(BG, u[12] * 3.7 % 1),
+    cover, bg: at(BG, u[12] * 3.7 % 1),
     skirt: sex === 'F' && (style === 'hijab' || u[14] * 3.3 % 1 < 0.6),
+    ...dress, cloth: dCloth ?? cloth0, pants: dPants ?? at(PANTS, u[13] * 5.1 % 1),
   };
 }
 
@@ -165,7 +169,19 @@ const ROLE_N: Record<Role, number> = { mother: 1, father: 2, sibling: 3, spouse:
 const keyOf = (p: Person, r: Relative, role: Role) => hash(p.seed, 0x7a11, r.id ?? ROLE_N[role] * 1000 + (r.sex === 'F' ? 1 : 0));
 const myGenes = (p: Person) => genesFor(byCode(p.birthCountry), makeRng(hash(p.seed, 0x5eed)));
 
-export const lookOfMe = (p: Person): Look => makeLook(myGenes(p), byCode(p.birthCountry), p.sex, p.age, p.religion, hash(p.seed, 0x5eed, 1));
+// その人の暮らし。前世の記録から作った主人公の代わり (death.ts) は欄が欠けているので、ある欄だけ使う
+const yearSafe = (p: Person) => (Number.isFinite(p.birthYear + p.age) ? p.birthYear + p.age : undefined);
+const ruralOf = (p: Person) => ('city' in p ? p.city === null : undefined);
+export function ctxOfMe(p: Person): LookCtx {
+  const studying = p.school ? p.school.uni === 'studying' || p.school.grad === 'studying' : undefined;
+  return {
+    job: p.working && !p.unemployed ? p.job : undefined, year: yearSafe(p), rural: ruralOf(p),
+    wealth: p.working ? p.incomeP : p.familyP, student: p.school ? p.school.enrolled || studying : undefined, uni: studying,
+    retired: p.retired, homemaker: p.homemaker,
+  };
+}
+
+export const lookOfMe = (p: Person): Look => makeLook(myGenes(p), byCode(p.birthCountry), p.sex, p.age, p.religion, hash(p.seed, 0x5eed, 1), ctxOfMe(p));
 
 export function lookOfRel(p: Person, t: Relative, role: Role): Look {
   const key = keyOf(p, t, role);
@@ -187,11 +203,12 @@ export function lookOfRel(p: Person, t: Relative, role: Role): Look {
     default: g = genesFor(here, r); if (r() > 0.7) religion = '';
   }
   const c = role === 'mother' || role === 'father' || role === 'sibling' ? home : here;
-  return makeLook(g, c, t.sex, t.age, religion, key);
+  const family = role === 'mother' || role === 'father' || role === 'sibling';
+  return makeLook(g, c, t.sex, t.age, religion, key, { job: t.alive ? t.job : undefined, year: yearSafe(p), rural: family ? ruralOf(p) : undefined, wealth: family ? p.familyP : undefined });
 }
 
 // Person が手元にない時 (追悼館) の、id から決める見た目
-export function lookOfId(id: number, c: Country, sex: 'F' | 'M', age: number, n = 0): Look {
+export function lookOfId(id: number, c: Country, sex: 'F' | 'M', age: number, n = 0, ctx: LookCtx = {}): Look {
   const key = hash(id, 0xa11, n);
-  return makeLook(genesFor(c, makeRng(key)), c, sex, age, '', key);
+  return makeLook(genesFor(c, makeRng(key)), c, sex, age, '', key, ctx);
 }
