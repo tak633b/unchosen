@@ -5,7 +5,8 @@ import { netWorth } from '../engine/events/money';
 import { bornTable } from '../engine/lifetable';
 import { EDU_LABEL, eduLevel, type LineEntry, type Person, type Tie, genderOf, genderWord } from '../engine/person';
 import { lifeStory } from '../engine/summary';
-import { drawCard, shareCard } from './cards';
+import { drawCard } from './cards';
+import { mountShare, shareSection } from './share';
 import { paintScenes, sceneAttr, sceneOf, toData, type SceneData } from './pixel';
 import { lastWords, lastWordsAi, lifeStoryAi, type LastWord } from '../ai/director';
 import { aiOn } from '../ai/settings';
@@ -46,6 +47,8 @@ export interface PastLife {
   religion?: string;           // 顔を描くのに使う
   spouse?: { id: number; sex: Person['sex'] };
   album?: Moment[];            // 思い出のアルバム (遊んでいる間に撮った場面)
+  city?: string | null;        // 生まれた都市 (null は農村)。共有カードに使う。古い記録には無い
+  job?: string;                // 最後の仕事 (JOBS の名前)
 }
 
 export type CircleTie = Pick<Tie, 'id' | 'name' | 'role' | 'sex' | 'age' | 'alive' | 'bond' | 'diedAt' | 'since' | 'until' | 'pet'>;
@@ -101,6 +104,7 @@ function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[])
     religion: p.religion,
     spouse: p.spouse?.id !== undefined ? { id: p.spouse.id, sex: p.spouse.sex } : undefined,
     ...(album.length ? { album: pickMoments(album) } : {}),
+    city: p.city, ...(p.job ? { job: p.job } : {}),
   };
 }
 
@@ -278,9 +282,8 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       <label class="toggle"><input type="checkbox" id="share" checked> ${L('「みんなの人生」と追悼館に残す(名前・連絡先は残らない)', 'Add to "All lives" and the memorial (no name or contact kept)')}</label>
       <div class="choices">
         <button class="primary" data-d="done">${L('見送る', 'Say goodbye')}</button>
-        <button data-d="card">${L('記録カードを保存', 'Save card')}</button>
       </div>
-    </section>`)}</main>`;
+    </section>${shareSection()}`)}</main>`;
   window.scrollTo(0, 0);
   // ほかのプレイヤーがこの国で生きた人生の平均 (少ないうちは出さない)
   void countryAverage(p.birthCountry).then((t) => {
@@ -293,6 +296,7 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
   });
   paintLife(app, life, onContinue ? p : undefined, others);
   if (!onContinue) app.querySelector('.heirs')?.remove();
+  mountShare(app, life, () => deathCard(life));
   // 自死の人生は AI に語らせない (ai/prompts.ts の決まりと同じ)
   const aiOk = !isSuicide(p.cause);
   if (aiOk && aiOn('story') && life.words?.length) {
@@ -322,7 +326,6 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
     if (!d) return;
     const message = $<HTMLTextAreaElement>('#msg').value.trim();
     if (message) { life.message = message; storeLives([life, ...lives.slice(1)]); }
-    if (d === 'card') { await shareCard(deathCard(life), 'life.png'); return; }
     if ($<HTMLInputElement>('#share').checked) await postMemorial(life, p);
     if (d === 'continue' && onContinue) return onContinue(Number(btn!.dataset.v));
     onExit();

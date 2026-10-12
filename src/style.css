@@ -542,3 +542,6 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 .homepick select { max-width: 100%; }
 .record, .panel { min-width: 0; overflow-wrap: anywhere; }
 .survwrap { max-width: 520px; }
+
+/* 人生を共有する欄 (src/ui/share.ts) */
+.sharetext { white-space: pre-wrap; word-break: break-word; font: inherit; font-size: 13px; color: var(--sub); background: var(--bg2); border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }

@@ -9,6 +9,7 @@ import { lookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
 import { langOf, validEntry } from './validate.mjs';
 import { handle } from './cf-api.mjs';
+import { d1 } from './d1-sqlite.mjs';
 
 const PORT = Number(process.env.PORT ?? 8787);
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -41,28 +42,18 @@ const cols = db.prepare('PRAGMA table_info(memorial)').all().map((c) => c.name);
 if (!cols.includes('gen')) db.exec('ALTER TABLE memorial ADD COLUMN gen INTEGER NOT NULL DEFAULT 1');
 if (!cols.includes('family')) db.exec("ALTER TABLE memorial ADD COLUMN family TEXT NOT NULL DEFAULT ''");
 
-// いま遊ばれている人生 (/api/life/*) は Cloudflare 版と同じ処理を、同じ表で動かす。D1 の使う所だけを node:sqlite で
 db.exec(readFileSync(join(ROOT, 'migrations', '0002_lives.sql'), 'utf8'));
 db.exec('CREATE TABLE IF NOT EXISTS rate (k TEXT PRIMARY KEY, n INTEGER NOT NULL, exp INTEGER NOT NULL)');
-const d1 = {
-  prepare: (sql) => {
-    const stmt = (args) => ({
-      bind: (...a) => stmt(a),
-      first: async () => db.prepare(sql).get(...args) ?? null,
-      all: async () => ({ results: db.prepare(sql).all(...args) }),
-      run: async () => ({ meta: { changes: Number(db.prepare(sql).run(...args).changes) } }),
-    });
-    return stmt([]);
-  },
-};
-async function lifeApi(req, res, url) {
-  let body;
-  if (req.method === 'POST') { try { body = JSON.stringify(await readJson(req, 1024)); } catch { return send(res, 400, { success: false, error: 'bad json' }); } }
-  const r = await handle(new Request(`http://localhost${url.pathname}${url.search}`, {
-    method: req.method, body, headers: { 'CF-Connecting-IP': req.socket.remoteAddress ?? '' },
-  }), { DB: d1 });
-  res.writeHead(r.status, { 'Content-Type': r.headers.get('Content-Type'), 'Cache-Control': r.headers.get('Cache-Control') });
-  res.end(await r.text());
+// いま遊ばれている人生 (/api/life/*) と共有のリンク (/api/share・/s/<id>) は Cloudflare 版の API をそのまま、同じ DB の上で動かす
+db.exec(readFileSync(join(ROOT, 'migrations', '0003_share.sql'), 'utf8'));
+const cfEnv = { DB: d1(db) };
+async function viaCf(req, res, url) {
+  const body = req.method === 'POST' ? Buffer.concat(await Array.fromAsync(req)) : undefined;
+  const headers = new Headers({ 'CF-Connecting-IP': req.socket.remoteAddress ?? '' });
+  if (req.headers['content-type']) headers.set('Content-Type', req.headers['content-type']);
+  const r = await handle(new Request(`http://${req.headers.host ?? 'localhost'}${url.pathname}${url.search}`, { method: req.method, headers, body }), cfEnv);
+  res.writeHead(r.status, Object.fromEntries(r.headers));
+  res.end(Buffer.from(await r.arrayBuffer()));
 }
 
 // 1つの IP からの書き込みは 1分に10回まで
@@ -225,7 +216,7 @@ async function aiModels(req, res) {
 async function api(req, res, url) {
   if (req.method === 'POST' && url.pathname === '/api/ai/chat') return aiRelay(req, res);
   if (req.method === 'POST' && url.pathname === '/api/ai/models') return aiModels(req, res);
-  if (url.pathname.startsWith('/api/life/')) return lifeApi(req, res, url);
+  if (url.pathname.startsWith('/api/life/')) return viaCf(req, res, url);
   const ip = req.socket.remoteAddress ?? '';
   if (req.method === 'GET' && url.pathname === '/api/memorial') {
     const rows = db.prepare(`SELECT id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, gen, family, created_at AS createdAt
@@ -296,6 +287,7 @@ async function staticFile(req, res, pathname) {
 createServer(async (req, res) => {
   const url = new URL(req.url ?? '/', 'http://localhost');
   try {
+    if (url.pathname === '/api/share' || url.pathname.startsWith('/s/')) return await viaCf(req, res, url);
     if (url.pathname.startsWith('/api/')) return await api(req, res, url);
     return await staticFile(req, res, url.pathname);
   } catch (err) {

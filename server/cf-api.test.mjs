@@ -5,6 +5,8 @@ import { DatabaseSync } from 'node:sqlite';
 import { join } from 'node:path';
 import { aiTarget, handle, LIMITS } from './cf-api.mjs';
 import { blocked } from './moderation.mjs';
+import { d1 } from './d1-sqlite.mjs';
+import { SHARE_IMAGE_MAX } from './validate.mjs';
 
 const ROOT = join(import.meta.dirname, '..');
 
@@ -12,16 +14,7 @@ const ROOT = join(import.meta.dirname, '..');
 function fakeD1() {
   const db = new DatabaseSync(':memory:');
   for (const f of readdirSync(join(ROOT, 'migrations')).sort()) db.exec(readFileSync(join(ROOT, 'migrations', f), 'utf8'));
-  const stmt = (sql, args = []) => ({
-    bind: (...a) => stmt(sql, a),
-    first: async () => db.prepare(sql).get(...args) ?? null,
-    all: async () => ({ results: db.prepare(sql).all(...args) }),
-    run: async () => {
-      const r = db.prepare(sql).run(...args);
-      return { meta: { changes: Number(r.changes), last_row_id: Number(r.lastInsertRowid) } };
-    },
-  });
-  return { raw: db, prepare: (sql) => stmt(sql) };
+  return d1(db);
 }
 
 const ADMIN = 'test-admin-token-0123456789';
@@ -223,5 +216,92 @@ describe('いま遊ばれている人生 (Cloudflare 版)', () => {
     for (let i = 0; i < limit; i++) expect((await call('POST', '/api/life/start', { body: life(), now: 1e12 })).status).toBe(201);
     expect((await call('POST', '/api/life/start', { body: life(), now: 1e12 })).status).toBe(429);
     expect((await call('POST', '/api/life/start', { body: life(), now: 1e12, ip: '198.51.100.7' })).status).toBe(201);
+  });
+});
+
+describe('共有のリンク (/api/share と /s/<id>)', () => {
+  // PNG の頭 (確かめるのは頭の8バイトだけ)
+  const PNG_B64 = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0, 0, 0, 13, 0x49, 0x48, 0x44, 0x52]).toString('base64');
+  const share = (over = {}) => ({
+    lang: 'ja', name: '山田 花子', birthYear: 1940, age: 82, lines: ['山田 花子(1940–2022)。日本の農村のふつうの家に生まれた。', '82歳、老衰で亡くなった。'],
+    stat: 71, feelings: '静かな一生だった', image: PNG_B64, ...over,
+  });
+  const page = async (env, path) => {
+    const r = await handle(new Request(`https://x.test${path}`), env);
+    const type = r.headers.get('Content-Type') ?? '';
+    return { status: r.status, type, csp: r.headers.get('Content-Security-Policy'), body: type.startsWith('image/') ? new Uint8Array(await r.arrayBuffer()) : await r.text() };
+  };
+
+  it('作って、短い id のページと画像が読める。OGP は絶対 URL', async () => {
+    const { call, env } = api();
+    const r = await call('POST', '/api/share', { body: share() });
+    expect(r.status).toBe(201);
+    expect(r.j.data.id).toMatch(/^[A-Za-z0-9]{8}$/);
+    const p = await page(env, `/s/${r.j.data.id}`);
+    expect(p.status).toBe(200);
+    expect(p.type).toMatch(/^text\/html/);
+    expect(p.csp).toContain("default-src 'none'");
+    expect(p.body).toContain(`<meta property="og:image" content="https://x.test/s/${r.j.data.id}.png">`);
+    expect(p.body).toContain('<meta name="twitter:card" content="summary_large_image">');
+    expect(p.body).toContain('<title>山田 花子 (1940–2022) — Unchosen</title>');
+    expect(p.body).toContain('静かな一生だった');
+    expect(p.body).toContain('href="/"');
+    const img = await page(env, `/s/${r.j.data.id}.png`);
+    expect(img.type).toBe('image/png');
+    expect(Array.from(img.body)).toEqual(Array.from(Buffer.from(PNG_B64, 'base64')));
+  });
+
+  it('画像なしでも作れ、そのときは小さいカード', async () => {
+    const { call, env } = api();
+    const { j } = await call('POST', '/api/share', { body: share({ image: undefined, stat: null, lang: 'en' }) });
+    const p = await page(env, `/s/${j.data.id}`);
+    expect(p.body).toContain('<meta name="twitter:card" content="summary">');
+    expect(p.body).not.toContain('og:image');
+    expect(p.body).toContain('<html lang="en">');
+    expect((await page(env, `/s/${j.data.id}.png`)).status).toBe(404);
+  });
+
+  it('名前や感想に書かれたタグは、ページでもメタでも文字のまま', async () => {
+    const { call, env } = api();
+    const evil = '<script>alert(1)</script>"><img src=x onerror=alert(2)>';
+    const { j } = await call('POST', '/api/share', { body: share({ name: evil, feelings: evil, lines: [evil] }) });
+    const p = await page(env, `/s/${j.data.id}`);
+    expect(p.body).not.toContain('<script>');
+    expect(p.body).not.toContain('<img src=x');
+    expect(p.body).toContain('&lt;script&gt;alert(1)&lt;/script&gt;&quot;&gt;&lt;img src=x onerror=alert(2)&gt;');
+  });
+
+  it('無い id・形の違う道は 404 のページ', async () => {
+    const { env } = api();
+    for (const path of ['/s/AAAAAAAA', '/s/AAAAAAAA.png', '/s/short', '/s/']) expect((await page(env, path)).status).toBe(404);
+  });
+
+  it('形の悪いもの・PNG でない画像・大きすぎるもの・載せられない言葉は断る', async () => {
+    const { call } = api();
+    const big = Buffer.alloc(SHARE_IMAGE_MAX + 8 * 1024, 1); // 上限を少し超え、本文の上限 (800KB) には収まる
+    Buffer.from(PNG_B64, 'base64').copy(big);
+    const bads = [share({ name: '' }), share({ age: 121 }), share({ birthYear: 'x' }), share({ lines: [] }), share({ lines: Array(7).fill('a') }),
+      share({ lines: [''] }), share({ stat: 101 }), share({ stat: 1.5 }), share({ lang: 'fr' }),
+      share({ image: Buffer.from('GIF89a-not-png').toString('base64') }), share({ image: 'not base64!' }), share({ image: 123 }), share({ image: big.toString('base64') })];
+    for (const [i, bad] of bads.entries()) {
+      expect((await call('POST', '/api/share', { body: bad, ip: `203.0.113.${100 + i}` })).j.error).toBe('invalid share');
+    }
+    expect((await call('POST', '/api/share', { body: share({ image: 'A'.repeat(900 * 1024) }) })).status).toBe(413);
+    for (const over of [{ feelings: '死ねよ' }, { name: 'fuck' }, { lines: ['見て https://spam.example'] }]) {
+      expect((await call('POST', '/api/share', { body: share(over), ip: '203.0.113.30' })).j.error).toBe('blocked');
+    }
+  });
+
+  it('1つの IP から1分に作れる数には限りがあり、管理者は消せる', async () => {
+    const { call, env } = api();
+    const [limit] = LIMITS.shareMin;
+    const ids = [];
+    for (let i = 0; i < limit; i++) ids.push((await call('POST', '/api/share', { body: share(), now: 1e12 })).j.data.id);
+    expect((await call('POST', '/api/share', { body: share(), now: 1e12 })).status).toBe(429);
+    expect((await call('POST', '/api/share', { body: share(), now: 1e12, ip: '198.51.100.7' })).status).toBe(201);
+    expect((await call('POST', '/api/share', { body: share(), now: 1e12 + 60_000 })).status).toBe(201);
+    expect((await call('POST', `/api/admin/share/${ids[0]}/hide`, { auth: ADMIN })).j).toEqual({ success: true, data: { id: ids[0], hidden: true } });
+    expect((await page(env, `/s/${ids[0]}`)).status).toBe(404);
+    expect((await page(env, `/s/${ids[1]}`)).status).toBe(200);
   });
 });
