@@ -53,7 +53,9 @@ class Ledger {
   year = (pa: number) => this.p.birthYear + pa;
   born(r: Relative): number { return this.p.birthYear + (r.alive ? this.p.age : r.diedAt ?? this.p.age) - r.age; }
   country(m: Member): string {
-    return m.role === 'mother' || m.role === 'father' || m.role === 'sibling' ? this.p.birthCountry : m.r.country ?? this.p.birthCountry;
+    // 親は、外国へ養子に出た人なら養家の国 (roots.ts が country を付ける)
+    if (m.role === 'mother' || m.role === 'father') return m.r.country ?? this.p.birthCountry;
+    return m.role === 'sibling' ? this.p.birthCountry : m.r.country ?? this.p.birthCountry;
   }
   // 生きていると分かっている最後の年齢 (その人の年齢で)。連絡が途絶えた人は、途絶えた時まで
   known(m: Member): number {
@@ -176,7 +178,7 @@ function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
   const code = rec.country(m);
   const sampled = rec.fate(id);
   const fate = sampled.dies !== undefined && born + sampled.dies > upto ? {} : sampled;
-  const rp = createPerson({ seed: mix(p.seed, id, 0x4b1d), basis: 'births', auto: true, country: code, year: born, month: 1 + (mix(p.seed, id, 0x30a) % 12), gender: t.sex });
+  const rp = createPerson({ seed: mix(p.seed, id, 0x4b1d), basis: 'births', auto: true, plain: true, country: code, year: born, month: 1 + (mix(p.seed, id, 0x30a) % 12), gender: t.sex });
   rp.given = rp.name = t.name ?? rp.given;
   const pa = () => yearOf(rp) - p.birthYear; // 今の暦年での、主人公の年齢
   const pAlive = () => p.alive || pa() <= p.age;
@@ -235,7 +237,7 @@ function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
   if (role === 'sibling') {
     parentsOf(p.mother.id!, p.father.id!);
     rp.siblings = [0, ...p.siblings.filter((s) => s.id !== id).map((s) => s.id!)].map((x) => relOf(rec, x, born));
-    Object.assign(rp, { familyP: rec.homeP(), religion: p.religion, pool: p.pool, familyIndex: p.familyIndex }, rec.stayed ? { rural: p.rural, city: p.city } : {});
+    Object.assign(rp, { familyP: rec.homeP(), religion: p.faith?.from ?? p.religion, pool: p.pool, familyIndex: p.familyIndex }, rec.stayed ? { rural: p.rural, city: p.city } : {});
     rp.incomeP = rp.familyP;
   } else if (role === 'child') {
     const other = rec.otherParent(t);

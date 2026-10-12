@@ -55,6 +55,19 @@ export interface Memory { age: number; text: string; d: number; k?: string } // 
 export interface Tie extends Relative { role: Role; since: number; until?: number; of?: number } // since/until は主人公の年齢。of は孫の親 (子) の id
 // 分かれ道の結果のうち、何年か後に起きるもの。age 歳で decisions/*.json の id・選択肢 o・結果 r が起きる。w は出てくる人の id
 export interface Later { age: number; id: string; o: number; r: number; w?: number }
+// 生まれの区分と、家族の成り立ち (roots.ts)。group は roots.ts の GROUP の id
+export interface Roots {
+  group?: string;
+  dalit?: boolean;   // インドのダリットの出だが、キリスト教徒・ムスリムなので法律上は指定カースト (SC) に入らない
+  lang?: string;     // 家で話す言葉 (表示の言語の名前)
+  adopted?: { from: string; abroad: boolean; at: number; knows?: number; searched?: number; found?: boolean };
+  twin?: number;     // 双子のきょうだいの id
+  done?: string[];   // 一度だけの出来事の印 (events/roots.ts)
+  spouseSeen?: number;
+  resettled?: number; // 北朝鮮から韓国に着き、定着支援を受けた年齢
+}
+// 信仰の移り変わり (events/faith.ts)。年はすべて主人公の年齢
+export interface Faith { from: string; drifted?: number; converted?: number; hidden?: number; cut?: number; reconciled?: number }
 export interface Illness { name: string; years: number; mult: number }
 export interface Pet { kind: '犬' | '猫'; name: string; age: number; life: number }
 // 飼ったペットの記録 (pets.ts)。since・diedAt は主人公の年齢、age はペットの年齢
@@ -160,6 +173,8 @@ export interface Person {
   recent: Record<string, number>; // 日常の出来事を最後に見た年齢 (同じ話の繰り返しを避ける)
   later?: Later[];   // 分かれ道 (events/choices.ts) の、何年か後に起きる結果
   anchor?: Anchor;   // 輪の人の一生を作っている時だけ
+  roots?: Roots;
+  faith?: Faith;
   line?: LineEntry[]; // 家系: この人の前に続けてきた主人公たち (1世代目から順に)。1世代目には無い
   strain?: { until: number; k: number };  // つらい時期 (events/strain.ts)。until の年齢で抜ける。k は自死の率にかける倍率
   record?: { kind: 'fine' | 'suspended' | 'prison'; until: number }; // 前科 (events/justice.ts)。until の年齢で効力を失う

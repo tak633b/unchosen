@@ -10,6 +10,7 @@ import { afterSuicideLoss } from './strain';
 import { isEn, L } from '../../i18n';
 import { because, deathWhy } from '../why';
 import { petAged, petDied } from '../pets';
+import { orphans } from './roots';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -76,6 +77,7 @@ export function family(p: Person): void {
       because(p, deathWhy(countryOf(p), k.sex, k.age));
       if (isSuicide(kCause)) afterSuicideLoss(p);
       mourn(p, k, -25, -5);
+      orphans(p, k);
     }
     if (k.age === 18 && p.age < 80 && k.alive && !k.fixed) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');
   }

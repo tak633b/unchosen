@@ -17,7 +17,7 @@ export function contradictions(p: Person): string[] {
     const rp = l.person;
     if (l.born !== bornOf(t)) say(t, `born ${l.born} != ${bornOf(t)}`);
     if (l.sex !== t.sex) say(t, 'sex');
-    const country = t.role === 'mother' || t.role === 'father' || t.role === 'sibling' ? p.birthCountry : t.country ?? p.birthCountry;
+    const country = t.role === 'sibling' ? p.birthCountry : t.country ?? p.birthCountry;
     if (rp.birthCountry !== country) say(t, `country ${rp.birthCountry} != ${country}`);
     // 死: 記録で亡くなった人は同じ年齢で、生きていた人は記録の終わりより後まで
     const deaths = rp.log.filter((e) => e.kind === 'death').length;
@@ -68,7 +68,7 @@ export function contradictions(p: Person): string[] {
     if (t.role === 'sibling') {
       if (rp.mother.fixed?.ref !== p.mother.id || rp.father.fixed?.ref !== p.father.id) say(t, 'parents');
       if (!rp.siblings.some((s) => s.fixed?.ref === 0)) say(t, 'protagonist not a sibling');
-      if (rp.religion !== p.religion || rp.pool !== p.pool || rp.familyIndex !== p.familyIndex) say(t, 'family');
+      if (rp.religion !== (p.faith?.from ?? p.religion) || rp.pool !== p.pool || rp.familyIndex !== p.familyIndex) say(t, 'family');
     }
     if (t.role === 'child' && ![rp.mother, rp.father].some((x) => x.fixed?.ref === 0)) say(t, 'protagonist not a parent');
     // ほかの人の一生に出てくる記録の人は、その人自身の一生と同じ年に生まれ、同じ年に亡くなる

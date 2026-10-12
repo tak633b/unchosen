@@ -110,7 +110,7 @@ function chooseTrack(p: Person, c: Country): void {
 export const uniChance = (p: Person, c: Country) =>
   clamp(Math.min(1, c.tertiary) * (0.5 + p.familyP) * (0.4 + p.stats.learn / 100 + talent(p, 'study') * 0.04) * (p.school.track === 'vocational' ? 0.6 : 1), 0.02, 0.95) * uniK(p); // uniK: 歴史で大学が閉ざされた年 (history.ts)
 
-const tuitionOf = (c: Country) => earnings(c, 0.5) * 0.25;
+export const tuitionOf = (c: Country) => earnings(c, 0.5) * 0.25; // 国内の大学の年の学費 (留学先は abroad.ts の tuitionAbroad)
 
 // 士官学校: 体と学力がそろった人だけ。女性の入学は1970〜90年代から (米国の士官学校1976年・防衛大学校1992年・韓国陸軍士官学校1998年)
 const canAcademy = (p: Person) => p.stats.learn >= 55 && p.stats.health >= 65 && (p.sex === 'M' || yearOf(p) >= 1995);

@@ -28,6 +28,9 @@ import { because, birthWhy, deathWhy, joinWhy } from './why';
 import { ensureBonds, freshName } from './bonds';
 import { childTalent } from './talent';
 import { DEEP_SEA, DEEP_SEA_RISK } from './events/career';
+import { origin, roots, rootsMortality } from './roots';
+import { rootsYear } from './events/roots';
+import { faith } from './events/faith';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -47,7 +50,7 @@ export function pauseQuestion(p: Person, age = p.age): string | null {
   }
 }
 
-export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean; country?: string; year?: number; month?: number; gender?: Gender }
+export interface BirthOptions { seed: number; basis: BirthBasis; auto?: boolean; country?: string; year?: number; month?: number; gender?: Gender; plain?: boolean } // plain: 輪の人の一生 (kin.ts)。生まれの区分・養子・双子を決めない
 
 export function createPerson(o: BirthOptions): Person {
   const rng = makeRng(o.seed);
@@ -93,7 +96,9 @@ export function createPerson(o: BirthOptions): Person {
   };
   if (c.u5mr > 0.05 && familyP < 0.3) bump(p, { health: -10 });
   ensureBonds(p);
+  if (!o.plain) origin(p);
   log(p, birthStory(p), 'child', true, undefined, [p.mother.id!, p.father.id!]);
+  if (!o.plain) roots(p);
   return p;
 }
 
@@ -125,7 +130,8 @@ export function birthStory(p: Person): string {
 // 倍率の平均は年齢で変わる (病気が増える60〜85歳で高く、丈夫な人だけが残る95歳以上で低い) ので、
 // 年齢帯ごとに、その年齢で生きている人の平均が生命表どおりになるよう実測で決めた値 (life.test.ts)
 const CALIBRATION: [number, number][] = [[90, 0.69], [80, 0.61], [70, 0.58], [60, 0.6], [40, 0.72], [20, 0.85], [0, 0.87]];
-const calibration = (age: number) => CALIBRATION.find(([from]) => age >= from)![1];
+// 男性は95歳を過ぎても倍率の平均が下がり続け、100歳まで生きる割合が生命表より1〜2ポイント多く出た (1960年生まれの日本、8000人で +1.2)。95歳からだけ割り戻しを強める
+const calibration = (age: number, sex: Sex) => (sex === 'M' && age >= 95 ? 0.78 : CALIBRATION.find(([from]) => age >= from)![1]);
 
 // その年齢で生きている同じ世代の人の、喫煙による倍率の平均。15歳で吸い始め、30歳から6年ごとに約14%がやめる (health.ts の habits)。
 // ponytail: やめる割合は自動で決めたときの値 (0.35×0.4)。プレイヤーの選び方は入れていない
@@ -150,7 +156,8 @@ export function riskParts(p: Person): RiskParts {
   // 二重に数えないよう、15〜49歳の女性からは、1年あたりの見込み (出生率/35 × 妊産婦死亡率) を差し引く
   // ponytail: 結婚していない人も同じだけ引く。未婚率の高い国・時代では、少し長く生きる側にずれる
   const maternal = p.sex === 'F' && p.age >= 15 && p.age < 50 ? (c.tfr / 35) * (c.mmr / 1e5) : 0;
-  const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal);
+  // ウイグル族・チベット族は、住む自治区の平均寿命の差を倍率でかける (roots.ts)
+  const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal) * rootsMortality(p);
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
   if (p.age < 5) return { q: base, table: base, ...one };
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
@@ -165,7 +172,7 @@ export function riskParts(p: Person): RiskParts {
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
   // つらい時期 (events/strain.ts) には、自死の率をその倍率のぶんだけ動かす。時期の外では 0 なので、ふだんの死亡率は変わらない
   const strainAdd = (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
-  const cal = calibration(p.age);
+  const cal = calibration(p.age, p.sex);
   const jobAdd = p.working && !p.retired && p.job === DEEP_SEA ? DEEP_SEA_RISK : 0;
   return { q: clamp(cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + strainAdd + jobAdd, 0, 1), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, strainAdd, ...(jobAdd ? { jobAdd } : {}) };
 }
@@ -240,6 +247,8 @@ export function advanceYear(p: Person): void {
   adultPet(p);
   moments(p);
   bonds(p);
+  rootsYear(p);
+  faith(p);
   if (p.age === 62 && p.hobbies.length < 3 && p.rng() < 0.5) chooseHobby(p, L('新しい趣味を始める？', 'Take up a new hobby?'));
   drift(p);
   if (near && p.alive) logNearMiss(p, near, q);

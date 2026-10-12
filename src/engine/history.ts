@@ -62,7 +62,7 @@ function happenings(p: Person, y: number): void {
       bump(p, { happy: -15, bond: -3 });
     }
   }
-  // 光州 1980年5月。ponytail: 韓国の街の一覧 (identity.json) に光州がまだ無いので、今は誰にも起きない。街を足せば動く
+  // 光州 1980年5月。光州に住んでいる人に起きる (identity.json の韓国の6番目の街)
   if (c === 'KOR' && y === 1980 && (p.city === '光州' || p.city === 'Gwangju') && p.age >= 6 && once(p, 'gwangju')) {
     log(p, L('5月、街に空挺部隊が入り、学生と市民に銃を向けた。十日のあいだ、街は外とつながる道も電話も断たれた。', 'In May, paratroopers entered the city and turned their guns on students and citizens. For ten days the roads and phone lines out of the city were cut.'), 'hard', true,
       L('光州事件の死者は、のちの政府の認定で民間人165人、行方不明者は76人、負傷者は3,000人を超える', 'Government figures later recognized 165 civilians killed, 76 missing and more than 3,000 injured in Gwangju'));
