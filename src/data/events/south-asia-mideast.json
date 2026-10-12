@@ -1,0 +1,6401 @@
+{
+ "events": [
+  {
+   "id": "in-famine-1900",
+   "type": "famine",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1900,
+    1900
+   ],
+   "hit": 0.15,
+   "kill": 0.003,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -12,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "雨が降らず、村の井戸が涸れた。救済の工事で石を運び、わずかな穀物を受け取って食いつないだ。"
+    ],
+    "news": [
+     "西と中部のインドを飢饉が襲い、救済の作業所に何百万人もが並んだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains failed and the village well ran dry. Survival meant carrying stones on the relief works for a handful of grain."
+    ],
+    "news": [
+     "Famine swept western and central India, and millions queued at the relief works."
+    ]
+   },
+   "stat": [
+    "1899〜1900年の飢饉では、英領インドで少なくとも100万人が亡くなったとされる",
+    "The famine of 1899-1900 killed at least one million people in British India"
+   ],
+   "src": "Imperial Gazetteer of India vol. III (1907); Davis 2001, Late Victorian Holocausts"
+  },
+  {
+   "id": "in-ww1",
+   "type": "war",
+   "countries": [
+    "IND",
+    "PAK"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.02,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "英国の軍に入り、海の向こうの戦場へ送られた。泥の塹壕で、見たこともない寒さを知った。"
+    ],
+    "news": [
+     "ヨーロッパで大きな戦争が始まり、村からも若い男たちが兵として海を渡っていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined the British Indian Army and was shipped to battlefields overseas. Learned a cold never known before, in trenches of mud."
+    ],
+    "news": [
+     "A great war began in Europe, and young men from the villages crossed the sea as soldiers."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦では、インドから約130万人が兵士や労働者として海外へ送られ、7万4,000人あまりが戻らなかった",
+    "In the First World War about 1.3 million Indians served overseas as soldiers and labourers, and more than 74,000 did not return"
+   ],
+   "src": "Commonwealth War Graves Commission; Omissi 1999, Indian Voices of the Great War"
+  },
+  {
+   "id": "in-ww2",
+   "type": "war",
+   "countries": [
+    "IND",
+    "PAK"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.03,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "志願して英国の軍に入り、北アフリカやビルマの戦場へ送られた。"
+    ],
+    "news": [
+     "世界の戦争が広がり、インドからも兵が中東やビルマへ送られた。物の値段が上がり続けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Volunteered for the British Indian Army and was sent to the fronts in North Africa and Burma."
+    ],
+    "news": [
+     "The world war spread, and soldiers from India were sent to the Middle East and Burma. Prices kept rising."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦のインド軍は約250万人で、歴史上最大の志願兵の軍だった",
+    "India's army in the Second World War grew to about 2.5 million, the largest volunteer army in history"
+   ],
+   "src": "Commonwealth War Graves Commission; Raghavan 2016, India's War"
+  },
+  {
+   "id": "bengal-1943-bgd",
+   "type": "famine",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1943,
+    1944
+   ],
+   "hit": 0.3,
+   "kill": 0.02,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.4,
+   "poor": 2,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -18,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "米の値段が何倍にもなり、家の田畑を手放した。食べ物を求めて町へ歩いたが、道ばたには同じ人たちが座りこんでいた。"
+    ],
+    "news": [
+     "ベンガルを大飢饉が襲った。食べ物を求める人が町にあふれた。"
+    ],
+    "near": [
+     "米の値段がはね上がり、一日一食の月が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Rice cost many times what it had, and the family's fields were sold. The walk to the town for food passed people sitting by the road who had come for the same."
+    ],
+    "news": [
+     "A great famine struck Bengal. The towns filled with people searching for food."
+    ],
+    "near": [
+     "The price of rice shot up, and for months there was one meal a day."
+    ]
+   },
+   "stat": [
+    "1943年のベンガル飢饉では、210万〜300万人が亡くなったとされる",
+    "The Bengal famine of 1943 killed an estimated 2.1 to 3 million people"
+   ],
+   "src": "Sen 1981, Poverty and Famines; Maharatna 1996, The Demography of Famines"
+  },
+  {
+   "id": "bengal-1943-ind",
+   "type": "famine",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1943,
+    1944
+   ],
+   "hit": 0.03,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.5,
+   "poor": 2,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -15,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "米の値段が何倍にもなり、食べ物を求めてカルカッタへ歩いた。施しの粥の列に何日も並んだ。"
+    ],
+    "news": [
+     "ベンガルで大飢饉が起き、カルカッタの通りには飢えた人々が横たわっていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Rice cost many times what it had, and the walk to Calcutta for food ended in the gruel lines, day after day."
+    ],
+    "news": [
+     "A great famine struck Bengal, and starving people lay in the streets of Calcutta."
+    ]
+   },
+   "stat": [
+    "1943年のベンガル飢饉では、210万〜300万人が亡くなったとされる",
+    "The Bengal famine of 1943 killed an estimated 2.1 to 3 million people"
+   ],
+   "src": "Sen 1981, Poverty and Famines; Maharatna 1996, The Demography of Famines"
+  },
+  {
+   "id": "partition-1947-pak",
+   "type": "war",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    1947,
+    1948
+   ],
+   "hit": 0.2,
+   "kill": 0.006,
+   "who": "all",
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "分離独立で、新しい国境の向こうへ移ることになった。持てるだけの物を持ち、何日も歩いて、知らない町の難民キャンプに着いた。",
+     "村が襲われ、家を捨てて逃げた。列車も道も、逆の方向へ向かう人で埋まっていた。"
+    ],
+    "news": [
+     "8月、英国の支配が終わり、インドとパキスタンに分かれた。国境の両側で、何百万もの人が家を追われた。"
+    ],
+    "near": [
+     "8月、町の向こう側の通りが燃えた。夜は扉に家具を寄せて眠った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Partition meant crossing to the other side of the new border. Carrying what could be carried, the family walked for days and reached a refugee camp in a strange town.",
+     "The village was attacked and the house abandoned. Trains and roads were packed with people fleeing in the other direction."
+    ],
+    "news": [
+     "In August British rule ended and the land was divided into India and Pakistan. Millions on both sides of the border were driven from their homes."
+    ],
+    "near": [
+     "In August the streets across town burned. At night the furniture was pushed against the door."
+    ]
+   },
+   "stat": [
+    "1947年の分離独立では、約1,400万人が国境を越えて移り、数十万〜100万人が暴力で亡くなったとされる",
+    "Partition in 1947 uprooted some 14 million people, and between several hundred thousand and a million were killed in the violence"
+   ],
+   "src": "UNHCR, The State of the World's Refugees 2000; Talbot & Singh 2009, The Partition of India"
+  },
+  {
+   "id": "partition-1947-ind",
+   "type": "war",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1947,
+    1948
+   ],
+   "hit": 0.02,
+   "kill": 0.0006,
+   "who": "all",
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "分離独立で、新しい国境の向こうへ移ることになった。持てるだけの物を持ち、何日も歩いて、知らない町の難民キャンプに着いた。",
+     "村が襲われ、家を捨てて逃げた。列車も道も、逆の方向へ向かう人で埋まっていた。"
+    ],
+    "news": [
+     "8月15日、インドは独立した。同じ日に国は二つに分かれ、国境の両側で何百万もの人が家を追われた。"
+    ],
+    "near": [
+     "8月、町の向こう側の通りが燃えた。夜は扉に家具を寄せて眠った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Partition meant crossing to the other side of the new border. Carrying what could be carried, the family walked for days and reached a refugee camp in a strange town.",
+     "The village was attacked and the house abandoned. Trains and roads were packed with people fleeing in the other direction."
+    ],
+    "news": [
+     "On 15 August India became independent. The same day the land was divided, and millions on both sides of the border were driven from their homes."
+    ],
+    "near": [
+     "In August the streets across town burned. At night the furniture was pushed against the door."
+    ]
+   },
+   "stat": [
+    "1947年の分離独立では、約1,400万人が国境を越えて移り、数十万〜100万人が暴力で亡くなったとされる",
+    "Partition in 1947 uprooted some 14 million people, and between several hundred thousand and a million were killed in the violence"
+   ],
+   "src": "UNHCR, The State of the World's Refugees 2000; Talbot & Singh 2009, The Partition of India"
+  },
+  {
+   "id": "partition-1947-bgd",
+   "type": "war",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1947,
+    1950
+   ],
+   "hit": 0.03,
+   "kind": "move",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "分離独立のあと、生まれた村を離れて国境の向こうへ移った。"
+    ],
+    "news": [
+     "ベンガルは二つに分けられ、東は東パキスタンになった。国境を越えて移る人の列が何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After Partition, the family left the village of their birth and crossed the new border."
+    ],
+    "news": [
+     "Bengal was cut in two, and the east became East Pakistan. For years, people kept crossing the border in both directions."
+    ]
+   },
+   "stat": [
+    "1947〜51年に、東ベンガルからインドへ約250万人が移ったとされる",
+    "Some 2.5 million people moved from East Bengal to India between 1947 and 1951"
+   ],
+   "src": "Chatterji 2007, The Spoils of Partition; Census of India 1951"
+  },
+  {
+   "id": "in-1962-war",
+   "type": "war",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1962,
+    1962
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、ヒマラヤの国境で中国との戦争が起き、ひと月ほどで終わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October war broke out with China on the Himalayan border. It was over within a month."
+    ]
+   },
+   "stat": [
+    "1962年の中印戦争で、インド兵1,383人が亡くなった (インド国防省)",
+    "1,383 Indian soldiers were killed in the 1962 war with China (Indian Ministry of Defence)"
+   ],
+   "src": "Indian Ministry of Defence, History of the Conflict with China, 1962 (1992)"
+  },
+  {
+   "id": "indo-pak-1965",
+   "type": "war",
+   "countries": [
+    "IND",
+    "PAK"
+   ],
+   "years": [
+    1965,
+    1965
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、カシミールをめぐってインドとパキスタンが戦った。夜は灯りを消すよう命じられた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September India and Pakistan went to war over Kashmir. At night, lights had to be kept off."
+    ]
+   },
+   "stat": [
+    "1965年の印パ戦争は17日間続き、双方の兵士あわせて約7,000人が亡くなったとされる",
+    "The 1965 war lasted 17 days, and around 7,000 soldiers were killed on both sides"
+   ],
+   "src": "Library of Congress Country Studies (Pakistan, India); Gupta 1966"
+  },
+  {
+   "id": "bd-1971",
+   "type": "war",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1971,
+    1971
+   ],
+   "hit": 0.3,
+   "kill": 0.02,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "3月、軍が町に入った。家に火がつけられ、何か月も村から村へ逃げて暮らした。",
+     "戦争で家を追われ、国境を越えてインドの難民キャンプで冬を越した。12月の終わりに、焼けた家に戻った。"
+    ],
+    "news": [
+     "独立を求める戦争が始まり、12月、バングラデシュが生まれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In March the army entered the town. The house was set on fire, and for months life meant running from village to village.",
+     "The war drove the family from home and across the border, to a winter in a refugee camp in India. At the end of December they came back to the burned house."
+    ],
+    "news": [
+     "A war for independence began, and in December Bangladesh was born."
+    ]
+   },
+   "stat": [
+    "1971年の独立戦争では、約1,000万人がインドへ逃れた (UNHCR)",
+    "During the 1971 war of independence some 10 million people fled to India (UNHCR)"
+   ],
+   "src": "UNHCR, The State of the World's Refugees 2000, ch. 3; Bass 2013, The Blood Telegram"
+  },
+  {
+   "id": "pak-1971",
+   "type": "war",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    1971,
+    1971
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、東パキスタンでの戦争に敗れ、東はバングラデシュとして独立した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December the war in East Pakistan was lost, and the east became independent as Bangladesh."
+    ]
+   },
+   "stat": [
+    "1971年12月、約9万3,000人のパキスタン兵と民間人がインドの捕虜になった",
+    "In December 1971 about 93,000 Pakistani soldiers and civilians became prisoners of India"
+   ],
+   "src": "Hamoodur Rahman Commission Report (1974); Bass 2013"
+  },
+  {
+   "id": "ind-1971",
+   "type": "war",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1971,
+    1971
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "東パキスタンから1,000万人ほどの難民が逃れてきて、12月には戦争になった。2週間で終わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Some ten million refugees came over from East Pakistan, and in December there was war. It ended in two weeks."
+    ]
+   },
+   "stat": [
+    "1971年、インドの難民キャンプには約1,000万人がいた (UNHCR)",
+    "In 1971 India's refugee camps held about 10 million people (UNHCR)"
+   ],
+   "src": "UNHCR, The State of the World's Refugees 2000, ch. 3"
+  },
+  {
+   "id": "in-emergency",
+   "type": "unrest",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1975,
+    1977
+   ],
+   "hit": 0.03,
+   "age": [
+    20,
+    60
+   ],
+   "sex": "M",
+   "poor": 1.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "非常事態のもと、役所の割り当てに従って、不妊の手術を受けさせられた。"
+    ],
+    "news": [
+     "6月、非常事態が宣言された。新聞は検閲され、反対する人々が次々に捕らえられた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under the Emergency, to fill an official quota, was made to undergo sterilization."
+    ],
+    "news": [
+     "In June a state of Emergency was declared. Newspapers were censored and opponents arrested one after another."
+    ]
+   },
+   "stat": [
+    "1976年の1年間に、インドでは約620万人の男性が不妊手術を受けた",
+    "In 1976 alone about 6.2 million men in India were sterilized"
+   ],
+   "src": "Gwatkin 1979, Population and Development Review 5(1):29"
+  },
+  {
+   "id": "delhi-1984",
+   "type": "unrest",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1984,
+    1984
+   ],
+   "hit": 0.005,
+   "cities": [
+    "デリー",
+    "Delhi"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -20,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "11月、首相の暗殺のあと、暴徒が通りを襲った。近所の家々に火がつけられ、何日も隠れて過ごした。"
+    ],
+    "news": [
+     "10月31日、インディラ・ガンディー首相が暗殺され、デリーではシク教徒が襲われた。"
+    ],
+    "near": [
+     "11月、首相が暗殺された夜から、町の通りに火の手が上がった。何日も家から出なかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In November, after the prime minister's assassination, mobs attacked the street. Neighbours' houses were set alight, and the days were spent in hiding."
+    ],
+    "news": [
+     "On 31 October Prime Minister Indira Gandhi was assassinated, and Sikhs were attacked in Delhi."
+    ],
+    "near": [
+     "From the night the prime minister was killed, fires rose in the streets. No one left the house for days."
+    ]
+   },
+   "stat": [
+    "1984年11月の暴動で、デリーでは公式に2,733人のシク教徒が殺された",
+    "In the riots of November 1984, 2,733 Sikhs were officially recorded as killed in Delhi"
+   ],
+   "src": "Justice Nanavati Commission of Inquiry Report (2005)"
+  },
+  {
+   "id": "bhopal-1984",
+   "type": "nuclear",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1984,
+    1984
+   ],
+   "hit": 0.0006,
+   "urban": 2,
+   "severity": 3,
+   "effect": {
+    "health": -12,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "12月の夜、工場から漏れたガスが町に広がった。目と肺を焼かれ、その後何年も咳が止まらなかった。"
+    ],
+    "news": [
+     "12月、ボパールの農薬工場から毒ガスが漏れ、眠っていた町を覆った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One December night, gas leaking from the factory spread over the town. It burned the eyes and lungs, and the cough never went away for years."
+    ],
+    "news": [
+     "In December poison gas leaked from a pesticide plant in Bhopal and covered the sleeping city."
+    ]
+   },
+   "stat": [
+    "1984年12月のボパールのガス漏れで、州政府の公式発表では3,787人が亡くなり、50万人以上が有毒ガスにさらされた",
+    "The Bhopal gas leak of December 1984 killed 3,787 people by the state government's official count and exposed more than 500,000"
+   ],
+   "src": "Government of Madhya Pradesh; Broughton 2005, Environmental Health 4:6"
+  },
+  {
+   "id": "odisha-1999",
+   "type": "cyclone",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0.002,
+   "poor": 2,
+   "urban": 0.5,
+   "kill": 0.00001,
+   "cause": "災害",
+   "who": "frail",
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "10月、超大型のサイクロンが海辺を襲った。高潮が村をのみこみ、家は跡形もなくなった。"
+    ],
+    "news": [
+     "10月、オディシャ州を超大型のサイクロンが襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In October a super cyclone struck the coast. The storm surge swallowed the village, and nothing was left of the house."
+    ],
+    "news": [
+     "In October a super cyclone struck the state of Odisha."
+    ]
+   },
+   "stat": [
+    "1999年10月のオディシャのサイクロンで、約1万人が亡くなった",
+    "The Odisha super cyclone of October 1999 killed about 10,000 people"
+   ],
+   "src": "Government of Odisha; India Meteorological Department"
+  },
+  {
+   "id": "gujarat-2001",
+   "type": "quake",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    2001,
+    2001
+   ],
+   "hit": 0.01,
+   "cities": [
+    "アーメダバード",
+    "Ahmedabad"
+   ],
+   "elsewhere": 0.0005,
+   "kill": 0.00002,
+   "cause": "災害",
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "1月26日の朝、大きな地震で建物が崩れた。何か月もテントで暮らした。"
+    ],
+    "news": [
+     "1月26日、グジャラート州を大きな地震が襲った。"
+    ],
+    "near": [
+     "1月26日の朝、大きな揺れで外へ逃げた。通りの向かいの建物が崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 January a strong earthquake brought the building down. For months home was a tent."
+    ],
+    "news": [
+     "On 26 January a strong earthquake struck the state of Gujarat."
+    ],
+    "near": [
+     "On the morning of 26 January the ground shook hard and everyone ran outside. The building across the street collapsed."
+    ]
+   },
+   "stat": [
+    "2001年1月26日のグジャラート地震では、約2万人が亡くなり、約60万人が家を失った",
+    "The Gujarat earthquake of 26 January 2001 killed about 20,000 people and left some 600,000 homeless"
+   ],
+   "src": "Government of Gujarat; EERI Earthquake Spectra vol. 18 (2002)"
+  },
+  {
+   "id": "mumbai-2008",
+   "type": "terror",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    2008,
+    2008
+   ],
+   "hit": 0.0003,
+   "cities": [
+    "ムンバイ",
+    "Mumbai"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "11月の夜、駅で銃声が響いた。人の波に押されて逃げ、何時間も物陰にうずくまった。"
+    ],
+    "news": [
+     "11月、ムンバイの駅やホテルが武装した集団に襲われた。"
+    ],
+    "near": [
+     "11月、町のホテルと駅が武装した男たちに襲われた。3日のあいだ、テレビの前を離れられなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One November night gunfire echoed through the station. Swept along by the crowd, then hours crouched in hiding."
+    ],
+    "news": [
+     "In November an armed group attacked railway stations and hotels in Mumbai."
+    ],
+    "near": [
+     "In November armed men attacked the city's hotels and railway station. For three days there was no leaving the television."
+    ]
+   },
+   "stat": [
+    "2008年11月のムンバイ同時襲撃では、166人が亡くなった",
+    "The Mumbai attacks of November 2008 killed 166 people"
+   ],
+   "src": "Government of Maharashtra; Ram Pradhan Committee Report (2009)"
+  },
+  {
+   "id": "uttarakhand-2013",
+   "type": "flood",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0.0003,
+   "urban": 0.3,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -12,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "6月、山で何日も降り続いた雨で川があふれ、谷の家々が流された。"
+    ],
+    "news": [
+     "6月、ウッタラーカンドの山で豪雨と洪水が起き、巡礼の人々が多く巻きこまれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June days of rain in the mountains burst the rivers, and the houses in the valley were swept away."
+    ],
+    "news": [
+     "In June torrential rain and floods struck the mountains of Uttarakhand, catching many pilgrims."
+    ]
+   },
+   "stat": [
+    "2013年6月のウッタラーカンドの豪雨と洪水では、約6,000人が亡くなったか行方不明になった",
+    "The June 2013 Uttarakhand floods left about 6,000 people dead or missing"
+   ],
+   "src": "Government of Uttarakhand; National Disaster Management Authority"
+  },
+  {
+   "id": "kashmir-2005",
+   "type": "quake",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.02,
+   "urban": 0.3,
+   "kill": 0.0005,
+   "cause": "災害",
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "10月8日の朝、山の家が地震で崩れた。冬が来る前にテントが届き、雪の中で春を待った。"
+    ],
+    "news": [
+     "10月8日、カシミールの北部を大きな地震が襲い、山の村々が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 8 October the mountain house collapsed in the earthquake. A tent arrived before winter, and spring was awaited in the snow."
+    ],
+    "news": [
+     "On 8 October a strong earthquake struck northern Kashmir, and mountain villages collapsed."
+    ]
+   },
+   "stat": [
+    "2005年10月8日の地震で、パキスタンでは7万3,000人あまりが亡くなり、約350万人が家を失った",
+    "The earthquake of 8 October 2005 killed more than 73,000 people in Pakistan and left about 3.5 million homeless"
+   ],
+   "src": "Earthquake Reconstruction and Rehabilitation Authority (ERRA), Government of Pakistan"
+  },
+  {
+   "id": "pak-floods-2010",
+   "type": "flood",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.11,
+   "urban": 0.4,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "夏、インダス川があふれ、村は何週間も水につかった。土の家は崩れ、家畜も流された。"
+    ],
+    "news": [
+     "夏の大雨でインダス川があふれ、国土の5分の1ほどが水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the summer the Indus burst its banks and the village stood in water for weeks. The mud houses collapsed and the animals were swept away."
+    ],
+    "news": [
+     "Monsoon rains flooded the Indus, and about a fifth of the country was under water."
+    ]
+   },
+   "stat": [
+    "2010年の洪水では約2,000万人が被害を受け、1,985人が亡くなった",
+    "The 2010 floods affected about 20 million people and killed 1,985"
+   ],
+   "src": "National Disaster Management Authority (NDMA) Pakistan"
+  },
+  {
+   "id": "pak-floods-2022",
+   "type": "flood",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    2022,
+    2022
+   ],
+   "hit": 0.14,
+   "urban": 0.4,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "夏の雨がやまず、家と畑が水の下になった。道の上に張ったテントで、水が引くのを待った。"
+    ],
+    "news": [
+     "記録的な雨で、国土の3分の1が水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The summer rains would not stop, and house and fields went under. A tent pitched on the raised road was home while the water went down."
+    ],
+    "news": [
+     "Record rains left a third of the country under water."
+    ]
+   },
+   "stat": [
+    "2022年の洪水では約3,300万人が被害を受け、1,739人が亡くなった",
+    "The 2022 floods affected about 33 million people and killed 1,739"
+   ],
+   "src": "Government of Pakistan, Post-Disaster Needs Assessment (2022); NDMA"
+  },
+  {
+   "id": "peshawar-2014",
+   "type": "terror",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    2014,
+    2014
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、ペシャワールの陸軍の学校が武装した集団に襲われ、多くの子どもが犠牲になった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December an armed group attacked the army school in Peshawar, and many children were among the dead."
+    ]
+   },
+   "stat": [
+    "2014年12月16日、ペシャワールの学校で、子ども132人を含む140人あまりが殺された",
+    "On 16 December 2014 more than 140 people, including 132 children, were killed at the school in Peshawar"
+   ],
+   "src": "Government of Khyber Pakhtunkhwa; UNICEF"
+  },
+  {
+   "id": "bhola-1970",
+   "type": "cyclone",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1970,
+    1970
+   ],
+   "hit": 0.04,
+   "urban": 0.3,
+   "poor": 2,
+   "kill": 0.005,
+   "cause": "災害",
+   "who": "frail",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "11月の夜、サイクロンの高潮が島をのみこんだ。朝、残っていたのは木の幹と泥だけだった。"
+    ],
+    "news": [
+     "11月、巨大なサイクロンが南の海辺と島々を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One November night the cyclone's storm surge swallowed the island. In the morning only tree trunks and mud were left."
+    ],
+    "news": [
+     "In November a huge cyclone struck the southern coast and islands."
+    ]
+   },
+   "stat": [
+    "1970年11月のボーラ・サイクロンでは、30万〜50万人が亡くなったとされる",
+    "The Bhola cyclone of November 1970 killed an estimated 300,000 to 500,000 people"
+   ],
+   "src": "World Meteorological Organization; Frank & Husain 1971, Bull. Amer. Meteor. Soc. 52:438"
+  },
+  {
+   "id": "bd-famine-1974",
+   "type": "famine",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1974,
+    1975
+   ],
+   "hit": 0.15,
+   "urban": 0.3,
+   "poor": 2,
+   "kill": 0.005,
+   "cause": "飢饉",
+   "who": "frail",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -15,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "洪水のあと米の値段がはね上がり、食べる物がなくなった。施しの粥の小屋に毎日並んだ。"
+    ],
+    "news": [
+     "洪水のあと米の値段がはね上がり、各地で飢饉になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the floods the price of rice soared and there was nothing to eat. Every day meant the queue at the gruel kitchen."
+    ],
+    "news": [
+     "After the floods rice prices soared, and famine spread across the country."
+    ]
+   },
+   "stat": [
+    "1974年の飢饉の死者は、政府の発表で2万7,000人、研究者の推計では100万人を超える",
+    "The 1974 famine killed 27,000 by the government's count, and over a million by researchers' estimates"
+   ],
+   "src": "Sen 1981, Poverty and Famines; Alamgir 1980, Famine in South Asia"
+  },
+  {
+   "id": "bd-cyclone-1991",
+   "type": "cyclone",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0.03,
+   "urban": 0.5,
+   "poor": 2,
+   "kill": 0.0012,
+   "cause": "災害",
+   "who": "frail",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "4月の夜、サイクロンの高潮が海辺を襲い、家は流された。避難所の屋根の上で朝を待った。"
+    ],
+    "news": [
+     "4月、チッタゴンの海辺を巨大なサイクロンが襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One April night the cyclone's surge struck the coast and the house was washed away. Morning came on the roof of the shelter."
+    ],
+    "news": [
+     "In April a huge cyclone struck the coast around Chittagong."
+    ]
+   },
+   "stat": [
+    "1991年4月のサイクロンで、約13万8,000人が亡くなった",
+    "The cyclone of April 1991 killed about 138,000 people"
+   ],
+   "src": "Bangladesh Ministry of Disaster Management; Bern et al. 1993, Bull. WHO 71:73"
+  },
+  {
+   "id": "bd-floods-1998",
+   "type": "flood",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0.15,
+   "poor": 1.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "夏から秋まで、家は水につかったままだった。舟で行き来し、高い道の上で煮炊きをした。"
+    ],
+    "news": [
+     "国土の3分の2が水につかる大洪水になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "From summer into autumn the house stood in water. Getting about meant a boat, and cooking was done on the raised road."
+    ],
+    "news": [
+     "A great flood put two thirds of the country under water."
+    ]
+   },
+   "stat": [
+    "1998年の洪水では国土の約3分の2が水につかり、約3,000万人が家を失った",
+    "The 1998 floods covered about two thirds of the country and left some 30 million people homeless"
+   ],
+   "src": "del Ninno et al. 2001, IFPRI Research Report 122"
+  },
+  {
+   "id": "bd-sidr-2007",
+   "type": "cyclone",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    2007,
+    2007
+   ],
+   "hit": 0.03,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "11月、サイクロンの風で家の屋根が飛び、田んぼは塩水につかった。"
+    ],
+    "news": [
+     "11月、サイクロン・シドルが南の海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In November the cyclone's winds tore off the roof, and the rice fields were flooded with salt water."
+    ],
+    "news": [
+     "In November Cyclone Sidr struck the southern coast."
+    ]
+   },
+   "stat": [
+    "2007年11月のサイクロン・シドルでは約3,400人が亡くなり、約890万人が被害を受けた",
+    "Cyclone Sidr in November 2007 killed about 3,400 people and affected some 8.9 million"
+   ],
+   "src": "Government of Bangladesh, Cyclone Sidr Joint Damage, Loss and Needs Assessment (2008)"
+  },
+  {
+   "id": "rana-plaza-2013",
+   "type": "accident",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0.0002,
+   "cities": [
+    "ダッカ",
+    "Dhaka"
+   ],
+   "elsewhere": 0,
+   "age": [
+    16,
+    50
+   ],
+   "severity": 3,
+   "effect": {
+    "health": -10,
+    "happy": -18,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "4月24日の朝、勤めていた縫製工場のビルが崩れた。がれきの下から助け出された。"
+    ],
+    "news": [
+     "4月、ダッカ近郊で縫製工場のビルが崩れ、多くの働き手が亡くなった。"
+    ],
+    "near": [
+     "4月、近くの縫製工場のビルが崩れ、同じ仕事をする仲間が大勢下敷きになった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 24 April the garment factory building collapsed. Was pulled out from under the rubble."
+    ],
+    "news": [
+     "In April a garment factory building collapsed near Dhaka, killing many workers."
+    ],
+    "near": [
+     "In April a garment factory building nearby collapsed, burying many people who did the same work."
+    ]
+   },
+   "stat": [
+    "2013年4月、ダッカ近郊の縫製工場ビル「ラナ・プラザ」が崩れ、1,134人が亡くなった",
+    "The collapse of the Rana Plaza garment building near Dhaka in April 2013 killed 1,134 people"
+   ],
+   "src": "International Labour Organization (ILO)"
+  },
+  {
+   "id": "bd-rohingya-2017",
+   "type": "war",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    2017,
+    2017
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月から、隣のミャンマーを追われたロヒンギャの人々が、国境を越えて次々に逃れてきた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "From August, Rohingya people driven out of neighbouring Myanmar crossed the border in their hundreds of thousands."
+    ]
+   },
+   "stat": [
+    "2017年8月から、70万人を超えるロヒンギャの人々がミャンマーから逃れてきた (UNHCR)",
+    "From August 2017 more than 700,000 Rohingya fled from Myanmar (UNHCR)"
+   ],
+   "src": "UNHCR Rohingya emergency"
+  },
+  {
+   "id": "np-ww1",
+   "type": "war",
+   "countries": [
+    "NPL"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.12,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "グルカ兵として英国の軍に入り、遠いヨーロッパと中東の戦場へ送られた。"
+    ],
+    "news": [
+     "村の若い男たちが、グルカ兵として遠い戦場へ出ていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined the British Army as a Gurkha and was sent to distant battlefields in Europe and the Middle East."
+    ],
+    "news": [
+     "Young men from the villages went off as Gurkhas to distant battlefields."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦では、ネパールから約20万人が英国の軍に加わった",
+    "About 200,000 Nepalis served with the British forces in the First World War"
+   ],
+   "src": "Brigade of Gurkhas history; Des Chene 1991"
+  },
+  {
+   "id": "np-ww2",
+   "type": "war",
+   "countries": [
+    "NPL"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.12,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "グルカ兵として英国の軍に入り、ビルマや北アフリカ、イタリアの戦場へ送られた。"
+    ],
+    "news": [
+     "また世界の戦争が始まり、村からグルカ兵が遠い戦場へ出ていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined the British Army as a Gurkha and was sent to the fronts in Burma, North Africa and Italy."
+    ],
+    "news": [
+     "Another world war began, and Gurkhas from the villages left for distant fronts."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦では、約25万人のグルカ兵が英国の軍に加わった",
+    "About 250,000 Gurkhas served with the British forces in the Second World War"
+   ],
+   "src": "Brigade of Gurkhas history; Gurkha Welfare Trust"
+  },
+  {
+   "id": "np-quake-1934",
+   "type": "quake",
+   "countries": [
+    "NPL"
+   ],
+   "years": [
+    1934,
+    1934
+   ],
+   "hit": 0.15,
+   "cities": [
+    "カトマンズ",
+    "ラリトプル",
+    "Kathmandu",
+    "Lalitpur"
+   ],
+   "elsewhere": 0.02,
+   "kill": 0.0015,
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "1月の昼、大地震で家が崩れた。寒い冬を、がれきのそばの小屋で越した。"
+    ],
+    "news": [
+     "1月、大地震がカトマンズの谷を襲い、寺院や家々が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One January afternoon the great earthquake brought the house down. The cold winter was spent in a hut beside the rubble."
+    ],
+    "news": [
+     "In January a great earthquake struck the Kathmandu valley, toppling temples and houses."
+    ]
+   },
+   "stat": [
+    "1934年のネパール・ビハール地震で、ネパールでは約8,500人が亡くなった",
+    "The 1934 Nepal-Bihar earthquake killed about 8,500 people in Nepal"
+   ],
+   "src": "Rana 1935, Nepalko Maha Bhukampa; USGS"
+  },
+  {
+   "id": "np-maoist",
+   "type": "war",
+   "countries": [
+    "NPL"
+   ],
+   "years": [
+    1996,
+    2006
+   ],
+   "hit": 0.01,
+   "urban": 0.3,
+   "kill": 0.0007,
+   "cause": "戦争",
+   "who": "men",
+   "kind": "move",
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "村が軍と反政府の武装勢力の争いの場になり、家を離れて町へ逃れた。"
+    ],
+    "news": [
+     "王政に反対する武装勢力と国の軍の戦いが、山の村々で続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village was caught between the army and the rebels, and the family fled to the town."
+    ],
+    "news": [
+     "The fighting between the rebels and the army went on in the mountain villages."
+    ]
+   },
+   "stat": [
+    "1996〜2006年の内戦で約1万7,000人が亡くなった",
+    "About 17,000 people were killed in the civil war of 1996-2006"
+   ],
+   "src": "Nepal Truth and Reconciliation Commission; INSEC"
+  },
+  {
+   "id": "np-royal-2001",
+   "type": "unrest",
+   "countries": [
+    "NPL"
+   ],
+   "years": [
+    2001,
+    2001
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月、王宮で国王と王族が撃たれて亡くなった。町は何日も静まりかえっていた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June the king and members of the royal family were shot dead in the palace. The city was silent for days."
+    ]
+   },
+   "stat": [
+    "2001年6月1日の王宮での事件で、国王を含む王族10人が亡くなった",
+    "Ten members of the royal family, including the king, died in the palace killings of 1 June 2001"
+   ],
+   "src": "Report of the High-Level Investigation Committee (2001)"
+  },
+  {
+   "id": "np-quake-2015",
+   "type": "quake",
+   "countries": [
+    "NPL"
+   ],
+   "years": [
+    2015,
+    2015
+   ],
+   "hit": 0.2,
+   "cities": [
+    "カトマンズ",
+    "ラリトプル",
+    "Kathmandu",
+    "Lalitpur"
+   ],
+   "elsewhere": 0.08,
+   "kill": 0.0003,
+   "cause": "災害",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "4月25日の昼、大きな地震で家が崩れた。雨季をトタンの小屋で過ごした。"
+    ],
+    "news": [
+     "4月25日、大地震がネパールを襲い、寺院や家々が崩れた。"
+    ],
+    "near": [
+     "4月25日の昼、大きな揺れで外へ飛び出した。家にはひびが入ったが、崩れなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At midday on 25 April the great earthquake brought the house down. The monsoon was spent in a tin shelter."
+    ],
+    "news": [
+     "On 25 April a great earthquake struck Nepal, toppling temples and homes."
+    ],
+    "near": [
+     "At midday on 25 April the shaking sent everyone running outside. The house cracked but stood."
+    ]
+   },
+   "stat": [
+    "2015年4月25日の地震で約9,000人が亡くなり、約50万戸の家が全壊した",
+    "The earthquake of 25 April 2015 killed about 9,000 people and destroyed some 500,000 homes"
+   ],
+   "src": "Government of Nepal, Post Disaster Needs Assessment (2015)"
+  },
+  {
+   "id": "bt-glof-1994",
+   "type": "flood",
+   "countries": [
+    "BTN"
+   ],
+   "years": [
+    1994,
+    1994
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、山の氷河の湖があふれ、プナカの谷を水が下っていった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October a glacial lake high in the mountains burst, and the water rushed down the Punakha valley."
+    ]
+   },
+   "stat": [
+    "1994年10月、ルゲ湖の決壊による洪水で21人が亡くなった",
+    "The October 1994 outburst of Lugge Tsho glacial lake killed 21 people"
+   ],
+   "src": "Royal Government of Bhutan, Department of Geology and Mines"
+  },
+  {
+   "id": "bt-lhotshampa",
+   "type": "unrest",
+   "countries": [
+    "BTN"
+   ],
+   "years": [
+    1990,
+    1993
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "南の地方で、ネパール系の住民が国籍を問われ、多くが国を離れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In the south, people of Nepali origin had their citizenship questioned, and many left the country."
+    ]
+   },
+   "stat": [
+    "1990年代はじめ、南部のネパール系住民10万人あまりが国を離れ、ネパールの難民キャンプに入った",
+    "In the early 1990s more than 100,000 people of Nepali origin from southern Bhutan left for refugee camps in Nepal"
+   ],
+   "src": "UNHCR; Human Rights Watch 2007, Last Hope"
+  },
+  {
+   "id": "bt-2003",
+   "type": "war",
+   "countries": [
+    "BTN"
+   ],
+   "years": [
+    2003,
+    2003
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、国の軍が、南の森に拠点を置いていたインドの武装勢力を追い出した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December the army drove out Indian insurgent groups that had set up camps in the southern forests."
+    ]
+   },
+   "stat": [
+    "2003年12月、ブータン軍は国内にあったインドの武装勢力の拠点30か所を攻撃した",
+    "In December 2003 the Bhutanese army attacked 30 camps of Indian insurgent groups inside the country"
+   ],
+   "src": "Royal Government of Bhutan; Mathou 2004"
+  },
+  {
+   "id": "bt-quake-2009",
+   "type": "quake",
+   "countries": [
+    "BTN"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0.01,
+   "urban": 0.3,
+   "severity": 2,
+   "effect": {
+    "health": -2,
+    "happy": -8,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "9月、東の地方で地震があり、石を積んだ家の壁が崩れた。"
+    ],
+    "news": [
+     "9月、東の地方で地震があり、家や寺が壊れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In September an earthquake in the east brought down the stone walls of the house."
+    ],
+    "news": [
+     "In September an earthquake in the east damaged homes and temples."
+    ]
+   },
+   "stat": [
+    "2009年9月21日の地震で、ブータンでは12人が亡くなった",
+    "The earthquake of 21 September 2009 killed 12 people in Bhutan"
+   ],
+   "src": "Royal Government of Bhutan; USGS"
+  },
+  {
+   "id": "mv-1988",
+   "type": "coup",
+   "countries": [
+    "MDV"
+   ],
+   "years": [
+    1988,
+    1988
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、武装した集団がマレを襲い、政府を倒そうとした。インドの軍が来て、一日で鎮まった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November an armed group attacked Malé to overthrow the government. Indian troops arrived, and it was over within a day."
+    ]
+   },
+   "stat": [
+    "1988年11月3日のクーデター未遂で、19人が亡くなった",
+    "The coup attempt of 3 November 1988 left 19 people dead"
+   ],
+   "src": "Government of Maldives; Indian Ministry of Defence (Operation Cactus)"
+  },
+  {
+   "id": "mv-2012",
+   "type": "unrest",
+   "countries": [
+    "MDV"
+   ],
+   "years": [
+    2012,
+    2012
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、大統領が辞め、マレの通りで抗議と衝突が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February the president resigned, and protests and clashes went on in the streets of Malé."
+    ]
+   },
+   "stat": [
+    "2012年2月7日、ナシード大統領が辞任した",
+    "President Nasheed resigned on 7 February 2012"
+   ],
+   "src": "Commission of National Inquiry, Maldives (2012)"
+  },
+  {
+   "id": "mv-water-2014",
+   "type": "accident",
+   "countries": [
+    "MDV"
+   ],
+   "years": [
+    2014,
+    2014
+   ],
+   "hit": 0.8,
+   "cities": [
+    "マレ",
+    "Malé"
+   ],
+   "elsewhere": 0,
+   "severity": 1,
+   "effect": {
+    "happy": -3
+   },
+   "ja": {
+    "hit": [
+     "12月、造水所が火事になり、水道が止まった。配られるペットボトルの水の列に並んだ。"
+    ],
+    "news": [
+     "12月、マレの造水所が火事になり、町の水道が止まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In December the desalination plant caught fire and the taps ran dry. There were queues for bottled water."
+    ],
+    "news": [
+     "In December a fire at Malé's desalination plant cut off the city's tap water."
+    ]
+   },
+   "stat": [
+    "2014年12月、マレの造水所の火事で、約10万人が何日も水道の水を使えなくなった",
+    "In December 2014 a fire at the desalination plant left about 100,000 people in Malé without tap water for days"
+   ],
+   "src": "Government of Maldives; IFRC"
+  },
+  {
+   "id": "lk-jvp-1987",
+   "type": "war",
+   "countries": [
+    "LKA"
+   ],
+   "years": [
+    1987,
+    1989
+   ],
+   "hit": 0.005,
+   "age": [
+    15,
+    35
+   ],
+   "kill": 0.003,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "夜、家に男たちが来て、連れて行かれた。何か月も、どこにいるのか家族に知らされなかった。"
+    ],
+    "news": [
+     "南部で反政府の蜂起が起き、その鎮圧で多くの若者が行方不明になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was taken from the house at night by armed men. For months the family was not told where."
+    ],
+    "news": [
+     "An uprising broke out in the south, and in the crackdown many young people disappeared."
+    ]
+   },
+   "stat": [
+    "1987〜89年のJVPの蜂起とその鎮圧で、4万〜6万人が亡くなったとされる",
+    "Between 40,000 and 60,000 people are thought to have died in the JVP uprising of 1987-89 and its suppression"
+   ],
+   "src": "Amnesty International; Presidential Commission on Involuntary Removal or Disappearance (1997)"
+  },
+  {
+   "id": "lk-black-july",
+   "type": "unrest",
+   "countries": [
+    "LKA"
+   ],
+   "years": [
+    1983,
+    1983
+   ],
+   "hit": 0.03,
+   "cities": [
+    "コロンボ",
+    "デヒワラ・マウントラビニア",
+    "Colombo",
+    "Dehiwala-Mount Lavinia"
+   ],
+   "elsewhere": 0.003,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "7月、町が暴徒に襲われ、通りの家々が焼かれた。何週間も避難所で過ごした。"
+    ],
+    "news": [
+     "7月、コロンボを中心にタミル人を狙った暴動が広がった。"
+    ],
+    "near": [
+     "7月、通りの向こうで店や家が燃やされた。何日も家から出なかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July mobs attacked the town and the houses on the street were burned. Weeks were spent in a shelter."
+    ],
+    "news": [
+     "In July riots against Tamils spread from Colombo across the country."
+    ],
+    "near": [
+     "In July shops and homes across the street were set on fire. No one left the house for days."
+    ]
+   },
+   "stat": [
+    "1983年7月の暴動では、数百〜3,000人のタミル人が殺され、約1万8,000戸の家が焼かれた",
+    "In the riots of July 1983 several hundred to 3,000 Tamils were killed and about 18,000 homes destroyed"
+   ],
+   "src": "International Commission of Jurists (1983); Tambiah 1986"
+  },
+  {
+   "id": "lk-civilwar",
+   "type": "war",
+   "countries": [
+    "LKA"
+   ],
+   "years": [
+    1983,
+    2009
+   ],
+   "hit": 0.05,
+   "urban": 0.4,
+   "kill": 0.005,
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "村が戦場になり、家を捨てて逃げた。避難民のキャンプで何年も暮らした。"
+    ],
+    "news": [
+     "北と東で、政府軍とタミル人の武装勢力の内戦が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village became a battlefield and the house had to be abandoned. Years were spent in a camp for the displaced."
+    ],
+    "news": [
+     "In the north and east, civil war raged between the government and Tamil separatist forces."
+    ]
+   },
+   "stat": [
+    "1983〜2009年の内戦で、8万〜10万人が亡くなったとされる (国連)",
+    "The civil war of 1983-2009 is thought to have killed 80,000 to 100,000 people (UN)"
+   ],
+   "src": "UN Secretary-General's Panel of Experts on Accountability in Sri Lanka (2011)"
+  },
+  {
+   "id": "lk-easter-2019",
+   "type": "terror",
+   "countries": [
+    "LKA"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0.0005,
+   "cities": [
+    "コロンボ",
+    "ネゴンボ",
+    "Colombo",
+    "Negombo"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "復活祭の朝、教会で爆発が起きた。けがをして、何週間も病院にいた。"
+    ],
+    "news": [
+     "4月21日、復活祭の朝に教会とホテルで連続爆破が起きた。"
+    ],
+    "near": [
+     "復活祭の朝、町の教会とホテルで爆発が続いた。夜は外出が禁じられた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On Easter morning a bomb went off in the church. The injuries meant weeks in hospital."
+    ],
+    "news": [
+     "On 21 April, Easter morning, bombs exploded in churches and hotels."
+    ],
+    "near": [
+     "On Easter morning explosions tore through churches and hotels in the city. A curfew followed."
+    ]
+   },
+   "stat": [
+    "2019年4月21日の復活祭の連続爆破で、269人が亡くなった",
+    "The Easter Sunday bombings of 21 April 2019 killed 269 people"
+   ],
+   "src": "Sri Lanka Presidential Commission of Inquiry (2021)"
+  },
+  {
+   "id": "lk-crisis-2022",
+   "type": "finance",
+   "countries": [
+    "LKA"
+   ],
+   "years": [
+    2022,
+    2022
+   ],
+   "hit": 0.12,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "燃料を買うのに何日も列に並び、停電が一日に何時間も続いた。食べ物の値段が倍になり、食事の回数を減らした。"
+    ],
+    "news": [
+     "国のドルが底をつき、燃料も薬も輸入できなくなった。物価が跳ね上がり、抗議の人々が大統領官邸に入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Days in line for fuel, and power cuts for hours each day. Food prices doubled and meals were cut back."
+    ],
+    "news": [
+     "The country ran out of dollars and could no longer import fuel or medicine. Prices soared, and protesters stormed the presidential residence."
+    ]
+   },
+   "stat": [
+    "2022年9月、スリランカの物価上昇率は前年比69.8%に達した",
+    "Sri Lanka's inflation reached 69.8% year on year in September 2022"
+   ],
+   "src": "Central Bank of Sri Lanka; World Bank Sri Lanka Development Update (2023)"
+  },
+  {
+   "id": "af-soviet",
+   "type": "war",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    1979,
+    1989
+   ],
+   "hit": 0.5,
+   "kill": 0.05,
+   "who": "all",
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "村が戦場になり、家を捨てて逃げた。何年も、よその土地の土の家で暮らした。",
+     "空からの爆撃で畑と水路が壊され、村に住めなくなった。"
+    ],
+    "news": [
+     "12月、ソ連の軍が入ってきた。山では戦いが何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village became a battlefield and the house was abandoned. For years home was a mud house in somebody else's land.",
+     "Bombing from the air wrecked the fields and the irrigation channels, and the village could no longer be lived in."
+    ],
+    "news": [
+     "In December the Soviet army came in. In the mountains the fighting went on for years."
+    ]
+   },
+   "stat": [
+    "1979〜89年のソ連との戦争で、約600万人が国外へ逃れた (UNHCR)",
+    "During the Soviet war of 1979-89 some six million people fled abroad (UNHCR)"
+   ],
+   "src": "UNHCR, The State of the World's Refugees 2000, ch. 5; Khalidi 1991, Central Asian Survey 10(3)"
+  },
+  {
+   "id": "af-civilwar-1992",
+   "type": "war",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    1992,
+    1996
+   ],
+   "hit": 0.3,
+   "cities": [
+    "カブール",
+    "Kabul"
+   ],
+   "elsewhere": 0.03,
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町が武装勢力の撃ち合いの場になり、砲弾で家が崩れた。親戚の村へ逃れた。"
+    ],
+    "news": [
+     "武装勢力どうしの戦いが首都にまで及び、カブールの町の大半が壊された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The city became a battleground between armed factions, and shellfire brought the house down. The family fled to relatives in a village."
+    ],
+    "news": [
+     "The fighting between armed factions reached the capital, and most of Kabul was destroyed."
+    ]
+   },
+   "stat": [
+    "1992〜96年の内戦で、カブールの人口の半分ほどが町を離れたとされる",
+    "During the civil war of 1992-96 about half the population of Kabul is thought to have left the city"
+   ],
+   "src": "Human Rights Watch 2005, Blood-Stained Hands"
+  },
+  {
+   "id": "af-taliban-1996",
+   "type": "revolution",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    1996,
+    2001
+   ],
+   "hit": 0.8,
+   "age": [
+    7,
+    60
+   ],
+   "sex": "F",
+   "severity": 4,
+   "effect": {
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "タリバンの政府のもとで、女の子が学校へ通うことも、女性が外で働くことも禁じられた。"
+    ],
+    "news": [
+     "9月、タリバンがカブールに入り、国の大半を治めるようになった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under the Taliban government girls were barred from school and women from working outside the home."
+    ],
+    "news": [
+     "In September the Taliban entered Kabul and came to rule most of the country."
+    ]
+   },
+   "stat": [
+    "1996年からのタリバン政権のもとで、女の子が学校に通うことが禁じられた",
+    "From 1996 the Taliban government barred girls from attending school"
+   ],
+   "src": "Human Rights Watch; UN Special Rapporteur reports (1998-2001)"
+  },
+  {
+   "id": "af-war-2001",
+   "type": "war",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    2001,
+    2021
+   ],
+   "hit": 0.1,
+   "kill": 0.005,
+   "cause": "戦争",
+   "who": "men",
+   "kind": "move",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "村の近くで戦闘が続き、家を離れて避難民のキャンプで暮らした。"
+    ],
+    "news": [
+     "10月、米国などの軍がアフガニスタンを攻撃し、タリバンの政府は倒れた。戦いはそのあとも続いた。"
+    ],
+    "near": [
+     "市場で爆弾が爆発した。あと少しで、あの場所にいるところだった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fighting near the village drove the family out to a camp for the displaced."
+    ],
+    "news": [
+     "In October the United States and its allies attacked Afghanistan, and the Taliban government fell. The fighting went on."
+    ],
+    "near": [
+     "A bomb went off in the market. It was close to being the wrong place at the wrong moment."
+    ]
+   },
+   "stat": [
+    "2001〜21年の戦争で、アフガニスタンでは民間人4万6,000人あまりを含む約17万6,000人が亡くなった",
+    "The war of 2001-21 killed about 176,000 people in Afghanistan, including more than 46,000 civilians"
+   ],
+   "src": "Watson Institute, Brown University, Costs of War (2021)"
+  },
+  {
+   "id": "af-2021",
+   "type": "revolution",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    2021,
+    2022
+   ],
+   "hit": 0.25,
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.5,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "タリバンがカブールに入った。銀行から預金を下ろせなくなり、仕事もなくなった。"
+    ],
+    "news": [
+     "8月15日、タリバンがカブールに入り、政府は倒れた。空港には国を出ようとする人々が押しよせた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The Taliban entered Kabul. The bank would not release the savings, and the job disappeared."
+    ],
+    "news": [
+     "On 15 August the Taliban entered Kabul and the government collapsed. Crowds rushed the airport trying to leave."
+    ]
+   },
+   "stat": [
+    "2021年のアフガニスタンの経済は、前の年より20.7%縮んだ (世界銀行)",
+    "Afghanistan's economy shrank 20.7% in 2021 (World Bank)"
+   ],
+   "src": "World Bank, Afghanistan Development Update (2022)"
+  },
+  {
+   "id": "af-girls-2022",
+   "type": "revolution",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    2022,
+    2025
+   ],
+   "hit": 0.9,
+   "age": [
+    12,
+    20
+   ],
+   "sex": "F",
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "6年生より上の女の子の学校が閉ざされ、教室に戻れなくなった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Schools for girls above sixth grade were shut, and there was no going back to the classroom."
+    ],
+    "news": []
+   },
+   "stat": [
+    "2022年3月から、6年生より上の女子の学校が閉ざされ、約110万人が通えなくなった (UNESCO)",
+    "Since March 2022 schools for girls above sixth grade have been closed, shutting out about 1.1 million (UNESCO)"
+   ],
+   "src": "UNESCO (2023)"
+  },
+  {
+   "id": "af-herat-2023",
+   "type": "quake",
+   "countries": [
+    "AFG"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0.02,
+   "cities": [
+    "ヘラート",
+    "Herat"
+   ],
+   "elsewhere": 0.0005,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "10月、続けて起きた地震で、土の家が崩れた。冬をテントで越した。"
+    ],
+    "news": [
+     "10月、ヘラートの近くで大きな地震が続き、村々が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In October a series of earthquakes brought down the mud house. The winter was spent in a tent."
+    ],
+    "news": [
+     "In October a series of strong earthquakes near Herat flattened villages."
+    ]
+   },
+   "stat": [
+    "2023年10月のヘラートの地震では、1,500人ほどが亡くなった (国連)",
+    "The Herat earthquakes of October 2023 killed about 1,500 people (UN)"
+   ],
+   "src": "UN OCHA Afghanistan"
+  },
+  {
+   "id": "ir-famine-1917",
+   "type": "famine",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1917,
+    1919
+   ],
+   "hit": 0.3,
+   "kill": 0.03,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.6,
+   "poor": 2,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -15,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "戦争と日照りで小麦がなくなり、草の根や木の実で食いつないだ。"
+    ],
+    "news": [
+     "戦争の軍が通り過ぎたあとの国を飢饉が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "War and drought left no wheat, and the family lived on roots and wild nuts."
+    ],
+    "news": [
+     "Famine swept the country in the wake of the armies of the world war."
+    ]
+   },
+   "stat": [
+    "1917〜19年の飢饉と疫病で、ペルシャでは少なくとも数十万人が亡くなったとされる",
+    "The famine and epidemics of 1917-19 killed at least several hundred thousand people in Persia"
+   ],
+   "src": "Afkhami 2003, Iranian Studies 36(1); Majd 2003 (disputed higher estimates)"
+  },
+  {
+   "id": "ir-1953",
+   "type": "coup",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1953,
+    1953
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、モサッデク首相の政府がクーデターで倒された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August Prime Minister Mosaddegh's government was overthrown in a coup."
+    ]
+   },
+   "stat": [
+    "1953年8月19日、モサッデク政権がクーデターで倒れた",
+    "Mosaddegh's government fell in a coup on 19 August 1953"
+   ],
+   "src": "Gasiorowski & Byrne 2004, Mohammad Mosaddeq and the 1953 Coup in Iran"
+  },
+  {
+   "id": "ir-1979",
+   "type": "revolution",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1979,
+    1979
+   ],
+   "hit": 0,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、王政が倒れた。春の国民投票で、国はイスラム共和国になった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February the monarchy fell. In a referendum that spring, the country became an Islamic republic."
+    ]
+   },
+   "stat": [
+    "1979年2月11日に王政が倒れ、4月の国民投票でイスラム共和国が成立した",
+    "The monarchy fell on 11 February 1979, and the Islamic Republic was declared after the April referendum"
+   ],
+   "src": "Abrahamian 2008, A History of Modern Iran"
+  },
+  {
+   "id": "ir-hijab",
+   "type": "revolution",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1981,
+    1983
+   ],
+   "hit": 0.9,
+   "age": [
+    9,
+    110
+   ],
+   "sex": "F",
+   "severity": 1,
+   "effect": {
+    "happy": -4
+   },
+   "ja": {
+    "hit": [
+     "外では髪をスカーフで覆わなければならなくなった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "From now on, hair had to be covered with a headscarf outside the home."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1983年の法律で、女性が人前で髪を覆わないことは罰せられるようになった",
+    "Under a 1983 law, women who appeared in public without covering their hair could be punished"
+   ],
+   "src": "Islamic Penal Code of Iran (1983); Afary 2009, Sexual Politics in Modern Iran"
+  },
+  {
+   "id": "ir-iraq-war-irn",
+   "type": "war",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1980,
+    1988
+   ],
+   "hit": 0.15,
+   "age": [
+    16,
+    35
+   ],
+   "sex": "M",
+   "kill": 0.005,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "兵として召集され、南の湿地の前線へ送られた。砲弾の音が、何年も耳から離れなかった。"
+    ],
+    "news": [
+     "9月、イラクの軍が攻め入り、戦争が始まった。"
+    ],
+    "near": [
+     "町にミサイルが落ち、夜は地下に逃げこんで眠った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front in the southern marshes. For years the sound of shelling would not go away."
+    ],
+    "news": [
+     "In September the Iraqi army invaded and the war began."
+    ],
+    "near": [
+     "Missiles fell on the city, and nights were spent sleeping in the basement."
+    ]
+   },
+   "stat": [
+    "1980〜88年のイラン・イラク戦争で、イラン側では少なくとも20万人ほどが亡くなったとされる",
+    "At least some 200,000 Iranians are thought to have died in the Iran-Iraq war of 1980-88"
+   ],
+   "src": "Hiro 1991, The Longest War; Iranian Foundation of Martyrs"
+  },
+  {
+   "id": "ir-iraq-war-irq",
+   "type": "war",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    1980,
+    1988
+   ],
+   "hit": 0.3,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.01,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "兵として召集され、東の国境の前線へ送られた。休暇で家に帰れるのは、年に何度かだけだった。"
+    ],
+    "news": [
+     "9月、イランとの戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front on the eastern border. Leave at home came only a few times a year."
+    ],
+    "news": [
+     "In September the war with Iran began."
+    ]
+   },
+   "stat": [
+    "イラン・イラク戦争のイラク側の死者は、少なくとも10万人ほどとされる",
+    "At least around 100,000 Iraqis are thought to have died in the Iran-Iraq war"
+   ],
+   "src": "Hiro 1991, The Longest War"
+  },
+  {
+   "id": "ir-manjil-1990",
+   "type": "quake",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1990,
+    1990
+   ],
+   "hit": 0.009,
+   "urban": 0.4,
+   "kill": 0.0007,
+   "cause": "災害",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "6月の夜、大地震で家が崩れた。何か月もテントで暮らした。"
+    ],
+    "news": [
+     "6月、北部のギーラーン州とザンジャーン州を大きな地震が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One June night the great earthquake brought the house down. For months home was a tent."
+    ],
+    "news": [
+     "In June a strong earthquake struck the northern provinces of Gilan and Zanjan."
+    ]
+   },
+   "stat": [
+    "1990年6月21日のマンジール・ルードバール地震で、約4万人が亡くなり、50万人ほどが家を失った",
+    "The Manjil-Rudbar earthquake of 21 June 1990 killed about 40,000 people and left some 500,000 homeless"
+   ],
+   "src": "USGS; Berberian et al. 1992, Bull. Seismol. Soc. Am. 82:1726"
+  },
+  {
+   "id": "ir-bam-2003",
+   "type": "quake",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    2003,
+    2003
+   ],
+   "hit": 0.0011,
+   "kill": 0.0004,
+   "cause": "災害",
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "12月26日の明け方、地震で日干し煉瓦の家が崩れた。がれきの中から掘り出された。"
+    ],
+    "news": [
+     "12月26日、古い城塞の町バムを大地震が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At dawn on 26 December the earthquake brought down the mud-brick house. Was dug out of the rubble."
+    ],
+    "news": [
+     "On 26 December a great earthquake struck the old citadel town of Bam."
+    ]
+   },
+   "stat": [
+    "2003年12月26日のバム地震で、2万6,000人あまりが亡くなった",
+    "The Bam earthquake of 26 December 2003 killed more than 26,000 people"
+   ],
+   "src": "Statistical Centre of Iran; USGS"
+  },
+  {
+   "id": "ir-2022",
+   "type": "unrest",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    2022,
+    2022
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、若い女性が警察に拘束されたあとに亡くなり、抗議が全国に広がった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September a young woman died after being detained by the police, and protests spread across the country."
+    ]
+   },
+   "stat": [
+    "2022年9月16日、マフサ・アミニさんが道徳警察の拘束中に亡くなった",
+    "Mahsa Amini died in the custody of the morality police on 16 September 2022"
+   ],
+   "src": "UN Independent International Fact-Finding Mission on Iran (2024)"
+  },
+  {
+   "id": "iq-anfal",
+   "type": "genocide",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    1986,
+    1989
+   ],
+   "hit": 0.03,
+   "cities": [
+    "アルビル",
+    "Erbil"
+   ],
+   "elsewhere": 0.02,
+   "urban": 0.5,
+   "kill": 0.004,
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "村が軍に焼き払われ、住む人はみな連れ出された。新しく作られた集団の町で暮らすことになった。"
+    ],
+    "news": [
+     "北部のクルド人の村々が、軍の作戦で次々に壊された。3月、ハラブジャの町に毒ガスが撒かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The army burned the village and took everyone away. Life went on in a newly built resettlement town."
+    ],
+    "news": [
+     "In the north, Kurdish villages were destroyed one after another in a military campaign. In March poison gas fell on the town of Halabja."
+    ]
+   },
+   "stat": [
+    "1986〜89年のアンファル作戦で、5万〜10万人のクルド人が殺され、約4,000の村が壊された (ヒューマン・ライツ・ウォッチ)",
+    "The Anfal campaign of 1986-89 killed 50,000 to 100,000 Kurds and destroyed some 4,000 villages (Human Rights Watch)"
+   ],
+   "src": "Human Rights Watch 1993, Genocide in Iraq: The Anfal Campaign Against the Kurds"
+  },
+  {
+   "id": "iq-1991",
+   "type": "war",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0.1,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "1月、空からの爆撃で発電所と浄水場が壊れた。電気も水道もない冬を過ごした。",
+     "春、蜂起が鎮められ、家族で山を越えて逃げた。"
+    ],
+    "news": [
+     "1月、米国などの軍がイラクを攻撃し、クウェートからイラク軍を追い出した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In January bombing knocked out the power stations and water works. The winter passed with no electricity and no running water.",
+     "In spring the uprising was crushed, and the family fled over the mountains."
+    ],
+    "news": [
+     "In January the United States and its allies attacked Iraq and drove its army out of Kuwait."
+    ]
+   },
+   "stat": [
+    "1991年の湾岸戦争のあと、クルドの人々のおよそ150万人がトルコとイランの国境へ逃れた (UNHCR)",
+    "After the 1991 Gulf War about 1.5 million Kurds fled toward the Turkish and Iranian borders (UNHCR)"
+   ],
+   "src": "UNHCR, The State of the World's Refugees 2000, ch. 9"
+  },
+  {
+   "id": "iq-sanctions",
+   "type": "finance",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    1991,
+    2002
+   ],
+   "hit": 0.5,
+   "poor": 1.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -10,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "経済制裁で、配給の小麦粉と米だけで暮らす年が続いた。給料は一か月の食べ物の値段にも届かなかった。"
+    ],
+    "news": [
+     "国連の経済制裁で、薬も食べ物も足りない年が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under sanctions the years went by on rationed flour and rice. A month's wages would not buy a month's food."
+    ],
+    "news": [
+     "Under UN sanctions, food and medicine were short for years."
+    ]
+   },
+   "stat": [
+    "1996年からの「石油と食料の交換」計画の配給に、国民のほとんどが頼った",
+    "From 1996 most of the population depended on the rations of the Oil-for-Food programme"
+   ],
+   "src": "UN Office of the Iraq Programme; Independent Inquiry Committee (2005)"
+  },
+  {
+   "id": "iq-war-2003",
+   "type": "war",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    2003,
+    2011
+   ],
+   "hit": 0.15,
+   "urban": 1.3,
+   "kill": 0.004,
+   "cause": "戦争",
+   "kind": "move",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "近所で爆弾が爆発し、住んでいた地区を追われた。親戚の家を転々とした。"
+    ],
+    "news": [
+     "3月、米国などの軍がイラクに攻め入り、政府は倒れた。そのあと何年も爆破と争いが続いた。"
+    ],
+    "near": [
+     "市場で車の爆弾が爆発した。通る時間が少し違えば、あの場所にいた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A bomb went off nearby and the family was driven from the neighbourhood. They moved from one relative's house to another."
+    ],
+    "news": [
+     "In March the United States and its allies invaded Iraq and the government fell. Bombings and fighting went on for years."
+    ],
+    "near": [
+     "A car bomb went off in the market. A few minutes either way, and it would have been the wrong place."
+    ]
+   },
+   "stat": [
+    "2003〜11年のイラク戦争で、民間人の暴力による死者は11万人を超えた (Iraq Body Count)",
+    "More than 110,000 civilians died violently in Iraq between 2003 and 2011 (Iraq Body Count)"
+   ],
+   "src": "Iraq Body Count; UNHCR"
+  },
+  {
+   "id": "iq-isis",
+   "type": "war",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    2014,
+    2017
+   ],
+   "hit": 0.12,
+   "cities": [
+    "モスル",
+    "Mosul"
+   ],
+   "elsewhere": 0.1,
+   "kill": 0.002,
+   "cause": "戦争",
+   "kind": "move",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "町が武装組織「イスラム国」に支配された。奪い返す戦いで家は壊れ、何年も避難民のキャンプで暮らした。"
+    ],
+    "news": [
+     "6月、武装組織「イスラム国」がモスルを奪い、北と西の町々を支配した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town fell to the armed group calling itself Islamic State. The fighting to retake it destroyed the house, and years were spent in a camp for the displaced."
+    ],
+    "news": [
+     "In June the armed group Islamic State seized Mosul and took control of towns in the north and west."
+    ]
+   },
+   "stat": [
+    "2014〜17年の「イスラム国」との戦いで、イラクでは約600万人が家を追われた (IOM)",
+    "About six million people in Iraq were driven from their homes during the fight against Islamic State in 2014-17 (IOM)"
+   ],
+   "src": "IOM Iraq Displacement Tracking Matrix"
+  },
+  {
+   "id": "iq-2019",
+   "type": "unrest",
+   "countries": [
+    "IRQ"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、職と汚職への怒りから若い人たちの抗議が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October anger over jobs and corruption brought young people into the streets in protest."
+    ]
+   },
+   "stat": [
+    "2019年10月からの抗議では、600人ほどが殺された",
+    "Around 600 people were killed in the protests that began in October 2019"
+   ],
+   "src": "UN Assistance Mission for Iraq (UNAMI); Amnesty International"
+  },
+  {
+   "id": "tr-ww1",
+   "type": "war",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.4,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.04,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "兵にとられ、ガリポリやコーカサスの前線へ送られた。寒さと病で、戦場より多くの仲間が倒れた。"
+    ],
+    "news": [
+     "帝国が大戦に加わり、村の男たちが次々に戦場へ連れて行かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was conscripted and sent to the fronts at Gallipoli and in the Caucasus. Cold and disease killed more comrades than the fighting did."
+    ],
+    "news": [
+     "The empire entered the Great War, and the men of the villages were taken off to the fronts one after another."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で、オスマン帝国は約280万人を兵として動員し、77万人ほどの兵士が戦死や病気で亡くなった",
+    "In the First World War the Ottoman Empire mobilized about 2.8 million men, and some 770,000 soldiers died in battle or of disease"
+   ],
+   "src": "Erickson 2001, Ordered to Die: A History of the Ottoman Army in the First World War"
+  },
+  {
+   "id": "tr-armenian-1915",
+   "type": "genocide",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    1915,
+    1916
+   ],
+   "hit": 0,
+   "kill": 0.04,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "アルメニア人の住民が町や村から追い立てられ、シリアの砂漠へ向けて歩かされた。戻った人はわずかだった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Armenian residents were driven out of the towns and villages and marched toward the Syrian desert. Few came back."
+    ]
+   },
+   "stat": [
+    "1915〜16年の追放と虐殺で、オスマン帝国のアルメニア人60万〜150万人が亡くなったとされる",
+    "Between 600,000 and 1.5 million Ottoman Armenians are thought to have died in the deportations and massacres of 1915-16"
+   ],
+   "src": "Suny 2015, They Can Live in the Desert but Nowhere Else; Akçam 2012"
+  },
+  {
+   "id": "tr-exchange-1923",
+   "type": "unrest",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    1923,
+    1924
+   ],
+   "hit": 0.05,
+   "kind": "move",
+   "severity": 3,
+   "effect": {
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "ギリシャとの住民の交換で、生まれた土地を離れ、見知らぬ村に移された。"
+    ],
+    "news": [
+     "ギリシャとの取り決めで、両国の住民が宗教によって入れ替えられた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under the population exchange with Greece, the family left the land of their birth and was resettled in a strange village."
+    ],
+    "news": [
+     "Under an agreement with Greece, the populations of the two countries were exchanged by religion."
+    ]
+   },
+   "stat": [
+    "1923年の住民交換で、約120万人の正教徒がトルコを離れ、約40万人のムスリムがギリシャから移ってきた",
+    "In the 1923 exchange about 1.2 million Orthodox Christians left Turkey and about 400,000 Muslims arrived from Greece"
+   ],
+   "src": "Treaty of Lausanne (1923); Hirschon 2003, Crossing the Aegean"
+  },
+  {
+   "id": "tr-erzincan-1939",
+   "type": "quake",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    1939,
+    1939
+   ],
+   "hit": 0.01,
+   "urban": 0.4,
+   "kill": 0.0018,
+   "cause": "災害",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "12月の真夜中、大地震で家が崩れた。雪の中で、助けが来るのを待った。"
+    ],
+    "news": [
+     "12月、東部のエルズィンジャンを大地震が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At midnight in December the great earthquake brought the house down. The wait for help was in the snow."
+    ],
+    "news": [
+     "In December a great earthquake struck Erzincan in the east."
+    ]
+   },
+   "stat": [
+    "1939年12月のエルズィンジャン地震で、3万2,968人が亡くなった (トルコ政府)",
+    "The Erzincan earthquake of December 1939 killed 32,968 people (Turkish government)"
+   ],
+   "src": "Turkish Disaster and Emergency Management Authority (AFAD); USGS"
+  },
+  {
+   "id": "tr-izmit-1999",
+   "type": "quake",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0.02,
+   "cities": [
+    "イスタンブール",
+    "ブルサ",
+    "Istanbul",
+    "Bursa"
+   ],
+   "elsewhere": 0.006,
+   "kill": 0.00027,
+   "cause": "災害",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "8月17日の未明、地震で住んでいた建物が崩れた。何か月もテントの町で暮らした。"
+    ],
+    "news": [
+     "8月17日、イズミットを中心とする大地震が起き、イスタンブールでも建物が崩れた。"
+    ],
+    "near": [
+     "8月17日の未明、激しい揺れで目が覚め、外へ逃げた。その夜から、何週間も公園で眠った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn on 17 August the earthquake brought the apartment building down. For months home was a tent city."
+    ],
+    "news": [
+     "On 17 August a great earthquake centred near Izmit struck, and buildings collapsed in Istanbul too."
+    ],
+    "near": [
+     "Before dawn on 17 August violent shaking woke everyone and sent them outside. For weeks after, nights were spent in the park."
+    ]
+   },
+   "stat": [
+    "1999年8月17日のイズミット地震で、1万7,000人あまりが亡くなった",
+    "The Izmit earthquake of 17 August 1999 killed more than 17,000 people"
+   ],
+   "src": "Turkish Disaster and Emergency Management Authority (AFAD); USGS"
+  },
+  {
+   "id": "tr-2016",
+   "type": "coup",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    2016,
+    2016
+   ],
+   "hit": 0.003,
+   "age": [
+    22,
+    65
+   ],
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "7月のクーデター未遂のあと、役所の名簿に名前が載り、職を解かれた。"
+    ],
+    "news": [
+     "7月15日の夜、軍の一部がクーデターを起こしたが、翌朝までに鎮められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the failed coup in July a name appeared on an official list, and the job was gone."
+    ],
+    "news": [
+     "On the night of 15 July part of the army attempted a coup. By the next morning it had been put down."
+    ]
+   },
+   "stat": [
+    "2016年7月のクーデター未遂のあと、15万人あまりの公務員が職を追われた",
+    "After the failed coup of July 2016 more than 150,000 public servants were dismissed"
+   ],
+   "src": "UN OHCHR, Report on the impact of the state of emergency on human rights in Turkey (2018)"
+  },
+  {
+   "id": "tr-quake-2023",
+   "type": "quake",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0.03,
+   "kill": 0.0006,
+   "cause": "災害",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "2月6日の未明、地震で住んでいた建物が崩れた。凍える中、がれきの下から助け出された。"
+    ],
+    "news": [
+     "2月6日、南東部を2度の大地震が襲い、11の県で建物が崩れた。"
+    ],
+    "near": [
+     "2月6日の未明、激しい揺れで目が覚めた。遠い南東の町の知らせが、一日中続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn on 6 February the earthquake brought the apartment building down. In the freezing cold, was pulled out from under the rubble."
+    ],
+    "news": [
+     "On 6 February two great earthquakes struck the southeast, and buildings collapsed across eleven provinces."
+    ],
+    "near": [
+     "Before dawn on 6 February violent shaking woke everyone. All day the news came in from the towns of the southeast."
+    ]
+   },
+   "stat": [
+    "2023年2月6日の地震で、トルコでは5万人あまりが亡くなった (トルコ政府)",
+    "The earthquakes of 6 February 2023 killed more than 50,000 people in Turkey (Turkish government)"
+   ],
+   "src": "Turkish Disaster and Emergency Management Authority (AFAD); Turkey Earthquakes Recovery and Reconstruction Assessment (2023)"
+  },
+  {
+   "id": "sy-hama-1982",
+   "type": "war",
+   "countries": [
+    "SYR"
+   ],
+   "years": [
+    1982,
+    1982
+   ],
+   "hit": 0.3,
+   "cities": [
+    "ハマ",
+    "Hama"
+   ],
+   "elsewhere": 0,
+   "kill": 0.002,
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "2月、町が軍に包囲され、何週間も砲撃が続いた。地区の家々は崩れた。"
+    ],
+    "news": [
+     "2月、ハマの町が軍に包囲された。何があったかを語ることは、長く許されなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In February the army besieged the city and the shelling went on for weeks. Whole streets of houses collapsed."
+    ],
+    "news": [
+     "In February the city of Hama was besieged by the army. For a long time, no one was allowed to speak of what happened."
+    ]
+   },
+   "stat": [
+    "1982年2月、ハマの町は軍に包囲され、1万〜2万5,000人が殺されたとされる (アムネスティ)",
+    "In February 1982 the army besieged Hama, and 10,000 to 25,000 people are thought to have been killed (Amnesty International)"
+   ],
+   "src": "Amnesty International; Seale 1988, Asad of Syria"
+  },
+  {
+   "id": "sy-drought-2006",
+   "type": "drought",
+   "countries": [
+    "SYR"
+   ],
+   "years": [
+    2006,
+    2010
+   ],
+   "hit": 0.05,
+   "urban": 0.2,
+   "poor": 1.5,
+   "kind": "move",
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "雨の降らない年が続き、畑も家畜も手放した。町はずれの部屋を借りて、日雇いの仕事を探した。"
+    ],
+    "news": [
+     "北東の農村で日照りが何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Year after year without rain, and the fields and animals had to be given up. A rented room on the edge of the city, and a search for day labour."
+    ],
+    "news": [
+     "Drought gripped the farming villages of the northeast for years."
+    ]
+   },
+   "stat": [
+    "2006〜10年の干ばつで、農村から都市へ150万人ほどが移ったとされる",
+    "During the drought of 2006-10 some 1.5 million people are thought to have moved from the countryside to the cities"
+   ],
+   "src": "Kelley et al. 2015, PNAS 112:3241"
+  },
+  {
+   "id": "sy-civilwar",
+   "type": "war",
+   "countries": [
+    "SYR"
+   ],
+   "years": [
+    2011,
+    2024
+   ],
+   "hit": 0.5,
+   "urban": 1.2,
+   "kill": 0.02,
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -28,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "町が戦場になり、家を捨てて逃げた。テントと借りた部屋を、何度も移り住んだ。",
+     "住んでいた地区が包囲され、何か月も食べ物と薬が届かなかった。"
+    ],
+    "news": [
+     "春に始まった抗議が、国を二つに裂く内戦になった。"
+    ],
+    "near": [
+     "近くの通りに砲弾が落ちた。窓は割れたが、家は残った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town became a battlefield and the house was abandoned. Tents and rented rooms followed, one after another.",
+     "The neighbourhood was besieged, and for months no food or medicine got through."
+    ],
+    "news": [
+     "The protests that began that spring turned into a civil war that tore the country apart."
+    ],
+    "near": [
+     "A shell landed in the next street. The windows shattered, but the house stood."
+    ]
+   },
+   "stat": [
+    "2011年からの内戦で、国の人口の半分を超える1,300万人あまりが家を追われた (UNHCR)",
+    "Since 2011 the civil war has driven more than 13 million people, over half the population, from their homes (UNHCR)"
+   ],
+   "src": "UNHCR Syria emergency; OHCHR 2022 (306,887 civilian deaths 2011-2021)"
+  },
+  {
+   "id": "sy-quake-2023",
+   "type": "quake",
+   "countries": [
+    "SYR"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0.1,
+   "cities": [
+    "アレッポ",
+    "ラタキア",
+    "ハマ",
+    "Aleppo",
+    "Latakia",
+    "Hama"
+   ],
+   "elsewhere": 0.01,
+   "kill": 0.0003,
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "2月6日の未明、地震で住んでいた建物が崩れた。戦争で壊れかけていた町が、さらに崩れた。"
+    ],
+    "news": [
+     "2月6日、北の町々を大地震が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn on 6 February the earthquake brought the building down. A city already broken by war broke further."
+    ],
+    "news": [
+     "On 6 February a great earthquake struck the towns of the north."
+    ]
+   },
+   "stat": [
+    "シリアでは6,000人ほどが亡くなり、北西部とアレッポの被害が大きかった (国連)",
+    "About 6,000 people died in Syria, with the heaviest damage in the northwest and Aleppo (UN)"
+   ],
+   "src": "UN OCHA Syria; World Bank GRADE report (2023)"
+  },
+  {
+   "id": "sy-2024",
+   "type": "revolution",
+   "countries": [
+    "SYR"
+   ],
+   "years": [
+    2024,
+    2024
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、反体制派の部隊がダマスカスに入り、アサド政権が倒れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December opposition forces entered Damascus, and the Assad government fell."
+    ]
+   },
+   "stat": [
+    "2024年12月8日、アサド政権が倒れた",
+    "The Assad government fell on 8 December 2024"
+   ],
+   "src": "UN Security Council briefings (December 2024)"
+  },
+  {
+   "id": "lb-famine-1915",
+   "type": "famine",
+   "countries": [
+    "LBN"
+   ],
+   "years": [
+    1915,
+    1918
+   ],
+   "hit": 0.5,
+   "kill": 0.12,
+   "who": "frail",
+   "cause": "飢饉",
+   "poor": 1.5,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -20,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "海が封鎖され、イナゴが畑を食べつくした。小麦はなくなり、草を煮て食べた。"
+    ],
+    "news": [
+     "戦争の封鎖とイナゴで、山の村々を飢饉が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The sea was blockaded and locusts stripped the fields. The wheat ran out, and there was only boiled grass to eat."
+    ],
+    "news": [
+     "The wartime blockade and swarms of locusts brought famine to the mountain villages."
+    ]
+   },
+   "stat": [
+    "1915〜18年の山地レバノンの飢饉では、約20万人が亡くなったとされる",
+    "The famine of 1915-18 in Mount Lebanon is thought to have killed about 200,000 people"
+   ],
+   "src": "Tanielian 2018, The Charity of War; Schilcher 1992"
+  },
+  {
+   "id": "lb-civilwar",
+   "type": "war",
+   "countries": [
+    "LBN"
+   ],
+   "years": [
+    1975,
+    1990
+   ],
+   "hit": 0.35,
+   "urban": 1.3,
+   "kill": 0.04,
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町が民兵の撃ち合いの場になり、地下室で何日も過ごした。やがて家を離れ、山の村へ移った。"
+    ],
+    "news": [
+     "4月、内戦が始まった。ベイルートは東と西に分けられた。"
+    ],
+    "near": [
+     "通りの向こうから狙撃手の弾が飛んできた。その日から、遠回りして歩くようになった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The city became a battleground between militias, and days were spent in the basement. In the end the family left for a village in the mountains."
+    ],
+    "news": [
+     "In April the civil war began. Beirut was divided into east and west."
+    ],
+    "near": [
+     "A sniper's bullet came from across the street. From that day on, the long way round."
+    ]
+   },
+   "stat": [
+    "1975〜90年の内戦で、約12万人が亡くなり、100万人ほどが家を追われた",
+    "The civil war of 1975-90 killed about 120,000 people and displaced around a million"
+   ],
+   "src": "Labaki & Abou Rjeily 1993; UN ESCWA"
+  },
+  {
+   "id": "lb-2006",
+   "type": "war",
+   "countries": [
+    "LBN"
+   ],
+   "years": [
+    2006,
+    2006
+   ],
+   "hit": 0.2,
+   "kind": "move",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "7月、爆撃で道と橋が壊され、家族で北へ逃れた。戻ると、家の半分がなくなっていた。"
+    ],
+    "news": [
+     "7月、イスラエルとヒズボラの戦争が始まり、34日間続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July bombing destroyed the roads and bridges, and the family fled north. When they came back, half the house was gone."
+    ],
+    "news": [
+     "In July war broke out between Israel and Hezbollah. It lasted 34 days."
+    ]
+   },
+   "stat": [
+    "2006年7〜8月の戦争で、レバノンでは1,100人あまりが亡くなり、約100万人が一時、家を離れた",
+    "In the war of July-August 2006 more than 1,100 people were killed in Lebanon, and about a million were temporarily displaced"
+   ],
+   "src": "UN Commission of Inquiry on Lebanon (2006)"
+  },
+  {
+   "id": "lb-crisis-2019",
+   "type": "finance",
+   "countries": [
+    "LBN"
+   ],
+   "years": [
+    2019,
+    2023
+   ],
+   "hit": 0.4,
+   "age": [
+    16,
+    110
+   ],
+   "severity": 4,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "銀行が預金の引き出しを止めた。ポンドは値打ちをほとんど失い、蓄えは消えた。"
+    ],
+    "news": [
+     "銀行が預金の引き出しを止め、ポンドの値打ちが崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The banks stopped letting depositors withdraw. The pound lost almost all its value, and the savings were gone."
+    ],
+    "news": [
+     "The banks froze withdrawals, and the Lebanese pound collapsed."
+    ]
+   },
+   "stat": [
+    "2019年からの危機で、レバノン・ポンドは値打ちの9割以上を失った (世界銀行)",
+    "In the crisis that began in 2019 the Lebanese pound lost more than 90% of its value (World Bank)"
+   ],
+   "src": "World Bank, Lebanon Economic Monitor (2021-2023)"
+  },
+  {
+   "id": "lb-beirut-2020",
+   "type": "accident",
+   "countries": [
+    "LBN"
+   ],
+   "years": [
+    2020,
+    2020
+   ],
+   "hit": 0.1,
+   "cities": [
+    "ベイルート",
+    "Beirut"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "8月4日の夕方、港で大爆発が起きた。窓ガラスが部屋に飛び散り、家は住めなくなった。"
+    ],
+    "news": [
+     "8月4日、ベイルートの港で大爆発が起き、町の大半の窓が割れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the evening of 4 August a huge explosion tore through the port. Window glass flew across the room, and the home could no longer be lived in."
+    ],
+    "news": [
+     "On 4 August a huge explosion at the port of Beirut shattered windows across most of the city."
+    ]
+   },
+   "stat": [
+    "2020年8月4日のベイルート港の爆発で、218人が亡くなり、約30万人が家を失った",
+    "The Beirut port explosion of 4 August 2020 killed 218 people and left about 300,000 homeless"
+   ],
+   "src": "Human Rights Watch 2021; World Bank Beirut Rapid Damage and Needs Assessment (2020)"
+  },
+  {
+   "id": "lb-2024",
+   "type": "war",
+   "countries": [
+    "LBN"
+   ],
+   "years": [
+    2024,
+    2024
+   ],
+   "hit": 0.2,
+   "kind": "move",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "秋、空爆が続き、家を離れて北へ逃れた。学校の教室で何週間も寝起きした。"
+    ],
+    "news": [
+     "秋、イスラエルとヒズボラの戦いが激しくなり、南部とベイルートの郊外が空爆を受けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the autumn the airstrikes went on and the family fled north. For weeks a school classroom was home."
+    ],
+    "news": [
+     "In the autumn fighting between Israel and Hezbollah intensified, and the south and the suburbs of Beirut were bombed."
+    ]
+   },
+   "stat": [
+    "2024年の戦争で、レバノンでは約4,000人が亡くなり、120万人ほどが家を離れた",
+    "In the 2024 war about 4,000 people were killed in Lebanon and some 1.2 million were displaced"
+   ],
+   "src": "Lebanese Ministry of Public Health; IOM Lebanon"
+  },
+  {
+   "id": "jo-1970",
+   "type": "war",
+   "countries": [
+    "JOR"
+   ],
+   "years": [
+    1970,
+    1970
+   ],
+   "hit": 0.05,
+   "cities": [
+    "アンマン",
+    "ザルカ",
+    "Amman",
+    "Zarqa"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "9月、町で軍とパレスチナの武装組織の戦いが始まった。何日も床に伏せて過ごした。"
+    ],
+    "news": [
+     "9月、軍とパレスチナの武装組織の戦いが起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In September fighting broke out in the city between the army and Palestinian armed groups. Days were spent lying flat on the floor."
+    ],
+    "news": [
+     "In September fighting broke out between the army and Palestinian armed groups."
+    ]
+   },
+   "stat": [
+    "1970年9月の内戦で、数千人が亡くなったとされる",
+    "Several thousand people are thought to have been killed in the fighting of September 1970"
+   ],
+   "src": "Shlaim 2007, Lion of Jordan"
+  },
+  {
+   "id": "jo-1991",
+   "type": "war",
+   "countries": [
+    "JOR"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "湾岸戦争のあと、クウェートなどで働いていた人々が大勢戻ってきた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "After the Gulf War, large numbers of people who had worked in Kuwait and the Gulf came back."
+    ]
+   },
+   "stat": [
+    "1991年、湾岸戦争のあとクウェートなどから約30万人が戻ってきた",
+    "In 1991, after the Gulf War, some 300,000 people returned from Kuwait and the Gulf"
+   ],
+   "src": "Van Hear 1995, Journal of Refugee Studies 8(4)"
+  },
+  {
+   "id": "jo-2005",
+   "type": "terror",
+   "countries": [
+    "JOR"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.0003,
+   "cities": [
+    "アンマン",
+    "Amman"
+   ],
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "11月の夜、ホテルの結婚式の会場で爆発が起きた。けがをして病院に運ばれた。"
+    ],
+    "news": [
+     "11月、アンマンの3つのホテルで爆破が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One November night a bomb went off at a hotel wedding. Was taken to hospital injured."
+    ],
+    "news": [
+     "In November bombs went off in three hotels in Amman."
+    ]
+   },
+   "stat": [
+    "2005年11月9日、アンマンの3つのホテルで爆破があり、60人が亡くなった",
+    "On 9 November 2005 bombings at three hotels in Amman killed 60 people"
+   ],
+   "src": "Jordanian government; BBC News"
+  },
+  {
+   "id": "jo-syria-refugees",
+   "type": "war",
+   "countries": [
+    "JOR"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "北の国境を越えて、シリアから逃れてきた人々が次々に着いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "People fleeing Syria kept arriving across the northern border."
+    ]
+   },
+   "stat": [
+    "シリアから逃れてヨルダンに登録された難民は、60万人を超えた (UNHCR)",
+    "More than 600,000 Syrian refugees were registered in Jordan (UNHCR)"
+   ],
+   "src": "UNHCR Jordan operational data"
+  },
+  {
+   "id": "mideast-1967",
+   "type": "war",
+   "countries": [
+    "ISR",
+    "SYR",
+    "JOR"
+   ],
+   "years": [
+    1967,
+    1967
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月、6日間の戦争があり、国境の地図が変わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June a six-day war was fought, and the map of the borders changed."
+    ]
+   },
+   "stat": [
+    "1967年6月5日から10日までの6日間の戦争",
+    "The war of 5-10 June 1967 lasted six days"
+   ],
+   "src": "UN Security Council Resolution 242 (1967); Oren 2002, Six Days of War"
+  },
+  {
+   "id": "il-1948",
+   "type": "war",
+   "countries": [
+    "ISR"
+   ],
+   "years": [
+    1948,
+    1949
+   ],
+   "hit": 0.3,
+   "age": [
+    16,
+    40
+   ],
+   "kill": 0.009,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "銃を持って、前線の村を守った。仲間の何人かは戻らなかった。"
+    ],
+    "news": [
+     "5月、国の独立が宣言され、その日から周りの国々との戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Took up a rifle to defend a frontline village. Some of the comrades did not come back."
+    ],
+    "news": [
+     "In May independence was declared, and that same day war began with the surrounding countries."
+    ]
+   },
+   "stat": [
+    "1948〜49年の戦争で、イスラエル側では約6,000人 (当時のユダヤ人人口の約1%) が亡くなった",
+    "About 6,000 Israelis, some 1% of the Jewish population at the time, were killed in the war of 1948-49"
+   ],
+   "src": "Morris 2008, 1948: A History of the First Arab-Israeli War"
+  },
+  {
+   "id": "ps-nakba",
+   "type": "war",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    1948,
+    1949
+   ],
+   "hit": 0.4,
+   "kill": 0.01,
+   "who": "all",
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -30,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "家と畑を残して村を出た。すぐに戻れると思っていたが、戻ることは許されなかった。テントの並ぶキャンプが、新しい住まいになった。"
+    ],
+    "news": [
+     "戦争で、何十万ものパレスチナ人が故郷の村や町を追われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Left the village, the house and the fields, expecting to return soon. Return was never allowed. A camp of tents became the new home."
+    ],
+    "news": [
+     "In the war, hundreds of thousands of Palestinians were driven from their home villages and towns."
+    ]
+   },
+   "stat": [
+    "1948年の戦争で、約70万人のパレスチナ人が故郷を追われた (国連)",
+    "About 700,000 Palestinians were driven from their homes in the 1948 war (UN)"
+   ],
+   "src": "UNRWA; Morris 2004, The Birth of the Palestinian Refugee Problem Revisited"
+  },
+  {
+   "id": "ps-1967",
+   "type": "war",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    1967,
+    1967
+   ],
+   "hit": 0.2,
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -3,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "6月の戦争で家を追われ、川を越えて東へ逃れた。"
+    ],
+    "news": [
+     "6月の戦争で、ヨルダン川西岸とガザがイスラエルの占領のもとに入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The June war drove the family from home, across the river to the east."
+    ],
+    "news": [
+     "In the June war the West Bank and Gaza came under Israeli occupation."
+    ]
+   },
+   "stat": [
+    "1967年の戦争で、約30万人のパレスチナ人が新たに家を追われた (国連)",
+    "About 300,000 Palestinians were newly displaced in the 1967 war (UN)"
+   ],
+   "src": "UNRWA; UN General Assembly Resolution 2252 (1967)"
+  },
+  {
+   "id": "il-1973",
+   "type": "war",
+   "countries": [
+    "ISR",
+    "SYR"
+   ],
+   "years": [
+    1973,
+    1973
+   ],
+   "hit": 0,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、ゴラン高原とスエズ運河で戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October war broke out on the Golan Heights and along the Suez Canal."
+    ]
+   },
+   "stat": [
+    "1973年10月の戦争で、イスラエル兵2,656人が亡くなった",
+    "2,656 Israeli soldiers were killed in the October 1973 war"
+   ],
+   "src": "Israel Ministry of Defense; Rabinovich 2004, The Yom Kippur War"
+  },
+  {
+   "id": "il-1973-reserves",
+   "type": "war",
+   "countries": [
+    "ISR",
+    "SYR"
+   ],
+   "years": [
+    1973,
+    1973
+   ],
+   "hit": 0.15,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.0008,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 1,
+   "effect": {
+    "health": -3,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "兵として召集され、前線へ向かった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the front."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1973年10月の戦争で、イスラエル兵2,656人が亡くなった",
+    "2,656 Israeli soldiers were killed in the October 1973 war"
+   ],
+   "src": "Israel Ministry of Defense"
+  },
+  {
+   "id": "ps-intifada1",
+   "type": "unrest",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    1987,
+    1993
+   ],
+   "hit": 0.06,
+   "age": [
+    12,
+    40
+   ],
+   "kill": 0.001,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "抗議の列にいて、兵に捕らえられた。何か月も拘置所にいた。"
+    ],
+    "news": [
+     "12月、占領に抗う蜂起 (インティファーダ) が始まった。学校はたびたび閉ざされた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was arrested by soldiers at a protest and held for months in detention."
+    ],
+    "news": [
+     "In December an uprising against the occupation, the intifada, began. The schools were closed again and again."
+    ]
+   },
+   "stat": [
+    "1987〜93年の第1次インティファーダで、イスラエル軍によって1,000人あまりのパレスチナ人が殺された (B'Tselem)",
+    "More than 1,000 Palestinians were killed by Israeli forces during the first intifada of 1987-93 (B'Tselem)"
+   ],
+   "src": "B'Tselem statistics"
+  },
+  {
+   "id": "ps-intifada2",
+   "type": "war",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    2000,
+    2005
+   ],
+   "hit": 0.1,
+   "kill": 0.001,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "検問所と外出禁止で、町から出られない月が続いた。仕事に行けなくなった。"
+    ],
+    "news": [
+     "9月、第2次インティファーダが始まり、戦車が町に入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "With checkpoints and curfews, months passed without leaving the town. Going to work became impossible."
+    ],
+    "news": [
+     "In September the second intifada began, and tanks rolled into the towns."
+    ]
+   },
+   "stat": [
+    "2000〜05年の第2次インティファーダで、パレスチナ側では約3,200人、イスラエル側では約1,000人が亡くなった (B'Tselem)",
+    "About 3,200 Palestinians and about 1,000 Israelis were killed during the second intifada of 2000-05 (B'Tselem)"
+   ],
+   "src": "B'Tselem statistics"
+  },
+  {
+   "id": "il-intifada2",
+   "type": "terror",
+   "countries": [
+    "ISR"
+   ],
+   "years": [
+    2000,
+    2005
+   ],
+   "hit": 0.002,
+   "cities": [
+    "エルサレム",
+    "テルアビブ",
+    "ハイファ",
+    "Jerusalem",
+    "Tel Aviv",
+    "Haifa"
+   ],
+   "elsewhere": 0.0005,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "乗っていたバスの近くで自爆の爆発が起き、けがをした。"
+    ],
+    "news": [
+     "第2次インティファーダが始まり、バスや店で自爆の攻撃が続いた。"
+    ],
+    "near": [
+     "いつも乗るバスが爆破された。その日は、たまたま一本遅れていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A suicide bomb went off near the bus, and there were injuries."
+    ],
+    "news": [
+     "The second intifada began, and suicide bombings struck buses and cafés."
+    ],
+    "near": [
+     "The usual bus was blown up. That day, by chance, it had been missed."
+    ]
+   },
+   "stat": [
+    "2000〜05年の第2次インティファーダで、イスラエル側では約1,000人、パレスチナ側では約3,200人が亡くなった (B'Tselem)",
+    "About 1,000 Israelis and about 3,200 Palestinians were killed during the second intifada of 2000-05 (B'Tselem)"
+   ],
+   "src": "B'Tselem statistics; Israel Ministry of Foreign Affairs"
+  },
+  {
+   "id": "il-rabin",
+   "type": "unrest",
+   "countries": [
+    "ISR"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、ラビン首相がテルアビブの平和の集会のあとで撃たれ、亡くなった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November Prime Minister Rabin was shot dead after a peace rally in Tel Aviv."
+    ]
+   },
+   "stat": [
+    "1995年11月4日、ラビン首相が暗殺された",
+    "Prime Minister Rabin was assassinated on 4 November 1995"
+   ],
+   "src": "Shamgar Commission Report (1996)"
+  },
+  {
+   "id": "ps-gaza-2008",
+   "type": "war",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    2008,
+    2009
+   ],
+   "hit": 0.1,
+   "cities": [
+    "ガザ",
+    "ハンユニス",
+    "ラファ",
+    "Gaza",
+    "Khan Yunis",
+    "Rafah"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "年の瀬から空爆と砲撃が続き、家が壊れた。国連の学校に身を寄せた。"
+    ],
+    "news": [
+     "12月の末から3週間、ガザで戦争が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "From the end of the year the airstrikes and shelling went on, and the house was damaged. Shelter was a UN school."
+    ],
+    "news": [
+     "From the end of December, war raged in Gaza for three weeks."
+    ]
+   },
+   "stat": [
+    "2008年12月〜09年1月の戦争で、ガザでは約1,400人が亡くなった (B'Tselem)",
+    "About 1,400 people were killed in Gaza in the war of December 2008-January 2009 (B'Tselem)"
+   ],
+   "src": "B'Tselem; UN Fact-Finding Mission on the Gaza Conflict (2009)"
+  },
+  {
+   "id": "ps-gaza-2014",
+   "type": "war",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    2014,
+    2014
+   ],
+   "hit": 0.3,
+   "cities": [
+    "ガザ",
+    "ハンユニス",
+    "ラファ",
+    "Gaza",
+    "Khan Yunis",
+    "Rafah"
+   ],
+   "elsewhere": 0,
+   "kind": "move",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -22,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "夏、住んでいた地区に空爆が続き、家族で国連の学校へ逃れた。戻ると家は崩れていた。"
+    ],
+    "news": [
+     "夏、ガザで51日間の戦争が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That summer the airstrikes on the neighbourhood went on, and the family fled to a UN school. When they came back the house had collapsed."
+    ],
+    "news": [
+     "That summer a 51-day war was fought in Gaza."
+    ]
+   },
+   "stat": [
+    "2014年夏の戦争で、ガザでは2,251人が亡くなり、約50万人が家を離れた (国連OCHA)",
+    "In the summer 2014 war 2,251 people were killed in Gaza and about 500,000 were displaced (UN OCHA)"
+   ],
+   "src": "UN OCHA; UN Commission of Inquiry on the 2014 Gaza Conflict (2015)"
+  },
+  {
+   "id": "ps-gaza-2023",
+   "type": "war",
+   "countries": [
+    "PSE"
+   ],
+   "years": [
+    2023,
+    2025
+   ],
+   "hit": 0.9,
+   "cities": [
+    "ガザ",
+    "ハンユニス",
+    "ラファ",
+    "Gaza",
+    "Khan Yunis",
+    "Rafah"
+   ],
+   "elsewhere": 0.02,
+   "kill": 0.011,
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "home": true,
+    "wealth": -0.9
+   },
+   "ja": {
+    "hit": [
+     "住んでいた地区に爆撃が続き、家族で南へ逃れた。テントと学校の教室を何度も移り住んだ。食べ物も水も足りなかった。"
+    ],
+    "news": [
+     "10月、ガザで戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The bombing of the neighbourhood went on, and the family fled south. Tents and school classrooms followed, again and again. There was never enough food or water."
+    ],
+    "news": [
+     "In October war began in Gaza."
+    ]
+   },
+   "stat": [
+    "2023年10月からの戦争で、ガザの人口の約9割、190万人ほどが家を追われた (国連)",
+    "Since October 2023 about 90% of Gaza's population, some 1.9 million people, have been displaced (UN)"
+   ],
+   "src": "UNRWA Situation Reports; UN OCHA"
+  },
+  {
+   "id": "il-oct7",
+   "type": "terror",
+   "countries": [
+    "ISR"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0.0007,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25
+   },
+   "ja": {
+    "hit": [
+     "10月7日の朝、武装した集団が南の町や村を襲った。何時間も、安全な部屋の扉を押さえていた。"
+    ],
+    "news": [
+     "10月7日、ガザから越えてきた武装集団が南部の町や村を襲い、多くの人が殺され、人質に取られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 7 October armed men attacked the towns and villages of the south. For hours the door of the safe room was held shut."
+    ],
+    "news": [
+     "On 7 October armed men crossing from Gaza attacked towns and villages in the south. Many were killed and many taken hostage."
+    ]
+   },
+   "stat": [
+    "2023年10月7日の襲撃で約1,200人が殺され、251人が人質として連れ去られた",
+    "About 1,200 people were killed in the attack of 7 October 2023, and 251 were taken hostage"
+   ],
+   "src": "Israeli Prime Minister's Office; UN Commission of Inquiry (2024)"
+  },
+  {
+   "id": "il-2023-reserves",
+   "type": "war",
+   "countries": [
+    "ISR"
+   ],
+   "years": [
+    2023,
+    2024
+   ],
+   "hit": 0.1,
+   "age": [
+    20,
+    45
+   ],
+   "severity": 1,
+   "effect": {
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "予備役として召集され、何か月も家を離れた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Was called up as a reservist and away from home for months."
+    ],
+    "news": []
+   },
+   "stat": [
+    "2023年10月、イスラエルは約36万人の予備役を召集した",
+    "In October 2023 Israel called up about 360,000 reservists"
+   ],
+   "src": "Israel Defense Forces"
+  },
+  {
+   "id": "gulf-1990",
+   "type": "war",
+   "countries": [
+    "SAU",
+    "ARE",
+    "OMN",
+    "QAT",
+    "BHR"
+   ],
+   "years": [
+    1990,
+    1990
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、イラクの軍がクウェートに攻め入った。外国の軍が次々に国に入ってきた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August the Iraqi army invaded Kuwait. Foreign troops began arriving in the country."
+    ]
+   },
+   "stat": [
+    "1990年8月2日、イラク軍がクウェートに侵攻した",
+    "Iraqi forces invaded Kuwait on 2 August 1990"
+   ],
+   "src": "UN Security Council Resolution 660 (1990)"
+  },
+  {
+   "id": "kw-1990",
+   "type": "occupation",
+   "countries": [
+    "KWT"
+   ],
+   "years": [
+    1990,
+    1990
+   ],
+   "hit": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -25,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "8月2日、イラクの軍が入ってきた。7か月のあいだ、兵の目を避けて家の中で暮らした。",
+     "侵攻のあと、国境を越えて親戚のいる国へ逃れ、解放の日まで戻れなかった。"
+    ],
+    "news": [
+     "8月2日、イラクの軍がクウェートに攻め入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On 2 August the Iraqi army came in. For seven months life went on indoors, out of the soldiers' sight.",
+     "After the invasion the family fled across the border to relatives and could not return until liberation."
+    ],
+    "news": [
+     "On 2 August the Iraqi army invaded Kuwait."
+    ]
+   },
+   "stat": [
+    "1990年8月2日、イラク軍が侵攻し、7か月にわたって国を占領した",
+    "Iraqi forces invaded on 2 August 1990 and occupied the country for seven months"
+   ],
+   "src": "UN Security Council Resolutions 660 and 678; Kuwaiti government"
+  },
+  {
+   "id": "kw-oilfires",
+   "type": "accident",
+   "countries": [
+    "KWT"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "退いていくイラクの軍が油井に火を放ち、空は何か月も黒い煙におおわれた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The retreating Iraqi army set the oil wells on fire, and for months the sky was black with smoke."
+    ]
+   },
+   "stat": [
+    "1991年に燃やされた600か所あまりの油井は、すべて消し止めるまでに8か月かかった",
+    "The more than 600 oil wells set on fire in 1991 took eight months to put out"
+   ],
+   "src": "Kuwait Oil Company; US EPA"
+  },
+  {
+   "id": "kw-manakh-1982",
+   "type": "finance",
+   "countries": [
+    "KWT"
+   ],
+   "years": [
+    1982,
+    1982
+   ],
+   "hit": 0.05,
+   "age": [
+    20,
+    75
+   ],
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "株の市場が崩れ、先の日付の小切手で買っていた株は紙くずになった。"
+    ],
+    "news": [
+     "スーク・アル・マナフの株の市場が崩れ、多くの家が借金を抱えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The stock market crashed, and the shares bought with post-dated cheques became worthless."
+    ],
+    "news": [
+     "The Souk al-Manakh stock market crashed, leaving many families in debt."
+    ]
+   },
+   "stat": [
+    "1982年のスーク・アル・マナフの暴落で、不渡りになった先日付小切手は約940億ドル分にのぼった",
+    "The 1982 Souk al-Manakh crash left some 94 billion dollars of post-dated cheques unpaid"
+   ],
+   "src": "Darwiche 1986, The Gulf Stock Exchange Crash"
+  },
+  {
+   "id": "kw-2015",
+   "type": "terror",
+   "countries": [
+    "KWT"
+   ],
+   "years": [
+    2015,
+    2015
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月の金曜日、モスクの礼拝の最中に爆破が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On a Friday in June a bomb exploded during prayers at a mosque."
+    ]
+   },
+   "stat": [
+    "2015年6月26日、クウェート市のイマーム・サーディク・モスクで爆破があり、27人が亡くなった",
+    "On 26 June 2015 a bombing at the Imam Sadiq mosque in Kuwait City killed 27 people"
+   ],
+   "src": "Kuwaiti Ministry of Interior"
+  },
+  {
+   "id": "sa-1979",
+   "type": "unrest",
+   "countries": [
+    "SAU"
+   ],
+   "years": [
+    1979,
+    1979
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、武装した集団がメッカの聖モスクを占拠した。取り戻すまでに2週間かかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November an armed group seized the Grand Mosque in Mecca. It took two weeks to retake it."
+    ]
+   },
+   "stat": [
+    "1979年11月20日からの聖モスク占拠事件で、政府の発表では250人あまりが亡くなった",
+    "More than 250 people died in the seizure of the Grand Mosque that began on 20 November 1979, according to the government"
+   ],
+   "src": "Trofimov 2007, The Siege of Mecca"
+  },
+  {
+   "id": "sa-1991",
+   "type": "war",
+   "countries": [
+    "SAU"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、イラクのミサイルがリヤドとダーランに落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January Iraqi missiles fell on Riyadh and Dhahran."
+    ]
+   },
+   "stat": [
+    "1991年2月25日、ダーランの米軍宿舎にミサイルが落ち、28人が亡くなった",
+    "On 25 February 1991 a missile struck US barracks in Dhahran, killing 28"
+   ],
+   "src": "US Department of Defense"
+  },
+  {
+   "id": "sa-jeddah-2009",
+   "type": "flood",
+   "countries": [
+    "SAU"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0.01,
+   "cities": [
+    "ジッダ",
+    "Jeddah"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "happy": -8,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "11月、大雨で谷の水があふれ、家と車が泥につかった。"
+    ],
+    "news": [
+     "11月、ジッダが大雨と洪水に襲われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In November a downpour sent the valley floods through the streets, and house and car were buried in mud."
+    ],
+    "news": [
+     "In November Jeddah was struck by torrential rain and flash floods."
+    ]
+   },
+   "stat": [
+    "2009年11月のジッダの洪水で、100人あまりが亡くなった",
+    "The Jeddah floods of November 2009 killed more than 100 people"
+   ],
+   "src": "Saudi Civil Defense"
+  },
+  {
+   "id": "sa-mina-2015",
+   "type": "accident",
+   "countries": [
+    "SAU"
+   ],
+   "years": [
+    2015,
+    2015
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、巡礼の群衆が押し合いになり、多くの巡礼者が亡くなった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September a crush in the pilgrim crowds killed many pilgrims."
+    ]
+   },
+   "stat": [
+    "2015年9月のメッカ巡礼の群衆事故で、サウジ政府の発表では769人が亡くなった",
+    "The September 2015 crush at the Hajj killed 769 people, according to the Saudi government"
+   ],
+   "src": "Saudi Ministry of Health"
+  },
+  {
+   "id": "ae-dubai-2009",
+   "type": "finance",
+   "countries": [
+    "ARE"
+   ],
+   "years": [
+    2009,
+    2010
+   ],
+   "hit": 0.05,
+   "cities": [
+    "ドバイ",
+    "Dubai"
+   ],
+   "elsewhere": 0.01,
+   "age": [
+    18,
+    64
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.3,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "建設の仕事が止まり、職を失った。家賃を払えず、もっと小さな部屋へ移った。"
+    ],
+    "news": [
+     "ドバイで建設が次々に止まり、家の値段が大きく下がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Construction stopped and the job went with it. The rent could not be paid, and the move was to a smaller room."
+    ],
+    "news": [
+     "Construction in Dubai ground to a halt, and property prices fell sharply."
+    ]
+   },
+   "stat": [
+    "2008年の高値から、ドバイの住宅の値段は2年ほどで半分ほどに下がった",
+    "Dubai house prices fell by about half within two years of their 2008 peak"
+   ],
+   "src": "IMF Article IV Consultation, United Arab Emirates (2010)"
+  },
+  {
+   "id": "ae-2022",
+   "type": "terror",
+   "countries": [
+    "ARE"
+   ],
+   "years": [
+    2022,
+    2022
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、アブダビの燃料タンクが無人機に攻撃された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January drones attacked fuel tanks in Abu Dhabi."
+    ]
+   },
+   "stat": [
+    "2022年1月17日の無人機の攻撃で、3人が亡くなった",
+    "Three people were killed in the drone attack of 17 January 2022"
+   ],
+   "src": "UAE government; UN Security Council"
+  },
+  {
+   "id": "ae-floods-2024",
+   "type": "flood",
+   "countries": [
+    "ARE"
+   ],
+   "years": [
+    2024,
+    2024
+   ],
+   "hit": 0.03,
+   "cities": [
+    "ドバイ",
+    "シャルジャ",
+    "アジュマーン",
+    "Dubai",
+    "Sharjah",
+    "Ajman"
+   ],
+   "elsewhere": 0.01,
+   "severity": 2,
+   "effect": {
+    "happy": -4
+   },
+   "ja": {
+    "hit": [
+     "4月、一年分を超える雨が一日で降り、家の一階が水につかった。"
+    ],
+    "news": [
+     "4月、記録的な大雨で、道路も空港も水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In April more than a year's rain fell in a single day, and the ground floor flooded."
+    ],
+    "news": [
+     "In April record rainfall flooded roads and even the airport."
+    ]
+   },
+   "stat": [
+    "2024年4月16日、アル・アインでは1日に254ミリの雨が降り、1949年の記録開始以来の大雨になった",
+    "On 16 April 2024, 254 mm of rain fell in a day at Al Ain, the most since records began in 1949"
+   ],
+   "src": "UAE National Centre of Meteorology"
+  },
+  {
+   "id": "om-dhofar",
+   "type": "war",
+   "countries": [
+    "OMN"
+   ],
+   "years": [
+    1975,
+    1975
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "南のドファール地方で十年続いた反乱が終わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The rebellion in the southern Dhofar region, after ten years, came to an end."
+    ]
+   },
+   "stat": [
+    "ドファールの反乱は1965年から1975年まで続いた",
+    "The Dhofar rebellion lasted from 1965 to 1975"
+   ],
+   "src": "Takriti 2013, Monsoon Revolution"
+  },
+  {
+   "id": "om-gonu-2007",
+   "type": "cyclone",
+   "countries": [
+    "OMN"
+   ],
+   "years": [
+    2007,
+    2007
+   ],
+   "hit": 0.03,
+   "cities": [
+    "マスカット",
+    "スィーブ",
+    "Muscat",
+    "Seeb"
+   ],
+   "elsewhere": 0.005,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -10,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "6月、サイクロンの雨で谷の水があふれ、家が泥と水につかった。"
+    ],
+    "news": [
+     "6月、サイクロン・ゴヌがマスカットの海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June the cyclone's rain sent the valleys flooding, and the house filled with mud and water."
+    ],
+    "news": [
+     "In June Cyclone Gonu struck the coast around Muscat."
+    ]
+   },
+   "stat": [
+    "2007年6月のサイクロン・ゴヌで、オマーンでは50人ほどが亡くなった",
+    "Cyclone Gonu in June 2007 killed about 50 people in Oman"
+   ],
+   "src": "Oman National Committee for Civil Defence; WMO"
+  },
+  {
+   "id": "om-shaheen-2021",
+   "type": "cyclone",
+   "countries": [
+    "OMN"
+   ],
+   "years": [
+    2021,
+    2021
+   ],
+   "hit": 0.05,
+   "cities": [
+    "ソハール",
+    "Sohar"
+   ],
+   "elsewhere": 0.003,
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "health": -2,
+    "happy": -8,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "10月、サイクロンが海辺を襲い、家が水と泥につかった。"
+    ],
+    "news": [
+     "10月、サイクロン・シャヒーンがバーティナの海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In October the cyclone struck the coast, and the house filled with water and mud."
+    ],
+    "news": [
+     "In October Cyclone Shaheen struck the Batinah coast."
+    ]
+   },
+   "stat": [
+    "2021年10月のサイクロン・シャヒーンで、オマーンでは十数人が亡くなった",
+    "Cyclone Shaheen in October 2021 killed more than a dozen people in Oman"
+   ],
+   "src": "Oman National Committee for Emergency Management"
+  },
+  {
+   "id": "qa-blockade",
+   "type": "unrest",
+   "countries": [
+    "QAT"
+   ],
+   "years": [
+    2017,
+    2017
+   ],
+   "hit": 0.3,
+   "severity": 3,
+   "effect": {
+    "happy": -4
+   },
+   "ja": {
+    "hit": [
+     "6月、隣の国々が国境を閉ざした。店の棚から牛乳が消え、向こうの国にいる親戚に会えなくなった。"
+    ],
+    "news": [
+     "6月、隣の国々が国交を断ち、陸と空の道を閉ざした。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June the neighbouring countries closed their borders. Milk vanished from the shelves, and relatives on the other side could no longer be visited."
+    ],
+    "news": [
+     "In June neighbouring countries cut ties and closed the land border and their airspace."
+    ]
+   },
+   "stat": [
+    "2017年6月、サウジアラビアなど4か国が国交を断ち、陸の国境を閉ざした",
+    "In June 2017 Saudi Arabia and three other countries cut ties and closed the land border"
+   ],
+   "src": "Al-Ula Declaration (2021); UN OHCHR technical mission report (2017)"
+  },
+  {
+   "id": "qa-1995",
+   "type": "coup",
+   "countries": [
+    "QAT"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月、皇太子が父の首長を退け、国の長になった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June the crown prince deposed his father and became emir."
+    ]
+   },
+   "stat": [
+    "1995年6月27日、ハマド皇太子が首長の位についた",
+    "Crown Prince Hamad took power as emir on 27 June 1995"
+   ],
+   "src": "Kamrava 2013, Qatar: Small State, Big Politics"
+  },
+  {
+   "id": "bh-2011",
+   "type": "unrest",
+   "countries": [
+    "BHR"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.008,
+   "age": [
+    20,
+    60
+   ],
+   "severity": 3,
+   "effect": {
+    "happy": -15,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "抗議のあと、職場から呼び出され、職を解かれた。"
+    ],
+    "news": [
+     "2月、マナーマの真珠広場に抗議の人々が集まり、3月に鎮められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the protests came a summons at work, and dismissal."
+    ],
+    "news": [
+     "In February protesters gathered at the Pearl Roundabout in Manama. In March they were dispersed."
+    ]
+   },
+   "stat": [
+    "2011年の抗議と鎮圧のあと、4,500人ほどが職を追われた (バーレーン独立調査委員会)",
+    "After the protests and crackdown of 2011 about 4,500 people were dismissed from their jobs (Bahrain Independent Commission of Inquiry)"
+   ],
+   "src": "Report of the Bahrain Independent Commission of Inquiry (2011)"
+  },
+  {
+   "id": "bh-1994",
+   "type": "unrest",
+   "countries": [
+    "BHR"
+   ],
+   "years": [
+    1994,
+    1994
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "議会の復活を求める抗議が始まり、何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Protests calling for the restoration of parliament began and went on for years."
+    ]
+   },
+   "stat": [
+    "1994〜99年に、議会の復活を求める抗議が続いた",
+    "Protests for the restoration of parliament continued from 1994 to 1999"
+   ],
+   "src": "Human Rights Watch 1997, Routine Abuse, Routine Denial"
+  },
+  {
+   "id": "kz-famine-1930",
+   "type": "famine",
+   "countries": [
+    "KAZ"
+   ],
+   "years": [
+    1930,
+    1933
+   ],
+   "hit": 0.6,
+   "kill": 0.15,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -14,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "家畜がすべて取り上げられ、遊牧の暮らしができなくなった。食べ物を求めて、草原を何日も歩いた。"
+    ],
+    "news": [
+     "集団化で家畜が取り上げられ、草原を飢饉が襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "All the livestock were taken away, and the nomadic life became impossible. Days of walking across the steppe in search of food followed."
+    ],
+    "news": [
+     "Collectivization took away the herds, and famine swept the steppe."
+    ]
+   },
+   "stat": [
+    "1930〜33年の飢饉で、カザフ人の約4割、150万人ほどが亡くなったとされる",
+    "The famine of 1930-33 killed some 1.5 million people, about 40% of the Kazakhs"
+   ],
+   "src": "Cameron 2018, The Hungry Steppe; Ohayon 2006"
+  },
+  {
+   "id": "kz-semipalatinsk",
+   "type": "nuclear",
+   "countries": [
+    "KAZ"
+   ],
+   "years": [
+    1949,
+    1989
+   ],
+   "hit": 0.03,
+   "urban": 0.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -4
+   },
+   "ja": {
+    "hit": [
+     "近くの実験場で核の爆発が続き、窓が揺れた。のちに、多くの近所の人と同じように体を悪くした。"
+    ],
+    "news": [
+     "セミパラチンスクの草原で、核の実験が続けられていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Nuclear blasts at the nearby test site rattled the windows. Later, like many neighbours, came the illness."
+    ],
+    "news": [
+     "Nuclear tests went on and on in the steppe near Semipalatinsk."
+    ]
+   },
+   "stat": [
+    "1949〜89年に、セミパラチンスクの実験場で456回の核実験が行われた",
+    "456 nuclear tests were carried out at the Semipalatinsk test site between 1949 and 1989"
+   ],
+   "src": "CTBTO; IAEA 1998, Radiological Conditions at the Semipalatinsk Test Site"
+  },
+  {
+   "id": "aral-sea",
+   "type": "drought",
+   "countries": [
+    "KAZ",
+    "UZB",
+    "TKM"
+   ],
+   "years": [
+    1985,
+    1989
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "アラル海が干上がり、漁の村は砂漠の中に取り残された。塩まじりの砂嵐が吹くようになった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The Aral Sea dried up, leaving fishing villages stranded in the desert. Salty dust storms began to blow."
+    ]
+   },
+   "stat": [
+    "アラル海は1960年から2000年代までに、面積の約9割を失った",
+    "Between 1960 and the 2000s the Aral Sea lost about 90% of its area"
+   ],
+   "src": "UNEP; Micklin 2007, Annual Review of Earth and Planetary Sciences 35:47"
+  },
+  {
+   "id": "kz-2022",
+   "type": "unrest",
+   "countries": [
+    "KAZ"
+   ],
+   "years": [
+    2022,
+    2022
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、燃料の値上げへの抗議が騒乱になり、アルマトイでは銃声が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January protests over fuel prices turned into unrest, and gunfire rang out in Almaty."
+    ]
+   },
+   "stat": [
+    "2022年1月の騒乱で、238人が亡くなった (カザフスタン検察庁)",
+    "238 people died in the unrest of January 2022 (Prosecutor General of Kazakhstan)"
+   ],
+   "src": "Prosecutor General's Office of Kazakhstan; Human Rights Watch"
+  },
+  {
+   "id": "uz-tashkent-1966",
+   "type": "quake",
+   "countries": [
+    "UZB"
+   ],
+   "years": [
+    1966,
+    1966
+   ],
+   "hit": 0.25,
+   "cities": [
+    "タシケント",
+    "Tashkent"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -10,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "4月の明け方、地震で日干し煉瓦の家が崩れた。何か月もテントで暮らし、新しい団地の部屋をもらった。"
+    ],
+    "news": [
+     "4月26日、タシケントを地震が襲い、古い町並みの家々が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At dawn one April morning the earthquake brought down the mud-brick house. Months in a tent followed, then a flat in a new estate."
+    ],
+    "news": [
+     "On 26 April an earthquake struck Tashkent, and the houses of the old town collapsed."
+    ]
+   },
+   "stat": [
+    "1966年4月26日のタシケント地震で、約30万人が家を失った",
+    "The Tashkent earthquake of 26 April 1966 left about 300,000 people homeless"
+   ],
+   "src": "USGS; Kassymbekova 2016"
+  },
+  {
+   "id": "uz-cotton",
+   "type": "unrest",
+   "countries": [
+    "UZB"
+   ],
+   "years": [
+    1975,
+    2012
+   ],
+   "hit": 0.6,
+   "age": [
+    10,
+    17
+   ],
+   "urban": 0.5,
+   "rough": true,
+   "severity": 1,
+   "effect": {
+    "health": -2,
+    "happy": -4
+   },
+   "ja": {
+    "hit": [
+     "秋になると学校が閉まり、綿花畑に送られた。一日の摘みとりの量が決められていた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Every autumn the schools closed and the children were sent to the cotton fields, each with a daily quota."
+    ],
+    "news": []
+   },
+   "stat": [
+    "2010年代はじめまで、毎年秋に何十万人もの子どもが綿花の摘みとりに動員された (ILO)",
+    "Until the early 2010s hundreds of thousands of children were mobilized every autumn for the cotton harvest (ILO)"
+   ],
+   "src": "ILO Third-party monitoring of child and forced labour in Uzbekistan (2015-2021)"
+  },
+  {
+   "id": "uz-andijan-2005",
+   "type": "unrest",
+   "countries": [
+    "UZB"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.005,
+   "cities": [
+    "アンディジャン",
+    "Andijan"
+   ],
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "5月、広場の集会に兵が発砲した。人の波の中を走って逃げた。"
+    ],
+    "news": [
+     "5月、アンディジャンで抗議の人々に兵が発砲した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In May soldiers opened fire on the rally in the square. Ran with the fleeing crowd."
+    ],
+    "news": [
+     "In May soldiers opened fire on protesters in Andijan."
+    ]
+   },
+   "stat": [
+    "2005年5月13日のアンディジャン事件の死者は、政府発表で187人、人権団体の推計では数百人",
+    "The Andijan killings of 13 May 2005 left 187 dead by the government's count, and several hundred by human rights groups' estimates"
+   ],
+   "src": "OSCE ODIHR 2005; Human Rights Watch 2005, Bullets Were Falling Like Rain"
+  },
+  {
+   "id": "tj-khait-1949",
+   "type": "quake",
+   "countries": [
+    "TJK"
+   ],
+   "years": [
+    1949,
+    1949
+   ],
+   "hit": 0.01,
+   "urban": 0.2,
+   "kill": 0.004,
+   "cause": "災害",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "7月、地震で山が崩れ、谷の村が土に埋まった。"
+    ],
+    "news": [
+     "7月、山の地震で地すべりが起き、谷の村々が埋まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July the earthquake brought the mountainside down, and the valley village was buried."
+    ],
+    "news": [
+     "In July an earthquake in the mountains set off landslides that buried the valley villages."
+    ]
+   },
+   "stat": [
+    "1949年7月10日のハイト地震では、地すべりがいくつもの村を埋め、死者は数千〜2万人と推計される",
+    "In the Khait earthquake of 10 July 1949 landslides buried several villages, killing an estimated several thousand to 20,000"
+   ],
+   "src": "Evans et al. 2009, Engineering Geology 109:195"
+  },
+  {
+   "id": "tj-1990",
+   "type": "unrest",
+   "countries": [
+    "TJK"
+   ],
+   "years": [
+    1990,
+    1990
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、ドゥシャンベで暴動が起き、軍が町に入った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February riots broke out in Dushanbe and the army moved into the city."
+    ]
+   },
+   "stat": [
+    "1990年2月のドゥシャンベの暴動で、20人あまりが亡くなった",
+    "More than 20 people were killed in the Dushanbe riots of February 1990"
+   ],
+   "src": "Human Rights Watch / Helsinki Watch (1991)"
+  },
+  {
+   "id": "tj-civilwar",
+   "type": "war",
+   "countries": [
+    "TJK"
+   ],
+   "years": [
+    1992,
+    1997
+   ],
+   "hit": 0.2,
+   "kill": 0.009,
+   "cause": "戦争",
+   "who": "men",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "村が武装勢力どうしの争いに巻きこまれ、家を捨てて逃げた。"
+    ],
+    "news": [
+     "独立のあと、国の中で内戦が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village was caught up in the fighting between armed factions, and the house was abandoned."
+    ],
+    "news": [
+     "Soon after independence, civil war broke out."
+    ]
+   },
+   "stat": [
+    "1992〜97年の内戦で、5万人ほどが亡くなり、人口の5分の1にあたる約120万人が家を追われた",
+    "The civil war of 1992-97 killed about 50,000 people and drove some 1.2 million, a fifth of the population, from their homes"
+   ],
+   "src": "UNHCR; Akiner 2001, Tajikistan: Disintegration or Reconciliation?"
+  },
+  {
+   "id": "kg-urkun-1916",
+   "type": "war",
+   "countries": [
+    "KGZ"
+   ],
+   "years": [
+    1916,
+    1917
+   ],
+   "hit": 0.3,
+   "kill": 0.06,
+   "who": "all",
+   "cause": "戦争",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "反乱の鎮圧から逃れ、家畜を連れて冬の山を越えた。多くの家畜が雪の中で倒れた。"
+    ],
+    "news": [
+     "戦場の労働に男たちを送れという命令に反乱が起き、厳しく鎮められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fleeing the suppression of the revolt, the family drove its herds over the winter mountains. Many animals fell in the snow."
+    ],
+    "news": [
+     "An order to send men to labour behind the front sparked a revolt, which was crushed without mercy."
+    ]
+   },
+   "stat": [
+    "1916年の反乱とその鎮圧で10万人を超える人々が亡くなり、多くのキルギス人が中国へ逃れたとされる (ウルクン)",
+    "More than 100,000 people are thought to have died in the revolt of 1916 and its suppression, and many Kyrgyz fled to China (the Urkun)"
+   ],
+   "src": "Morrison 2020, Central Asian Survey 39(2); Sokol 1954"
+  },
+  {
+   "id": "kg-2005",
+   "type": "revolution",
+   "countries": [
+    "KGZ"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "3月、抗議の人々が政府の建物に入り、大統領は国を離れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In March protesters entered the government building, and the president left the country."
+    ]
+   },
+   "stat": [
+    "2005年3月24日、アカエフ大統領が政権を追われた",
+    "President Akayev was ousted on 24 March 2005"
+   ],
+   "src": "OSCE; International Crisis Group 2005"
+  },
+  {
+   "id": "kg-2010-april",
+   "type": "revolution",
+   "countries": [
+    "KGZ"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "4月、ビシュケクで抗議の人々に発砲があり、大統領は国を離れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In April shots were fired at protesters in Bishkek, and the president fled the country."
+    ]
+   },
+   "stat": [
+    "2010年4月7日のビシュケクの騒乱で、80人あまりが亡くなった",
+    "More than 80 people were killed in the Bishkek unrest of 7 April 2010"
+   ],
+   "src": "Kyrgyzstan Inquiry Commission (2011)"
+  },
+  {
+   "id": "kg-osh-2010",
+   "type": "unrest",
+   "countries": [
+    "KGZ"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.3,
+   "cities": [
+    "オシュ",
+    "ジャララバード",
+    "Osh",
+    "Jalal-Abad"
+   ],
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -22,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "6月、町で民族の衝突が起き、通りの家々が焼かれた。何週間も知り合いの家に身を寄せた。"
+    ],
+    "news": [
+     "6月、南のオシュとジャララバードで民族の衝突が起きた。"
+    ],
+    "near": [
+     "6月、隣の地区が燃えた。夜は窓の外の銃声を聞きながら眠れなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June ethnic clashes broke out in the town and the houses on the street were burned. For weeks the family stayed with friends."
+    ],
+    "news": [
+     "In June ethnic clashes broke out in Osh and Jalal-Abad in the south."
+    ],
+    "near": [
+     "In June the next district burned. Nights were sleepless, with gunfire outside the window."
+    ]
+   },
+   "stat": [
+    "2010年6月のオシュの衝突で、約470人が亡くなり、40万人ほどが一時、家を追われた",
+    "The Osh clashes of June 2010 killed about 470 people and temporarily displaced some 400,000"
+   ],
+   "src": "Kyrgyzstan Inquiry Commission (2011); UNHCR"
+  },
+  {
+   "id": "tm-ashgabat-1948",
+   "type": "quake",
+   "countries": [
+    "TKM"
+   ],
+   "years": [
+    1948,
+    1948
+   ],
+   "hit": 0.8,
+   "cities": [
+    "アシガバート",
+    "Ashgabat"
+   ],
+   "elsewhere": 0.005,
+   "kill": 0.03,
+   "cause": "災害",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "10月の真夜中、大地震で町の大半が崩れた。がれきの中から掘り出され、冬をテントで越した。"
+    ],
+    "news": [
+     "10月、首都アシガバートを大地震が襲った。"
+    ],
+    "near": [
+     "10月の真夜中、遠くの首都が地震で崩れたと聞いた。親戚を探しに行った人は、なかなか戻らなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At midnight in October the great earthquake flattened most of the city. Was dug out of the rubble, and the winter was spent in a tent."
+    ],
+    "news": [
+     "In October a great earthquake struck the capital, Ashgabat."
+    ],
+    "near": [
+     "At midnight in October the capital was flattened by an earthquake. Those who went to look for relatives were slow to come back."
+    ]
+   },
+   "stat": [
+    "1948年10月6日のアシガバート地震で、町の大半が崩れた。死者は1万〜11万人と推計に幅がある",
+    "The Ashgabat earthquake of 6 October 1948 flattened most of the city; estimates of the dead range from 10,000 to 110,000"
+   ],
+   "src": "USGS; Hough 2021, Seismological Research Letters"
+  },
+  {
+   "id": "tm-hospitals-2005",
+   "type": "unrest",
+   "countries": [
+    "TKM"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "首都の外の病院の多くが閉ざされ、病気になると首都まで行かなければならなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Most hospitals outside the capital were closed, and anyone who fell ill had to travel to the capital."
+    ]
+   },
+   "stat": [
+    "2005年、ニヤゾフ大統領は首都の外の病院の多くを閉ざすよう命じた",
+    "In 2005 President Niyazov ordered most hospitals outside the capital closed"
+   ],
+   "src": "BBC News (March 2005); Médecins Sans Frontières 2010, Turkmenistan's Opaque Health System"
+  },
+  {
+   "id": "am-genocide-refugees",
+   "type": "famine",
+   "countries": [
+    "ARM"
+   ],
+   "years": [
+    1915,
+    1920
+   ],
+   "hit": 0.4,
+   "kill": 0.08,
+   "who": "frail",
+   "cause": "飢饉",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -25,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "西から逃れてきた人々が町にあふれた。パンが足りず、冬にはチフスが広がった。"
+    ],
+    "news": [
+     "オスマン帝国のアルメニア人が追放と虐殺にあい、生きのびた人々が国境を越えて逃れてきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town filled with refugees from the west. Bread ran short, and typhus spread in the winter."
+    ],
+    "news": [
+     "The Armenians of the Ottoman Empire were deported and massacred, and the survivors fled across the border."
+    ]
+   },
+   "stat": [
+    "1919年の冬、アルメニア共和国では飢えとチフスで約20万人が亡くなったとされる",
+    "In the winter of 1919 some 200,000 people are thought to have died of hunger and typhus in the Republic of Armenia"
+   ],
+   "src": "Hovannisian 1971, The Republic of Armenia vol. 1; Suny 2015"
+  },
+  {
+   "id": "am-spitak-1988",
+   "type": "quake",
+   "countries": [
+    "ARM"
+   ],
+   "years": [
+    1988,
+    1988
+   ],
+   "hit": 0.5,
+   "cities": [
+    "ギュムリ",
+    "ヴァナゾル",
+    "Gyumri",
+    "Vanadzor"
+   ],
+   "elsewhere": 0.03,
+   "kill": 0.007,
+   "cause": "災害",
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "12月7日の昼、地震で住んでいた建物が崩れた。凍える冬を、鉄の箱の仮の家で過ごした。"
+    ],
+    "news": [
+     "12月7日、北部のスピタクとギュムリを大地震が襲った。"
+    ],
+    "near": [
+     "12月7日、北の町々が地震で崩れたと聞いた。何日も、親戚の安否を待った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At midday on 7 December the earthquake brought the building down. The freezing winter was spent in a metal container home."
+    ],
+    "news": [
+     "On 7 December a great earthquake struck Spitak and Gyumri in the north."
+    ],
+    "near": [
+     "On 7 December came the news that the northern towns had collapsed in an earthquake. For days the wait went on for word of relatives."
+    ]
+   },
+   "stat": [
+    "1988年12月7日のスピタク地震で、約2万5,000人が亡くなり、50万人ほどが家を失った",
+    "The Spitak earthquake of 7 December 1988 killed about 25,000 people and left some 500,000 homeless"
+   ],
+   "src": "USGS; EERI Earthquake Spectra special supplement (1989)"
+  },
+  {
+   "id": "am-karabakh-1",
+   "type": "war",
+   "countries": [
+    "ARM"
+   ],
+   "years": [
+    1988,
+    1994
+   ],
+   "hit": 0.1,
+   "kill": 0.002,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18
+   },
+   "ja": {
+    "hit": [
+     "隣の国との戦争が続き、町には逃れてきた人があふれた。冬は電気が一日に1〜2時間しか来なかった。"
+    ],
+    "news": [
+     "ナゴルノ・カラバフをめぐって、隣のアゼルバイジャンとの戦争になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war with the neighbouring country went on and the town filled with refugees. In winter the electricity came for only an hour or two a day."
+    ],
+    "news": [
+     "War broke out with neighbouring Azerbaijan over Nagorno-Karabakh."
+    ]
+   },
+   "stat": [
+    "1988〜94年のナゴルノ・カラバフをめぐる戦争で、約3万人が亡くなり、100万人を超える人が家を追われた",
+    "The war over Nagorno-Karabakh in 1988-94 killed about 30,000 people and drove more than a million from their homes"
+   ],
+   "src": "de Waal 2003, Black Garden; UNHCR"
+  },
+  {
+   "id": "az-karabakh-1",
+   "type": "war",
+   "countries": [
+    "AZE"
+   ],
+   "years": [
+    1988,
+    1994
+   ],
+   "hit": 0.1,
+   "kill": 0.002,
+   "cause": "戦争",
+   "who": "men",
+   "kind": "move",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "戦争で、生まれた町を離れなければならなかった。何年も、学校の建物や貨車で暮らした。"
+    ],
+    "news": [
+     "ナゴルノ・カラバフをめぐって、隣のアルメニアとの戦争になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war forced the family out of their home town. For years they lived in a school building and in railway wagons."
+    ],
+    "news": [
+     "War broke out with neighbouring Armenia over Nagorno-Karabakh."
+    ]
+   },
+   "stat": [
+    "1988〜94年のナゴルノ・カラバフをめぐる戦争で、約3万人が亡くなり、100万人を超える人が家を追われた",
+    "The war over Nagorno-Karabakh in 1988-94 killed about 30,000 people and drove more than a million from their homes"
+   ],
+   "src": "de Waal 2003, Black Garden; UNHCR"
+  },
+  {
+   "id": "az-1990",
+   "type": "unrest",
+   "countries": [
+    "AZE"
+   ],
+   "years": [
+    1990,
+    1990
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月20日の夜、ソ連の軍がバクーに入り、通りで多くの市民が撃たれた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On the night of 20 January Soviet troops entered Baku, and many civilians were shot in the streets."
+    ]
+   },
+   "stat": [
+    "1990年1月20日の「黒い1月」で、バクーの市民130人あまりが亡くなった",
+    "More than 130 civilians in Baku were killed on Black January, 20 January 1990"
+   ],
+   "src": "Human Rights Watch / Helsinki Watch 1991, Conflict in the Soviet Union: Black January in Azerbaidzhan"
+  },
+  {
+   "id": "karabakh-2020",
+   "type": "war",
+   "countries": [
+    "ARM",
+    "AZE"
+   ],
+   "years": [
+    2020,
+    2020
+   ],
+   "hit": 0.05,
+   "age": [
+    18,
+    35
+   ],
+   "sex": "M",
+   "kill": 0.0005,
+   "cause": "戦争",
+   "who": "men",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "兵として前線に送られた。"
+    ],
+    "news": [
+     "秋、ナゴルノ・カラバフをめぐる戦争が44日間続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was sent to the front as a soldier."
+    ],
+    "news": [
+     "That autumn a 44-day war was fought over Nagorno-Karabakh."
+    ]
+   },
+   "stat": [
+    "2020年秋の44日間の戦争で、両国の兵士あわせて約7,000人が亡くなった",
+    "About 7,000 soldiers from both countries were killed in the 44-day war of autumn 2020"
+   ],
+   "src": "Armenian and Azerbaijani defence ministries; International Crisis Group"
+  },
+  {
+   "id": "am-2023",
+   "type": "war",
+   "countries": [
+    "ARM"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、ナゴルノ・カラバフのアルメニア人が、一週間ほどのうちにほとんど全員アルメニアへ逃れてきた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September almost the entire Armenian population of Nagorno-Karabakh fled to Armenia within about a week."
+    ]
+   },
+   "stat": [
+    "2023年9月、ナゴルノ・カラバフに住んでいた10万人あまりのアルメニア人がアルメニアへ移った (UNHCR)",
+    "In September 2023 more than 100,000 Armenians from Nagorno-Karabakh moved to Armenia (UNHCR)"
+   ],
+   "src": "UNHCR Armenia refugee response"
+  },
+  {
+   "id": "az-2023",
+   "type": "war",
+   "countries": [
+    "AZE"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、ナゴルノ・カラバフはアゼルバイジャンの政府のもとに入った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September Nagorno-Karabakh came under the control of the Azerbaijani government."
+    ]
+   },
+   "stat": [
+    "2023年9月19〜20日の作戦のあと、ナゴルノ・カラバフの政府は解散を決めた",
+    "After the operation of 19-20 September 2023 the Nagorno-Karabakh authorities announced their dissolution"
+   ],
+   "src": "International Crisis Group; UNHCR"
+  },
+  {
+   "id": "ge-1989",
+   "type": "unrest",
+   "countries": [
+    "GEO"
+   ],
+   "years": [
+    1989,
+    1989
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "4月9日、トビリシで集会の人々をソ連の軍が追い散らした。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On 9 April Soviet troops broke up a rally in Tbilisi."
+    ]
+   },
+   "stat": [
+    "1989年4月9日のトビリシ事件で、21人が亡くなった",
+    "21 people were killed in the Tbilisi tragedy of 9 April 1989"
+   ],
+   "src": "Sobchak Commission report (1989)"
+  },
+  {
+   "id": "ge-abkhazia",
+   "type": "war",
+   "countries": [
+    "GEO"
+   ],
+   "years": [
+    1991,
+    1993
+   ],
+   "hit": 0.06,
+   "kill": 0.003,
+   "cause": "戦争",
+   "who": "men",
+   "kind": "move",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "戦争で、アブハジアの家を捨てて山を越えて逃げた。何年も、古いホテルの一室で暮らした。"
+    ],
+    "news": [
+     "独立のあと、首都での内戦と、アブハジアでの戦争が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war forced the family out of their home in Abkhazia and over the mountains. For years they lived in one room of an old hotel."
+    ],
+    "news": [
+     "After independence came civil war in the capital and war in Abkhazia."
+    ]
+   },
+   "stat": [
+    "1992〜93年のアブハジアでの戦争で、約25万人のジョージア人が家を追われた (UNHCR)",
+    "About 250,000 Georgians were driven from their homes in the Abkhazia war of 1992-93 (UNHCR)"
+   ],
+   "src": "UNHCR; Human Rights Watch 1995, Georgia/Abkhazia: Violations of the Laws of War"
+  },
+  {
+   "id": "ge-2008",
+   "type": "war",
+   "countries": [
+    "GEO"
+   ],
+   "years": [
+    2008,
+    2008
+   ],
+   "hit": 0.04,
+   "urban": 0.5,
+   "kind": "move",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "8月、戦車が近づき、家族で村を離れた。戻れたのは何週間もあとだった。"
+    ],
+    "news": [
+     "8月、ロシアとの5日間の戦争が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In August tanks approached, and the family left the village. They could not return for weeks."
+    ],
+    "news": [
+     "In August a five-day war was fought with Russia."
+    ]
+   },
+   "stat": [
+    "2008年8月の戦争で、約850人が亡くなり、19万2,000人が一時、家を追われた (UNHCR / EU調査団)",
+    "The August 2008 war killed about 850 people and temporarily displaced 192,000 (UNHCR / EU fact-finding mission)"
+   ],
+   "src": "Independent International Fact-Finding Mission on the Conflict in Georgia (2009); UNHCR"
+  }
+ ]
+}

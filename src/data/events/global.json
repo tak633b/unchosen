@@ -1,0 +1,1775 @@
+{
+ "events": [
+  {
+   "id": "flu-1918-high",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "IDN",
+    "IRN",
+    "ZAF",
+    "GHA",
+    "KEN",
+    "FJI",
+    "TZA",
+    "LSO",
+    "BWA",
+    "SWZ",
+    "NAM",
+    "SLE",
+    "CMR"
+   ],
+   "years": [
+    1918,
+    1919
+   ],
+   "hit": 0.25,
+   "kill": 0.03,
+   "who": "young",
+   "cause": "インフルエンザ",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "秋に「かぜ」がはやり、高い熱で何日も寝こんだ。同じ通りの家々から、毎日のように棺が運び出された。",
+     "家じゅうが同じ熱にやられ、起きて水を運べる者がいなかった。隣の人が食べ物を戸口に置いていった。"
+    ],
+    "near": [
+     "学校も教会も閉められ、人の集まりが禁じられた。家では皆、口を布でおおった。"
+    ],
+    "news": [
+     "悪性の「かぜ」が世界中に広がった。町では葬式が続き、墓を掘る人が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That autumn the \"flu\" came, and the fever meant days in bed. Coffins left the houses on the street almost daily.",
+     "The whole household went down with the same fever, and no one was well enough to fetch water. A neighbor left food at the door."
+    ],
+    "near": [
+     "Schools and churches were closed and gatherings forbidden. At home everyone covered their mouths with cloth."
+    ],
+    "news": [
+     "A deadly \"flu\" spread around the world. Funerals followed one after another, and there were not enough people to dig the graves."
+    ]
+   },
+   "stat": [
+    "1918〜19年のスペインかぜで、インドでは1,400万人ほど (人口の4〜5%) が亡くなった",
+    "The 1918-19 flu killed about 14 million people in India, some 4-5% of the population"
+   ],
+   "src": "Johnson & Mueller 2002, Bull. Hist. Med. 76:105; Chandra 2012 (India), Chandra 2013 (Indonesia); Phillips 1990 (South Africa)",
+   "rough": true
+  },
+  {
+   "id": "flu-1918-mid",
+   "type": "epidemic",
+   "countries": [
+    "MEX",
+    "ITA",
+    "ESP",
+    "CHN",
+    "EGY",
+    "NGA",
+    "PRT",
+    "HUN",
+    "BRA",
+    "GTM",
+    "PER",
+    "TUR",
+    "PHL",
+    "LKA",
+    "MMR",
+    "BGD",
+    "PAK",
+    "NPL",
+    "AFG"
+   ],
+   "years": [
+    1918,
+    1919
+   ],
+   "hit": 0.25,
+   "kill": 0.012,
+   "who": "young",
+   "cause": "インフルエンザ",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "秋に「かぜ」がはやり、高い熱で何日も寝こんだ。同じ通りの家々から、毎日のように棺が運び出された。",
+     "家じゅうが同じ熱にやられ、起きて水を運べる者がいなかった。隣の人が食べ物を戸口に置いていった。"
+    ],
+    "near": [
+     "学校も教会も閉められ、人の集まりが禁じられた。家では皆、口を布でおおった。"
+    ],
+    "news": [
+     "悪性の「かぜ」が世界中に広がった。町では葬式が続き、墓を掘る人が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That autumn the \"flu\" came, and the fever meant days in bed. Coffins left the houses on the street almost daily.",
+     "The whole household went down with the same fever, and no one was well enough to fetch water. A neighbor left food at the door."
+    ],
+    "near": [
+     "Schools and churches were closed and gatherings forbidden. At home everyone covered their mouths with cloth."
+    ],
+    "news": [
+     "A deadly \"flu\" spread around the world. Funerals followed one after another, and there were not enough people to dig the graves."
+    ]
+   },
+   "stat": [
+    "1918〜19年のスペインかぜの死者は、世界で少なくとも4,000万人とされる",
+    "The 1918-19 flu pandemic killed at least 40 million people worldwide"
+   ],
+   "src": "Johnson & Mueller 2002, Bull. Hist. Med. 76:105; Chandra 2012 (India), Chandra 2013 (Indonesia); Phillips 1990 (South Africa)",
+   "rough": true
+  },
+  {
+   "id": "flu-1918-low",
+   "type": "epidemic",
+   "countries": [
+    "USA",
+    "GBR",
+    "FRA",
+    "DEU",
+    "JPN",
+    "KOR",
+    "CAN",
+    "NZL",
+    "SWE",
+    "NOR",
+    "DNK",
+    "CHE",
+    "NLD",
+    "BEL",
+    "AUT",
+    "RUS",
+    "ARG",
+    "CHL",
+    "URY",
+    "AUS",
+    "FIN",
+    "IRL",
+    "POL",
+    "CZE",
+    "SVK",
+    "UKR",
+    "BLR",
+    "GRC",
+    "ROU",
+    "BGR",
+    "SRB",
+    "HRV",
+    "SVN",
+    "BIH",
+    "MNE",
+    "MKD",
+    "ALB",
+    "LTU",
+    "LVA",
+    "EST",
+    "LUX",
+    "MLT",
+    "CYP",
+    "ISR",
+    "LBN",
+    "JOR",
+    "SYR",
+    "IRQ",
+    "PSE"
+   ],
+   "years": [
+    1918,
+    1919
+   ],
+   "hit": 0.25,
+   "kill": 0.006,
+   "who": "young",
+   "cause": "インフルエンザ",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "秋に「かぜ」がはやり、高い熱で何日も寝こんだ。同じ通りの家々から、毎日のように棺が運び出された。",
+     "家じゅうが同じ熱にやられ、起きて水を運べる者がいなかった。隣の人が食べ物を戸口に置いていった。"
+    ],
+    "near": [
+     "学校も教会も閉められ、人の集まりが禁じられた。家では皆、口を布でおおった。"
+    ],
+    "news": [
+     "悪性の「かぜ」が世界中に広がった。町では葬式が続き、墓を掘る人が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That autumn the \"flu\" came, and the fever meant days in bed. Coffins left the houses on the street almost daily.",
+     "The whole household went down with the same fever, and no one was well enough to fetch water. A neighbor left food at the door."
+    ],
+    "near": [
+     "Schools and churches were closed and gatherings forbidden. At home everyone covered their mouths with cloth."
+    ],
+    "news": [
+     "A deadly \"flu\" spread around the world. Funerals followed one after another, and there were not enough people to dig the graves."
+    ]
+   },
+   "stat": [
+    "1918〜19年のスペインかぜで、米国では約67万5,000人が亡くなった (人口の0.65%)",
+    "The 1918-19 flu killed about 675,000 people in the United States, 0.65% of the population"
+   ],
+   "src": "Johnson & Mueller 2002, Bull. Hist. Med. 76:105; Chandra 2012 (India), Chandra 2013 (Indonesia); Phillips 1990 (South Africa)"
+  },
+  {
+   "id": "flu-1918-other",
+   "type": "epidemic",
+   "countries": [
+    "COD",
+    "ETH",
+    "UGA",
+    "SDN",
+    "VNM",
+    "AGO",
+    "MOZ",
+    "NER",
+    "MDG",
+    "CIV",
+    "MLI",
+    "UZB",
+    "DZA",
+    "TCD",
+    "SOM",
+    "BFA",
+    "COL",
+    "ZMB",
+    "MWI",
+    "MAR",
+    "THA",
+    "SAU",
+    "SEN",
+    "ZWE",
+    "GIN",
+    "BEN",
+    "BDI",
+    "MYS",
+    "KAZ",
+    "RWA",
+    "KHM",
+    "TJK",
+    "ECU",
+    "TGO",
+    "BOL",
+    "HTI",
+    "PNG",
+    "CAF",
+    "HND",
+    "DOM",
+    "COG",
+    "MRT",
+    "LBR",
+    "TUN",
+    "LAO",
+    "TKM",
+    "KGZ",
+    "PRY",
+    "NIC",
+    "AZE",
+    "LBY",
+    "ARE",
+    "SLV",
+    "OMN",
+    "GMB",
+    "PAN",
+    "GAB",
+    "MNG",
+    "GNB",
+    "GNQ",
+    "CRI",
+    "KWT",
+    "SGP",
+    "GEO",
+    "ARM",
+    "JAM",
+    "MDA",
+    "TLS",
+    "QAT",
+    "COM",
+    "DJI",
+    "SLB",
+    "BHR",
+    "GUY",
+    "TTO",
+    "MUS",
+    "SUR",
+    "BTN",
+    "CPV",
+    "MDV"
+   ],
+   "years": [
+    1918,
+    1919
+   ],
+   "hit": 0.25,
+   "kill": 0.01,
+   "who": "young",
+   "cause": "インフルエンザ",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "秋に「かぜ」がはやり、高い熱で何日も寝こんだ。同じ通りの家々から、毎日のように棺が運び出された。",
+     "家じゅうが同じ熱にやられ、起きて水を運べる者がいなかった。隣の人が食べ物を戸口に置いていった。"
+    ],
+    "near": [
+     "学校も教会も閉められ、人の集まりが禁じられた。家では皆、口を布でおおった。"
+    ],
+    "news": [
+     "悪性の「かぜ」が世界中に広がった。町では葬式が続き、墓を掘る人が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That autumn the \"flu\" came, and the fever meant days in bed. Coffins left the houses on the street almost daily.",
+     "The whole household went down with the same fever, and no one was well enough to fetch water. A neighbor left food at the door."
+    ],
+    "near": [
+     "Schools and churches were closed and gatherings forbidden. At home everyone covered their mouths with cloth."
+    ],
+    "news": [
+     "A deadly \"flu\" spread around the world. Funerals followed one after another, and there were not enough people to dig the graves."
+    ]
+   },
+   "stat": [
+    "1918〜19年のスペインかぜには、世界の人口の3分の1ほどがかかったとされる",
+    "About a third of the world's population is thought to have caught the 1918-19 flu"
+   ],
+   "src": "Johnson & Mueller 2002, Bull. Hist. Med. 76:105; Chandra 2012 (India), Chandra 2013 (Indonesia); Phillips 1990 (South Africa)",
+   "rough": true
+  },
+  {
+   "id": "depression-1929",
+   "type": "finance",
+   "countries": [
+    "USA",
+    "DEU",
+    "CAN",
+    "AUS",
+    "POL",
+    "CHL",
+    "AUT",
+    "CZE"
+   ],
+   "years": [
+    1930,
+    1933
+   ],
+   "hit": 0.22,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 4,
+   "poor": 1.3,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.4,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "勤め先が門を閉じ、職を失った。仕事を探して毎朝列に並んだが、声がかかる日は少なかった。",
+     "給料が半分に削られ、やがて仕事そのものがなくなった。家財を少しずつ売って暮らした。"
+    ],
+    "news": [
+     "大恐慌。工場が次々に止まり、職を失った人が街にあふれた。炊き出しの列が通りの角を曲がって続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The firm shut its gates and the job was gone. Every morning meant another queue for work, and the call rarely came.",
+     "Wages were cut in half, and then the work disappeared altogether. The household lived by selling its belongings one by one."
+    ],
+    "news": [
+     "The Great Depression. Factories stopped one after another and the jobless filled the streets. Breadlines ran around the corner."
+    ]
+   },
+   "stat": [
+    "米国の失業率は1933年に約25%、ドイツでは1932年に30%を超えた",
+    "US unemployment reached about 25% in 1933; in Germany it passed 30% in 1932"
+   ],
+   "src": "US Bureau of Labor Statistics (Lebergott series); Eichengreen 1992, Golden Fetters"
+  },
+  {
+   "id": "depression-1929-mild",
+   "type": "finance",
+   "countries": [
+    "GBR",
+    "FRA",
+    "NLD",
+    "BEL",
+    "ITA",
+    "ESP",
+    "SWE",
+    "DNK",
+    "NOR",
+    "ARG",
+    "BRA",
+    "URY",
+    "NZL",
+    "IRL",
+    "HUN",
+    "JPN",
+    "MEX",
+    "FIN",
+    "CHE",
+    "ROU",
+    "BGR",
+    "SRB",
+    "HRV"
+   ],
+   "years": [
+    1930,
+    1933
+   ],
+   "hit": 0.08,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 3,
+   "poor": 1.3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.25,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "不景気で勤め先の注文が絶え、職を失った。",
+     "作物の値段が半分になり、借金を返せなくなった。"
+    ],
+    "news": [
+     "世界の不景気が届き、物の値段が下がって、仕事を失う人が増えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The slump dried up the firm's orders, and the job went with them.",
+     "Crop prices halved, and the debts could no longer be paid."
+    ],
+    "news": [
+     "The world depression arrived. Prices fell and more and more people lost their work."
+    ]
+   },
+   "stat": [
+    "1929年から1933年までに、世界の貿易額は3分の1ほどに縮んだ",
+    "Between 1929 and 1933 the value of world trade shrank to about a third"
+   ],
+   "src": "League of Nations, World Economic Survey; Kindleberger 1973, The World in Depression",
+   "rough": true
+  },
+  {
+   "id": "flu-1957",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "CHN",
+    "NGA",
+    "PAK",
+    "IDN",
+    "COD",
+    "ETH",
+    "USA",
+    "BGD",
+    "BRA",
+    "EGY",
+    "TZA",
+    "MEX",
+    "PHL",
+    "UGA",
+    "SDN",
+    "KEN",
+    "AFG",
+    "VNM",
+    "AGO",
+    "RUS",
+    "MOZ",
+    "ZAF",
+    "IRN",
+    "IRQ",
+    "NER",
+    "TUR",
+    "MDG",
+    "CIV",
+    "CMR",
+    "MLI",
+    "UZB",
+    "DZA",
+    "MMR",
+    "GHA",
+    "TCD",
+    "SOM",
+    "JPN",
+    "BFA",
+    "DEU",
+    "COL",
+    "GBR",
+    "ZMB",
+    "MWI",
+    "FRA",
+    "MAR",
+    "THA",
+    "NPL",
+    "SAU",
+    "PER",
+    "SEN",
+    "SYR",
+    "ARG",
+    "ZWE",
+    "GIN",
+    "BEN",
+    "BDI",
+    "MYS",
+    "KAZ",
+    "RWA",
+    "ITA",
+    "GTM",
+    "KHM",
+    "CAN",
+    "ESP",
+    "LKA",
+    "POL",
+    "AUS",
+    "TJK",
+    "ECU",
+    "TGO",
+    "BOL",
+    "SLE",
+    "HTI",
+    "PNG",
+    "CAF",
+    "KOR",
+    "JOR",
+    "HND",
+    "UKR",
+    "DOM",
+    "COG",
+    "ROU",
+    "CHL",
+    "MRT",
+    "ISR",
+    "LBR",
+    "NLD",
+    "TUN",
+    "LAO",
+    "TKM",
+    "KGZ",
+    "PSE",
+    "PRY",
+    "NIC",
+    "AZE",
+    "LBY",
+    "ARE",
+    "BEL",
+    "SLV",
+    "SWE",
+    "LBN",
+    "CZE",
+    "PRT",
+    "HUN",
+    "OMN",
+    "CHE",
+    "GMB",
+    "AUT",
+    "NAM",
+    "GRC",
+    "PAN",
+    "GAB",
+    "BLR",
+    "MNG",
+    "GNB",
+    "BGR",
+    "BWA",
+    "SRB",
+    "NZL",
+    "DNK",
+    "LSO",
+    "GNQ",
+    "IRL",
+    "SVK",
+    "CRI",
+    "NOR",
+    "KWT",
+    "SGP",
+    "GEO",
+    "FIN",
+    "ARM",
+    "URY",
+    "JAM",
+    "MDA",
+    "HRV",
+    "TLS",
+    "SWZ",
+    "QAT",
+    "ALB",
+    "BIH",
+    "COM",
+    "DJI",
+    "SLB",
+    "LTU",
+    "BHR",
+    "SVN",
+    "MKD",
+    "GUY",
+    "FJI",
+    "TTO",
+    "CYP",
+    "LVA",
+    "MUS",
+    "EST",
+    "SUR",
+    "BTN",
+    "MNE",
+    "LUX",
+    "CPV",
+    "MDV",
+    "MLT"
+   ],
+   "years": [
+    1957,
+    1958
+   ],
+   "hit": 0,
+   "kill": 0.0004,
+   "who": "frail",
+   "cause": "インフルエンザ",
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "「アジアかぜ」が世界に広がり、学校が何日も休みになった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The \"Asian flu\" spread around the world, and schools closed for days."
+    ]
+   },
+   "stat": [
+    "1957〜58年のアジアかぜの死者は、世界で約110万人と推計される",
+    "The 1957-58 Asian flu killed an estimated 1.1 million people worldwide"
+   ],
+   "src": "WHO; Viboud et al. 2016, J Infect Dis 213:738"
+  },
+  {
+   "id": "flu-1968",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "CHN",
+    "NGA",
+    "PAK",
+    "IDN",
+    "COD",
+    "ETH",
+    "USA",
+    "BGD",
+    "BRA",
+    "EGY",
+    "TZA",
+    "MEX",
+    "PHL",
+    "UGA",
+    "SDN",
+    "KEN",
+    "AFG",
+    "VNM",
+    "AGO",
+    "RUS",
+    "MOZ",
+    "ZAF",
+    "IRN",
+    "IRQ",
+    "NER",
+    "TUR",
+    "MDG",
+    "CIV",
+    "CMR",
+    "MLI",
+    "UZB",
+    "DZA",
+    "MMR",
+    "GHA",
+    "TCD",
+    "SOM",
+    "JPN",
+    "BFA",
+    "DEU",
+    "COL",
+    "GBR",
+    "ZMB",
+    "MWI",
+    "FRA",
+    "MAR",
+    "THA",
+    "NPL",
+    "SAU",
+    "PER",
+    "SEN",
+    "SYR",
+    "ARG",
+    "ZWE",
+    "GIN",
+    "BEN",
+    "BDI",
+    "MYS",
+    "KAZ",
+    "RWA",
+    "ITA",
+    "GTM",
+    "KHM",
+    "CAN",
+    "ESP",
+    "LKA",
+    "POL",
+    "AUS",
+    "TJK",
+    "ECU",
+    "TGO",
+    "BOL",
+    "SLE",
+    "HTI",
+    "PNG",
+    "CAF",
+    "KOR",
+    "JOR",
+    "HND",
+    "UKR",
+    "DOM",
+    "COG",
+    "ROU",
+    "CHL",
+    "MRT",
+    "ISR",
+    "LBR",
+    "NLD",
+    "TUN",
+    "LAO",
+    "TKM",
+    "KGZ",
+    "PSE",
+    "PRY",
+    "NIC",
+    "AZE",
+    "LBY",
+    "ARE",
+    "BEL",
+    "SLV",
+    "SWE",
+    "LBN",
+    "CZE",
+    "PRT",
+    "HUN",
+    "OMN",
+    "CHE",
+    "GMB",
+    "AUT",
+    "NAM",
+    "GRC",
+    "PAN",
+    "GAB",
+    "BLR",
+    "MNG",
+    "GNB",
+    "BGR",
+    "BWA",
+    "SRB",
+    "NZL",
+    "DNK",
+    "LSO",
+    "GNQ",
+    "IRL",
+    "SVK",
+    "CRI",
+    "NOR",
+    "KWT",
+    "SGP",
+    "GEO",
+    "FIN",
+    "ARM",
+    "URY",
+    "JAM",
+    "MDA",
+    "HRV",
+    "TLS",
+    "SWZ",
+    "QAT",
+    "ALB",
+    "BIH",
+    "COM",
+    "DJI",
+    "SLB",
+    "LTU",
+    "BHR",
+    "SVN",
+    "MKD",
+    "GUY",
+    "FJI",
+    "TTO",
+    "CYP",
+    "LVA",
+    "MUS",
+    "EST",
+    "SUR",
+    "BTN",
+    "MNE",
+    "LUX",
+    "CPV",
+    "MDV",
+    "MLT"
+   ],
+   "years": [
+    1968,
+    1969
+   ],
+   "hit": 0,
+   "kill": 0.0003,
+   "who": "frail",
+   "cause": "インフルエンザ",
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "「香港かぜ」がはやり、職場でも学校でも休む人が相次いだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The \"Hong Kong flu\" went around, and offices and schools were half empty."
+    ]
+   },
+   "stat": [
+    "1968〜69年の香港かぜの死者は、世界で約100万人とされる",
+    "The 1968-69 Hong Kong flu killed about one million people worldwide"
+   ],
+   "src": "WHO; US CDC pandemic history"
+  },
+  {
+   "id": "covid-19",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "CHN",
+    "NGA",
+    "PAK",
+    "IDN",
+    "COD",
+    "ETH",
+    "USA",
+    "BGD",
+    "BRA",
+    "EGY",
+    "TZA",
+    "MEX",
+    "PHL",
+    "UGA",
+    "SDN",
+    "KEN",
+    "AFG",
+    "VNM",
+    "AGO",
+    "RUS",
+    "MOZ",
+    "ZAF",
+    "IRN",
+    "IRQ",
+    "NER",
+    "TUR",
+    "MDG",
+    "CIV",
+    "CMR",
+    "MLI",
+    "UZB",
+    "DZA",
+    "MMR",
+    "GHA",
+    "TCD",
+    "SOM",
+    "JPN",
+    "BFA",
+    "DEU",
+    "COL",
+    "GBR",
+    "ZMB",
+    "MWI",
+    "FRA",
+    "MAR",
+    "THA",
+    "NPL",
+    "SAU",
+    "PER",
+    "SEN",
+    "SYR",
+    "ARG",
+    "ZWE",
+    "GIN",
+    "BEN",
+    "BDI",
+    "MYS",
+    "KAZ",
+    "RWA",
+    "ITA",
+    "GTM",
+    "KHM",
+    "CAN",
+    "ESP",
+    "LKA",
+    "POL",
+    "AUS",
+    "TJK",
+    "ECU",
+    "TGO",
+    "BOL",
+    "SLE",
+    "HTI",
+    "PNG",
+    "CAF",
+    "KOR",
+    "JOR",
+    "HND",
+    "UKR",
+    "DOM",
+    "COG",
+    "ROU",
+    "CHL",
+    "MRT",
+    "ISR",
+    "LBR",
+    "NLD",
+    "TUN",
+    "LAO",
+    "TKM",
+    "KGZ",
+    "PSE",
+    "PRY",
+    "NIC",
+    "AZE",
+    "LBY",
+    "ARE",
+    "BEL",
+    "SLV",
+    "SWE",
+    "LBN",
+    "CZE",
+    "PRT",
+    "HUN",
+    "OMN",
+    "CHE",
+    "GMB",
+    "AUT",
+    "NAM",
+    "GRC",
+    "PAN",
+    "GAB",
+    "BLR",
+    "MNG",
+    "GNB",
+    "BGR",
+    "BWA",
+    "SRB",
+    "NZL",
+    "DNK",
+    "LSO",
+    "GNQ",
+    "IRL",
+    "SVK",
+    "CRI",
+    "NOR",
+    "KWT",
+    "SGP",
+    "GEO",
+    "FIN",
+    "ARM",
+    "URY",
+    "JAM",
+    "MDA",
+    "HRV",
+    "TLS",
+    "SWZ",
+    "QAT",
+    "ALB",
+    "BIH",
+    "COM",
+    "DJI",
+    "SLB",
+    "LTU",
+    "BHR",
+    "SVN",
+    "MKD",
+    "GUY",
+    "FJI",
+    "TTO",
+    "CYP",
+    "LVA",
+    "MUS",
+    "EST",
+    "SUR",
+    "BTN",
+    "MNE",
+    "LUX",
+    "CPV",
+    "MDV",
+    "MLT"
+   ],
+   "years": [
+    2020,
+    2021
+   ],
+   "hit": 0.02,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "COVID-19",
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "新型コロナにかかり、息が苦しくなって入院した。退院してからも、長いあいだ疲れが抜けなかった。",
+     "新型コロナで高い熱が続き、酸素の管をつけて何日も過ごした。"
+    ],
+    "news": [
+     "新型コロナウイルスが世界中に広がった。学校が閉まり、人と会うことが控えられ、街から人が消えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Caught COVID-19 and was hospitalized, struggling to breathe. The exhaustion lingered long after coming home.",
+     "COVID-19 brought a fever that would not break, and days on an oxygen line."
+    ],
+    "news": [
+     "The new coronavirus spread across the world. Schools closed, people stopped seeing one another, and the streets emptied."
+    ]
+   },
+   "stat": [
+    "2020〜21年の新型コロナによる世界の超過死亡は、約1,490万人と推計される (WHO)",
+    "WHO estimates about 14.9 million excess deaths worldwide from COVID-19 in 2020-21"
+   ],
+   "src": "WHO 2022, Global excess deaths associated with COVID-19; Msemburi et al. 2023, Nature 613:130",
+   "rough": true
+  },
+  {
+   "id": "covid-19-work",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "CHN",
+    "NGA",
+    "PAK",
+    "IDN",
+    "COD",
+    "ETH",
+    "USA",
+    "BGD",
+    "BRA",
+    "EGY",
+    "TZA",
+    "MEX",
+    "PHL",
+    "UGA",
+    "SDN",
+    "KEN",
+    "AFG",
+    "VNM",
+    "AGO",
+    "RUS",
+    "MOZ",
+    "ZAF",
+    "IRN",
+    "IRQ",
+    "NER",
+    "TUR",
+    "MDG",
+    "CIV",
+    "CMR",
+    "MLI",
+    "UZB",
+    "DZA",
+    "MMR",
+    "GHA",
+    "TCD",
+    "SOM",
+    "JPN",
+    "BFA",
+    "DEU",
+    "COL",
+    "GBR",
+    "ZMB",
+    "MWI",
+    "FRA",
+    "MAR",
+    "THA",
+    "NPL",
+    "SAU",
+    "PER",
+    "SEN",
+    "SYR",
+    "ARG",
+    "ZWE",
+    "GIN",
+    "BEN",
+    "BDI",
+    "MYS",
+    "KAZ",
+    "RWA",
+    "ITA",
+    "GTM",
+    "KHM",
+    "CAN",
+    "ESP",
+    "LKA",
+    "POL",
+    "AUS",
+    "TJK",
+    "ECU",
+    "TGO",
+    "BOL",
+    "SLE",
+    "HTI",
+    "PNG",
+    "CAF",
+    "KOR",
+    "JOR",
+    "HND",
+    "UKR",
+    "DOM",
+    "COG",
+    "ROU",
+    "CHL",
+    "MRT",
+    "ISR",
+    "LBR",
+    "NLD",
+    "TUN",
+    "LAO",
+    "TKM",
+    "KGZ",
+    "PSE",
+    "PRY",
+    "NIC",
+    "AZE",
+    "LBY",
+    "ARE",
+    "BEL",
+    "SLV",
+    "SWE",
+    "LBN",
+    "CZE",
+    "PRT",
+    "HUN",
+    "OMN",
+    "CHE",
+    "GMB",
+    "AUT",
+    "NAM",
+    "GRC",
+    "PAN",
+    "GAB",
+    "BLR",
+    "MNG",
+    "GNB",
+    "BGR",
+    "BWA",
+    "SRB",
+    "NZL",
+    "DNK",
+    "LSO",
+    "GNQ",
+    "IRL",
+    "SVK",
+    "CRI",
+    "NOR",
+    "KWT",
+    "SGP",
+    "GEO",
+    "FIN",
+    "ARM",
+    "URY",
+    "JAM",
+    "MDA",
+    "HRV",
+    "TLS",
+    "SWZ",
+    "QAT",
+    "ALB",
+    "BIH",
+    "COM",
+    "DJI",
+    "SLB",
+    "LTU",
+    "BHR",
+    "SVN",
+    "MKD",
+    "GUY",
+    "FJI",
+    "TTO",
+    "CYP",
+    "LVA",
+    "MUS",
+    "EST",
+    "SUR",
+    "BTN",
+    "MNE",
+    "LUX",
+    "CPV",
+    "MDV",
+    "MLT"
+   ],
+   "years": [
+    2020,
+    2021
+   ],
+   "hit": 0.08,
+   "age": [
+    18,
+    64
+   ],
+   "severity": 1,
+   "poor": 1.5,
+   "effect": {
+    "happy": -8,
+    "wealth": -0.1,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "新型コロナで店や職場が閉まり、仕事がなくなった。",
+     "流行で客が来なくなり、勤め先から「もう来なくていい」と言われた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "The pandemic closed shops and workplaces, and the job disappeared.",
+     "Customers stopped coming during the pandemic, and the employer said not to come back."
+    ],
+    "news": []
+   },
+   "stat": [
+    "2020年に世界で失われた労働時間は、フルタイムの仕事2億5,500万人分にあたる (ILO)",
+    "Working hours lost worldwide in 2020 equalled 255 million full-time jobs (ILO)"
+   ],
+   "src": "ILO Monitor: COVID-19 and the world of work, 7th edition (January 2021)"
+  },
+  {
+   "id": "h1n1-2009",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "CHN",
+    "NGA",
+    "PAK",
+    "IDN",
+    "COD",
+    "ETH",
+    "USA",
+    "BGD",
+    "BRA",
+    "EGY",
+    "TZA",
+    "MEX",
+    "PHL",
+    "UGA",
+    "SDN",
+    "KEN",
+    "AFG",
+    "VNM",
+    "AGO",
+    "RUS",
+    "MOZ",
+    "ZAF",
+    "IRN",
+    "IRQ",
+    "NER",
+    "TUR",
+    "MDG",
+    "CIV",
+    "CMR",
+    "MLI",
+    "UZB",
+    "DZA",
+    "MMR",
+    "GHA",
+    "TCD",
+    "SOM",
+    "JPN",
+    "BFA",
+    "DEU",
+    "COL",
+    "GBR",
+    "ZMB",
+    "MWI",
+    "FRA",
+    "MAR",
+    "THA",
+    "NPL",
+    "SAU",
+    "PER",
+    "SEN",
+    "SYR",
+    "ARG",
+    "ZWE",
+    "GIN",
+    "BEN",
+    "BDI",
+    "MYS",
+    "KAZ",
+    "RWA",
+    "ITA",
+    "GTM",
+    "KHM",
+    "CAN",
+    "ESP",
+    "LKA",
+    "POL",
+    "AUS",
+    "TJK",
+    "ECU",
+    "TGO",
+    "BOL",
+    "SLE",
+    "HTI",
+    "PNG",
+    "CAF",
+    "KOR",
+    "JOR",
+    "HND",
+    "UKR",
+    "DOM",
+    "COG",
+    "ROU",
+    "CHL",
+    "MRT",
+    "ISR",
+    "LBR",
+    "NLD",
+    "TUN",
+    "LAO",
+    "TKM",
+    "KGZ",
+    "PSE",
+    "PRY",
+    "NIC",
+    "AZE",
+    "LBY",
+    "ARE",
+    "BEL",
+    "SLV",
+    "SWE",
+    "LBN",
+    "CZE",
+    "PRT",
+    "HUN",
+    "OMN",
+    "CHE",
+    "GMB",
+    "AUT",
+    "NAM",
+    "GRC",
+    "PAN",
+    "GAB",
+    "BLR",
+    "MNG",
+    "GNB",
+    "BGR",
+    "BWA",
+    "SRB",
+    "NZL",
+    "DNK",
+    "LSO",
+    "GNQ",
+    "IRL",
+    "SVK",
+    "CRI",
+    "NOR",
+    "KWT",
+    "SGP",
+    "GEO",
+    "FIN",
+    "ARM",
+    "URY",
+    "JAM",
+    "MDA",
+    "HRV",
+    "TLS",
+    "SWZ",
+    "QAT",
+    "ALB",
+    "BIH",
+    "COM",
+    "DJI",
+    "SLB",
+    "LTU",
+    "BHR",
+    "SVN",
+    "MKD",
+    "GUY",
+    "FJI",
+    "TTO",
+    "CYP",
+    "LVA",
+    "MUS",
+    "EST",
+    "SUR",
+    "BTN",
+    "MNE",
+    "LUX",
+    "CPV",
+    "MDV",
+    "MLT"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "新型インフルエンザがはやり、マスクと消毒液が店から消えた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "A new strain of flu went around, and masks and hand sanitizer vanished from the shops."
+    ]
+   },
+   "stat": [
+    "2009年の新型インフルエンザの死者は、世界で15万〜57万人と推計される (米CDC)",
+    "The 2009 H1N1 pandemic killed an estimated 151,000-575,000 people worldwide (US CDC)"
+   ],
+   "src": "Dawood et al. 2012, Lancet Infect Dis 12:687"
+  },
+  {
+   "id": "sept-11",
+   "type": "terror",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    2001,
+    2001
+   ],
+   "cities": [
+    "ニューヨーク",
+    "New York"
+   ],
+   "hit": 0.002,
+   "elsewhere": 0,
+   "severity": 4,
+   "world": true,
+   "effect": {
+    "health": -2,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "9月11日の朝、貿易センタービルのそばにいた。崩れ落ちる塔の灰をかぶり、川の方へ歩いて逃げた。"
+    ],
+    "near": [
+     "9月11日の朝、南の空に煙が上がるのを見た。電話は何時間もつながらなかった。"
+    ],
+    "news": [
+     "9月11日、乗っ取られた旅客機がニューヨークの高層ビルに突っこんだ。テレビは一日中、崩れる塔を映していた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 11 September, close to the World Trade Center. Covered in ash from the falling towers, walked north toward the river."
+    ],
+    "near": [
+     "On the morning of 11 September, saw the smoke rising to the south. The phones were dead for hours."
+    ],
+    "news": [
+     "On 11 September, hijacked airliners flew into the towers in New York. All day the television showed them falling."
+    ]
+   },
+   "stat": [
+    "2001年9月11日の同時多発テロの死者は2,977人 (実行犯を除く)",
+    "The attacks of 11 September 2001 killed 2,977 people, not counting the hijackers"
+   ],
+   "src": "9/11 Commission Report (2004); NYC Office of Chief Medical Examiner"
+  },
+  {
+   "id": "tsunami-2004-idn",
+   "type": "tsunami",
+   "countries": [
+    "IDN"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0.0025,
+   "kill": 0.00075,
+   "cause": "災害",
+   "who": "frail",
+   "poor": 1.5,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "12月26日の朝、海が沖へ引いたあと、黒い水の壁が押しよせた。家は土台しか残らなかった。何か月も、テントと仮設の小屋で暮らした。"
+    ],
+    "near": [
+     "12月26日、津波が海辺を襲った。高い所にいて助かったが、海の近くの親戚の家は流された。"
+    ],
+    "news": [
+     "12月26日、インド洋の大地震で津波が起き、いくつもの国の海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 December the sea drew back, and then a black wall of water came in. Only the foundations of the house were left. For months home was a tent and a temporary shed."
+    ],
+    "near": [
+     "On 26 December the tsunami struck the coast. Being on high ground saved everyone, but relatives' homes by the sea were swept away."
+    ],
+    "news": [
+     "On 26 December a huge earthquake in the Indian Ocean set off a tsunami that struck the coasts of many countries."
+    ]
+   },
+   "stat": [
+    "インドネシアのアチェでは、津波で約16万7,000人が亡くなった",
+    "In Aceh, Indonesia, the tsunami killed about 167,000 people"
+   ],
+   "src": "UN Office of the Special Envoy for Tsunami Recovery; Telford & Cosgrave 2006, TEC joint evaluation",
+   "world": true,
+   "rough": true
+  },
+  {
+   "id": "tsunami-2004-lka",
+   "type": "tsunami",
+   "countries": [
+    "LKA"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0.025,
+   "kill": 0.0018,
+   "cause": "災害",
+   "who": "frail",
+   "poor": 1.5,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "12月26日の朝、海が沖へ引いたあと、黒い水の壁が押しよせた。家は土台しか残らなかった。何か月も、テントと仮設の小屋で暮らした。"
+    ],
+    "near": [
+     "12月26日、津波が海辺を襲った。高い所にいて助かったが、海の近くの親戚の家は流された。"
+    ],
+    "news": [
+     "12月26日、インド洋の大地震で津波が起き、いくつもの国の海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 December the sea drew back, and then a black wall of water came in. Only the foundations of the house were left. For months home was a tent and a temporary shed."
+    ],
+    "near": [
+     "On 26 December the tsunami struck the coast. Being on high ground saved everyone, but relatives' homes by the sea were swept away."
+    ],
+    "news": [
+     "On 26 December a huge earthquake in the Indian Ocean set off a tsunami that struck the coasts of many countries."
+    ]
+   },
+   "stat": [
+    "スリランカでは津波で約3万5,000人が亡くなり、50万人ほどが家を失った",
+    "In Sri Lanka the tsunami killed about 35,000 people and left some 500,000 homeless"
+   ],
+   "src": "UN Office of the Special Envoy for Tsunami Recovery; Telford & Cosgrave 2006, TEC joint evaluation"
+  },
+  {
+   "id": "tsunami-2004-ind",
+   "type": "tsunami",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0.0006,
+   "kill": 0.00002,
+   "cause": "災害",
+   "who": "frail",
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "12月26日の朝、海が沖へ引いたあと、黒い水の壁が押しよせた。家は土台しか残らなかった。何か月も、テントと仮設の小屋で暮らした。"
+    ],
+    "near": [
+     "12月26日、津波が海辺を襲った。高い所にいて助かったが、海の近くの親戚の家は流された。"
+    ],
+    "news": [
+     "12月26日、インド洋の大地震で津波が起き、いくつもの国の海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 December the sea drew back, and then a black wall of water came in. Only the foundations of the house were left. For months home was a tent and a temporary shed."
+    ],
+    "near": [
+     "On 26 December the tsunami struck the coast. Being on high ground saved everyone, but relatives' homes by the sea were swept away."
+    ],
+    "news": [
+     "On 26 December a huge earthquake in the Indian Ocean set off a tsunami that struck the coasts of many countries."
+    ]
+   },
+   "stat": [
+    "インドでは津波で1万6,000人あまりが亡くなった。多くはタミル・ナードゥ州の海辺の村の人だった",
+    "In India the tsunami killed more than 16,000 people, most in the coastal villages of Tamil Nadu"
+   ],
+   "src": "UN Office of the Special Envoy for Tsunami Recovery; Telford & Cosgrave 2006, TEC joint evaluation"
+  },
+  {
+   "id": "tsunami-2004-tha",
+   "type": "tsunami",
+   "countries": [
+    "THA"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0.0008,
+   "kill": 0.00008,
+   "cause": "災害",
+   "who": "frail",
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "12月26日の朝、海が沖へ引いたあと、黒い水の壁が押しよせた。家は土台しか残らなかった。何か月も、テントと仮設の小屋で暮らした。"
+    ],
+    "near": [
+     "12月26日、津波が海辺を襲った。高い所にいて助かったが、海の近くの親戚の家は流された。"
+    ],
+    "news": [
+     "12月26日、インド洋の大地震で津波が起き、いくつもの国の海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 December the sea drew back, and then a black wall of water came in. Only the foundations of the house were left. For months home was a tent and a temporary shed."
+    ],
+    "near": [
+     "On 26 December the tsunami struck the coast. Being on high ground saved everyone, but relatives' homes by the sea were swept away."
+    ],
+    "news": [
+     "On 26 December a huge earthquake in the Indian Ocean set off a tsunami that struck the coasts of many countries."
+    ]
+   },
+   "stat": [
+    "タイでは津波で約5,400人が亡くなり、その半分ほどは海辺に来ていた外国人だった",
+    "In Thailand the tsunami killed about 5,400 people, around half of them foreign visitors"
+   ],
+   "src": "UN Office of the Special Envoy for Tsunami Recovery; Telford & Cosgrave 2006, TEC joint evaluation"
+  },
+  {
+   "id": "tsunami-2004-mdv",
+   "type": "tsunami",
+   "countries": [
+    "MDV"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0.04,
+   "kill": 0.0003,
+   "cause": "災害",
+   "who": "frail",
+   "poor": 1.5,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "12月26日の朝、海が沖へ引いたあと、黒い水の壁が押しよせた。家は土台しか残らなかった。何か月も、テントと仮設の小屋で暮らした。"
+    ],
+    "near": [
+     "12月26日、津波が海辺を襲った。高い所にいて助かったが、海の近くの親戚の家は流された。"
+    ],
+    "news": [
+     "12月26日、インド洋の大地震で津波が起き、いくつもの国の海辺を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 26 December the sea drew back, and then a black wall of water came in. Only the foundations of the house were left. For months home was a tent and a temporary shed."
+    ],
+    "near": [
+     "On 26 December the tsunami struck the coast. Being on high ground saved everyone, but relatives' homes by the sea were swept away."
+    ],
+    "news": [
+     "On 26 December a huge earthquake in the Indian Ocean set off a tsunami that struck the coasts of many countries."
+    ]
+   },
+   "stat": [
+    "モルディブでは津波で108人が亡くなり、人口の3分の1が家や暮らしを失った",
+    "In the Maldives the tsunami killed 108 people, and a third of the population lost homes or livelihoods"
+   ],
+   "src": "UN Office of the Special Envoy for Tsunami Recovery; Telford & Cosgrave 2006, TEC joint evaluation"
+  }
+ ]
+}

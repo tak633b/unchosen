@@ -1,0 +1,3985 @@
+{
+ "events": [
+  {
+   "id": "us-sf-quake-1906",
+   "type": "quake",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1906,
+    1906
+   ],
+   "hit": 0.0026,
+   "kill": 0.00003,
+   "cause": "災害",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "4月18日の明け方、大きな揺れで目が覚めた。そのあと三日続いた火事で、通りは一つ残らず焼けた。公園のテントで夏を越した。"
+    ],
+    "news": [
+     "サンフランシスコで大地震が起き、続く火事で町の大半が焼けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Woke at dawn on 18 April to the ground heaving. The fires that followed burned for three days and took every house on the street. The summer was spent in a tent in the park."
+    ],
+    "news": [
+     "A great earthquake struck San Francisco, and the fires that followed burned most of the city."
+    ]
+   },
+   "stat": [
+    "1906年4月18日のサンフランシスコ地震と火事で約3,000人が亡くなり、22万人を超える人が家を失った",
+    "The San Francisco earthquake and fire of 18 April 1906 killed about 3,000 people and left more than 220,000 homeless"
+   ],
+   "src": "USGS, The Great 1906 San Francisco Earthquake; Hansen & Condon 1989, Denial of Disaster"
+  },
+  {
+   "id": "us-ww1",
+   "type": "war",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1917,
+    1918
+   ],
+   "hit": 0.35,
+   "age": [
+    18,
+    30
+   ],
+   "sex": "M",
+   "kill": 0.0011,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "徴兵されて海を渡り、フランスの塹壕で冬を越した。砲弾の音は、帰ってからも夢に出た。"
+    ],
+    "news": [
+     "米国がドイツに宣戦し、若い男たちが次々にヨーロッパへ送られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drafted and shipped across the ocean, and spent the winter in the trenches of France. The shellfire came back in dreams long after."
+    ],
+    "news": [
+     "The United States declared war on Germany, and young men were shipped to Europe by the hundreds of thousands."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で米国は約470万人を動員し、11万6,516人が亡くなった",
+    "The United States mobilized about 4.7 million people in the First World War; 116,516 died"
+   ],
+   "src": "US Department of Veterans Affairs, America's Wars fact sheet"
+  },
+  {
+   "id": "us-flood-1927",
+   "type": "flood",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1927,
+    1927
+   ],
+   "hit": 0.006,
+   "poor": 2,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "春、ミシシッピ川の堤防が切れ、家は屋根まで水につかった。堤防の上の避難所で何か月も過ごした。"
+    ],
+    "news": [
+     "ミシシッピ川の大洪水で、南部の広い土地が何か月も水の下になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That spring the Mississippi levees broke and the house went under to the roof. Months were spent in a camp on top of the levee."
+    ],
+    "news": [
+     "The great Mississippi flood left a vast stretch of the South under water for months."
+    ]
+   },
+   "stat": [
+    "1927年のミシシッピ川の大洪水では、約63万人が家を離れた",
+    "The Great Mississippi Flood of 1927 displaced about 630,000 people"
+   ],
+   "src": "Barry 1997, Rising Tide; American Red Cross 1929, The Mississippi Valley Flood Disaster of 1927"
+  },
+  {
+   "id": "us-dust-bowl",
+   "type": "drought",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1930,
+    1936
+   ],
+   "hit": 0.04,
+   "urban": 0.1,
+   "poor": 1.5,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "砂嵐が何日も続き、畑の土は空に舞い上がった。家財を車に積んで、西へ仕事を探しに出た。",
+     "窓のすき間に濡れた布を詰めても、朝には食卓に砂が積もっていた。作物は一つも実らなかった。"
+    ],
+    "news": [
+     "大平原で日照りと砂嵐が続き、多くの農家が土地を捨てた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Dust storms blew for days and the topsoil rose into the sky. The family loaded what it owned onto a truck and drove west looking for work.",
+     "Wet cloths stuffed in the window cracks could not keep it out; by morning there was dust on the table. Not one crop came in."
+    ],
+    "news": [
+     "Drought and dust storms ravaged the Great Plains, and many farm families abandoned their land."
+    ]
+   },
+   "stat": [
+    "1930年代、大平原の州から約250万人が移り住んだ",
+    "In the 1930s about 2.5 million people moved out of the Plains states"
+   ],
+   "src": "Worster 1979, Dust Bowl; US National Archives"
+  },
+  {
+   "id": "us-ww2",
+   "type": "war",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.45,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.003,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "徴兵され、訓練のあと海外の戦場へ送られた。戦友の何人かは帰らなかった。",
+     "召集されて太平洋の島々を転戦した。終わったとき、体重は出征前より10キロ少なかった。"
+    ],
+    "news": [
+     "12月、真珠湾が攻撃され、米国は戦争に入った。町から若い男が消え、砂糖も肉もガソリンも配給になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drafted, trained, and sent overseas to the front. Some of the men in the unit never came home.",
+     "Called up and moved from island to island across the Pacific. By the end, ten kilos lighter than when it began."
+    ],
+    "news": [
+     "In December Pearl Harbor was attacked and the country went to war. The young men left town, and sugar, meat and gasoline were rationed."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦で米国は約1,610万人が軍務につき、40万5,399人が亡くなった",
+    "About 16.1 million Americans served in the Second World War; 405,399 died"
+   ],
+   "src": "US Department of Veterans Affairs, America's Wars fact sheet"
+  },
+  {
+   "id": "us-internment",
+   "type": "occupation",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "西海岸の日系の人々が家と店を手放させられ、内陸の収容所へ送られた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Japanese Americans on the West Coast were made to give up their homes and shops and sent to camps inland."
+    ]
+   },
+   "stat": [
+    "1942年から、約12万人の日系人が西海岸から収容所へ移された",
+    "From 1942 about 120,000 people of Japanese ancestry were removed from the West Coast to camps"
+   ],
+   "src": "Commission on Wartime Relocation and Internment of Civilians 1983, Personal Justice Denied"
+  },
+  {
+   "id": "us-korea",
+   "type": "war",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1950,
+    1953
+   ],
+   "hit": 0.1,
+   "age": [
+    18,
+    26
+   ],
+   "sex": "M",
+   "kill": 0.00024,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "徴兵されて朝鮮半島へ送られた。冬の山の寒さは、それまで知っていた寒さとは違った。"
+    ],
+    "news": [
+     "朝鮮で戦争が始まり、また若い男たちが海を渡った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drafted and sent to Korea. The winter cold in those mountains was unlike any cold known before."
+    ],
+    "news": [
+     "War broke out in Korea, and once again young men were shipped across the ocean."
+    ]
+   },
+   "stat": [
+    "朝鮮戦争で米兵3万6,574人が亡くなった",
+    "36,574 Americans died in the Korean War"
+   ],
+   "src": "US Department of Veterans Affairs, America's Wars fact sheet"
+  },
+  {
+   "id": "us-vietnam",
+   "type": "war",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1965,
+    1973
+   ],
+   "hit": 0.12,
+   "age": [
+    18,
+    26
+   ],
+   "sex": "M",
+   "kill": 0.0003,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "徴兵の通知が届き、ベトナムへ送られた。帰ってきても、あの湿った夜のことは誰にも話さなかった。"
+    ],
+    "news": [
+     "ベトナムの戦争が広がり、徴兵と戦争に反対するデモが大学から街に広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The draft notice came, and then Vietnam. After coming home, never spoke to anyone about those wet nights."
+    ],
+    "news": [
+     "The war in Vietnam widened, and protests against the draft spread from the campuses into the streets."
+    ]
+   },
+   "stat": [
+    "ベトナム戦争で米兵5万8,220人が亡くなった",
+    "58,220 Americans died in the Vietnam War"
+   ],
+   "src": "US National Archives, Vietnam War U.S. Military Fatal Casualty Statistics"
+  },
+  {
+   "id": "us-1968",
+   "type": "unrest",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1968,
+    1968
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "4月、キング牧師が撃たれた。そのあと何日も、多くの町で火の手が上がった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In April Martin Luther King was shot. For days afterward, fires burned in city after city."
+    ]
+   },
+   "stat": [
+    "1968年4月のキング牧師暗殺のあと、100を超える町で暴動が起き、43人が亡くなった",
+    "After Martin Luther King's assassination in April 1968, unrest broke out in more than 100 cities and 43 people died"
+   ],
+   "src": "Risen 2009, A Nation on Fire"
+  },
+  {
+   "id": "us-la-riots-1992",
+   "type": "unrest",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    1992,
+    1992
+   ],
+   "hit": 0.005,
+   "cities": [
+    "ロサンゼルス",
+    "Los Angeles"
+   ],
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.1
+   },
+   "ja": {
+    "hit": [
+     "4月の暴動で、近所の店が焼かれ、夜は外に出られなかった。煙のにおいが何日も残った。"
+    ],
+    "near": [
+     "暴動の三日間、空にはヘリコプターが飛び続け、遠くに煙が見えた。"
+    ],
+    "news": [
+     "ロサンゼルスで、黒人の男性を殴った警官たちが無罪になり、街で暴動が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the April riots the shops nearby were burned, and no one went out after dark. The smell of smoke hung on for days."
+    ],
+    "near": [
+     "For the three days of rioting, helicopters circled overhead and smoke rose in the distance."
+    ],
+    "news": [
+     "In Los Angeles, the police officers who beat a Black motorist were acquitted, and riots broke out across the city."
+    ]
+   },
+   "stat": [
+    "1992年4月のロサンゼルス暴動では63人が亡くなり、約2,400人がけがをした",
+    "The Los Angeles riots of April 1992 left 63 dead and about 2,400 injured"
+   ],
+   "src": "Webster Commission 1992, The City in Crisis; Los Angeles Times"
+  },
+  {
+   "id": "us-katrina-2005",
+   "type": "cyclone",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.0035,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "ハリケーンで堤防が切れ、家は天井まで水につかった。遠い町の体育館で何週間も寝起きした。"
+    ],
+    "news": [
+     "ハリケーン・カトリーナでニューオーリンズの堤防が切れ、町の大半が水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The hurricane broke the levees and the house filled with water to the ceiling. Weeks were spent sleeping in a gym in a faraway city."
+    ],
+    "news": [
+     "Hurricane Katrina broke the levees of New Orleans, and most of the city went under water."
+    ]
+   },
+   "stat": [
+    "2005年のハリケーン・カトリーナで1,833人が亡くなり、ニューオーリンズの約8割が水につかった",
+    "Hurricane Katrina in 2005 killed 1,833 people and flooded about 80% of New Orleans"
+   ],
+   "src": "Knabb, Rhome & Brown 2005, NHC Tropical Cyclone Report: Hurricane Katrina"
+  },
+  {
+   "id": "us-opioids",
+   "type": "epidemic",
+   "countries": [
+    "USA"
+   ],
+   "years": [
+    2016,
+    2023
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "薬の過量摂取で亡くなる人が増え続けた。どの町にも、知り合いを亡くした人がいた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Deaths from drug overdoses kept rising. In every town there was someone who had lost a person they knew."
+    ]
+   },
+   "stat": [
+    "米国の薬物の過量摂取による死者は、2022年に約10万8,000人だった",
+    "Drug overdose deaths in the United States reached about 108,000 in 2022"
+   ],
+   "src": "CDC National Center for Health Statistics, NCHS Data Brief 491 (2024)"
+  },
+  {
+   "id": "ca-ww1",
+   "type": "war",
+   "countries": [
+    "CAN"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.33,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "kill": 0.0075,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "志願して海を渡り、フランドルの泥の中で戦った。毒ガスの日のことは、一生忘れなかった。"
+    ],
+    "news": [
+     "ヨーロッパで大きな戦争が始まり、カナダの若者が次々に海を渡った。ヴィミーの尾根の名が新聞に載った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Enlisted and crossed the ocean, and fought in the mud of Flanders. The day of the gas was never forgotten."
+    ],
+    "news": [
+     "A great war began in Europe and young Canadians crossed the ocean by the thousand. The name Vimy Ridge was in every newspaper."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦でカナダは約62万人が軍に入り、約6万1,000人が亡くなった",
+    "About 620,000 Canadians enlisted in the First World War; about 61,000 died"
+   ],
+   "src": "Veterans Affairs Canada; Canadian War Museum"
+  },
+  {
+   "id": "ca-halifax-1917",
+   "type": "accident",
+   "countries": [
+    "CAN"
+   ],
+   "years": [
+    1917,
+    1917
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、ハリファックスの港で弾薬を積んだ船が爆発し、町の北の端が吹き飛んだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December a ship loaded with munitions exploded in Halifax harbor, and the north end of the city was flattened."
+    ]
+   },
+   "stat": [
+    "1917年12月6日のハリファックス大爆発で約2,000人が亡くなり、約9,000人がけがをした",
+    "The Halifax Explosion of 6 December 1917 killed about 2,000 people and injured about 9,000"
+   ],
+   "src": "Nova Scotia Archives; Kitz 1989, Shattered City"
+  },
+  {
+   "id": "ca-ww2",
+   "type": "war",
+   "countries": [
+    "CAN"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.4,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.0039,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "軍に入り、イギリスで訓練を受けたあと、ノルマンディーの海岸からオランダまで進んだ。",
+     "海軍に入り、北大西洋で船団を守った。冬の海は、敵の潜水艦と同じくらい恐ろしかった。"
+    ],
+    "news": [
+     "9月、カナダはドイツに宣戦した。若者が軍に入り、工場は軍需品を作り始めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Joined up, trained in England, and fought from the Normandy beaches to the Netherlands.",
+     "Joined the navy and escorted convoys across the North Atlantic. The winter sea was as frightening as the U-boats."
+    ],
+    "news": [
+     "In September Canada declared war on Germany. Young people joined up and the factories turned to munitions."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦でカナダは100万人あまりが軍務につき、約4万5,000人が亡くなった",
+    "More than a million Canadians served in the Second World War; about 45,000 died"
+   ],
+   "src": "Veterans Affairs Canada"
+  },
+  {
+   "id": "ca-lac-megantic-2013",
+   "type": "accident",
+   "countries": [
+    "CAN"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月、ケベック州の小さな町で、石油を積んだ貨物列車が脱線して燃えた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In July a train loaded with crude oil derailed and exploded in a small town in Quebec."
+    ]
+   },
+   "stat": [
+    "2013年7月6日のラック・メガンティックの鉄道事故で47人が亡くなった",
+    "The Lac-Mégantic rail disaster of 6 July 2013 killed 47 people"
+   ],
+   "src": "Transportation Safety Board of Canada, Report R13D0054"
+  },
+  {
+   "id": "ca-fort-mcmurray-2016",
+   "type": "fire",
+   "countries": [
+    "CAN"
+   ],
+   "years": [
+    2016,
+    2016
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、アルバータ州の山火事がフォートマクマレーの町に入り、住民全員が逃げた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May a wildfire swept into Fort McMurray, Alberta, and the whole town fled."
+    ]
+   },
+   "stat": [
+    "2016年のフォートマクマレーの山火事では、約8万8,000人が町を離れ、約2,400棟が焼けた",
+    "The 2016 Fort McMurray wildfire forced about 88,000 people to evacuate and destroyed about 2,400 buildings"
+   ],
+   "src": "KPMG 2017, May 2016 Wood Buffalo Wildfire Post-Incident Assessment"
+  },
+  {
+   "id": "ca-wildfires-2023",
+   "type": "fire",
+   "countries": [
+    "CAN"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0.005,
+   "rough": true,
+   "severity": 2,
+   "effect": {
+    "health": -1,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "山火事が近づき、避難の指示が出た。車に積めるだけ積んで、煙の中を走った。"
+    ],
+    "news": [
+     "国じゅうで山火事が燃え続け、夏のあいだ空は煙で黄色くかすんだ。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fire came close and the evacuation order went out. The car was packed with whatever fit, and driven out through the smoke."
+    ],
+    "news": [
+     "Wildfires burned across the country, and all summer the sky was a smoky yellow haze."
+    ]
+   },
+   "stat": [
+    "2023年のカナダの山火事は1,500万ヘクタールを超える森を焼き、記録を大きく上回った",
+    "Canada's 2023 wildfires burned more than 15 million hectares, far beyond any previous record"
+   ],
+   "src": "Canadian Interagency Forest Fire Centre; Natural Resources Canada"
+  },
+  {
+   "id": "mx-revolution",
+   "type": "war",
+   "countries": [
+    "MEX"
+   ],
+   "years": [
+    1910,
+    1920
+   ],
+   "hit": 0.3,
+   "kill": 0.05,
+   "who": "all",
+   "cause": "戦争",
+   "poor": 1.3,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "革命の兵が村に来て、馬と穀物を持っていった。次に来た別の軍も、同じことをした。",
+     "戦いを避けて、家族と山道を歩いて別の町へ移った。畑はそのまま残してきた。"
+    ],
+    "news": [
+     "革命が始まり、国のあちこちで軍と軍がぶつかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Revolutionary soldiers came to the village and took the horses and the grain. The next army that came through did the same.",
+     "To get away from the fighting, the family walked over the mountain roads to another town. The fields were left behind."
+    ],
+    "news": [
+     "The revolution began, and armies clashed all over the country."
+    ]
+   },
+   "stat": [
+    "メキシコ革命 (1910〜20年) で失われた人口は、亡くなった人と国を出た人を合わせて約200万人と推計される",
+    "The Mexican Revolution of 1910-20 cost the country an estimated two million people, counting both the dead and those who fled abroad"
+   ],
+   "src": "McCaa 2003, Missing Millions: The Demographic Costs of the Mexican Revolution, Mexican Studies 19(2):367"
+  },
+  {
+   "id": "mx-cristero",
+   "type": "war",
+   "countries": [
+    "MEX"
+   ],
+   "years": [
+    1926,
+    1929
+   ],
+   "hit": 0.05,
+   "urban": 0.3,
+   "kill": 0.005,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "教会が閉じられ、司祭は姿を消した。村の男たちは銃を持って山に入り、軍が家々を調べに来た。"
+    ],
+    "news": [
+     "政府と教会がぶつかり、西部の州で「クリステロ」の反乱が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The churches were shut and the priests disappeared. The village men went up into the hills with rifles, and soldiers came searching the houses."
+    ],
+    "news": [
+     "The government and the Church came into conflict, and the Cristero rebellion spread through the western states."
+    ]
+   },
+   "stat": [
+    "クリステロ戦争 (1926〜29年) の死者は約9万人とされる",
+    "The Cristero War of 1926-29 is estimated to have cost about 90,000 lives"
+   ],
+   "src": "Meyer 1976, The Cristero Rebellion"
+  },
+  {
+   "id": "mx-quake-1985",
+   "type": "quake",
+   "countries": [
+    "MEX"
+   ],
+   "years": [
+    1985,
+    1985
+   ],
+   "hit": 0.025,
+   "cities": [
+    "メキシコシティ",
+    "Mexico City"
+   ],
+   "elsewhere": 0,
+   "kill": 0.0001,
+   "cause": "災害",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "9月19日の朝、建物が大きく揺れて崩れた。がれきの中から、近所の人たちが素手で人を掘り出した。何か月も、テントの並ぶ広場で暮らした。"
+    ],
+    "near": [
+     "地震の朝、家の壁にひびが入った。二つ先の通りの建物は崩れていた。"
+    ],
+    "news": [
+     "メキシコシティで大きな地震があり、病院や集合住宅が崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the morning of 19 September the building shook and came down. Neighbors dug people out of the rubble with their bare hands. For months home was a tent in a square."
+    ],
+    "near": [
+     "On the morning of the quake the walls of the house cracked. Two streets away, a building had collapsed."
+    ],
+    "news": [
+     "A major earthquake hit Mexico City, and hospitals and apartment blocks collapsed."
+    ]
+   },
+   "stat": [
+    "1985年9月19日のメキシコシティ地震の死者は、少なくとも5,000人、推計では1万人とされる",
+    "The Mexico City earthquake of 19 September 1985 killed at least 5,000 people, and by some estimates 10,000"
+   ],
+   "src": "USGS; Poniatowska 1988, Nada, nadie"
+  },
+  {
+   "id": "mx-tequila-1995",
+   "type": "finance",
+   "countries": [
+    "MEX"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0.08,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 4,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.3,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "ペソが暴落し、勤め先がつぶれた。ドルで組んでいた借金の返済は、倍に膨らんだ。",
+     "会社の注文が止まり、職を失った。利息が上がり、家のローンが払えなくなりかけた。"
+    ],
+    "news": [
+     "前の年の12月にペソが切り下げられ、通貨の値打ちは半分になった。銀行と会社が次々に行きづまった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The peso collapsed and the firm went under. Debts taken out in dollars doubled overnight.",
+     "The orders stopped and the job was gone. Interest rates shot up, and the mortgage payments nearly became impossible."
+    ],
+    "news": [
+     "The peso was devalued the previous December and lost half its value. Banks and companies foundered one after another."
+    ]
+   },
+   "stat": [
+    "1995年、メキシコの経済は約6%縮み、ペソはドルに対して半分ほどの値になった",
+    "In 1995 Mexico's economy shrank by about 6%, and the peso fell to around half its value against the dollar"
+   ],
+   "src": "INEGI; Banco de México; Lustig 1995, Brookings"
+  },
+  {
+   "id": "mx-drug-war",
+   "type": "unrest",
+   "countries": [
+    "MEX"
+   ],
+   "years": [
+    2006,
+    2023
+   ],
+   "hit": 0.02,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -8,
+    "wealth": -0.05
+   },
+   "ja": {
+    "hit": [
+     "町で銃撃が続き、夜は外へ出なくなった。店は「みかじめ料」を払うか、閉めるかしかなかった。",
+     "知り合いが連れ去られ、二度と戻らなかった。それからは、住む町を変えることばかり考えた。"
+    ],
+    "news": [
+     "政府が麻薬組織と戦うと宣言し、軍が街に出た。殺される人の数は年々増えていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Gunfights went on in the town, and no one went out at night. Shops had to pay protection money or shut.",
+     "Someone known to the family was taken and never came back. After that, the only thought was of moving somewhere else."
+    ],
+    "news": [
+     "The government declared war on the drug cartels and sent the army into the streets. The number of killings rose year after year."
+    ]
+   },
+   "stat": [
+    "2006年から2023年までに、メキシコでは40万人を超える人が殺された (国立統計地理情報院)",
+    "Between 2006 and 2023 more than 400,000 people were murdered in Mexico (INEGI)"
+   ],
+   "src": "INEGI homicide statistics"
+  },
+  {
+   "id": "mx-quake-2017",
+   "type": "quake",
+   "countries": [
+    "MEX"
+   ],
+   "years": [
+    2017,
+    2017
+   ],
+   "hit": 0.005,
+   "cities": [
+    "メキシコシティ",
+    "Mexico City",
+    "プエブラ",
+    "Puebla"
+   ],
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.15
+   },
+   "ja": {
+    "hit": [
+     "9月19日、32年前と同じ日に大きな地震が来た。家は傾き、住めなくなった。"
+    ],
+    "news": [
+     "9月、プエブラ州を震源とする地震で、メキシコシティの建物が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On 19 September, the same day as the quake 32 years before, another big one struck. The house tilted and could no longer be lived in."
+    ],
+    "news": [
+     "In September an earthquake centered in Puebla brought down buildings in Mexico City."
+    ]
+   },
+   "stat": [
+    "2017年9月19日の地震で370人が亡くなった",
+    "The earthquake of 19 September 2017 killed 370 people"
+   ],
+   "src": "USGS; Coordinación Nacional de Protección Civil"
+  },
+  {
+   "id": "gt-quake-1976",
+   "type": "quake",
+   "countries": [
+    "GTM"
+   ],
+   "years": [
+    1976,
+    1976
+   ],
+   "hit": 0.2,
+   "poor": 1.3,
+   "kill": 0.0037,
+   "cause": "災害",
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "2月4日の夜明け前、アドベの壁が崩れ落ちた。何か月も、トタンとビニールの小屋で暮らした。"
+    ],
+    "news": [
+     "グアテマラで大地震があり、首都と高地の村々で家が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn on 4 February the adobe walls came down. For months home was a shack of tin sheets and plastic."
+    ],
+    "news": [
+     "A great earthquake struck Guatemala, and houses collapsed in the capital and the highland villages."
+    ]
+   },
+   "stat": [
+    "1976年2月4日の地震で約2万3,000人が亡くなり、約120万人が家を失った",
+    "The earthquake of 4 February 1976 killed about 23,000 people and left about 1.2 million homeless"
+   ],
+   "src": "USGS; Olson 1977, Earthquake Spectra"
+  },
+  {
+   "id": "gt-civil-war",
+   "type": "war",
+   "countries": [
+    "GTM"
+   ],
+   "years": [
+    1960,
+    1996
+   ],
+   "hit": 0.05,
+   "age": [
+    14,
+    80
+   ],
+   "kill": 0.006,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "知り合いの教師が連れ去られ、戻らなかった。それからは、人前で政治の話をしなくなった。"
+    ],
+    "news": [
+     "軍とゲリラの戦いが、国のあちこちで続いていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A teacher the family knew was taken away and never returned. After that, no one spoke about politics in front of others."
+    ],
+    "news": [
+     "The war between the army and the guerrillas dragged on across the country."
+    ]
+   },
+   "stat": [
+    "36年続いた内戦で、約20万人が亡くなるか行方不明になった (歴史的解明委員会)",
+    "About 200,000 people were killed or disappeared in the 36-year civil war (Historical Clarification Commission)"
+   ],
+   "src": "Comisión para el Esclarecimiento Histórico 1999, Guatemala: Memoria del Silencio"
+  },
+  {
+   "id": "gt-highlands-1981",
+   "type": "genocide",
+   "countries": [
+    "GTM"
+   ],
+   "years": [
+    1981,
+    1983
+   ],
+   "hit": 0.12,
+   "urban": 0.15,
+   "poor": 1.5,
+   "kill": 0.012,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "軍が村に来て、家と畑とトウモロコシの蓄えを焼いた。山へ逃げ、何か月も森の中で暮らした。",
+     "村を追われ、国境を越えてメキシコの難民キャンプにたどり着いた。"
+    ],
+    "news": [
+     "高地の村々で軍の掃討作戦が続き、多くの村が地図から消えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The army came to the village and burned the houses, the fields and the stored maize. The family fled into the mountains and lived for months in the forest.",
+     "Driven from the village, the family crossed the border and reached a refugee camp in Mexico."
+    ],
+    "news": [
+     "Army sweeps went on through the highland villages, and many villages vanished from the map."
+    ]
+   },
+   "stat": [
+    "歴史的解明委員会は626の村での虐殺を記録し、犠牲者の83%がマヤの人々だったとした",
+    "The Historical Clarification Commission documented massacres in 626 villages and found that 83% of the victims were Maya"
+   ],
+   "src": "Comisión para el Esclarecimiento Histórico 1999, Guatemala: Memoria del Silencio"
+  },
+  {
+   "id": "sv-matanza-1932",
+   "type": "genocide",
+   "countries": [
+    "SLV"
+   ],
+   "years": [
+    1932,
+    1932
+   ],
+   "hit": 0,
+   "kill": 0.007,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、西部の農民の蜂起のあと、軍が村々で人々を殺した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January, after a peasant uprising in the west, the army killed people village by village."
+    ]
+   },
+   "stat": [
+    "1932年1月の農民蜂起のあと、軍は1万人から3万人を殺したとされる",
+    "After the peasant uprising of January 1932, the army killed an estimated 10,000 to 30,000 people"
+   ],
+   "src": "Gould & Lauria-Santiago 2008, To Rise in Darkness"
+  },
+  {
+   "id": "sv-civil-war",
+   "type": "war",
+   "countries": [
+    "SLV"
+   ],
+   "years": [
+    1980,
+    1992
+   ],
+   "hit": 0.2,
+   "urban": 0.5,
+   "poor": 1.3,
+   "kill": 0.016,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "村が戦いの場になり、家を捨てて首都の親戚のところへ逃げた。",
+     "夜中に兵が来て、近所の若者を連れていった。翌年、家族で北へ、国境を越えた。"
+    ],
+    "news": [
+     "軍とゲリラの内戦が始まり、大司教がミサの最中に撃たれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village became a battlefield, and the family abandoned the house and fled to relatives in the capital.",
+     "Soldiers came in the night and took young men from the neighborhood. The next year the family went north across the border."
+    ],
+    "news": [
+     "Civil war broke out between the army and the guerrillas, and the archbishop was shot while saying Mass."
+    ]
+   },
+   "stat": [
+    "12年の内戦で約7万5,000人が亡くなった (国連エルサルバドル真実委員会)",
+    "About 75,000 people died in the 12-year civil war (UN Truth Commission for El Salvador)"
+   ],
+   "src": "Commission on the Truth for El Salvador 1993, From Madness to Hope"
+  },
+  {
+   "id": "football-war-1969",
+   "type": "war",
+   "countries": [
+    "HND",
+    "SLV"
+   ],
+   "years": [
+    1969,
+    1969
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月、ホンジュラスとエルサルバドルのあいだで4日間の戦争があった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In July Honduras and El Salvador fought a four-day war."
+    ]
+   },
+   "stat": [
+    "1969年7月の4日間の戦争で、約3,000人が亡くなったとされる",
+    "The four-day war of July 1969 is estimated to have killed about 3,000 people"
+   ],
+   "src": "Anderson 1981, The War of the Dispossessed"
+  },
+  {
+   "id": "sv-quakes-2001",
+   "type": "quake",
+   "countries": [
+    "SLV"
+   ],
+   "years": [
+    2001,
+    2001
+   ],
+   "hit": 0.1,
+   "poor": 1.3,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.25
+   },
+   "ja": {
+    "hit": [
+     "1月の地震で家の壁が崩れた。裏山が崩れて、近くの住宅地が土に埋まった。"
+    ],
+    "news": [
+     "1月と2月、二度の大きな地震が国を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The January quake brought down the walls of the house. A hillside gave way and buried a nearby neighborhood."
+    ],
+    "news": [
+     "Two major earthquakes struck the country, in January and again in February."
+    ]
+   },
+   "stat": [
+    "2001年1月と2月の二度の地震で1,200人あまりが亡くなり、15万戸ほどの家が壊れた",
+    "The earthquakes of January and February 2001 killed more than 1,200 people and destroyed about 150,000 homes"
+   ],
+   "src": "CEPAL 2001, El terremoto de 2001 en El Salvador; USGS"
+  },
+  {
+   "id": "ni-managua-1972",
+   "type": "quake",
+   "countries": [
+    "NIC"
+   ],
+   "years": [
+    1972,
+    1972
+   ],
+   "hit": 0.6,
+   "cities": [
+    "マナグア",
+    "Managua"
+   ],
+   "elsewhere": 0,
+   "kill": 0.004,
+   "cause": "災害",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "12月23日の真夜中、地震で家が崩れた。町の中心は燃え、クリスマスを野原で迎えた。"
+    ],
+    "news": [
+     "クリスマスの前の夜、マナグアが地震で崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At midnight on 23 December the earthquake brought the house down. The city center burned, and Christmas came in an open field."
+    ],
+    "news": [
+     "On the night before Christmas Eve, Managua was destroyed by an earthquake."
+    ]
+   },
+   "stat": [
+    "1972年12月23日のマナグア地震で約1万人が亡くなり、25万人ほどが家を失った",
+    "The Managua earthquake of 23 December 1972 killed about 10,000 people and left some 250,000 homeless"
+   ],
+   "src": "USGS; Kates et al. 1973, Science 182:981"
+  },
+  {
+   "id": "ni-revolution",
+   "type": "war",
+   "countries": [
+    "NIC"
+   ],
+   "years": [
+    1978,
+    1979
+   ],
+   "hit": 0.1,
+   "kill": 0.012,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "町で蜂起が起き、国家警備隊の空爆で近所が焼けた。何日も地下の部屋に隠れていた。"
+    ],
+    "news": [
+     "ソモサの独裁に対する蜂起が広がり、7月、サンディニスタがマナグアに入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town rose up, and the National Guard's bombing burned the neighborhood. Days were spent hiding in a cellar."
+    ],
+    "news": [
+     "The uprising against the Somoza dictatorship spread, and in July the Sandinistas entered Managua."
+    ]
+   },
+   "stat": [
+    "1978〜79年の革命の戦いで、約3万5,000人が亡くなったとされる",
+    "About 35,000 people are estimated to have died in the revolutionary fighting of 1978-79"
+   ],
+   "src": "Walker 2003, Nicaragua: Living in the Shadow of the Eagle"
+  },
+  {
+   "id": "ni-contra-war",
+   "type": "war",
+   "countries": [
+    "NIC"
+   ],
+   "years": [
+    1981,
+    1990
+   ],
+   "hit": 0.06,
+   "urban": 0.4,
+   "kill": 0.0085,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "北の山あいの村がコントラに襲われ、家を捨てて町へ移った。"
+    ],
+    "news": [
+     "国境の山でコントラとの戦争が続き、若者が兵に取られていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village in the northern hills was attacked by the Contras, and the family abandoned the house for the town."
+    ],
+    "news": [
+     "The war with the Contras dragged on in the border mountains, and young men were drafted into it."
+    ]
+   },
+   "stat": [
+    "1980年代のコントラ戦争で約3万人が亡くなった",
+    "About 30,000 people died in the Contra War of the 1980s"
+   ],
+   "src": "Walker 2003, Nicaragua: Living in the Shadow of the Eagle"
+  },
+  {
+   "id": "ni-mitch-1998",
+   "type": "cyclone",
+   "countries": [
+    "NIC"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0.1,
+   "poor": 1.5,
+   "kill": 0.0008,
+   "cause": "災害",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "何日も雨がやまず、川があふれて家が流された。泥の中から、鍋一つ見つからなかった。"
+    ],
+    "news": [
+     "ハリケーン・ミッチの雨で、カシータ火山の斜面が崩れ、村がのまれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rain did not stop for days. The river burst its banks and swept the house away. Not even a pot was found in the mud."
+    ],
+    "news": [
+     "Hurricane Mitch's rains brought down the slopes of the Casita volcano, burying villages."
+    ]
+   },
+   "stat": [
+    "1998年10月のハリケーン・ミッチで、ニカラグアでは約3,800人が亡くなった",
+    "Hurricane Mitch in October 1998 killed about 3,800 people in Nicaragua"
+   ],
+   "src": "CEPAL 1999; Guiney & Lawrence 1999, NHC Tropical Cyclone Report: Hurricane Mitch"
+  },
+  {
+   "id": "hn-fifi-1974",
+   "type": "cyclone",
+   "countries": [
+    "HND"
+   ],
+   "years": [
+    1974,
+    1974
+   ],
+   "hit": 0.05,
+   "poor": 1.5,
+   "kill": 0.0027,
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "ハリケーンの雨で川があふれ、家と畑が流された。"
+    ],
+    "news": [
+     "ハリケーン・フィフィが北の海岸を襲い、多くの村が流された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The hurricane's rain burst the river, and the house and fields were swept away."
+    ],
+    "news": [
+     "Hurricane Fifi struck the northern coast and many villages were washed away."
+    ]
+   },
+   "stat": [
+    "1974年9月のハリケーン・フィフィで、ホンジュラスでは約8,000人が亡くなったとされる",
+    "Hurricane Fifi in September 1974 killed an estimated 8,000 people in Honduras"
+   ],
+   "src": "NOAA National Hurricane Center; Rappaport & Fernández-Partagás 1995"
+  },
+  {
+   "id": "hn-mitch-1998",
+   "type": "cyclone",
+   "countries": [
+    "HND"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0.15,
+   "poor": 1.5,
+   "kill": 0.0012,
+   "cause": "災害",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "何日も降り続いた雨で、川が家を押し流した。避難所の学校で、冬じゅう暮らした。",
+     "畑のバナナもトウモロコシも、泥に埋まった。勤め先の農園は閉まった。"
+    ],
+    "news": [
+     "ハリケーン・ミッチが国じゅうに雨を降らせ、橋という橋が流された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Days of rain sent the river through the house and carried it off. The winter was spent in a school turned shelter.",
+     "The bananas and the maize were buried in mud. The plantation where the work was closed down."
+    ],
+    "news": [
+     "Hurricane Mitch poured rain over the whole country, and bridge after bridge was swept away."
+    ]
+   },
+   "stat": [
+    "1998年10月のハリケーン・ミッチで、ホンジュラスでは約7,000人が亡くなり、約150万人が被災した",
+    "Hurricane Mitch in October 1998 killed about 7,000 people in Honduras and affected some 1.5 million"
+   ],
+   "src": "CEPAL 1999; Guiney & Lawrence 1999, NHC Tropical Cyclone Report: Hurricane Mitch"
+  },
+  {
+   "id": "pa-martyrs-1964",
+   "type": "unrest",
+   "countries": [
+    "PAN"
+   ],
+   "years": [
+    1964,
+    1964
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、運河地帯の学校にパナマの旗を掲げようとした学生たちと米兵がぶつかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January students trying to raise the Panamanian flag at a school in the Canal Zone clashed with US troops."
+    ]
+   },
+   "stat": [
+    "1964年1月9日からの衝突で、パナマ人21人が亡くなった",
+    "The clashes that began on 9 January 1964 left 21 Panamanians dead"
+   ],
+   "src": "LaFeber 1989, The Panama Canal"
+  },
+  {
+   "id": "pa-crisis-1988",
+   "type": "finance",
+   "countries": [
+    "PAN"
+   ],
+   "years": [
+    1988,
+    1988
+   ],
+   "hit": 0.1,
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.2,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "米国の制裁で銀行が閉まり、給料が何か月も遅れた。やがて勤め先が人を減らした。"
+    ],
+    "news": [
+     "米国の経済制裁で銀行が9週間閉まり、町から現金が消えた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "With the US sanctions the banks closed, and wages were months late. Then the firm laid people off."
+    ],
+    "news": [
+     "Under US sanctions the banks were shut for nine weeks, and cash vanished from the streets."
+    ]
+   },
+   "stat": [
+    "1988年、米国の制裁でパナマの経済は15%前後縮んだ",
+    "In 1988, under US sanctions, Panama's economy shrank by around 15%"
+   ],
+   "src": "World Bank; Zimbalist & Weeks 1991, Panama at the Crossroads"
+  },
+  {
+   "id": "pa-invasion-1989",
+   "type": "war",
+   "countries": [
+    "PAN"
+   ],
+   "years": [
+    1989,
+    1989
+   ],
+   "hit": 0.03,
+   "cities": [
+    "パナマシティ",
+    "Panama City"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -2,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "12月20日の夜、米軍の攻撃で近所が燃えた。焼け出され、学校の体育館で年を越した。"
+    ],
+    "news": [
+     "12月、米軍がパナマに侵攻し、ノリエガ将軍を捕らえた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of 20 December, the US assault set the neighborhood on fire. Burned out of home, the family saw the new year in at a school gym."
+    ],
+    "news": [
+     "In December US forces invaded Panama and captured General Noriega."
+    ]
+   },
+   "stat": [
+    "1989年12月の米軍の侵攻で、エル・チョリージョ地区が焼け、約2万人が家を失ったとされる",
+    "The US invasion of December 1989 burned the El Chorrillo district and left about 20,000 people homeless"
+   ],
+   "src": "Americas Watch 1990; US Southern Command"
+  },
+  {
+   "id": "cr-cartago-1910",
+   "type": "quake",
+   "countries": [
+    "CRI"
+   ],
+   "years": [
+    1910,
+    1910
+   ],
+   "hit": 0.4,
+   "cities": [
+    "カルタゴ",
+    "Cartago"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "5月の夜の地震で、町の家々が崩れた。教会も学校も、壁しか残らなかった。"
+    ],
+    "news": [
+     "カルタゴの町が地震で崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The night quake in May brought the houses of the town down. Of the church and the school, only walls were left."
+    ],
+    "news": [
+     "The city of Cartago was destroyed by an earthquake."
+    ]
+   },
+   "stat": [
+    "1910年5月4日のカルタゴ地震で、約700人が亡くなった",
+    "The Cartago earthquake of 4 May 1910 killed about 700 people"
+   ],
+   "src": "USGS; Montero 1989"
+  },
+  {
+   "id": "cr-civil-war-1948",
+   "type": "war",
+   "countries": [
+    "CRI"
+   ],
+   "years": [
+    1948,
+    1948
+   ],
+   "hit": 0.03,
+   "kill": 0.0025,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "選挙のあと国が二つに割れ、町に兵が入った。何週間も学校が閉まった。"
+    ],
+    "news": [
+     "選挙をめぐって内戦が起きた。勝った側は、そのあと軍をなくした。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the election the country split in two, and armed men came into town. The schools were closed for weeks."
+    ],
+    "news": [
+     "A civil war broke out over the election. The side that won went on to abolish the army."
+    ]
+   },
+   "stat": [
+    "1948年の内戦では、約2,000人が亡くなったとされる",
+    "About 2,000 people are thought to have died in the civil war of 1948"
+   ],
+   "src": "Lehoucq 1991, Journal of Latin American Studies 23(1):37"
+  },
+  {
+   "id": "cr-limon-1991",
+   "type": "quake",
+   "countries": [
+    "CRI"
+   ],
+   "years": [
+    1991,
+    1991
+   ],
+   "hit": 0.15,
+   "cities": [
+    "リモン",
+    "Limón"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "4月の地震で家が傾き、海沿いの道路と橋が崩れた。"
+    ],
+    "news": [
+     "カリブ海側のリモンで大きな地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The April earthquake left the house leaning, and the coast road and bridges collapsed."
+    ],
+    "news": [
+     "A strong earthquake struck Limón on the Caribbean coast."
+    ]
+   },
+   "stat": [
+    "1991年4月22日のリモン地震で48人が亡くなった",
+    "The Limón earthquake of 22 April 1991 killed 48 people"
+   ],
+   "src": "USGS; Comisión Nacional de Emergencias"
+  },
+  {
+   "id": "parsley-1937",
+   "type": "genocide",
+   "countries": [
+    "DOM",
+    "HTI"
+   ],
+   "years": [
+    1937,
+    1937
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、ドミニカ共和国の軍が、国境地帯に住むハイチの人々を殺した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October the Dominican army killed Haitians living along the border."
+    ]
+   },
+   "stat": [
+    "1937年10月の虐殺の犠牲者は、1万2,000〜2万人とされる",
+    "The victims of the October 1937 massacre are estimated at 12,000 to 20,000"
+   ],
+   "src": "Turits 2002, Hispanic American Historical Review 82(3):589"
+  },
+  {
+   "id": "ht-duvalier",
+   "type": "unrest",
+   "countries": [
+    "HTI"
+   ],
+   "years": [
+    1957,
+    1986
+   ],
+   "hit": 0.01,
+   "age": [
+    16,
+    80
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "夜中にトントン・マクートが来て連れていかれ、何週間も牢に入れられた。理由は最後まで告げられなかった。"
+    ],
+    "news": [
+     "デュヴァリエが大統領になり、私兵のトントン・マクートが町を見張るようになった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The Tontons Macoutes came in the night, and weeks followed in a cell. No reason was ever given."
+    ],
+    "news": [
+     "Duvalier became president, and his militia, the Tontons Macoutes, began watching every street."
+    ]
+   },
+   "stat": [
+    "デュヴァリエ親子の独裁 (1957〜86年) のもとで、約3万人が殺されたとされる",
+    "About 30,000 people are thought to have been killed under the Duvalier dictatorships of 1957-86"
+   ],
+   "src": "Amnesty International; Abbott 1988, Haiti: The Duvaliers and Their Legacy"
+  },
+  {
+   "id": "ht-quake-2010",
+   "type": "quake",
+   "countries": [
+    "HTI"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.5,
+   "cities": [
+    "ポルトープランス",
+    "Port-au-Prince",
+    "カルフール",
+    "Carrefour",
+    "デルマ",
+    "Delmas"
+   ],
+   "elsewhere": 0.03,
+   "kill": 0.01,
+   "who": "all",
+   "cause": "災害",
+   "poor": 1.3,
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "1月12日の夕方、家がつぶれた。がれきの下から引き出され、そのあと一年あまり、空き地のテントで暮らした。",
+     "地震で通りの家々が崩れ、何日も、がれきの中から人を探す声が続いた。"
+    ],
+    "near": [
+     "地震で家にひびが入ったが、崩れずに残った。その夜から、外の通りで眠った。"
+    ],
+    "news": [
+     "ポルトープランスが大地震で崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the evening of 12 January the house collapsed. Pulled out from under the rubble, then more than a year in a tent on an empty lot.",
+     "The quake brought down the houses along the street, and for days voices called out, searching for people under the rubble."
+    ],
+    "near": [
+     "The quake cracked the house but it stayed standing. From that night on, everyone slept out in the street."
+    ],
+    "news": [
+     "A massive earthquake destroyed Port-au-Prince."
+    ]
+   },
+   "stat": [
+    "2010年1月12日の地震の死者は、推計で10万〜31万6,000人。約150万人が家を失った",
+    "The earthquake of 12 January 2010 killed an estimated 100,000 to 316,000 people and left about 1.5 million homeless"
+   ],
+   "src": "USGS; Government of Haiti; Kolbe et al. 2010, Medicine, Conflict and Survival 26(4):281"
+  },
+  {
+   "id": "ht-cholera",
+   "type": "epidemic",
+   "countries": [
+    "HTI"
+   ],
+   "years": [
+    2010,
+    2019
+   ],
+   "hit": 0.07,
+   "poor": 1.5,
+   "kill": 0.00098,
+   "who": "frail",
+   "cause": "流行病",
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "ひどい下痢と吐き気で倒れ、テントの診療所で点滴を受けた。"
+    ],
+    "news": [
+     "地震の年の秋、川沿いの村からコレラが広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Struck down by violent diarrhea and vomiting, and put on a drip in a tent clinic."
+    ],
+    "news": [
+     "In the autumn after the earthquake, cholera spread from the villages along the river."
+    ]
+   },
+   "stat": [
+    "2010年からのコレラの流行で約82万人がかかり、約9,800人が亡くなった",
+    "The cholera epidemic that began in 2010 sickened about 820,000 people and killed about 9,800"
+   ],
+   "src": "WHO / PAHO Epidemiological Updates"
+  },
+  {
+   "id": "ht-quake-2021",
+   "type": "quake",
+   "countries": [
+    "HTI"
+   ],
+   "years": [
+    2021,
+    2021
+   ],
+   "hit": 0.05,
+   "urban": 0.4,
+   "poor": 1.3,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "8月の地震で家が崩れ、そのあと来た嵐の雨の中で、屋根のない夜を過ごした。"
+    ],
+    "news": [
+     "8月、南西部の半島で大きな地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The August quake brought the house down, and then a storm came, and the nights were spent without a roof."
+    ],
+    "news": [
+     "In August a major earthquake struck the southwestern peninsula."
+    ]
+   },
+   "stat": [
+    "2021年8月14日の地震で2,248人が亡くなった",
+    "The earthquake of 14 August 2021 killed 2,248 people"
+   ],
+   "src": "USGS; Direction de la Protection Civile d'Haïti"
+  },
+  {
+   "id": "do-civil-war-1965",
+   "type": "war",
+   "countries": [
+    "DOM"
+   ],
+   "years": [
+    1965,
+    1965
+   ],
+   "hit": 0.05,
+   "cities": [
+    "サントドミンゴ",
+    "Santo Domingo"
+   ],
+   "elsewhere": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "4月、町で銃撃戦が始まった。何週間も、窓を閉めて床に伏せて過ごした。"
+    ],
+    "news": [
+     "4月、首都で内戦が起き、米軍が上陸した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In April gunfights broke out in the city. For weeks everyone kept the windows shut and lay on the floor."
+    ],
+    "news": [
+     "In April civil war broke out in the capital and US Marines landed."
+    ]
+   },
+   "stat": [
+    "1965年4月の内戦と米軍の上陸で、約3,000人が亡くなったとされる",
+    "About 3,000 people are thought to have died in the civil war and US intervention of April 1965"
+   ],
+   "src": "Library of Congress, Dominican Republic: A Country Study"
+  },
+  {
+   "id": "do-georges-1998",
+   "type": "cyclone",
+   "countries": [
+    "DOM"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0.03,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -2,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "ハリケーンで屋根が飛ばされ、川があふれて家が泥につかった。"
+    ],
+    "news": [
+     "ハリケーン・ジョルジュが島を横切り、多くの家が壊れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The hurricane tore off the roof, and the river flooded the house with mud."
+    ],
+    "news": [
+     "Hurricane Georges crossed the island and wrecked many homes."
+    ]
+   },
+   "stat": [
+    "1998年9月のハリケーン・ジョルジュで、ドミニカ共和国では283人が亡くなり、約18万5,000人が家を失った",
+    "Hurricane Georges in September 1998 killed 283 people in the Dominican Republic and left about 185,000 homeless"
+   ],
+   "src": "Guiney 1999, NHC Tropical Cyclone Report: Hurricane Georges"
+  },
+  {
+   "id": "jm-kingston-1907",
+   "type": "quake",
+   "countries": [
+    "JAM"
+   ],
+   "years": [
+    1907,
+    1907
+   ],
+   "hit": 0.3,
+   "cities": [
+    "キングストン",
+    "Kingston"
+   ],
+   "elsewhere": 0,
+   "kill": 0.0012,
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "1月の午後、地震で町の建物が崩れ、続く火事で通りが焼けた。"
+    ],
+    "news": [
+     "キングストンが地震と火事で崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One January afternoon an earthquake brought down the buildings of the town, and the fires that followed burned the streets."
+    ],
+    "news": [
+     "Kingston was destroyed by an earthquake and fire."
+    ]
+   },
+   "stat": [
+    "1907年1月14日のキングストン地震で、約1,000人が亡くなったとされる",
+    "The Kingston earthquake of 14 January 1907 is estimated to have killed about 1,000 people"
+   ],
+   "src": "USGS; Fuller 1907, The Earthquake at Kingston"
+  },
+  {
+   "id": "jm-gilbert-1988",
+   "type": "cyclone",
+   "countries": [
+    "JAM"
+   ],
+   "years": [
+    1988,
+    1988
+   ],
+   "hit": 0.2,
+   "poor": 1.3,
+   "severity": 5,
+   "effect": {
+    "health": -2,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "ハリケーンが島を縦に横切り、屋根が丸ごと飛ばされた。電気が戻るまで何週間もかかった。"
+    ],
+    "news": [
+     "ハリケーン・ギルバートが島を端から端まで横切った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The hurricane ran the length of the island and took the whole roof off. It was weeks before the power came back."
+    ],
+    "news": [
+     "Hurricane Gilbert crossed the island from end to end."
+    ]
+   },
+   "stat": [
+    "1988年9月のハリケーン・ギルバートで、ジャマイカでは45人が亡くなり、約50万人が家を失った",
+    "Hurricane Gilbert in September 1988 killed 45 people in Jamaica and left about 500,000 homeless"
+   ],
+   "src": "Lawrence & Gross 1989, Monthly Weather Review 117:2248"
+  },
+  {
+   "id": "jm-tivoli-2010",
+   "type": "unrest",
+   "countries": [
+    "JAM"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、キングストンのティボリ・ガーデンズで、治安部隊と武装した男たちが撃ち合った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May security forces and gunmen fought in Tivoli Gardens, Kingston."
+    ]
+   },
+   "stat": [
+    "2010年5月の作戦で、少なくとも69人の市民が亡くなった",
+    "At least 69 civilians were killed in the operation of May 2010"
+   ],
+   "src": "West Kingston Commission of Enquiry 2016"
+  },
+  {
+   "id": "tt-black-power-1970",
+   "type": "unrest",
+   "countries": [
+    "TTO"
+   ],
+   "years": [
+    1970,
+    1970
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "黒人の権利と仕事を求めるデモが何週間も続き、政府は非常事態を宣言した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Marches for Black rights and jobs went on for weeks, and the government declared a state of emergency."
+    ]
+   },
+   "stat": [
+    "1970年4月21日に非常事態が宣言され、軍の一部が反乱を起こした",
+    "A state of emergency was declared on 21 April 1970, and part of the army mutinied"
+   ],
+   "src": "Ryan & Stewart 1995, The Black Power Revolution 1970"
+  },
+  {
+   "id": "tt-oil-bust",
+   "type": "finance",
+   "countries": [
+    "TTO"
+   ],
+   "years": [
+    1983,
+    1989
+   ],
+   "hit": 0.1,
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.2,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "石油の値下がりで勤め先が人を減らし、職を失った。"
+    ],
+    "news": [
+     "石油の値段が下がり、景気が何年も縮み続けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "With oil prices falling the firm cut staff, and the job was gone."
+    ],
+    "news": [
+     "Oil prices fell and the economy shrank year after year."
+    ]
+   },
+   "stat": [
+    "石油の値下がりで、トリニダード・トバゴの失業率は1988年に22%まで上がった",
+    "With the oil bust, unemployment in Trinidad and Tobago rose to 22% in 1988"
+   ],
+   "src": "Central Statistical Office of Trinidad and Tobago; World Bank"
+  },
+  {
+   "id": "tt-coup-1990",
+   "type": "coup",
+   "countries": [
+    "TTO"
+   ],
+   "years": [
+    1990,
+    1990
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月、武装した集団が議会とテレビ局を占拠した。町では店が荒らされた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In July an armed group seized Parliament and the television station. Shops in the capital were looted."
+    ]
+   },
+   "stat": [
+    "1990年7月の6日間の占拠で、24人が亡くなった",
+    "The six-day siege of July 1990 left 24 people dead"
+   ],
+   "src": "Commission of Enquiry into the Events of 1990 (2014)"
+  },
+  {
+   "id": "br-seca-1932",
+   "type": "drought",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    1932,
+    1932
+   ],
+   "hit": 0.03,
+   "urban": 0.1,
+   "poor": 2,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨が降らず、畑も家畜もだめになった。食べ物を求めて町まで歩き、囲いの中のキャンプに入れられた。"
+    ],
+    "news": [
+     "北東部で大きな干ばつが起き、多くの人が飢えて南へ逃げた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains never came, and the crops and animals were lost. Walking to the city for food ended in a fenced-in camp."
+    ],
+    "news": [
+     "A great drought struck the Northeast, and many people fled south from hunger."
+    ]
+   },
+   "stat": [
+    "1932年の干ばつで、セアラー州では約7万3,000人が「集中キャンプ」と呼ばれた収容所に入れられた",
+    "In the 1932 drought about 73,000 people in Ceará were held in so-called concentration camps"
+   ],
+   "src": "Neves 1995, Revista Brasileira de História 15(29); Rios 2014"
+  },
+  {
+   "id": "br-coup-1964",
+   "type": "coup",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    1964,
+    1964
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "3月の終わり、軍が大統領を追い出し、政権を握った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "At the end of March the army ousted the president and took power."
+    ]
+   },
+   "stat": [
+    "1964年に始まった軍政は21年続いた。国家真実委員会は434人が殺されるか行方不明になったと記した",
+    "Military rule, begun in 1964, lasted 21 years. The National Truth Commission recorded 434 people killed or disappeared"
+   ],
+   "src": "Comissão Nacional da Verdade 2014, Relatório"
+  },
+  {
+   "id": "br-seca-1979",
+   "type": "drought",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    1979,
+    1983
+   ],
+   "hit": 0.1,
+   "urban": 0.3,
+   "poor": 2,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "5年続いた日照りで、井戸も貯め池も干上がった。政府の工事現場で働いて、わずかな食べ物を得た。"
+    ],
+    "news": [
+     "北東部の干ばつが何年も続き、多くの家族が南の大都市へ移った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Five years of drought dried up the wells and the reservoirs. Work on a government road crew earned a little food."
+    ],
+    "news": [
+     "Drought in the Northeast dragged on for years, and many families moved to the big cities of the South."
+    ]
+   },
+   "stat": [
+    "1979〜83年の北東部の干ばつでは、約2,000万人が被災したとされる",
+    "The Northeast drought of 1979-83 is estimated to have affected about 20 million people"
+   ],
+   "src": "SUDENE; Magalhães et al. 1988, in Parry et al. (eds), The Impact of Climatic Variations on Agriculture"
+  },
+  {
+   "id": "br-hyperinflation-1993",
+   "type": "finance",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    1993,
+    1993
+   ],
+   "hit": 0.2,
+   "severity": 3,
+   "effect": {
+    "happy": -6,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "給料をもらったその日にスーパーへ走った。翌週には、同じお金で半分しか買えなかった。"
+    ],
+    "news": [
+     "物価が毎月3割ずつ上がり、店では一日に何度も値札が貼り替えられた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On payday it was a race to the supermarket. By the next week the same money bought half as much."
+    ],
+    "news": [
+     "Prices rose by about 30% a month, and shops relabeled their goods several times a day."
+    ]
+   },
+   "stat": [
+    "ブラジルの物価上昇率は1993年に2,477%に達した",
+    "Brazil's inflation reached 2,477% in 1993"
+   ],
+   "src": "IBGE (IPCA); Banco Central do Brasil"
+  },
+  {
+   "id": "br-kiss-2013",
+   "type": "fire",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、サンタマリアのナイトクラブで火事が起き、多くの若者が逃げ遅れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January a fire broke out in a nightclub in Santa Maria, and many young people could not get out."
+    ]
+   },
+   "stat": [
+    "2013年1月27日のキス・ナイトクラブの火事で242人が亡くなった",
+    "The Kiss nightclub fire of 27 January 2013 killed 242 people"
+   ],
+   "src": "Polícia Civil do Rio Grande do Sul; Ministério da Saúde"
+  },
+  {
+   "id": "br-mariana-2015",
+   "type": "accident",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    2015,
+    2015
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、ミナスジェライス州で鉱山の廃水ダムが決壊し、泥がドセ川を海まで流れ下った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November a mine tailings dam burst in Minas Gerais, and the mud ran down the Doce River all the way to the sea."
+    ]
+   },
+   "stat": [
+    "2015年11月5日のマリアナのダム決壊で19人が亡くなり、泥流は600キロ以上流れた",
+    "The Mariana dam collapse of 5 November 2015 killed 19 people, and the mudflow traveled more than 600 km"
+   ],
+   "src": "IBAMA 2015, Laudo Técnico Preliminar"
+  },
+  {
+   "id": "br-brumadinho-2019",
+   "type": "accident",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、ブルマジーニョで鉱山のダムが崩れ、泥が食堂と村をのみこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January a mine dam collapsed at Brumadinho, and the mud swallowed the workers' canteen and a village."
+    ]
+   },
+   "stat": [
+    "2019年1月25日のブルマジーニョのダム決壊で270人が亡くなった",
+    "The Brumadinho dam collapse of 25 January 2019 killed 270 people"
+   ],
+   "src": "Polícia Civil de Minas Gerais; Assembleia Legislativa de Minas Gerais CPI 2019"
+  },
+  {
+   "id": "br-rs-floods-2024",
+   "type": "flood",
+   "countries": [
+    "BRA"
+   ],
+   "years": [
+    2024,
+    2024
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、南部のリオグランデ・ド・スル州が大洪水にのまれ、州都の通りを船が行き来した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May the southern state of Rio Grande do Sul was swamped by floods, and boats moved through the streets of its capital."
+    ]
+   },
+   "stat": [
+    "2024年5月の洪水で、リオグランデ・ド・スル州では180人あまりが亡くなり、約58万人が家を離れた",
+    "The May 2024 floods killed more than 180 people in Rio Grande do Sul and displaced about 580,000"
+   ],
+   "src": "Defesa Civil do Rio Grande do Sul"
+  },
+  {
+   "id": "co-violencia",
+   "type": "war",
+   "countries": [
+    "COL"
+   ],
+   "years": [
+    1948,
+    1958
+   ],
+   "hit": 0.1,
+   "urban": 0.3,
+   "kill": 0.015,
+   "who": "all",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "党派の武装した男たちが村を焼き、家族は何も持たずに町へ逃げた。",
+     "夜になると、隣の村から銃声が聞こえた。父は、どちらの党かを人に言わないようにと言った。"
+    ],
+    "news": [
+     "4月、ガイタンが撃たれ、ボゴタで暴動が起きた。そこから国じゅうで、保守党と自由党の殺し合いが広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed partisans burned the village, and the family fled to the town with nothing.",
+     "At night gunfire came from the next village. Father warned never to tell anyone which party the family belonged to."
+    ],
+    "news": [
+     "In April Gaitán was shot and Bogotá exploded in riots. From there, killing between Conservatives and Liberals spread across the country."
+    ]
+   },
+   "stat": [
+    "「ラ・ビオレンシア」(1948〜58年) の死者は約20万人とされる",
+    "La Violencia (1948-58) is estimated to have cost about 200,000 lives"
+   ],
+   "src": "Guzmán, Fals Borda & Umaña 1962, La Violencia en Colombia"
+  },
+  {
+   "id": "co-armed-conflict",
+   "type": "war",
+   "countries": [
+    "COL"
+   ],
+   "years": [
+    1985,
+    2016
+   ],
+   "hit": 0.15,
+   "urban": 0.4,
+   "poor": 1.5,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した男たちが村に来て、出ていけと言った。その週のうちに家を捨て、町のはずれの斜面に小屋を建てた。",
+     "ゲリラと民兵の戦いに挟まれ、村は空になった。町で、知らない人ばかりの中で暮らし直した。"
+    ],
+    "news": [
+     "ゲリラと民兵と軍の戦いが続き、農村から人々が追われていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men came to the village and told everyone to leave. Within the week the house was abandoned, and a shack went up on a hillside at the edge of the city.",
+     "Caught between guerrillas and paramilitaries, the village emptied. Life began again in a city full of strangers."
+    ],
+    "news": [
+     "The war among guerrillas, paramilitaries and the army dragged on, and people were driven off the land."
+    ]
+   },
+   "stat": [
+    "国の被害者登録には、武力紛争で家を追われた人が800万人を超えて記されている",
+    "Colombia's national victims' registry lists more than 8 million people displaced by the armed conflict"
+   ],
+   "src": "Unidad para las Víctimas, Registro Único de Víctimas; Centro Nacional de Memoria Histórica 2013, ¡Basta Ya!"
+  },
+  {
+   "id": "co-armero-1985",
+   "type": "volcano",
+   "countries": [
+    "COL"
+   ],
+   "years": [
+    1985,
+    1985
+   ],
+   "hit": 0,
+   "kill": 0.0008,
+   "cause": "災害",
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、ネバド・デル・ルイス火山の泥流が、アルメロの町をのみこんだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November a mudflow from the Nevado del Ruiz volcano buried the town of Armero."
+    ]
+   },
+   "stat": [
+    "1985年11月13日のネバド・デル・ルイス火山の泥流で、約2万3,000人が亡くなった",
+    "The Nevado del Ruiz mudflows of 13 November 1985 killed about 23,000 people"
+   ],
+   "src": "USGS; Voight 1990, Journal of Volcanology and Geothermal Research 42:151"
+  },
+  {
+   "id": "co-armenia-1999",
+   "type": "quake",
+   "countries": [
+    "COL"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0.005,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "1月の昼すぎ、地震で家が崩れた。コーヒー農園の仕事も、町と一緒になくなった。"
+    ],
+    "news": [
+     "コーヒー地帯のアルメニアで大きな地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Early one January afternoon the quake brought the house down. The work on the coffee farms went with the town."
+    ],
+    "news": [
+     "A major earthquake struck Armenia, in the coffee region."
+    ]
+   },
+   "stat": [
+    "1999年1月25日のコーヒー地帯の地震で、約1,200人が亡くなった",
+    "The coffee-region earthquake of 25 January 1999 killed about 1,200 people"
+   ],
+   "src": "USGS; CEPAL 1999"
+  },
+  {
+   "id": "pe-ancash-1970",
+   "type": "quake",
+   "countries": [
+    "PER"
+   ],
+   "years": [
+    1970,
+    1970
+   ],
+   "hit": 0.05,
+   "urban": 0.7,
+   "kill": 0.0054,
+   "cause": "災害",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "5月の日曜の午後、地震で家が崩れ、山から雪と岩が谷へなだれ落ちた。"
+    ],
+    "news": [
+     "アンデスで大地震が起き、ユンガイの町が雪崩と泥に埋まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One Sunday afternoon in May the quake brought the house down, and snow and rock thundered down from the mountain into the valley."
+    ],
+    "news": [
+     "A great earthquake struck the Andes, and the town of Yungay was buried under ice and mud."
+    ]
+   },
+   "stat": [
+    "1970年5月31日のアンカシュ地震で、約7万人が亡くなった",
+    "The Ancash earthquake of 31 May 1970 killed about 70,000 people"
+   ],
+   "src": "USGS; Instituto Nacional de Defensa Civil"
+  },
+  {
+   "id": "pe-shining-path",
+   "type": "war",
+   "countries": [
+    "PER"
+   ],
+   "years": [
+    1980,
+    2000
+   ],
+   "hit": 0.03,
+   "urban": 0.4,
+   "poor": 1.5,
+   "kill": 0.003,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "夜、センデロ・ルミノソの一団が村に来て、村の長を広場に引き出した。次の月には軍が来た。家族はリマへ逃げた。"
+    ],
+    "news": [
+     "山の村々でセンデロ・ルミノソと軍の戦いが続き、リマでも爆弾が破裂した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One night a Shining Path column came to the village and dragged the headman into the square. The next month the army came. The family fled to Lima."
+    ],
+    "news": [
+     "War between the Shining Path and the army raged in the mountain villages, and bombs went off in Lima too."
+    ]
+   },
+   "stat": [
+    "真実和解委員会は、1980〜2000年の暴力の死者と行方不明者を約6万9,000人と推計した",
+    "The Truth and Reconciliation Commission estimated that about 69,000 people were killed or disappeared in the violence of 1980-2000"
+   ],
+   "src": "Comisión de la Verdad y Reconciliación 2003, Informe Final"
+  },
+  {
+   "id": "pe-hyperinflation",
+   "type": "finance",
+   "countries": [
+    "PER"
+   ],
+   "years": [
+    1988,
+    1990
+   ],
+   "hit": 0.3,
+   "severity": 4,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "物価が毎月倍近くになり、貯金は何の役にも立たなくなった。8月のある日、パンの値段が一晩で何倍にもなった。"
+    ],
+    "news": [
+     "物価が手のつけられないほど上がり、店の棚が空になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Prices nearly doubled every month, and savings became worthless. One day in August the price of bread multiplied overnight."
+    ],
+    "news": [
+     "Prices spiraled out of control and shop shelves emptied."
+    ]
+   },
+   "stat": [
+    "ペルーの物価上昇率は1990年に7,482%に達した",
+    "Peru's inflation reached 7,482% in 1990"
+   ],
+   "src": "Instituto Nacional de Estadística e Informática; Banco Central de Reserva del Perú"
+  },
+  {
+   "id": "pe-pisco-2007",
+   "type": "quake",
+   "countries": [
+    "PER"
+   ],
+   "years": [
+    2007,
+    2007
+   ],
+   "hit": 0.005,
+   "poor": 1.5,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "8月の夕方の地震で、アドベの家が崩れた。何か月も、支援のテントで暮らした。"
+    ],
+    "news": [
+     "南の海岸のピスコで大きな地震があり、町の教会が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The August evening quake brought down the adobe house. Months were spent in a relief tent."
+    ],
+    "news": [
+     "A major earthquake struck Pisco on the southern coast, bringing down the town church."
+    ]
+   },
+   "stat": [
+    "2007年8月15日のピスコ地震で519人が亡くなった",
+    "The Pisco earthquake of 15 August 2007 killed 519 people"
+   ],
+   "src": "Instituto Nacional de Defensa Civil; USGS"
+  },
+  {
+   "id": "ec-ambato-1949",
+   "type": "quake",
+   "countries": [
+    "ECU"
+   ],
+   "years": [
+    1949,
+    1949
+   ],
+   "hit": 0.03,
+   "kill": 0.0015,
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "8月の昼の地震で家が崩れ、山の斜面が崩れて村の道をふさいだ。"
+    ],
+    "news": [
+     "中部の高地で大きな地震があり、アンバトの町が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The August midday quake brought down the house, and landslides blocked the village roads."
+    ],
+    "news": [
+     "A strong earthquake struck the central highlands, and the town of Ambato collapsed."
+    ]
+   },
+   "stat": [
+    "1949年8月5日のアンバト地震で、約5,000人が亡くなった",
+    "The Ambato earthquake of 5 August 1949 killed about 5,000 people"
+   ],
+   "src": "USGS"
+  },
+  {
+   "id": "ec-bank-crisis-1999",
+   "type": "finance",
+   "countries": [
+    "ECU"
+   ],
+   "years": [
+    1999,
+    2000
+   ],
+   "hit": 0.25,
+   "severity": 5,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.5,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "銀行が預金を凍結し、やっと戻ってきたお金の値打ちは何分の一にもなっていた。",
+     "勤め先が閉じ、仕事を探して親戚はスペインへ渡っていった。"
+    ],
+    "news": [
+     "銀行が次々に破綻して預金が凍結され、翌年、スクレが廃止されて米ドルが国の通貨になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The banks froze deposits, and by the time the money came back it was worth a fraction of what it had been.",
+     "The firm closed, and relatives left for Spain to look for work."
+    ],
+    "news": [
+     "Banks failed one after another and deposits were frozen. The next year the sucre was scrapped and the US dollar became the national currency."
+    ]
+   },
+   "stat": [
+    "1999年の銀行危機でスクレはドルに対し約4分の1の値に下がり、2000年に米ドルが国の通貨になった",
+    "In the 1999 banking crisis the sucre fell to about a quarter of its value against the dollar, and in 2000 the US dollar became Ecuador's currency"
+   ],
+   "src": "Banco Central del Ecuador; Jácome 2004, IMF Working Paper 04/12"
+  },
+  {
+   "id": "ec-quake-2016",
+   "type": "quake",
+   "countries": [
+    "ECU"
+   ],
+   "years": [
+    2016,
+    2016
+   ],
+   "hit": 0.005,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "4月の夜の地震で、家の二階が崩れ落ちた。何か月も、避難所で暮らした。"
+    ],
+    "news": [
+     "4月、太平洋の海岸で大きな地震があり、マナビ県の町々が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The April night quake brought the upper floor of the house down. Months were spent in a shelter."
+    ],
+    "news": [
+     "In April a major earthquake struck the Pacific coast, and towns in Manabí province collapsed."
+    ]
+   },
+   "stat": [
+    "2016年4月16日の地震で671人が亡くなった",
+    "The earthquake of 16 April 2016 killed 671 people"
+   ],
+   "src": "Secretaría de Gestión de Riesgos del Ecuador; USGS"
+  },
+  {
+   "id": "bo-chaco-war",
+   "type": "war",
+   "countries": [
+    "BOL"
+   ],
+   "years": [
+    1932,
+    1935
+   ],
+   "hit": 0.5,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.02,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "徴兵され、高地からチャコの乾いた森へ送られた。敵よりも、渇きの方がおそろしかった。"
+    ],
+    "news": [
+     "パラグアイとのチャコ戦争が始まり、高地の村から若い男たちが連れていかれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drafted and sent down from the highlands into the dry scrub of the Chaco. Thirst was more frightening than the enemy."
+    ],
+    "news": [
+     "The Chaco War with Paraguay began, and the young men were taken from the highland villages."
+    ]
+   },
+   "stat": [
+    "チャコ戦争 (1932〜35年) で、ボリビアは約25万人を動員し、5万人以上が亡くなった",
+    "Bolivia mobilized about 250,000 men for the Chaco War of 1932-35; more than 50,000 died"
+   ],
+   "src": "Farcau 1996, The Chaco War: Bolivia and Paraguay, 1932-1935"
+  },
+  {
+   "id": "py-chaco-war",
+   "type": "war",
+   "countries": [
+    "PRY"
+   ],
+   "years": [
+    1932,
+    1935
+   ],
+   "hit": 0.6,
+   "age": [
+    18,
+    40
+   ],
+   "sex": "M",
+   "kill": 0.03,
+   "who": "men",
+   "cause": "戦争",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "召集されてチャコの前線へ送られた。水を運ぶ車が来ない日が、何日も続いた。"
+    ],
+    "news": [
+     "ボリビアとのチャコ戦争が始まり、国じゅうの男たちが前線へ送られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Called up and sent to the Chaco front. Days went by with no water truck."
+    ],
+    "news": [
+     "The Chaco War with Bolivia began, and men from all over the country were sent to the front."
+    ]
+   },
+   "stat": [
+    "チャコ戦争 (1932〜35年) で、パラグアイは約15万人を動員し、3万〜4万人が亡くなった",
+    "Paraguay mobilized about 150,000 men for the Chaco War of 1932-35; 30,000 to 40,000 died"
+   ],
+   "src": "Farcau 1996, The Chaco War: Bolivia and Paraguay, 1932-1935"
+  },
+  {
+   "id": "bo-revolution-1952",
+   "type": "revolution",
+   "countries": [
+    "BOL"
+   ],
+   "years": [
+    1952,
+    1952
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "4月、鉱山の労働者と町の人々が蜂起した。新しい政府は大きな鉱山を国のものにし、字の読めない人にも選挙権を与えた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In April miners and townspeople rose up. The new government nationalized the big mines and gave the vote to people who could not read."
+    ]
+   },
+   "stat": [
+    "1952年の革命のあと、選挙で投票できる人は約20万人から約100万人に増えた",
+    "After the 1952 revolution the number of people eligible to vote rose from about 200,000 to about one million"
+   ],
+   "src": "Klein 2011, A Concise History of Bolivia"
+  },
+  {
+   "id": "bo-hyperinflation",
+   "type": "finance",
+   "countries": [
+    "BOL"
+   ],
+   "years": [
+    1984,
+    1985
+   ],
+   "hit": 0.3,
+   "severity": 4,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "お札を束で持って買い物に行った。給料は、受け取ったその日にドルに替えるしかなかった。"
+    ],
+    "news": [
+     "物価が毎週のように上がり、お金の値打ちが消えていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Shopping meant carrying banknotes by the bundle. Wages had to be changed into dollars the day they were paid."
+    ],
+    "news": [
+     "Prices rose week after week, and money melted away."
+    ]
+   },
+   "stat": [
+    "ボリビアの物価上昇率は1985年に年率1万1,750%に達した",
+    "Bolivia's inflation reached an annual rate of 11,750% in 1985"
+   ],
+   "src": "Sachs 1987, American Economic Review 77(2):279; Instituto Nacional de Estadística de Bolivia"
+  },
+  {
+   "id": "py-stroessner",
+   "type": "unrest",
+   "countries": [
+    "PRY"
+   ],
+   "years": [
+    1954,
+    1989
+   ],
+   "hit": 0.01,
+   "age": [
+    16,
+    80
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "政府を批判したと告げ口され、警察に連れていかれた。何週間も、取り調べの部屋から出られなかった。"
+    ],
+    "news": [
+     "ストロエスネル将軍が政権を握り、その後35年、国を治め続けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Someone reported a word against the government, and the police came. Weeks went by in an interrogation room."
+    ],
+    "news": [
+     "General Stroessner took power, and went on ruling the country for 35 years."
+    ]
+   },
+   "stat": [
+    "ストロエスネル政権 (1954〜89年) の下で、約2万人が拘束され、約400人が殺されるか行方不明になった",
+    "Under Stroessner (1954-89) about 20,000 people were detained, and about 400 killed or disappeared"
+   ],
+   "src": "Comisión de Verdad y Justicia 2008, Informe Final"
+  },
+  {
+   "id": "py-ycua-bolanos-2004",
+   "type": "fire",
+   "countries": [
+    "PRY"
+   ],
+   "years": [
+    2004,
+    2004
+   ],
+   "hit": 0,
+   "rough": true,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、アスンシオンのスーパーマーケットで火事が起き、出口の扉は閉められていた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August a fire broke out in a supermarket in Asunción, and the exit doors had been locked."
+    ]
+   },
+   "stat": [
+    "2004年8月1日のイクア・ボラニョスの火事で、約400人が亡くなった",
+    "The Ycuá Bolaños supermarket fire of 1 August 2004 killed about 400 people"
+   ],
+   "src": "Ministerio Público del Paraguay"
+  },
+  {
+   "id": "ar-san-juan-1944",
+   "type": "quake",
+   "countries": [
+    "ARG"
+   ],
+   "years": [
+    1944,
+    1944
+   ],
+   "hit": 0,
+   "kill": 0.0004,
+   "cause": "災害",
+   "rough": true,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、アンデスのふもとのサンフアンの町が、地震でほとんど崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January the Andean city of San Juan was almost entirely destroyed by an earthquake."
+    ]
+   },
+   "stat": [
+    "1944年1月15日のサンフアン地震の死者は、約5,000〜1万人とされる",
+    "The San Juan earthquake of 15 January 1944 killed an estimated 5,000 to 10,000 people"
+   ],
+   "src": "USGS; Healey 2011, The Ruins of the New Argentina"
+  },
+  {
+   "id": "ar-falklands-1982",
+   "type": "war",
+   "countries": [
+    "ARG"
+   ],
+   "years": [
+    1982,
+    1982
+   ],
+   "hit": 0.025,
+   "age": [
+    18,
+    21
+   ],
+   "sex": "M",
+   "kill": 0.00002,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "徴兵されて、マルビナス諸島へ送られた。冬の島の塹壕で、寒さと飢えに耐えた。"
+    ],
+    "news": [
+     "4月、軍がマルビナス (フォークランド) 諸島に上陸し、英国との戦争になった。6月に降伏した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drafted and sent to the Malvinas. In the winter trenches on the islands, endured cold and hunger."
+    ],
+    "news": [
+     "In April the army landed on the Malvinas (Falklands), and war with Britain followed. It ended in surrender in June."
+    ]
+   },
+   "stat": [
+    "マルビナス (フォークランド) 戦争で、アルゼンチン兵649人が亡くなった",
+    "649 Argentine servicemen died in the Malvinas (Falklands) War"
+   ],
+   "src": "Argentine Ministry of Defense"
+  },
+  {
+   "id": "ar-amia-1994",
+   "type": "terror",
+   "countries": [
+    "ARG"
+   ],
+   "years": [
+    1994,
+    1994
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月、ブエノスアイレスのユダヤ系団体の建物が、爆弾で崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In July a bomb brought down the building of a Jewish community center in Buenos Aires."
+    ]
+   },
+   "stat": [
+    "1994年7月18日のAMIA爆破事件で85人が亡くなった",
+    "The AMIA bombing of 18 July 1994 killed 85 people"
+   ],
+   "src": "Poder Judicial de la Nación, causa AMIA"
+  },
+  {
+   "id": "cl-chillan-1939",
+   "type": "quake",
+   "countries": [
+    "CHL"
+   ],
+   "years": [
+    1939,
+    1939
+   ],
+   "hit": 0.03,
+   "kill": 0.0012,
+   "cause": "災害",
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "1月の夜の地震で、日干しれんがの家が崩れた。町は何年もかけて建て直された。"
+    ],
+    "news": [
+     "中部のチジャンの町が、夜の地震で崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The January night quake brought down the adobe house. The town took years to rebuild."
+    ],
+    "news": [
+     "The town of Chillán, in central Chile, was destroyed by an earthquake in the night."
+    ]
+   },
+   "stat": [
+    "1939年1月24日のチジャン地震の死者は、公式に5,648人、推計では2万人を超える",
+    "The Chillán earthquake of 24 January 1939 killed 5,648 people by official count, and more than 20,000 by some estimates"
+   ],
+   "src": "USGS; Gobierno de Chile"
+  },
+  {
+   "id": "cl-valdivia-1960",
+   "type": "quake",
+   "countries": [
+    "CHL"
+   ],
+   "years": [
+    1960,
+    1960
+   ],
+   "hit": 0.2,
+   "kill": 0.0002,
+   "cause": "災害",
+   "rough": true,
+   "severity": 5,
+   "effect": {
+    "health": -4,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "5月の午後、地面が何分も揺れ続けた。そのあと海が上がってきて、海辺の家は流された。"
+    ],
+    "news": [
+     "南部で、記録に残るうちで最も大きな地震が起き、津波が太平洋を渡った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One May afternoon the ground shook for minutes on end. Then the sea rose, and the houses by the shore were swept away."
+    ],
+    "news": [
+     "The largest earthquake ever recorded struck the south, and its tsunami crossed the Pacific."
+    ]
+   },
+   "stat": [
+    "1960年5月22日のバルディビア地震はマグニチュード9.5で観測史上最大。約1,655人が亡くなり、約200万人が家を失った",
+    "The Valdivia earthquake of 22 May 1960, magnitude 9.5, was the largest ever recorded. About 1,655 people died and some 2 million were left homeless"
+   ],
+   "src": "USGS, Historic Earthquakes: Valdivia, Chile 1960"
+  },
+  {
+   "id": "cl-crisis-1982",
+   "type": "finance",
+   "countries": [
+    "CHL"
+   ],
+   "years": [
+    1982,
+    1983
+   ],
+   "hit": 0.15,
+   "age": [
+    16,
+    64
+   ],
+   "severity": 4,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.3,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "勤め先が倒れ、職を失った。仕事は、政府の緊急雇用で道路を掃くことしかなかった。"
+    ],
+    "news": [
+     "ペソが切り下げられ、銀行が次々に国に取り上げられた。失業者が街にあふれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The firm collapsed and the job was gone. The only work going was sweeping roads in the government's emergency program."
+    ],
+    "news": [
+     "The peso was devalued and the state took over bank after bank. The streets filled with the unemployed."
+    ]
+   },
+   "stat": [
+    "1982年、チリの経済は14%近く縮み、失業率は20%を超えた",
+    "In 1982 Chile's economy shrank by nearly 14% and unemployment rose above 20%"
+   ],
+   "src": "Banco Central de Chile; Edwards & Edwards 1987, Monetarism and Liberalization"
+  },
+  {
+   "id": "cl-maule-2010",
+   "type": "quake",
+   "countries": [
+    "CHL"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.3,
+   "cities": [
+    "コンセプシオン",
+    "Concepción"
+   ],
+   "elsewhere": 0.03,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "2月27日の明け方、大きな揺れで家が壊れた。何か月も、仮設の木の小屋で暮らした。"
+    ],
+    "near": [
+     "2月の明け方の地震で、家の中の物が全部倒れた。家は持ちこたえた。"
+    ],
+    "news": [
+     "2月、中南部で大きな地震と津波があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the early hours of 27 February the great quake wrecked the house. Months were spent in a temporary wooden hut."
+    ],
+    "near": [
+     "The February dawn quake knocked over everything inside the house, but the house held."
+    ],
+    "news": [
+     "In February a massive earthquake and tsunami struck south-central Chile."
+    ]
+   },
+   "stat": [
+    "2010年2月27日のマウレ地震 (M8.8) と津波で525人が亡くなり、約37万戸の家が壊れた",
+    "The Maule earthquake (M8.8) and tsunami of 27 February 2010 killed 525 people and damaged about 370,000 homes"
+   ],
+   "src": "USGS; Ministerio del Interior de Chile"
+  },
+  {
+   "id": "cl-unrest-2019",
+   "type": "unrest",
+   "countries": [
+    "CHL"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "地下鉄の運賃の値上げをきっかけに、大きなデモが何週間も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "A rise in metro fares set off mass protests that went on for weeks."
+    ]
+   },
+   "stat": [
+    "2019年10月25日、サンティアゴでは100万人を超える人が街を歩いた",
+    "On 25 October 2019 more than a million people marched in Santiago"
+   ],
+   "src": "Intendencia de la Región Metropolitana"
+  },
+  {
+   "id": "uy-emergency-1968",
+   "type": "unrest",
+   "countries": [
+    "URY"
+   ],
+   "years": [
+    1968,
+    1968
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "政府が治安の非常措置を出し、労働組合と学生のデモを取り締まった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The government issued emergency security measures and cracked down on unions and student protests."
+    ]
+   },
+   "stat": [
+    "1968年6月に出された治安の非常措置は、その後ほぼ途切れずに続いた",
+    "The emergency security measures issued in June 1968 stayed in force almost without a break"
+   ],
+   "src": "Caetano & Rilla 1987, Breve historia de la dictadura"
+  },
+  {
+   "id": "uy-dictatorship",
+   "type": "unrest",
+   "countries": [
+    "URY"
+   ],
+   "years": [
+    1973,
+    1985
+   ],
+   "hit": 0.02,
+   "age": [
+    16,
+    70
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "夜中に連れていかれ、何年も牢に入れられた。家族が会えるのは、月に一度、ガラス越しだけだった。"
+    ],
+    "news": [
+     "6月、大統領と軍が議会を閉じた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Taken away in the night and held for years. Family visits came once a month, through glass."
+    ],
+    "news": [
+     "In June the president and the army shut down Parliament."
+    ]
+   },
+   "stat": [
+    "1970年代のウルグアイは、人口あたりの政治犯の数が世界で最も多い国の一つで、約6,000人が長く投獄された",
+    "In the 1970s Uruguay had one of the world's highest rates of political imprisonment; about 6,000 people were held for long terms"
+   ],
+   "src": "Servicio Paz y Justicia 1989, Uruguay Nunca Más"
+  },
+  {
+   "id": "uy-bank-crisis-2002",
+   "type": "finance",
+   "countries": [
+    "URY"
+   ],
+   "years": [
+    2002,
+    2002
+   ],
+   "hit": 0.15,
+   "age": [
+    16,
+    64
+   ],
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.35,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "銀行が閉まり、預金が引き出せなくなった。勤め先も人を減らし、職を失った。"
+    ],
+    "news": [
+     "隣のアルゼンチンの危機が広がり、銀行から預金が引き出されて、銀行が何日も閉まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The banks closed and the savings could not be withdrawn. The firm cut staff too, and the job was gone."
+    ],
+    "news": [
+     "Argentina's crisis spilled over, depositors rushed the banks, and the banks shut for days."
+    ]
+   },
+   "stat": [
+    "2002年、ウルグアイの失業率は17%まで上がった",
+    "Uruguay's unemployment rose to 17% in 2002"
+   ],
+   "src": "Instituto Nacional de Estadística; Banco Central del Uruguay"
+  },
+  {
+   "id": "gy-disturbances-1964",
+   "type": "unrest",
+   "countries": [
+    "GUY"
+   ],
+   "years": [
+    1962,
+    1964
+   ],
+   "hit": 0.03,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -12,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "人種の衝突が村に及び、家を焼かれて、同じ民族の多い村へ移った。"
+    ],
+    "news": [
+     "アフリカ系とインド系の住民のあいだで衝突が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The racial clashes reached the village. The house was burned, and the family moved to a village of its own people."
+    ],
+    "news": [
+     "Clashes between Afro-Guyanese and Indo-Guyanese communities went on and on."
+    ]
+   },
+   "stat": [
+    "1964年の人種の衝突で約170人が亡くなり、約1万5,000人が住む村を移った",
+    "In the 1964 racial disturbances about 170 people died and some 15,000 moved from their villages"
+   ],
+   "src": "Wilson Commission 1965; Spinner 1984, A Political and Social History of Guyana"
+  },
+  {
+   "id": "gy-jonestown-1978",
+   "type": "accident",
+   "countries": [
+    "GUY"
+   ],
+   "years": [
+    1978,
+    1978
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月、森の中のジョーンズタウンで、米国の宗教団体の信者たちが集団で亡くなった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In November members of an American religious cult died together at Jonestown in the forest."
+    ]
+   },
+   "stat": [
+    "1978年11月18日、ジョーンズタウンなどで918人が亡くなった",
+    "On 18 November 1978, 918 people died at Jonestown and nearby"
+   ],
+   "src": "US House Committee on Foreign Affairs 1979; FBI"
+  },
+  {
+   "id": "gy-floods-2005",
+   "type": "flood",
+   "countries": [
+    "GUY"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.3,
+   "poor": 1.3,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -10,
+    "wealth": -0.15
+   },
+   "ja": {
+    "hit": [
+     "1月の大雨で、海岸の低い土地が水につかった。家の床の上を、何週間も水が流れていた。"
+    ],
+    "news": [
+     "記録的な大雨で、海岸の町と村が何週間も水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The January rains flooded the low coastal land. Water ran across the floor of the house for weeks."
+    ],
+    "news": [
+     "Record rainfall left the coastal towns and villages under water for weeks."
+    ]
+   },
+   "stat": [
+    "2005年1月の洪水では、人口の約37%にあたる約27万5,000人が被災した",
+    "The floods of January 2005 affected about 275,000 people, some 37% of the population"
+   ],
+   "src": "ECLAC/UNDP 2005, Guyana: Socio-economic assessment of the damages and losses caused by the January-February 2005 flooding"
+  },
+  {
+   "id": "sr-coup-1980",
+   "type": "coup",
+   "countries": [
+    "SUR"
+   ],
+   "years": [
+    1980,
+    1980
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、16人の軍曹が政府を倒し、政権を握った。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February sixteen army sergeants overthrew the government and took power."
+    ]
+   },
+   "stat": [
+    "1980年2月25日、16人の軍曹がクーデターを起こした",
+    "On 25 February 1980, sixteen sergeants staged a coup"
+   ],
+   "src": "Dew 1994, The Trouble in Suriname, 1975-1993"
+  },
+  {
+   "id": "sr-december-murders",
+   "type": "unrest",
+   "countries": [
+    "SUR"
+   ],
+   "years": [
+    1982,
+    1982
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "12月、軍政を批判していた弁護士や記者たちが、軍の砦で殺された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In December lawyers, journalists and others who had criticized the military regime were killed at an army fort."
+    ]
+   },
+   "stat": [
+    "1982年12月8日、軍政は15人の批判者を殺した",
+    "On 8 December 1982 the military regime killed 15 of its critics"
+   ],
+   "src": "Inter-American Commission on Human Rights 1983, Report on Suriname"
+  },
+  {
+   "id": "sr-interior-war",
+   "type": "war",
+   "countries": [
+    "SUR"
+   ],
+   "years": [
+    1986,
+    1992
+   ],
+   "hit": 0.03,
+   "urban": 0.2,
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "森の村が戦いに巻き込まれ、川を渡ってフランス領ギアナの難民キャンプへ逃げた。"
+    ],
+    "news": [
+     "内陸の森で、軍とマルーンのゲリラの戦いが始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The forest village was caught up in the fighting, and the family fled across the river to a refugee camp in French Guiana."
+    ],
+    "news": [
+     "War broke out in the interior forests between the army and Maroon guerrillas."
+    ]
+   },
+   "stat": [
+    "1986〜92年の内戦で、約1万人が隣のフランス領ギアナへ逃れた",
+    "During the interior war of 1986-92, about 10,000 people fled to neighboring French Guiana"
+   ],
+   "src": "Inter-American Court of Human Rights, Moiwana Village v. Suriname (2005)"
+  }
+ ]
+}

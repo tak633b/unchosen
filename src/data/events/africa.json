@@ -1,0 +1,6605 @@
+{
+ "events": [
+  {
+   "id": "congo-free-state",
+   "type": "occupation",
+   "countries": [
+    "COD"
+   ],
+   "years": [
+    1900,
+    1908
+   ],
+   "hit": 0.2,
+   "kill": 0.03,
+   "who": "all",
+   "cause": "飢饉",
+   "urban": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -20,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "村にゴムの割り当てが課された。決まった量を集められない家の者は、見張りの兵に打たれ、人質に取られた。"
+    ],
+    "news": [
+     "ゴムを集めるための強制労働が、コンゴの村々を荒らしていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village was given a rubber quota. Households that fell short were beaten by the sentries and had people taken hostage."
+    ],
+    "news": [
+     "Forced labor for rubber was laying waste to the villages of the Congo."
+    ]
+   },
+   "stat": [
+    "コンゴ自由国の時代 (1885〜1908年) に人口は大きく減ったとされ、推計は数百万人から1,000万人まで幅がある",
+    "The population of the Congo Free State (1885-1908) is thought to have fallen sharply; estimates of the loss range from several million to ten million"
+   ],
+   "src": "Hochschild 1998, King Leopold's Ghost; Vansina 2010, Being Colonized",
+   "rough": true
+  },
+  {
+   "id": "boer-war-camps",
+   "type": "war",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    1900,
+    1902
+   ],
+   "hit": 0.1,
+   "kill": 0.008,
+   "who": "frail",
+   "cause": "流行病",
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "焦土作戦で農場が焼かれ、家の者は収容所に送られた。テントの中で、はしかと赤痢が広がった。"
+    ],
+    "news": [
+     "南アフリカ戦争が続き、焼かれた農場の女性と子どもが収容所に集められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The farm was burned under the scorched-earth policy and the household was sent to a concentration camp. Measles and dysentery spread through the tents."
+    ],
+    "news": [
+     "The South African War dragged on, and women and children from burned farms were herded into camps."
+    ]
+   },
+   "stat": [
+    "南アフリカ戦争の収容所で、ボーア人の女性と子ども約2万6,000人、黒人の少なくとも1万4,000人が亡くなった",
+    "In the camps of the South African War about 26,000 Boer women and children and at least 14,000 Black Africans died"
+   ],
+   "src": "Pakenham 1979, The Boer War; South African History Online",
+   "rough": true
+  },
+  {
+   "id": "herero-nama",
+   "type": "genocide",
+   "countries": [
+    "NAM"
+   ],
+   "years": [
+    1904,
+    1908
+   ],
+   "hit": 0.3,
+   "kill": 0.15,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.9
+   },
+   "ja": {
+    "hit": [
+     "ドイツの軍に追われ、家畜を置いて砂漠へ逃げた。水場はふさがれていた。",
+     "捕らえられて収容所に入れられ、港で石を運ばされた。"
+    ],
+    "news": [
+     "ドイツ領南西アフリカで、ヘレロとナマの人々への殲滅の戦いが行われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Driven out by the German army, fled into the desert leaving the cattle behind. The waterholes had been sealed.",
+     "Was captured and held in a camp, made to haul stones at the harbor."
+    ],
+    "news": [
+     "In German South West Africa a war of annihilation was waged against the Herero and Nama peoples."
+    ]
+   },
+   "stat": [
+    "ヘレロ人は約8万人のうち6万5,000人、ナマ人は約2万人のうち1万人が亡くなったとされる (国連ウィテカー報告 1985)",
+    "Of about 80,000 Herero some 65,000 died, and of about 20,000 Nama some 10,000 (UN Whitaker Report, 1985)"
+   ],
+   "src": "UN Whitaker Report 1985; Olusoga & Erichsen 2010, The Kaiser's Holocaust",
+   "rough": true
+  },
+  {
+   "id": "maji-maji",
+   "type": "war",
+   "countries": [
+    "TZA"
+   ],
+   "years": [
+    1905,
+    1907
+   ],
+   "hit": 0.1,
+   "kill": 0.02,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "ドイツの軍が反乱の地方の畑と穀物倉を焼き払った。森の根を掘って食べつないだ。"
+    ],
+    "news": [
+     "南部でマジマジの反乱が起き、ドイツの軍は焦土作戦で鎮めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The German army burned the fields and granaries of the rebel districts. Roots dug from the bush were all there was to eat."
+    ],
+    "news": [
+     "The Maji Maji rising broke out in the south, and the German army put it down by scorching the land."
+    ]
+   },
+   "stat": [
+    "マジマジの反乱と、そのあとの飢えで、少なくとも7万5,000人が亡くなった",
+    "At least 75,000 people died in the Maji Maji rising and the famine that followed"
+   ],
+   "src": "Iliffe 1979, A Modern History of Tanganyika",
+   "rough": true
+  },
+  {
+   "id": "sleeping-sickness-uganda",
+   "type": "epidemic",
+   "countries": [
+    "UGA"
+   ],
+   "years": [
+    1900,
+    1905
+   ],
+   "hit": 0.1,
+   "kill": 0.05,
+   "who": "all",
+   "cause": "流行病",
+   "severity": 4,
+   "effect": {
+    "health": -10,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "眠り病にかかった。昼も夜も眠気が抜けず、湖の岸の村は人が減っていった。"
+    ],
+    "news": [
+     "ビクトリア湖の岸で眠り病が広がり、村が一つずつ消えていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Caught sleeping sickness. The drowsiness would not lift, day or night, and the lakeshore villages emptied."
+    ],
+    "news": [
+     "Sleeping sickness spread along the shores of Lake Victoria, and villages vanished one by one."
+    ]
+   },
+   "stat": [
+    "1900〜05年の眠り病の流行で、ウガンダでは25万人前後が亡くなったとされる",
+    "The 1900-05 sleeping sickness epidemic killed some 250,000 people in Uganda"
+   ],
+   "src": "Hoppe 2003, Lords of the Fly; WHO",
+   "rough": true
+  },
+  {
+   "id": "ww1-east-africa",
+   "type": "war",
+   "countries": [
+    "TZA",
+    "KEN",
+    "MOZ",
+    "MWI",
+    "ZMB"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.25,
+   "kill": 0.008,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    16,
+    45
+   ],
+   "sex": "M",
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "荷運びの人夫に駆り出され、兵のあとについて何百キロも歩いた。熱病と飢えで倒れていく者を、道ばたに置いていくしかなかった。"
+    ],
+    "news": [
+     "東アフリカでも世界の戦争が始まり、村の男たちが荷運びに連れて行かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was pressed into the carrier corps and walked hundreds of miles behind the soldiers. Those who fell to fever and hunger had to be left by the road."
+    ],
+    "news": [
+     "The world war reached East Africa, and the village men were taken away as carriers."
+    ]
+   },
+   "stat": [
+    "東アフリカの戦いでは、イギリス側の荷運びの人夫だけで約10万人が亡くなったとされる",
+    "In the East African campaign about 100,000 carriers are thought to have died on the British side alone"
+   ],
+   "src": "Hodges 1986, The Carrier Corps; Paice 2007, Tip and Run",
+   "rough": true
+  },
+  {
+   "id": "ww1-tirailleurs",
+   "type": "war",
+   "countries": [
+    "SEN",
+    "MLI",
+    "GIN",
+    "CIV",
+    "BFA",
+    "BEN",
+    "NER",
+    "MRT"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.15,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    35
+   ],
+   "sex": "M",
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "徴兵の割り当てで「セネガル狙撃兵」に取られ、船でフランスの戦場へ送られた。"
+    ],
+    "news": [
+     "村ごとに兵の割り当てが来て、若い男たちがフランスの戦争へ連れて行かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was taken under the recruitment quota into the tirailleurs sénégalais and shipped to the battlefields of France."
+    ],
+    "news": [
+     "Each village was given a quota of soldiers, and young men were taken off to France's war."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で、フランス領西アフリカから約17万人が兵として動員され、約3万人が戻らなかった",
+    "In the First World War about 170,000 soldiers were raised in French West Africa, and some 30,000 never returned"
+   ],
+   "src": "Lunn 1999, Memoirs of the Maelstrom; Echenberg 1991, Colonial Conscripts",
+   "rough": true
+  },
+  {
+   "id": "ww1-maghreb",
+   "type": "war",
+   "countries": [
+    "DZA",
+    "TUN",
+    "MAR"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.12,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    35
+   ],
+   "sex": "M",
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "フランスの軍に召集され、西部戦線の塹壕に送られた。"
+    ],
+    "news": [
+     "フランスの戦争に、北アフリカからも多くの兵と働き手が送られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up into the French army and sent to the trenches of the Western Front."
+    ],
+    "news": [
+     "Soldiers and laborers were shipped from North Africa to France's war."
+    ]
+   },
+   "stat": [
+    "第一次世界大戦で、アルジェリアからは約17万人が兵として戦い、約2万5,000人が亡くなった",
+    "In the First World War about 170,000 Algerians served as soldiers, and some 25,000 died"
+   ],
+   "src": "Meynier 1981, L'Algérie révélée; Ageron 1968",
+   "rough": true
+  },
+  {
+   "id": "rif-war",
+   "type": "war",
+   "countries": [
+    "MAR"
+   ],
+   "years": [
+    1921,
+    1926
+   ],
+   "hit": 0.05,
+   "kill": 0.003,
+   "who": "men",
+   "cause": "戦争",
+   "urban": 0.3,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "リーフの山の村が飛行機から爆撃された。毒ガスの爆弾も落とされたと、のちに知った。"
+    ],
+    "news": [
+     "北の山地でリーフの戦争が続き、スペインとフランスの軍が村々を攻めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The mountain villages of the Rif were bombed from the air. Later came word that gas bombs had been dropped too."
+    ],
+    "news": [
+     "The Rif War raged in the northern mountains as Spanish and French armies attacked the villages."
+    ]
+   },
+   "stat": [
+    "1921年のアンワールの戦いだけで、スペイン軍の兵約1万人が亡くなった",
+    "At the battle of Annual in 1921 alone, about 10,000 Spanish soldiers were killed"
+   ],
+   "src": "Balfour 2002, Deadly Embrace; Pennell 1986",
+   "rough": true
+  },
+  {
+   "id": "congo-ocean-railway",
+   "type": "accident",
+   "countries": [
+    "COG",
+    "GAB",
+    "CAF",
+    "TCD"
+   ],
+   "years": [
+    1921,
+    1934
+   ],
+   "hit": 0.1,
+   "kill": 0.004,
+   "who": "men",
+   "cause": "事故",
+   "age": [
+    16,
+    45
+   ],
+   "sex": "M",
+   "severity": 3,
+   "effect": {
+    "health": -10,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "鉄道の工事に駆り出され、遠い森の現場へ連れて行かれた。毎日、誰かが熱と事故で倒れた。"
+    ],
+    "news": [
+     "コンゴ・オセアン鉄道の工事に、各地から働き手が集められていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was pressed into work on the railway and marched to a far-off camp in the forest. Every day someone fell to fever or an accident."
+    ],
+    "news": [
+     "Workers were being rounded up from every district to build the Congo-Ocean railway."
+    ]
+   },
+   "stat": [
+    "コンゴ・オセアン鉄道 (1921〜34年) の工事では、少なくとも1万7,000人の労働者が亡くなったとされる",
+    "At least 17,000 workers are thought to have died building the Congo-Ocean railway (1921-34)"
+   ],
+   "src": "Sautter 1967, Cahiers d'Études africaines 7:219; Coquery-Vidrovitch 1972",
+   "rough": true
+  },
+  {
+   "id": "libya-camps",
+   "type": "occupation",
+   "countries": [
+    "LBY"
+   ],
+   "years": [
+    1929,
+    1933
+   ],
+   "cities": [
+    "ベンガジ",
+    "Benghazi"
+   ],
+   "hit": 0.3,
+   "elsewhere": 0.08,
+   "kill": 0.03,
+   "who": "frail",
+   "cause": "飢饉",
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "イタリアの軍に家畜ごと追われ、砂漠の収容所まで歩かされた。鉄条網の中で、飢えと病気が広がった。"
+    ],
+    "news": [
+     "キレナイカの人々が、イタリアの軍によって砂漠の収容所に移された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Driven out with the herds by the Italian army and marched to a camp in the desert. Hunger and sickness spread behind the wire."
+    ],
+    "news": [
+     "The people of Cyrenaica were moved by the Italian army into desert camps."
+    ]
+   },
+   "stat": [
+    "1930〜33年、キレナイカの約10万人が収容所に入れられ、少なくとも4万人が亡くなったとされる",
+    "In 1930-33 some 100,000 people of Cyrenaica were held in camps, and at least 40,000 are thought to have died"
+   ],
+   "src": "Ahmida 2021, Genocide in Libya; Del Boca 1988",
+   "rough": true
+  },
+  {
+   "id": "italo-ethiopian-war",
+   "type": "war",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    1935,
+    1941
+   ],
+   "hit": 0.15,
+   "kill": 0.02,
+   "who": "men",
+   "cause": "戦争",
+   "urban": 0.6,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "イタリアの飛行機が村の上を飛び、毒ガスを撒いた。皮膚の焼けた人々が、教会の庭に寝かされた。",
+     "占領の軍に家を焼かれ、山へ逃げた。"
+    ],
+    "news": [
+     "イタリアがエチオピアに攻めこみ、首都を占領した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Italian planes flew over the village spraying poison gas. People with burned skin were laid out in the churchyard.",
+     "The occupying army burned the house, and the family fled to the mountains."
+    ],
+    "news": [
+     "Italy invaded Ethiopia and occupied the capital."
+    ]
+   },
+   "stat": [
+    "イタリアとの戦いでのエチオピア側の兵の死者は、約27万5,000人とされる",
+    "Ethiopian military deaths in the war with Italy are put at about 275,000"
+   ],
+   "src": "Sbacchi 1997, Legacy of Bitterness; Ethiopian government memorandum 1946",
+   "rough": true
+  },
+  {
+   "id": "yekatit-12",
+   "type": "terror",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    1937,
+    1937
+   ],
+   "cities": [
+    "アディスアベバ",
+    "Addis Ababa"
+   ],
+   "hit": 0.08,
+   "elsewhere": 0,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -25,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "2月、総督の暗殺未遂のあと、三日のあいだ町で殺りくと放火が続いた。家を焼かれ、隠れて夜を明かした。"
+    ],
+    "news": [
+     "2月、アディスアベバで占領軍による三日間の殺りくがあった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In February, after the attempt on the viceroy's life, three days of killing and burning swept the city. The house was burned, and the nights were spent in hiding."
+    ],
+    "news": [
+     "In February the occupying forces carried out three days of massacres in Addis Ababa."
+    ]
+   },
+   "stat": [
+    "1937年2月のアディスアベバの虐殺の死者は、約1万9,200人と推計される",
+    "The February 1937 massacre in Addis Ababa killed an estimated 19,200 people"
+   ],
+   "src": "Campbell 2017, The Addis Ababa Massacre",
+   "rough": true
+  },
+  {
+   "id": "cpv-famine-1941",
+   "type": "famine",
+   "countries": [
+    "CPV"
+   ],
+   "years": [
+    1941,
+    1943
+   ],
+   "hit": 0.6,
+   "kill": 0.1,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.6,
+   "poor": 1.5,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨が三年降らず、島の畑は干上がった。とうもろこしの粥も、日に一度になった。"
+    ],
+    "news": [
+     "日照りで島々が飢えに見舞われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "No rain fell for three years and the island's fields dried up. Even the maize gruel came only once a day."
+    ],
+    "news": [
+     "Drought brought famine to the islands."
+    ]
+   },
+   "stat": [
+    "1941〜43年の飢饉で、カーボベルデでは約2万5,000人が亡くなった",
+    "The 1941-43 famine killed about 25,000 people in Cape Verde"
+   ],
+   "src": "Carreira 1982, The People of the Cape Verde Islands",
+   "rough": true
+  },
+  {
+   "id": "cpv-famine-1947",
+   "type": "famine",
+   "countries": [
+    "CPV"
+   ],
+   "years": [
+    1946,
+    1948
+   ],
+   "hit": 0.6,
+   "kill": 0.1,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.6,
+   "poor": 1.5,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "また雨が来なかった。南の島サントメの農園に働きに出る契約に、名前を書く人の列ができた。"
+    ],
+    "news": [
+     "ふたたび飢饉が島々を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Again the rain did not come. Queues formed to sign contracts for plantation work on São Tomé."
+    ],
+    "news": [
+     "Famine struck the islands again."
+    ]
+   },
+   "stat": [
+    "1946〜48年の飢饉で、カーボベルデでは約3万人が亡くなった",
+    "The 1946-48 famine killed about 30,000 people in Cape Verde"
+   ],
+   "src": "Carreira 1982, The People of the Cape Verde Islands",
+   "rough": true
+  },
+  {
+   "id": "ww2-libya",
+   "type": "war",
+   "countries": [
+    "LBY"
+   ],
+   "years": [
+    1940,
+    1943
+   ],
+   "cities": [
+    "ベンガジ",
+    "Benghazi",
+    "トリポリ",
+    "Tripoli"
+   ],
+   "hit": 0.25,
+   "elsewhere": 0.03,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "町は爆撃され、支配する軍が何度も入れかわった。地下の倉庫で夜を過ごした。"
+    ],
+    "news": [
+     "北アフリカの砂漠で、イギリスと枢軸国の軍が戦っていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town was bombed and changed hands again and again. Nights were spent in a cellar."
+    ],
+    "news": [
+     "British and Axis armies were fighting across the North African desert."
+    ]
+   },
+   "stat": [
+    "北アフリカの戦いで、ベンガジは5回、支配する側が入れかわった",
+    "During the North African campaign Benghazi changed hands five times"
+   ],
+   "src": "Playfair, The Mediterranean and Middle East (UK official history)"
+  },
+  {
+   "id": "ww2-tunisia",
+   "type": "war",
+   "countries": [
+    "TUN"
+   ],
+   "years": [
+    1942,
+    1943
+   ],
+   "hit": 0.08,
+   "urban": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "戦車と大砲が町の外に並び、爆撃で家が崩れた。"
+    ],
+    "news": [
+     "チュニジアで連合国と枢軸国の軍がぶつかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Tanks and guns lined up outside the town, and the house collapsed under the bombing."
+    ],
+    "news": [
+     "Allied and Axis armies clashed in Tunisia."
+    ]
+   },
+   "stat": [
+    "1943年5月、チュニジアで枢軸国の兵約25万人が降伏した",
+    "In May 1943 about 250,000 Axis soldiers surrendered in Tunisia"
+   ],
+   "src": "Atkinson 2002, An Army at Dawn"
+  },
+  {
+   "id": "ww2-egypt",
+   "type": "war",
+   "countries": [
+    "EGY"
+   ],
+   "years": [
+    1940,
+    1942
+   ],
+   "cities": [
+    "アレクサンドリア",
+    "Alexandria"
+   ],
+   "hit": 0.1,
+   "elsewhere": 0.001,
+   "severity": 3,
+   "effect": {
+    "health": -2,
+    "happy": -10
+   },
+   "ja": {
+    "hit": [
+     "空襲のサイレンが鳴り、防空壕へ走った。"
+    ],
+    "news": [
+     "西の砂漠のエル・アラメインで、ドイツ・イタリアの軍が止められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The air-raid sirens sounded, and everyone ran for the shelters."
+    ],
+    "news": [
+     "At El Alamein in the western desert, the German and Italian armies were stopped."
+    ]
+   },
+   "stat": [
+    "1942年10〜11月の第二次エル・アラメインの戦いには、両軍あわせて約30万人の兵が加わった",
+    "About 300,000 soldiers took part on both sides in the second battle of El Alamein in October-November 1942"
+   ],
+   "src": "Playfair, The Mediterranean and Middle East (UK official history)"
+  },
+  {
+   "id": "setif-1945",
+   "type": "terror",
+   "countries": [
+    "DZA"
+   ],
+   "years": [
+    1945,
+    1945
+   ],
+   "cities": [
+    "コンスタンティーヌ",
+    "Constantine"
+   ],
+   "hit": 0.02,
+   "elsewhere": 0.003,
+   "kill": 0.001,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "5月、戦勝の行進のあとに暴動が起き、軍と入植者の民兵が村々を襲った。山に隠れて何日も過ごした。"
+    ],
+    "news": [
+     "5月、セティフとゲルマで、独立を求めた行進のあとに激しい弾圧があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In May a riot broke out after the victory parade, and the army and settler militias fell on the villages. Days were spent hiding in the hills."
+    ],
+    "news": [
+     "In May, at Sétif and Guelma, a march for independence was followed by brutal repression."
+    ]
+   },
+   "stat": [
+    "1945年5月のセティフとゲルマの弾圧の死者は、数千人から4万5,000人まで推計が分かれる",
+    "Deaths in the May 1945 repression at Sétif and Guelma are estimated at anywhere from several thousand to 45,000"
+   ],
+   "src": "Planche 2006, Sétif 1945; Horne 1977, A Savage War of Peace",
+   "rough": true
+  },
+  {
+   "id": "madagascar-1947",
+   "type": "war",
+   "countries": [
+    "MDG"
+   ],
+   "years": [
+    1947,
+    1948
+   ],
+   "hit": 0.1,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "蜂起のあと、村は軍に焼かれた。森に逃げ、木の根と野の実で何か月も食べつないだ。"
+    ],
+    "news": [
+     "東部で独立を求める蜂起が起き、フランスの軍が厳しく鎮圧した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the uprising the army burned the village. Fled into the forest and lived for months on roots and wild fruit."
+    ],
+    "news": [
+     "An uprising for independence broke out in the east, and the French army crushed it."
+    ]
+   },
+   "stat": [
+    "1947年の蜂起とその鎮圧の死者は、1万1,000人から9万人近くまで推計が分かれる",
+    "Deaths in the 1947 uprising and its repression are estimated at between 11,000 and almost 90,000"
+   ],
+   "src": "Tronchon 1974, L'insurrection malgache de 1947; Cole 2001",
+   "rough": true
+  },
+  {
+   "id": "malawi-famine-1949",
+   "type": "famine",
+   "countries": [
+    "MWI"
+   ],
+   "years": [
+    1949,
+    1950
+   ],
+   "hit": 0.3,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨が途中で止み、とうもろこしが実らなかった。町まで歩いて、配給の列に並んだ。"
+    ],
+    "news": [
+     "ニヤサランドの南部が飢饉に見舞われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains stopped halfway and the maize never ripened. Walked to town to stand in the ration queue."
+    ],
+    "news": [
+     "Famine struck southern Nyasaland."
+    ]
+   },
+   "stat": [
+    "1949年のニヤサランドの飢饉の死者は、政府の記録では100〜200人だったが、実際はもっと多かったとされる",
+    "Official records put deaths in the 1949 Nyasaland famine at 100-200, though the true number was likely higher"
+   ],
+   "src": "Vaughan 1987, The Story of an African Famine",
+   "rough": true
+  },
+  {
+   "id": "mau-mau",
+   "type": "war",
+   "countries": [
+    "KEN"
+   ],
+   "years": [
+    1952,
+    1960
+   ],
+   "cities": [
+    "ナイロビ",
+    "Nairobi",
+    "ナクル",
+    "Nakuru"
+   ],
+   "hit": 0.15,
+   "elsewhere": 0.1,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "非常事態のさなか、村ごと有刺鉄線で囲まれた「新しい村」に移された。",
+     "夜明けに家を囲まれ、尋問のために連れて行かれた。何か月も収容所から出られなかった。"
+    ],
+    "news": [
+     "中央高地でマウマウの戦いが続き、植民地の政府は非常事態を宣言した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "During the Emergency the whole village was moved into a new village ringed with barbed wire.",
+     "At dawn the house was surrounded and the men taken for questioning. For months there was no getting out of the camp."
+    ],
+    "news": [
+     "The Mau Mau war went on in the central highlands, and the colonial government declared a state of emergency."
+    ]
+   },
+   "stat": [
+    "非常事態のあいだ、約8万人が裁判なしで収容所に入れられた (イギリスの公式の数字)",
+    "During the Emergency about 80,000 people were detained without trial (official British figure)"
+   ],
+   "src": "Anderson 2005, Histories of the Hanged; Elkins 2005, Britain's Gulag",
+   "rough": true
+  },
+  {
+   "id": "algerian-war",
+   "type": "war",
+   "countries": [
+    "DZA"
+   ],
+   "years": [
+    1954,
+    1962
+   ],
+   "hit": 0.3,
+   "kill": 0.03,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "村が「禁止区域」にされ、軍のトラックで鉄条網に囲まれた再編成キャンプに移された。",
+     "夜中に兵が来て家を探し、家の男たちを連れて行った。何日も戻らなかった。"
+    ],
+    "news": [
+     "独立をめぐる戦争が、アルジェリアの町と山を覆っていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village was declared a forbidden zone, and army trucks carried everyone to a regroupment camp behind barbed wire.",
+     "Soldiers came in the night to search the house and took the men away. They did not come back for days."
+    ],
+    "news": [
+     "The war of independence engulfed the towns and mountains of Algeria."
+    ]
+   },
+   "stat": [
+    "独立戦争のあいだ、200万人を超える農村の人が再編成キャンプに移された",
+    "During the war of independence more than two million rural people were moved into regroupment camps"
+   ],
+   "src": "Cornaton 1967, Les regroupements de la décolonisation en Algérie; Horne 1977",
+   "rough": true
+  },
+  {
+   "id": "suez-1956",
+   "type": "war",
+   "countries": [
+    "EGY"
+   ],
+   "years": [
+    1956,
+    1956
+   ],
+   "cities": [
+    "ポートサイド",
+    "Port Said"
+   ],
+   "hit": 0.1,
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -6,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "11月、町に爆弾が落ち、港のそばの家並みが燃えた。"
+    ],
+    "news": [
+     "スエズ運河の国有化のあと、イギリス・フランス・イスラエルの軍が攻めこんだ。ポートサイドが爆撃された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In November bombs fell on the town, and the houses near the harbor burned."
+    ],
+    "news": [
+     "After the Suez Canal was nationalized, British, French and Israeli forces attacked. Port Said was bombed."
+    ]
+   },
+   "stat": [
+    "1956年のスエズ戦争で、エジプト側では約1,650人が亡くなった",
+    "About 1,650 Egyptians were killed in the 1956 Suez war"
+   ],
+   "src": "Varble 2003, The Suez Crisis 1956",
+   "rough": true
+  },
+  {
+   "id": "cmr-independence-war",
+   "type": "war",
+   "countries": [
+    "CMR"
+   ],
+   "years": [
+    1955,
+    1964
+   ],
+   "hit": 0.05,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "反乱の地方とされ、村が焼かれた。軍の決めた集落に移された。"
+    ],
+    "news": [
+     "独立をめぐる戦いが、西部とサナガの森で続いていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The district was branded rebel country and the village was burned. Everyone was moved into a settlement the army had laid out."
+    ],
+    "news": [
+     "The fighting over independence went on in the west and the Sanaga forests."
+    ]
+   },
+   "stat": [
+    "1955〜64年のカメルーンの独立をめぐる戦いで、数万人が亡くなったとされる",
+    "Tens of thousands are thought to have died in Cameroon's 1955-64 war over independence"
+   ],
+   "src": "Deltombe, Domergue & Tatsitsa 2011, Kamerun!",
+   "rough": true
+  },
+  {
+   "id": "rwanda-1959",
+   "type": "unrest",
+   "countries": [
+    "RWA"
+   ],
+   "years": [
+    1959,
+    1963
+   ],
+   "hit": 0.05,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "家に火をつけられ、国境の向こうの難民のキャンプへ逃れた。"
+    ],
+    "news": [
+     "ルワンダで暴力が広がり、多くのツチの人々が国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The house was set on fire, and the family fled across the border to a refugee camp."
+    ],
+    "news": [
+     "Violence spread in Rwanda, and many Tutsi fled the country."
+    ]
+   },
+   "stat": [
+    "1959〜63年に、ルワンダから約13万人のツチの人々が国外へ逃れた (UNHCR)",
+    "Between 1959 and 1963 about 130,000 Tutsi fled Rwanda (UNHCR)"
+   ],
+   "src": "UNHCR 2000, The State of the World's Refugees, ch.10",
+   "rough": true
+  },
+  {
+   "id": "agadir-1960",
+   "type": "quake",
+   "countries": [
+    "MAR"
+   ],
+   "years": [
+    1960,
+    1960
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月の夜、アガディールの町が地震で崩れ落ちた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On a February night the town of Agadir collapsed in an earthquake."
+    ]
+   },
+   "stat": [
+    "1960年2月のアガディール地震で、町の人口の3分の1にあたる約1万2,000人が亡くなった",
+    "The February 1960 Agadir earthquake killed about 12,000 people, a third of the town's population"
+   ],
+   "src": "USGS; Benhallam 1961"
+  },
+  {
+   "id": "cyclone-carol",
+   "type": "cyclone",
+   "countries": [
+    "MUS"
+   ],
+   "years": [
+    1960,
+    1960
+   ],
+   "hit": 0.1,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "サイクロン・キャロルで屋根が飛び、家がつぶれた。しばらく学校の教室で寝起きした。"
+    ],
+    "news": [
+     "サイクロン・キャロルが島を直撃した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Cyclone Carol tore off the roof and flattened the house. For a while home was a school classroom."
+    ],
+    "news": [
+     "Cyclone Carol struck the island head-on."
+    ]
+   },
+   "stat": [
+    "1960年2月のサイクロン・キャロルで、モーリシャスでは約7万人が家を失った",
+    "Cyclone Carol in February 1960 left about 70,000 people in Mauritius homeless"
+   ],
+   "src": "Mauritius Meteorological Services",
+   "rough": true
+  },
+  {
+   "id": "sharpeville",
+   "type": "terror",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    1960,
+    1960
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "3月、シャープビルで、通行証に反対して集まった人々に警官が発砲した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In March, at Sharpeville, police opened fire on a crowd protesting the pass laws."
+    ]
+   },
+   "stat": [
+    "1960年3月21日のシャープビル事件で、69人が殺された",
+    "69 people were killed at Sharpeville on 21 March 1960"
+   ],
+   "src": "South African Truth and Reconciliation Commission Report 1998"
+  },
+  {
+   "id": "zaf-forced-removals",
+   "type": "occupation",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    1960,
+    1983
+   ],
+   "hit": 0.12,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -20,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "住んでいた地区が白人の地域に指定され、トラックで遠い黒人居住区へ移された。家はブルドーザーで壊された。",
+     "家族の土地から、何もない「ホームランド」の土地へ移された。"
+    ],
+    "news": [
+     "人種で住む場所を分ける法律のもと、各地で強制的な立ち退きが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The neighborhood was declared a white area, and trucks carried everyone to a distant township. Bulldozers knocked down the house.",
+     "Was moved off the family land to a bare plot in a homeland."
+    ],
+    "news": [
+     "Under the laws dividing where people could live by race, forced removals went on across the country."
+    ]
+   },
+   "stat": [
+    "1960〜83年に、約350万人が住む土地から強制的に移された",
+    "Between 1960 and 1983 about 3.5 million people were forcibly removed from where they lived"
+   ],
+   "src": "Surplus People Project 1983, Forced Removals in South Africa"
+  },
+  {
+   "id": "congo-crisis",
+   "type": "war",
+   "countries": [
+    "COD"
+   ],
+   "years": [
+    1960,
+    1965
+   ],
+   "hit": 0.05,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "独立のあとの混乱で兵と民兵が町に入り、家を捨てて逃げた。"
+    ],
+    "news": [
+     "独立のあと、コンゴは内戦と分離の動きに揺れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the chaos after independence soldiers and militias entered the town, and the family abandoned the house and fled."
+    ],
+    "news": [
+     "After independence the Congo was torn by civil war and secession."
+    ]
+   },
+   "stat": [
+    "1960〜65年のコンゴ動乱の死者は、約10万人とされる",
+    "The Congo Crisis of 1960-65 is thought to have killed about 100,000 people"
+   ],
+   "src": "Gondola 2002, The History of Congo",
+   "rough": true
+  },
+  {
+   "id": "portugal-colonial-wars",
+   "type": "war",
+   "countries": [
+    "AGO",
+    "MOZ",
+    "GNB"
+   ],
+   "years": [
+    1961,
+    1974
+   ],
+   "hit": 0.08,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "村が戦場になり、軍の作った「戦略村」に移された。",
+     "ポルトガルの軍に召集され、北の森の戦線に送られた。"
+    ],
+    "news": [
+     "ポルトガルからの独立を求める戦争が続いていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village became a battleground, and everyone was moved into one of the army's strategic hamlets.",
+     "Was called up by the Portuguese army and sent to the front in the northern forests."
+    ],
+    "news": [
+     "The wars for independence from Portugal ground on."
+    ]
+   },
+   "stat": [
+    "1961〜74年のポルトガルの植民地戦争で、アンゴラ・モザンビーク・ギニアビサウの人々の死者は数万人にのぼるとされる",
+    "The 1961-74 Portuguese colonial wars killed tens of thousands of Angolans, Mozambicans and Guineans"
+   ],
+   "src": "MacQueen 1997, The Decolonization of Portuguese Africa",
+   "rough": true
+  },
+  {
+   "id": "zanzibar-1964",
+   "type": "revolution",
+   "countries": [
+    "TZA"
+   ],
+   "years": [
+    1964,
+    1964
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、ザンジバルで革命が起き、スルタンの政府が倒された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January a revolution in Zanzibar overthrew the Sultan's government."
+    ]
+   },
+   "stat": [
+    "1964年のザンジバル革命では、数千人が殺されたとされる",
+    "Several thousand people are thought to have been killed in the 1964 Zanzibar revolution"
+   ],
+   "src": "Sheriff & Ferguson 1991, Zanzibar under Colonial Rule",
+   "rough": true
+  },
+  {
+   "id": "biafra",
+   "type": "war",
+   "countries": [
+    "NGA"
+   ],
+   "years": [
+    1967,
+    1970
+   ],
+   "cities": [
+    "ポートハーコート",
+    "Port Harcourt"
+   ],
+   "hit": 0.5,
+   "elsewhere": 0.08,
+   "kill": 0.01,
+   "who": "frail",
+   "cause": "飢饉",
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.7
+   },
+   "ja": {
+    "hit": [
+     "戦争で町を追われ、森の中を何日も歩いた。封鎖で食べ物が届かず、子どもたちのお腹がふくらんでいった。",
+     "包囲された町で、空輸される救援の食べ物を待った。"
+    ],
+    "news": [
+     "東部がビアフラとして独立を宣言し、内戦になった。封鎖された東部で飢えが広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war drove everyone out of the town and through the forest for days. The blockade kept food out, and the children's bellies swelled.",
+     "In the besieged town, waited for the relief food flown in at night."
+    ],
+    "news": [
+     "The east declared independence as Biafra and civil war followed. Famine spread through the blockaded east."
+    ]
+   },
+   "stat": [
+    "ビアフラ戦争の死者は50万人から200万人と推計され、その多くは飢えによるものだった",
+    "Deaths in the Biafran war are estimated at between 500,000 and two million, most of them from starvation"
+   ],
+   "src": "Heerten & Moses 2014, J. Genocide Research 16:169; ICRC",
+   "rough": true
+  },
+  {
+   "id": "egypt-1967",
+   "type": "war",
+   "countries": [
+    "EGY"
+   ],
+   "years": [
+    1967,
+    1970
+   ],
+   "cities": [
+    "ポートサイド",
+    "Port Said"
+   ],
+   "hit": 0.5,
+   "elsewhere": 0.01,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "戦争のあと、運河沿いの町から全員が避難させられた。何年も、カイロの親戚の家と仮の住まいで暮らした。"
+    ],
+    "news": [
+     "6月の戦争でシナイ半島を失い、スエズ運河をはさんで撃ち合いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the war the canal towns were evacuated completely. For years home was a relative's place in Cairo and temporary lodgings."
+    ],
+    "news": [
+     "The June war cost Egypt the Sinai, and shelling across the Suez Canal went on for years."
+    ]
+   },
+   "stat": [
+    "1967年の戦争のあと、スエズ運河沿いの町から約100万人が避難させられた",
+    "After the 1967 war about one million people were evacuated from the towns along the Suez Canal"
+   ],
+   "src": "Hopwood 1985, Egypt: Politics and Society",
+   "rough": true
+  },
+  {
+   "id": "tunisia-floods-1969",
+   "type": "flood",
+   "countries": [
+    "TUN"
+   ],
+   "years": [
+    1969,
+    1969
+   ],
+   "hit": 0.06,
+   "urban": 0.6,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "秋の長雨で川があふれ、日干しれんがの家が溶けるように崩れた。"
+    ],
+    "news": [
+     "秋の大雨で、チュニジアの中部と南部が水につかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The long autumn rains burst the rivers, and the mud-brick house melted away."
+    ],
+    "news": [
+     "Heavy autumn rains flooded central and southern Tunisia."
+    ]
+   },
+   "stat": [
+    "1969年秋の洪水で、チュニジアでは542人が亡くなり、約30万人が家を失った",
+    "The autumn 1969 floods killed 542 people in Tunisia and left about 300,000 homeless"
+   ],
+   "src": "EM-DAT; Poncet 1970, Annales de géographie",
+   "rough": true
+  },
+  {
+   "id": "sahel-drought-1970s",
+   "type": "drought",
+   "countries": [
+    "MRT",
+    "SEN",
+    "MLI",
+    "BFA",
+    "NER",
+    "TCD",
+    "GMB",
+    "CPV",
+    "NGA"
+   ],
+   "years": [
+    1969,
+    1974
+   ],
+   "hit": 0.2,
+   "kill": 0.003,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -14,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "雨の季節に雨が来ず、きびの穂が実らなかった。家畜が水場の近くで次々に倒れた。",
+     "牛をすべて失い、町のはずれの避難民の野営地へ移った。"
+    ],
+    "news": [
+     "サヘルの国々で何年も雨が降らず、家畜と畑が失われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rainy season brought no rain and the millet never ripened. The cattle fell one after another near the waterholes.",
+     "All the cattle were lost, and the family moved to a camp of the displaced on the edge of town."
+    ],
+    "news": [
+     "Year after year the rains failed across the Sahel, and herds and harvests were lost."
+    ]
+   },
+   "stat": [
+    "1968〜74年のサヘルの干ばつで、約10万人が亡くなったとされる",
+    "The 1968-74 Sahel drought is thought to have killed about 100,000 people"
+   ],
+   "src": "UN; Glantz 1976, The Politics of Natural Disaster",
+   "rough": true
+  },
+  {
+   "id": "uganda-amin",
+   "type": "terror",
+   "countries": [
+    "UGA"
+   ],
+   "years": [
+    1971,
+    1979
+   ],
+   "hit": 0.05,
+   "kill": 0.015,
+   "who": "men",
+   "cause": "戦争",
+   "urban": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "近所の男たちが、夜に車で連れて行かれたまま戻らなかった。人の名前を口にするのも怖かった。",
+     "職場の上の人が姿を消し、家族で息をひそめて暮らした。"
+    ],
+    "news": [
+     "アミン大統領のもとで、多くの人が殺され、アジア系の住民は国外に追放された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Men from the neighborhood were taken away in cars at night and never came back. Even saying names aloud was frightening.",
+     "A senior colleague vanished, and the family lived keeping their heads down."
+    ],
+    "news": [
+     "Under President Amin many were killed, and the Asian community was expelled from the country."
+    ]
+   },
+   "stat": [
+    "アミンの時代の8年で、10万〜30万人が殺されたとされる",
+    "Between 100,000 and 300,000 people are thought to have been killed during Amin's eight years"
+   ],
+   "src": "Amnesty International; Kasozi 1994, The Social Origins of Violence in Uganda",
+   "rough": true
+  },
+  {
+   "id": "burundi-1972",
+   "type": "genocide",
+   "countries": [
+    "BDI"
+   ],
+   "years": [
+    1972,
+    1972
+   ],
+   "hit": 0.1,
+   "kill": 0.03,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -25,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "4月から、フツの教師や学生が次々に連れ去られた。家を捨てて、国境の向こうへ逃れた。"
+    ],
+    "news": [
+     "ブルンジで、フツの人々への大量の殺りくがあった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "From April, Hutu teachers and students were taken away one after another. The family abandoned the house and fled across the border."
+    ],
+    "news": [
+     "In Burundi there were mass killings of Hutu."
+    ]
+   },
+   "stat": [
+    "1972年の虐殺で、10万〜30万人のフツの人々が殺された",
+    "Between 100,000 and 300,000 Hutu were killed in the 1972 massacres"
+   ],
+   "src": "Lemarchand 2009, The Dynamics of Violence in Central Africa",
+   "rough": true
+  },
+  {
+   "id": "eth-famine-1973",
+   "type": "famine",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    1972,
+    1974
+   ],
+   "hit": 0.05,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨が来ず、種まきの種まで食べた。道ばたの救援の野営地まで歩いた。"
+    ],
+    "news": [
+     "ウォロ地方などで飢饉が広がり、帝政への不満が高まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains failed and even the seed grain was eaten. Walked to a relief camp by the road."
+    ],
+    "news": [
+     "Famine spread through Wollo and other provinces, and anger at the imperial government grew."
+    ]
+   },
+   "stat": [
+    "1972〜74年のウォロ地方などの飢饉で、4万〜8万人が亡くなったとされる",
+    "The 1972-74 famine in Wollo and neighboring provinces is thought to have killed 40,000-80,000 people"
+   ],
+   "src": "Wolde Mariam 1986, Rural Vulnerability to Famine in Ethiopia",
+   "rough": true
+  },
+  {
+   "id": "rhodesia-bush-war",
+   "type": "war",
+   "countries": [
+    "ZWE"
+   ],
+   "years": [
+    1972,
+    1979
+   ],
+   "hit": 0.12,
+   "kill": 0.003,
+   "who": "men",
+   "cause": "戦争",
+   "urban": 0.3,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "村が「保護村」に移され、夕方からは鉄条網の外に出られなくなった。"
+    ],
+    "news": [
+     "ローデシアで、独立をめぐる内戦が続いていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village was moved into a protected village, and from dusk no one could go outside the wire."
+    ],
+    "news": [
+     "In Rhodesia the bush war over independence went on."
+    ]
+   },
+   "stat": [
+    "1970年代の内戦のあいだ、約75万人が「保護村」に移された",
+    "During the 1970s bush war about 750,000 people were moved into protected villages"
+   ],
+   "src": "Kriger 1992, Zimbabwe's Guerrilla War; CCJP 1975",
+   "rough": true
+  },
+  {
+   "id": "angola-civil-war",
+   "type": "war",
+   "countries": [
+    "AGO"
+   ],
+   "years": [
+    1975,
+    2002
+   ],
+   "hit": 0.35,
+   "kill": 0.04,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "戦いが近づき、家を捨てて町の避難民の地区へ移った。畑には地雷が埋められていた。",
+     "政府軍に召集され、南の前線に送られた。"
+    ],
+    "news": [
+     "独立と同時に内戦が始まり、何十年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fighting came close, and the family left home for a camp of the displaced in town. Mines had been laid in the fields.",
+     "Was called up by the government army and sent to the southern front."
+    ],
+    "news": [
+     "Civil war broke out with independence and went on for decades."
+    ]
+   },
+   "stat": [
+    "27年続いた内戦で約50万人が亡くなり、400万人が家を追われた",
+    "The 27-year civil war killed about 500,000 people and drove four million from their homes"
+   ],
+   "src": "Human Rights Watch; UN OCHA Angola 2002",
+   "rough": true
+  },
+  {
+   "id": "red-terror",
+   "type": "terror",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    1977,
+    1978
+   ],
+   "cities": [
+    "アディスアベバ",
+    "Addis Ababa"
+   ],
+   "hit": 0.05,
+   "elsewhere": 0.005,
+   "kill": 0.002,
+   "who": "young",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "夜ごとに銃声がして、朝には道ばたに若い人の遺体が並んだ。遺族は弾の代金を払わされた。"
+    ],
+    "news": [
+     "軍事政権の「赤色テロ」で、学生や反対派が次々に殺された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Gunfire every night, and in the morning the bodies of young people by the roadside. Families were made to pay for the bullets."
+    ],
+    "news": [
+     "In the military regime's Red Terror, students and opponents were killed one after another."
+    ]
+   },
+   "stat": [
+    "1977〜78年の赤色テロでは、少なくとも数万人が殺された",
+    "The Red Terror of 1977-78 killed at least tens of thousands of people"
+   ],
+   "src": "Human Rights Watch 1991, Evil Days; Ethiopian Special Prosecutor",
+   "rough": true
+  },
+  {
+   "id": "mozambique-civil-war",
+   "type": "war",
+   "countries": [
+    "MOZ"
+   ],
+   "years": [
+    1977,
+    1992
+   ],
+   "hit": 0.4,
+   "kill": 0.05,
+   "who": "frail",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "夜に武装した集団が村を襲い、家が焼かれた。国境を越えて難民のキャンプへ逃れた。",
+     "畑に出られなくなり、町に逃れて救援の配給で暮らした。"
+    ],
+    "news": [
+     "独立のあと、内戦が国じゅうに広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men raided the village at night and burned the houses. Fled across the border to a refugee camp.",
+     "It was no longer safe to work the fields, so the family fled to town and lived on relief rations."
+    ],
+    "news": [
+     "After independence, civil war spread across the whole country."
+    ]
+   },
+   "stat": [
+    "内戦で約100万人が亡くなり、170万人が国外へ、400万人が国内で家を追われた (国連)",
+    "The civil war killed about one million people; 1.7 million fled abroad and four million were displaced inside the country (UN)"
+   ],
+   "src": "UNHCR 2000, The State of the World's Refugees; Hanlon 1991",
+   "rough": true
+  },
+  {
+   "id": "kagera-war",
+   "type": "war",
+   "countries": [
+    "TZA"
+   ],
+   "years": [
+    1978,
+    1979
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "ウガンダの軍が北西のカゲラに攻めこみ、タンザニアは反撃してカンパラまで進んだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "The Ugandan army invaded Kagera in the northwest, and Tanzania struck back all the way to Kampala."
+    ]
+   },
+   "stat": [
+    "1978〜79年のウガンダ・タンザニア戦争で、タンザニアは約4万5,000人の兵を送った",
+    "Tanzania sent about 45,000 troops into the Uganda-Tanzania war of 1978-79"
+   ],
+   "src": "Avirgan & Honey 1982, War in Uganda",
+   "rough": true
+  },
+  {
+   "id": "macias-nguema",
+   "type": "terror",
+   "countries": [
+    "GNQ"
+   ],
+   "years": [
+    1969,
+    1979
+   ],
+   "hit": 0.3,
+   "kill": 0.05,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -25,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "近所の人が夜に連れ去られた。親戚を頼って、国境を越えてガボンへ逃れた。",
+     "学校が閉められ、教会も禁じられた。誰が密告するか分からず、家の外では口を閉ざした。"
+    ],
+    "news": [
+     "マシアス・ンゲマ大統領の恐怖政治で、多くの人が殺され、国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A neighbor was taken away in the night. The family fled over the border to relatives in Gabon.",
+     "The schools were closed and the churches banned. Nobody knew who might inform, and outside the house no one spoke."
+    ],
+    "news": [
+     "Under President Macías Nguema's reign of terror many were killed and many fled the country."
+    ]
+   },
+   "stat": [
+    "マシアス・ンゲマの独裁 (1968〜79年) のもとで、人口の3分の1が国外へ逃れたとされる",
+    "Under the dictatorship of Macías Nguema (1968-79) about a third of the population is thought to have fled abroad"
+   ],
+   "src": "Liniger-Goumaz 1988, Small is not always Beautiful",
+   "rough": true
+  },
+  {
+   "id": "chad-civil-war-1979",
+   "type": "war",
+   "countries": [
+    "TCD"
+   ],
+   "years": [
+    1979,
+    1982
+   ],
+   "cities": [
+    "ンジャメナ",
+    "N'Djamena"
+   ],
+   "hit": 0.4,
+   "elsewhere": 0.02,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町の中で軍どうしの撃ち合いが続き、川を渡ってカメルーン側へ逃れた。"
+    ],
+    "news": [
+     "チャドで内戦が激しくなり、首都が戦場になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The armies fought street by street, and the family crossed the river into Cameroon."
+    ],
+    "news": [
+     "Chad's civil war intensified, and the capital became a battleground."
+    ]
+   },
+   "stat": [
+    "1979〜80年のンジャメナの戦いで、市民の大半が町から逃れた",
+    "During the battles for N'Djamena in 1979-80 most of the city's people fled"
+   ],
+   "src": "Nolutshungu 1996, Limits of Anarchy",
+   "rough": true
+  },
+  {
+   "id": "el-asnam-1980",
+   "type": "quake",
+   "countries": [
+    "DZA"
+   ],
+   "years": [
+    1980,
+    1980
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、北西部のエル・アスナムで大きな地震があり、町の大半が崩れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October a great earthquake struck El Asnam in the northwest and most of the town collapsed."
+    ]
+   },
+   "stat": [
+    "1980年10月のエル・アスナム地震で2,633人が亡くなった",
+    "The October 1980 El Asnam earthquake killed 2,633 people"
+   ],
+   "src": "USGS"
+  },
+  {
+   "id": "habre-regime",
+   "type": "terror",
+   "countries": [
+    "TCD"
+   ],
+   "years": [
+    1982,
+    1990
+   ],
+   "hit": 0.03,
+   "kill": 0.006,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    16,
+    70
+   ],
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "秘密警察に連れて行かれ、何か月も地下の牢に閉じこめられた。"
+    ],
+    "news": [
+     "ハブレ大統領のもとで、秘密警察が人々を捕らえ、拷問した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was taken by the secret police and held for months in an underground cell."
+    ],
+    "news": [
+     "Under President Habré the secret police seized and tortured people."
+    ]
+   },
+   "stat": [
+    "ハブレ政権の時代に、約4万人が殺されたと、チャドの真相究明委員会は推計した",
+    "Chad's truth commission estimated that some 40,000 people were killed under the Habré regime"
+   ],
+   "src": "Commission d'enquête nationale du Tchad 1992; Human Rights Watch",
+   "rough": true
+  },
+  {
+   "id": "ghana-1983",
+   "type": "famine",
+   "countries": [
+    "GHA"
+   ],
+   "years": [
+    1983,
+    1983
+   ],
+   "hit": 0.25,
+   "urban": 0.6,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "日照りと野火で畑が焼け、とうもろこしが手に入らなくなった。ベルトの穴を一つずつ詰めて暮らした。",
+     "ナイジェリアから追い出され、荷物を抱えて国境を越え、何日もかけて帰ってきた。"
+    ],
+    "news": [
+     "日照りと野火で食べ物が足りなくなり、そこへナイジェリアから追われた人々が帰ってきた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Drought and bushfires burned the fields, and maize could not be had. The belt was pulled in one notch at a time.",
+     "Was expelled from Nigeria, crossed the border clutching a few bags, and spent days getting home."
+    ],
+    "news": [
+     "Drought and bushfires left the country short of food, and then the people expelled from Nigeria came home."
+    ]
+   },
+   "stat": [
+    "1983年1月、ナイジェリアから追われたガーナ人約100万人が、数週間のうちに帰国した",
+    "In January 1983 about one million Ghanaians expelled from Nigeria came home within weeks"
+   ],
+   "src": "Brydon 1985, Africa 55:561; FAO",
+   "rough": true
+  },
+  {
+   "id": "gukurahundi",
+   "type": "terror",
+   "countries": [
+    "ZWE"
+   ],
+   "years": [
+    1983,
+    1987
+   ],
+   "cities": [
+    "ブラワヨ",
+    "Bulawayo"
+   ],
+   "hit": 0.05,
+   "elsewhere": 0.02,
+   "kill": 0.002,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "第5旅団が村に来て、人々を集めて打ちすえた。夜は茂みの中で眠った。"
+    ],
+    "news": [
+     "マタベレランドで、軍による弾圧が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The Fifth Brigade came to the village, gathered everyone together and beat them. Nights were spent sleeping in the bush."
+    ],
+    "news": [
+     "In Matabeleland the army carried out a campaign of repression."
+    ]
+   },
+   "stat": [
+    "1983〜87年のマタベレランドの弾圧で、約2万人が殺されたとされる",
+    "About 20,000 people are thought to have been killed in the 1983-87 repression in Matabeleland"
+   ],
+   "src": "Catholic Commission for Justice and Peace in Zimbabwe 1997, Breaking the Silence",
+   "rough": true
+  },
+  {
+   "id": "eth-famine-1984",
+   "type": "famine",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    1983,
+    1985
+   ],
+   "hit": 0.2,
+   "kill": 0.012,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "2年続けて雨が来ず、家畜も種も食べつくした。救援の野営地まで何日も歩いた。",
+     "飢えのさなか、南の土地への移住に連れて行かれた。"
+    ],
+    "news": [
+     "北部で大飢饉が起き、救援を求める映像が世界に流れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains failed two years running, and the herds and the seed were all eaten. Walked for days to a relief camp.",
+     "In the middle of the famine, the family was taken away to be resettled in the south."
+    ],
+    "news": [
+     "Great famine struck the north, and pictures of it went around the world."
+    ]
+   },
+   "stat": [
+    "1983〜85年の飢饉では約790万人が飢えにさらされ、40万〜100万人が亡くなった",
+    "The 1983-85 famine put about 7.9 million people at risk of starvation and killed between 400,000 and one million"
+   ],
+   "src": "de Waal 1991, Evil Days (Human Rights Watch)",
+   "rough": true
+  },
+  {
+   "id": "sahel-drought-1984",
+   "type": "drought",
+   "countries": [
+    "MRT",
+    "SEN",
+    "MLI",
+    "BFA",
+    "NER",
+    "TCD",
+    "GMB",
+    "CPV",
+    "SDN"
+   ],
+   "years": [
+    1983,
+    1985
+   ],
+   "hit": 0.15,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -6,
+    "happy": -12,
+    "wealth": -0.4
+   },
+   "ja": {
+    "hit": [
+     "その年は雨がほとんど降らなかった。家畜を手放し、町に出て日雇いの仕事を探した。"
+    ],
+    "news": [
+     "サヘルを再び干ばつが襲い、救援の食料を待つ人の列が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Almost no rain fell that year. The animals were sold off, and the family went to town looking for day labor."
+    ],
+    "news": [
+     "Drought struck the Sahel again, and long lines formed for relief food."
+    ]
+   },
+   "stat": [
+    "1984年、サヘルの雨量は20世紀でいちばん少なかった",
+    "1984 was the driest year of the twentieth century in the Sahel"
+   ],
+   "src": "Nicholson 2001, Climate Research 17:123; de Waal 1989, Famine That Kills (Sudan)",
+   "rough": true
+  },
+  {
+   "id": "luwero",
+   "type": "war",
+   "countries": [
+    "UGA"
+   ],
+   "years": [
+    1981,
+    1986
+   ],
+   "hit": 0.08,
+   "kill": 0.02,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "ルウェロの村に軍が入り、家が焼かれた。湿地に隠れ、夜だけ畑に戻った。"
+    ],
+    "news": [
+     "ルウェロ三角地帯を中心に、ゲリラと軍の戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The army came into the Luwero villages and burned the houses. The family hid in the swamps and went back to the fields only at night."
+    ],
+    "news": [
+     "War between guerrillas and the army went on, centered on the Luwero Triangle."
+    ]
+   },
+   "stat": [
+    "1981〜86年の内戦で、ルウェロ三角地帯を中心に約30万人が亡くなったとされる",
+    "About 300,000 people are thought to have died in the 1981-86 war, mostly in the Luwero Triangle"
+   ],
+   "src": "Kasozi 1994, The Social Origins of Violence in Uganda",
+   "rough": true
+  },
+  {
+   "id": "lake-nyos",
+   "type": "volcano",
+   "countries": [
+    "CMR"
+   ],
+   "years": [
+    1986,
+    1986
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、北西部のニオス湖から二酸化炭素が噴き出し、谷の村々の人と家畜が眠ったまま息絶えた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August carbon dioxide burst from Lake Nyos in the northwest, and people and cattle in the valley villages died in their sleep."
+    ]
+   },
+   "stat": [
+    "1986年8月のニオス湖の災害で、1,746人が亡くなった",
+    "The Lake Nyos disaster of August 1986 killed 1,746 people"
+   ],
+   "src": "Kling et al. 1987, Science 236:169"
+  },
+  {
+   "id": "hargeisa-1988",
+   "type": "war",
+   "countries": [
+    "SOM"
+   ],
+   "years": [
+    1988,
+    1990
+   ],
+   "cities": [
+    "ハルゲイサ",
+    "Hargeisa"
+   ],
+   "hit": 0.7,
+   "elsewhere": 0.03,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町が政府軍の砲撃と爆撃にさらされ、家を捨ててエチオピアの難民のキャンプへ歩いた。"
+    ],
+    "news": [
+     "北部で政府軍がハルゲイサを爆撃し、人々が国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The city was shelled and bombed by government forces. The family abandoned the house and walked to a refugee camp in Ethiopia."
+    ],
+    "news": [
+     "In the north government forces bombed Hargeisa, and its people fled the country."
+    ]
+   },
+   "stat": [
+    "1988年、ハルゲイサは建物の大半が壊され、約40万人がエチオピアへ逃れた",
+    "In 1988 most of Hargeisa was destroyed, and some 400,000 people fled to Ethiopia"
+   ],
+   "src": "Africa Watch 1990, Somalia: A Government at War with its Own People",
+   "rough": true
+  },
+  {
+   "id": "mauritania-1989",
+   "type": "unrest",
+   "countries": [
+    "MRT"
+   ],
+   "years": [
+    1989,
+    1990
+   ],
+   "hit": 0.03,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "身分証を取り上げられ、川の向こうのセネガルへ追い出された。"
+    ],
+    "news": [
+     "モーリタニアとセネガルの対立のさなか、多くの黒人の住民が国外へ追放された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Identity papers were confiscated, and the family was driven across the river into Senegal."
+    ],
+    "news": [
+     "In the conflict between Mauritania and Senegal many Black Mauritanians were expelled from the country."
+    ]
+   },
+   "stat": [
+    "1989〜90年に、約7万人の黒人のモーリタニア人がセネガルとマリへ追放された",
+    "In 1989-90 about 70,000 Black Mauritanians were expelled to Senegal and Mali"
+   ],
+   "src": "Human Rights Watch 1994; UNHCR",
+   "rough": true
+  },
+  {
+   "id": "liberia-civil-wars",
+   "type": "war",
+   "countries": [
+    "LBR"
+   ],
+   "years": [
+    1989,
+    2003
+   ],
+   "hit": 0.5,
+   "kill": 0.06,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "戦いが町に来て、着の身着のままで逃げた。検問所を通るたびに、銃を持った少年たちに止められた。",
+     "隣の国の難民のキャンプで何年も暮らした。"
+    ],
+    "news": [
+     "リベリアで内戦が始まり、何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The fighting reached the town and the family fled with nothing. At every checkpoint, boys with guns stopped them.",
+     "Lived for years in a refugee camp in a neighboring country."
+    ],
+    "news": [
+     "Civil war broke out in Liberia and went on for years."
+    ]
+   },
+   "stat": [
+    "1989〜2003年の二つの内戦で、約25万人が亡くなり、人口の半分ほどが家を追われた",
+    "The two civil wars of 1989-2003 killed about 250,000 people and drove about half the population from their homes"
+   ],
+   "src": "Truth and Reconciliation Commission of Liberia 2009; UNHCR",
+   "rough": true
+  },
+  {
+   "id": "rwanda-war-1990",
+   "type": "war",
+   "countries": [
+    "RWA"
+   ],
+   "years": [
+    1990,
+    1993
+   ],
+   "hit": 0.1,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "北の戦線が近づき、家を出て避難民の野営地に移った。"
+    ],
+    "news": [
+     "北部で内戦が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The northern front came closer, and the family left home for a displaced people's camp."
+    ],
+    "news": [
+     "Civil war broke out in the north."
+    ]
+   },
+   "stat": [
+    "1993年はじめまでに、北部の戦いで約100万人が家を追われた",
+    "By early 1993 the fighting in the north had driven about one million people from their homes"
+   ],
+   "src": "Prunier 1995, The Rwanda Crisis",
+   "rough": true
+  },
+  {
+   "id": "sierra-leone-civil-war",
+   "type": "war",
+   "countries": [
+    "SLE"
+   ],
+   "years": [
+    1991,
+    2002
+   ],
+   "hit": 0.4,
+   "kill": 0.012,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "反乱軍が村を襲い、家に火をつけた。茂みの中を何日も歩いて逃げた。",
+     "首都の避難民のキャンプで、何年も配給を待って暮らした。"
+    ],
+    "news": [
+     "シエラレオネで内戦が始まり、反乱軍が村々を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Rebels attacked the village and set the houses alight. Fled through the bush for days.",
+     "Lived for years in a displaced people's camp in the capital, waiting for rations."
+    ],
+    "news": [
+     "Civil war broke out in Sierra Leone, and rebels attacked village after village."
+    ]
+   },
+   "stat": [
+    "1991〜2002年の内戦で約5万人が亡くなり、人口の半分近い約200万人が家を追われた",
+    "The 1991-2002 civil war killed about 50,000 people and displaced about two million, almost half the population"
+   ],
+   "src": "Sierra Leone Truth and Reconciliation Commission 2004",
+   "rough": true
+  },
+  {
+   "id": "algeria-civil-war",
+   "type": "war",
+   "countries": [
+    "DZA"
+   ],
+   "years": [
+    1991,
+    2002
+   ],
+   "cities": [
+    "ブリダ",
+    "Blida"
+   ],
+   "hit": 0.15,
+   "elsewhere": 0.04,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "夜、武装した集団が近くの村を襲った。日が暮れると、家じゅうの戸に板を打ちつけた。",
+     "爆弾が市場で爆発した。"
+    ],
+    "news": [
+     "アルジェリアで、武装組織と軍の戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men attacked a nearby village in the night. At dusk every door in the house was boarded shut.",
+     "A bomb went off in the market."
+    ],
+    "news": [
+     "In Algeria the war between armed groups and the army went on."
+    ]
+   },
+   "stat": [
+    "1990年代の内戦で、15万〜20万人が亡くなった",
+    "Between 150,000 and 200,000 people were killed in the civil war of the 1990s"
+   ],
+   "src": "Martinez 2000, The Algerian Civil War; Human Rights Watch",
+   "rough": true
+  },
+  {
+   "id": "somalia-famine-1992",
+   "type": "famine",
+   "countries": [
+    "SOM"
+   ],
+   "years": [
+    1991,
+    1992
+   ],
+   "hit": 0.3,
+   "kill": 0.03,
+   "who": "frail",
+   "cause": "飢饉",
+   "poor": 2,
+   "severity": 5,
+   "effect": {
+    "health": -12,
+    "happy": -22,
+    "home": true,
+    "wealth": -0.6
+   },
+   "ja": {
+    "hit": [
+     "戦いで町を追われ、食べ物を求めて救援の野営地まで歩いた。",
+     "武装した集団が穀物を奪い、畑にはまけるものが何もなかった。"
+    ],
+    "news": [
+     "政府が倒れたあとの内戦と日照りで、ソマリアに飢饉が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Driven out of town by the fighting, walked to a relief camp in search of food.",
+     "Armed groups took the grain, and there was nothing left to plant."
+    ],
+    "news": [
+     "Civil war after the government fell, together with drought, spread famine across Somalia."
+    ]
+   },
+   "stat": [
+    "1991〜92年のソマリアの飢饉で、20万〜30万人が亡くなったとされる",
+    "Between 200,000 and 300,000 people are thought to have died in the 1991-92 Somali famine"
+   ],
+   "src": "Refugee Policy Group 1994; de Waal 1997, Famine Crimes",
+   "rough": true
+  },
+  {
+   "id": "southern-africa-drought-1992",
+   "type": "drought",
+   "countries": [
+    "ZMB",
+    "MWI",
+    "ZWE",
+    "MOZ",
+    "LSO",
+    "SWZ",
+    "NAM",
+    "BWA"
+   ],
+   "years": [
+    1991,
+    1992
+   ],
+   "hit": 0.15,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -10,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "20世紀でいちばんの日照りで、とうもろこしが育たなかった。配給の黄色いとうもろこしで暮らした。"
+    ],
+    "news": [
+     "南部アフリカを、この百年で最悪の干ばつが襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the worst drought of the century the maize did not grow. The family lived on rations of yellow maize."
+    ],
+    "news": [
+     "The worst drought in a hundred years struck southern Africa."
+    ]
+   },
+   "stat": [
+    "1991〜92年の南部アフリカの干ばつで、約1,800万人が食料不足の危機にさらされた (SADC)",
+    "The 1991-92 southern African drought left about 18 million people at risk of food shortage (SADC)"
+   ],
+   "src": "SADC; Glantz et al. 1997, UNEP",
+   "rough": true
+  },
+  {
+   "id": "comoros-djibouti-unrest",
+   "type": "war",
+   "countries": [
+    "DJI"
+   ],
+   "years": [
+    1991,
+    1994
+   ],
+   "hit": 0.05,
+   "urban": 0.3,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "北の山地で戦いが始まり、家を捨てて町へ逃れた。"
+    ],
+    "news": [
+     "ジブチの北部で内戦が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fighting broke out in the northern mountains, and the family abandoned home and fled to town."
+    ],
+    "news": [
+     "Civil war broke out in northern Djibouti."
+    ]
+   },
+   "stat": [
+    "1991〜94年の内戦で、ジブチ北部の約5万人が家を追われたとされる",
+    "The 1991-94 civil war is thought to have displaced about 50,000 people in northern Djibouti"
+   ],
+   "src": "UNHCR; Schraeder 1993",
+   "rough": true
+  },
+  {
+   "id": "cairo-quake-1992",
+   "type": "quake",
+   "countries": [
+    "EGY"
+   ],
+   "years": [
+    1992,
+    1992
+   ],
+   "cities": [
+    "カイロ",
+    "Cairo",
+    "ギザ",
+    "Giza"
+   ],
+   "hit": 0.006,
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "10月の昼、地震で古い建物が崩れた。何週間も、通りのテントで寝た。"
+    ],
+    "news": [
+     "10月、カイロを地震が襲い、古い建物が崩れた。"
+    ],
+    "near": [
+     "10月の昼、地震で建物が揺れ、階段を駆け下りた。壁にひびが入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On an October afternoon the earthquake brought down the old buildings. For weeks the family slept in a tent in the street."
+    ],
+    "news": [
+     "In October an earthquake struck Cairo and old buildings collapsed."
+    ],
+    "near": [
+     "On an October afternoon the building shook, and everyone ran down the stairs. Cracks opened in the walls."
+    ]
+   },
+   "stat": [
+    "1992年10月のカイロの地震で545人が亡くなり、約5万人が家を失った",
+    "The October 1992 Cairo earthquake killed 545 people and left about 50,000 homeless"
+   ],
+   "src": "USGS; EM-DAT"
+  },
+  {
+   "id": "togo-1993",
+   "type": "unrest",
+   "countries": [
+    "TGO"
+   ],
+   "years": [
+    1992,
+    1993
+   ],
+   "cities": [
+    "ロメ",
+    "Lomé"
+   ],
+   "hit": 0.2,
+   "elsewhere": 0.03,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "首都で兵が人々に発砲し、国境を越えてベナンへ逃れた。"
+    ],
+    "news": [
+     "民主化をめぐる対立で、トーゴから多くの人が国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Soldiers opened fire on people in the capital, and the family fled across the border to Benin."
+    ],
+    "news": [
+     "In the conflict over democracy many people fled Togo."
+    ]
+   },
+   "stat": [
+    "1993年はじめ、約30万人のトーゴ人がベナンとガーナへ逃れた (UNHCR)",
+    "In early 1993 about 300,000 Togolese fled to Benin and Ghana (UNHCR)"
+   ],
+   "src": "UNHCR 1993",
+   "rough": true
+  },
+  {
+   "id": "burundi-civil-war",
+   "type": "war",
+   "countries": [
+    "BDI"
+   ],
+   "years": [
+    1993,
+    2005
+   ],
+   "hit": 0.25,
+   "kill": 0.05,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "丘の上の村が襲われ、避難民のキャンプへ移った。タンザニアの難民のキャンプで何年も暮らした。"
+    ],
+    "news": [
+     "大統領が殺され、ブルンジで内戦が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The hilltop village was attacked, and the family moved to a displaced people's camp, then spent years in a refugee camp in Tanzania."
+    ],
+    "news": [
+     "The president was assassinated and civil war broke out in Burundi."
+    ]
+   },
+   "stat": [
+    "1993年から続いた内戦で、約30万人が亡くなった",
+    "About 300,000 people died in the civil war that began in 1993"
+   ],
+   "src": "International Crisis Group; UNHCR",
+   "rough": true
+  },
+  {
+   "id": "rwanda-genocide",
+   "type": "genocide",
+   "countries": [
+    "RWA"
+   ],
+   "years": [
+    1994,
+    1994
+   ],
+   "hit": 0.6,
+   "kill": 0.1,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -10,
+    "happy": -30,
+    "home": true,
+    "wealth": -0.8
+   },
+   "ja": {
+    "hit": [
+     "4月、殺りくが始まった。何週間も、沼と畑のあいだに身を隠して過ごした。",
+     "道路の検問所を避けて夜に歩き、国境を越えて難民のキャンプにたどり着いた。"
+    ],
+    "news": [
+     "ルワンダで、ツチの人々へのジェノサイドが起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In April the killing began. For weeks, hid in the marshes and the fields.",
+     "Walked by night to avoid the roadblocks, crossed the border and reached a refugee camp."
+    ],
+    "news": [
+     "In Rwanda, a genocide against the Tutsi took place."
+    ]
+   },
+   "stat": [
+    "1994年4月から7月までの約100日間に、50万〜80万人が殺された。その多くはツチの人々だった",
+    "In about 100 days from April to July 1994, between 500,000 and 800,000 people were killed, most of them Tutsi"
+   ],
+   "src": "Human Rights Watch 1999, Leave None to Tell the Story; UN Security Council"
+  },
+  {
+   "id": "bukoba-1996",
+   "type": "transport",
+   "countries": [
+    "TZA"
+   ],
+   "years": [
+    1996,
+    1996
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、ビクトリア湖でフェリー「ブコバ号」が沈んだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May the ferry Bukoba sank on Lake Victoria."
+    ]
+   },
+   "stat": [
+    "1996年5月のブコバ号の沈没で、800人あまりが亡くなった",
+    "More than 800 people died when the MV Bukoba sank in May 1996"
+   ],
+   "src": "Tanzania government inquiry; BBC 1996",
+   "rough": true
+  },
+  {
+   "id": "meningitis-1996",
+   "type": "epidemic",
+   "countries": [
+    "NGA",
+    "NER",
+    "BFA",
+    "MLI",
+    "TCD"
+   ],
+   "years": [
+    1996,
+    1996
+   ],
+   "hit": 0.003,
+   "kill": 0.0001,
+   "who": "young",
+   "cause": "流行病",
+   "age": [
+    1,
+    30
+   ],
+   "poor": 1.5,
+   "severity": 2,
+   "effect": {
+    "health": -10,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "乾いた季節に高い熱と首のこわばりで倒れ、保健所で注射を受けた。"
+    ],
+    "news": [
+     "髄膜炎が流行し、保健所の前に長い列ができた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In the dry season came a high fever and a stiff neck. An injection at the health post pulled through."
+    ],
+    "news": [
+     "A meningitis epidemic broke out, and long lines formed outside the health posts."
+    ]
+   },
+   "stat": [
+    "1996年の髄膜炎の流行では、アフリカの髄膜炎ベルトで約25万人がかかり、2万5,000人が亡くなった (WHO)",
+    "The 1996 meningitis epidemic infected about 250,000 people in Africa's meningitis belt and killed 25,000 (WHO)"
+   ],
+   "src": "WHO Weekly Epidemiological Record 1997"
+  },
+  {
+   "id": "drc-wars",
+   "type": "war",
+   "countries": [
+    "COD"
+   ],
+   "years": [
+    1996,
+    2003
+   ],
+   "hit": 0.12,
+   "kill": 0.03,
+   "who": "frail",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した集団が村に来て、畑と家を捨てて森へ逃げた。何か月も、病気と飢えの中を移り歩いた。",
+     "戦いを避けて、親戚を頼り町へ移った。"
+    ],
+    "news": [
+     "コンゴで、近くの国々の軍も巻きこんだ大きな戦争が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men came to the village, and the family left the fields and the house to flee into the forest. For months they moved from place to place amid sickness and hunger.",
+     "To escape the fighting, moved to relatives in town."
+    ],
+    "news": [
+     "A great war that drew in the armies of neighboring countries went on in the Congo."
+    ]
+   },
+   "stat": [
+    "1998年から2007年までのコンゴの超過死亡は、国際救援委員会の調査で約540万人とされる。数え方には異論もある",
+    "The International Rescue Committee estimated 5.4 million excess deaths in the Congo from 1998 to 2007; the method has been disputed"
+   ],
+   "src": "IRC 2008, Mortality in the DRC; Human Security Report 2009/2010",
+   "rough": true
+  },
+  {
+   "id": "congo-brazzaville-war",
+   "type": "war",
+   "countries": [
+    "COG"
+   ],
+   "years": [
+    1997,
+    1999
+   ],
+   "cities": [
+    "ブラザビル",
+    "Brazzaville"
+   ],
+   "hit": 0.6,
+   "elsewhere": 0.1,
+   "kill": 0.005,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "首都で戦いが始まり、家を置いて南の森へ逃げた。戻ったとき、家の中は何も残っていなかった。"
+    ],
+    "news": [
+     "コンゴ共和国で内戦が起き、首都ブラザビルが戦場になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fighting broke out in the capital, and the family left the house to flee into the southern forests. When they returned nothing was left inside."
+    ],
+    "news": [
+     "Civil war broke out in the Republic of Congo, and the capital Brazzaville became a battlefield."
+    ]
+   },
+   "stat": [
+    "1997〜99年の内戦で、ブラザビルの住民の大半を含む約80万人が家を追われた",
+    "The 1997-99 civil war displaced about 800,000 people, including most of the population of Brazzaville"
+   ],
+   "src": "UNHCR; Bazenguissa-Ganga 1999, African Affairs 98:37",
+   "rough": true
+  },
+  {
+   "id": "guinea-bissau-war",
+   "type": "war",
+   "countries": [
+    "GNB"
+   ],
+   "years": [
+    1998,
+    1999
+   ],
+   "cities": [
+    "ビサウ",
+    "Bissau"
+   ],
+   "hit": 0.7,
+   "elsewhere": 0.02,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "首都で軍どうしの戦いが始まり、何も持たずに町を出て、村の親戚の家に身を寄せた。"
+    ],
+    "news": [
+     "ギニアビサウで内戦が起き、首都の人々が町から逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Army factions began fighting in the capital, and the family left town with nothing to stay with relatives in a village."
+    ],
+    "news": [
+     "Civil war broke out in Guinea-Bissau, and the people of the capital fled the city."
+    ]
+   },
+   "stat": [
+    "1998年6月の内戦で、首都ビサウの住民の大半、約30万人が町から逃れた",
+    "In the civil war of June 1998 about 300,000 people, most of Bissau's population, fled the capital"
+   ],
+   "src": "UN OCHA; Forrest 2003, Lineages of State Fragility",
+   "rough": true
+  },
+  {
+   "id": "lesotho-1998",
+   "type": "unrest",
+   "countries": [
+    "LSO"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "cities": [
+    "マセル",
+    "Maseru"
+   ],
+   "hit": 0.2,
+   "elsewhere": 0,
+   "age": [
+    16,
+    70
+   ],
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.2,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "9月、外国の軍が入り、町の商店街が焼かれて略奪された。勤め先の店もなくなった。"
+    ],
+    "news": [
+     "選挙をめぐる混乱に南アフリカなどの軍が介入し、マセルの中心街が焼けた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In September foreign troops came in, and the town's shopping streets were burned and looted. The shop where the work was went with them."
+    ],
+    "news": [
+     "South African and other troops intervened in the election crisis, and central Maseru burned."
+    ]
+   },
+   "stat": [
+    "1998年9月の騒乱で、マセルの中心街の商店の大半が焼かれ、略奪された",
+    "In the September 1998 unrest most of the shops in central Maseru were burned and looted"
+   ],
+   "src": "Likoti 2007, African Security Review; SADC",
+   "rough": true
+  },
+  {
+   "id": "eth-eri-war",
+   "type": "war",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    1998,
+    2000
+   ],
+   "hit": 0.03,
+   "kill": 0.0005,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    18,
+    35
+   ],
+   "sex": "M",
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "ja": {
+    "hit": [
+     "召集されて、北の国境の塹壕に送られた。"
+    ],
+    "news": [
+     "エリトリアとの国境をめぐって戦争になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the trenches on the northern border."
+    ],
+    "news": [
+     "War broke out with Eritrea over the border."
+    ]
+   },
+   "stat": [
+    "1998〜2000年のエチオピア・エリトリア戦争の死者は、両国で約7万〜10万人とされる",
+    "Deaths in the Ethiopia-Eritrea war of 1998-2000 are put at about 70,000-100,000 on both sides"
+   ],
+   "src": "International Crisis Group; Eritrea-Ethiopia Claims Commission",
+   "rough": true
+  },
+  {
+   "id": "nairobi-1998",
+   "type": "terror",
+   "countries": [
+    "KEN",
+    "TZA"
+   ],
+   "years": [
+    1998,
+    1998
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、ナイロビとダルエスサラームのアメリカ大使館で爆弾が爆発した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August bombs exploded at the American embassies in Nairobi and Dar es Salaam."
+    ]
+   },
+   "stat": [
+    "1998年8月7日の大使館爆破で224人が亡くなり、そのうち213人はナイロビの人だった",
+    "The embassy bombings of 7 August 1998 killed 224 people, 213 of them in Nairobi"
+   ],
+   "src": "US State Department, Accountability Review Board 1999"
+  },
+  {
+   "id": "moz-floods-2000",
+   "type": "flood",
+   "countries": [
+    "MOZ"
+   ],
+   "years": [
+    2000,
+    2000
+   ],
+   "hit": 0.03,
+   "urban": 0.6,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "2月、リンポポ川があふれ、屋根の上で救助のヘリを待った。"
+    ],
+    "news": [
+     "南部で大洪水が起き、多くの人が木や屋根の上に取り残された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In February the Limpopo burst its banks, and the family waited on the roof for a rescue helicopter."
+    ],
+    "news": [
+     "Great floods hit the south, and many people were stranded in trees and on rooftops."
+    ]
+   },
+   "stat": [
+    "2000年の洪水で、モザンビークでは約700人が亡くなり、約50万人が家を失った",
+    "The 2000 floods killed about 700 people in Mozambique and left about 500,000 homeless"
+   ],
+   "src": "UN OCHA; Christie & Hanlon 2001, Mozambique and the Great Flood of 2000"
+  },
+  {
+   "id": "malawi-famine-2002",
+   "type": "famine",
+   "countries": [
+    "MWI"
+   ],
+   "years": [
+    2001,
+    2002
+   ],
+   "hit": 0.25,
+   "kill": 0.0002,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "とうもろこしの値段が何倍にもなり、一日に一度しか食べられなかった。まだ青いとうもろこしを摘んで食べた。"
+    ],
+    "news": [
+     "マラウイで食料が足りなくなり、とうもろこしの値段がはね上がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The price of maize multiplied and there was only one meal a day. Green maize was picked from the fields to eat."
+    ],
+    "news": [
+     "Malawi ran short of food, and the price of maize soared."
+    ]
+   },
+   "stat": [
+    "2002年、マラウイでは人口の約3分の1にあたる320万人が食料の援助を必要とした (WFP)",
+    "In 2002 about 3.2 million people, roughly a third of Malawi's population, needed food aid (WFP)"
+   ],
+   "src": "WFP; Devereux 2002, IDS Working Paper 179",
+   "rough": true
+  },
+  {
+   "id": "joola-2002",
+   "type": "transport",
+   "countries": [
+    "SEN"
+   ],
+   "years": [
+    2002,
+    2002
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、カザマンスとダカールを結ぶフェリー「ジョラ号」が嵐の夜に沈んだ。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September the ferry Joola, which ran between Casamance and Dakar, capsized on a stormy night."
+    ]
+   },
+   "stat": [
+    "2002年9月のジョラ号の沈没で、1,863人が亡くなった",
+    "The sinking of the Joola in September 2002 killed 1,863 people"
+   ],
+   "src": "Government of Senegal"
+  },
+  {
+   "id": "civ-war-2002",
+   "type": "war",
+   "countries": [
+    "CIV"
+   ],
+   "years": [
+    2002,
+    2007
+   ],
+   "cities": [
+    "ブアケ",
+    "Bouaké"
+   ],
+   "hit": 0.3,
+   "elsewhere": 0.04,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "反乱軍と政府軍の境界線ができ、北の町から南へ逃れた。"
+    ],
+    "news": [
+     "コートジボワールで内戦が始まり、国が南北に分かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A front line formed between the rebels and the government, and the family fled from the north to the south."
+    ],
+    "news": [
+     "Civil war broke out in Côte d'Ivoire, and the country was split in two."
+    ]
+   },
+   "stat": [
+    "2002年からの内戦で、70万人から100万人ほどが家を追われた",
+    "The civil war from 2002 displaced between 700,000 and one million people"
+   ],
+   "src": "UN OCHA; Internal Displacement Monitoring Centre",
+   "rough": true
+  },
+  {
+   "id": "boumerdes-2003",
+   "type": "quake",
+   "countries": [
+    "DZA"
+   ],
+   "years": [
+    2003,
+    2003
+   ],
+   "cities": [
+    "アルジェ",
+    "Algiers"
+   ],
+   "hit": 0.03,
+   "elsewhere": 0.001,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "5月の夜、地震で集合住宅が崩れた。何か月も、テントの村で暮らした。"
+    ],
+    "news": [
+     "5月、アルジェの東のブーメルデスで大きな地震があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On a May evening the earthquake brought down the apartment block. For months home was a tent village."
+    ],
+    "news": [
+     "In May a major earthquake struck Boumerdès, east of Algiers."
+    ]
+   },
+   "stat": [
+    "2003年5月のブーメルデス地震で2,266人が亡くなり、約20万人が家を失った",
+    "The May 2003 Boumerdès earthquake killed 2,266 people and left about 200,000 homeless"
+   ],
+   "src": "USGS; EM-DAT"
+  },
+  {
+   "id": "darfur",
+   "type": "war",
+   "countries": [
+    "SDN"
+   ],
+   "years": [
+    2003,
+    2008
+   ],
+   "cities": [
+    "ニャラ",
+    "Nyala"
+   ],
+   "hit": 0.5,
+   "elsewhere": 0.08,
+   "kill": 0.01,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "馬に乗った民兵と飛行機が村を襲い、家が焼かれた。何日も歩いて、避難民のキャンプにたどり着いた。",
+     "チャドとの国境を越え、砂の上の難民のキャンプで暮らした。"
+    ],
+    "news": [
+     "西部のダルフールで、政府に支えられた民兵が村々を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Militiamen on horseback and planes attacked the village and the houses were burned. After days of walking the family reached a camp for the displaced.",
+     "Crossed the border into Chad and lived in a refugee camp on the sand."
+    ],
+    "news": [
+     "In Darfur in the west, government-backed militias attacked village after village."
+    ]
+   },
+   "stat": [
+    "ダルフール紛争では約30万人が亡くなり、270万人が家を追われた (国連 2008年)",
+    "About 300,000 people died in the Darfur conflict and 2.7 million were driven from their homes (UN, 2008)"
+   ],
+   "src": "UN OCHA 2008; Degomme & Guha-Sapir 2010, Lancet 375:294",
+   "rough": true
+  },
+  {
+   "id": "murambatsvina",
+   "type": "unrest",
+   "countries": [
+    "ZWE"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "cities": [
+    "ハラレ",
+    "Harare",
+    "チトゥンギザ",
+    "Chitungwiza",
+    "ブラワヨ",
+    "Bulawayo"
+   ],
+   "hit": 0.2,
+   "elsewhere": 0.02,
+   "severity": 3,
+   "effect": {
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "5月、警察が来て、家と露店をブルドーザーで壊していった。"
+    ],
+    "news": [
+     "「ムランバツヴィナ作戦」で、町の家々と露店が取り壊された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In May the police came and bulldozed the house and the market stall."
+    ],
+    "news": [
+     "In Operation Murambatsvina, homes and market stalls in the towns were torn down."
+    ]
+   },
+   "stat": [
+    "2005年の取り壊しで、約70万人が家や暮らしの手立てを失った (国連ティバイジュカ報告)",
+    "About 700,000 people lost their homes or livelihoods in the 2005 demolitions (UN Tibaijuka report)"
+   ],
+   "src": "UN-Habitat 2005, Report of the Fact-Finding Mission (Tibaijuka)"
+  },
+  {
+   "id": "niger-food-2005",
+   "type": "famine",
+   "countries": [
+    "NER"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.25,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "前の年のバッタと日照りで、穀物倉が空になった。子どもが栄養失調の治療の施設に通った。"
+    ],
+    "news": [
+     "ニジェールで食料が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Locusts and drought the year before had emptied the granary. The children were taken to a malnutrition feeding center."
+    ],
+    "news": [
+     "Niger ran short of food."
+    ]
+   },
+   "stat": [
+    "2005年、ニジェールでは約360万人が食料不足に陥った (国連)",
+    "In 2005 about 3.6 million people in Niger faced food shortages (UN)"
+   ],
+   "src": "UN OCHA; WFP 2005",
+   "rough": true
+  },
+  {
+   "id": "togo-2005",
+   "type": "unrest",
+   "countries": [
+    "TGO"
+   ],
+   "years": [
+    2005,
+    2005
+   ],
+   "hit": 0.01,
+   "severity": 2,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "選挙のあと、町に兵と民兵が出て、夜のうちに国境を越えた。"
+    ],
+    "news": [
+     "大統領選挙のあとの暴力で、多くの人がベナンとガーナへ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the election soldiers and militias filled the streets, and the family crossed the border by night."
+    ],
+    "news": [
+     "After the presidential election violence drove many people into Benin and Ghana."
+    ]
+   },
+   "stat": [
+    "2005年の選挙のあとの暴力で400〜500人が亡くなり、約4万人が国外へ逃れた (国連)",
+    "The violence after the 2005 election killed 400-500 people and drove about 40,000 abroad (UN)"
+   ],
+   "src": "UN OHCHR 2005 fact-finding mission"
+  },
+  {
+   "id": "abidjan-toxic-2006",
+   "type": "accident",
+   "countries": [
+    "CIV"
+   ],
+   "years": [
+    2006,
+    2006
+   ],
+   "cities": [
+    "アビジャン",
+    "Abidjan"
+   ],
+   "hit": 0.02,
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "8月、夜のうちに町じゅうにひどい臭いが広がり、頭痛と吐き気で病院に並んだ。"
+    ],
+    "news": [
+     "アビジャンの各地に有毒な廃棄物が捨てられていたことが分かった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One August night a terrible stench spread across the city. Headaches and nausea meant a long queue at the hospital."
+    ],
+    "news": [
+     "Toxic waste was found to have been dumped all over Abidjan."
+    ]
+   },
+   "stat": [
+    "2006年8月、アビジャンに捨てられた有毒の廃棄物で17人が亡くなり、10万人あまりが手当てを求めた",
+    "In August 2006 toxic waste dumped in Abidjan killed 17 people, and more than 100,000 sought treatment"
+   ],
+   "src": "UN Special Rapporteur 2009; Amnesty International & Greenpeace 2012"
+  },
+  {
+   "id": "kenya-2007",
+   "type": "unrest",
+   "countries": [
+    "KEN"
+   ],
+   "years": [
+    2007,
+    2008
+   ],
+   "cities": [
+    "エルドレット",
+    "Eldoret",
+    "キスム",
+    "Kisumu",
+    "ナクル",
+    "Nakuru"
+   ],
+   "hit": 0.06,
+   "elsewhere": 0.01,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "選挙のあと、隣の人たちに家を焼かれ、警察署の庭に逃げこんだ。"
+    ],
+    "news": [
+     "大統領選挙のあと、ケニア各地で暴力が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the election neighbors set the house on fire, and the family took refuge in the police station yard."
+    ],
+    "news": [
+     "After the presidential election violence spread across Kenya."
+    ]
+   },
+   "stat": [
+    "2007年12月の選挙のあとの暴力で1,133人が亡くなり、約60万人が家を追われた (ワキ委員会)",
+    "The violence after the December 2007 election killed 1,133 people and displaced about 600,000 (Waki Commission)"
+   ],
+   "src": "Commission of Inquiry into Post-Election Violence (Waki) 2008"
+  },
+  {
+   "id": "zimbabwe-hyperinflation",
+   "type": "finance",
+   "countries": [
+    "ZWE"
+   ],
+   "years": [
+    2007,
+    2009
+   ],
+   "hit": 0.5,
+   "age": [
+    16,
+    80
+   ],
+   "severity": 5,
+   "effect": {
+    "happy": -15,
+    "wealth": -0.95,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "銀行の預金が紙くずになった。給料は受け取った日のうちに、パンを買う前に値打ちを失った。",
+     "店の棚が空になり、勤め先も閉じた。国境を越えて南アフリカへ働きに出た人も多かった。"
+    ],
+    "news": [
+     "物価が天文学的に上がり、ジンバブエ・ドルは使えなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Bank savings turned to waste paper. Wages lost their value before they could be spent on bread.",
+     "The shop shelves emptied and the workplace closed. Many crossed the border to work in South Africa."
+    ],
+    "news": [
+     "Prices rose astronomically, and the Zimbabwe dollar became worthless."
+    ]
+   },
+   "stat": [
+    "2008年11月、ジンバブエの物価は1か月で約796億%上がったと推計される",
+    "In November 2008 Zimbabwe's prices are estimated to have risen by about 79.6 billion percent in a single month"
+   ],
+   "src": "Hanke & Kwok 2009, Cato Journal 29:353"
+  },
+  {
+   "id": "zimbabwe-cholera-2008",
+   "type": "epidemic",
+   "countries": [
+    "ZWE"
+   ],
+   "years": [
+    2008,
+    2009
+   ],
+   "hit": 0.008,
+   "kill": 0.0003,
+   "who": "all",
+   "cause": "流行病",
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -10,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "水道が止まり、井戸の水を飲んでコレラにかかった。"
+    ],
+    "news": [
+     "ジンバブエでコレラが大流行した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The taps ran dry, and drinking well water brought cholera."
+    ],
+    "news": [
+     "A great cholera epidemic broke out in Zimbabwe."
+    ]
+   },
+   "stat": [
+    "2008〜09年のコレラの流行で、ジンバブエでは約9万8,000人がかかり、4,288人が亡くなった (WHO)",
+    "The 2008-09 cholera epidemic infected about 98,000 people in Zimbabwe and killed 4,288 (WHO)"
+   ],
+   "src": "WHO 2009"
+  },
+  {
+   "id": "madagascar-2009",
+   "type": "coup",
+   "countries": [
+    "MDG"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "3月、大統領が軍の支持を失って辞任し、政変になった。外国からの援助が止まった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In March the president lost the army's backing and resigned. Foreign aid was cut off."
+    ]
+   },
+   "stat": [
+    "2009年の政変のあと、マダガスカルの経済は縮み、外国からの援助の多くが止まった",
+    "After the 2009 political crisis Madagascar's economy shrank and much foreign aid was suspended"
+   ],
+   "src": "World Bank 2013, Madagascar: Measuring the Impact of the Political Crisis"
+  },
+  {
+   "id": "boko-haram",
+   "type": "war",
+   "countries": [
+    "NGA"
+   ],
+   "years": [
+    2009,
+    2025
+   ],
+   "hit": 0.012,
+   "kill": 0.0002,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した集団が町を襲い、家を捨てて避難民のキャンプへ移った。",
+     "学校が襲われるという話が広がり、子どもを学校に行かせられなくなった。"
+    ],
+    "news": [
+     "北東部でボコ・ハラムの襲撃が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men attacked the town, and the family left home for a camp for the displaced.",
+     "Word spread that schools were being attacked, and the children could no longer go."
+    ],
+    "news": [
+     "Attacks by Boko Haram went on in the northeast."
+    ]
+   },
+   "stat": [
+    "ナイジェリア北東部の紛争で、2009年から約3万5,000人が殺され、200万人あまりが家を追われた (国連)",
+    "The conflict in northeast Nigeria has killed about 35,000 people since 2009 and displaced more than two million (UN)"
+   ],
+   "src": "UNDP 2021, Assessing the Impact of Conflict on Development in North-east Nigeria; UN OCHA"
+  },
+  {
+   "id": "lake-chad-conflict",
+   "type": "war",
+   "countries": [
+    "NER",
+    "TCD",
+    "CMR"
+   ],
+   "years": [
+    2014,
+    2025
+   ],
+   "hit": 0.01,
+   "urban": 0.5,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した集団の襲撃を逃れて、村を出て町の避難民のキャンプに移った。"
+    ],
+    "news": [
+     "チャド湖のまわりで、武装した集団の襲撃が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fleeing attacks by armed groups, the family left the village for a displaced people's camp in town."
+    ],
+    "news": [
+     "Attacks by armed groups went on around Lake Chad."
+    ]
+   },
+   "stat": [
+    "チャド湖のまわりの4か国では、2016年に約240万人が家を追われていた (国連)",
+    "In 2016 about 2.4 million people were displaced in the four countries around Lake Chad (UN)"
+   ],
+   "src": "UN OCHA Lake Chad Basin 2016"
+  },
+  {
+   "id": "civ-2011",
+   "type": "unrest",
+   "countries": [
+    "CIV"
+   ],
+   "years": [
+    2010,
+    2011
+   ],
+   "cities": [
+    "アビジャン",
+    "Abidjan"
+   ],
+   "hit": 0.15,
+   "elsewhere": 0.02,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "選挙のあと、町の通りで撃ち合いが続き、家を出て教会の敷地に身を寄せた。"
+    ],
+    "news": [
+     "大統領選挙の結果をめぐって、コートジボワールで再び戦いが起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the election gunfire filled the streets, and the family left home to shelter in a church compound."
+    ],
+    "news": [
+     "Fighting broke out again in Côte d'Ivoire over the result of the presidential election."
+    ]
+   },
+   "stat": [
+    "2010〜11年の選挙後の衝突で約3,000人が亡くなり、100万人ほどが家を追われた (国連)",
+    "The post-election conflict of 2010-11 killed about 3,000 people and displaced about one million (UN)"
+   ],
+   "src": "UN Human Rights Council 2011, Commission of Inquiry on Côte d'Ivoire"
+  },
+  {
+   "id": "tunisia-2011",
+   "type": "revolution",
+   "countries": [
+    "TUN"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、各地のデモが広がり、長く国を治めた大統領が国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January protests spread across the country, and the long-ruling president fled abroad."
+    ]
+   },
+   "stat": [
+    "チュニジア革命の28日間で、338人が亡くなった (国の調査委員会)",
+    "338 people were killed during the 28 days of the Tunisian revolution (national inquiry commission)"
+   ],
+   "src": "Commission nationale d'investigation (Bouderbala) 2012"
+  },
+  {
+   "id": "egypt-2011",
+   "type": "revolution",
+   "countries": [
+    "EGY"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0,
+   "severity": 3,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "1月、カイロのタハリール広場に人々が集まり、18日後、30年続いた大統領が退いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In January crowds gathered in Tahrir Square in Cairo, and eighteen days later the president of thirty years stepped down."
+    ]
+   },
+   "stat": [
+    "2011年1〜2月の革命で、少なくとも846人が亡くなった (政府の調査委員会)",
+    "At least 846 people were killed in the revolution of January-February 2011 (government fact-finding committee)"
+   ],
+   "src": "Egyptian National Fact-Finding Committee 2011"
+  },
+  {
+   "id": "libya-2011",
+   "type": "war",
+   "countries": [
+    "LBY"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "cities": [
+    "ミスラタ",
+    "Misrata",
+    "ベンガジ",
+    "Benghazi"
+   ],
+   "hit": 0.3,
+   "elsewhere": 0.05,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦争",
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町が包囲され、砲撃の音を聞きながら地下で過ごした。"
+    ],
+    "news": [
+     "リビアで内戦が起き、政権が倒れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town was besieged, and the days were spent underground listening to the shelling."
+    ],
+    "news": [
+     "Civil war broke out in Libya, and the regime fell."
+    ]
+   },
+   "stat": [
+    "2011年の内戦の死者は、少なくとも1万人とされる",
+    "At least 10,000 people are thought to have been killed in the 2011 civil war"
+   ],
+   "src": "UN Human Rights Council 2012, Commission of Inquiry on Libya",
+   "rough": true
+  },
+  {
+   "id": "somalia-famine-2011",
+   "type": "famine",
+   "countries": [
+    "SOM"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.3,
+   "kill": 0.02,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.5,
+   "poor": 2,
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "二年続けて雨が来ず、家畜が死に絶えた。何日も歩いて、首都の避難民のキャンプにたどり着いた。"
+    ],
+    "news": [
+     "干ばつと戦いで、ソマリア南部に飢饉が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains failed two years running and the herds died out. After days of walking the family reached a displaced camp in the capital."
+    ],
+    "news": [
+     "Drought and war spread famine across southern Somalia."
+    ]
+   },
+   "stat": [
+    "2010〜12年のソマリアの飢饉で、約25万8,000人が亡くなった。半分は5歳未満の子どもだった",
+    "About 258,000 people died in the Somali famine of 2010-12; half were children under five"
+   ],
+   "src": "FAO FSNAU & FEWS NET 2013, Checchi & Robinson"
+  },
+  {
+   "id": "horn-drought-2011",
+   "type": "drought",
+   "countries": [
+    "KEN",
+    "ETH",
+    "DJI"
+   ],
+   "years": [
+    2011,
+    2011
+   ],
+   "hit": 0.05,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -10,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "日照りで家畜の半分を失った。給水車の来る日を待って暮らした。"
+    ],
+    "news": [
+     "アフリカの角を、この60年で最悪の干ばつが襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The drought took half the herd. Life revolved around the days the water truck came."
+    ],
+    "news": [
+     "The worst drought in sixty years struck the Horn of Africa."
+    ]
+   },
+   "stat": [
+    "2011年のアフリカの角の干ばつでは、約1,300万人が援助を必要とした (国連)",
+    "About 13 million people needed aid in the 2011 Horn of Africa drought (UN)"
+   ],
+   "src": "UN OCHA 2011"
+  },
+  {
+   "id": "sahel-food-2012",
+   "type": "drought",
+   "countries": [
+    "NER",
+    "TCD",
+    "MLI",
+    "BFA",
+    "MRT",
+    "SEN",
+    "GMB"
+   ],
+   "years": [
+    2012,
+    2012
+   ],
+   "hit": 0.08,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -8,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "穀物の値段が上がり、食事を減らした。"
+    ],
+    "news": [
+     "サヘルで再び食料が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Grain prices rose and meals were cut back."
+    ],
+    "news": [
+     "The Sahel ran short of food again."
+    ]
+   },
+   "stat": [
+    "2012年のサヘルの食料危機では、約1,800万人が食べ物の不足に直面した (国連)",
+    "About 18 million people faced food shortages in the 2012 Sahel food crisis (UN)"
+   ],
+   "src": "UN OCHA Sahel 2012"
+  },
+  {
+   "id": "mali-conflict",
+   "type": "war",
+   "countries": [
+    "MLI"
+   ],
+   "years": [
+    2012,
+    2025
+   ],
+   "cities": [
+    "モプティ",
+    "Mopti"
+   ],
+   "hit": 0.1,
+   "elsewhere": 0.03,
+   "urban": 1,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した集団が村を支配し、家畜を連れて南の町へ逃れた。"
+    ],
+    "news": [
+     "北部と中部で武装した集団の反乱が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed groups took control of the village, and the family fled south to town with the animals."
+    ],
+    "news": [
+     "Armed insurgency went on in the north and center of Mali."
+    ]
+   },
+   "stat": [
+    "2013年までに、マリでは約47万人が国内外へ逃れた (UNHCR)",
+    "By 2013 about 470,000 people had fled their homes in Mali, inside the country or abroad (UNHCR)"
+   ],
+   "src": "UNHCR 2013",
+   "rough": true
+  },
+  {
+   "id": "marikana",
+   "type": "terror",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    2012,
+    2012
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、マリカナのプラチナ鉱山でストライキをしていた鉱山労働者に警官が発砲した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August police opened fire on striking miners at the Marikana platinum mine."
+    ]
+   },
+   "stat": [
+    "2012年8月16日のマリカナ事件で、34人の鉱山労働者が殺された",
+    "34 miners were killed at Marikana on 16 August 2012"
+   ],
+   "src": "Marikana Commission of Inquiry (Farlam) 2015"
+  },
+  {
+   "id": "car-2013",
+   "type": "war",
+   "countries": [
+    "CAF"
+   ],
+   "years": [
+    2013,
+    2014
+   ],
+   "cities": [
+    "バンギ",
+    "Bangui"
+   ],
+   "hit": 0.4,
+   "elsewhere": 0.2,
+   "kill": 0.001,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した集団どうしの襲撃が続き、空港の野営地に逃げこんだ。"
+    ],
+    "news": [
+     "中央アフリカで武装した集団どうしの暴力が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Attacks between armed groups went on, and the family took refuge in the camp at the airport."
+    ],
+    "news": [
+     "Violence between armed groups spread across the Central African Republic."
+    ]
+   },
+   "stat": [
+    "2013〜14年の衝突で、人口の5分の1にあたる約100万人が家を追われた (UNHCR)",
+    "The violence of 2013-14 drove about one million people, a fifth of the population, from their homes (UNHCR)"
+   ],
+   "src": "UNHCR 2014",
+   "rough": true
+  },
+  {
+   "id": "ebola-2014",
+   "type": "epidemic",
+   "countries": [
+    "GIN",
+    "LBR",
+    "SLE"
+   ],
+   "years": [
+    2014,
+    2016
+   ],
+   "hit": 0.03,
+   "kill": 0.0006,
+   "who": "all",
+   "cause": "流行病",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "wealth": -0.2,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "エボラの流行で地区が隔離され、市場も学校も閉まった。働きに出られず、蓄えを食いつぶした。",
+     "近所の家から熱を出した人が運ばれていき、家じゅうを消毒された。"
+    ],
+    "news": [
+     "西アフリカでエボラ出血熱が大流行した。"
+    ],
+    "near": [
+     "エボラの流行のあいだ、町の入口で毎日熱を測られた。人と握手をしなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The Ebola outbreak put the district under quarantine, and the markets and schools closed. With no way to work, the savings were eaten away.",
+     "Someone with a fever was carried out of a neighbor's house, and the whole house was disinfected."
+    ],
+    "news": [
+     "A great epidemic of Ebola swept West Africa."
+    ],
+    "near": [
+     "During the Ebola epidemic temperatures were taken at the town entrance every day, and nobody shook hands anymore."
+    ]
+   },
+   "stat": [
+    "2014〜16年の西アフリカのエボラ出血熱では、2万8,600人あまりが感染し、1万1,325人が亡くなった (WHO)",
+    "The 2014-16 West African Ebola epidemic infected more than 28,600 people and killed 11,325 (WHO)"
+   ],
+   "src": "WHO Ebola Situation Report, 10 June 2016"
+  },
+  {
+   "id": "burkina-conflict",
+   "type": "war",
+   "countries": [
+    "BFA"
+   ],
+   "years": [
+    2015,
+    2025
+   ],
+   "hit": 0.09,
+   "urban": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "武装した集団が村を襲い、学校が焼かれた。着の身着のままで町へ逃れた。"
+    ],
+    "news": [
+     "ブルキナファソで武装した集団の襲撃が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men attacked the village and burned the school. The family fled to town with nothing."
+    ],
+    "news": [
+     "Attacks by armed groups spread across Burkina Faso."
+    ]
+   },
+   "stat": [
+    "ブルキナファソで家を追われた人は、2023年に200万人を超えた",
+    "More than two million people had been displaced in Burkina Faso by 2023"
+   ],
+   "src": "CONASUR (Burkina Faso); UNHCR 2023"
+  },
+  {
+   "id": "burundi-2015",
+   "type": "unrest",
+   "countries": [
+    "BDI"
+   ],
+   "years": [
+    2015,
+    2016
+   ],
+   "cities": [
+    "ブジュンブラ",
+    "Bujumbura"
+   ],
+   "hit": 0.1,
+   "elsewhere": 0.03,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "大統領の三期目をめぐって町で騒乱が続き、国境を越えてタンザニアへ逃れた。"
+    ],
+    "news": [
+     "大統領の三期目をめぐる混乱で、多くの人が国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Unrest over the president's third term went on in town, and the family crossed the border into Tanzania."
+    ],
+    "news": [
+     "In the turmoil over the president's third term many people fled the country."
+    ]
+   },
+   "stat": [
+    "2015年からの混乱で、約40万人のブルンジ人が国外へ逃れた (UNHCR)",
+    "About 400,000 Burundians fled the country after the 2015 crisis (UNHCR)"
+   ],
+   "src": "UNHCR 2017"
+  },
+  {
+   "id": "southern-africa-drought-2016",
+   "type": "drought",
+   "countries": [
+    "ZAF",
+    "LSO",
+    "SWZ",
+    "ZWE",
+    "MWI",
+    "MOZ",
+    "BWA",
+    "NAM"
+   ],
+   "years": [
+    2015,
+    2016
+   ],
+   "hit": 0.1,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -8,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "エルニーニョの日照りで畑が枯れ、配給のとうもろこしで暮らした。"
+    ],
+    "news": [
+     "南部アフリカを干ばつが襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The El Niño drought withered the fields, and the family lived on ration maize."
+    ],
+    "news": [
+     "Drought struck southern Africa."
+    ]
+   },
+   "stat": [
+    "2015〜16年のエルニーニョの干ばつで、南部アフリカでは約4,000万人が食料不足に直面した (SADC)",
+    "The 2015-16 El Niño drought left about 40 million people in southern Africa facing food shortages (SADC)"
+   ],
+   "src": "SADC Regional Vulnerability Assessment 2016",
+   "rough": true
+  },
+  {
+   "id": "freetown-mudslide",
+   "type": "flood",
+   "countries": [
+    "SLE"
+   ],
+   "years": [
+    2017,
+    2017
+   ],
+   "cities": [
+    "フリータウン",
+    "Freetown"
+   ],
+   "hit": 0.01,
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "8月の明け方、大雨で山の斜面が崩れ、泥が家並みをのみこんだ。"
+    ],
+    "news": [
+     "8月、フリータウンで大きな土砂崩れがあった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Before dawn one August morning, heavy rain brought the hillside down and mud swallowed the houses."
+    ],
+    "news": [
+     "In August a huge mudslide struck Freetown."
+    ]
+   },
+   "stat": [
+    "2017年8月のフリータウンの土砂崩れで、1,141人が亡くなるか行方不明になった",
+    "The August 2017 Freetown mudslide left 1,141 people dead or missing"
+   ],
+   "src": "Government of Sierra Leone; World Bank 2017"
+  },
+  {
+   "id": "cameroon-anglophone",
+   "type": "war",
+   "countries": [
+    "CMR"
+   ],
+   "years": [
+    2017,
+    2025
+   ],
+   "cities": [
+    "バメンダ",
+    "Bamenda"
+   ],
+   "hit": 0.4,
+   "elsewhere": 0.02,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町で武装した集団と軍がぶつかり、学校は何年も閉まったままだった。森に逃れ、そのあとドゥアラの親戚の家に移った。"
+    ],
+    "news": [
+     "英語圏の北西部と南西部で、分離を求める武装した集団と軍の戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed separatists and the army clashed in town, and the schools stayed shut for years. The family fled to the forest, then to relatives in Douala."
+    ],
+    "news": [
+     "Fighting between armed separatists and the army went on in the English-speaking northwest and southwest."
+    ]
+   },
+   "stat": [
+    "英語圏の地域の危機で、2019年までに約70万人が家を追われた (国連OCHA)",
+    "The crisis in the English-speaking regions had displaced about 700,000 people by 2019 (UN OCHA)"
+   ],
+   "src": "UN OCHA Cameroon 2019"
+  },
+  {
+   "id": "cabo-delgado",
+   "type": "war",
+   "countries": [
+    "MOZ"
+   ],
+   "years": [
+    2017,
+    2025
+   ],
+   "hit": 0.03,
+   "urban": 0.5,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "北の村が武装した集団に襲われ、舟で南の町へ逃れた。"
+    ],
+    "news": [
+     "北部のカボ・デルガード州で、武装した集団の襲撃が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Armed men attacked the northern villages, and the family fled south to town by boat."
+    ],
+    "news": [
+     "Attacks by armed groups went on in Cabo Delgado province in the north."
+    ]
+   },
+   "stat": [
+    "カボ・デルガード州の紛争で、2022年までに約95万人が家を追われた (IOM)",
+    "The conflict in Cabo Delgado had displaced about 950,000 people by 2022 (IOM)"
+   ],
+   "src": "IOM Displacement Tracking Matrix 2022"
+  },
+  {
+   "id": "drc-east",
+   "type": "war",
+   "countries": [
+    "COD"
+   ],
+   "years": [
+    2017,
+    2025
+   ],
+   "hit": 0.06,
+   "kill": 0.0005,
+   "who": "all",
+   "cause": "戦争",
+   "urban": 0.5,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "東部の村が襲われ、湖のほとりの避難民のキャンプに移った。"
+    ],
+    "news": [
+     "コンゴ東部とカサイで、武装した集団の戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village in the east was attacked, and the family moved to a displaced people's camp by the lake."
+    ],
+    "news": [
+     "Fighting between armed groups went on in eastern Congo and Kasai."
+    ]
+   },
+   "stat": [
+    "2023年、コンゴ民主共和国で家を追われて国内にいる人は約690万人に達した (IOM)",
+    "In 2023 the number of people displaced inside the DR Congo reached about 6.9 million (IOM)"
+   ],
+   "src": "IOM 2023",
+   "rough": true
+  },
+  {
+   "id": "ebola-drc-2018",
+   "type": "epidemic",
+   "countries": [
+    "COD"
+   ],
+   "years": [
+    2018,
+    2020
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "東部でエボラ出血熱が流行し、戦いのさなかの地域で治療所が襲われた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Ebola broke out in the east, and treatment centers in the conflict zone came under attack."
+    ]
+   },
+   "stat": [
+    "2018〜20年のコンゴ東部のエボラ出血熱の流行では、3,470人がかかり、2,287人が亡くなった (WHO)",
+    "The 2018-20 Ebola outbreak in eastern DR Congo infected 3,470 people and killed 2,287 (WHO)"
+   ],
+   "src": "WHO 2020"
+  },
+  {
+   "id": "cyclone-idai-moz",
+   "type": "cyclone",
+   "countries": [
+    "MOZ"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "cities": [
+    "ベイラ",
+    "Beira"
+   ],
+   "hit": 0.6,
+   "elsewhere": 0.04,
+   "poor": 1.5,
+   "severity": 5,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "3月の夜、サイクロン・イダイが町を直撃し、屋根が飛んで水が胸まで来た。"
+    ],
+    "news": [
+     "サイクロン・イダイがベイラを直撃し、内陸は大洪水になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One March night Cyclone Idai struck the city head-on. The roof flew off and the water came up to the chest."
+    ],
+    "news": [
+     "Cyclone Idai struck Beira head-on, and the interior flooded."
+    ]
+   },
+   "stat": [
+    "2019年3月のサイクロン・イダイで、モザンビークでは603人が亡くなり、ベイラの建物の9割近くが壊れた",
+    "Cyclone Idai in March 2019 killed 603 people in Mozambique and damaged nearly 90% of the buildings in Beira"
+   ],
+   "src": "Government of Mozambique Post-Disaster Needs Assessment 2019; UN OCHA"
+  },
+  {
+   "id": "cyclone-idai-inland",
+   "type": "cyclone",
+   "countries": [
+    "ZWE",
+    "MWI"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0.03,
+   "urban": 0.5,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "サイクロン・イダイの大雨で山が崩れ、川があふれて家が流された。"
+    ],
+    "news": [
+     "サイクロン・イダイの大雨で、山あいの村々が流された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Cyclone Idai's rains brought down the hillsides and burst the rivers, sweeping the house away."
+    ],
+    "news": [
+     "The rains of Cyclone Idai swept away villages in the hills."
+    ]
+   },
+   "stat": [
+    "サイクロン・イダイで、ジンバブエでは340人あまりが亡くなり、マラウイでは約87万人が被害を受けた (国連)",
+    "Cyclone Idai killed more than 340 people in Zimbabwe and affected about 870,000 in Malawi (UN)"
+   ],
+   "src": "UN OCHA 2019"
+  },
+  {
+   "id": "locusts-2020",
+   "type": "drought",
+   "countries": [
+    "KEN",
+    "ETH",
+    "SOM",
+    "UGA",
+    "DJI"
+   ],
+   "years": [
+    2020,
+    2020
+   ],
+   "hit": 0.03,
+   "urban": 0.2,
+   "poor": 1.5,
+   "severity": 2,
+   "effect": {
+    "happy": -8,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "空が暗くなるほどのバッタの群れが来て、畑の作物を一日で食べつくした。"
+    ],
+    "news": [
+     "東アフリカに、サバクトビバッタの大群が押しよせた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "A swarm of locusts dark enough to blot out the sky arrived and ate the crops to the ground in a day."
+    ],
+    "news": [
+     "Vast swarms of desert locusts descended on East Africa."
+    ]
+   },
+   "stat": [
+    "2019〜20年のサバクトビバッタの大発生は、ケニアでは70年ぶりの規模だった (FAO)",
+    "The 2019-20 desert locust upsurge was the worst Kenya had seen in 70 years (FAO)"
+   ],
+   "src": "FAO Desert Locust Watch 2020"
+  },
+  {
+   "id": "tigray-war",
+   "type": "war",
+   "countries": [
+    "ETH"
+   ],
+   "years": [
+    2020,
+    2022
+   ],
+   "cities": [
+    "メケレ",
+    "Mekelle"
+   ],
+   "hit": 0.5,
+   "elsewhere": 0.02,
+   "kill": 0.0015,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "戦いが町に来て、電気も電話も銀行も止まった。食べ物が届かず、山の村へ逃れた。",
+     "家を追われ、学校の校舎を避難所にして暮らした。"
+    ],
+    "news": [
+     "北部のティグライで戦争が始まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The war reached the town. Power, phones and banks were cut off. With no food coming in, the family fled to a mountain village.",
+     "Driven from home, lived in a school building turned shelter."
+    ],
+    "news": [
+     "War broke out in Tigray in the north."
+    ]
+   },
+   "stat": [
+    "ティグライの戦争では200万人あまりが家を追われた (国連OCHA)",
+    "The war in Tigray drove more than two million people from their homes (UN OCHA)"
+   ],
+   "src": "UN OCHA Ethiopia 2021-22",
+   "rough": true
+  },
+  {
+   "id": "zaf-unrest-2021",
+   "type": "unrest",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    2021,
+    2021
+   ],
+   "cities": [
+    "ダーバン",
+    "Durban"
+   ],
+   "hit": 0.05,
+   "elsewhere": 0.003,
+   "age": [
+    18,
+    64
+   ],
+   "severity": 3,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.2,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "7月、暴動で店と倉庫が焼かれ、勤め先がなくなった。"
+    ],
+    "news": [
+     "7月、クワズール・ナタールとハウテンで暴動と略奪が広がった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July rioters burned the shops and warehouses, and the workplace was gone."
+    ],
+    "news": [
+     "In July riots and looting spread across KwaZulu-Natal and Gauteng."
+    ]
+   },
+   "stat": [
+    "2021年7月の暴動と略奪で354人が亡くなった (南アフリカ政府)",
+    "354 people died in the riots and looting of July 2021 (South African government)"
+   ],
+   "src": "South African Human Rights Commission 2023"
+  },
+  {
+   "id": "madagascar-south-famine",
+   "type": "famine",
+   "countries": [
+    "MDG"
+   ],
+   "years": [
+    2021,
+    2022
+   ],
+   "hit": 0.04,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨が降らず、砂嵐が畑を埋めた。サボテンの実と葉を煮て食べた。"
+    ],
+    "news": [
+     "マダガスカル南部が、この40年で最悪の干ばつに見舞われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "No rain fell, and sandstorms buried the fields. Cactus fruit and leaves were boiled to eat."
+    ],
+    "news": [
+     "Southern Madagascar suffered its worst drought in forty years."
+    ]
+   },
+   "stat": [
+    "2021年、マダガスカル南部では約114万人が深刻な食料不足に陥った (WFP)",
+    "In 2021 about 1.14 million people in southern Madagascar faced severe food insecurity (WFP)"
+   ],
+   "src": "WFP Madagascar 2021; IPC"
+  },
+  {
+   "id": "cyclone-freddy",
+   "type": "cyclone",
+   "countries": [
+    "MWI"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "cities": [
+    "ブランタイア",
+    "Blantyre"
+   ],
+   "hit": 0.1,
+   "elsewhere": 0.025,
+   "poor": 1.5,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "3月、何日も雨が続き、山の斜面が崩れて家が泥に埋まった。"
+    ],
+    "news": [
+     "サイクロン・フレディがマラウイ南部に大雨を降らせた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In March the rain went on for days, and the hillside collapsed and buried the house in mud."
+    ],
+    "news": [
+     "Cyclone Freddy brought torrential rain to southern Malawi."
+    ]
+   },
+   "stat": [
+    "2023年3月のサイクロン・フレディで、マラウイでは679人が亡くなり、65万人あまりが家を追われた (マラウイ政府)",
+    "Cyclone Freddy in March 2023 killed 679 people in Malawi and displaced more than 650,000 (Government of Malawi)"
+   ],
+   "src": "Government of Malawi Post-Disaster Needs Assessment 2023"
+  },
+  {
+   "id": "al-haouz-2023",
+   "type": "quake",
+   "countries": [
+    "MAR"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "cities": [
+    "マラケシュ",
+    "Marrakesh"
+   ],
+   "hit": 0.03,
+   "elsewhere": 0.003,
+   "severity": 4,
+   "effect": {
+    "health": -4,
+    "happy": -15,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "9月の夜、大きな揺れで古い町の家の壁が崩れた。何週間も外で寝た。"
+    ],
+    "news": [
+     "9月、アトラス山地で大きな地震があり、山の村々が崩れた。"
+    ],
+    "near": [
+     "9月の夜、大きな揺れで目を覚まし、通りへ飛び出した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One September night a great tremor brought down the walls of the old-town house. For weeks everyone slept outdoors."
+    ],
+    "news": [
+     "In September a major earthquake struck the Atlas Mountains, and mountain villages collapsed."
+    ],
+    "near": [
+     "One September night a great tremor woke everyone, and they ran out into the street."
+    ]
+   },
+   "stat": [
+    "2023年9月のアルハウズ地震で2,960人が亡くなった (モロッコ内務省)",
+    "The September 2023 Al Haouz earthquake killed 2,960 people (Moroccan Interior Ministry)"
+   ],
+   "src": "Moroccan Ministry of Interior; USGS"
+  },
+  {
+   "id": "derna-2023",
+   "type": "flood",
+   "countries": [
+    "LBY"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0.006,
+   "kill": 0.0006,
+   "who": "all",
+   "cause": "災害",
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "9月の夜、ダムが決壊し、谷を下った水が家並みを海へ押し流した。"
+    ],
+    "news": [
+     "9月、嵐ダニエルで東部のデルナのダムが決壊した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One September night the dams burst, and the water raced down the valley carrying the houses out to sea."
+    ],
+    "news": [
+     "In September Storm Daniel burst the dams above Derna in the east."
+    ]
+   },
+   "stat": [
+    "2023年9月、嵐ダニエルでデルナのダム二つが決壊し、WHOの集計で4,352人が亡くなった",
+    "In September 2023 Storm Daniel burst two dams above Derna; WHO counted 4,352 deaths"
+   ],
+   "src": "WHO 2023; UN OCHA Libya"
+  },
+  {
+   "id": "sudan-war-2023",
+   "type": "war",
+   "countries": [
+    "SDN"
+   ],
+   "years": [
+    2023,
+    2025
+   ],
+   "cities": [
+    "ハルツーム",
+    "Khartoum",
+    "オムドゥルマン",
+    "Omdurman",
+    "北ハルツーム",
+    "Khartoum North"
+   ],
+   "hit": 0.7,
+   "elsewhere": 0.15,
+   "kill": 0.003,
+   "who": "all",
+   "cause": "戦争",
+   "severity": 5,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "首都で軍どうしの戦いが始まった。何日も家にこもったあと、着の身着のままで町を出た。",
+     "家を追われ、国境を越えて難民のキャンプにたどり着いた。"
+    ],
+    "news": [
+     "スーダンで軍と民兵の戦争が始まり、多くの人が家を追われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Rival armies began fighting in the capital. After days shut indoors, the family left the city with nothing.",
+     "Driven from home, crossed the border and reached a refugee camp."
+    ],
+    "news": [
+     "War broke out in Sudan between the army and a paramilitary force, and millions were driven from their homes."
+    ]
+   },
+   "stat": [
+    "2023年4月からの戦争で、家を追われた人は1,200万人を超えた (国連)",
+    "More than 12 million people have been driven from their homes since the war began in April 2023 (UN)"
+   ],
+   "src": "IOM & UNHCR 2024",
+   "rough": true
+  },
+  {
+   "id": "southern-africa-drought-2024",
+   "type": "drought",
+   "countries": [
+    "ZMB",
+    "ZWE",
+    "MWI",
+    "NAM"
+   ],
+   "years": [
+    2024,
+    2024
+   ],
+   "hit": 0.15,
+   "urban": 0.4,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -10,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "日照りで畑が枯れ、水力発電の電気も一日に数時間しか来なくなった。"
+    ],
+    "news": [
+     "南部アフリカを干ばつが襲い、各国が国の災害を宣言した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The drought withered the fields, and the hydroelectric power came on for only a few hours a day."
+    ],
+    "news": [
+     "Drought struck southern Africa, and several countries declared national disasters."
+    ]
+   },
+   "stat": [
+    "2024年の干ばつで、ザンビア・ジンバブエ・マラウイは国の災害を宣言した",
+    "In the 2024 drought Zambia, Zimbabwe and Malawi declared national disasters"
+   ],
+   "src": "SADC 2024; WFP"
+  },
+  {
+   "id": "casamance",
+   "type": "war",
+   "countries": [
+    "SEN"
+   ],
+   "years": [
+    1982,
+    2014
+   ],
+   "hit": 0.005,
+   "severity": 2,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "カザマンスの村が戦いの境目になり、町へ逃れた。"
+    ],
+    "news": [
+     "南部のカザマンスで、分離を求める武装した集団と軍の戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The village in Casamance ended up on the front line, and the family fled to town."
+    ],
+    "news": [
+     "In Casamance in the south, fighting went on between separatists and the army."
+    ]
+   },
+   "stat": [
+    "カザマンスの紛争では、およそ5,000人が亡くなったとされる",
+    "The Casamance conflict is thought to have killed about 5,000 people"
+   ],
+   "src": "Evans 2004, Chatham House Briefing Paper",
+   "rough": true
+  },
+  {
+   "id": "guinea-camp-boiro",
+   "type": "terror",
+   "countries": [
+    "GIN"
+   ],
+   "years": [
+    1960,
+    1984
+   ],
+   "hit": 0.01,
+   "kill": 0.005,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    16,
+    70
+   ],
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "夜中に家に兵が来て、家の男が連れて行かれた。ボワロ収容所に入れられたと、あとで聞いた。"
+    ],
+    "news": [
+     "セク・トゥーレの政権のもとで、多くの人が捕らえられた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Soldiers came to the house in the night and took the men away. Later came word they had been put in Camp Boiro."
+    ],
+    "news": [
+     "Under Sékou Touré's government many people were arrested."
+    ]
+   },
+   "stat": [
+    "セク・トゥーレの時代に、ボワロ収容所などで約5万人が亡くなったとされる",
+    "About 50,000 people are thought to have died in Camp Boiro and other prisons under Sékou Touré"
+   ],
+   "src": "Kaba 1976; Amnesty International",
+   "rough": true
+  },
+  {
+   "id": "gambia-1981",
+   "type": "coup",
+   "countries": [
+    "GMB"
+   ],
+   "years": [
+    1981,
+    1981
+   ],
+   "cities": [
+    "バンジュール",
+    "Banjul",
+    "セレクンダ",
+    "Serekunda",
+    "バカウ",
+    "Bakau"
+   ],
+   "hit": 0.03,
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "7月、クーデターが起き、町で撃ち合いが続いた。家の中で何日も身を伏せていた。"
+    ],
+    "news": [
+     "7月、クーデターが起きたが、セネガルの軍が鎮圧した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July a coup broke out and gunfire went on in the streets. For days the family lay low inside."
+    ],
+    "news": [
+     "In July a coup was attempted and put down by Senegalese troops."
+    ]
+   },
+   "stat": [
+    "1981年7月のクーデター未遂で、数百人が亡くなったとされる",
+    "Several hundred people are thought to have died in the July 1981 coup attempt"
+   ],
+   "src": "Hughes 1991, The Gambia; Wiseman 1985",
+   "rough": true
+  },
+  {
+   "id": "gambia-2017",
+   "type": "unrest",
+   "countries": [
+    "GMB"
+   ],
+   "years": [
+    2016,
+    2017
+   ],
+   "hit": 0.02,
+   "severity": 2,
+   "effect": {
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "選挙のあと、大統領が退くのを拒み、セネガルの親戚の家へ身を寄せた。"
+    ],
+    "news": [
+     "選挙に負けた大統領が退くのを拒み、多くの人が国外へ逃れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "After the election the president refused to step down, and the family went to stay with relatives in Senegal."
+    ],
+    "news": [
+     "The president who lost the election refused to step down, and many people left the country."
+    ]
+   },
+   "stat": [
+    "2017年1月の政治の危機で、約4万5,000人がセネガルへ逃れた (UNHCR)",
+    "In the political crisis of January 2017 about 45,000 people fled to Senegal (UNHCR)"
+   ],
+   "src": "UNHCR 2017"
+  },
+  {
+   "id": "benin-floods-2010",
+   "type": "flood",
+   "countries": [
+    "BEN",
+    "TGO",
+    "NGA",
+    "GHA",
+    "NER"
+   ],
+   "years": [
+    2010,
+    2010
+   ],
+   "hit": 0.02,
+   "urban": 0.6,
+   "poor": 2,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨の季節の終わりに川があふれ、家が水につかった。"
+    ],
+    "news": [
+     "西アフリカの各地で大雨による洪水が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At the end of the rainy season the river overflowed and flooded the house."
+    ],
+    "news": [
+     "Heavy rains brought floods across West Africa."
+    ]
+   },
+   "stat": [
+    "2010年の洪水で、ベナンでは約68万人が被害を受けた (国連)",
+    "The 2010 floods affected about 680,000 people in Benin (UN)"
+   ],
+   "src": "UN OCHA West Africa 2010"
+  },
+  {
+   "id": "botswana-drought-1980s",
+   "type": "drought",
+   "countries": [
+    "BWA"
+   ],
+   "years": [
+    1982,
+    1987
+   ],
+   "hit": 0.2,
+   "urban": 0.4,
+   "poor": 2,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -8,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "日照りで牛の多くが死に、政府の配給と公共事業の仕事で食べつないだ。"
+    ],
+    "news": [
+     "ボツワナで日照りが何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The drought killed most of the cattle, and the family got by on government rations and public works jobs."
+    ],
+    "news": [
+     "Drought gripped Botswana year after year."
+    ]
+   },
+   "stat": [
+    "1980年代のボツワナの干ばつは、1982年から6年続いた",
+    "Botswana's drought of the 1980s lasted six years from 1982"
+   ],
+   "src": "Holm & Morgan 1985, J. Modern African Studies 23:463",
+   "rough": true
+  },
+  {
+   "id": "eswatini-2021",
+   "type": "unrest",
+   "countries": [
+    "SWZ"
+   ],
+   "years": [
+    2021,
+    2021
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月から7月にかけて、民主化を求めるデモが広がり、軍が鎮圧した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "From June into July protests demanding democracy spread, and the army put them down."
+    ]
+   },
+   "stat": [
+    "2021年6〜7月の騒乱で、少なくとも46人が殺された (アムネスティ・インターナショナル)",
+    "At least 46 people were killed in the unrest of June-July 2021 (Amnesty International)"
+   ],
+   "src": "Amnesty International 2021",
+   "rough": true
+  },
+  {
+   "id": "comoros-crisis",
+   "type": "unrest",
+   "countries": [
+    "COM"
+   ],
+   "years": [
+    1997,
+    2001
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "アンジュアン島とモヘリ島が分離を宣言し、国が割れた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Anjouan and Mohéli declared secession, and the country split apart."
+    ]
+   },
+   "stat": [
+    "1997年、アンジュアン島が分離を宣言し、コモロ連合の統一は2001年まで回復しなかった",
+    "In 1997 Anjouan declared secession, and the country was not reunited until 2001"
+   ],
+   "src": "Africa Research Bulletin; ICG"
+  },
+  {
+   "id": "cyclone-kenneth",
+   "type": "cyclone",
+   "countries": [
+    "COM",
+    "MOZ"
+   ],
+   "years": [
+    2019,
+    2019
+   ],
+   "hit": 0.05,
+   "poor": 1.5,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "4月、サイクロン・ケネスが来て、屋根が飛び、バナナ畑がなぎ倒された。"
+    ],
+    "news": [
+     "サイクロン・ケネスがコモロとモザンビーク北部を襲った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In April Cyclone Kenneth came through. The roof flew off and the banana groves were flattened."
+    ],
+    "news": [
+     "Cyclone Kenneth struck the Comoros and northern Mozambique."
+    ]
+   },
+   "stat": [
+    "2019年4月のサイクロン・ケネスで、コモロでは約34万5,000人が被害を受けた (国連)",
+    "Cyclone Kenneth in April 2019 affected about 345,000 people in the Comoros (UN)"
+   ],
+   "src": "UN OCHA 2019",
+   "rough": true
+  },
+  {
+   "id": "yemenia-2009",
+   "type": "transport",
+   "countries": [
+    "COM"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "6月、パリから乗り継いだ旅客機がモロニの沖に墜落した。乗っていたのは、多くがコモロの人だった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In June a connecting flight from Paris crashed off Moroni. Most of those on board were Comorians."
+    ]
+   },
+   "stat": [
+    "2009年6月のイエメニア航空機の墜落で、乗っていた153人のうち152人が亡くなった",
+    "The Yemenia crash of June 2009 killed 152 of the 153 people on board"
+   ],
+   "src": "BEA (France) 2013"
+  },
+  {
+   "id": "djibouti-drought",
+   "type": "drought",
+   "countries": [
+    "DJI"
+   ],
+   "years": [
+    2008,
+    2011
+   ],
+   "hit": 0.1,
+   "urban": 0.2,
+   "poor": 2,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -8,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "何年も雨が少なく、ヤギの群れを手放して町へ出た。"
+    ],
+    "news": [
+     "ジブチの農村で、日照りが何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "For years the rains were thin, and the goats were sold off and the family moved to town."
+    ],
+    "news": [
+     "Drought gripped the countryside of Djibouti for years."
+    ]
+   },
+   "stat": [
+    "2011年、ジブチでは農村の人口の半分ほどにあたる約12万人が食料の援助を必要とした (国連)",
+    "In 2011 about 120,000 people in Djibouti, around half of the rural population, needed food aid (UN)"
+   ],
+   "src": "UN OCHA 2011",
+   "rough": true
+  },
+  {
+   "id": "mauritius-wakashio",
+   "type": "accident",
+   "countries": [
+    "MUS"
+   ],
+   "years": [
+    2020,
+    2020
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "7月、日本の貨物船が南東の沖のサンゴ礁に乗り上げ、油が浜に流れ着いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In July a Japanese bulk carrier ran aground on the reef off the southeast coast, and oil washed up on the shore."
+    ]
+   },
+   "stat": [
+    "2020年7月のわかしお号の座礁で、約1,000トンの油が海に流れ出た",
+    "About 1,000 tonnes of oil spilled into the sea when the Wakashio ran aground in July 2020"
+   ],
+   "src": "Government of Mauritius; UNEP"
+  },
+  {
+   "id": "mauritius-1999",
+   "type": "unrest",
+   "countries": [
+    "MUS"
+   ],
+   "years": [
+    1999,
+    1999
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "2月、歌手のカヤが警察の留置場で亡くなり、各地で暴動が起きた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In February the singer Kaya died in police custody, and riots broke out across the island."
+    ]
+   },
+   "stat": [
+    "1999年2月の暴動で、4人が亡くなった",
+    "Four people were killed in the riots of February 1999"
+   ],
+   "src": "Mauritius Truth and Justice Commission 2011",
+   "rough": true
+  },
+  {
+   "id": "cpv-drought-1970s",
+   "type": "drought",
+   "countries": [
+    "CPV"
+   ],
+   "years": [
+    1968,
+    1985
+   ],
+   "hit": 0.1,
+   "urban": 0.5,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -8,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "雨の少ない年が続き、家の若い者はリスボンやボストンへ働きに出た。"
+    ],
+    "news": [
+     "カーボベルデで、雨の少ない年が何年も続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Dry year followed dry year, and the young ones went off to work in Lisbon or Boston."
+    ],
+    "news": [
+     "Cape Verde saw dry year after dry year."
+    ]
+   },
+   "stat": [
+    "カーボベルデでは1968年から20年近く、雨の少ない年が続いた",
+    "In Cape Verde poor rains lasted almost twenty years from 1968"
+   ],
+   "src": "FAO; Meintel 1984, Race, Culture and Portuguese Colonialism in Cabo Verde",
+   "rough": true
+  },
+  {
+   "id": "fogo-1995",
+   "type": "volcano",
+   "countries": [
+    "CPV"
+   ],
+   "years": [
+    1995,
+    1995
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "4月、フォゴ島の火山が噴火し、山のふもとの村の人々が避難した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In April the volcano on Fogo erupted, and the villages at its foot were evacuated."
+    ]
+   },
+   "stat": [
+    "1995年4月のフォゴ山の噴火で、約1,300人が避難した",
+    "About 1,300 people were evacuated when Mount Fogo erupted in April 1995"
+   ],
+   "src": "Global Volcanism Program, Smithsonian Institution",
+   "rough": true
+  },
+  {
+   "id": "gabon-2009",
+   "type": "unrest",
+   "countries": [
+    "GAB"
+   ],
+   "years": [
+    2009,
+    2009
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "9月、大統領選挙の結果に抗議する暴動がポールジャンティで起きた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In September riots against the presidential election result broke out in Port-Gentil."
+    ]
+   },
+   "stat": [
+    "2009年9月のポールジャンティの暴動で、少なくとも3人が亡くなった (政府の発表)",
+    "At least three people were killed in the Port-Gentil riots of September 2009 (government figure)"
+   ],
+   "src": "Reuters 2009; Human Rights Watch",
+   "rough": true
+  },
+  {
+   "id": "gabon-coup-2023",
+   "type": "coup",
+   "countries": [
+    "GAB"
+   ],
+   "years": [
+    2023,
+    2023
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、選挙の結果が発表された直後に軍が権力を握り、50年あまり続いたボンゴ家の支配が終わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August, just after the election result was announced, the army seized power, ending more than fifty years of rule by the Bongo family."
+    ]
+   },
+   "stat": [
+    "ボンゴ家は1967年から2023年まで、56年にわたってガボンを治めた",
+    "The Bongo family ruled Gabon for 56 years, from 1967 to 2023"
+   ],
+   "src": "Reuters; BBC 2023"
+  },
+  {
+   "id": "bata-2021",
+   "type": "accident",
+   "countries": [
+    "GNQ"
+   ],
+   "years": [
+    2021,
+    2021
+   ],
+   "cities": [
+    "バタ",
+    "Bata"
+   ],
+   "hit": 0.02,
+   "elsewhere": 0,
+   "severity": 3,
+   "effect": {
+    "health": -4,
+    "happy": -12,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "3月、兵営の弾薬庫が爆発し、近くの家々が吹き飛ばされた。"
+    ],
+    "news": [
+     "3月、バタの兵営で大きな爆発があった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In March the munitions depot at the barracks exploded, and the nearby houses were blown apart."
+    ],
+    "news": [
+     "In March a huge explosion tore through the barracks in Bata."
+    ]
+   },
+   "stat": [
+    "2021年3月のバタの爆発で107人が亡くなり、600人あまりがけがをした",
+    "The Bata explosions of March 2021 killed 107 people and injured more than 600"
+   ],
+   "src": "Government of Equatorial Guinea; UN OCHA 2021"
+  },
+  {
+   "id": "mpila-2012",
+   "type": "accident",
+   "countries": [
+    "COG"
+   ],
+   "years": [
+    2012,
+    2012
+   ],
+   "cities": [
+    "ブラザビル",
+    "Brazzaville"
+   ],
+   "hit": 0.01,
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -12,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "3月の朝、兵営の弾薬庫が爆発し、まわりの地区の家が崩れた。"
+    ],
+    "news": [
+     "3月、ブラザビルのムピラ地区で弾薬庫が爆発した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One March morning the munitions depot at the barracks exploded, and the houses in the surrounding district collapsed."
+    ],
+    "news": [
+     "In March a munitions depot exploded in the Mpila district of Brazzaville."
+    ]
+   },
+   "stat": [
+    "2012年3月のムピラの爆発で、約300人が亡くなり、約1万4,000人が家を失った",
+    "The March 2012 Mpila explosions killed about 300 people and left about 14,000 homeless"
+   ],
+   "src": "UN OCHA 2012; ICRC",
+   "rough": true
+  },
+  {
+   "id": "accra-2015",
+   "type": "flood",
+   "countries": [
+    "GHA"
+   ],
+   "years": [
+    2015,
+    2015
+   ],
+   "cities": [
+    "アクラ",
+    "Accra"
+   ],
+   "hit": 0.002,
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "6月の大雨で町が水につかり、ガソリンスタンドの火事が広がった。"
+    ],
+    "news": [
+     "6月、アクラの洪水とガソリンスタンドの火事で多くの人が亡くなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June heavy rain flooded the city, and a fire at a petrol station spread."
+    ],
+    "news": [
+     "In June floods and a petrol station fire in Accra killed many people."
+    ]
+   },
+   "stat": [
+    "2015年6月3日のアクラの洪水と火事で、154人が亡くなった",
+    "154 people died in the Accra floods and fire of 3 June 2015"
+   ],
+   "src": "Government of Ghana (NADMO)"
+  },
+  {
+   "id": "nigeria-endsars",
+   "type": "unrest",
+   "countries": [
+    "NGA"
+   ],
+   "years": [
+    2020,
+    2020
+   ],
+   "hit": 0,
+   "severity": 1,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "10月、警察の暴力に抗議するデモが広がり、ラゴスのレッキの料金所で兵が発砲した。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In October protests against police brutality spread, and soldiers opened fire at the Lekki toll gate in Lagos."
+    ]
+   },
+   "stat": [
+    "2020年10月の#EndSARSの抗議では、全国で少なくとも56人が亡くなった (アムネスティ・インターナショナル)",
+    "At least 56 people died nationwide during the #EndSARS protests of October 2020 (Amnesty International)"
+   ],
+   "src": "Amnesty International 2020"
+  },
+  {
+   "id": "mogadishu-2017",
+   "type": "terror",
+   "countries": [
+    "SOM"
+   ],
+   "years": [
+    2017,
+    2017
+   ],
+   "cities": [
+    "モガディシュ",
+    "Mogadishu"
+   ],
+   "hit": 0.002,
+   "elsewhere": 0,
+   "severity": 2,
+   "effect": {
+    "health": -4,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "10月、町の中心でトラックの爆弾が爆発した。窓ガラスが吹き飛び、煙が何日も消えなかった。"
+    ],
+    "news": [
+     "10月、モガディシュで大きな爆弾テロがあった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In October a truck bomb exploded in the city center. The windows were blown in, and the smoke hung for days."
+    ],
+    "news": [
+     "In October a massive bombing struck Mogadishu."
+    ]
+   },
+   "stat": [
+    "2017年10月14日のモガディシュの爆弾テロで、587人が亡くなった",
+    "The Mogadishu truck bombing of 14 October 2017 killed 587 people"
+   ],
+   "src": "Somali government; UN 2018"
+  },
+  {
+   "id": "uganda-lra",
+   "type": "war",
+   "countries": [
+    "UGA"
+   ],
+   "years": [
+    1987,
+    2006
+   ],
+   "cities": [
+    "グル",
+    "Gulu"
+   ],
+   "hit": 0.7,
+   "elsewhere": 0.06,
+   "severity": 4,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "夜になると、子どもたちは誘拐を恐れて町の軒下で眠った。",
+     "村から追われ、避難民のキャンプに移されて何年も暮らした。"
+    ],
+    "news": [
+     "北部ウガンダで、神の抵抗軍の襲撃と誘拐が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "At night the children walked into town to sleep under the verandas, for fear of being abducted.",
+     "Driven from the village and moved into a displaced people's camp, the family lived there for years."
+    ],
+    "news": [
+     "In northern Uganda the Lord's Resistance Army went on raiding villages and abducting children."
+    ]
+   },
+   "stat": [
+    "2005年には、北部ウガンダの約180万人が避難民のキャンプで暮らしていた (国連OCHA)",
+    "In 2005 about 1.8 million people in northern Uganda were living in displacement camps (UN OCHA)"
+   ],
+   "src": "UN OCHA Uganda 2005; Human Rights Watch"
+  },
+  {
+   "id": "libya-2014-war",
+   "type": "war",
+   "countries": [
+    "LBY"
+   ],
+   "years": [
+    2014,
+    2020
+   ],
+   "cities": [
+    "トリポリ",
+    "Tripoli"
+   ],
+   "hit": 0.08,
+   "elsewhere": 0.03,
+   "severity": 3,
+   "effect": {
+    "health": -5,
+    "happy": -18,
+    "home": true,
+    "wealth": -0.5
+   },
+   "ja": {
+    "hit": [
+     "町のはずれで撃ち合いが始まり、親戚の家に移った。"
+    ],
+    "news": [
+     "リビアで、二つの政府をめぐる戦いが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Fighting started on the edge of town, and the family moved in with relatives."
+    ],
+    "news": [
+     "Fighting went on in Libya between two rival governments."
+    ]
+   },
+   "stat": [
+    "2019〜20年のトリポリをめぐる戦いで、約15万人が家を追われた (国連)",
+    "The 2019-20 battle for Tripoli displaced about 150,000 people (UN)"
+   ],
+   "src": "UN OCHA Libya 2020"
+  },
+  {
+   "id": "egypt-rabaa-2013",
+   "type": "terror",
+   "countries": [
+    "EGY"
+   ],
+   "years": [
+    2013,
+    2013
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "8月、カイロのラバア広場の座りこみが、治安部隊によって力ずくで排除された。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In August security forces broke up the sit-in at Rabaa Square in Cairo by force."
+    ]
+   },
+   "stat": [
+    "2013年8月14日のラバア広場の排除で、少なくとも817人が殺された (ヒューマン・ライツ・ウォッチ)",
+    "At least 817 people were killed when Rabaa Square was cleared on 14 August 2013 (Human Rights Watch)"
+   ],
+   "src": "Human Rights Watch 2014, All According to Plan"
+  },
+  {
+   "id": "sudan-famine-1984",
+   "type": "famine",
+   "countries": [
+    "SDN"
+   ],
+   "years": [
+    1984,
+    1985
+   ],
+   "hit": 0.15,
+   "kill": 0.004,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 4,
+   "effect": {
+    "health": -8,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "ja": {
+    "hit": [
+     "雨が来ず、きびが実らなかった。野の草の実を集めて食べた。"
+    ],
+    "news": [
+     "ダルフールとコルドファンが飢饉に見舞われた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rains failed and the millet did not ripen. Wild grass seeds were gathered to eat."
+    ],
+    "news": [
+     "Famine struck Darfur and Kordofan."
+    ]
+   },
+   "stat": [
+    "1984〜85年のダルフールの飢饉で、約9万5,000人が亡くなった",
+    "About 95,000 people died in the Darfur famine of 1984-85"
+   ],
+   "src": "de Waal 1989, Famine That Kills",
+   "rough": true
+  },
+  {
+   "id": "angola-nitista",
+   "type": "terror",
+   "countries": [
+    "AGO"
+   ],
+   "years": [
+    1977,
+    1977
+   ],
+   "hit": 0,
+   "severity": 2,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "5月、政権内のクーデター未遂のあと、粛清が国じゅうに広がった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "In May, after a failed coup inside the ruling party, a purge spread across the country."
+    ]
+   },
+   "stat": [
+    "1977年5月27日のクーデター未遂のあとの粛清で、数千人から数万人が殺されたとされる",
+    "Thousands, perhaps tens of thousands, are thought to have been killed in the purge after the failed coup of 27 May 1977"
+   ],
+   "src": "Pawson 2014, In the Name of the People",
+   "rough": true
+  },
+  {
+   "id": "lesotho-drought",
+   "type": "drought",
+   "countries": [
+    "LSO",
+    "SWZ"
+   ],
+   "years": [
+    2007,
+    2007
+   ],
+   "hit": 0.15,
+   "urban": 0.3,
+   "poor": 2,
+   "severity": 2,
+   "effect": {
+    "health": -3,
+    "happy": -8,
+    "wealth": -0.2
+   },
+   "ja": {
+    "hit": [
+     "日照りでとうもろこしの収穫がほとんどなく、援助の配給に並んだ。"
+    ],
+    "news": [
+     "日照りで収穫が落ちこみ、多くの家が援助に頼った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The drought left almost no maize harvest, and the family queued for aid rations."
+    ],
+    "news": [
+     "Drought cut the harvest, and many households came to depend on aid."
+    ]
+   },
+   "stat": [
+    "2007年の干ばつで、レソトの穀物の収穫は前の年の4割ほどに落ちた (FAO・WFP)",
+    "In the 2007 drought Lesotho's cereal harvest fell to about 40% of the previous year's (FAO/WFP)"
+   ],
+   "src": "FAO/WFP Crop and Food Supply Assessment Mission, Lesotho 2007",
+   "rough": true
+  },
+  {
+   "id": "soweto-1976",
+   "type": "unrest",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    1976,
+    1976
+   ],
+   "cities": [
+    "ヨハネスブルグ",
+    "Johannesburg"
+   ],
+   "hit": 0.02,
+   "elsewhere": 0,
+   "age": [
+    10,
+    24
+   ],
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "6月、アフリカーンス語での授業に反対する生徒の行進に、警官が発砲した。催涙ガスの中を走って逃げた。"
+    ],
+    "news": [
+     "6月、ソウェトの生徒の行進に警官が発砲し、蜂起が国じゅうに広がった。"
+    ],
+    "near": [
+     "6月、近くの学校の生徒たちが行進に出た。その夜、町じゅうに装甲車が走っていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In June police opened fire on a students' march against teaching in Afrikaans. Ran through the tear gas to get away."
+    ],
+    "news": [
+     "In June police fired on a students' march in Soweto, and the uprising spread across the country."
+    ],
+    "near": [
+     "In June students from the nearby schools marched. That night armored cars patrolled the whole township."
+    ]
+   },
+   "stat": [
+    "1976年6月からのソウェト蜂起で、公式には176人、実際には数百人が亡くなったとされる",
+    "The Soweto uprising from June 1976 killed 176 people by official count, and several hundred by other estimates"
+   ],
+   "src": "Cillié Commission 1980; South African History Online",
+   "rough": true
+  },
+  {
+   "id": "zaf-violence-1990",
+   "type": "unrest",
+   "countries": [
+    "ZAF"
+   ],
+   "years": [
+    1990,
+    1994
+   ],
+   "cities": [
+    "ヨハネスブルグ",
+    "Johannesburg",
+    "ダーバン",
+    "Durban"
+   ],
+   "hit": 0.02,
+   "elsewhere": 0.005,
+   "severity": 3,
+   "effect": {
+    "health": -3,
+    "happy": -15
+   },
+   "ja": {
+    "hit": [
+     "夜、近くの地区が襲われ、家に火がつけられた。親戚の家に移った。"
+    ],
+    "news": [
+     "民主化への移行のさなか、黒人居住区で政治的な暴力が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One night the neighboring area was attacked and houses were set alight. The family moved to relatives."
+    ],
+    "news": [
+     "During the transition to democracy, political violence went on in the townships."
+    ]
+   },
+   "stat": [
+    "1990年から94年の選挙までの政治的な暴力で、約1万4,000人が亡くなった (真実和解委員会)",
+    "About 14,000 people were killed in political violence between 1990 and the 1994 election (Truth and Reconciliation Commission)"
+   ],
+   "src": "South African Truth and Reconciliation Commission Report 1998"
+  }
+ ]
+}
