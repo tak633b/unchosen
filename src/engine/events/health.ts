@@ -100,6 +100,7 @@ const illnessName = (n: string) => (isEn ? ILLNESS_EN[n] ?? n : n);
 export function illness(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
+  bloodPressure(p);
   if (p.illness) {
     p.illness.years--;
     if (p.illness.years <= 0) { log(p, L(`${p.illness.name}がひとまず落ち着いた。`, `The ${p.illness.name} eased, for now.`), 'ill'); p.illness = undefined; }
@@ -115,6 +116,29 @@ export function illness(p: Person): void {
     const pool = ACUTE.filter(([n, min]) => p.age >= min && (!/マラリア|腸チフス/.test(n) || (c.gdp < 8000 && (n !== 'マラリア' || c.region === 'アフリカ'))));
     if (pool.length) treat(p, illnessName(pick(r, pool)[0]), 1, 0.6);
   }
+}
+
+// 高血圧。30〜79歳の約3人に1人にあり、その半分ほどは気づいていない (WHO 2023)。
+// 40〜75歳で毎年2%ほどが健康診断で見つかり、薬と暮らしをどうするかを選ぶ。
+// ponytail: 倍率は、生命表に入っている「平均的な治療の割合」と比べた目安 (放っておくと脳卒中・心臓病が増える)
+export const bpK = (p: Person) => (p.bp === 'ignored' ? 1.2 : p.bp === 'both' ? 0.9 : 1);
+function bloodPressure(p: Person): void {
+  if (p.bp || p.age < 40 || p.age > 75 || p.rng() >= 0.02 * (p.smoker ? 1.3 : 1) * (p.drinker ? 1.3 : 1)) return;
+  const rich = countryOf(p).gdp >= 20000;
+  decide(p, {
+    title: L('健康診断の結果', 'Checkup results'),
+    text: L('健康診断で、血圧が高いと言われた。', 'The checkup found high blood pressure.'),
+    stat: L('30〜79歳の約3人に1人が高血圧で、その約半分は自分では気づいていない (WHO 2023)', 'About one in three adults aged 30–79 has high blood pressure, and about half of them do not know it (WHO 2023)'),
+    options: [
+      { label: L('薬を飲みながら、食生活と運動も変える', 'Take the medicine, and change diet and exercise too'),
+        apply: (q) => { q.bp = 'both'; log(q, L('薬をきちんと飲み、薄味を心がけ、歩く習慣をつけた。', 'Took the pills faithfully, cut back on salt, and started walking every day.'), 'ill'); bump(q, { health: 2 }); } },
+      { label: L('薬だけ飲む', 'Just take the medicine'),
+        apply: (q) => { q.bp = 'meds'; log(q, L('毎朝、血圧の薬を飲むようになった。', 'A blood-pressure pill became part of every morning.'), 'ill'); } },
+      { label: L('しばらく様子を見る', 'Wait and see'), hint: L('脳卒中や心臓の病気の危険が上がる', 'Raises the risk of stroke and heart disease'),
+        apply: (q) => { q.bp = 'ignored'; log(q, L('血圧のことは、そのままにしておいた。', 'Left the blood pressure alone.'), 'ill'); } },
+    ],
+    auto: (q) => { const u = q.rng(); return rich ? (u < 0.45 ? 0 : u < 0.85 ? 1 : 2) : (u < 0.25 ? 0 : u < 0.6 ? 1 : 2); },
+  });
 }
 
 // 病院で治したときの死亡率の倍率。その国の医療の水準で決まる (生命表には、この水準がすでに入っている)

@@ -16,7 +16,7 @@ import { work } from './events/work';
 import { finances } from './events/money';
 import { lifePayout } from './events/insurance';
 import { births, childMarriage, love } from './events/love';
-import { careQuality, drift, habits, hiv, illness, smokeStart } from './events/health';
+import { bpK, careQuality, drift, habits, hiv, illness, smokeStart } from './events/health';
 import { migration } from './events/migration';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
@@ -171,7 +171,7 @@ export function riskParts(p: Person): RiskParts {
   // 喫煙と病気は、その国・その時代の平均の人と比べた倍率にする (生命表には、その時代の喫煙と医療の水準がすでに入っている)
   const smokeK = p.age < 35 ? 1 : (p.smoker ? (p.age >= 55 ? 2 : 1.5) : 0.92) / smokeAvg(p);
   const drinkK = p.drinker ? 1.25 : 1;
-  const illK = (p.illness?.mult ?? careQuality(c)) / careQuality(c);
+  const illK = ((p.illness?.mult ?? careQuality(c)) / careQuality(c)) * bpK(p);
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
   // つらい時期 (events/strain.ts) には、自死の率をその倍率のぶんだけ動かす。時期の外では 0 なので、ふだんの死亡率は変わらない
   const strainAdd = (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
@@ -196,13 +196,23 @@ export function settle(p: Person): void {
     because(p, helpline());
     return;
   }
+  foreshadow(p);
   log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
   because(p, p.cause === causeName('出産時の合併症') ? birthWhy(p, countryOf(p), p.age) : joinWhy([
     deathWhy(countryOf(p), p.sex, p.age, p.gender === 'X'),
     p.smoker && L('タバコを吸っていた', 'smoked'),
     p.illness && L(`${p.illness.name}を患っていた`, `was living with ${p.illness.name}`),
+    p.bp === 'ignored' && L('高い血圧をそのままにしていた', 'left high blood pressure untreated'),
     p.hiv === 'untreated' && L('HIVの治療を受けられなかった', 'never got HIV treatment'),
   ]));
+}
+
+// ゆっくり進む死因は、亡くなる前の数年を振り返る一行を置く (病気の治療の記録があれば、それが前触れになっている)
+function foreshadow(p: Person): void {
+  if (p.illness || p.age < 60) return;
+  const is = (ja: string) => p.cause === ja || p.cause === causeName(ja);
+  if (is('認知症')) log(p, L('ここ数年、物忘れが増えていた。家族の名前を呼び違え、同じ話を何度もするようになっていた。', 'For some years the forgetting had grown. Family names came out wrong, and the same stories came round again and again.'), 'ill');
+  else if (is('老衰')) log(p, L('この一、二年で、食が細くなり、昼のあいだも眠っていることが増えた。', 'Over the last year or two, appetite faded and more of each day passed asleep.'), 'old');
 }
 
 export function advanceYear(p: Person): void {
@@ -219,6 +229,7 @@ export function advanceYear(p: Person): void {
     else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');
     else if (p.job === DEEP_SEA && p.working && !p.retired && p.rng() < DEEP_SEA_RISK / q) cause = causeName('海の事故');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;
+    else if (p.bp === 'ignored' && p.rng() < 0.3) cause = causeName(p.rng() < 0.6 ? '脳卒中' : '心臓病');
     else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker, strainK(p));
     die(p, cause);
     return;

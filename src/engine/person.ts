@@ -155,6 +155,7 @@ export interface Person {
   nameKeys?: string[]; // 主人公・きょうだい・子・孫に使った名 (Name.key)。家の中で同じ名前にしない
   smoker?: boolean;
   drinker?: boolean;
+  bp?: 'both' | 'meds' | 'ignored'; // 健康診断で高血圧が見つかったときに選んだこと (health.ts の bloodPressure)
   hiv: 'none' | 'untreated' | 'treated';
   hivYears: number;
   illness?: Illness;

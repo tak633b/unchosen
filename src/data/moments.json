@@ -6819,24 +6819,6 @@
       }
     },
     {
-      "id": "hypertension",
-      "text": "血圧が高いと言われ、毎朝薬を飲むことになった。",
-      "minAge": 40,
-      "maxAge": 70,
-      "weight": 1,
-      "when": {
-        "place": "urban"
-      },
-      "effects": {
-        "health": -1
-      },
-      "stat": "30〜79歳で高血圧の人は世界に約13億人いて、その約半数は自分が高血圧だと知らない (WHO)",
-      "en": {
-        "text": "Told the blood pressure was high. Started taking a pill every morning.",
-        "stat": "About 1.3 billion people aged 30 to 79 worldwide have hypertension, and about half of them do not know it (WHO)"
-      }
-    },
-    {
       "id": "grandchild-school-fees",
       "text": "孫の学費の一部を、{name}が出すことにした。",
       "minAge": 55,
