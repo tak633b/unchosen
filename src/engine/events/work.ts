@@ -116,7 +116,7 @@ export function work(p: Person): void {
   p.jobYears++;
   p.incomeP = clamp(p.incomeP + normal(r, p.focus === 'work' ? 0.012 : 0.002, 0.025), 0.01, 0.99);
   // 不況・危機の年は職を失いやすい (market.ts。長い目で見た平均は1倍)
-  if (p.age < 60 && r() < (p.formal ? 0.025 : 0.05) * (p.focus === 'work' ? 0.6 : 1) * layoffK(p)) {
+  if (p.age < 60 && !p.business && r() < (p.formal ? 0.025 : 0.05) * (p.focus === 'work' ? 0.6 : 1) * layoffK(p)) {
     p.unemployed = 1 + Math.floor(r() * 2);
     log(p, r() < 0.5 ? L('会社が人を減らし、仕事を失った。', 'Lost the job in a round of layoffs.') : L('仕事がなくなった。', 'The work dried up.'), 'hard');
     bump(p, { happy: -8 });

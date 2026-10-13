@@ -8,6 +8,8 @@ import { bump, countryOf, decide, eduLevel, log, type Person, yearOf } from '../
 import { clamp, normal } from '../rng';
 import { inDreamJob, talent } from '../talent';
 import { scaleOf } from './common';
+import { layoffK } from '../market';
+import { showRng } from '../crisis';
 
 // 決まった仕事に就く (求人の中から選ぶのではなく、道の先で就くもの)
 function assignJob(p: Person, name: string, kind: 'office' | 'manual', pos: number): void {
@@ -55,6 +57,7 @@ export function career(p: Person): void {
   athleteOffer(p);
   certOffer(p);
   businessOffer(p);
+  familyShop(p);
 }
 
 // ---- スポーツ -------------------------------------------------------------------------
@@ -152,7 +155,60 @@ function businessYear(p: Person): void {
     p.unemployed = 1;
     log(p, L('会社がうまくいかず、たたむことになった。', 'The company did not make it and had to close.'), 'hard', true);
     bump(p, { happy: -8 });
+    return;
   }
+  // 根づいた商売にも、客が離れる年がある。景気の悪い年 (market.ts の SHOCKS) ほど多い
+  if (p.jobYears > 5 && p.rng() < 0.03 * layoffK(p)) hardYear(p);
+}
+
+function hardYear(p: Person): void {
+  const loan = scaleOf(p) * 0.3;
+  decide(p, {
+    title: L('客が減った', 'Customers are falling away'),
+    text: L('売り上げが落ち、このままでは持たない。', 'Sales have dropped. This cannot go on.'),
+    options: [
+      { label: L('規模を縮小して持ちこたえる', 'Scale back and hold on'),
+        apply: (q) => { q.incomeP = clamp(q.incomeP - 0.1, 0.01, 0.99); log(q, L('人と仕入れを減らした。稼ぎは減ったが、峠は越えられそうだ。', 'Cut staff and stock. Less coming in, but it looked like the worst could be weathered.'), 'work'); bump(q, { happy: -3 }); } },
+      { label: L('借金をして踏ん張る', 'Borrow and push through'), hint: L('うまくいけば取り戻せる', 'Could win it all back'),
+        apply: (q) => {
+          q.wealth -= loan;
+          if (q.rng() < 0.5) { q.incomeP = clamp(q.incomeP + 0.05, 0.01, 0.99); log(q, L(`${yen(loan)}を借りて店を立て直した。次の年、客が戻ってきた。`, `Borrowed ${yen(loan)} to rebuild. The next year, the customers came back.`), 'work', true); bump(q, { happy: 6 }); }
+          else { q.business = false; q.selfEmployed = false; q.unemployed = 1; log(q, L(`${yen(loan)}を借りて踏ん張ったが、客は戻らなかった。店をたたみ、借金が残った。`, `Borrowed ${yen(loan)} and held on, but the customers never came back. Closed up, with the debt still owed.`), 'hard', true); bump(q, { happy: -10 }); }
+        } },
+      { label: L('たたむ', 'Close it'),
+        apply: (q) => { q.business = false; q.selfEmployed = false; q.unemployed = 1; log(q, L('長く続けた店を閉めた。最後の日、常連の客が花を持ってきた。', 'Closed the business after many years. On the last day, a regular came with flowers.'), 'hard', true); bump(q, { happy: -6 }); } },
+    ],
+    auto: (q) => (q.rng() < 0.6 ? 0 : q.rng() < 0.6 ? 1 : 2),
+  });
+}
+
+// ---- 家業 ---------------------------------------------------------------------------
+// 町の家の1割ほどは、店や工房を営んでいる (自営業は世界の働く人の約4割だが、多くは畑と露店。ここでは継げる店のある家だけ。ILO)
+// 生まれたときの乱数を使わずに決める (showRng)。親が年をとるか亡くなったころ、継ぐかを聞かれる
+const hasFamilyShop = (p: Person) => showRng(p.seed, 0, 0x5409)() < 0.1 && p.familyP >= 0.3;
+function familyShop(p: Person): void {
+  if (p.recent.familyShop !== undefined || p.business || p.age < 25 || p.age > 50 || !hasFamilyShop(p)) return;
+  const father = p.father;
+  const ready = !father.alive || father.age >= 65;
+  if (!ready) return;
+  p.recent.familyShop = p.age;
+  const word = father.alive ? L('父', 'Father') : L('亡くなった父', 'late Father');
+  decide(p, {
+    title: L('家業', 'The family business'),
+    text: L(`${word}の店を、誰が継ぐかという話になった。`, `The question came up of who would take over ${father.alive ? "Father's" : "the late Father's"} shop.`),
+    options: [
+      { label: L('家業を継ぐ', 'Take over the family business'),
+        apply: (q) => {
+          q.working = true; q.unemployed = 0; q.business = true; q.selfEmployed = true;
+          q.job = '家業の店主'; q.jobKind = 'manual'; q.jobYears = 6; // 根づいた店なので、始めたばかりの店のようにはつぶれない
+          q.incomeP = clamp(Math.max(q.incomeP, q.familyP) + normal(q.rng, 0, 0.08), 0.01, 0.99);
+          log(q, L('父の店を継いだ。古い常連の客は、しばらく父の名前で呼びかけてきた。', "Took over Father's shop. For a while the old regulars kept calling out Father's name."), 'work', true);
+        } },
+      { label: L('自分の仕事を続ける', 'Stay in own line of work'),
+        apply: (q) => { log(q, L('店は人に譲られた。前を通るたびに、看板が新しくなっているのを見た。', 'The shop passed to someone else. Walking by, there was always a new sign out front.'), 'work'); bump(q, { happy: -2 }); } },
+    ],
+    auto: (q) => (q.rng() < (q.working && q.incomeP > 0.6 ? 0.2 : 0.55) ? 0 : 1),
+  });
 }
 
 // 会社の持ち主は、経営を人に任せて退き、配当で暮らせる (common.ts の pension)。退いたら true

@@ -3877,7 +3877,8 @@
       "weight": 1,
       "when": {
         "state": "work",
-        "job": "office"
+        "job": "office",
+        "employee": true
       },
       "effects": {
         "happy": -2
@@ -8102,7 +8103,8 @@
       "weight": 1,
       "when": {
         "state": "work",
-        "job": "manual"
+        "job": "manual",
+        "employee": true
       },
       "effects": {
         "happy": -2

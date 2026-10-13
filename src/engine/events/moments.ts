@@ -58,6 +58,7 @@ export interface When {
   teenChild?: boolean;
   livingAlone?: boolean;
   job?: 'office' | 'manual' | 'farm' | 'none';
+  employee?: boolean; // 雇われて働いている (自分の店・畑・会社ではない)
 }
 
 // 留学や移住で外国にいる間は町の名前を持たない (p.city === null) が、農村ではない
@@ -107,6 +108,7 @@ export function fits(p: Person, w: When): boolean {
   if (w.sibling && !p.siblings.some((b) => b.alive && (w.sibling === 'younger' ? b.age >= 0 && b.age < p.age : b.age > p.age && b.sex === (w.sibling === 'olderBrother' ? 'M' : 'F')))) return false;
   if (!is(w.teenChild, p.children.some((k) => k.alive && k.age >= 13 && k.age <= 19))) return false;
   if (!is(w.livingAlone, p.working && p.age >= 18 && !p.spouse?.alive)) return false;
+  if (!is(w.employee, p.working && !p.retired && !p.selfEmployed)) return false;
   if (w.job && w.job !== (p.working && !p.retired && p.unemployed === 0 ? p.jobKind ?? 'manual' : 'none')) return false;
   return true;
 }
