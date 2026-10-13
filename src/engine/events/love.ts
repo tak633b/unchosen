@@ -112,19 +112,22 @@ export function childMarriage(p: Person): void {
 export function births(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
-  if (!p.spouse?.alive) return;
+  if (!p.spouse?.alive) { delete p.recent.trying; return; }
   const motherAge = p.sex === 'F' ? p.age : p.spouse.age;
+  if (p.recent.trying !== undefined) { tryForChild(p); return; }
+  if (p.recent.noMoreKids !== undefined) return;
   if (motherAge < 15 || motherAge > 45) return;
   // 次の子までは2年以上あく。合計特殊出生率に合うよう、残りの年の確率を上げてある (実測で調整)
   if (p.children.some((k) => k.alive && k.age < 2)) return;
-  const pYear = Math.min(0.6, c.tfr / (c.tfr < 3 ? 11 : 19));
+  // 少子の国は「持つ」を選んでも授からない年がある (tryForChild) ので、その分だけ考える年を増やして出生率に合わせる (実測: 子の数が約12%減っていた)
+  const pYear = Math.min(0.6, c.tfr < 3 ? (c.tfr / 11) * 1.14 : c.tfr / 19);
   if (r() >= pYear) return;
   if (c.tfr < 3) {
     decide(p, {
       title: L('子ども', 'Children'),
       text: p.children.length ? L('もう一人、子どもを持つ？', 'Have another child?') : L('子どもを持つ？', 'Have a child?'),
       options: [
-        { label: L('持つ', 'Yes'), apply: (q) => giveBirth(q) },
+        { label: L('持つ', 'Yes'), apply: (q) => tryForChild(q) },
         { label: L('今は持たない', 'Not now'), apply: () => {} },
       ],
       // 少子の国では、2人目・3人目からは持たない人が増える
@@ -133,6 +136,33 @@ export function births(p: Person): void {
   } else {
     giveBirth(p);
   }
+}
+
+// 望んでも、その年に授かるとは限らない。授からなければ次の年も待ち、3年待っても授からなければあきらめる
+// 1年以内に妊娠する見込み: 35歳未満で約85%、35〜39歳で約60%、40歳を過ぎると約35% (米国産科婦人科学会)
+const conceiveP = (motherAge: number) => (motherAge < 35 ? 0.85 : motherAge < 40 ? 0.6 : 0.35);
+function tryForChild(p: Person): void {
+  const motherAge = p.sex === 'F' ? p.age : p.spouse!.age;
+  const since = p.recent.trying;
+  if (motherAge <= 45 && p.rng() < conceiveP(motherAge)) {
+    delete p.recent.trying;
+    if (since !== undefined) log(p, L('1年以上待った末に、子どもを授かった。', 'After more than a year of waiting, a child was on the way.'), 'family');
+    giveBirth(p);
+    return;
+  }
+  if (since !== undefined && (p.age - since >= 3 || motherAge >= 45)) {
+    delete p.recent.trying;
+    p.recent.noMoreKids = p.age;
+    log(p, p.children.length
+      ? L('もう一人を待ったが、授からなかった。今いる子どもたちと生きていくことにした。', 'Waited for one more, but it did not happen. Decided to build life around the children already here.')
+      : L('何年も待ったが、子どもは授からなかった。二人で生きていくことにした。', 'Years of waiting, and no child came. Decided the two of them would make a life together.'), 'family', true);
+    bump(p, { happy: -8 });
+    return;
+  }
+  p.recent.trying = since ?? p.age;
+  log(p, L('子どもを待ち望んだが、今年は授からなかった。', 'Hoped for a child, but not this year.'), 'family', false,
+    L('1年以内に妊娠する見込みは、35歳未満で約85%、35〜39歳で約60%、40歳を過ぎると約35% (米国産科婦人科学会)', 'The chance of pregnancy within a year is about 85% under 35, 60% at 35–39 and 35% after 40 (ACOG)'));
+  bump(p, { happy: -3 });
 }
 
 export function giveBirth(p: Person): void {
