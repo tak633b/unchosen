@@ -7,6 +7,7 @@ import { isRich } from './common';
 import { homeShare } from './work';
 import { isEn, L } from '../../i18n';
 import { because, homeWhy, schoolWhy } from '../why';
+import { showRng } from '../crisis';
 
 const TEMPERAMENTS: [string, Partial<Stats>, string][] = [
   [L('好奇心の強い子', 'Curious'), { learn: 8 }, L('学び +8', 'Learning +8')],
@@ -25,6 +26,23 @@ function temperament(p: Person): void {
     })),
     auto: (q) => Math.floor(q.rng() * TEMPERAMENTS.length),
   });
+}
+
+// 2歳で見えた気質は、5歳で周りの呼び名になり、大人になっても癖として残る (本家の「好奇心旺盛な子」→ 41歳の「夜遅くまで調べる癖」)
+const TEMPER_LATER: [string, string][] = [
+  ['気になることがあると夜遅くまで調べる癖は、大人になっても相変わらずだった。', 'The habit of staying up late looking into whatever caught the mind never went away.'],
+  ['休みの日にじっとしていられないのは、子どものころから変わらなかった。', 'Could never sit still on a day off. That had not changed since childhood.'],
+  ['初めて会った人とも、すぐに話しこんでしまう。子どものころからそうだった。', 'Still fell into long talks with people just met. It had always been that way.'],
+  ['一度始めたことは、うまくいかなくてもやめない。子どものころから、そう言われてきた。', 'Once something was started, it got finished, however badly it went. People had said so since childhood.'],
+];
+function temperEcho(p: Person): void {
+  const i = TEMPERAMENTS.findIndex(([label]) => label === p.temperament);
+  if (i < 0) return;
+  if (p.age === 5) log(p, L(`5歳になるころには、大人たちは${p.given}を「${p.temperament}」と呼ぶようになった。`, `By age 5, the grown-ups had started calling ${p.given} "the ${p.temperament!.toLowerCase()} one."`), 'child');
+  else if (p.age >= 35 && p.age <= 60 && p.recent.temperLater === undefined && showRng(p.seed, p.age, 0x7e3)() < 0.08) {
+    p.recent.temperLater = p.age;
+    log(p, L(...TEMPER_LATER[i]), 'family');
+  }
 }
 
 const HOBBY_EN: Record<string, string> = {
@@ -107,6 +125,7 @@ export function childhood(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
   if (p.age === 2) temperament(p);
+  temperEcho(p);
   if (p.age <= 4 && r() < c.u5mr * 1.5) {
     log(p, L('ひどい熱と下痢で何日も寝込んだが、回復した。', 'Was bedridden for days with high fever and diarrhea, then recovered.'), 'ill');
     bump(p, { health: -6 });

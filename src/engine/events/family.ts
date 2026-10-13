@@ -13,6 +13,7 @@ import { because, deathWhy } from '../why';
 import { petAged, petDied } from '../pets';
 import { orphans } from './roots';
 import { funeral, remember } from './remember';
+import { grownChildren } from './grown';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -107,6 +108,7 @@ export function family(p: Person): void {
       p.pet = undefined;
     }
   }
+  grownChildren(p);
   remember(p);
 }
 

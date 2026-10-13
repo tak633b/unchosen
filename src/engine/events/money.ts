@@ -8,6 +8,7 @@ import { bump, countryOf, decide, log, type Person, yearOf } from '../person';
 import { currentIncome, subsistence } from './common';
 import { insuranceOffer, premium } from './insurance';
 import { rentalEquity, rentalOffer, rentalYear } from './rental';
+import { kidSupport } from './grown';
 
 const DEBT_RATE = 0.03; // 借金の多くは家族・親族や奨学金からなので低めに
 
@@ -53,6 +54,8 @@ export function finances(p: Person): void {
   if (p.car) living += 1200;
   if (p.insured) living += premium(p, c);
   p.wealth += income - living;
+  const support = kidSupport(p);
+  p.wealth += support;
   // 子どもがいず家を借りていたら残った分。子育てと浮いた家賃は内訳に別に出す
   const kept = income - living + kidCost - rentSaved;
 
@@ -96,6 +99,7 @@ export function finances(p: Person): void {
   yearInMoney(p, income, before.worth, [
     [kept >= 0 ? L('働いて残したお金', 'saved from work') : L('貯えの取り崩し', 'drawn from savings'), kept],
     [L('住宅価格の変動', 'house prices'), houseWorth(p) - before.house],
+    [L('子どもからの生活費', 'from the children'), support],
     [L('借金の利息', 'interest'), -interest],
     [L('子育て費用', 'raising children'), -kidCost],
     [L('持ち家に住んで浮いた家賃', 'rent saved by owning'), rentSaved],
