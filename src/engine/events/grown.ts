@@ -14,7 +14,10 @@ const SUPPORT: Record<string, number> = {
   JPN: 0, ISR: 0, USA: 0, CAN: 0, AUS: 0, NZL: 0, KOR: 0.03, SGP: 0.03,
   RUS: 0.03, UKR: 0.03, BLR: 0.03, MDA: 0.03, ROU: 0.03, BGR: 0.03, SRB: 0.03, ALB: 0.03, BIH: 0.03, MKD: 0.03, MNE: 0.03,
 };
-const REGION_SUPPORT: Record<string, number> = { アフリカ: 0.3, アジア: 0.3, オセアニア: 0.3, 北アメリカ: 0.03, 南アメリカ: 0.03, ヨーロッパ: 0 };
+const REGION_SUPPORT: Record<string, number> = { アフリカ: 0.05, アジア: 0.05, オセアニア: 0.05, 北アメリカ: 0.03, 南アメリカ: 0.03, ヨーロッパ: 0 };
+
+// 南アジアと中東では、親を養うのは息子。娘は結婚して夫の家に入り、自分の親にお金を入れることは少ない
+const SONS_SUPPORT = new Set(['IND', 'PAK', 'BGD', 'NPL', 'AFG', 'IRN', 'IRQ', 'SAU', 'SYR', 'JOR', 'PSE', 'LBN', 'OMN', 'KWT', 'ARE', 'QAT', 'BHR']);
 
 const roll = (p: Person, k: Relative, salt: number) => showRng(p.seed, p.age, salt + (k.id ?? 0) * 7)();
 
@@ -42,7 +45,8 @@ export function grownChildren(p: Person): void {
     const key = `kidpay:${k.id}`;
     if (!k.job || p.recent[key] !== undefined || p.age < 45 || k.age < startAge(p) + 2) continue;
     const c = countryOf(p);
-    const odds = Math.max(SUPPORT[c.code] ?? REGION_SUPPORT[c.region] ?? 0, p.retired || p.incomeP < 0.3 ? 0.008 : 0);
+    const norm = (SUPPORT[c.code] ?? REGION_SUPPORT[c.region] ?? 0) * (k.sex === 'F' && SONS_SUPPORT.has(c.code) ? 0.2 : 1);
+    const odds = Math.max(norm, p.retired || p.incomeP < 0.3 ? 0.008 : 0);
     if (roll(p, k, 0x94) >= odds) continue;
     p.recent[key] = p.age;
     log(p, L(`${k.name}が給料から毎月生活費を入れ始めた。ありがたくもあり、申し訳なくもあった。`, `${k.name} began handing over part of the pay every month for the household. Grateful, and a little guilty.`), 'family', false, undefined, k.id ? [k.id] : undefined);
