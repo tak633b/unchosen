@@ -68,11 +68,12 @@ function robbery(p: Person, x: Ctx): void {
 // 殴られる・脅される。米国の暴力被害は12歳以上で年2.1% (NCVS 2019)。覚えているほどの暴行は米国で年0.6%とし、殺人率の平方根で動かす
 // 若い男性ほど多い (NCVS)。ponytail: 家庭の中の暴力は別の話として入れていない
 const assaultP = (p: Person, x: Ctx) => (p.age >= 14 && p.age <= 70 ? 0.006 * Math.sqrt(x.v) * (p.sex === 'M' ? 1.3 : 0.7) * (p.age < 30 ? 1.6 : p.age > 50 ? 0.5 : 1) : 0);
-function assault(p: Person): void {
+function assault(p: Person, x: Ctx): void {
   log(p, pick(p.rng, [
     L('駅前で知らない男にからまれ、いきなり殴られた。目の上が腫れて、一週間引かなかった。', 'A stranger outside the station picked a fight and threw a punch out of nowhere. The swelling over one eye took a week to go down.'),
     L('夜の帰り道、後ろから突き飛ばされて転んだ。相手は何も取らずに走っていった。膝の傷はなかなか治らなかった。', 'Shoved from behind on the way home at night. Whoever it was ran off without taking anything. The scraped knee was slow to heal.'),
-  ]), 'hard', false, L('米国では12歳以上の人の約2%が、1年に暴力の被害にあう (NCVS 2019)', 'About 2% of Americans aged 12 and over suffer a violent crime each year (BJS NCVS 2019)'));
+  ]), 'hard', false, x.c.code === 'USA' ? L('米国では12歳以上の人の約2%が、1年に暴力の被害にあう (NCVS 2019)', 'About 2% of Americans aged 12 and over suffer a violent crime each year (BJS NCVS 2019)')
+    : L(`暴力の被害は、殺人の多い国ほど多い。この国の殺人は10万人あたり${x.c.homicide.toFixed(1)}件 (UNODC)`, `Violent crime runs higher where homicide does. Here, ${x.c.homicide.toFixed(1)} homicides per 100,000 (UNODC)`));
   bump(p, { happy: -4, health: -3 });
 }
 
@@ -334,7 +335,7 @@ const LIST: Inc[] = [
   ['lure', 99, lureP, lure],
   ['extort', 10, extortP, extort],
   ['robbery', 8, robberyP, robbery],
-  ['assault', 8, assaultP, (p) => assault(p)],
+  ['assault', 8, assaultP, assault],
   ['road', 10, roadP, road],
   ['fire', 15, fireP, (p) => fire(p)],
   ['burglary', 12, burglaryP, burglary],

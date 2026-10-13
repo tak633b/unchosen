@@ -81,7 +81,8 @@ export function finances(p: Person): void {
   const cap = -3 * Math.max(income, floor);
   if (p.wealth < cap) {
     p.wealth = cap;
-    if (r() < 0.3) { log(p, L('借金の返済に追われ、食べる物を減らして暮らした。', 'Struggling with debt repayments, cut back on food.'), 'hard'); bump(p, { happy: -6, health: -2 }); }
+    const last = p.recent.debtSqueeze;
+    if ((last === undefined || p.age - last >= 5) && r() < 0.3) { p.recent.debtSqueeze = p.age; log(p, L('借金の返済に追われ、食べる物を減らして暮らした。', 'Struggling with debt repayments, cut back on food.'), 'hard'); bump(p, { happy: -6, health: -2 }); }
   }
   // クメール・ルージュの時代 (1975〜78年) は私有の財産も市場もない (history.ts の kh-1975)
   if (p.recent['hist:kh-1975'] !== undefined && year < 1979) return;

@@ -12,6 +12,7 @@ import { isEn, L } from '../../i18n';
 import { because, deathWhy } from '../why';
 import { petAged, petDied } from '../pets';
 import { orphans } from './roots';
+import { funeral, remember } from './remember';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -38,6 +39,7 @@ export function family(p: Person): void {
     because(p, deathWhy(countryOf(p), rel.sex, rel.age));
     if (quiet) afterSuicideLoss(p);
     mourn(p, rel, young ? -18 : -8, young ? -10 : -4);
+    funeral(p);
     // まだ生まれていないきょうだいは、母が亡くなれば生まれない。父が亡くなった後は、その年のうちに生まれる子まで
     if (p.siblings.some((s) => s.age < 0)) p.siblings = p.siblings.filter((s) => s.age >= (rel === p.mother ? 0 : -1));
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
@@ -105,6 +107,7 @@ export function family(p: Person): void {
       p.pet = undefined;
     }
   }
+  remember(p);
 }
 
 // 両親を見送ったあと、家の財産をきょうだいと分ける

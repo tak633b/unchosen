@@ -60,6 +60,9 @@ export interface When {
   job?: 'office' | 'manual' | 'farm' | 'none';
 }
 
+// 留学や移住で外国にいる間は町の名前を持たない (p.city === null) が、農村ではない
+export const isRural = (p: Person) => p.city === null && p.country === p.birthCountry;
+
 const MOMENTS = (data as { moments: Moment[] }).moments;
 const REPEAT_GAP = 6; // 同じ出来事は6年は繰り返さない
 
@@ -81,7 +84,7 @@ function matches(p: Person, m: Moment): boolean {
 
 export function fits(p: Person, w: When): boolean {
   const c = countryOf(p);
-  if (w.place && (w.place === 'rural') !== (p.city === null)) return false;
+  if (w.place && (w.place === 'rural') !== isRural(p)) return false;
   if (w.wealth && !oneOf<Wealth>(w.wealth, isPoor(p) ? 'poor' : isRich(p) ? 'rich' : 'middle')) return false;
   if (w.income && !oneOf<Income>(w.income, c.gdp < 5000 ? 'low' : c.gdp <= 25000 ? 'mid' : 'high')) return false;
   if (w.region && !w.region.includes(c.region)) return false;
@@ -126,7 +129,7 @@ export const statOf = (m: { stat?: string; en?: { stat?: string } }, year: numbe
   return s && (!y || Math.abs(year - y) <= STAT_SPAN) ? s : undefined;
 };
 // その出来事に要る道具が、この人の暮らしにどれだけありそうか (0–1)
-export const techWeight = (p: Person, m: { tech?: Tech[] }) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, p.city === null), 1);
+export const techWeight = (p: Person, m: { tech?: Tech[] }) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, isRural(p)), 1);
 
 const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。輪の上でも亡くなったことにする
 

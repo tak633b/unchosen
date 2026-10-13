@@ -3484,7 +3484,8 @@
       "maxAge": 22,
       "weight": 1,
       "when": {
-        "state": "school"
+        "state": "school",
+        "married": false
       },
       "effects": {
         "learn": 2,

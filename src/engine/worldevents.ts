@@ -182,10 +182,23 @@ function generic(id: string, type: EventType, codes: string[], y: number, o: Par
   return { id, type, countries: codes, years: [y, y], src: 'generic', ...o };
 }
 
+// 前の大流行から10年は次が来ない (同じ引きが続けて当たり、2年続けて「新しい感染症」になっていた)
+const panMemo = new Map<number, boolean>();
+function pandemicStarts(y: number): boolean {
+  if (y < FUTURE_FROM) return false;
+  let hit = panMemo.get(y);
+  if (hit === undefined) {
+    hit = draw(`PAN:${y}`) < 0.04;
+    for (let k = 1; hit && k < 10; k++) if (pandemicStarts(y - k)) hit = false;
+    panMemo.set(y, hit);
+  }
+  return hit;
+}
+
 export function futureEvents(code: string, year: number): WorldEvent[] {
   const out: WorldEvent[] = [];
   // 大流行は世界中に同じ年に来て、2年続く
-  const pandemic = [year, year - 1].find((y) => y >= FUTURE_FROM && draw(`PAN:${y}`) < 0.04);
+  const pandemic = [year, year - 1].find(pandemicStarts);
   if (pandemic !== undefined) out.push({ ...generic(`f-pandemic-${pandemic}`, 'epidemic', [code], pandemic, {
     hit: 0.12, kill: 0.001, cause: '流行病', who: 'frail', severity: 4, effect: { health: -4, happy: -6, job: true },
     ja: { hit: ['新しい感染症が世界に広がった。熱が何日も下がらず、治ったあとも長く息切れが残った。', '新しい感染症の流行で、店も職場も閉まった。その間に仕事がなくなった。'], news: ['新しい感染症が世界中に広がった。学校が閉まり、街から人が消えた。'] },

@@ -94,6 +94,12 @@ describe('出来事が届く国と年', () => {
     for (const c of COUNTRIES) for (let y = 2026; y <= 2100; y++) n += futureEvents(c.code, y).length;
     expect(n).toBeGreaterThan(0);
   });
+  it('大流行は前の大流行から10年は来ない', () => {
+    const starts = [];
+    for (let y = 2026; y <= 2600; y++) if (futureEvents('JPN', y).some((e) => e.id === `f-pandemic-${y}`)) starts.push(y);
+    expect(starts.length).toBeGreaterThan(5);
+    for (let i = 1; i < starts.length; i++) expect(starts[i] - starts[i - 1]).toBeGreaterThanOrEqual(10);
+  });
 });
 
 describe('一生の中で出会う出来事', () => {
