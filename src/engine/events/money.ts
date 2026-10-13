@@ -30,11 +30,13 @@ export function finances(p: Person): void {
   if (income > p.peakIncome) { p.peakIncome = income; p.peakYear = year; }
   const floor = subsistence(c);
   const owner = !!(p.mortgage || p.house);
+  const before = { worth: netWorth(p), house: houseWorth(p), owed: p.mortgage ? mortgageLeft(p.mortgage) : 0 };
   // 貯められる割合は、国の中での位置と、暮らしの絶対的な余裕の両方で決まる
   // 貧しい家でも、土地や家畜などの形で少しは蓄える (最低5%)
   const saveRate = Math.max(0.05, 0.15 * p.incomeP * Math.min(1, income / 30000)) + (p.wealth < 0 ? 0.05 : 0);
   // 家を持てば家賃がいらない
   let living = Math.max(floor, income * (1 - saveRate)) * (owner ? 0.78 : 1);
+  const rentSaved = owner && !p.retired ? living / 0.78 * 0.22 : 0;
   // 引退後は、年金と貯えの取り崩しで暮らす。崩す割合は残りの年数 (95歳まで) で割り、はじめは年4%から (Bengen 1994 の4%ルール)
   // 足りない分は子や親族が支える
   if (p.retired) {
@@ -46,14 +48,19 @@ export function finances(p: Person): void {
   // 収入のない年は、家族や親族に頼って食いつなぐ。頼れる子がいなければ少しずつ借りる
   if (income === 0 && (!p.retired || p.wealth <= 0)) living = p.unemployed > 0 || p.children.some((k) => k.alive && k.age >= 20) ? 0 : floor * 0.3;
   const kids = p.children.filter((k) => k.alive && k.age < 18).length;
-  living += Math.max(income, floor) * 0.07 * kids;
+  const kidCost = Math.max(income, floor) * 0.07 * kids;
+  living += kidCost;
   if (p.car) living += 1200;
   if (p.insured) living += premium(p, c);
   p.wealth += income - living;
+  // 子どもがいず家を借りていたら残った分。子育てと浮いた家賃は内訳に別に出す
+  const kept = income - living + kidCost - rentSaved;
 
+  let interest = 0;
   if (p.mortgage) {
     const m = p.mortgage;
     p.wealth -= m.pay;
+    interest = m.pay - (before.owed - (m.years > 1 ? balanceOf(m.pay, m.rate ?? 0.018, m.years - 1) : 0));
     m.value *= 1 + marketReturn('house', year, c, r) - houseAging(p.age - (m.since ?? p.age));
     if (--m.years <= 0) {
       log(p, L('住宅ローンを払い終えた。家は自分のものになった。', 'Paid off the mortgage. The house is now fully owned.'), 'family');
@@ -75,7 +82,9 @@ export function finances(p: Person): void {
   } else {
     // 家を担保にした借金は、無担保よりずっと安い (住宅ローン金利に1%ほど上乗せ)
     // 経済危機の年は、その年の金利になる (market.ts の SHOCKS)
+    const w = p.wealth;
     p.wealth *= 1 + debtRate(p, owner ? Math.min(DEBT_RATE, mortgageRate(c) + 0.01) : DEBT_RATE);
+    interest += w - p.wealth;
   }
   // 借金が膨らみすぎたら、取り立てと切り詰めで暮らしを縮める
   const cap = -3 * Math.max(income, floor);
@@ -84,6 +93,14 @@ export function finances(p: Person): void {
     const last = p.recent.debtSqueeze;
     if ((last === undefined || p.age - last >= 5) && r() < 0.3) { p.recent.debtSqueeze = p.age; log(p, L('借金の返済に追われ、食べる物を減らして暮らした。', 'Struggling with debt repayments, cut back on food.'), 'hard'); bump(p, { happy: -6, health: -2 }); }
   }
+  yearInMoney(p, income, before.worth, [
+    [kept >= 0 ? L('働いて残したお金', 'saved from work') : L('貯えの取り崩し', 'drawn from savings'), kept],
+    [L('住宅価格の変動', 'house prices'), houseWorth(p) - before.house],
+    [L('借金の利息', 'interest'), -interest],
+    [L('子育て費用', 'raising children'), -kidCost],
+    [L('持ち家に住んで浮いた家賃', 'rent saved by owning'), rentSaved],
+    [L('投資の値動き', 'investments'), p.wealth > 0 ? (p.wealth * last) / (1 + last) : 0],
+  ]);
   // クメール・ルージュの時代 (1975〜78年) は私有の財産も市場もない (history.ts の kh-1975)
   if (p.recent['hist:kh-1975'] !== undefined && year < 1979) return;
   investOffer(p, income);
@@ -94,6 +111,22 @@ export function finances(p: Person): void {
   rentalOffer(p, c, income);
   insuranceOffer(p, c, income);
 }
+
+// 財産が大きく動いた年は、何で動いたかを一行で残す (本家の「今年、財産が31万円減りました。住宅価格の変動 −20万円 · …」)
+// 収入の半分以上動いた年だけ、5年に1度まで。内訳は大きいものから4つ
+function yearInMoney(p: Person, income: number, worth0: number, parts: [string, number][]): void {
+  const delta = netWorth(p) - worth0;
+  const last = p.recent.moneyYear;
+  if (Math.abs(delta) < 0.5 * Math.max(income, subsistence(countryOf(p))) || (last !== undefined && p.age - last < 5)) return;
+  const shown = parts.filter(([, v]) => Math.abs(v) >= Math.abs(delta) * 0.05).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1])).slice(0, 4);
+  if (!shown.length) return;
+  p.recent.moneyYear = p.age;
+  const sign = (v: number) => `${v < 0 ? '−' : '+'}${yen(Math.abs(v))}`;
+  const list = shown.map(([k, v]) => `${k} ${sign(v)}`).join(' · ');
+  log(p, L(`今年、財産が${yen(Math.abs(delta))}${delta < 0 ? '減った' : '増えた'}。${list}`, `Net worth ${delta < 0 ? 'fell' : 'rose'} by ${yen(Math.abs(delta))} this year: ${list}.`), 'work');
+}
+
+const houseWorth = (p: Person) => (p.mortgage?.value ?? 0) + (p.homeValue ?? 0);
 
 // ---- 預け先 --------------------------------------------------------------------------
 
