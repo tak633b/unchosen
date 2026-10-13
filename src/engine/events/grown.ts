@@ -7,6 +7,15 @@ import { countryOf, eduLevel, log, type Person, type Relative } from '../person'
 import { showRng } from '../crisis';
 import { techShare } from '../tech';
 
+// 大人の子が親に生活費を入れ始める、1年あたりの確率 (親が45歳を過ぎてから)。豊かさではなく習慣で決める。
+// 南アジア・中東・東南アジア・中国・アフリカでは豊かになっても子が親を養うのがふつう、中南米・東欧・韓国はその中間、
+// 西欧・北米・日本・オセアニアの豊かな国では親が困ったときだけ (目安。数字の出典は無い)
+const SUPPORT: Record<string, number> = {
+  JPN: 0, ISR: 0, USA: 0, CAN: 0, AUS: 0, NZL: 0, KOR: 0.03, SGP: 0.03,
+  RUS: 0.03, UKR: 0.03, BLR: 0.03, MDA: 0.03, ROU: 0.03, BGR: 0.03, SRB: 0.03, ALB: 0.03, BIH: 0.03, MKD: 0.03, MNE: 0.03,
+};
+const REGION_SUPPORT: Record<string, number> = { アフリカ: 0.3, アジア: 0.3, オセアニア: 0.3, 北アメリカ: 0.03, 南アメリカ: 0.03, ヨーロッパ: 0 };
+
 const roll = (p: Person, k: Relative, salt: number) => showRng(p.seed, p.age, salt + (k.id ?? 0) * 7)();
 
 // 子の学歴は親と同じくらい。上か下に1つずれることがある
@@ -32,8 +41,8 @@ export function grownChildren(p: Person): void {
     }
     const key = `kidpay:${k.id}`;
     if (!k.job || p.recent[key] !== undefined || p.age < 45 || k.age < startAge(p) + 2) continue;
-    // 豊かでない国では大人になった子が家計を支えるのがふつう。豊かな国では、親が引退したか暮らしが苦しいときだけ
-    const odds = countryOf(p).gdp < 15000 ? 0.3 : p.retired || p.incomeP < 0.3 ? 0.008 : 0;
+    const c = countryOf(p);
+    const odds = Math.max(SUPPORT[c.code] ?? REGION_SUPPORT[c.region] ?? 0, p.retired || p.incomeP < 0.3 ? 0.008 : 0);
     if (roll(p, k, 0x94) >= odds) continue;
     p.recent[key] = p.age;
     log(p, L(`${k.name}が給料から毎月生活費を入れ始めた。ありがたくもあり、申し訳なくもあった。`, `${k.name} began handing over part of the pay every month for the household. Grateful, and a little guilty.`), 'family', false, undefined, k.id ? [k.id] : undefined);
