@@ -7,7 +7,7 @@ import type { Holding } from './market';
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
 
-export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string; crisis?: string; quiet?: boolean } // crisis: 九死に一生の年 (engine/crisis.ts)。危うかった死因の日本語の名前。quiet: 自死での死別の記録 (AI に渡さない・輪の人の死因を合わせる)
+export interface LogEntry { age: number; text: string; kind: YearKind; big?: boolean; stat?: string; ai?: boolean; tpl?: boolean; who?: number[]; why?: string; crisis?: string; quiet?: boolean; star?: boolean } // star: プレイヤーが覚えておきたい瞬間として印を付けた行 (ui/stars.ts)。crisis: 九死に一生の年 (engine/crisis.ts)。危うかった死因の日本語の名前。quiet: 自死での死別の記録 (AI に渡さない・輪の人の死因を合わせる)
 export interface Stats { health: number; happy: number; money: number; learn: number; bond: number }
 
 export interface Option {
@@ -22,6 +22,7 @@ export interface Decision {
   options: Option[];
   // 自動決定のときに選ぶ選択肢の番号
   auto: (p: Person) => number;
+  deferred?: number; // 「いったん下ろす」で来年に回した回数 (ui/game.ts)。2回まで
 }
 export interface Question { age: number; q: string; context?: string; a?: string }
 

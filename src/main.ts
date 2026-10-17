@@ -17,6 +17,9 @@ import { paintOtherFaces } from './ui/portrait';
 import { isEn, L, lang, religionName, setLang } from './i18n';
 import { TRACKS, musicScene, setMusic, sfx } from './ui/music';
 import { lifeNow, presenceHome } from './ui/presence';
+import { applyTheme, themeBtn, toggleTheme } from './ui/theme';
+import { PACES, pace, paceSeg, setPace, yearMs } from './ui/pace';
+import { bindStones, dropStone, stonesHtml } from './ui/stones';
 
 const app = $('#app');
 // 世界では1秒に約4.2人が生まれ、約2人が亡くなる (国連世界人口推計 2024)
@@ -24,10 +27,13 @@ const BIRTHS_PER_SEC = 4.2;
 const DEATHS_PER_SEC = 2.0;
 let counterTimer: number | undefined;
 document.documentElement.lang = lang;
+applyTheme();
 if (isEn) document.title = 'Unchosen. You don’t choose where you’re born.';
 const sexWord = (s: 'F' | 'M' | 'X') => genderWord(s);
 
-interface Shared { id: number; rural: number; job: string; name: string; country: string; sex: 'F' | 'M' | 'X'; age: number; cause: string; line: string; message: string; candles: number; createdAt: string; gen?: number; family?: string }
+interface Shared { id: number; rural: number; job: string; name: string; country: string; sex: 'F' | 'M' | 'X'; age: number; cause: string; line: string; message: string; candles: number; hearts?: number; createdAt: string; gen?: number; family?: string }
+// 自分が残した人生の消す鍵 (この端末だけ)。id → token
+const myTokens = () => load<Record<string, string>>('mytokens', {});
 
 async function fetchShared(): Promise<Shared[]> {
   try {
@@ -44,7 +50,7 @@ const sharedCard = (m: Shared) => {
   const scene = c ? `<canvas class="pixscene" data-scene="${sceneAttr(toData(sceneFromSummary({ id: m.id, country: m.country, sex: m.sex === 'X' ? (m.id % 2 ? 'F' : 'M') : m.sex, age: m.age, rural: !!m.rural, job: m.job })))}"></canvas>` : '';
   return `<li>${scene}<p><b>${esc(m.name || L('ある人', 'Someone'))}</b>　<small>${esc(c?.name ?? m.country)}${L('・', ', ')}${sexWord(m.sex)}${L('・', ', ')}${L(`${Number(m.age)}歳`, `age ${Number(m.age)}`)}</small></p>
     ${Number(m.gen) > 1 ? `<p class="note family">${L(`第${Number(m.gen)}世代`, `Generation ${Number(m.gen)}`)}${m.family ? `${L('・', ' · ')}${esc(m.family)}` : ''}</p>` : ''}<p class="note">${esc(m.line)}</p>${m.message ? `<p class="message">${L('「', '"')}${esc(m.message)}${L('」', '"')}</p>` : ''}
-    <button data-candle="${Number(m.id)}">${L('ろうそくを灯す', 'Light a candle')} ${Number(m.candles)}</button></li>`;
+    <div class="reacts"><button data-candle="${Number(m.id)}">${L('ろうそくを灯す', 'Light a candle')} ${Number(m.candles)}</button><button data-keep="${Number(m.id)}">${L('心に留める', 'Keep in heart')} ${Number(m.hearts ?? 0)}</button>${myTokens()[m.id] ? `<button class="link" data-del="${Number(m.id)}">${L('消す', 'Delete')}</button>` : `<button class="link faintbtn" data-report="${Number(m.id)}">${L('通報', 'Report')}</button>`}</div></li>`;
 };
 
 // ---- トップ ---------------------------------------------------------------
@@ -77,7 +83,7 @@ function home(): void {
   app.onclick = null;
   app.innerHTML = `
   <main class="home wide">
-    <div class="langsw"><span class="seg"><button data-lang="ja" class="${lang === 'ja' ? 'on' : ''}" lang="ja">日本語</button><button data-lang="en" class="${lang === 'en' ? 'on' : ''}" lang="en">English</button></span></div>
+    <div class="langsw">${themeBtn()} <span class="seg"><button data-lang="ja" class="${lang === 'ja' ? 'on' : ''}" lang="ja">日本語</button><button data-lang="en" class="${lang === 'en' ? 'on' : ''}" lang="en">English</button></span></div>
     <div class="hero">
       <div>
         <p class="kicker">${L(`β版・無料の人生シミュレーション・${COUNTRIES.length}か国の実際の統計にもとづく`, `Beta. A free life simulator built on real statistics from ${COUNTRIES.length} countries.`)}</p>
@@ -99,6 +105,7 @@ function home(): void {
         <button class="primary" data-go="born">${L('生まれる', 'Be born')}</button>
         ${saved ? `<button data-go="resume">${L(`続きから・${esc(byCode(saved.p.country).name)}、${saved.p.age}歳の${esc(saved.p.name)}`, `Continue: ${esc(saved.p.name)}, ${saved.p.age}, ${esc(byCode(saved.p.country).name)}`)}</button>` : ''}
       </div>
+      ${paceSeg()}
       <details class="opts" ${custom ? 'open' : ''}><summary>${L('細かく選ぶ(任意)', 'Choose details (optional)')}</summary>
       <div class="startgrid">
         <fieldset><legend>${L('生まれる年', 'Year of birth')}</legend>
@@ -118,14 +125,15 @@ function home(): void {
           <select id="real"><option value="">${L('選ばない', 'Skip')}</option>${opts(real)}</select>
           <span class="note">${L('選ぶと、この人生とあなたの人生を並べて比べる。この端末にだけ保存。', 'If set, this life is compared side by side with yours. Saved only on this device.')}</span></label>
       </div></details>
-      <p class="note">${L('平均寿命まで生きると約30分(1倍速で1年 ≈ 26秒)。止めることも早送りもできる。途中で閉じても、この端末に保存される。乳幼児の死、児童婚、病気など重い出来事も統計どおりに起こる。15歳以上向け。', 'A life to average life expectancy takes about 30 minutes (1 year ≈ 26 seconds at 1x). You can pause or speed up. If you close the page, it is saved on this device. Hard events such as infant death, child marriage and illness happen at their real rates. For ages 15 and up.')}</p>
+      <p class="note">${L(`平均寿命まで生きると${PACES.find(([k]) => k === pace())![1]}(1倍速で1年 ≈ ${Math.round(yearMs() / 1000)}秒)。止めることも早送りもできる。途中で閉じても、この端末に保存される。乳幼児の死、児童婚、病気など重い出来事も統計どおりに起こる。15歳以上向け。`, `A life to average life expectancy takes ${PACES.find(([k]) => k === pace())![1].toLowerCase()} (1 year ≈ ${Math.round(yearMs() / 1000)} seconds at 1x). You can pause or speed up. If you close the page, it is saved on this device. Hard events such as infant death, child marriage and illness happen at their real rates. For ages 15 and up.`)}</p>
     </div>
     ${aiPanel()}
     <section id="nowlives" hidden><h2>${L('いま、この中で', 'Right now, in here')}</h2><div id="nowbody"></div>
       <p class="note">${L('遊んでいる人生の国・生まれた年・性別・年齢だけを送って数えている。あなた自身のことは何も送らない。', 'Only the country, birth year, sex and age of the life being played are sent and counted. Nothing about you.')}</p></section>
     <section><h2>${L('みんなの人生', 'Lives others lived')}</h2><p class="note">${L('それぞれが生きた人生と、その人への一言。プレイした人の名前や連絡先は残らない。', 'Lives that players lived, and a few words for each. No names or contact details of players are kept.')}</p><ul class="memorial" id="shared"><li>${L('読み込み中…', 'Loading…')}</li></ul></section>
     <nav class="homenav"><button data-go="past">${L('前世の記録', 'Past lives')}</button><button data-go="about">${L('データについて', 'About the data')}</button></nav>
-  </main>`;
+  </main>${stonesHtml()}`;
+  bindStones(app);
   const t0 = performance.now();
   counterTimer = window.setInterval(() => {
     const s = (performance.now() - t0) / 1000;
@@ -159,8 +167,13 @@ function home(): void {
     if ((lg === 'ja' || lg === 'en') && lg !== lang) { setLang(lg); return; }
     const b = t.closest<HTMLElement>('[data-basis]')?.dataset.basis;
     if (b) { save('basis', b); home(); return; }
+    if (t.closest('[data-theme-toggle]')) { toggleTheme(); return; }
+    const pc = t.closest<HTMLElement>('[data-pace]')?.dataset.pace;
+    if (pc) { setPace(Number(pc)); home(); return; }
     const candle = t.closest<HTMLButtonElement>('[data-candle]');
     if (candle && !candle.disabled) { await light(candle); return; }
+    const react = t.closest<HTMLButtonElement>('[data-keep],[data-report],[data-del]');
+    if (react && !react.disabled) { await reactTo(react); return; }
     const go = t.closest<HTMLElement>('[data-go]')?.dataset.go;
     const gb = t.closest<HTMLElement>('[data-gender]');
     if (gb) { save('gender', gb.dataset.gender || null); home(); return; }
@@ -182,6 +195,22 @@ async function newBirth(basis: BirthBasis): Promise<void> {
   const seed = randomSeed();
   const year = chosenYear() ?? pickBirthYear(makeRng(seed ^ 0x5eed));
   roll(createPerson({ seed, basis, year, country: chosenCountry() ?? undefined, gender: chosenGender() ?? undefined }), basis);
+}
+
+// 心に留める・通報・自分の人生を消す。通報は3回で見えなくなる。消すのはこの端末に鍵がある人生だけ
+async function reactTo(btn: HTMLButtonElement): Promise<void> {
+  btn.disabled = true;
+  const id = btn.dataset.keep ?? btn.dataset.report ?? btn.dataset.del!;
+  const kind = btn.dataset.keep ? 'heart' : btn.dataset.report ? 'report' : 'delete';
+  if (kind === 'report' && !confirm(L('この人生の一言を通報する？(3件で見えなくなる)', 'Report this entry? (Hidden after 3 reports)'))) { btn.disabled = false; return; }
+  try {
+    const r = await fetch(`/api/memorial/${id}/${kind}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(kind === 'delete' ? { token: myTokens()[id] } : {}) });
+    const j = await r.json();
+    if (!j.success) { btn.disabled = false; return; }
+    if (kind === 'heart') btn.textContent = `${L('心に留めた', 'Kept')} ${Number(j.data.hearts)}`;
+    else if (kind === 'report') btn.textContent = L('通報した', 'Reported');
+    else { const tk = myTokens(); delete tk[id]; save('mytokens', tk); btn.closest('li')?.remove(); }
+  } catch { btn.disabled = false; }
 }
 
 async function light(btn: HTMLButtonElement): Promise<void> {
@@ -328,7 +357,7 @@ function born(p: Person, basis: BirthBasis): void {
       <canvas class="pixscene" data-scene="${sceneAttr(toData(sceneOf(p)))}"></canvas>
       <p class="kicker">${L('名前', 'Name')}</p><h1>${esc(p.name)}</h1>
       <p class="lead">${esc(p.log[0].text)}</p>
-      <p class="note">${L('平均寿命まで生きると約30分(1年 ≈ 26秒)。途中で閉じてもこの端末に保存され、続きから生きられる。', 'A life to average life expectancy takes about 30 minutes (1 year ≈ 26 seconds). If you close the page, it is saved on this device and you can continue later.')}</p>
+      <p class="note">${L('途中で閉じてもこの端末に保存され、続きから生きられる。', 'If you close the page, it is saved on this device and you can continue later.')}</p>
       <dl class="fields">${fields.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
       <p class="statbox">${isEn
         ? `${pct(c.births / total('births'), 1)} of babies ${bornWhen(p.birthYear)} are born in ${esc(c.name)}. About ${(Math.round(c.births / 1e3) * 1e3).toLocaleString()} a year, 1 in ${oneIn}.${basis === 'pop' ? ` (By population: ${pct(share, 1)}.)` : basis === 'equal' ? ' (This draw picked every country with the same odds.)' : ''}`
@@ -338,20 +367,22 @@ function born(p: Person, basis: BirthBasis): void {
       <ul class="certothers">${others.map((o, i) => `<li><b><canvas class="pix mini" data-oface="${i}" aria-hidden="true"></canvas>${esc(o.name)}</b><span>${esc(byCode(o.birthCountry).name)}${o.city ? ` ${esc(o.city)}` : L('・農村', ', rural')}${L('・', ', ')}${o.sex === 'F' ? L('女', 'girl') : L('男', 'boy')}${L('・', ', ')}${o.familyP < 0.2 ? L('いちばん貧しい家', 'poorest family') : o.familyP < 0.4 ? L('余裕のない家', 'struggling family') : o.familyP < 0.8 ? L('ふつうの家', 'average family') : L('裕福な家', 'well-off family')}</span></li>`).join('')}</ul>
       <p class="note">${L('この人たちの人生も同じ統計にしたがって最後まで流れていく。あなたのそばで一緒に見ていく。', 'Their lives follow the same statistics to the end. You will see them alongside yours.')}</p>
       <p class="note">${L('所得の真ん中の人の年収', 'Median annual income')}: ${formatMoney(earnings(c, 0.5))}</p>
+      <p class="note">${L(`${PACES.find(([k]) => k === pace())![1]}の人生 (1年 ≈ ${Math.round(yearMs() / 1000)}秒)。`, `${PACES.find(([k]) => k === pace())![1]} (1 year ≈ ${Math.round(yearMs() / 1000)}s).`)}</p>
       <div class="choices">
         <button data-go="card">${L('出生カードを保存', 'Save birth card')}</button>
         <button data-go="reroll">${L('別の人生を引き直す', 'Draw another life')}</button>
         <button class="primary" data-go="live">${L('人生を始める', 'Start this life')}</button>
       </div>
     </article>
-  </main>`;
+  </main>${stonesHtml()}`;
   window.scrollTo(0, 0);
   paintScenes(app);
   paintOtherFaces(app, others);
+  bindStones(app);
   app.onclick = async (e) => {
     const go = (e.target as HTMLElement).closest<HTMLElement>('[data-go]')?.dataset.go;
     if (go === 'live') startWithOthers(p, others, basis, home);
-    if (go === 'reroll') await newBirth(basis);
+    if (go === 'reroll') { dropStone(p); await newBirth(basis); }
     if (go === 'card') {
       await shareCard(drawCard({
         kicker: L(`出生届・${p.birthYear}年${p.birthMonth}月`, `Birth record, ${new Date(2000, p.birthMonth - 1).toLocaleString('en-US', { month: 'long' })} ${p.birthYear}`), title: p.name,

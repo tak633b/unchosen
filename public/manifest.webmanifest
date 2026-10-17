@@ -1,0 +1,15 @@
+{
+  "name": "Unchosen — 生まれは、選べない",
+  "short_name": "Unchosen",
+  "description": "ランダムに生まれ、一度きりの人生を最後まで生きる。実際の統計にもとづく人生シミュレーション。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#11141d",
+  "theme_color": "#11141d",
+  "lang": "ja",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

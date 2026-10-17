@@ -10,7 +10,7 @@ import { mountShare, shareSection } from './share';
 import { paintScenes, sceneAttr, sceneOf, toData, type SceneData } from './pixel';
 import { lastWords, lastWordsAi, lifeStoryAi, type LastWord } from '../ai/director';
 import { aiOn } from '../ai/settings';
-import { $, esc, load, pct } from './dom';
+import { $, esc, load, pct, save } from './dom';
 import { isEn, L, lang } from '../i18n';
 import { jobName, majorName } from '../engine/jobs';
 import { causeLabel, causeName, isSuicide } from '../engine/causes';
@@ -30,6 +30,10 @@ import { albumHtml, pickMoments, type Moment } from './album';
 import { homeCompare, mountHomeCompare } from './homeland';
 import { addLife, storeLives } from './past';
 import { countryAverage } from './presence';
+import { starred, starsHtml } from './stars';
+import { lookbackHtml, lookbackOf, timeSpentHtml, type Lookback } from './lookback';
+import { worldMap } from './worldmap';
+import { orgsHtml } from './orgs';
 
 export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
@@ -49,6 +53,8 @@ export interface PastLife {
   album?: Moment[];            // 思い出のアルバム (遊んでいる間に撮った場面)
   city?: string | null;        // 生まれた都市 (null は農村)。共有カードに使う。古い記録には無い
   job?: string;                // 最後の仕事 (JOBS の名前)
+  lived?: string[];            // 暮らした国の順 (地図用)。古い記録には無い
+  look?: Lookback;             // 振り返って: 残した・守った・失った (lookback.ts)
 }
 
 export type CircleTie = Pick<Tie, 'id' | 'name' | 'role' | 'sex' | 'age' | 'alive' | 'bond' | 'diedAt' | 'since' | 'until' | 'pet'>;
@@ -105,6 +111,7 @@ function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[])
     spouse: p.spouse?.id !== undefined ? { id: p.spouse.id, sex: p.spouse.sex } : undefined,
     ...(album.length ? { album: pickMoments(album) } : {}),
     city: p.city, ...(p.job ? { job: p.job } : {}),
+    lived: p.countriesLived, look: lookbackOf(p),
   };
 }
 
@@ -137,6 +144,7 @@ export function deathRecord(l: PastLife, slot = ''): string {
     ${l.message ? `<p class="message">${L(`「${esc(l.message)}」`, `"${esc(l.message)}"`)}</p>` : ''}
     <p class="note">${esc(helpline())}</p>
   </article>
+  ${starsHtml(l.log)}
   ${l.circle ? `<section class="panel">
     <h3>${L('最後にそばにいた人', 'Who was there at the end')}</h3>
     <div class="lastwords">${lastWordsHtml(standIn(l), l.circle as Tie[], l.words ?? [])}</div>
@@ -147,6 +155,9 @@ export function deathRecord(l: PastLife, slot = ''): string {
     <h3>${L('人生地図', 'Life map')} <small>${L('1マス = 1年', '1 square = 1 year')}</small></h3>
     ${lifeMap({ kinds: l.kinds, age: l.age, alive: false, noted: answers.map((q) => q.age) })}
   </section>
+  ${l.look ? lookbackHtml(l.look) : ''}
+  ${timeSpentHtml(l.kinds, l.age)}
+  ${l.lived && l.lived.length > 1 ? `<section class="panel"><h3>${L('暮らした場所', 'Where this life was lived')} <small>${L('生まれた国から順に', 'from the birth country onward')}</small></h3>${worldMap(l.lived)}</section>` : ''}
   ${answers.length ? `<section class="panel"><h3>${L('ひと息のことば', 'Notes from the pauses')} <small>${L('時間が止まったときに書いたこと', 'written when time stopped')}</small></h3><ul class="answers">${answers.map((q) => `<li><small>${L(`${q.age}歳・`, `Age ${q.age} · `)}${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul></section>` : ''}
   ${l.album?.length ? `<section class="panel"><h3>${L('思い出のアルバム', 'Album')} <small>${L('その年の場面', 'the scene of that year')}</small></h3>${albumHtml(l.album)}</section>` : ''}
   <section class="panel">
@@ -160,6 +171,7 @@ export function deathRecord(l: PastLife, slot = ''): string {
     <p class="note">${L(`同じ1秒に生まれた5人は、それぞれ${five.map((o) => o.age).join('歳、')}歳まで生きた。誰も、どこに生まれるかを選んでいない。`, `The five born in the same second lived to ${five.map((o) => o.age).join(', ')}. None of them chose where to be born.`)}</p>
     ${l.me && l.others.some((o) => o.seed !== undefined) ? `<p class="note">${L('名前を押すと、その人の一生を詳しく読める。', 'Tap a name to read that life in detail.')}</p><div class="otherdetail"></div>` : ''}
   </section>
+  ${orgsHtml(l)}
   <details class="more">
     <summary>${L('この人生をもっと詳しく', 'More about this life')}</summary>
     <section class="panel">
@@ -265,7 +277,7 @@ const aiStoryHtml = (s: { title: string; story: string }) =>
 
 export function deathCard(l: PastLife): HTMLCanvasElement {
   const b = byCode(l.birthCountry);
-  return drawCard({ kicker: `${b.name}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene,
+  return drawCard({ kicker: `${b.name}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [...starred(l.log).slice(0, 1).map((e) => `★ ${e.text}`), l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene,
     years: lifeMapCells({ kinds: l.kinds, age: l.age, alive: false }).filter((c) => c.age <= l.age).map((c) => c.kind) });
 }
 
@@ -337,11 +349,14 @@ const familyLine = (l: PastLife) => (l.line ?? []).map((g) => `${g.given} (${g.b
 
 async function postMemorial(l: PastLife, p: Person): Promise<void> {
   try {
-    await fetch('/api/memorial', {
+    const r = await fetch('/api/memorial', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ gen: l.line?.length ?? 1, family: familyLine(l), rural: p.rural, name: l.name, country: l.birthCountry, sex: l.gender ?? l.sex, age: l.age, cause: l.cause || L('亡くなった', 'passed away'), line: l.story, message: l.message ?? '', birthYear: l.birthYear, job: p.job ?? '', lang }),
     });
+    // 自分で消すための鍵は、この端末にだけ残す (main.ts の reactTo)
+    const j = await r.json().catch(() => null);
+    if (j?.data?.token) save('mytokens', { ...load<Record<string, string>>('mytokens', {}), [String(j.data.id)]: String(j.data.token) });
   } catch {
     // 届かなくても、前世の記録には残っている
   }

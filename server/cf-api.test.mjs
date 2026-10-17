@@ -43,6 +43,25 @@ describe('追悼館 (Cloudflare 版)', () => {
     expect(await call('GET', '/api/health')).toEqual({ status: 200, j: { success: true, data: { ok: true } } });
   });
 
+  it('心に留める数が増え、通報3件で見えなくなり、残した本人の鍵でだけ消せる', async () => {
+    const { call } = api();
+    const a = await call('POST', '/api/memorial', { body: entry() });
+    const b = await call('POST', '/api/memorial', { body: entry({ name: 'B' }) });
+    expect(a.j.data.token).toMatch(/^[A-Za-z0-9]{16}$/);
+    expect((await call('GET', '/api/memorial?lang=ja')).j.data[0].token).toBeUndefined(); // 鍵は一覧に出ない
+    expect((await call('POST', `/api/memorial/${a.j.data.id}/heart`)).j).toEqual({ success: true, data: { hearts: 1 } });
+    expect((await call('POST', `/api/memorial/${a.j.data.id}/heart`)).j.data.hearts).toBe(2);
+    expect((await call('GET', '/api/memorial?lang=ja')).j.data.find((r) => r.id === a.j.data.id).hearts).toBe(2);
+    expect((await call('POST', `/api/memorial/${a.j.data.id}/report`)).j.data.hidden).toBe(false);
+    expect((await call('POST', `/api/memorial/${a.j.data.id}/report`)).j.data.hidden).toBe(false);
+    expect((await call('POST', `/api/memorial/${a.j.data.id}/report`)).j.data.hidden).toBe(true);
+    expect((await call('GET', '/api/memorial?lang=ja')).j.data.map((r) => r.id)).toEqual([b.j.data.id]);
+    expect((await call('POST', `/api/memorial/${b.j.data.id}/delete`, { body: { token: 'wrong' } })).status).toBe(404);
+    expect((await call('POST', `/api/memorial/${b.j.data.id}/delete`, { body: { token: b.j.data.token } })).j.data.ok).toBe(true);
+    expect((await call('GET', '/api/memorial?lang=ja')).j.data).toEqual([]);
+    expect((await call('POST', '/api/memorial/999/heart')).status).toBe(404);
+  });
+
   it('残して、言語ごとに新しい順で読め、ろうそくが灯る', async () => {
     const { call, env } = api();
     const a = await call('POST', '/api/memorial', { body: entry() });
@@ -52,7 +71,7 @@ describe('追悼館 (Cloudflare 版)', () => {
     const ja = await call('GET', '/api/memorial?lang=ja');
     expect(ja.j.data.map((r) => r.id)).toEqual([a.j.data.id]);
     // 列の名前は Node 版と同じ (クライアントはそのまま読む)
-    expect(Object.keys(ja.j.data[0]).sort()).toEqual(['age', 'birthYear', 'candles', 'cause', 'country', 'createdAt', 'family', 'gen', 'id', 'job', 'line', 'message', 'name', 'rural', 'sex'].sort());
+    expect(Object.keys(ja.j.data[0]).sort()).toEqual(['age', 'birthYear', 'candles', 'hearts', 'cause', 'country', 'createdAt', 'family', 'gen', 'id', 'job', 'line', 'message', 'name', 'rural', 'sex'].sort());
     expect(ja.j.data[0]).toMatchObject({ name: '山田 花子', rural: 1, birthYear: 1940, gen: 1 });
     expect((await call('GET', '/api/memorial?lang=en')).j.data[0]).toMatchObject({ name: 'Ann', gen: 3, family: 'A → B' });
     expect((await call('POST', `/api/memorial/${a.j.data.id}/candle`)).j).toEqual({ success: true, data: { candles: 1 } });
