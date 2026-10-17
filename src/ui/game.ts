@@ -25,8 +25,12 @@ import { pickQuestion } from './pause';
 import { lifeMap } from './lifemap';
 import { addMoment, momentOf, type Moment } from './album';
 import { lifeBeat, lifeEnd, lifeNow, lifeStart, newLifeId, presenceLine, type Beat } from './presence';
+import { yearMs } from './pace';
+import { STAR_MAX, toggleStar } from './stars';
+import { themeBtn, toggleTheme } from './theme';
 
-const YEAR_MS = 26000;  // 1倍速で1年 = 26秒 (平均寿命まで約30分)
+let YEAR_MS = yearMs();  // 1倍速で1年にかける時間 (pace.ts。既定は26秒、平均寿命まで約30分)
+const DEFER_MAX = 2;     // 決定を「いったん下ろす」のは2回まで
 const SPEEDS = [1, 2, 4, 8, 16];
 const OTHERS = 4;
 const AUTO_WAIT_MS = 4000; // 自動で決めるとき、選択肢を見せておく時間
@@ -72,6 +76,7 @@ interface GameState {
   album: Moment[];   // 思い出のアルバムに撮った場面 (album.ts)
   beat: Beat;        // この人生の便り (presence.ts)。id は保存データに残す
   netTimer?: number;
+  shelved: { d: Decision; at: number }[]; // いったん下ろした決定。at 歳になったら pending に戻す (保存には残らない)
 }
 
 let S: GameState | null = null;
@@ -95,7 +100,8 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void, album: Moment[] = [], lifeId?: string): void {
   p.reflect = true;
   resetAi();
-  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true, album: addMoment(album, momentOf(p)), beat: { id: lifeId ?? newLifeId(), at: 0, age: -1 } };
+  S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true, album: addMoment(album, momentOf(p)), beat: { id: lifeId ?? newLifeId(), at: 0, age: -1 }, shelved: [] };
+  YEAR_MS = yearMs();
   $('#app').innerHTML = shell();
   S.io = new IntersectionObserver(([en]) => { if (S) S.seen = en.isIntersecting; });
   S.io.observe($('#scene'));
@@ -166,6 +172,12 @@ function tick(): void {
   advanceYear(S.p);
   for (const o of S.others) advanceYear(o);
   companionDeaths(S.p, S.others);
+  // いったん下ろした決定は、その年が来たら先頭に戻す
+  if (S.p.alive && S.shelved.length) {
+    const due = S.shelved.filter((x) => x.at <= S!.p.age);
+    S.shelved = S.shelved.filter((x) => x.at > S!.p.age);
+    S.p.pending.unshift(...due.map((x) => x.d));
+  }
   // AI の1年分が届いていれば反映し、用意した文の出来事は1つだけ残す
   if (S.p.alive && onYear(S.p, S.others)) {
     const age = S.p.age;
@@ -207,6 +219,8 @@ function shell(): string {
       <span class="aibadge" id="aibadge" hidden>AI</span>
       <button data-act="bg" id="bgbtn" title="${L('ONなら別のタブに移っても進み続ける (決めることが来たら止まる)', 'When on, keeps going in a background tab (stops at decisions)')}">${L('裏でも進める', 'Run in background')}</button>
       <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button><input type="range" id="musicvol" min="0" max="100" step="5" value="${musicVolume()}" aria-label="${L('音量', 'Volume')}">
+      <button data-act="note" id="notebtn" title="${L('いま思ったことを一行、この人生の記録に書き留める', 'Write one line into this life\'s record')}">✎</button>
+      ${themeBtn()}
       <button data-act="exit">${L('中断', 'Quit')}</button>
     </div>
     <div class="yeartrack"><div id="yearbar"></div></div>
@@ -308,6 +322,7 @@ function fitPixels(cv: HTMLCanvasElement): void {
 
 function onClick(e: MouseEvent): void {
   if (!S) return;
+  if ((e.target as HTMLElement).closest('[data-theme-toggle]')) { toggleTheme(); return; }
   const t = (e.target as HTMLElement).closest<HTMLElement>('[data-act]');
   if (!t || t.closest('#modal')) return;
   const v = t.dataset.v;
@@ -318,6 +333,8 @@ function onClick(e: MouseEvent): void {
     case 'auto': S.p.auto = !S.p.auto; break;
     case 'bg': S.bg = !S.bg; save('bg', S.bg); break;
     case 'music': S.music = !S.music; save('music', S.music); setMusic(S.music); break;
+    case 'note': showNote(); return;
+    case 'star': if (!toggleStar(S.p, Number(v))) { t.title = L(`印は${STAR_MAX}個まで`, `Up to ${STAR_MAX} stars`); return; } persist(); break;
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;
     case 'person': if (t.closest('#others')) S.osel = v ? Number(v) : undefined; else S.sel = v ? Number(v) : undefined; break;
@@ -368,13 +385,14 @@ function showDecision(d: Decision): void {
     <div class="cards">${d.options.map((o, i) => `<button data-i="${i}" class="${i === auto ? 'pre' : ''}"><span class="num">${i + 1}</span><b>${esc(o.label)}</b>${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>
     <div class="modalfoot">${auto >= 0
       ? `<span class="countdown">${L(`まもなく「${esc(d.options[auto].label)}」で進む・カードを押すと止まる`, `Going with "${esc(d.options[auto].label)}" shortly. Tap a card to stop.`)}</span><button class="link" data-x="manual">${L('自分で選ぶ', 'Choose myself')}</button>`
-      : `<button class="link" data-x="auto">${L('これからは自動で決める', 'Decide automatically from now on')}</button>`}</div>`);
+      : `<button class="link" data-x="auto">${L('これからは自動で決める', 'Decide automatically from now on')}</button>`}${(d.deferred ?? 0) < DEFER_MAX && auto < 0 ? `<button class="link defer" data-x="defer" title="${L('来年もう一度出てくる (2回まで)', 'Comes back next year, up to twice')}">${L('いったん下ろす', 'Put it down for now')}</button>` : ''}</div>`);
   if (auto >= 0) S!.timer = window.setTimeout(() => decideNow(d, auto), AUTO_WAIT_MS);
   $('#modalbody').onclick = (e) => {
     const t = e.target as HTMLElement;
     const x = t.closest<HTMLElement>('[data-x]')?.dataset.x;
     if (x === 'manual') { S!.p.auto = false; render(); showDecision(d); return; }
     if (x === 'auto') { S!.p.auto = true; render(); decideNow(d, d.auto(S!.p)); return; }
+    if (x === 'defer') { deferNow(d); return; }
     const b = t.closest<HTMLElement>('[data-i]');
     if (b) decideNow(d, Number(b.dataset.i));
   };
@@ -387,6 +405,37 @@ function decideNow(d: Decision, i: number): void {
   settle(S.p);
   render();
   nextModal();
+}
+
+// 決定を来年に回す。人生が終われば消える
+function deferNow(d: Decision): void {
+  if (!S || S.p.pending[0] !== d) return;
+  S.p.pending.shift();
+  d.deferred = (d.deferred ?? 0) + 1;
+  S.shelved.push({ d, at: S.p.age + 1 });
+  S.p.log.push({ age: S.p.age, text: L(`「${d.title}」は、いったん下ろした。`, `Put "${d.title}" down for now.`), kind: S.p.kinds[S.p.age] ?? 'family' });
+  render();
+  nextModal();
+}
+
+// ✎ いつでも一行: ひと息の問いと同じ入力で、今の年齢の記録に残す
+function showNote(): void {
+  if (!S || S.modal) return;
+  const p = S.p;
+  openModal(`<p class="kicker">${L(`${p.age}歳・${p.birthYear + p.age}年`, `Age ${p.age} · ${p.birthYear + p.age}`)}</p><h2>${L('いま思ったこと', 'A thought, right now')}</h2>
+    <textarea id="answer" maxlength="140" rows="3" placeholder="${L('一行だけ', 'One line')}"></textarea>
+    <div class="cards"><button data-a="write"><span class="num">1</span><b>${L('書き留めて生き続ける', 'Write it down, live on')}</b><small>${L('この人生の記録に残る', 'Kept in this life\'s record')}</small></button>
+    <button data-a="keep"><span class="num">2</span><b>${L('やめておく', 'Never mind')}</b></button></div>`);
+  $<HTMLTextAreaElement>('#answer').focus();
+  $('#modalbody').onclick = (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
+    if (!a || !S) return;
+    const text = $<HTMLTextAreaElement>('#answer')?.value.trim() ?? '';
+    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: L(`「${text}」`, `"${text}"`), kind: S.p.kinds[S.p.age] ?? 'family' });
+    closeModal();
+    render();
+    persist();
+  };
 }
 
 function questionContext(q: Question): string {

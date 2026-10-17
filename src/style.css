@@ -545,3 +545,63 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 
 /* 人生を共有する欄 (src/ui/share.ts) */
 .sharetext { white-space: pre-wrap; word-break: break-word; font: inherit; font-size: 13px; color: var(--sub); background: var(--bg2); border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+
+/* ☆ 覚えておきたい瞬間 (ui/stars.ts) */
+.log li { position: relative; }
+.log li .star, .whos .star { padding: 0 4px; border: 0; background: none; color: var(--faint); font-size: 13px; line-height: 1; border-radius: 4px; align-self: start; }
+.log li .star { justify-self: end; grid-column: 3; }
+.log li:has(.star) { grid-template-columns: 3.4em 1fr auto; }
+.log li .star:hover, .whos .star:hover { color: var(--accent); }
+.log li .star.on, .whos .star.on { color: var(--accent); }
+.log li.starred { background: linear-gradient(90deg, var(--glow), transparent 70%) !important; }
+.stars .log li { grid-template-columns: 3.4em 1fr; }
+
+/* ✎ いま思ったこと・◐ 明るさ */
+#notebtn, .themebtn { font-size: 14px; line-height: 1; }
+.langsw .themebtn { padding: 4px 10px; font-size: 13px; vertical-align: middle; margin-right: 6px; }
+
+/* いったん下ろす */
+.modalfoot .defer { margin-left: auto; color: var(--sub); }
+
+/* 捨てた生まれの石 (ui/stones.ts): 左下に小さく積もる */
+.stones { position: fixed; left: 12px; bottom: 12px; z-index: 6; display: flex; flex-wrap: wrap; gap: 4px; max-width: 120px; align-items: flex-end; }
+.stone { width: 12px; height: 10px; padding: 0; border: 0; border-radius: 50% 50% 45% 45%; background: var(--faint); opacity: 0.7; box-shadow: inset 0 -2px 0 rgb(0 0 0 / 0.3); }
+.stone:nth-child(3n) { width: 10px; height: 8px; } .stone:nth-child(3n+1) { width: 14px; height: 11px; }
+.stone:hover { opacity: 1; background: var(--sub); }
+.stonecard { position: absolute; left: 0; bottom: 20px; width: 220px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13px; box-shadow: 0 10px 30px rgb(0 0 0 / 0.4); }
+.stonecard p { margin: 2px 0 0; color: var(--sub); }
+.stonecard b { font-family: var(--serif); font-size: 15px; }
+.stonecard[hidden] { display: none; }
+
+/* 振り返って・時間を注いだこと・地図・団体 (ui/lookback.ts, worldmap.ts, orgs.ts) */
+.lookback .kv { grid-template-columns: 6em 1fr; }
+.spent { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; font-size: 14px; }
+.spent b { font-family: var(--serif); color: var(--accent); margin-left: 2px; }
+.worldmap { width: 100%; max-width: 520px; height: auto; display: block; background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; }
+.worldmap .wland circle { fill: var(--line); }
+.worldmap .wline polyline { fill: none; stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 3 2; opacity: 0.8; }
+.worldmap .wpt circle { fill: var(--accent); stroke: var(--bg2); stroke-width: 1; }
+.worldmap .wpt text { font-size: 5px; font-weight: 700; fill: var(--accent-ink); text-anchor: middle; font-family: var(--sans); }
+.orgtable td { text-align: left; vertical-align: top; }
+.orgtable td:first-child { white-space: nowrap; }
+.orgtable td:nth-child(2) { color: var(--sub); }
+
+/* みんなの人生への反応 */
+.reacts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: auto; }
+#shared li .reacts button { margin-top: 0; }
+.faintbtn { color: var(--faint); font-size: 12px; }
+
+/* 明るい画面 (ui/theme.ts)。既定は暗い。昼の紙の色に、同じ琥珀 */
+:root[data-theme=light] {
+  --bg: #f3efe6; --bg2: #ebe6da; --surface: #fbf9f4; --surface2: #efe9dc; --text: #2a2620; --sub: #6c655a; --faint: #a39c90; --line: #ddd5c6;
+  --accent: #b9771e; --accent-ink: #fff8ea; --glow: rgb(185 119 30 / 0.16);
+  --k-future: #e2dccf; --k-death: #2a2620; color-scheme: light;
+}
+:root[data-theme=light] body { background: radial-gradient(1200px 700px at 30% -10%, #fff7e4 0%, transparent 60%), var(--bg); }
+:root[data-theme=light] .topbar { background: rgb(243 239 230 / 0.92); }
+:root[data-theme=light] .modal-back { background: rgb(60 50 30 / 0.45); }
+:root[data-theme=light] .rnode span { text-shadow: 0 1px 2px var(--surface); }
+:root[data-theme=light] .stonecard, :root[data-theme=light] .modal { box-shadow: 0 10px 30px rgb(0 0 0 / 0.15); }
+/* 人生の長さ (ui/pace.ts) */
+.pacerow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.pacerow .seg button { padding: 3px 12px; font-size: 13px; }

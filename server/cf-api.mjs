@@ -9,6 +9,7 @@ export const LIMITS = {
   postMin: [10, 60_000],
   postDay: [50, 86_400_000],
   candleMin: [20, 60_000],
+  reactMin: [20, 60_000],
   aiMin: [120, 60_000],
   adminFail: [10, 600_000],
   lifeMin: [10, 60_000],
@@ -26,7 +27,8 @@ const json = (status, body) => new Response(JSON.stringify(body), {
 });
 const ng = (status, error) => json(status, { success: false, error });
 
-const COLS = `id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, gen, family, created_at AS createdAt`;
+const COLS = `id, name, rural, birth_year AS birthYear, job, country, sex, age, cause, line, message, candles, hearts, gen, family, created_at AS createdAt`;
+const REPORTS_TO_HIDE = 3;
 
 const enc = new TextEncoder();
 async function hmac(key, msg) {
@@ -103,9 +105,11 @@ async function route(request, env, now) {
     const e = validEntry(body);
     if (!e) return ng(400, 'invalid entry');
     if (blocked(e.name) || blocked(e.message) || blocked(e.line)) return ng(400, 'blocked');
-    const r = await db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message, lang, gen, family) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
-      .bind(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message, e.lang, e.gen, e.family).run();
-    return json(201, { success: true, data: { id: Number(r.meta.last_row_id) } });
+    // token は残した本人が消すための鍵。返すのはこの1回だけ (残した端末が持つ)
+    const token = newId() + newId();
+    const r = await db.prepare('INSERT INTO memorial (name, rural, birth_year, job, country, sex, age, cause, line, message, lang, gen, family, token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+      .bind(e.name, e.rural, e.birthYear, e.job, e.country, e.sex, e.age, e.cause, e.line, e.message, e.lang, e.gen, e.family, token).run();
+    return json(201, { success: true, data: { id: Number(r.meta.last_row_id), token } });
   }
 
   const c = p.match(/^\/api\/memorial\/(\d{1,15})\/candle$/);
@@ -113,6 +117,28 @@ async function route(request, env, now) {
     if (!(await allow(db, 'candleMin', await who(), now))) return ng(429, 'too many requests');
     const row = await db.prepare('UPDATE memorial SET candles = candles + 1 WHERE id = ? AND hidden = 0 RETURNING candles').bind(Number(c[1])).first();
     return row ? json(200, { success: true, data: { candles: row.candles } }) : ng(404, 'not found');
+  }
+
+  // 反応: 心に留める (数える) / 通報 (REPORTS_TO_HIDE 件で見えなくする) / 消す (残した本人の token が合えば見えなくする)
+  const rc = p.match(/^\/api\/memorial\/(\d{1,15})\/(heart|report|delete)$/);
+  if (m === 'POST' && rc) {
+    if (!(await allow(db, 'reactMin', await who(), now))) return ng(429, 'too many requests');
+    const id = Number(rc[1]);
+    if (rc[2] === 'heart') {
+      const row = await db.prepare('UPDATE memorial SET hearts = hearts + 1 WHERE id = ? AND hidden = 0 RETURNING hearts').bind(id).first();
+      return row ? json(200, { success: true, data: { hearts: row.hearts } }) : ng(404, 'not found');
+    }
+    if (rc[2] === 'report') {
+      const row = await db.prepare('UPDATE memorial SET reports = reports + 1, hidden = CASE WHEN reports + 1 >= ? THEN 1 ELSE hidden END WHERE id = ? AND hidden = 0 RETURNING hidden').bind(REPORTS_TO_HIDE, id).first();
+      return row ? json(200, { success: true, data: { hidden: row.hidden === 1 } }) : ng(404, 'not found');
+    }
+    let b;
+    try { b = await readJson(request, 1024); } catch { return ng(400, 'bad json'); }
+    const token = typeof b?.token === 'string' ? b.token : '';
+    const row = token ? await db.prepare('SELECT token FROM memorial WHERE id = ? AND hidden = 0').bind(id).first() : null;
+    if (!row || !sameSecret(row.token, token)) return ng(404, 'not found');
+    await db.prepare('UPDATE memorial SET hidden = 1 WHERE id = ?').bind(id).run();
+    return json(200, { success: true, data: { ok: true } });
   }
 
   if (p.startsWith('/api/life/')) return life(request, db, url, m, now, who);
