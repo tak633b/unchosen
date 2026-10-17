@@ -16,13 +16,16 @@ const RITE: Record<string, [string, string]> = {
 const RITE_JPN: [string, string] = ['通夜と葬儀をし、火葬のあと、骨を箸で拾った。', 'A wake and a funeral; after the cremation, the bones were lifted into the urn with chopsticks.'];
 const RITE_OTHER: [string, string] = ['親戚が集まり、土地のしきたりで見送った。', 'Relatives gathered and said goodbye in the local way.'];
 
-// 親を見送る。費用は大人になっていれば自分が出す (年収の1割ほど。インドの中くらいの家で約8万円)
+// 親を見送る。費用は大人になっていれば自分が出す (年収の1割ほど。インドの中くらいの家で約8万円)。大人のきょうだいがいれば頭数で分ける
 export function funeral(p: Person): void {
   const [ja, en] = countryOf(p).code === 'JPN' ? RITE_JPN : RITE[p.religion] ?? RITE_OTHER;
   if (p.age < 18) { log(p, L(ja, en), 'loss'); return; }
-  const cost = earnings(countryOf(p), p.familyP) * 0.1;
+  const heads = 1 + p.siblings.filter((s) => s.alive && s.age >= 18).length;
+  const cost = earnings(countryOf(p), p.familyP) * 0.1 / heads;
   p.wealth -= cost;
-  log(p, L(`${ja}葬儀の費用を払った(−${formatMoney(cost)})。`, `${en} Paid for the funeral (−${formatMoney(cost)}).`), 'loss');
+  log(p, heads > 1
+    ? L(`${ja}葬儀の費用は、きょうだいと分けて払った(−${formatMoney(cost)})。`, `${en} The funeral costs were split with the siblings (−${formatMoney(cost)}).`)
+    : L(`${ja}葬儀の費用を払った(−${formatMoney(cost)})。`, `${en} Paid for the funeral (−${formatMoney(cost)}).`), 'loss');
 }
 
 const roll = (p: Person, salt: number) => showRng(p.seed, p.age, salt)();

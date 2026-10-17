@@ -41,6 +41,7 @@ export function family(p: Person): void {
     if (quiet) afterSuicideLoss(p);
     mourn(p, rel, young ? -18 : -8, young ? -10 : -4);
     funeral(p);
+    if (!p.mother.alive && !p.father.alive) log(p, L('これで両親とも、もういない。', 'Now both parents are gone.'), 'loss');
     // まだ生まれていないきょうだいは、母が亡くなれば生まれない。父が亡くなった後は、その年のうちに生まれる子まで
     if (p.siblings.some((s) => s.age < 0)) p.siblings = p.siblings.filter((s) => s.age >= (rel === p.mother ? 0 : -1));
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);

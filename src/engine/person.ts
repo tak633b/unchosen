@@ -36,6 +36,7 @@ export interface Relative {
   fixed?: Fixed;      // その人の一生の中に出てくる、主人公の記録で決まっている人
   pet?: '犬' | '猫';   // 人の輪に並べるペット (role 'pet') の種類
   gen?: number;       // 前の世代の主人公 (この人で続けた一つ前の人生)。その世代の番号
+  adopted?: boolean;  // 養子として迎えた子 (events/adopt.ts)
 }
 // 家系の一人。顔を描き、年と続き柄を出す分だけ持つ。rel は次の主人公がこの人から見て何にあたるか
 export interface LineEntry { seed: number; name: string; given: string; sex: Sex; gender?: 'X'; birthYear: number; age: number; cause: string; birthCountry: string; country: string; religion: string; rel?: Role } // rel が無いのは家系の最後 (記録の本人)

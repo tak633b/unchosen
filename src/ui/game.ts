@@ -1,6 +1,7 @@
 // ゲームの進行: 時間・意思決定・止まった時間の問い・保存。
 import { byCode, countryAt, type BirthBasis } from '../engine/countries';
 import { advanceYear, createPerson, fromSaved, settle, toSaved, type SavedPerson } from '../engine/life';
+import { companionDeaths } from '../engine/events/household';
 import { choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
 import { randomSeed } from '../engine/rng';
 import { nowLine } from '../engine/summary';
@@ -164,6 +165,7 @@ function tick(): void {
   if (!S) return;
   advanceYear(S.p);
   for (const o of S.others) advanceYear(o);
+  companionDeaths(S.p, S.others);
   // AI の1年分が届いていれば反映し、用意した文の出来事は1つだけ残す
   if (S.p.alive && onYear(S.p, S.others)) {
     const age = S.p.age;

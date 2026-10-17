@@ -32,6 +32,8 @@ import { origin, roots, rootsMortality } from './roots';
 import { rootsYear } from './events/roots';
 import { faith } from './events/faith';
 import { eventCause, excessQ } from './worldevents';
+import { household, lastMonths } from './events/household';
+import { adoption } from './events/adopt';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -197,6 +199,7 @@ export function settle(p: Person): void {
     return;
   }
   foreshadow(p);
+  lastMonths(p);
   log(p, L(`${p.age}歳で亡くなった。死因: ${p.cause}。`, `Died at ${p.age}. Cause of death: ${causeName(p.cause ?? '')}.`), 'death', true);
   because(p, p.cause === causeName('出産時の合併症') ? birthWhy(p, countryOf(p), p.age) : joinWhy([
     deathWhy(countryOf(p), p.sex, p.age, p.gender === 'X'),
@@ -253,6 +256,8 @@ export function advanceYear(p: Person): void {
   illness(p);
   if (!p.anchor?.hold(p, 'move')) migration(p);
   finances(p);
+  household(p);
+  if (!p.anchor?.hold(p, 'birth')) adoption(p);
   strain(p);
   crime(p);
   justice(p);

@@ -10,6 +10,7 @@ import { yearly } from './common';
 import { freshName, mourn, newId, shared } from '../bonds';
 import { breakUp, keepLateSpouse } from './bonds';
 import { because, birthWhy, childMarriageWhy } from '../why';
+import { spouseSavings } from './household';
 
 const TRAITS = isEn
   ? ['kind', 'cheerful', 'quiet', 'earnest', 'quick to laugh', 'dependable', 'strong-willed', 'easygoing']
@@ -31,6 +32,7 @@ export function marry(p: Person, partner: Relative): void {
   p.dating = undefined;
   shared(p, [p.spouse], L(`${partner.name}と結婚した。`, `Married ${partner.name}.`), 'love', 10, true, undefined, 'wedding');
   bump(p, { happy: 10, bond: 15 });
+  spouseSavings(p);
 }
 
 export function love(p: Person): void {
