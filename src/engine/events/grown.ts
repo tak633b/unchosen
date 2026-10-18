@@ -3,7 +3,7 @@
 import { L } from '../../i18n';
 import { earnings } from '../economy';
 import { JOBS, jobName } from '../jobs';
-import { countryOf, eduLevel, log, type Person, type Relative } from '../person';
+import { countryOf, eduLevel, log, yearOf, type Person, type Relative } from '../person';
 import { showRng } from '../crisis';
 import { techShare } from '../tech';
 
@@ -26,7 +26,7 @@ function childJob(p: Person, k: Relative): string {
   const c = countryOf(p);
   const edu = Math.max(0, Math.min(4, eduLevel(p) + (roll(p, k, 0x91) < 0.3 ? 1 : 0) - (roll(p, k, 0x92) < 0.2 ? 1 : 0)));
   const pool = JOBS.filter((j) => j.edu <= edu && (j.maxEdu ?? 5) >= edu && !j.majors && !j.rare
-    && (!j.where || (j.where === 'rural') === p.rural) && (!j.tech || techShare(c, j.tech) > 0.02));
+    && (!j.where || (j.where === 'rural') === p.rural) && (!j.tech || techShare(c, j.tech, false, yearOf(p)) > 0.02));
   return pool.length ? pool[Math.floor(roll(p, k, 0x93) * pool.length)].name : '日雇い労働者';
 }
 

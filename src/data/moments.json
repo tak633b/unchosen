@@ -143,6 +143,7 @@
       "minAge": 0,
       "maxAge": 4,
       "weight": 1,
+      "from": 1970,
       "when": {
         "income": "low",
         "motherAlive": true
@@ -273,6 +274,7 @@
       "minAge": 3,
       "maxAge": 5,
       "weight": 1,
+      "from": 1950,
       "when": {
         "place": "urban",
         "income": [
@@ -677,6 +679,7 @@
       "minAge": 3,
       "maxAge": 5,
       "weight": 1,
+      "from": 1960,
       "when": {
         "wealth": "rich"
       },
@@ -1113,6 +1116,7 @@
       "minAge": 9,
       "maxAge": 12,
       "weight": 1,
+      "from": 1960,
       "when": {
         "countries": [
           "JPN",
@@ -1348,6 +1352,7 @@
       "minAge": 6,
       "maxAge": 10,
       "weight": 1,
+      "from": 1950,
       "when": {
         "place": "urban",
         "income": [
@@ -1446,6 +1451,7 @@
       "minAge": 5,
       "maxAge": 12,
       "weight": 1,
+      "from": 1970,
       "when": {
         "income": "low",
         "state": "school"
@@ -1755,6 +1761,7 @@
       "minAge": 6,
       "maxAge": 6,
       "weight": 1,
+      "from": 1955,
       "when": {
         "countries": [
           "JPN"
@@ -1776,6 +1783,7 @@
       "minAge": 5,
       "maxAge": 12,
       "weight": 1,
+      "from": 1975,
       "when": {
         "countries": [
           "KOR"
@@ -2090,6 +2098,7 @@
       "minAge": 17,
       "maxAge": 18,
       "weight": 1,
+      "from": 1977,
       "when": {
         "countries": [
           "CHN"
@@ -2112,6 +2121,7 @@
       "minAge": 17,
       "maxAge": 18,
       "weight": 1,
+      "from": 1994,
       "when": {
         "countries": [
           "KOR"
@@ -2133,6 +2143,7 @@
       "minAge": 17,
       "maxAge": 18,
       "weight": 1,
+      "from": 1979,
       "when": {
         "countries": [
           "JPN"
@@ -2154,6 +2165,7 @@
       "minAge": 15,
       "maxAge": 18,
       "weight": 1,
+      "from": 1960,
       "when": {
         "place": "urban",
         "state": "school",
@@ -2209,6 +2221,7 @@
       "minAge": 12,
       "maxAge": 15,
       "weight": 1,
+      "from": 1955,
       "when": {
         "sex": "M",
         "fatherAlive": true
@@ -2247,6 +2260,7 @@
       "minAge": 11,
       "maxAge": 14,
       "weight": 1,
+      "from": 1960,
       "when": {
         "sibling": "olderSister",
         "sex": "F",
@@ -2268,6 +2282,7 @@
       "minAge": 14,
       "maxAge": 18,
       "weight": 1,
+      "from": 1960,
       "when": {
         "place": "urban",
         "married": false
@@ -2389,6 +2404,7 @@
       "minAge": 14,
       "maxAge": 18,
       "weight": 1,
+      "from": 1960,
       "when": {
         "sibling": "olderBrother",
         "countries": [
@@ -2418,6 +2434,7 @@
       "minAge": 15,
       "maxAge": 20,
       "weight": 1,
+      "from": 1960,
       "when": {
         "married": false
       },
@@ -2648,6 +2665,7 @@
       "minAge": 14,
       "maxAge": 18,
       "weight": 1,
+      "from": 1970,
       "when": {
         "place": "urban",
         "married": false
@@ -2706,6 +2724,7 @@
       "minAge": 15,
       "maxAge": 18,
       "weight": 1,
+      "from": 1980,
       "when": {
         "place": "urban",
         "married": false
@@ -2724,6 +2743,7 @@
       "minAge": 15,
       "maxAge": 19,
       "weight": 1,
+      "from": 1960,
       "when": {
         "place": "urban",
         "married": false
@@ -2743,6 +2763,7 @@
       "minAge": 16,
       "maxAge": 18,
       "weight": 1,
+      "from": 1970,
       "when": {
         "wealth": "rich",
         "married": false,
@@ -2990,6 +3011,7 @@
       "minAge": 15,
       "maxAge": 18,
       "weight": 1,
+      "from": 1960,
       "when": {
         "wealth": "rich",
         "state": "school",
@@ -3027,6 +3049,7 @@
       "minAge": 15,
       "maxAge": 18,
       "weight": 1,
+      "from": 1950,
       "when": {
         "wealth": "middle",
         "married": false
@@ -3045,6 +3068,7 @@
       "minAge": 17,
       "maxAge": 19,
       "weight": 1,
+      "from": 1950,
       "when": {
         "countries": [
           "JPN"
@@ -3117,6 +3141,7 @@
       "minAge": 18,
       "maxAge": 25,
       "weight": 1,
+      "from": 1970,
       "when": {
         "state": "work",
         "job": "office"
@@ -3135,6 +3160,7 @@
       "minAge": 20,
       "maxAge": 30,
       "weight": 1,
+      "from": 1950,
       "when": {
         "job": "none",
         "place": "urban"
@@ -3211,6 +3237,7 @@
       "minAge": 19,
       "maxAge": 60,
       "weight": 1,
+      "from": 1960,
       "when": {
         "countries": [
           "VNM",
@@ -3239,6 +3266,7 @@
       "minAge": 19,
       "maxAge": 60,
       "weight": 1,
+      "from": 1960,
       "when": {
         "countries": [
           "KEN",
@@ -3423,6 +3451,7 @@
       "minAge": 20,
       "maxAge": 20,
       "weight": 1,
+      "from": 1946,
       "when": {
         "countries": [
           "JPN"
@@ -3443,6 +3472,7 @@
       "minAge": 19,
       "maxAge": 23,
       "weight": 1,
+      "from": 1950,
       "when": {
         "countries": [
           "KOR"
@@ -3466,6 +3496,7 @@
       "minAge": 18,
       "maxAge": 21,
       "weight": 1,
+      "from": 1948,
       "when": {
         "countries": [
           "ISR"
@@ -3526,6 +3557,7 @@
       "minAge": 22,
       "maxAge": 30,
       "weight": 1,
+      "from": 1960,
       "when": {
         "income": "high"
       },
@@ -3751,6 +3783,7 @@
       "minAge": 20,
       "maxAge": 40,
       "weight": 1,
+      "from": 1970,
       "when": {
         "place": "urban",
         "income": "high"
@@ -3786,6 +3819,7 @@
       "minAge": 20,
       "maxAge": 30,
       "weight": 1,
+      "from": 1960,
       "when": {
         "wealth": "middle"
       },
@@ -3804,6 +3838,7 @@
       "minAge": 20,
       "maxAge": 30,
       "weight": 1,
+      "from": 1965,
       "when": {
         "wealth": "rich",
         "income": "high",
@@ -3827,6 +3862,7 @@
       "minAge": 18,
       "maxAge": 35,
       "weight": 1,
+      "from": 1980,
       "when": {
         "countries": [
           "BGD",
@@ -3854,6 +3890,7 @@
       "minAge": 20,
       "maxAge": 40,
       "weight": 1,
+      "from": 1973,
       "when": {
         "countries": [
           "NPL",
@@ -3950,6 +3987,7 @@
       "minAge": 18,
       "maxAge": 25,
       "weight": 1,
+      "from": 1946,
       "effects": {
         "learn": 1
       },
@@ -4118,6 +4156,7 @@
       "minAge": 20,
       "maxAge": 40,
       "weight": 1,
+      "from": 1920,
       "when": {
         "income": "low"
       },
@@ -4183,6 +4222,7 @@
       "minAge": 35,
       "maxAge": 60,
       "weight": 1,
+      "from": 1960,
       "when": {
         "income": [
           "mid",
@@ -4311,6 +4351,7 @@
       "minAge": 30,
       "maxAge": 60,
       "weight": 1,
+      "from": 1950,
       "when": {
         "income": "high"
       },
@@ -4485,6 +4526,7 @@
       "minAge": 30,
       "maxAge": 60,
       "weight": 1,
+      "from": 1925,
       "effects": {
         "happy": -4
       },
@@ -4499,6 +4541,7 @@
       "minAge": 35,
       "maxAge": 80,
       "weight": 1,
+      "from": 2000,
       "when": {
         "place": "urban"
       },
@@ -4681,6 +4724,7 @@
       "minAge": 30,
       "maxAge": 70,
       "weight": 1,
+      "from": 1960,
       "when": {
         "region": [
           "ヨーロッパ"
@@ -4780,6 +4824,7 @@
       "minAge": 20,
       "maxAge": 70,
       "weight": 1,
+      "from": 1950,
       "when": {
         "hasPet": true,
         "income": "high"
@@ -4822,6 +4867,7 @@
       "minAge": 40,
       "maxAge": 70,
       "weight": 1,
+      "from": 1960,
       "when": {
         "place": "urban"
       },
@@ -4924,6 +4970,7 @@
       "minAge": 25,
       "maxAge": 60,
       "weight": 0.3,
+      "from": 1952,
       "when": {
         "income": "low"
       },
@@ -4979,6 +5026,7 @@
       "minAge": 20,
       "maxAge": 60,
       "weight": 1,
+      "from": 1980,
       "when": {
         "countries": [
           "CHN"
@@ -5541,6 +5589,7 @@
       "minAge": 25,
       "maxAge": 70,
       "weight": 1,
+      "from": 1950,
       "when": {
         "income": "mid"
       },
@@ -5706,6 +5755,7 @@
       "minAge": 25,
       "maxAge": 55,
       "weight": 1,
+      "from": 1980,
       "when": {
         "sex": "F",
         "income": "low"
@@ -5985,6 +6035,7 @@
       "minAge": 38,
       "maxAge": 50,
       "weight": 1,
+      "from": 1960,
       "when": {
         "wealth": "rich",
         "hasChildren": true
@@ -6024,6 +6075,7 @@
       "minAge": 31,
       "maxAge": 50,
       "weight": 1,
+      "from": 1960,
       "when": {
         "wealth": "rich",
         "hasChildren": true
@@ -6098,6 +6150,7 @@
       "minAge": 31,
       "maxAge": 50,
       "weight": 1,
+      "from": 1970,
       "when": {
         "place": "urban",
         "job": "office"
@@ -6115,6 +6168,7 @@
       "minAge": 55,
       "maxAge": 75,
       "weight": 1,
+      "from": 1960,
       "when": {
         "hasChildren": true
       },
@@ -6246,6 +6300,7 @@
       "minAge": 60,
       "maxAge": 85,
       "weight": 1,
+      "from": 1960,
       "effects": {
         "health": 3
       },
@@ -6278,6 +6333,7 @@
       "minAge": 55,
       "maxAge": 75,
       "weight": 1,
+      "from": 1960,
       "when": {
         "income": "high"
       },
@@ -6296,6 +6352,7 @@
       "minAge": 55,
       "maxAge": 80,
       "weight": 1,
+      "from": 1950,
       "when": {
         "countries": [
           "CHN",
@@ -6356,6 +6413,7 @@
       "minAge": 60,
       "maxAge": 80,
       "weight": 1,
+      "from": 1950,
       "when": {
         "income": "high",
         "state": "retired"
@@ -6429,6 +6487,7 @@
       "minAge": 65,
       "maxAge": 90,
       "weight": 1,
+      "from": 1980,
       "when": {
         "place": "urban"
       },
@@ -6770,6 +6829,7 @@
       "minAge": 55,
       "maxAge": 85,
       "weight": 1,
+      "from": 1960,
       "when": {
         "place": "rural",
         "income": "high"
@@ -6907,6 +6967,7 @@
       "minAge": 79,
       "maxAge": 81,
       "weight": 1,
+      "from": 1960,
       "when": {
         "hasChildren": true,
         "income": [
@@ -6945,6 +7006,7 @@
       "minAge": 72,
       "maxAge": 95,
       "weight": 1,
+      "from": 1950,
       "when": {
         "income": "high"
       },
@@ -7022,6 +7084,7 @@
       "minAge": 78,
       "maxAge": 100,
       "weight": 0.5,
+      "from": 1960,
       "when": {
         "income": "high"
       },
@@ -7114,6 +7177,7 @@
       "minAge": 72,
       "maxAge": 100,
       "weight": 1,
+      "from": 1960,
       "when": {
         "place": "urban",
         "income": "high"
@@ -7256,6 +7320,7 @@
       "minAge": 72,
       "maxAge": 95,
       "weight": 1,
+      "from": 1990,
       "when": {
         "place": "urban",
         "income": [
@@ -7365,6 +7430,7 @@
       "minAge": 72,
       "maxAge": 100,
       "weight": 1,
+      "from": 1980,
       "when": {
         "place": "urban"
       },
@@ -7492,6 +7558,7 @@
       "minAge": 72,
       "maxAge": 100,
       "weight": 1,
+      "from": 1980,
       "effects": {
         "bond": 1
       },
@@ -8078,6 +8145,7 @@
       "minAge": 19,
       "maxAge": 70,
       "weight": 1,
+      "from": 1950,
       "when": {
         "place": "urban"
       },
@@ -8519,6 +8587,7 @@
       "minAge": 13,
       "maxAge": 19,
       "weight": 0.5,
+      "from": 1950,
       "when": {
         "married": true,
         "sex": "F"

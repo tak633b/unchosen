@@ -59,7 +59,10 @@ function robbery(p: Person, x: Ctx): void {
   const lost = lose(p, scaleOf(p) * (0.02 + p.rng() * 0.04));
   log(p, hurt
     ? L(`夜道で刃物を持った男に囲まれ、持ち物を奪われた。抵抗したわけでもないのに殴られ、顔を何針か縫った。${lost}ほどの損だった。`, `Cornered on a dark street by men with a knife and robbed of everything. Beaten anyway, though there was no struggle; the face needed stitches. A loss of about ${lost}.`)
-    : L(`帰り道で強盗にあった。言われるままに財布と電話を渡した。${lost}ほどの損だった。けがはなかったが、その道はもう通らなくなった。`, `Robbed on the way home. Handed over wallet and phone without a word. A loss of about ${lost}. No injuries, but that street was never walked again.`),
+    // 携帯電話を持ち歩くようになる前は、財布と時計
+    : x.y >= 1995
+      ? L(`帰り道で強盗にあった。言われるままに財布と電話を渡した。${lost}ほどの損だった。けがはなかったが、その道はもう通らなくなった。`, `Robbed on the way home. Handed over wallet and phone without a word. A loss of about ${lost}. No injuries, but that street was never walked again.`)
+      : L(`帰り道で強盗にあった。言われるままに財布と時計を渡した。${lost}ほどの損だった。けがはなかったが、その道はもう通らなくなった。`, `Robbed on the way home. Handed over wallet and watch without a word. A loss of about ${lost}. No injuries, but that street was never walked again.`),
   'hard', hurt, L(`強盗の被害は、殺人の多い国ほど多い。この国の殺人は10万人あたり${x.c.homicide.toFixed(1)}件 (UNODC)`, `Robbery runs higher where homicide does. Here, ${x.c.homicide.toFixed(1)} homicides per 100,000 (UNODC)`));
   chance(p, '強盗にあう', 'being robbed', robberyP(p, x));
   bump(p, { happy: -6, health: hurt ? -5 : 0 });

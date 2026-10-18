@@ -1,7 +1,7 @@
 // 幼い日々: 気質・好きなこと・ペット・学校に上がるか。
 import type { Country } from '../countries';
 import { petJoined } from '../pets';
-import { bump, countryOf, decide, log, type Person, type Stats } from '../person';
+import { bump, countryOf, decide, log, yearOf, type Person, type Stats } from '../person';
 import { clamp, normal, pick } from '../rng';
 import { isRich } from './common';
 import { homeShare } from './work';
@@ -55,8 +55,12 @@ const HOBBY_EN: Record<string, string> = {
 const hobbyName = (h: string) => (isEn ? HOBBY_EN[h] ?? h : h);
 const SPORT = /サッカー|走|球|ボール|ホッケー|ラグビー|水泳|ムエタイ|カポエイラ|テコンドー|カバディ|クリケット|バドミントン|卓球/;
 
+// 遊びや習い事が子どもに広まった年。それより前の子どもには出さない
+// ゲームは家庭用・アーケードが広まった1975年ごろから、テコンドーは1955年に名が付いてから
+const HOBBY_SINCE: Record<string, number> = { ゲーム: 1975, テコンドー: 1955 };
+
 // その国でよく見かける遊びや習い事
-function hobbyPool(c: Country): string[] {
+function hobbyPool(c: Country, year: number): string[] {
   const base = ['サッカー', '絵を描くこと', '歌', '本を読むこと', '走ること', '料理の手伝い', '工作'];
   const by: Record<string, string[]> = {
     IND: ['クリケット', 'カバディ'], PAK: ['クリケット'], BGD: ['クリケット'], LKA: ['クリケット'],
@@ -66,11 +70,11 @@ function hobbyPool(c: Country): string[] {
     BRA: ['サッカー', 'カポエイラ'], NZL: ['ラグビー'], AUS: ['水泳'], KEN: ['長距離走'], ETH: ['長距離走'],
   };
   const rich = c.gdp > 20000 ? ['ピアノ', '水泳'] : [];
-  return [...new Set([...(by[c.code] ?? []), ...base, ...rich])];
+  return [...new Set([...(by[c.code] ?? []), ...base, ...rich])].filter((h) => year >= (HOBBY_SINCE[h] ?? 0));
 }
 
 export function chooseHobby(p: Person, title: string): void {
-  const opts = hobbyPool(countryOf(p)).filter((h) => !p.hobbies.includes(hobbyName(h)));
+  const opts = hobbyPool(countryOf(p), yearOf(p)).filter((h) => !p.hobbies.includes(hobbyName(h)));
   const three = [...opts].sort(() => p.rng() - 0.5).slice(0, 3);
   decide(p, {
     title,

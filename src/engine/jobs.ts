@@ -2,7 +2,7 @@
 import type { Country } from './countries';
 import { earnings } from './economy';
 import { isEn } from '../i18n';
-import { countryOf, type EduLevel, type Person } from './person';
+import { countryOf, yearOf, type EduLevel, type Person } from './person';
 import { techShare, type Tech } from './tech';
 import { clamp, normal, type Rng } from './rng';
 import { talentEdge } from './talent';
@@ -122,7 +122,7 @@ export function eligibleJobs(p: Person, edu: EduLevel): Job[] {
   return JOBS.filter((j) => j.edu <= edu && (j.maxEdu ?? 5) >= edu
     && (!j.majors || (p.school.major && j.majors.includes(p.school.major)))
     && (!j.where || (j.where === 'rural') === p.rural)
-    && (!j.tech || techShare(countryOf(p), j.tech) > TECH_MIN));
+    && (!j.tech || techShare(countryOf(p), j.tech, false, yearOf(p)) > TECH_MIN));
 }
 
 // 働き手の多くが男性/女性の仕事。逆の性別には、4回に1回だけ勧める
