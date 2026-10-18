@@ -6,7 +6,13 @@ import { worldMap } from './worldmap';
 import { orgsHtml } from './orgs';
 import type { PastLife } from './death';
 
-const life = () => liveOut(createPerson({ seed: 7, basis: 'births', auto: true, year: 1960 }));
+// seed 7 は乱数の並びが変わると短命になることがあるので、記録が 20 行を超える seed を順に探す
+const life = () => {
+  for (let seed = 7; ; seed++) {
+    const p = liveOut(createPerson({ seed, basis: 'births', auto: true, year: 1960 }));
+    if (p.log.length > 20) return p;
+  }
+};
 
 describe('☆ 覚えておきたい瞬間', () => {
   it('12個まで付けられ、もう一度押すと外れる', () => {
