@@ -58,6 +58,7 @@ export interface WorldEvent {
   powDie?: number;              // 捕虜のうち、捕らわれている間に亡くなった割合 (省略は3%)
   back?: number;                // 捕虜が帰ってきた年 (省略は戦争の終わりの翌年)
   draft?: number;               // 徴兵の始まった年。それより前は志願した人 (decisions/history.json の印 volunteer) だけが行く
+  vol?: number;                 // 家族の男たちのうち、徴兵の前に志願して行った人の割合 (召集された人のうち。家族には決める場面が無いので割合で)
   home?: [string, string];      // 帰ってきたときの一行。省略すると兵の帰還の文
   labour?: boolean;             // 兵ではなく、労働に駆り出された (強制労働・徴用・人夫)
   exempt?: string[];            // 召集されない宗教 (ドイツ国防軍はユダヤ人を兵にしなかった)
@@ -127,6 +128,9 @@ const say = (p: Person, e: WorldEvent, k: keyof Texts, salt: number) => {
   return ja && en ? fill(p, L(ja, en)) : undefined;
 };
 const seen = (p: Person, e: WorldEvent) => p.recent[`ev:${e.id}`] !== undefined;
+// 目録の脚注はその出来事そのものの数字 (1904年のヘレロの虐殺に1985年の国連の報告を引いてもよい) なので、
+// log() の「1950年より前には今の統計を添えない」(person.ts の eraStat) を通さずに付ける
+const logEvent = (p: Person, e: WorldEvent, text: string, kind: YearKind, big: boolean) => { log(p, text, kind, big); p.log[p.log.length - 1].stat = L(...e.stat); };
 
 // 毎年、history() から呼ぶ
 export function worldEvents(p: Person): void {
@@ -154,7 +158,7 @@ export function worldEvents(p: Person): void {
     const text = say(p, e, how, hash(e.id));
     if (!text) return;
     p.recent[`ev:${e.id}`] = p.age;
-    log(p, text, how === 'near' ? e.kind ?? 'hard' : 'hard', how === 'near', L(...e.stat));
+    logEvent(p, e, text, how === 'near' ? e.kind ?? 'hard' : 'hard', how === 'near');
     if (how === 'near') bump(p, { happy: Math.round((e.effect.happy ?? -6) / 3) });
   });
 }
@@ -165,7 +169,7 @@ function strike(p: Person, e: WorldEvent, salt: number): void {
   if (!text) return;
   p.recent[`evhit:${e.id}`] = p.age;
   p.recent[`ev:${e.id}`] = p.age;
-  log(p, text, e.kind ?? 'hard', true, L(...e.stat));
+  logEvent(p, e, text, e.kind ?? 'hard', true);
   const { health, happy, wealth, home, job } = e.effect;
   bump(p, { ...(health ? { health } : {}), ...(happy ? { happy } : {}) });
   if (wealth && p.wealth > 0) p.wealth *= 1 + wealth;
@@ -187,7 +191,7 @@ const saidOf = (p: Person, ja: string[], en: string[], salt: number) => { const 
 type Duty = 'front' | 'pow' | undefined;
 const myDuty = (p: Person, e: WorldEvent): Duty => (p.recent[`evhit:${e.id}`] === undefined || p.recent[`home:${e.id}`] !== undefined ? undefined : p.recent[`pow:${e.id}`] !== undefined ? 'pow' : 'front');
 const relKey = (r: Relative, e: WorldEvent) => `war:${r.id}:${e.id}`;
-const relDuty = (p: Person, r: Relative, e: WorldEvent): Duty => (p.recent[relKey(r, e)] !== undefined && p.recent[`${relKey(r, e)}:home`] === undefined ? 'front' : undefined);
+const relDuty = (p: Person, r: Relative, e: WorldEvent): Duty => (p.recent[relKey(r, e)] === undefined || p.recent[`${relKey(r, e)}:home`] !== undefined ? undefined : p.recent[`${relKey(r, e)}:pow`] !== undefined ? 'pow' : 'front');
 
 // 本人か連れ合いが、戦地か捕虜の収容所にいる (子どもは授からない。love.ts)
 export const awayAtWar = (p: Person): boolean =>
@@ -217,18 +221,55 @@ function service(p: Person, year: number): void {
         }
       }
     }
-    // 家族の男たち (父・きょうだい・連れ合い)。召集は自分と同じ割合で、一人に一度だけ決まる
-    for (const [r, ja, en] of kinAtWar(p)) {
-      const k = relKey(r, e);
-      if (p.recent[k] === undefined) {
-        if (!r.alive || e.exempt?.includes(p.religion) || !e.countries.includes(p.country) || !active(e, year) || (e.age && (r.age < e.age[0] || r.age > e.age[1])) || !fit(e, p.seed, 1000 + r.id!)) continue;
-        p.recent[k] = p.age;
-        log(p, e.labour ? L(`${ja}が労働に駆り出され、遠くへ連れていかれた。`, `${en} was taken away for forced labor.`) : L(`${ja}が召集され、戦地へ向かった。`, `${en} was called up and left for the front.`), 'hard', false, undefined, [r.id!]);
-      } else if (relDuty(p, r, e) && year > e.years[1]) {
-        p.recent[`${k}:home`] = p.age;
-        if (r.alive) log(p, e.labour ? L(`${ja}が帰ってきた。`, `${en} came home.`) : L(`${ja}が戦地から帰ってきた。`, `${en} came home from the war.`), 'family', false, undefined, [r.id!]);
-      }
-    }
+    // 家族の男たち (父・きょうだい・連れ合い)。召集は自分と同じ割合・同じ始まりの年で、一人に一度だけ決まる
+    for (const [r, ja, en] of kinAtWar(p)) kinService(p, e, r, ja, en, year);
+  }
+}
+
+// 家族の召集の条件は自分と同じ (callUp): 免除される宗教ではなく、年齢の内にいて、呼ばれる体と立場。
+// 徴兵の始まる年 (draft) より前は、志願した人 (vol の割合) だけが行く
+function kinCalled(p: Person, e: WorldEvent, r: Relative, year: number): boolean {
+  if (!r.alive || e.exempt?.includes(p.religion) || !believes(e, p.religion) || !e.countries.includes(p.country) || !active(e, year)) return false;
+  if (e.age && (r.age < e.age[0] || r.age > e.age[1])) return false;
+  if (!fit(e, p.seed, 1000 + r.id!)) return false;
+  return e.draft === undefined || year >= e.draft || showRng(p.seed, 1000 + r.id!, hash(e.id) + 8)() < (e.vol ?? 0);
+}
+
+// 負傷・捕虜・収容所での死・帰還の割合は、自分と同じ (service の上の段)
+function kinService(p: Person, e: WorldEvent, r: Relative, ja: string, en: string, year: number): void {
+  const k = relKey(r, e);
+  const who = [r.id!];
+  if (p.recent[k] === undefined) {
+    if (!kinCalled(p, e, r, year)) return;
+    p.recent[k] = p.age;
+    log(p, e.labour ? L(`${ja}が労働に駆り出され、遠くへ連れていかれた。`, `${en} was taken away for forced labor.`) : L(`${ja}が召集され、戦地へ向かった。`, `${en} was called up and left for the front.`), 'hard', false, undefined, who);
+    return;
+  }
+  const duty = relDuty(p, r, e);
+  if (!duty) return;
+  // 戦地か収容所で亡くなった (死の一行は family.ts が書く)
+  if (!r.alive) {
+    p.recent[`${k}:home`] = p.age;
+    if (duty === 'pow') log(p, L(`${ja}は、捕虜の収容所で亡くなったのだった。知らせは何か月も遅れて届いた。`, `${en} had died in a prisoner of war camp. The news came months late.`), 'loss', false, undefined, who);
+    return;
+  }
+  const end = duty === 'pow' ? e.back ?? e.years[1] + 1 : e.years[1] + 1;
+  if (year >= end) {
+    p.recent[`${k}:home`] = p.age;
+    log(p, duty === 'pow' ? L(`${year}年、${ja}が捕虜の収容所から帰ってきた。`, `In ${year} ${en} came home from a prisoner of war camp.`)
+      : e.labour ? L(`${ja}が帰ってきた。`, `${en} came home.`) : L(`${ja}が戦地から帰ってきた。`, `${en} came home from the war.`), 'family', false, undefined, who);
+    return;
+  }
+  if (duty !== 'front' || !active(e, year)) return;
+  const salt = hash(k);
+  if (e.pow && showRng(p.seed, p.age, salt + 4)() < yearly(e.pow, tour(e))) {
+    p.recent[`${k}:pow`] = p.age;
+    log(p, L(`${ja}が捕虜になったと、知らせが届いた。`, `Word came that ${en.charAt(0).toLowerCase() + en.slice(1)} had been taken prisoner.`), 'hard', false, undefined, who);
+    bump(p, { happy: -6 });
+  } else if (e.wound && p.recent[`${k}:wound`] === undefined && showRng(p.seed, p.age, salt + 6)() < yearly(e.wound, tour(e))) {
+    p.recent[`${k}:wound`] = p.age;
+    log(p, L(`${ja}が戦地で負傷し、病院に運ばれたと手紙が来た。`, `A letter came: ${en.charAt(0).toLowerCase() + en.slice(1)} had been wounded and taken to a hospital.`), 'hard', false, undefined, who);
+    bump(p, { happy: -3 });
   }
 }
 
@@ -247,7 +288,8 @@ function whoK(who: Who | undefined, sex: Sex, age: number, only?: Sex): number {
   if (only && sex !== only) return 0; // 兵として召集された男性の死 (女性には起きない)
   switch (who) {
     case 'men': return sex === 'M' && age >= 18 && age <= 45 ? 3.5 : 0.4;
-    case 'young': return age >= 15 && age <= 40 ? 2.2 : age < 5 || age >= 65 ? 1.2 : 0.5;
+    // 2.2 / 1.2 / 0.5 では、1918年の人口 (15〜40歳が4割) で平均すると1.3倍になり、かぜの死が目録の kill より3割多かった
+    case 'young': return age >= 15 && age <= 40 ? 1.7 : age < 5 || age >= 65 ? 0.9 : 0.4;
     case 'frail': return age < 5 || age >= 60 ? 2.5 : 0.6;
     default: return 1;
   }

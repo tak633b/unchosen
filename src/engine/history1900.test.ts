@@ -3,7 +3,9 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { advanceYear, createPerson } from './life';
 import { loadWorld } from './world';
 import { yearOf, type Person } from './person';
-import { CATALOG, excessQ, hitChance } from './worldevents';
+import { CATALOG, DRAFTS, excessQ, hitChance } from './worldevents';
+import { countryAt } from './countries';
+import { lifeTable } from './lifetable';
 import { bornIn, polityChange, polityName } from './polity';
 import { religionsAt, religionsOf } from './identity';
 
@@ -72,12 +74,135 @@ describe('第一次世界大戦の召集と戦死', () => {
   });
 });
 
+describe('家族の召集: 負傷・捕虜・始まりの年', () => {
+  // 1905〜14年生まれのフランスの子 600人の父・兄 (実測 2026-10-18): 召集 364人、負傷の手紙 137行 (38%)、捕虜 26人 (7%)。
+  // 本人と同じ割合 (wwi-fra の wound 0.4・pow 0.06) から、先に戦死した人の分だけ少ない
+  it('フランスの父や兄が負傷し、捕虜になり、収容所から帰ってくる', () => {
+    let called = 0, wound = 0, pow = 0, powHome = 0;
+    for (let s = 1; s <= 600; s++) {
+      const p = liveTo(createPerson({ seed: s, basis: 'births', auto: true, year: 1905 + (s % 10), country: 'FRA' }), 1920);
+      called += Object.keys(p.recent).filter((k) => /^war:\d+:wwi-fra$/.test(k)).length;
+      wound += p.log.filter((e) => e.text.includes('戦地で負傷し')).length;
+      pow += p.log.filter((e) => e.text.includes('捕虜になったと')).length;
+      powHome += p.log.filter((e) => e.text.includes('捕虜の収容所から帰ってきた')).length;
+    }
+    expect(called).toBeGreaterThan(300);
+    expect(wound / called).toBeGreaterThan(0.3);
+    expect(wound / called).toBeLessThan(0.46);
+    expect(pow / called).toBeGreaterThan(0.04);
+    expect(pow / called).toBeLessThan(0.11);
+    expect(powHome).toBeGreaterThan(0);
+  });
+  // 1925〜34年生まれのドイツの子 600人 (実測): 父・兄・夫の召集 448人のうち捕虜 262人 (58.5%、ww2-deu-front の pow 0.6)、
+  // 収容所で亡くなった知らせは 32行 (捕虜の12.2%、powDie 0.1)
+  it('ドイツの父や兄の多くが捕虜になり、収容所で亡くなる人もいる', () => {
+    let called = 0, pow = 0, died = 0;
+    for (let s = 1; s <= 600; s++) {
+      const p = liveTo(createPerson({ seed: s, basis: 'births', auto: true, year: 1925 + (s % 10), country: 'DEU' }), 1949);
+      called += Object.keys(p.recent).filter((k) => /^war:\d+:ww2-deu-front$/.test(k)).length;
+      pow += Object.keys(p.recent).filter((k) => /^war:\d+:ww2-deu-front:pow$/.test(k)).length;
+      died += p.log.filter((e) => e.text.includes('捕虜の収容所で亡くなった')).length;
+    }
+    expect(pow / called).toBeGreaterThan(0.4);
+    expect(pow / called).toBeLessThan(0.75);
+    expect(died / pow).toBeGreaterThan(0.03);
+    expect(died / pow).toBeLessThan(0.2);
+  });
+  // 英国の徴兵は1916年から。それより前に行った家族は志願した人 (wwi-gbr の vol 0.44)。
+  // 実測: 1900〜09年生まれの子 600人の家族の召集 237人のうち、1916年より前 104人 (44%)。直す前は 253人のうち 203人 (80%) だった
+  const early = (code: string, id: string) => {
+    const e = DRAFTS.find((x) => x.id === id)!;
+    let called = 0, before = 0;
+    for (let s = 1; s <= 600; s++) {
+      const p = liveTo(createPerson({ seed: s, basis: 'births', auto: true, year: 1900 + (s % 10), country: code }), 1920);
+      for (const [k, age] of Object.entries(p.recent)) {
+        if (!new RegExp(`^war:\\d+:${id}$`).test(k)) continue;
+        called++;
+        if (p.birthYear + age < e.draft!) before++;
+      }
+    }
+    return { called, before };
+  };
+  it('家族は、徴兵の始まる年より前には志願した人だけが行く', () => {
+    const gbr = early('GBR', 'wwi-gbr');
+    expect(gbr.before / gbr.called).toBeGreaterThan(0.32);
+    expect(gbr.before / gbr.called).toBeLessThan(0.56);
+    // 志願する人がいなければ (vol 0)、1916年より前に呼ばれる家族はいない
+    const e = DRAFTS.find((x) => x.id === 'wwi-gbr')!;
+    const vol = e.vol;
+    e.vol = 0;
+    try {
+      expect(early('GBR', 'wwi-gbr').before).toBe(0);
+    } finally {
+      e.vol = vol;
+    }
+  });
+});
+
+describe('1950年より前の脚注', () => {
+  // 1900〜35年生まれ 450人の、1950年より前の行の脚注 (実測): 直す前は2,872件のうち1,500件が今の統計
+  // (ILO・UNICEF 2021、WHO、「2022年 警察庁」…)。直したあとは目録の出来事の1,372件だけ
+  it('目録の出来事のほかは、1950年より前の年を挙げた脚注だけ', () => {
+    const cat = new Set(CATALOG.map((e) => e.stat[0]));
+    const codes = ['JPN', 'USA', 'IND', 'GBR', 'FRA', 'DEU', 'CHN', 'BRA', 'NGA', 'MEX', 'RUS', 'KOR'];
+    let catalog = 0, after = 0;
+    for (let s = 1; s <= 120; s++) {
+      const p = liveTo(createPerson({ seed: s * 13, basis: 'births', auto: true, year: 1900 + (s % 36), country: codes[s % codes.length] }), 1960);
+      for (const e of p.log) {
+        if (!e.stat) continue;
+        if (p.birthYear + e.age >= 1950) { after++; continue; }
+        if (cat.has(e.stat)) { catalog++; continue; }
+        expect(e.stat, `${p.birthYear + e.age} seed ${s * 13}`).toMatch(/(18\d\d|19[0-4]\d)/);
+      }
+    }
+    expect(catalog).toBeGreaterThan(100);
+    expect(after).toBeGreaterThan(50); // 1950年からの行の脚注はそのまま
+  });
+});
+
 describe('1918年のかぜ', () => {
   // 若い大人が多く亡くなった (Taubenberger & Morens 2006)。インドは人口の5%前後が亡くなった (Chandra 2012: 約1,390万人)
   it('若い大人の死亡率が上がり、インドでは欧米より何倍も高い', () => {
     expect(excessQ('IND', 1918, 'M', 25)).toBeGreaterThan(2 * excessQ('IND', 1918, 'M', 55));
     expect(excessQ('IND', 1918, 'M', 25)).toBeGreaterThan(3 * excessQ('USA', 1918, 'M', 25));
     expect(excessQ('IND', 1920, 'M', 25)).toBe(0);
+  });
+  // 1918年に生きている人 (1915年の生命表で、出生数一定の人口) のうち、かぜの死亡率の上乗せで1918〜19年に亡くなる割合。
+  // 実測 (2026-10-18): IND 5.19%・PAK 5.02%・BGD 4.05%・IRN 8.12%・IDN 3.95%・ZAF 3.97%・MEX 1.22%・USA 0.59%・GBR 0.59%・JPN 0.60%。
+  // 直す前は IND 4.02%・PAK 1.56%・BGD 1.57%・IRN 3.94%・USA 0.76%・GBR 0.77%・JPN 0.77% (who: 'young' の重みが平均で1.3倍だった)。
+  // 史実: イギリス領インド 1,200万〜1,700万人で5%前後 (Chandra 2012; Mills 1986)、イラン 8〜22% (Afkhami 2003)、
+  // 米国 0.65%、英国 0.5%前後、日本 0.4〜0.8% (Johnson & Mueller 2002; Rice & Palmer 1993)
+  it('1918年に生きていた人のうち、かぜで亡くなる割合', () => {
+    const flu = CATALOG.filter((e) => e.cause === 'インフルエンザ' && e.years[0] === 1918);
+    const share = (code: string) => {
+      const dead = () => {
+        let pop = 0, d = 0;
+        for (const sex of ['F', 'M'] as const) {
+          const l = lifeTable(countryAt(code, 1915), sex).l;
+          for (let x = 0; x < 100; x++) {
+            const w = (l[x] + l[x + 1]) / 2;
+            pop += w;
+            d += w * (1 - (1 - excessQ(code, 1918, sex, x)) * (1 - excessQ(code, 1919, sex, x + 1)));
+          }
+        }
+        return d / pop;
+      };
+      const all = dead();
+      const kill = flu.map((e) => e.kill);
+      flu.forEach((e) => { e.kill = 0; });
+      try { return all - dead(); } finally { flu.forEach((e, i) => { e.kill = kill[i]; }); }
+    };
+    const band = (code: string, lo: number, hi: number) => {
+      const v = share(code);
+      expect(v, code).toBeGreaterThan(lo);
+      expect(v, code).toBeLessThan(hi);
+    };
+    band('IND', 0.045, 0.06);
+    band('PAK', 0.045, 0.06);
+    band('IRN', 0.07, 0.1);
+    band('USA', 0.004, 0.008);
+    band('GBR', 0.004, 0.008);
+    band('JPN', 0.004, 0.008);
   });
   // 1500人で実測: 1918年に23歳で生きていたインドの人のうち、5.0%がかぜで亡くなった
   it('1895年生まれのインドの人の、1918〜19年のかぜでの死', () => {

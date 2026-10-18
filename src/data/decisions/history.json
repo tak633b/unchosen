@@ -1086,11 +1086,11 @@
       },
       "title": "イギリス軍に志願するか",
       "text": "戦争に加われば自治が来る、と演説する人がいる。イギリスのための戦争に行くな、と言う人もいる。",
-      "stat": "アイルランドでは徴兵は行われず、約21万人が志願してイギリス軍に加わった",
+      "stat": "第一次世界大戦 (1914〜18年) のアイルランドでは徴兵は行われず、約21万人が志願してイギリス軍に加わった",
       "en": {
         "title": "Join the British Army?",
         "text": "Some speakers say that fighting in this war will bring Home Rule. Others say no Irishman should fight Britain's war.",
-        "stat": "Conscription was never applied in Ireland; about 210,000 Irishmen volunteered for the British forces"
+        "stat": "Conscription was never applied in Ireland in 1914-18; about 210,000 Irishmen volunteered for the British forces"
       },
       "options": [
         {
@@ -1384,11 +1384,11 @@
       },
       "title": "国を出るか",
       "text": "赤軍が近づいている。家の財産は没収され、同じ階級の知り合いが何人も連れていかれた。南の港からは、まだ外国へ行く船が出ている。",
-      "stat": "革命と内戦のあと、100万〜200万人がロシアから国外へ逃れた",
+      "stat": "1917年の革命と内戦のあと、100万〜200万人がロシアから国外へ逃れた",
       "en": {
         "title": "Leave the country?",
         "text": "The Red Army is coming. The family property has been confiscated, and several acquaintances of the same class have been taken away. Ships are still leaving the southern ports for abroad.",
-        "stat": "After the revolution and civil war, between one and two million people fled Russia"
+        "stat": "After the 1917 revolution and the civil war, between one and two million people fled Russia"
       },
       "options": [
         {

@@ -4,10 +4,9 @@
    "id": "flu-1918-high",
    "type": "epidemic",
    "countries": [
-    "IND",
     "IDN",
-    "IRN",
     "ZAF",
+    "BGD",
     "GHA",
     "KEN",
     "FJI",
@@ -24,7 +23,7 @@
     1919
    ],
    "hit": 0.25,
-   "kill": 0.03,
+   "kill": 0.04,
    "who": "young",
    "cause": "インフルエンザ",
    "severity": 5,
@@ -57,10 +56,111 @@
     ]
    },
    "stat": [
-    "1918〜19年のスペインかぜで、インドでは1,400万人ほど (人口の4〜5%) が亡くなった",
-    "The 1918-19 flu killed about 14 million people in India, some 4-5% of the population"
+    "1918〜19年のスペインかぜで、南アフリカでは約30万人 (人口の5%ほど)、黄金海岸 (いまのガーナ) では約10万人が亡くなったとされる",
+    "The 1918-19 flu is thought to have killed about 300,000 people in South Africa, some 5% of the population, and about 100,000 in the Gold Coast (today Ghana)"
    ],
-   "src": "Johnson & Mueller 2002, Bull. Hist. Med. 76:105; Chandra 2012 (India), Chandra 2013 (Indonesia); Phillips 1990 (South Africa)",
+   "src": "Johnson & Mueller 2002, Bull. Hist. Med. 76:105; Phillips 1990 (South Africa); Patterson 1983 (Gold Coast); Chandra 2013 (Indonesia); Mills 1986 (Bengal)",
+   "rough": true
+  },
+  {
+   "id": "flu-1918-india",
+   "type": "epidemic",
+   "countries": [
+    "IND",
+    "PAK"
+   ],
+   "years": [
+    1918,
+    1919
+   ],
+   "hit": 0.25,
+   "kill": 0.05,
+   "who": "young",
+   "cause": "インフルエンザ",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "秋に「かぜ」がはやり、高い熱で何日も寝こんだ。同じ通りの家々から、毎日のように棺が運び出された。",
+     "家じゅうが同じ熱にやられ、起きて水を運べる者がいなかった。隣の人が食べ物を戸口に置いていった。"
+    ],
+    "near": [
+     "学校が閉められ、人の集まりが禁じられた。家では皆、口を布でおおった。"
+    ],
+    "news": [
+     "悪性の「かぜ」が世界中に広がった。町では葬式が続き、墓を掘る人が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That autumn the \"flu\" came, and the fever meant days in bed. Coffins left the houses on the street almost daily.",
+     "The whole household went down with the same fever, and no one was well enough to fetch water. A neighbor left food at the door."
+    ],
+    "near": [
+     "Schools were closed and gatherings forbidden. At home everyone covered their mouths with cloth."
+    ],
+    "news": [
+     "A deadly \"flu\" spread around the world. Funerals followed one after another, and there were not enough people to dig the graves."
+    ]
+   },
+   "stat": [
+    "1918〜19年のスペインかぜで、イギリス領インドでは1,200万〜1,700万人 (人口の5%前後) が亡くなった",
+    "The 1918-19 flu killed 12 to 17 million people in British India, around 5% of the population"
+   ],
+   "src": "Chandra, Kuljanin & Wray 2012, Demography 49:857 (13.9 million); Mills 1986, Indian Econ. Soc. Hist. Rev. 23:1 (17-18 million)",
+   "rough": true
+  },
+  {
+   "id": "flu-1918-iran",
+   "type": "epidemic",
+   "countries": [
+    "IRN"
+   ],
+   "years": [
+    1918,
+    1919
+   ],
+   "hit": 0.25,
+   "kill": 0.08,
+   "who": "young",
+   "cause": "インフルエンザ",
+   "severity": 5,
+   "effect": {
+    "health": -6,
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "秋に「かぜ」がはやり、高い熱で何日も寝こんだ。同じ通りの家々から、毎日のように棺が運び出された。",
+     "家じゅうが同じ熱にやられ、起きて水を運べる者がいなかった。隣の人が食べ物を戸口に置いていった。"
+    ],
+    "near": [
+     "学校が閉められ、人の集まりが禁じられた。家では皆、口を布でおおった。"
+    ],
+    "news": [
+     "悪性の「かぜ」が世界中に広がった。町では葬式が続き、墓を掘る人が足りなくなった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "That autumn the \"flu\" came, and the fever meant days in bed. Coffins left the houses on the street almost daily.",
+     "The whole household went down with the same fever, and no one was well enough to fetch water. A neighbor left food at the door."
+    ],
+    "near": [
+     "Schools were closed and gatherings forbidden. At home everyone covered their mouths with cloth."
+    ],
+    "news": [
+     "A deadly \"flu\" spread around the world. Funerals followed one after another, and there were not enough people to dig the graves."
+    ]
+   },
+   "stat": [
+    "1918〜19年のスペインかぜで、イランでは90万〜240万人 (人口の8〜22%) が亡くなったとされる",
+    "The 1918-19 flu is thought to have killed 0.9 to 2.4 million people in Iran, 8 to 22% of the population"
+   ],
+   "src": "Afkhami 2003, Bull. Hist. Med. 77:367 (8.0-21.7%)。控えめな下の端をとった",
    "rough": true
   },
   {
@@ -82,8 +182,6 @@
     "PHL",
     "LKA",
     "MMR",
-    "BGD",
-    "PAK",
     "NPL",
     "AFG"
    ],
