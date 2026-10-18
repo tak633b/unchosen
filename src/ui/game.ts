@@ -9,8 +9,8 @@ import { lifeBand, survivalChart } from './charts';
 import { showDeath } from './death';
 import { $, esc, load, save, setHTML } from './dom';
 import { musicScene, musicVolume, setMusic, setVolume } from './music';
-import { playCrisis, playFarewell } from './crisis';
-import { crisisScript, declineScript, farewell } from './farewell';
+import { playCrisis } from './crisis';
+import { crisisScript, declineScript } from './farewell';
 import { isAcute } from '../engine/crisis';
 import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
@@ -433,7 +433,7 @@ function showNote(): void {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
     if (!a || !S) return;
     const text = $<HTMLTextAreaElement>('#answer')?.value.trim() ?? '';
-    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: L(`「${text}」`, `"${text}"`), kind: S.p.kinds[S.p.age] ?? 'family' });
+    if (a === 'write' && text) S.p.log.push({ age: S.p.age, text: L(`「${text}」`, `"${text}"`), kind: S.p.kinds[S.p.age] ?? 'family', note: true });
     closeModal();
     render();
     persist();
@@ -532,12 +532,12 @@ function finish(): void {
   // 急な死は、九死に一生と同じ場面で始まる (最後の一拍まで、どちらになるか分からない)。病や老いは静かな場面
   const scene = isAcute(p.cause) ? crisisScript(p, p.cause!, false) : declineScript(p);
   musicScene(isAcute(p.cause) ? 'crisis' : 'farewell');
-  void playCrisis(scene, music).then(() => { musicScene('farewell'); return playFarewell(p, farewell(p), music); }).then(() => {
+  void playCrisis(scene, music).then(() => {
     // 輪の誰かで続けるなら、その人のここまでの一生を次の主人公にして、同じ画面で始める
     showDeath(p, others, basis, onExit, (id) => {
       const q = continueAs(p, id);
       run(q, othersFor(q, basis), basis, 1, onExit);
       window.scrollTo(0, 0);
-    }, album);
+    }, album, true);
   });
 }

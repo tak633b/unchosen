@@ -1,14 +1,13 @@
 // 命が危うい場面と、最期の場面の台本。DOM に触らない (crisis.ts が再生する)。
 // 文は seed と年齢で決まり、人生の乱数は使わない。助かる場面と亡くなる場面は、最後の一拍まで同じ文で進む
-import { byCode, countryAt } from '../engine/countries';
+import { countryAt } from '../engine/countries';
 import { acuteKey, showRng } from '../engine/crisis';
 import { callName } from '../engine/bonds';
 import { causeName, isSuicide } from '../engine/causes';
 import { helpline } from '../engine/suicide';
 import { techShare } from '../engine/tech';
-import { lastWords, type LastWord } from '../ai/words';
 import { pick } from '../engine/rng';
-import type { LogEntry, Person, Relative, Role } from '../engine/person';
+import type { Person, Relative, Role } from '../engine/person';
 import { isEn, L } from '../i18n';
 
 export type Pulse = 'fast' | 'slow' | 'weak' | 'flat' | 'back' | 'none';
@@ -119,38 +118,5 @@ function quietScript(p: Person): CrisisScript {
     ],
     end: [{ text: L(`${p.given}は、${p.age}歳で亡くなった。`, `${p.given} died at ${p.age}.`), ms: 2400, pulse: 'flat' }],
     survive: false,
-  };
-}
-
-// ---- 最期のふりかえり -------------------------------------------------------
-
-export interface Farewell { birth: string; highlights: { age: number; text: string; who: number[] }[]; words: LastWord[]; last: string }
-
-const HIGH = 5;
-// 人生で大きかった出来事: 太字の記録から死の記録を除き、年をならして最大5つ
-export function highlights(log: LogEntry[], n = HIGH): LogEntry[] {
-  const big = log.filter((e) => e.big && e.kind !== 'death');
-  if (big.length <= n) return big;
-  // 人の出てくる出来事を残しやすくし、生きた年にまんべんなく
-  const scored = big.map((e, i) => ({ e, i, s: (e.who?.length ? 2 : 0) + (['love', 'family', 'loss', 'move'].includes(e.kind) ? 1 : 0) }));
-  const out: LogEntry[] = [];
-  for (let k = 0; k < n; k++) {
-    const lo = Math.floor((k * big.length) / n), hi = Math.floor(((k + 1) * big.length) / n);
-    const best = scored.slice(lo, hi).sort((a, b) => b.s - a.s || a.i - b.i)[0];
-    if (best) out.push(best.e);
-  }
-  return out;
-}
-
-export function farewell(p: Person): Farewell {
-  const b = byCode(p.birthCountry);
-  const month = 1 + Math.floor(showRng(p.seed, p.age, 3)() * 12);
-  const year = p.birthYear + p.age;
-  const home = countryAt(p.country, year).name;
-  return {
-    birth: L(`${p.birthYear}年${p.birthMonth}月、${b.name}で生まれた。`, `Born in ${b.name}, ${p.birthYear}.`),
-    highlights: highlights(p.log).map((e) => ({ age: e.age, text: e.text, who: e.who ?? [] })),
-    words: lastWords(p),
-    last: isEn ? `${p.given}. Age ${p.age}. ${p.city ? `${p.city}, ${home}` : `Rural ${home}`}. ${year}.` : `${p.given}、${p.age}歳。${p.city ? `${home}、${p.city}` : `${home}の農村`}。${year}年${month}月。`,
   };
 }

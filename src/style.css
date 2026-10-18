@@ -517,6 +517,43 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
   .cr-heart, .crisis:has(.p-fast) { animation: none !important; }
 }
 
+/* 走馬灯 (reel.ts): 人生の区切りごとに、夜明け → 昼 → 夕暮れ → 夜 へ色が移る。明るい画面設定でも夜の色で見せる */
+.crisis.reel { color: #ece6dc; transition: opacity 1.4s, background-color 2.6s; cursor: default; }
+.reel::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 35%, rgb(0 0 0 / 0.55) 100%); }
+.reel.t-dawn { background-color: #1d1724; }
+.reel.t-day { background-color: #10191e; }
+.reel.t-dusk { background-color: #22160f; }
+.reel.t-night { background-color: #050608; }
+.reel .cr-body { position: relative; }
+.reel .cr-step { transition: opacity 1.3s ease, transform 1.6s ease; transform: translateY(10px); }
+.reel .cr-step.on { transform: none; }
+.reel .cr-step p { color: #ece6dc; }
+.rl-photo { overflow: hidden; border-radius: 6px; margin: 0 auto 16px; box-shadow: 0 10px 40px rgb(0 0 0 / 0.6); }
+.rl-photo canvas.pixscene { animation: rlkb 9s ease-out both; transform-origin: 50% 60%; }
+@keyframes rlkb { from { transform: scale(1); filter: sepia(0.25) brightness(0.9); } to { transform: scale(1.09); filter: sepia(0.05) brightness(1); } }
+.rl-title { font-size: 30px; letter-spacing: 0.08em; margin-bottom: 4px !important; }
+.rl-span { color: #a39a8c !important; font-family: var(--sans); font-size: 13px; letter-spacing: 0.2em; }
+.rl-chapter { font-family: var(--sans); font-size: 14px; letter-spacing: 0.35em; color: #c9bfae !important; display: flex; align-items: center; gap: 14px; }
+.rl-chapter::before, .rl-chapter::after { content: ""; flex: 1; height: 1px; background: rgb(236 230 220 / 0.25); }
+.rl-star { color: #f2c35b; margin-left: 8px; }
+.rl-mine { margin-left: 10px; font-size: 11px; letter-spacing: 0.1em; color: #e9c58c; border: 1px solid rgb(233 197 140 / 0.5); border-radius: 999px; padding: 1px 8px; }
+.rl-minetext { font-style: italic; color: #f0dcb4 !important; font-size: 20px; }
+.rl-people { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 18px; margin-top: 18px; }
+.rl-people figure { margin: 0; width: 72px; text-align: center; animation: rlin 1.2s ease both; animation-delay: calc(var(--i) * 0.6s + 0.4s); }
+.rl-people canvas { width: 60px; height: auto; border-radius: 50%; background: #1c1f26; }
+.rl-people figcaption { font-family: var(--sans); font-size: 12px; color: #c9bfae; margin-top: 4px; overflow-wrap: anywhere; }
+@keyframes rlin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.rl-thanks { font-size: 22px; line-height: 2; }
+.rl-end { justify-content: center; margin-top: 28px; }
+.rl-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: rgb(236 230 220 / 0.08); }
+.rl-bar i { display: block; height: 100%; width: 0; background: rgb(233 166 76 / 0.7); transition: width 0.8s; }
+.reel .cr-skip { color: #a39a8c; border-color: rgb(236 230 220 / 0.25); }
+.replay { display: block; margin: 10px 0 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .reel .cr-step, .crisis.reel { transition: none; transform: none; }
+  .rl-photo canvas.pixscene, .rl-people figure { animation: none; }
+}
+
 /* 人生地図: 1マス = 1年、10年で1行 */
 .lifemap { display: grid; gap: 3px; max-width: 360px; }
 .lmrow { display: grid; grid-template-columns: 2.2em repeat(10, minmax(0, 1fr)); gap: 3px; align-items: center; }

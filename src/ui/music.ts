@@ -56,6 +56,8 @@ function wake(): void {
 if (typeof document !== 'undefined') { document.addEventListener('click', wake, true); document.addEventListener('keydown', wake, true); }
 
 /** 今の場面の曲。音楽が切ってあれば覚えておくだけ */
+export const musicNow = (): Scene => scene;
+
 export function musicScene(s: Scene): void {
   scene = s;
   start();

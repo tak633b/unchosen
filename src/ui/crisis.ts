@@ -1,12 +1,9 @@
-// 命が危うい場面と、最期のふりかえりを画面いっぱいに再生する。台本は farewell.ts。
+// 命が危うい場面と、静かな最期を画面いっぱいに再生する。台本は farewell.ts。走馬灯は reel.ts
 // どの場面も、押す・Enter・Esc で飛ばせる。動きを減らす設定では、脈や溶け込みを止めて少し早く進む
-import type { Person } from '../engine/person';
 import { esc } from './dom';
-import { drawScene, sceneOf } from './pixel';
-import { everyone, face, lastWordsHtml, paintFaces } from './ring';
 import { flatline, thump } from './music';
 import { L } from '../i18n';
-import type { Beat, CrisisScript, Farewell, Pulse } from './farewell';
+import type { Beat, CrisisScript, Pulse } from './farewell';
 
 const calm = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const BEAT_MS: Record<Pulse, number> = { fast: 450, slow: 900, weak: 1300, back: 700, flat: 0, none: 0 };
@@ -72,24 +69,4 @@ export function playCrisis(s: CrisisScript, sound: boolean): Promise<void> {
     ...s.beats.map((b) => beatStep(b)),
     ...s.end.map((b) => beatStep(b)),
   ], sound);
-}
-
-// 最期のふりかえり: 最後の場面 → 生まれ → 大きかった出来事 → そばにいた人 → 静かな一行
-export function playFarewell(p: Person, f: Farewell, sound: boolean): Promise<void> {
-  const ties = everyone(p);
-  const faces = (ids: number[]) => (ids.length ? `<div class="cr-faces">${ids.slice(0, 4).map((id) => face(id, 'big')).join('')}</div>` : '');
-  const paint = (el: HTMLElement) => paintFaces(el, p, ties);
-  const steps: Step[] = [
-    {
-      html: `<canvas class="cr-scene"></canvas>`, ms: 3200,
-      paint: (el) => drawScene(el.querySelector('canvas')!, sceneOf(p), 0),
-    },
-    { html: `<p class="cr-big">${esc(f.birth)}</p>`, ms: 2600 },
-    ...f.highlights.map((h): Step => ({
-      html: `<p class="cr-age">${L(`${h.age}歳`, `Age ${h.age}`)}</p><p>${esc(h.text)}</p>${faces(h.who)}`, ms: 2200, paint,
-    })),
-    { html: `<div class="cr-words">${lastWordsHtml(p, ties, f.words)}</div>`, ms: f.words.length ? 4500 : 2600, paint },
-    { html: `${face(0, 'big')}<p class="cr-big">${esc(f.last)}</p>`, ms: 3500, paint },
-  ];
-  return play('cr-farewell', steps, sound);
 }

@@ -34,10 +34,13 @@ import { starred, starsHtml } from './stars';
 import { lookbackHtml, lookbackOf, timeSpentHtml, type Lookback } from './lookback';
 import { worldMap } from './worldmap';
 import { orgsHtml } from './orgs';
+import { playReel, reelOf } from './reel';
+import { musicNow, musicScene } from './music';
 
 export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
   birthCountry: string; country: string; birthYear: number; age: number; cause: string;
+  birthMonth?: number;         // 走馬灯の「何年何月に生まれた」。古い記録には無い
   story: string; log: Person['log']; kinds: Person['kinds']; happyByAge: number[];
   questions: Person['questions']; facts: [string, string][];
   others: { name: string; country: string; age: number; story: string; seed?: number; birthYear?: number; birthMonth?: number }[]; // seed などは、詳しい記録を作り直すため
@@ -95,10 +98,10 @@ function factsOf(p: Person): [string, string][] {
   ];
 }
 
-function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[]): PastLife {
+export function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[]): PastLife {
   return {
     seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
-    birthYear: p.birthYear, age: p.age, cause: causeLabel(p.cause), story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
+    birthYear: p.birthYear, birthMonth: p.birthMonth, age: p.age, cause: causeLabel(p.cause), story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
     questions: p.questions, facts: factsOf(p),
     others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o), seed: o.seed, birthYear: o.birthYear, birthMonth: o.birthMonth })),
     me: briefOf(p),
@@ -135,6 +138,7 @@ export function deathRecord(l: PastLife, slot = ''): string {
     <p class="kicker">${esc(b.name)}${L('・', ' · ')}${genderWord(genderOf(l))}</p>
     <h1>${esc(l.name)}</h1>
     <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}${L(`・享年${l.age}歳`, ` · died at ${l.age}`)}${l.line ? L(`・第${l.line.length}世代`, ` · generation ${l.line.length}`) : ''}</p>
+    <button class="replay" data-replay>▶ ${L('人生をふりかえる', 'Look back on this life')}</button>
     <p class="story">${esc(l.story)}</p>
     <section id="aistory">${l.aiStory ? aiStoryHtml(l.aiStory) : ''}</section>
     <div class="cause"><b>${l.cause ? `${L('死因', 'Cause of death:')} ${esc(causeName(l.cause))}` : L(`${l.age}歳で亡くなった`, `Died at ${l.age}`)}</b>
@@ -200,6 +204,7 @@ const lineStandIn = (g: LineEntry) => ({ seed: g.seed, given: g.given, sex: g.se
 // 亡くなった直後で本人 (p) がいれば、輪の顔を押してその人の一生を読める
 export function paintLife(root: HTMLElement, l: PastLife, p?: Person, others?: Person[]): void {
   paintScenes(root);
+  root.querySelector<HTMLElement>('[data-replay]')?.addEventListener('click', () => void replayLife(l));
   mountHomeCompare(root, l);
   root.querySelectorAll<HTMLCanvasElement>('canvas[data-gen]').forEach((cv) => { const g = l.line?.[Number(cv.dataset.gen)]; if (g) drawPortrait(cv, lineStandIn(g)); });
   paintOthers(root, l, others);
@@ -282,7 +287,17 @@ export function deathCard(l: PastLife): HTMLCanvasElement {
 }
 
 // onContinue: 輪の人 (id) で続ける。ゲーム側が次の主人公を作って始める
-export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit: () => void, onContinue?: (id: number) => void, album: Moment[] = []): void {
+// 走馬灯を流す。何度でも。流しているあいだは別れの曲にして、閉じたら元の曲へ
+export function replayLife(l: PastLife): Promise<void> {
+  const before = musicNow();
+  musicScene('farewell');
+  const me = standIn(l);
+  const ties = (l.circle ?? []) as Tie[];
+  return playReel(reelOf(l), (el) => paintFaces(el, me, ties), me, ties).then(() => { if (before !== 'farewell') musicScene(before); });
+}
+
+// intro: 亡くなった直後。死亡記録を置いてから、その上に走馬灯を流す
+export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit: () => void, onContinue?: (id: number) => void, album: Moment[] = [], intro = false): void {
   const life = toPast(p, others, basis, album);
   const lives = addLife(pastLives(), life);
   storeLives(lives);
@@ -309,6 +324,7 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
   paintLife(app, life, onContinue ? p : undefined, others);
   if (!onContinue) app.querySelector('.heirs')?.remove();
   mountShare(app, life, () => deathCard(life));
+  if (intro) void replayLife(life);
   // 自死の人生は AI に語らせない (ai/prompts.ts の決まりと同じ)
   const aiOk = !isSuicide(p.cause);
   if (aiOk && aiOn('story') && life.words?.length) {
