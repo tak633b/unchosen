@@ -63,6 +63,16 @@ for (const code of CODES) {
     const i = era.years.indexOf(y);
     for (const s of ['F', 'M']) q[s][code][y] = brass(std[s], d[s === 'F' ? 'leF' : 'leM'][i], Math.min(0.7, d.u5mr[i] * k[s]));
   }
+  // 1949年の行: 1945年と1950年の間は対数の上で直線に埋めるので、1950年が戦争の年の国 (朝鮮戦争の韓国: 男の e0 17.5年) では、
+  // 1946〜49年が戦争の死亡率に引っぱられていた (1949年の男の e0 が約21年)。その国だけ、1950年の代わりに「形」の表 (1950年代の中央の年、韓国は1954年) へ向けて、その年までの4年分を埋める。
+  // 戦争の年とみるのは、1950年から1955年に男女とも平均して11年より e0 が上がった国 (build-era.mjs の LE_PACE の2倍。韓国は22年分上がった)。
+  // ほかの国は、これまでと同じ直線の上の値
+  const sum = (y) => e0Of(lOf(q.F[code][y])) + e0Of(lOf(q.M[code][y]));
+  const war = sum(1955) - sum(1950) > 2 * 11;
+  for (const s of ['F', 'M']) {
+    const [to, t] = war ? [std[s], 4 / (by - 1945)] : [q[s][code][1950], 0.8];
+    q[s][code][1949] = q[s][code][1945].map((v, a) => Math.exp(Math.log(v) * (1 - t) + Math.log(to[a]) * t));
+  }
 }
 
 const years = Object.keys(q.F.JPN).map(Number).sort((a, b) => a - b);

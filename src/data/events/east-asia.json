@@ -3172,6 +3172,7 @@
    "wound": 0.33,
    "pow": 0.005,
    "draft": 1916,
+   "vol": 0.7,
    "effect": {
     "health": -8,
     "happy": -15

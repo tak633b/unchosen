@@ -188,7 +188,15 @@ export const yearOf = (p: Person): number => p.birthYear + p.age;
 // その人がいる国の、今の暦年の値
 export const countryOf = (p: Person): Country => countryAt(p.country, yearOf(p));
 
+// 1950年 (国連の統計の始まり) より前の行には、1950年より前の年を挙げた脚注だけを添える。
+// 「日本の特殊詐欺は2022年に… (警察庁)」や、年を書かない WHO・ILO・UNICEF の今の数字を、1930年代の出来事に付けない。
+// 目録の出来事の脚注 (data/events) はその出来事そのものの数字なので、worldevents.ts がここを通さずに付ける
+const STAT_ERA = 1950;
+const OLD_YEAR = /(?<![\d,.])(18\d\d|19[0-4]\d)(?!\d)/;
+export const eraStat = (stat: string | undefined, year: number): string | undefined => (stat && (year >= STAT_ERA || OLD_YEAR.test(stat)) ? stat : undefined);
+
 export function log(p: Person, text: string, kind: YearKind, big = false, stat?: string, who?: number[]): void {
+  stat = eraStat(stat, yearOf(p));
   p.log.push({ age: p.age, text, kind, big, ...(stat ? { stat } : {}), ...(who?.length ? { who } : {}) });
   // その年を一番よく表す出来事で人生地図の色を決める
   const rank: YearKind[] = ['child', 'school', 'work', 'old', 'family', 'love', 'move', 'hard', 'ill', 'loss', 'death'];
@@ -202,6 +210,7 @@ export function bump(p: Person, d: Partial<Stats>): void {
 
 // 意思決定を積む。自動決定の人生はその場で決めてしまう
 export function decide(p: Person, d: Decision): void {
+  if (d.stat && !eraStat(d.stat, yearOf(p))) d = { ...d, stat: undefined };
   if (p.auto && !p.reflect) {
     choose(p, d, d.auto(p));
   } else {

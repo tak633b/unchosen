@@ -89,20 +89,34 @@ function calm(s, worseUp) {
 const median = (xs) => { const a = [...xs].sort((p, q) => p - q); return a[Math.floor(a.length / 2)]; };
 // WPP の1950〜59年の中央値 (朝鮮戦争の1950〜53年のような年があっても、継ぎ目がその年に引っぱられない)
 const wppMid = (w, f) => median(Array.from({ length: 10 }, (_, i) => f(w[WPP0 + i])));
-// 1950年より前の値。Gapminder と WPP の1950年代の差を、1900年の0から1955年の全部へ直線で効かせる
-// (1900年は Gapminder のまま、1950年の WPP へはおおむね段差なくつながる)
+// 1950年より前の値。Gapminder と WPP の1950年代の差を、1900年の0から1950年の全部へ直線で効かせる
+// (1900年は Gapminder のまま、1950年の WPP へはおおむね段差なくつながる)。
+// 差は1950年代の中央値どうしで測る (1950年が戦争の年の国: 朝鮮戦争の韓国は、Gapminder の1950年の出生率が4.0で、WPP は6.1)
+// 1950年に向かう最後の何年かは、上がり方を 1950〜60年の WPP で速いほうから5%の国の速さまでにする
+// (平均寿命 年1.1年・5歳未満死亡率 年8%)。Gapminder は年の飛んだ推計の間を直線で埋めていて、
+// レバノンは1940年の28.8年から1950年の57.4年へ毎年2.9年ずつ、イスラエル (委任統治領パレスチナ) は毎年2.3年ずつ上がっていた。
+// そのまま継ぐと、1945年から1950年の5年で平均寿命が15年跳ねた。
+// 逆に、1950年より前の「ふだんの年」が1950年より良いこともないようにする (イラクは1945年44.4年 → 1950年41.0年 → 1955年48.5年と、谷になっていた)。
+// ただし1950年から1955年に平均寿命が上の速さの2倍 (11年) より上がった国 (朝鮮戦争の韓国、22年 → 48年) は、1950年が戦争の年なので、その年には合わせない。
+// 5歳未満死亡率は、1950年が1950年代の中央値の1.5倍を超える国 (韓国) をそう見る
+const LE_PACE = 1.1, U5_PACE = 0.08;
 function before1950(code, w) {
   const g = (key) => { const s = gmLong[key][code]; if (!s?.[1900] || !s[1955]) throw new Error(`gapminder ${key} ${code}`); return s; };
   const lex = calm(g('lex'), false), u5 = calm(g('u5mr'), true);
   const pop = g('pop'), tfr = g('tfr');
-  const k = (y) => (y - 1900) / 55;
-  const le = (y) => lex(y) + (wppMid(w, (r) => r.le) - lex(1955)) * k(y);
+  const k = (y) => (y - 1900) / 50;
+  const gmMid = (s) => median(Array.from({ length: 10 }, (_, i) => s(WPP0 + i)));
+  const leD = wppMid(w, (r) => r.le) - gmMid(lex);
+  const leTop = w[WPP0 + 5].le - w[WPP0].le > 2 * LE_PACE * 5 ? Infinity : w[WPP0].le;
+  const le = (y) => Math.min(leTop, Math.max(lex(y) + leD * k(y), w[WPP0].le - LE_PACE * (WPP0 - y)));
   const fF = wppMid(w, (r) => r.leF / r.le), fM = wppMid(w, (r) => r.leM / r.le); // 男女の差は1950年代初めの比のまま
   // 5歳未満死亡率の継ぎ目の比は 2/3〜1.5倍まで (ニカラグアは Gapminder が WPP の半分以下で、そのまま延ばすと1925年に75%になった)
-  const u5mr = (y) => u5(y) / 1000 * (Math.min(1.5, Math.max(2 / 3, wppMid(w, (r) => r.u5mr) / (u5(1955) / 1000))) ** k(y));
+  const u5K = Math.min(1.5, Math.max(2 / 3, wppMid(w, (r) => r.u5mr) / (gmMid(u5) / 1000)));
+  const u5Low = Math.min(w[WPP0].u5mr, wppMid(w, (r) => r.u5mr) * 1.5);
+  const u5mr = (y) => Math.max(u5Low, Math.min(u5(y) / 1000 * u5K ** k(y), w[WPP0].u5mr * Math.exp(U5_PACE * (WPP0 - y))));
   const imrK = wppMid(w, (r) => r.imr / r.u5mr);
   const popAt = (y) => pop[y] * (w[WPP0].pop / pop[WPP0]) ** ((y - 1900) / 50);
-  const tfrAt = (y) => tfr[y] * (w[WPP0].tfr / tfr[WPP0]) ** ((y - 1900) / 50);
+  const tfrAt = (y) => tfr[y] * (wppMid(w, (r) => r.tfr) / gmMid((x) => tfr[x])) ** ((y - 1900) / 50);
   const cbr = w[WPP0].births / w[WPP0].pop;
   return (y) => ({
     leF: le(y) * fF, leM: le(y) * fM, u5mr: u5mr(y), imr: u5mr(y) * imrK,
