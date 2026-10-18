@@ -43,6 +43,8 @@ export interface When {
   income?: Income | Income[];
   region?: string[];
   countries?: string[];
+  notCountries?: string[]; // この国々では起きない (地域で決めたものから外す)
+  gdpUnder?: number;       // その国その年の1人あたりGDPがこれより低いときだけ (水道・衛生のように、所得の三区分では粗いもの)
   religion?: string[];
   state?: 'school' | 'work' | 'retired' | 'child';
   sex?: 'F' | 'M';
@@ -94,6 +96,8 @@ export function fits(p: Person, w: When): boolean {
   if (w.income && !oneOf<Income>(w.income, c.gdp < 5000 ? 'low' : c.gdp <= 25000 ? 'mid' : 'high')) return false;
   if (w.region && !w.region.includes(c.region)) return false;
   if (w.countries && !w.countries.includes(c.code)) return false;
+  if (w.notCountries?.includes(c.code)) return false;
+  if (w.gdpUnder !== undefined && c.gdp >= w.gdpUnder) return false;
   if (w.religion && !w.religion.includes(p.religion)) return false;
   if (w.state && w.state !== stateOf(p)) return false;
   if (w.sex && w.sex !== p.sex) return false;

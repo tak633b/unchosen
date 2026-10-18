@@ -4,7 +4,7 @@
 // ---- 書き方 (decisions/*.json の1件) ---------------------------------------------------------
 // id        一意の英小文字とハイフン (ファイルをまたいでも重ねない)。一生に一度しか出ない
 // minAge / maxAge / weight / when / tech / from / to
-//           moments.json と同じ。when の語彙は moments.ts の When (place, wealth, income, region, countries,
+//           moments.json と同じ。when の語彙は moments.ts の When (place, wealth, income, region, countries, notCountries, gdpUnder,
 //           religion, state, sex, married, widowed, hasChildren, hasPet, migrated, youngChild, parentAlive, fatherAlive,
 //           motherAlive, sibling, teenChild, livingAlone, job, baby, marriedFor, uni)。国を限るときは countries に ISO3 を並べる
 // who       選択に出てくる人の続柄: mother / father / sibling / spouse / partner / child / friend。
