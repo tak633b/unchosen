@@ -73,8 +73,8 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const wrap = (x: number, lo: number, hi: number) => lo + ((((x - lo) % (hi - lo)) + (hi - lo)) % (hi - lo));
 const slide = (c: Ctx, x: number, v: number, lo = -30, hi = W + 30) => (c.tk ? wrap(x + c.tk * v, lo, hi) : x);
 const wave = (c: Ctx, period: number, phase: number) => c.tk > 0 && (c.tk + Math.abs(Math.round(phase))) % period < period / 2;
-// ビルの高さの時代の倍率: 1950年は今の半分弱、2000年で今と同じ、2050年からまた少し伸びる
-const eraTall = (y?: number) => (y === undefined ? 1 : y < 2000 ? 0.45 + 0.55 * clamp01((y - 1950) / 50) : 1 + 0.35 * clamp01((y - 2045) / 45));
+// ビルの高さの時代の倍率: 1900年は今の4分の1 (高い建物は数えるほど)、1950年は今の半分弱、2000年で今と同じ、2050年からまた少し伸びる
+const eraTall = (y?: number) => (y === undefined ? 1 : y < 1950 ? 0.25 + 0.2 * clamp01((y - 1900) / 50) : y < 2000 ? 0.45 + 0.55 * clamp01((y - 1950) / 50) : 1 + 0.35 * clamp01((y - 2045) / 45));
 const tallOf = (s: Scene) => (s.year === undefined ? 1 : eraTall(s.year) * (s.country.gdp < 8000 ? 0.7 + 0.3 * clamp01(s.country.gdp / 8000) : 1));
 const futOf = (s: Scene) => (s.year === undefined ? 0 : clamp01((s.year - 2045) / 45) * (0.25 + 0.75 * clamp01(s.country.gdp / 25000)) * (s.urban ? 1 : 0.8));
 // 行き先の建物の高さ。lo は低い建物が潰れないための下限の倍率

@@ -137,7 +137,8 @@ export const statOf = (m: { stat?: string; en?: { stat?: string } }, year: numbe
   return s && (!y || Math.abs(year - y) <= STAT_SPAN) ? s : undefined;
 };
 // その出来事に要る道具が、この人の暮らしにどれだけありそうか (0–1)
-export const techWeight = (p: Person, m: { tech?: Tech[] }) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, isRural(p)), 1);
+// 年は暦年を渡す。countryAt は持っている値の最初の年で止まるので、c.year はそれより前の年を表せない
+export const techWeight = (p: Person, m: { tech?: Tech[] }) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, isRural(p), yearOf(p)), 1);
 
 const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。輪の上でも亡くなったことにする
 const FRIEND_WEDS = 'friend-wedding-gift'; // 友だちの結婚式。bonds.ts の「結婚式に出た」と同じ印 (wed:id) を使い、同じ友だちで二度にしない

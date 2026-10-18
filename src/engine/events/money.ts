@@ -143,6 +143,10 @@ const HOLD_LABEL: Record<Holding, [string, string, string, string]> = {
   picker: ['自分で株を選ぶ', 'Pick stocks yourself', '当たれば大きいが、多くは指数に負ける', 'Big wins possible, but most trail the index'],
 };
 const holdName = (h: Holding) => L(HOLD_LABEL[h][0], HOLD_LABEL[h][1]);
+// 個人が買える形で世に出た年。株価指数のインデックスファンドは1976年 (米国のバンガード)、不動産の投資信託は1960年 (米国の REIT 法)。
+// それより前は勧めない。株と債券を半々にしたファンドは1929年から (米国のウェリントン・ファンド)
+const SINCE: Partial<Record<Holding, number>> = { stock: 1976, realestate: 1960, balanced: 1929 };
+const onSale = (h: Holding, year: number) => year >= (SINCE[h] ?? 0);
 
 // 株を持っている人には、大きく動いた年を一行残す
 function stockMove(p: Person, ret: number): number {
@@ -153,9 +157,10 @@ function stockMove(p: Person, ret: number): number {
 
 function investOffer(p: Person, income: number): void {
   if (p.invest || p.age < 24 || p.age > 65 || p.wealth < Math.max(income, 1000) * 0.8) return;
-  const order: Holding[] = ['deposit', 'bond', 'balanced', 'stock', 'realestate', 'picker'];
-  // 自動で決めるときの重み: 多くの家計は預金のまま。株を持つ人のうち個別株を自分で選ぶ人も多い
-  const autoW = [0.45, 0.05, 0.12, 0.18, 0.08, 0.12];
+  const order = (['deposit', 'bond', 'balanced', 'stock', 'realestate', 'picker'] as Holding[]).filter((h) => onSale(h, yearOf(p)));
+  // 自動で決めるときの重み: 多くの家計は預金のまま。株を持つ人のうち個別株を自分で選ぶ人も多い (まだ無い預け先の分は預金に残る)
+  const AUTO_W: Record<Holding, number> = { deposit: 0.45, bond: 0.05, balanced: 0.12, stock: 0.18, realestate: 0.08, picker: 0.12 };
+  const autoW = order.map((h) => AUTO_W[h]);
   decide(p, {
     title: L('貯めたお金をどうする？', 'What to do with savings?'),
     text: L(`貯金が${yen(p.wealth)}(日本の物価での感覚)になった。手元に置いておくお金をどこに預ける？`, `Savings have reached ${yen(p.wealth)}. Where to keep the money?`),
@@ -188,7 +193,7 @@ function switchOffer(p: Person, c: Country, last: number): void {
   // 大きく下がった年は売りたくなる。そうでなければ、ときどき見直す
   if (!p.invest || p.age > 65 || p.wealth <= 0 || p.rng() > (last < -0.15 ? 0.5 : 0.015)) return;
   const crash = last < -0.15;
-  const to = (['deposit', 'stock', 'balanced'] as Holding[]).filter((h) => h !== p.invest);
+  const to = (['deposit', 'stock', 'balanced'] as Holding[]).filter((h) => h !== p.invest && onSale(h, yearOf(p)));
   const taxRate = capitalGainsTax(c);
   decide(p, {
     title: crash ? L('相場が大きく下がった', 'The market fell hard') : L('預け先を見直す？', 'Rethink the savings?'),

@@ -260,9 +260,9 @@
             },
             {
               "weight": 2,
-              "text": "その週からテレビは宿題が終わってから、と決まった。",
+              "text": "その週から、宿題が終わるまで遊びに出てはいけないと決まった。",
               "en": {
-                "text": "From that week on, no TV until homework was done."
+                "text": "From that week on, no playing outside until homework was done."
               },
               "effects": {
                 "happy": -2,
@@ -287,9 +287,9 @@
             },
             {
               "weight": 4,
-              "text": "先生はひと目で気づき、家に電話をかけた。点数より、そっちを叱られた。",
+              "text": "先生はひと目で気づき、親に知らせた。点数より、そっちを叱られた。",
               "en": {
-                "text": "The teacher spotted it at once and phoned home. The forgery got {name} into more trouble than the score."
+                "text": "The teacher spotted it at once and told the parents. The forgery got {name} into more trouble than the score."
               },
               "effects": {
                 "happy": -5,
@@ -2266,9 +2266,9 @@
           "outcomes": [
             {
               "weight": 5,
-              "text": "{who}は冷蔵庫に貼った。何年も貼ってあった。",
+              "text": "{who}は壁に貼った。何年も貼ってあった。",
               "en": {
-                "text": "{who} put it on the fridge, where it stayed for years."
+                "text": "{who} pinned it to the wall, where it stayed for years."
               },
               "effects": {
                 "happy": 3
@@ -3094,6 +3094,7 @@
           "CMR"
         ]
       },
+      "from": 1950,
       "title": "クラブの人",
       "text": "近所の試合のあと、知らない大人が{name}に声をかけてきた。遠くの町のクラブで、練習生の選考を受けないかという。",
       "en": {
