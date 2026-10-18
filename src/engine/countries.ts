@@ -36,10 +36,12 @@ export interface Country {
 export const COUNTRIES: Country[] = (data as Country[]).map((c) => (isEn && c.nameEn ? { ...c, name: c.nameEn } : c));
 export const byCode = (code: string) => COUNTRIES.find((c) => c.code === code)!;
 
-// ---- 暦年の国 (1950〜2100年) ----
+// ---- 暦年の国 (1900〜2100年) ----
 // era.json は5年ごとの値。間の年は直線で埋める。読み込む前 (setEra の前) は最新の1年の値を返す
 export interface Era { years: number[]; now: number; countries: Record<string, Record<string, number[]> & { obs: Record<string, [number, number]> }> }
-export const ERA_FROM = 1950, ERA_TO = 2100;
+// ERA_FROM: 国連 WPP の最初の年。年を選ばないくじはここから。
+// CHOOSE_FROM: 年を選べば、ここから生まれられる。1900〜1949年の値は Gapminder の長い系列からの推定 (build-era.mjs)
+export const ERA_FROM = 1950, ERA_TO = 2100, CHOOSE_FROM = 1900;
 export const ERA_NOW = 2023; // 実測の最後の年。これより先は予測
 let era: Era | null = null;
 const memo = new Map<string, Country>();
@@ -50,7 +52,7 @@ export const eraReady = () => era !== null;
 export function countryAt(code: string, year: number): Country {
   const base = byCode(code);
   if (!era || !era.countries[code]) return base;
-  const y = Math.min(ERA_TO, Math.max(ERA_FROM, Math.round(year)));
+  const y = Math.min(ERA_TO, Math.max(CHOOSE_FROM, Math.round(year)));
   const key = code + y;
   const hit = memo.get(key);
   if (hit) return hit;
@@ -72,11 +74,12 @@ export function countryAt(code: string, year: number): Country {
 }
 export const countriesAt = (year?: number): Country[] => (year === undefined || !era ? COUNTRIES : COUNTRIES.map((c) => countryAt(c.code, year)));
 
-// その年の値が、実測 (補間を含む)・推定・予測のどれか。WPP の人口統計は2024年から予測
+// その年の値が、実測 (補間を含む)・推定・予測のどれか。WPP の人口統計は2024年から予測。1950年より前はどれも推定
 export type Basis = 'obs' | 'est' | 'proj';
 const WPP_KEYS = ['births', 'pop', 'leF', 'leM', 'imr', 'u5mr', 'tfr'];
 export function basisOf(code: string, key: string, year: number): Basis {
   if (!era) return 'obs';
+  if (year < ERA_FROM) return 'est';
   if (WPP_KEYS.includes(key) || key === 'gdp') return year > ERA_NOW ? 'proj' : 'obs';
   const r = era.countries[code]?.obs[key];
   if (!r || year < r[0] || year > r[1]) return year > ERA_NOW ? 'proj' : 'est';

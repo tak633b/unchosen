@@ -28,7 +28,7 @@ export interface LifeTable {
 const cache = new Map<string, LifeTable>();
 
 // ---- 国連 WPP 2024 の単歳生命表 (暦年ごと) ----
-// mortality.json: 年の行 (1950〜2023は毎年、それ以降は5年ごと) × 0〜100歳の qx を、-ln(qx)×K の整数で持ち、行どうしの差分で詰めたもの。
+// mortality.json: 年の行 (1900〜1945年は5年ごとの推定、1950〜2023は毎年、それ以降は5年ごと) × 0〜100歳の qx を、-ln(qx)×K の整数で持ち、行どうしの差分で詰めたもの。
 // 読み込む前 (setMortality の前) と、暦年を持たない国 (countries.json の最新の1年) は、下のモデルで作る
 export interface Mortality { K: number; years: number[]; ages: number; countries: Record<string, Record<Sex, number[]>> }
 let mort: Mortality | null = null;

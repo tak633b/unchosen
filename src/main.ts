@@ -1,5 +1,5 @@
 import './style.css';
-import { COUNTRIES, ERA_FROM, ERA_NOW, ERA_TO, byCode, countriesAcrossYears, countriesAt, countryAt, pickBirthYear, totalOf, weightOf, type BirthBasis } from './engine/countries';
+import { CHOOSE_FROM, COUNTRIES, ERA_FROM, ERA_NOW, ERA_TO, byCode, countriesAcrossYears, countriesAt, countryAt, pickBirthYear, totalOf, weightOf, type BirthBasis } from './engine/countries';
 import { loadWorld } from './engine/world';
 import { bornTable } from './engine/lifetable';
 import { earnings, formatMoney } from './engine/economy';
@@ -55,9 +55,9 @@ const sharedCard = (m: Shared) => {
 
 // ---- トップ ---------------------------------------------------------------
 
-// 生まれる年と国は、選ばなければくじで決まる (年は1950〜2100年の出生数に比例)。選んだ値はこの端末に残す
+// 生まれる年と国は、選ばなければくじで決まる (年は1950〜2100年の出生数に比例)。年を選べば1900年からも生まれられる。選んだ値はこの端末に残す
 const THIS_YEAR = new Date().getFullYear();
-const chosenYear = (): number | null => { const y = load<number | null>('birthYear', null); return y === null ? null : Math.min(ERA_TO, Math.max(ERA_FROM, y)); };
+const chosenYear = (): number | null => { const y = load<number | null>('birthYear', null); return y === null ? null : Math.min(ERA_TO, Math.max(CHOOSE_FROM, y)); };
 const chosenGender = (): Gender | null => { const g = load<Gender | null>('gender', null); return g === 'F' || g === 'M' || g === 'X' ? g : null; };
 const chosenCountry = (): string | null => { const c = load<string | null>('birthCountry', null); return c && COUNTRIES.some((x) => x.code === c) ? c : null; };
 // 「今生まれる」「1980年に生まれる」のように、年を入れた言い方
@@ -92,7 +92,7 @@ function home(): void {
         <div class="counters"><div><b id="cb">0</b><small>${L('このページを開いてから生まれた赤ちゃん', 'babies born since you opened this page')}</small></div><div><b id="cd">0</b><small>${L('同じ間に亡くなった人', 'people who died in the same time')}</small></div></div>
       </div>
       <div class="panel odds">
-        <h3>${basis === 'equal' ? L('どの国も同じ確率なら', 'If every country is equally likely') : year === null ? L(`${ERA_FROM}〜${ERA_TO}年に生まれる人なら`, `If you are born between ${ERA_FROM} and ${ERA_TO}`) : basis === 'births' ? L(`${bornWhen(year)}赤ちゃんなら`, `If you were ${bornWhen(year)}`) : year === THIS_YEAR ? L('今生きている80億人なら', 'Among the 8 billion alive today') : L(`${year}年に生きている人なら`, `Among people alive in ${year}`)} <small>${basis === 'equal' ? L('162か国', '162 countries') : L('国連世界人口推計 2024', 'UN World Population Prospects 2024')}${basis !== 'equal' && (year === null || year > ERA_NOW) ? L('・予測を含む', ', incl. projections') : ''}</small></h3>
+        <h3>${basis === 'equal' ? L('どの国も同じ確率なら', 'If every country is equally likely') : year === null ? L(`${ERA_FROM}〜${ERA_TO}年に生まれる人なら`, `If you are born between ${ERA_FROM} and ${ERA_TO}`) : basis === 'births' ? L(`${bornWhen(year)}赤ちゃんなら`, `If you were ${bornWhen(year)}`) : year === THIS_YEAR ? L('今生きている80億人なら', 'Among the 8 billion alive today') : L(`${year}年に生きている人なら`, `Among people alive in ${year}`)} <small>${basis === 'equal' ? L('162か国', '162 countries') : year !== null && year < ERA_FROM ? L('Gapminder ほかからの推定', 'estimated from Gapminder and others') : L('国連世界人口推計 2024', 'UN World Population Prospects 2024')}${basis !== 'equal' && (year === null || year > ERA_NOW) ? L('・予測を含む', ', incl. projections') : ''}</small></h3>
         ${top.map((c) => `<div class="odd"><span>${esc(c.name)}</span><i style="width:${((weightOf(c, basis) / total) * 100 / (weightOf(top[0], basis) / total)).toFixed(1)}%"></i><b>${pct(weightOf(c, basis) / total, 1)}</b></div>`).join('')}
         <div class="odd rest"><span>${L(`ほか${COUNTRIES.length - 9}か国`, `${COUNTRIES.length - 9} other countries`)}</span><i style="width:100%"></i><b>${pct(rest, 1)}</b></div>
       </div>
@@ -110,7 +110,7 @@ function home(): void {
       <div class="startgrid">
         <fieldset><legend>${L('生まれる年', 'Year of birth')}</legend>
           <div class="seg"><button data-year="random" class="${year === null ? 'on' : ''}">${L('くじで決める', 'Leave it to chance')}</button><button data-year="pick" class="${year !== null ? 'on' : ''}">${L('年を選ぶ', 'Pick a year')}</button></div>
-          ${year !== null ? `<div class="yearpick"><input type="range" id="year" min="${ERA_FROM}" max="${ERA_TO}" step="1" value="${year}" aria-label="${L('生まれる年', 'Year of birth')}"><b id="yearv">${year}</b><button data-year="now" class="${year === THIS_YEAR ? 'on' : ''}">${L('今年', 'This year')}</button></div>` : ''}
+          ${year !== null ? `<div class="yearpick"><input type="range" id="year" min="${CHOOSE_FROM}" max="${ERA_TO}" step="1" value="${year}" aria-label="${L('生まれる年', 'Year of birth')}"><b id="yearv">${year}</b><button data-year="now" class="${year === THIS_YEAR ? 'on' : ''}">${L('今年', 'This year')}</button></div>` : ''}
           <p class="note" id="yearnote">${year === null ? L('年ごとの世界の出生数に比例して決まる。赤ちゃんの多い年ほど当たりやすい。', 'Drawn in proportion to the world’s births each year. Years with more babies are more likely.') : yearNote(year)}</p></fieldset>
         <label class="field">${L('生まれる国', 'Country of birth')}
           <select id="bcountry"><option value="">${L('くじで決める', 'Leave it to chance')}</option>${opts(country)}</select>
@@ -226,6 +226,7 @@ async function light(btn: HTMLButtonElement): Promise<void> {
 
 // 選んだ年が、記録の時代か予測の時代か
 function yearNote(y: number): string {
+  if (y < ERA_FROM) return L(`国連の統計は${ERA_FROM}年から。それより前の寿命・子どもの死亡・人口・所得は、Gapminder などの長い系列からの推定で、戦争や飢饉の年の死は別に足す。`, `UN statistics start in ${ERA_FROM}. Before that, lifespan, child deaths, population and income are estimates from long-run series such as Gapminder; deaths in wars and famines are added on top.`);
   if (y <= ERA_NOW) return L(`${y}年の統計で生まれ、その後の年もその時々の統計で生きる。`, `Born into the statistics of ${y}, and lives each later year by that year's figures.`);
   return L(`${ERA_NOW}年より先は、国連の予測(中位推計)と、それを延ばした推定で生きる。起きることは予測であって、決まった未来ではない。`, `After ${ERA_NOW}, life follows the UN projections (medium variant) and estimates extended from them. It is a projection, not a fixed future.`);
 }
@@ -261,13 +262,14 @@ function roll(p: Person, basis: BirthBasis): void {
     t += wait;
     const last = wait * 1.13 >= 260;
     at(1900 + t, () => {
-      $('#byear').textContent = String(last ? year : ERA_FROM + Math.floor(Math.random() * (ERA_TO - ERA_FROM + 1)));
+      const lo = Math.min(year, ERA_FROM);
+      $('#byear').textContent = String(last ? year : lo + Math.floor(Math.random() * (ERA_TO - lo + 1)));
       $('#byear').classList.add('on');
       if (last) { $('#byear').classList.add('land'); beat?.faster(); }
     });
   }
   const yearDone = 1900 + t;
-  at(yearDone + 700, () => show('#bsub', L(`この年、世界で${bigNumber(totalOf('births', year))}が生まれる。`, `That year, ${bigNumber(totalOf('births', year))} are born.`) + (year > ERA_NOW ? L('(予測)', ' (projected)') : '')));
+  at(yearDone + 700, () => show('#bsub', L(`この年、世界で${bigNumber(totalOf('births', year))}が生まれる。`, `That year, ${bigNumber(totalOf('births', year))} are born.`) + (year > ERA_NOW ? L('(予測)', ' (projected)') : year < ERA_FROM ? L('(推定)', ' (estimated)') : '')));
   // 国: 生まれやすい国ほど多く顔を出す (演出だけの乱数。人生の seed とは別)
   const spin = makeRng(p.seed ^ 0x2b1f);
   let u = 0; wait = 45;
@@ -435,6 +437,7 @@ function about(): void {
     <p>When people die: a life table is built for each country and sex to match infant and under-5 mortality and life expectancy by sex. Health, income, smoking, drinking and treatment of illness move a person's own risk up or down.</p>
     <p>Causes of death: the mix by age group (a rough shape from WHO and GBD) is weighted by the country's income, region and smoking. Homicide comes from the homicide rate. The weight of road deaths is estimated from income.</p>
     <p>Income: a person's family and job sit within the country's income distribution (a log-normal shaped by the Gini index). Amounts are shown in purchasing-power-parity dollars.</p>
+    <p>Before 1950 (only when you pick a year): life expectancy, under-5 mortality, population and fertility come from Gapminder's long-run series, joined smoothly to the UN figures for 1950. Years of war, famine and epidemic are smoothed out of the baseline, and their deaths are added separately. Life tables for 1900–1945 reshape each country's 1950s UN table (Brass logit model) to match those figures. They are estimates.</p>
     <p>Missing values are estimated from countries in the same region with similar GDP per person. Child marriage in high-income countries is set at 1%.</p>
     <p>Suicide: it is one of the leading causes of death, so it is included at each country's rate by age and sex (WHO Global Health Estimates 2021), from age 10 up, without changing overall mortality. It is never shown as a cause on records, cards or the memorial, and no method or reason is ever described. If things feel heavy, you can talk to someone: in the US, call or text 988; elsewhere, findahelpline.com.</p>
     <p>Crime and justice: drink-driving, fights, teen mistakes and theft in hard years are choices with costs, never gains. A record fades after a time modeled on Japanese law (fines 5 years, suspended sentences at the end of probation, prison 10 years after release). Family imprisonment uses prison population rates from the World Prison Brief.</p>` : `
@@ -443,6 +446,7 @@ function about(): void {
     <p>亡くなる時期: 乳児・5歳未満死亡率と男女別の平均寿命に合うよう、国と性別ごとに生命表を組み立てている。健康・所得・喫煙・酒・病気の治療で、その人の死亡率は上下する。</p>
     <p>死因: 年齢帯ごとの構成(WHO・GBD のおおまかな形)を、国の豊かさや地域、喫煙で重み付けしている。他殺は殺人発生率から。交通事故の重みは所得からの推計。</p>
     <p>所得: 国ごとの所得分布(ジニ係数から決めた対数正規分布)の中で、家と仕事の位置が決まる。金額は購買力平価ドルと、日本の物価での円換算(1ドル≒95円)を並べている。</p>
+    <p>1950年より前(年を選んだときだけ): 平均寿命・5歳未満死亡率・人口・出生率は Gapminder の長い系列を使い、1950年の国連の値へなめらかにつないでいる。戦争・飢饉・疫病の年はふだんの流れからは除き、その死は別に足している。1900〜1945年の生命表は、その国の1950年代の国連の生命表の形を、これらの値に合うよう動かしたもの(ブラスのロジット・モデル)。どれも推定。</p>
     <p>欠けている値は、同じ地域で1人当たりGDPが近い国から推計している。高所得国の児童婚率は1%としている。</p>
     <p>自死: 実際に主要な死因の一つなので、国・年齢・性別ごとの率(WHO Global Health Estimates 2021)で、10歳以上にだけ起こる。全体の死亡率は変えず、ほかの死因から取り分けている。記録・カード・追悼館には死因として出さず、方法や理由も書かない。つらい気持ちを話せる場所があります: いのちSOS 0120-061-338、10代の人は24時間子供SOSダイヤル 0120-0-78310。</p>
     <p>罪と償い: 飲酒運転・けんか・10代のあやまち・食べ物のない年の盗みは、代償のある選択として出てくる。罪で得をすることはない。前科は日本の刑法にならって消える(罰金は5年、執行猶予は猶予期間の終わり、刑務所は出てから10年)。家族の収監は World Prison Brief の収容率から。</p>`}

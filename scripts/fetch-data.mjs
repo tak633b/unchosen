@@ -38,14 +38,19 @@ for (const [key, slug] of Object.entries(SLUGS)) {
   console.log(key, text.split('\n').length, 'lines |', text.split('\n')[0]);
 }
 
-// Gapminder の1人当たりGDP (1800〜2100年、CC BY 4.0)。暦年の GDP の形に使う (build-era.mjs)
+// Gapminder (1800〜2100年、CC BY 4.0)。1人当たりGDP は暦年の GDP の形に使う。
+// 平均寿命・5歳未満死亡率・人口・合計特殊出生率は、1900〜1949年 (国連 WPP より前) を延ばすのに使う (build-era.mjs)
 await mkdir(new URL('gapminder/', dir), { recursive: true });
-{
-  const url = 'https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack/master/countries_etc_datapoints/ddf--datapoints--gdp_pcap--by--country--time.csv';
+const GM = {
+  gdp_pcap: 'gdp_pcap', lex: 'lex', pop: 'pop',
+  u5mr: 'child_mortality_0_5_year_olds_dying_per_1000_born', tfr: 'children_per_woman_total_fertility',
+};
+for (const [file, concept] of Object.entries(GM)) {
+  const url = `https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack/master/countries_etc_datapoints/ddf--datapoints--${concept}--by--country--time.csv`;
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`gapminder: HTTP ${res.status}`);
-  await writeFile(new URL('gapminder/gdp_pcap.csv', dir), await res.text());
-  console.log('gapminder gdp_pcap');
+  if (!res.ok) throw new Error(`gapminder ${file}: HTTP ${res.status}`);
+  await writeFile(new URL(`gapminder/${file}.csv`, dir), await res.text());
+  console.log('gapminder', file);
 }
 
 // 国連 WPP 2024 (CC BY 3.0 IGO)。単歳の生命表は男女・過去/予測の4本で約800MB あるので、すでにあれば落とさない

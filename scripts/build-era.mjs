@@ -1,6 +1,7 @@
-// 国×年の統計 (1950〜2100年、5年ごと) → src/data/era.json
+// 国×年の統計 (1900〜2100年、5年ごと) → src/data/era.json
 // countries.json (最新の1年) の国と指標をそのまま年の軸に広げる。値の出どころは指標ごとに3つ:
 //  1. 国連 WPP 2024 (出生数・人口・平均寿命・乳児/5歳未満死亡率・合計特殊出生率)。2024年以降は WPP の中位推計
+//     1950年より前 (WPP の前) は Gapminder の長い系列 (平均寿命・5歳未満死亡率・人口・出生率) を、1950年の WPP に継ぎ目なくつなぐ (下の 1b)
 //  2. Gapminder の1人当たりGDP (2100年まで。2024年以降は Gapminder の予測)。今の値との比で延ばす
 //  3. OWID の実測 (年がまばら)。実測の年の間は直線で埋め、範囲の外は「所得との関係」で延ばす:
 //     実測の端の値から、ロジット (または対数) の上で β × (log GDP の差) だけ動かす。β は国どうしの比較 (最新の年) から求める
@@ -12,7 +13,8 @@ const root = new URL('../', import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), 'utf8');
 const countries = JSON.parse(read('src/data/countries.json'));
 const CODES = new Set(countries.map((c) => c.code));
-const Y0 = 1950, Y1 = 2100, STEP = 5, NOW = 2023;
+const Y0 = 1900, Y1 = 2100, STEP = 5, NOW = 2023;
+const WPP0 = 1950; // WPP の最初の年。これより前は推定
 const YEARS = Array.from({ length: (Y1 - Y0) / STEP + 1 }, (_, i) => Y0 + i * STEP);
 
 function csv(text) {
@@ -32,12 +34,13 @@ const wpp = {}; // code → year → row
   const rows = csv(gunzipSync(readFileSync(new URL('data/raw/wpp/WPP2024_Demographic_Indicators_Medium.csv.gz', root))).toString('utf8'));
   const h = rows[0].map((s) => s.replace(/^﻿/, ''));
   const col = (n) => h.indexOf(n);
-  const C = { code: col('ISO3_code'), t: col('Time'), births: col('Births'), pop: col('TPopulation1July'), leF: col('LExFemale'), leM: col('LExMale'), imr: col('IMR'), u5: col('Q5'), tfr: col('TFR') };
+  const C = { code: col('ISO3_code'), t: col('Time'), births: col('Births'), pop: col('TPopulation1July'), le: col('LEx'), leF: col('LExFemale'), leM: col('LExMale'), imr: col('IMR'), u5: col('Q5'), tfr: col('TFR') };
   for (const r of rows.slice(1)) {
     const code = r[C.code], y = +r[C.t];
-    if (!CODES.has(code) || y % STEP) continue;
+    // 1950〜59年は毎年 (1950年より前をつなぐ「継ぎ目」に使う)
+    if (!CODES.has(code) || (y % STEP && y > WPP0 + 9)) continue;
     (wpp[code] ??= {})[y] = {
-      births: +r[C.births] * 1000, pop: +r[C.pop] * 1000, leF: +r[C.leF], leM: +r[C.leM],
+      births: +r[C.births] * 1000, pop: +r[C.pop] * 1000, le: +r[C.le], leF: +r[C.leF], leM: +r[C.leM],
       imr: +r[C.imr] / 1000, u5mr: +r[C.u5] / 1000, tfr: +r[C.tfr],
     };
   }
@@ -46,6 +49,66 @@ const wpp = {}; // code → year → row
 // ---- 2. Gapminder GDP ----
 const gm = {}; // code → year → gdp
 for (const [k, y, v] of csv(read('data/raw/gapminder/gdp_pcap.csv')).slice(1)) (gm[k.toUpperCase()] ??= {})[+y] = +v;
+
+// ---- 1b. 1900〜1949年 (WPP の前): Gapminder の長い系列 ----
+// 平均寿命 (男女計)・5歳未満死亡率・人口・合計特殊出生率。162か国すべてに1900年の値がある (無ければ止める)
+const gmLong = {}; // key → code → year → v
+for (const key of ['lex', 'u5mr', 'pop', 'tfr']) {
+  gmLong[key] = {};
+  for (const [k, y, v] of csv(read(`data/raw/gapminder/${key}.csv`)).slice(1)) if (+y >= 1880 && +y <= 1965) (gmLong[key][k.toUpperCase()] ??= {})[+y] = +v;
+}
+// 戦争・飢饉・疫病の年を除いた「ふだんの年」の流れ。その年の死は worldevents.ts が別に足すので、ここに残すと二重に数える。
+// 2つの世界大戦とスペイン風邪の年 (1914〜19年・1939〜46年) はどの国も外し、前後の年の間を埋める。
+// そのほかの国ごとの危機 (1921年のロシア、1933年のウクライナ、1943年のベンガルなど) は、前後8年の直線から下へ
+// (死亡率なら上へ) 外れた年を外すのを4回繰り返して見つける。寿命は 2.5年、5歳未満死亡率は対数で 0.15 (約16%) 外れたら危機とみなす。
+// 残った年の前後5年の直線で、その年の値を読む (片側にしか年が残っていなければ、その平均)
+const WARS = [[1914, 1919], [1939, 1946]];
+function calm(s, worseUp) {
+  const z = (v) => (worseUp ? -Math.log(v) : v);
+  const TOL = worseUp ? 0.15 : 2.5;
+  const ys = Object.keys(s).map(Number).filter((y) => !WARS.some(([a, b]) => y >= a && y <= b)).sort((a, b) => a - b);
+  const fit = (pts, x) => {
+    const n = pts.length, mx = pts.reduce((a, p) => a + p[0], 0) / n, my = pts.reduce((a, p) => a + p[1], 0) / n;
+    let sxy = 0, sxx = 0;
+    for (const [px, py] of pts) { sxy += (px - mx) * (py - my); sxx += (px - mx) ** 2; }
+    return my + (sxx ? sxy / sxx : 0) * (x - mx);
+  };
+  let kept = ys;
+  for (let it = 0; it < 4; it++) {
+    const prev = kept;
+    kept = ys.filter((y) => z(s[y]) >= fit(prev.filter((x) => Math.abs(x - y) <= 8).map((x) => [x, z(s[x])]), y) - TOL);
+  }
+  return (y) => {
+    let w = kept.filter((x) => Math.abs(x - y) <= 5);
+    if (w.length < 3 || !w.some((x) => x < y) || !w.some((x) => x > y)) w = kept.filter((x) => Math.abs(x - y) <= 10);
+    const pts = w.map((x) => [x, z(s[x])]);
+    const v = w.some((x) => x < y) && w.some((x) => x > y) ? fit(pts, y) : pts.reduce((a, p) => a + p[1], 0) / pts.length;
+    return worseUp ? Math.exp(-v) : v;
+  };
+}
+const median = (xs) => { const a = [...xs].sort((p, q) => p - q); return a[Math.floor(a.length / 2)]; };
+// WPP の1950〜59年の中央値 (朝鮮戦争の1950〜53年のような年があっても、継ぎ目がその年に引っぱられない)
+const wppMid = (w, f) => median(Array.from({ length: 10 }, (_, i) => f(w[WPP0 + i])));
+// 1950年より前の値。Gapminder と WPP の1950年代の差を、1900年の0から1955年の全部へ直線で効かせる
+// (1900年は Gapminder のまま、1950年の WPP へはおおむね段差なくつながる)
+function before1950(code, w) {
+  const g = (key) => { const s = gmLong[key][code]; if (!s?.[1900] || !s[1955]) throw new Error(`gapminder ${key} ${code}`); return s; };
+  const lex = calm(g('lex'), false), u5 = calm(g('u5mr'), true);
+  const pop = g('pop'), tfr = g('tfr');
+  const k = (y) => (y - 1900) / 55;
+  const le = (y) => lex(y) + (wppMid(w, (r) => r.le) - lex(1955)) * k(y);
+  const fF = wppMid(w, (r) => r.leF / r.le), fM = wppMid(w, (r) => r.leM / r.le); // 男女の差は1950年代初めの比のまま
+  // 5歳未満死亡率の継ぎ目の比は 2/3〜1.5倍まで (ニカラグアは Gapminder が WPP の半分以下で、そのまま延ばすと1925年に75%になった)
+  const u5mr = (y) => u5(y) / 1000 * (Math.min(1.5, Math.max(2 / 3, wppMid(w, (r) => r.u5mr) / (u5(1955) / 1000))) ** k(y));
+  const imrK = wppMid(w, (r) => r.imr / r.u5mr);
+  const popAt = (y) => pop[y] * (w[WPP0].pop / pop[WPP0]) ** ((y - 1900) / 50);
+  const tfrAt = (y) => tfr[y] * (w[WPP0].tfr / tfr[WPP0]) ** ((y - 1900) / 50);
+  const cbr = w[WPP0].births / w[WPP0].pop;
+  return (y) => ({
+    leF: le(y) * fF, leM: le(y) * fM, u5mr: u5mr(y), imr: u5mr(y) * imrK,
+    pop: popAt(y), tfr: tfrAt(y), births: popAt(y) * cbr * tfrAt(y) / w[WPP0].tfr, // 出生率は合計特殊出生率に比例させる
+  });
+}
 
 // ---- 3. OWID のまばらな実測 ----
 const OWID = {
@@ -69,7 +132,7 @@ for (const [key, [file, fn]] of Object.entries(OWID)) {
   points[key] = {};
   for (const r of csv(read(`data/raw/${file}.csv`)).slice(1)) {
     const [, code, ys, vs] = r;
-    if (!CODES.has(code) || vs === '' || vs === undefined || +ys < Y0 || +ys > 2024) continue;
+    if (!CODES.has(code) || vs === '' || vs === undefined || +ys < Y0 || +ys > 2024) continue; // 就学年数は1870年からある (Lee-Lee)
     (points[key][code] ??= []).push([+ys, fn(+vs)]);
   }
   for (const list of Object.values(points[key])) list.sort((a, b) => a[0] - b[0]);
@@ -102,6 +165,7 @@ for (const [key, [, , shape, cap]] of Object.entries(OWID)) {
 // 喫煙の傾きは豊かな国の経験で、さかのぼるのは20年まで (それより前は多くの国で、まだ広がる途中だった)
 const TREND = { smoke: -0.025 }; // ロジットの上で1年あたり (過去へ戻ると増える)
 const TREND_YEARS = 20;
+const ELEC_CAP = [[1900, 0.05], [1905, 0.07], [1910, 0.15], [1915, 0.25], [1920, 0.35], [1925, 0.53], [1930, 0.68], [1935, 0.72], [1940, 0.79], [1945, 0.85]];
 
 function series(c, key) {
   const [, , shape, cap] = OWID[key];
@@ -123,6 +187,9 @@ function series(c, key) {
     }
     // HIV の最初の報告は1981年。最初の実測までは 1981年の0から直線で増やす
     if (key === 'hiv' && y < pts[0][0]) v = Math.max(0, pts[0][1] * (y - 1981) / (pts[0][0] - 1981));
+    // 1950年より前の電気は、所得だけで延ばすと多すぎる (1900年の米国の所得は今の中所得国と同じだが、電気の来た家は1割未満)。
+    // 米国の家庭の電化率 (1907年8%・1920年35%・1930年68%・1940年79%、米国勢調査局 Historical Statistics) を上限にする
+    if (key === 'elec' && y < WPP0) v = Math.min(v, ELEC_CAP.find(([cy]) => cy >= y)[1]);
     out.push(v);
   }
   return { v: out, obs: points[key][c.code]?.length ? [pts[0][0], pts[pts.length - 1][0]] : null };
@@ -135,7 +202,8 @@ for (const c of countries) {
   const d = {};
   const w = wpp[c.code];
   if (!w) { missing++; continue; }
-  for (const k of ['births', 'pop', 'leF', 'leM', 'imr', 'u5mr', 'tfr']) d[k] = YEARS.map((y) => round(w[y][k]));
+  const old = before1950(c.code, w);
+  for (const k of ['births', 'pop', 'leF', 'leM', 'imr', 'u5mr', 'tfr']) d[k] = YEARS.map((y) => round(y < WPP0 ? old(y)[k] : w[y][k]));
   d.gdp = YEARS.map((y) => round(gdpAt(c, y)));
   const obs = {};
   for (const key of Object.keys(OWID)) {
@@ -148,8 +216,8 @@ for (const c of countries) {
 }
 writeFileSync(new URL('src/data/era.json', root), JSON.stringify(out));
 console.log('countries', Object.keys(out.countries).length, 'missing WPP', missing, 'beta', out.beta);
-for (const code of ['JPN', 'NGA', 'CHN', 'IND']) {
+for (const code of ['JPN', 'NGA', 'CHN', 'IND', 'GBR']) {
   const d = out.countries[code];
   const at = (y) => YEARS.indexOf(y);
-  console.log(code, [1950, 1980, 2000, 2025, 2050, 2100].map((y) => `${y}: e0 ${d.leF[at(y)]}/${d.leM[at(y)]} u5 ${d.u5mr[at(y)]} gdp ${Math.round(d.gdp[at(y)])} sch ${d.school[at(y)].toFixed(1)} agri ${d.agri[at(y)].toFixed(2)} cm ${d.childMarriage[at(y)].toFixed(2)} smk ${d.smoke[at(y)].toFixed(2)}`).join('\n  '));
+  console.log(code, [1900, 1925, 1945, 1950, 1980, 2000, 2025, 2050, 2100].map((y) => `${y}: e0 ${d.leF[at(y)]}/${d.leM[at(y)]} u5 ${d.u5mr[at(y)]} gdp ${Math.round(d.gdp[at(y)])} sch ${d.school[at(y)].toFixed(1)} agri ${d.agri[at(y)].toFixed(2)} cm ${d.childMarriage[at(y)].toFixed(2)} smk ${d.smoke[at(y)].toFixed(2)}`).join('\n  '));
 }
