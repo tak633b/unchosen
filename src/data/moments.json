@@ -256,8 +256,24 @@
       "maxAge": 1,
       "weight": 1,
       "when": {
-        "region": [
-          "アジア"
+        "countries": [
+          "JPN",
+          "CHN",
+          "KOR",
+          "IND",
+          "BGD",
+          "NPL",
+          "LKA",
+          "MMR",
+          "THA",
+          "VNM",
+          "LAO",
+          "KHM",
+          "IDN",
+          "PHL",
+          "MYS",
+          "TLS",
+          "BTN"
         ]
       },
       "effects": {
@@ -664,7 +680,8 @@
           "アジア",
           "南アメリカ"
         ],
-        "motherAlive": true
+        "motherAlive": true,
+        "gdpUnder": 15000
       },
       "effects": {
         "happy": 2
@@ -675,7 +692,7 @@
     },
     {
       "id": "private-kindergarten",
-      "text": "英語と音楽を教える私立の幼稚園に通い始めた。月謝は安くなかった。",
+      "text": "外国語と音楽を教える私立の幼稚園に通い始めた。月謝は安くなかった。",
       "minAge": 3,
       "maxAge": 5,
       "weight": 1,
@@ -689,7 +706,7 @@
       "cost": -0.05,
       "once": true,
       "en": {
-        "text": "Started at a private kindergarten that taught English and music. The fees were not cheap."
+        "text": "Started at a private kindergarten that taught a foreign language and music. The fees were not cheap."
       }
     },
     {
@@ -1031,7 +1048,12 @@
           "アフリカ",
           "アジア"
         ],
-        "state": "school"
+        "state": "school",
+        "notCountries": [
+          "JPN",
+          "KOR",
+          "SGP"
+        ]
       },
       "effects": {
         "health": 1
@@ -1048,7 +1070,8 @@
       "weight": 1,
       "when": {
         "wealth": "poor",
-        "motherAlive": true
+        "motherAlive": true,
+        "gdpUnder": 12000
       },
       "effects": {
         "bond": 1
@@ -1525,7 +1548,22 @@
           "アジア",
           "アフリカ"
         ],
-        "state": "school"
+        "state": "school",
+        "notCountries": [
+          "EGY",
+          "LBY",
+          "SAU",
+          "ARE",
+          "QAT",
+          "KWT",
+          "BHR",
+          "OMN",
+          "JOR",
+          "ISR",
+          "PSE",
+          "DJI",
+          "TKM"
+        ]
       },
       "effects": {
         "learn": -1
@@ -1847,7 +1885,25 @@
       "when": {
         "sibling": "olderBrother",
         "wealth": "poor",
-        "state": "school"
+        "state": "school",
+        "notCountries": [
+          "USA",
+          "CAN",
+          "FRA",
+          "DEU",
+          "NLD",
+          "BEL",
+          "LUX",
+          "CHE",
+          "AUT",
+          "ITA",
+          "ESP",
+          "PRT",
+          "SWE",
+          "NOR",
+          "DNK",
+          "FIN"
+        ]
       },
       "en": {
         "text": "The school uniform was an older brother's hand-me-down. The sleeves were rolled up twice."
@@ -1916,7 +1972,8 @@
       "weight": 1,
       "when": {
         "state": "school",
-        "parentAlive": true
+        "parentAlive": true,
+        "gdpUnder": 20000
       },
       "effects": {
         "happy": 1
@@ -2739,7 +2796,7 @@
     },
     {
       "id": "first-concert",
-      "text": "初めて好きな歌手のコンサートに行った。帰りの電車でも、耳が鳴っていた。",
+      "text": "初めて好きな歌手のコンサートに行った。帰り道でも、耳が鳴っていた。",
       "minAge": 15,
       "maxAge": 19,
       "weight": 1,
@@ -2754,7 +2811,7 @@
       "cost": -0.02,
       "once": true,
       "en": {
-        "text": "Went to a favorite singer's concert for the first time. The ears were still ringing on the train home."
+        "text": "Went to a favorite singer's concert for the first time. The ears were still ringing on the way home."
       }
     },
     {
@@ -2957,8 +3014,24 @@
       "weight": 1,
       "when": {
         "place": "rural",
-        "region": [
-          "アジア"
+        "countries": [
+          "JPN",
+          "CHN",
+          "KOR",
+          "IND",
+          "BGD",
+          "NPL",
+          "LKA",
+          "MMR",
+          "THA",
+          "VNM",
+          "LAO",
+          "KHM",
+          "IDN",
+          "PHL",
+          "MYS",
+          "TLS",
+          "BTN"
         ]
       },
       "effects": {
@@ -3221,7 +3294,8 @@
           "CHN",
           "IND"
         ],
-        "state": "work"
+        "state": "work",
+        "place": "urban"
       },
       "effects": {
         "happy": -1,
@@ -3644,7 +3718,7 @@
     },
     {
       "id": "month-end-overtime",
-      "text": "月末の締めで、一週間ずっと終電で帰った。",
+      "text": "月末の締めで、一週間ずっと夜遅くに帰った。",
       "minAge": 22,
       "maxAge": 45,
       "weight": 1,
@@ -3659,7 +3733,7 @@
       },
       "cost": 0.02,
       "en": {
-        "text": "With the month-end close, took the last train home every night for a week."
+        "text": "With the month-end close, got home late every night for a week."
       }
     },
     {
@@ -3764,7 +3838,7 @@
     },
     {
       "id": "influenza",
-      "text": "インフルエンザで五日寝こんだ。熱が下がった日のおかゆがおいしかった。",
+      "text": "インフルエンザで五日寝こんだ。熱が下がった日のスープがおいしかった。",
       "minAge": 18,
       "maxAge": 60,
       "weight": 1,
@@ -3773,7 +3847,7 @@
       },
       "stat": "季節性インフルエンザには、毎年世界で約10億人がかかる (WHO)",
       "en": {
-        "text": "Was in bed for five days with the flu. The rice porridge on the day the fever broke tasted wonderful.",
+        "text": "Was in bed for five days with the flu. The soup on the day the fever broke tasted wonderful.",
         "stat": "About 1 billion people worldwide catch seasonal influenza every year (WHO)"
       }
     },
@@ -4114,7 +4188,8 @@
       "when": {
         "wealth": "poor",
         "place": "urban",
-        "job": "manual"
+        "job": "manual",
+        "gdpUnder": 12000
       },
       "effects": {
         "happy": -1,
@@ -4174,7 +4249,18 @@
       "maxAge": 40,
       "weight": 1,
       "when": {
-        "place": "rural"
+        "place": "rural",
+        "region": [
+          "アジア",
+          "アフリカ",
+          "南アメリカ",
+          "北アメリカ"
+        ],
+        "notCountries": [
+          "USA",
+          "CAN"
+        ],
+        "gdpUnder": 15000
       },
       "effects": {
         "bond": 2
@@ -4451,7 +4537,7 @@
     },
     {
       "id": "colleague-funeral",
-      "text": "同僚の父親の葬儀に行き、香典を包んだ。",
+      "text": "同僚の父親の葬儀に行き、お悔やみを伝えた。",
       "minAge": 30,
       "maxAge": 60,
       "weight": 1,
@@ -4463,7 +4549,7 @@
       },
       "cost": -0.01,
       "en": {
-        "text": "Went to the funeral of a colleague's father and brought an envelope of condolence money."
+        "text": "Went to the funeral of a colleague's father and offered condolences."
       }
     },
     {
@@ -4473,7 +4559,18 @@
       "maxAge": 70,
       "weight": 1,
       "when": {
-        "place": "rural"
+        "place": "rural",
+        "region": [
+          "アジア",
+          "アフリカ",
+          "南アメリカ",
+          "北アメリカ"
+        ],
+        "notCountries": [
+          "USA",
+          "CAN"
+        ],
+        "gdpUnder": 15000
       },
       "effects": {
         "bond": 2
@@ -4563,6 +4660,21 @@
           "アジア",
           "アフリカ",
           "南アメリカ"
+        ],
+        "notCountries": [
+          "EGY",
+          "LBY",
+          "SAU",
+          "ARE",
+          "QAT",
+          "KWT",
+          "BHR",
+          "OMN",
+          "JOR",
+          "ISR",
+          "PSE",
+          "DJI",
+          "TKM"
         ]
       },
       "effects": {
@@ -4665,6 +4777,15 @@
         "place": "rural",
         "region": [
           "アフリカ"
+        ],
+        "notCountries": [
+          "EGY",
+          "LBY",
+          "DZA",
+          "TUN",
+          "MAR",
+          "MRT",
+          "DJI"
         ]
       },
       "effects": {
@@ -5354,6 +5475,12 @@
         "region": [
           "南アメリカ",
           "北アメリカ"
+        ],
+        "notCountries": [
+          "USA",
+          "CAN",
+          "JAM",
+          "TTO"
         ]
       },
       "effects": {
@@ -5591,7 +5718,8 @@
       "weight": 1,
       "from": 1950,
       "when": {
-        "income": "mid"
+        "income": "mid",
+        "gdpUnder": 15000
       },
       "effects": {
         "happy": -1
@@ -5636,6 +5764,10 @@
           "アフリカ",
           "アジア",
           "南アメリカ"
+        ],
+        "notCountries": [
+          "JPN",
+          "SGP"
         ]
       },
       "effects": {
@@ -6097,7 +6229,8 @@
       "weight": 1,
       "when": {
         "wealth": "poor",
-        "hasChildren": true
+        "hasChildren": true,
+        "gdpUnder": 10000
       },
       "effects": {
         "happy": -3,
@@ -6795,8 +6928,24 @@
       "weight": 1,
       "when": {
         "place": "rural",
-        "region": [
-          "アジア"
+        "countries": [
+          "JPN",
+          "CHN",
+          "KOR",
+          "IND",
+          "BGD",
+          "NPL",
+          "LKA",
+          "MMR",
+          "THA",
+          "VNM",
+          "LAO",
+          "KHM",
+          "IDN",
+          "PHL",
+          "MYS",
+          "TLS",
+          "BTN"
         ]
       },
       "effects": {
@@ -7360,6 +7509,29 @@
       "when": {
         "religion": [
           "キリスト教"
+        ],
+        "notCountries": [
+          "GBR",
+          "DNK",
+          "SWE",
+          "NOR",
+          "FIN",
+          "EST",
+          "LVA",
+          "RUS",
+          "UKR",
+          "BLR",
+          "SRB",
+          "BGR",
+          "ROU",
+          "GRC",
+          "MDA",
+          "MKD",
+          "MNE",
+          "GEO",
+          "ARM",
+          "CYP",
+          "ETH"
         ]
       },
       "effects": {
@@ -7762,7 +7934,8 @@
       "weight": 1,
       "when": {
         "wealth": "poor",
-        "place": "urban"
+        "place": "urban",
+        "gdpUnder": 15000
       },
       "effects": {
         "happy": -1
@@ -7780,7 +7953,8 @@
       "maxAge": 70,
       "weight": 1,
       "when": {
-        "wealth": "poor"
+        "wealth": "poor",
+        "gdpUnder": 15000
       },
       "effects": {
         "health": -1
@@ -7809,7 +7983,7 @@
     },
     {
       "id": "loan-from-neighbor",
-      "text": "月末、隣の家に米を一袋借りた。翌月、少し多めに返した。",
+      "text": "月末、隣の家に食べるものを少し借りた。翌月、少し多めに返した。",
       "minAge": 19,
       "maxAge": 70,
       "weight": 1,
@@ -7820,7 +7994,7 @@
         "bond": 2
       },
       "en": {
-        "text": "At the end of the month, borrowed a sack of rice from the neighbors. Paid back a little more the next month."
+        "text": "At the end of the month, borrowed some food from the neighbors. Paid back a little more the next month."
       }
     },
     {
@@ -7842,7 +8016,7 @@
     },
     {
       "id": "festival-family",
-      "text": "町の祭りに家族で出かけた。屋台の焼き物の匂いが、帰り道まで服に残っていた。",
+      "text": "町の祭りに家族で出かけた。出店の食べ物の匂いが、帰り道まで服に残っていた。",
       "minAge": 6,
       "maxAge": 80,
       "weight": 1,
@@ -7851,7 +8025,7 @@
         "bond": 2
       },
       "en": {
-        "text": "Went to the town festival with the family. The smell of grilled food from the stalls stayed on their clothes all the way home."
+        "text": "Went to the town festival with the family. The smell of food from the stalls stayed on their clothes all the way home."
       }
     },
     {
@@ -7882,7 +8056,7 @@
     },
     {
       "id": "food-poisoning",
-      "text": "屋台で食べたものにあたり、一晩トイレから出られなかった。",
+      "text": "外で食べたものにあたり、一晩トイレから出られなかった。",
       "minAge": 13,
       "maxAge": 70,
       "weight": 1,
@@ -7890,7 +8064,7 @@
         "health": -3
       },
       "en": {
-        "text": "Got food poisoning from a street stall and spent the night in the bathroom."
+        "text": "Got food poisoning from something eaten out and spent the night in the bathroom."
       }
     },
     {
@@ -7926,7 +8100,7 @@
     },
     {
       "id": "lottery-small",
-      "text": "宝くじで少額が当たった。その日の夕食に一品増えた。",
+      "text": "くじで少額が当たった。その日の夕食に一品増えた。",
       "minAge": 19,
       "maxAge": 80,
       "weight": 0.4,
@@ -7938,7 +8112,7 @@
       },
       "cost": 0.02,
       "en": {
-        "text": "Won a small lottery prize. There was one extra dish at dinner that night."
+        "text": "Won a small prize in a raffle. There was one extra dish at dinner that night."
       }
     },
     {

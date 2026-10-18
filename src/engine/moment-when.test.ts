@@ -41,3 +41,22 @@ describe('風土病の出来事', () => {
     expect(count('THA')).toBeGreaterThan(0);
   }, 120_000);
 });
+
+// 水汲み・共同トイレ・米と鶏の冠婚葬祭は、豊かな国の今の暮らしでは起きない (根拠: イギリスの人生に「バケツ一杯の水」が出たという報告)
+describe('国に合わない日常の出来事', () => {
+  const GATED = ['bucket-shower', 'shared-latrine', 'gift-wedding-village', 'village-funeral', 'school-fees-late-parent', 'rosary-night'];
+  const count = (country: string) => {
+    let n = 0;
+    for (let s = 1; s <= 150; s++) {
+      const p = liveOut(createPerson({ seed: s * 7919, basis: 'births', country, year: 1990, auto: true }));
+      if (p.migratedTo) continue;
+      n += GATED.filter((id) => p.recent[id] !== undefined).length;
+    }
+    return n;
+  };
+  it('1990年生まれのイギリスでは起きず、インドでは起きることもある', () => {
+    // 実測 2026-10-18: 絞る前は GBR 136回 / 絞った後 GBR 0回・IND 213回
+    expect(count('GBR')).toBe(0);
+    expect(count('IND')).toBeGreaterThan(0);
+  }, 120_000);
+});
