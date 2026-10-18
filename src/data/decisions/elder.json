@@ -4297,7 +4297,8 @@
           "mid",
           "high"
         ],
-        "hasChildren": true
+        "hasChildren": true,
+        "uni": false
       },
       "title": "六十からの大学",
       "text": "近くの大学に、年配の人の入学枠ができた。若い頃、家の事情で進学をあきらめた。",

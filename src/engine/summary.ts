@@ -18,7 +18,7 @@ function lifeStoryEn(p: Person): string {
     return parts.join(' ');
   }
   const edu = eduLevel(p);
-  const major = p.school.major ? `, studying ${majorName(p.school.major).replace(/^[A-Z](?=[a-z])/, (ch) => ch.toLowerCase())}` : '';
+  const major = p.school.major ? `, studying ${majorName(p.school.major).toLowerCase()}` : ''; // 専攻名に固有名詞は無い (jobs.ts の MAJOR_EN)
   parts.push(edu === 5 ? `Finished university and graduate school${major}.` : edu === 4 ? `Finished university${major}.` : edu === 3 ? 'Finished high school.' : edu === 2 ? 'Went as far as middle school.' : edu === 1 ? 'Finished primary school.' : p.school.years > 0 ? 'Left school early.' : 'Never went to school.');
   if (p.childMarriage) parts.push('Was married off as a child.');
   if (p.job) {

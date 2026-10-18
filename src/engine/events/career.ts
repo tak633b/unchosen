@@ -228,21 +228,26 @@ export function businessRetire(p: Person): boolean {
 
 // ---- 士官学校 -------------------------------------------------------------------------
 
+// 海のない国 (ISO3)。士官学校で海軍は選べない
+const LANDLOCKED = new Set(['AFG', 'ARM', 'AUT', 'AZE', 'BLR', 'BTN', 'BOL', 'BWA', 'BFA', 'BDI', 'CAF', 'TCD', 'CZE', 'ETH', 'HUN', 'KAZ', 'KGZ', 'LAO', 'LSO', 'LIE', 'LUX', 'MWI', 'MLI', 'MDA', 'MNG', 'NPL', 'NER', 'MKD', 'PRY', 'RWA', 'SRB', 'SVK', 'SSD', 'SWZ', 'CHE', 'TJK', 'TKM', 'UGA', 'UZB', 'ZMB', 'ZWE']);
+
 export function enterAcademy(p: Person): void {
   p.school.uni = 'studying';
   p.school.uniYears = 0;
   p.school.major = '防衛学';
   if (p.military === 'none') p.military = 'done'; // 兵役は将校として果たす
   log(p, L('士官学校に入った。学費はかからず、手当も出る。', 'Entered the military academy. No tuition, and a small allowance.'), 'school', true);
+  const options = [
+    { label: L('陸軍', 'Army'), apply: (q: Person) => { q.branch = 'army' as const; } },
+    ...(LANDLOCKED.has(p.country) ? [] : [{ label: L('海軍', 'Navy'), hint: L('長く海に出る', 'Long stretches at sea'), apply: (q: Person) => { q.branch = 'navy' as const; } }]),
+    { label: L('空軍', 'Air force'), hint: L('体が強ければ操縦士への道も', 'Pilot training if fit enough'), apply: (q: Person) => { q.branch = 'air' as const; } },
+  ];
   decide(p, {
     title: L('どの軍に進む？', 'Which service?'),
     text: L('士官学校では、2年目までに進む軍を決める。', 'Cadets choose their service by the second year.'),
-    options: [
-      { label: L('陸軍', 'Army'), apply: (q) => { q.branch = 'army'; } },
-      { label: L('海軍', 'Navy'), hint: L('長く海に出る', 'Long stretches at sea'), apply: (q) => { q.branch = 'navy'; } },
-      { label: L('空軍', 'Air force'), hint: L('体が強ければ操縦士への道も', 'Pilot training if fit enough'), apply: (q) => { q.branch = 'air'; } },
-    ],
-    auto: (q) => (q.rng() < 0.5 ? 0 : q.rng() < 0.4 ? 1 : 2),
+    options,
+    // 乱数は海軍の有無にかかわらず同じだけ引く。海軍が無ければ、その分は空軍になる
+    auto: (q) => Math.min(q.rng() < 0.5 ? 0 : q.rng() < 0.4 ? 1 : 2, options.length - 1),
   });
 }
 

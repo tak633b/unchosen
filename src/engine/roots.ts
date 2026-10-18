@@ -236,6 +236,8 @@ function adoption(p: Person, r: Rng): boolean {
       `At ${at || 1} month${at > 1 ? 's' : ''} old, was adopted by a couple in ${byCode(dest).name} and given a new name: ${p.name}. The records from ${from} stayed in an agency file.`), 'move', true,
     L('韓国からは1953年以降、約17万人の子が外国へ養子に出た。1985年には生まれた子のおよそ75人に1人 (韓国保健福祉部)', 'Since 1953 about 170,000 children have been adopted out of South Korea; in 1985 it was about 1 in 75 births (Korean Ministry of Health and Welfare)'));
   } else {
+    // 養親は年が上なので、母が45歳を過ぎてから生まれるはずだった弟妹は外す
+    p.siblings = p.siblings.filter((s) => s.age >= 0 || p.mother.age - s.age <= 45);
     p.roots = { ...p.roots, adopted: { from: p.birthCountry, abroad: false, at } };
     log(p, L(`生後${at || 1}か月で、${p.mother.name}と${p.father.name}の養子になった。`, `At ${at || 1} month${at > 1 ? 's' : ''} old, was adopted by ${p.mother.name} and ${p.father.name}.`), 'family', false);
   }

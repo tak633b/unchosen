@@ -378,7 +378,7 @@ async function aiChat(request) {
   const { r, error } = await relayFetch(b, target, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...auth(b), 'X-Title': 'Unchosen' },
-    body: JSON.stringify({ model: body.model, messages: body.messages, max_tokens: Math.min(2000, Number(body.max_tokens) || 800), temperature: Number(body.temperature) || 1 }),
+    body: JSON.stringify({ model: body.model, messages: body.messages, max_tokens: Math.min(2000, Number(body.max_tokens) || 800), temperature: Number.isFinite(Number(body.temperature)) && body.temperature !== null && body.temperature !== '' ? Number(body.temperature) : 1 }),
   }, AI_TIMEOUT_MS);
   if (error) return ng(502, error);
   const text = (await r.text()).slice(0, AI_MAX_RESPONSE);

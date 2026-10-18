@@ -108,7 +108,8 @@ export function worldEvents(p: Person): void {
     if (seen(p, e) || p.age < NEWS_AGE || (year >= FUTURE_FROM && e.severity < 3) || (e.newsAt !== undefined && year !== e.newsAt)) continue;
     news.push([e, u < h * NEAR && e.ja.near?.length && (!e.cities || inCity(e, p.city)) ? 'near' : 'news']);
   }
-  if (year < FUTURE_FROM) for (const e of worldNews) if (!active(e, year) || e.countries.includes(p.country) || seen(p, e) || p.age < NEWS_AGE || (e.newsAt !== undefined && year !== e.newsAt)) continue; else news.push([e, 'news']);
+  // 同じ種類の出来事がその年に自分の国にもあれば (2004年の津波)、世界のニュースは重ねない
+  if (year < FUTURE_FROM) for (const e of worldNews) if (!active(e, year) || e.countries.includes(p.country) || seen(p, e) || p.age < NEWS_AGE || (e.newsAt !== undefined && year !== e.newsAt) || here.some((h) => h.type === e.type)) continue; else news.push([e, 'news']);
   // ニュースは1年に1つ、とても大きな出来事 (severity 4以上) が重なった年だけ2つまで
   news.sort(([a], [b]) => b.severity - a.severity || b.hit - a.hit);
   news.slice(0, 2).forEach(([e, how], i) => {

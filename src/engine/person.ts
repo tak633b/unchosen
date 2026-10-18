@@ -211,7 +211,8 @@ export function decide(p: Person, d: Decision): void {
 
 export function choose(p: Person, d: Decision, i: number): void {
   p.decisions++;
-  if (p.reflect) log(p, L(`決めたこと: ${d.options[i].label}`, `Decided: ${d.options[i].label}`), p.kinds[p.age] ?? 'family');
+  // 自動で決めた人生 (同じ1秒の人・輪の人) にも残す。結果の一行だけでは何を決めたのか分からない
+  log(p, L(`決めたこと: ${d.options[i].label}`, `Decided: ${d.options[i].label}`), p.kinds[p.age] ?? 'family');
   d.options[i].apply(p);
 }
 

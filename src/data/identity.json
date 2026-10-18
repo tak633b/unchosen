@@ -4016,6 +4016,7 @@
         "Abdul Jalil"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "indonesian": {
@@ -5876,6 +5877,7 @@
         "Dawood"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "afghan": {
@@ -6186,6 +6188,7 @@
         "Daudzai"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "nepali": {
@@ -7426,6 +7429,7 @@
         "Sobah"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "mongolian": {
@@ -8046,6 +8050,7 @@
         "Davoudi"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "turkish": {
@@ -8356,6 +8361,7 @@
         "Tatlı"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "turkic_central_asia": {
@@ -8666,6 +8672,7 @@
         "Aripov"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " ",
       "familyFemale": [
         "Karimova",
@@ -9698,6 +9705,7 @@
         "Al-Ali"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "arabic_levant": {
@@ -10008,6 +10016,7 @@
         "Mahmoud"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "arabic_nile": {
@@ -10318,6 +10327,7 @@
         "Ghoneim"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "arabic_maghreb": {
@@ -10628,6 +10638,7 @@
         "Sassi"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "hebrew": {
@@ -13206,6 +13217,7 @@
         "Mrkonjić"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "bulgarian_macedonian": {
@@ -23844,6 +23856,7 @@
         "Geele"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "swahili": {
@@ -28266,6 +28279,7 @@
         "Muhter"
       ],
       "order": "given-first",
+      "faith": "イスラム教",
       "sep": " "
     },
     "tibetan": {
@@ -28376,6 +28390,7 @@
     },
     "nepali_muslim": {
       "from": "urdu_muslim",
+      "faith": "イスラム教",
       "family": [
         "Ansari",
         "Miya",

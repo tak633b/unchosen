@@ -51,6 +51,9 @@ export interface When {
   hasPet?: boolean;
   migrated?: boolean;
   youngChild?: boolean;
+  baby?: boolean;     // 0歳の子がいる
+  marriedFor?: number; // 連れ合いと一緒になって何年以上か (輪に入った年から数える)
+  uni?: boolean;      // 大学を出た (大学院も含む)
   parentAlive?: boolean;
   fatherAlive?: boolean;
   motherAlive?: boolean;
@@ -102,6 +105,9 @@ export function fits(p: Person, w: When): boolean {
   if (!is(w.hasPet, !!p.pet)) return false;
   if (w.migrated !== undefined && w.migrated !== !!p.migratedTo) return false;
   if (!is(w.youngChild, p.children.some((k) => k.alive && k.age < 4))) return false;
+  if (!is(w.baby, p.children.some((k) => k.alive && k.age === 0))) return false;
+  if (w.marriedFor !== undefined && !(p.spouse?.alive && p.age - (p.spouse.since ?? 0) >= w.marriedFor)) return false;
+  if (!is(w.uni, p.school.uni === 'done' || p.school.grad === 'done')) return false;
   if (!is(w.parentAlive, p.mother.alive || p.father.alive)) return false;
   if (!is(w.fatherAlive, p.father.alive)) return false;
   if (!is(w.motherAlive, p.mother.alive)) return false;
@@ -134,12 +140,15 @@ export const statOf = (m: { stat?: string; en?: { stat?: string } }, year: numbe
 export const techWeight = (p: Person, m: { tech?: Tech[] }) => (m.tech ?? []).reduce((w, t) => w * techShare(countryOf(p), t, isRural(p)), 1);
 
 const FRIEND_DIES = 'old-friend-dies'; // 友だちの死を語る出来事。輪の上でも亡くなったことにする
+const FRIEND_WEDS = 'friend-wedding-gift'; // 友だちの結婚式。bonds.ts の「結婚式に出た」と同じ印 (wed:id) を使い、同じ友だちで二度にしない
+const REUNION = 'reunion-20-years';        // 二十年ぶりの同窓会。20年来の友だちがいるときだけ
 
 // 1年に1〜3つ。土地や暮らしに合う出来事ほど選ばれやすい
 export function moments(p: Person): void {
   // {friend} の出来事は、その友だちが生きているときだけ (亡くなった友だちと出かける話を出さない)
   const friend = (p.ties ?? []).find((t) => t.role === 'friend' && t.name === p.friend);
-  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || (p.friend && friend?.alive !== false)) && techWeight(p, m) > 0.005);
+  const pool = MOMENTS.filter((m) => matches(p, m) && (!textOf(m).includes('{pet}') || p.pet) && (!textOf(m).includes('{friend}') || (p.friend && friend?.alive !== false)) && techWeight(p, m) > 0.005
+    && (m.id !== FRIEND_WEDS || (friend && p.recent[`wed:${friend.id}`] === undefined)) && (m.id !== REUNION || (friend && friend.since <= p.age - 20)));
   const n = 1 + (p.rng() < 0.6 ? 1 : 0) + (p.rng() < 0.25 ? 1 : 0);
   for (let i = 0; i < n && pool.length; i++) {
     const m = pickWeighted(p.rng, pool, (x) => x.weight * (x.when ? 1.8 : 1) * techWeight(p, x));
@@ -157,6 +166,7 @@ export function moments(p: Person): void {
     if (textOf(m).includes('{pet}')) petMoment(p, text); // ペットとの出来事は、ペットの記録にも残す
     const f = textOf(m).includes('{friend}') ? friend : undefined;
     if (f) { p.log[p.log.length - 1].who = [f.id!]; remember(p, f, text, 1, 'moment'); }
+    if (f && m.id === FRIEND_WEDS) p.recent[`wed:${f.id}`] = p.age;
     if (f && m.id === FRIEND_DIES) { f.alive = false; f.diedAt = p.age; because(p, deathWhy(countryOf(p), f.sex, f.age));
       for (let j = pool.length - 1; j >= 0; j--) if (textOf(pool[j]).includes('{friend}')) pool.splice(j, 1);
     }
@@ -179,5 +189,7 @@ export function milestone(p: Person): void {
     : (p.age === 5
       ? `5歳の誕生日。${born.name}で生まれた子どものおよそ${(u5 * 100).toFixed(1)}%は、5歳になる前に亡くなる。この子はその時期を越えた。`
       : `${p.age}歳。同じ年に${born.name}で生まれた${who}のうち、約${Math.round(alive * 100)}%が今も生きている。`);
-  log(p, text, p.kinds[p.age] ?? 'child');
+  // 年の初めに書くので、その年の色はまだ無い。前の年の暮らしから決める (life.ts の baseKind と同じ)
+  const st = stateOf(p);
+  log(p, text, p.age < 6 ? 'child' : st === 'retired' ? 'old' : st === 'school' ? 'school' : st === 'work' ? 'work' : 'family');
 }

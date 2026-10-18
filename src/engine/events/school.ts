@@ -14,8 +14,8 @@ import { startWork } from './work';
 import { because, schoolWhy } from '../why';
 
 const levelOf = (years: number) => isEn
-  ? (years >= 12 ? 'finished high school' : years >= 9 ? 'finished middle school' : years >= 6 ? 'finished primary school' : `left primary school after ${Math.round(years)} years`)
-  : (years >= 12 ? '高校を卒業した' : years >= 9 ? '中学校を卒業した' : years >= 6 ? '小学校を卒業した' : `小学校を${Math.round(years)}年で離れた`);
+  ? (years >= 12 ? 'finished high school' : years >= 10 ? 'left high school partway' : years >= 9 ? 'finished middle school' : years >= 7 ? 'left middle school partway' : years >= 6 ? 'finished primary school' : `left primary school after ${Math.round(years)} years`)
+  : (years >= 12 ? '高校を卒業した' : years >= 10 ? '高校を途中でやめた' : years >= 9 ? '中学校を卒業した' : years >= 7 ? '中学校を途中でやめた' : years >= 6 ? '小学校を卒業した' : `小学校を${Math.round(years)}年で離れた`);
 const capital = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
 export function schooling(p: Person): void {
@@ -44,9 +44,12 @@ export function schooling(p: Person): void {
 
 function askToLeave(p: Person): void {
   if (p.age < 10) { leaveSchool(p); return; }
+  // 学年の途中なら「〜の途中で」 (卒業の一行は schooling() がその年に書いている)
+  const mid = p.school.years >= 10 ? L('高校', 'high school') : p.school.years >= 7 && p.school.years < 9 ? L('中学校', 'middle school') : undefined;
   decide(p, {
     title: L('学校をやめる？', 'Leave school?'),
-    text: isEn ? `Money is tight at home. Having ${levelOf(p.school.years)}, you are told to go out and work.` : `家計が苦しく、${levelOf(p.school.years)}ところで働きに出るよう言われた。`,
+    text: mid ? L(`家計が苦しく、${mid}の途中で働きに出るよう言われた。`, `Money is tight at home. Partway through ${mid}, you are told to go out and work.`)
+      : isEn ? `Money is tight at home. Having ${levelOf(p.school.years)}, you are told to go out and work.` : `家計が苦しく、${levelOf(p.school.years)}ところで働きに出るよう言われた。`,
     options: [
       {
         label: L('学校を続けたいと頼む', 'Ask to stay in school'), hint: L('うまくいくとは限らない', 'It may not work'),
@@ -68,7 +71,9 @@ function askToLeave(p: Person): void {
 
 function leaveSchool(p: Person): void {
   p.school.enrolled = false;
-  log(p, isEn ? capital(levelOf(p.school.years)) + '.' : levelOf(p.school.years) + '。', 'school');
+  // 6年目・9年目の卒業は schooling() がその年に書いている。同じ一行は重ねない
+  const text = isEn ? capital(levelOf(p.school.years)) + '.' : levelOf(p.school.years) + '。';
+  if (!p.log.some((e) => e.age === p.age && e.text === text)) log(p, text, 'school');
   if (p.school.years < 12) because(p, schoolWhy(p, countryOf(p)));
   if (p.age >= 10) startWork(p);
 }

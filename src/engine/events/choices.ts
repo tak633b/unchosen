@@ -6,7 +6,7 @@
 // minAge / maxAge / weight / when / tech / from / to
 //           moments.json と同じ。when の語彙は moments.ts の When (place, wealth, income, region, countries,
 //           religion, state, sex, married, widowed, hasChildren, hasPet, migrated, youngChild, parentAlive, fatherAlive,
-//           motherAlive, sibling, teenChild, livingAlone, job)。国を限るときは countries に ISO3 を並べる
+//           motherAlive, sibling, teenChild, livingAlone, job, baby, marriedFor, uni)。国を限るときは countries に ISO3 を並べる
 // who       選択に出てくる人の続柄: mother / father / sibling / spouse / partner / child / friend。
 //           その人が生きているときだけ出る。child は whoAge: [最小, 最大] で子の年齢を絞れる
 // amount    {money} に出す金額。暮らしの規模 (年収か最低生活費) に対する割合

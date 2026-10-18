@@ -65,7 +65,9 @@ export function createPerson(o: BirthOptions): Person {
   const familyP = clamp(rng(), 0.01, 0.99);
   // 農業で働く人が多い国ほど、貧しい家ほど農村に生まれやすい
   const rural = rng() < clamp(c.agri * 1.3 * (1.4 - familyP * 0.8), 0.02, 0.95);
-  const name = makeName(rng, c.code, sex);
+  // 宗教を先に決め、名はその宗教の人の伝統から引く (インドのイスラム教徒にヒンドゥーの名を付けない)
+  const religion = pickReligion(rng, c.code);
+  const name = makeName(rng, c.code, sex, undefined, religion);
   const fam = { pool: name.pool, index: name.familyIndex };
   const motherAge = Math.round(clamp(normal(rng, c.tfr > 4 ? 24 : 29, 5), 15, 45));
   const fatherAge = Math.round(clamp(motherAge + normal(rng, 4, 3), 16, 70));
@@ -79,7 +81,7 @@ export function createPerson(o: BirthOptions): Person {
   const now = new Date();
   const p: Person = {
     seed: o.seed, rng, given: name.given, ...(o.gender === 'X' ? { gender: 'X' as const } : {}), name: name.full, pool: name.pool, familyIndex: name.familyIndex, sex,
-    birthCountry: c.code, country: c.code, city: rural ? null : pickCity(rng, c.code), religion: pickReligion(rng, c.code),
+    birthCountry: c.code, country: c.code, city: rural ? null : pickCity(rng, c.code), religion,
     birthYear: year, birthMonth: o.month ?? now.getMonth() + 1,
     age: 0, alive: true, rural, familyP, birthP: familyP, incomeP: familyP,
     working: false, jobYears: 0, formal: false, retired: false, unemployed: 0,
@@ -88,7 +90,8 @@ export function createPerson(o: BirthOptions): Person {
     father: { alive: true, age: fatherAge, sex: 'M', name: freshName(() => makeName(rng, c.code, 'M', fam), nameKeys).given },
     siblings: [
       ...Array.from({ length: older }, (_, i) => sib(2 + i * 2 + Math.floor(rng() * 2))),
-      ...Array.from({ length: younger }, (_, i) => sib(-(2 + i * 2 + Math.floor(rng() * 2)))),
+      // 母が45歳を過ぎてからは生まれない (乱数は同じだけ引いてから外す)
+      ...Array.from({ length: younger }, (_, i) => sib(-(2 + i * 2 + Math.floor(rng() * 2)))).filter((s) => motherAge - s.age <= 45),
     ],
     school: { years: 0, target: 0, enrolled: false, uni: 'no', uniYears: 0, grad: 'no' },
     military: 'none', childMarriage: false, children: [], petsHad: 0, hobbies: [],
@@ -190,7 +193,8 @@ function die(p: Person, cause: string): void {
 
 // 出産のように意思決定の中で亡くなることもあるので、死亡の記録はここで一度だけ付ける
 export function settle(p: Person): void {
-  if (p.alive || p.log.at(-1)?.kind === 'death') return;
+  if (p.alive || p.log.some((e) => e.kind === 'death')) return;
+  p.pending = []; // 亡くなった人に、その年に積んであった決定を見せない (出産で亡くなった年)
   lifePayout(p, countryOf(p));
   // 自死は死因を書かず、理由も書かない。「なぜ」の欄には相談先を置く (suicide.ts)
   if (isSuicide(p.cause)) {

@@ -37,9 +37,11 @@ const startAge = (p: Person) => (countryOf(p).gdp < 8000 ? 17 : 22);
 export function grownChildren(p: Person): void {
   for (const k of p.children) {
     if (!k.alive || k.fixed) continue;
-    if (k.age === startAge(p) && !k.job) {
+    // 働き始める年齢が途中で変わっても (国の豊かさの変化・移住)、一度は働き始める
+    if (k.age >= startAge(p) && !k.job) {
       k.job = childJob(p, k);
-      log(p, L(`${k.name}が学校を終えて働き始めた。${jobName(k.job)}になった。`, `${k.name} finished school and started work as ${jobName(k.job)}.`), 'family', false, undefined, k.id ? [k.id] : undefined);
+      const j = jobName(k.job).replace(/^[A-Z](?=[a-z])/, (ch) => ch.toLowerCase());
+      log(p, L(`${k.name}が学校を終えて働き始めた。${jobName(k.job)}になった。`, `${k.name} finished school and started work as ${/^[aeiou]/i.test(j) ? 'an' : 'a'} ${j}.`), 'family', false, undefined, k.id ? [k.id] : undefined);
       continue;
     }
     const key = `kidpay:${k.id}`;

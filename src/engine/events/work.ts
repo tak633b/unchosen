@@ -128,7 +128,7 @@ export function work(p: Person): void {
     log(p, L(`働きぶりが認められ、収入が上がった(年収 ${formatMoney(earnings(c, p.incomeP))})。`, `Good work was noticed; pay went up (${formatMoney(earnings(c, p.incomeP))} a year).`), 'work');
     bump(p, { happy: 4 });
   }
-  if (!p.selfEmployed && p.age >= 33 && p.age <= 55 && p.jobYears >= 5 && r() < 0.06) leadOffer(p, c);
+  if (!p.selfEmployed && p.age >= 33 && p.age <= 55 && p.jobYears >= 5 && r() < 0.06 && !p.job?.endsWith('(リーダー)')) leadOffer(p, c); // すでにリーダーなら打診しない (乱数は同じだけ引く)
   if (!p.selfEmployed && p.age >= 28 && p.age <= 55 && r() < 0.03) moveOffer(p, c);
   career(p);
   if (p.working && !p.retired && p.unemployed === 0) retirement(p, c);
