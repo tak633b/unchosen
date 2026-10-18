@@ -41,7 +41,13 @@ const idOf = (code: string) => COUNTRIES[code] ?? FALLBACK;
 export interface Name { given: string; full: string; pool: string; key: string } // key: 元の文字の名 (日英で同じ。家の中の重複を避けるのに使う)
 
 // 宗教が分かっているときは、その宗教の人の伝統があればそれだけから、無ければ宗教を限らない伝統から名を引く
-function poolsFor(ci: CountryIdentity, religion?: string): [string, number][] {
+// year: 1960年より前の欧米 (MIGRANT_FAITH) では、移民の伝統の名を引かない (南アジア系・北アフリカ系の名の多くは1960年代からの移民とその子)
+function poolsFor(ci: CountryIdentity, religion?: string, code?: string, year?: number): [string, number][] {
+  if (ci.pools && year !== undefined && year < 1960 && code && MIGRANT_FAITH.has(code)) {
+    const own = religion ? ci.pools.filter(([id]) => POOLS[id]?.faith === religion) : [];
+    if (own.length) return own;
+    return [ci.pools.reduce((a, b) => (b[1] > a[1] ? b : a))];
+  }
   if (!ci.pools || !religion) return ci.pools ?? [];
   const own = ci.pools.filter(([id]) => POOLS[id]?.faith === religion);
   if (own.length) return own;
@@ -49,9 +55,9 @@ function poolsFor(ci: CountryIdentity, religion?: string): [string, number][] {
   return open.length ? open : ci.pools;
 }
 
-export function makeName(rng: Rng, code: string, sex: Sex, family?: { pool: string; index: number }, religion?: string): Name & { familyIndex: number } {
+export function makeName(rng: Rng, code: string, sex: Sex, family?: { pool: string; index: number }, religion?: string, year?: number): Name & { familyIndex: number } {
   const ci = idOf(code);
-  const poolId = family?.pool ?? (ci.pools ? pickWeighted(rng, poolsFor(ci, religion), ([, w]) => w)[0] : ci.pool!);
+  const poolId = family?.pool ?? (ci.pools ? pickWeighted(rng, poolsFor(ci, religion, code, year), ([, w]) => w)[0] : ci.pool!);
   const pool = POOLS[poolId] ?? Object.values(POOLS)[0];
   // 添字を先に引いてから言語で配列を選ぶ (同じ seed なら日英で同じ人生になる)
   const givens = sex === 'F' ? pool.female : pool.male;

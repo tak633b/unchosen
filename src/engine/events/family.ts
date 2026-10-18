@@ -97,7 +97,7 @@ export function family(p: Person): void {
   if (p.age >= 50 && grown.length && r() < 0.12) {
     const parent = pick(r, grown);
     const sex = r() < 0.512 ? 'M' : 'F';
-    const name = freshName(() => makeName(r, p.country, sex), (p.nameKeys ??= [])).given;
+    const name = freshName(() => makeName(r, p.country, sex, undefined, undefined, yearOf(p)), (p.nameKeys ??= [])).given;
     const g = addTie(p, { alive: true, age: 0, sex, name, role: 'grandchild', since: p.age, of: parent.id });
     shared(p, [g, parent], L(`孫が生まれた。${parent.name}の子で、名前は${g.name}。`, `A grandchild was born: ${parent.name}'s ${sex === 'F' ? 'daughter' : 'son'}, ${g.name}.`), 'family', 3, false, undefined, 'grandbirth');
     bump(p, { happy: 6, bond: 5 });

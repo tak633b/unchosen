@@ -68,7 +68,7 @@ export function createPerson(o: BirthOptions): Person {
   const rural = rng() < clamp(c.agri * 1.3 * (1.4 - familyP * 0.8), 0.02, 0.95);
   // 宗教を先に決め、名はその宗教の人の伝統から引く (インドのイスラム教徒にヒンドゥーの名を付けない)
   const religion = pickReligion(rng, c.code, year);
-  const name = makeName(rng, c.code, sex, undefined, religion);
+  const name = makeName(rng, c.code, sex, undefined, religion, year);
   const fam = { pool: name.pool, index: name.familyIndex };
   const motherAge = Math.round(clamp(normal(rng, c.tfr > 4 ? 24 : 29, 5), 15, 45));
   const fatherAge = Math.round(clamp(motherAge + normal(rng, 4, 3), 16, 70));
@@ -130,7 +130,7 @@ export function birthStory(p: Person): string {
   if (isEn) return birthStoryEn(p, older);
   const where = p.city ? `${c.name}の${p.city}` : `${c.name}の農村`;
   const top = p.familyP >= 0.8 ? 'で、所得の上位20%に入る家' : `の${homeWord(p.familyP)}`;
-  return `${p.birthYear}年${p.birthMonth}月、${where}${top}に${childWord(genderOf(p))}として生まれた。${older ? `上に${older}人のきょうだいがいる。` : '最初の子どもだった。'}家は${p.religion === '無宗教' ? '特定の宗教を持たない' : `${p.religion}を信じている`}。`;
+  return `${p.birthYear}年${p.birthMonth}月、${where}${top}に${childWord(genderOf(p))}として生まれた。${older ? `上に${older}人のきょうだいがいる。` : '最初の子どもだった。'}家は${p.religion === '無宗教' ? '特定の宗教を持たない' : p.religion === 'その他' ? 'ほかの宗教を信じている' : `${p.religion}を信じている`}。`;
 }
 
 // 生命表は病気や喫煙をすでに含むので、個人の倍率を重ねたぶんを全体で割り戻す。

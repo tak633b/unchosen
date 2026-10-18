@@ -189,6 +189,10 @@ const myDuty = (p: Person, e: WorldEvent): Duty => (p.recent[`evhit:${e.id}`] ==
 const relKey = (r: Relative, e: WorldEvent) => `war:${r.id}:${e.id}`;
 const relDuty = (p: Person, r: Relative, e: WorldEvent): Duty => (p.recent[relKey(r, e)] !== undefined && p.recent[`${relKey(r, e)}:home`] === undefined ? 'front' : undefined);
 
+// 本人か連れ合いが、戦地か捕虜の収容所にいる (子どもは授からない。love.ts)
+export const awayAtWar = (p: Person): boolean =>
+  DRAFTS.some((e) => myDuty(p, e) !== undefined || (p.spouse !== undefined && relDuty(p, p.spouse, e) !== undefined));
+
 function service(p: Person, year: number): void {
   for (const e of DRAFTS) {
     // 自分

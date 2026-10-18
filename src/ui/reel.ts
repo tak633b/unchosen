@@ -1,6 +1,7 @@
 // 人生をふりかえる (走馬灯)。亡くなった直後に流し、死亡記録と前世の記録から何度でも流し直せる。
 // 台本 (reelOf) は前世の記録 (PastLife) だけから作る。人生の乱数は使わない。再生 (playReel) は画面いっぱいの重ね絵
-import { byCode, countryAt } from '../engine/countries';
+import { countryAt } from '../engine/countries';
+import { bornIn } from '../engine/polity';
 import type { LogEntry } from '../engine/person';
 import type { LastWord } from '../ai/words';
 import type { PastLife } from './death';
@@ -35,11 +36,12 @@ const STAR_STAGE = 5;
 const PEOPLE = 6;
 
 // 場面の重み: ☆ > 自分で書いた言葉 > 写真のある年 > 大きな出来事 > ふだんの一瞬。人が出てくると少し上。
+// 脚注つきの大きな出来事 (戦争・震災など、生きた時代) も少し上
 // お金の額が並ぶ行は、ふりかえりには乾きすぎるので下げる
 const SAD = new Set(['loss', 'ill', 'hard']);
-type Cand = Shot & { big?: boolean; warm?: boolean; kind?: string };
+type Cand = Shot & { big?: boolean; warm?: boolean; hist?: boolean; kind?: string };
 function score(s: Cand): number {
-  return (s.star ? 100 : 0) + (s.mine ? 40 : 0) + (s.scene ? 6 : 0) + (s.big ? 4 : s.warm ? 3 : 0) + (s.who?.length ? 2 : 0)
+  return (s.star ? 100 : 0) + (s.mine ? 40 : 0) + (s.scene ? 6 : 0) + (s.big ? 4 : s.warm ? 3 : 0) + (s.hist ? 3 : 0) + (s.who?.length ? 2 : 0)
     + (s.kind && ['love', 'family', 'child'].includes(s.kind) ? 1 : 0) - (/[$€¥]|万円/.test(s.text) ? 5 : 0) - (!s.big && s.kind && SAD.has(s.kind) ? 2 : 0);
 }
 // 重みの高い順に選ぶ。同じ種類が続くと下げ、悲しい出来事は1つの区切りに1つまでを目安にする (☆は別)
@@ -56,6 +58,8 @@ function choose(list: Cand[], n: number): Cand[] {
 }
 
 const isNote = (e: LogEntry) => e.note === true;
+// 節目の年の統計の行 (moments.ts の milestone)。思い出ではないので流さない
+const STAT_LINE = /^(\d+歳。同じ年に|5歳の誕生日。|Age \d+\. Of the |Fifth birthday\.)/;
 
 export function reelOf(l: PastLife): Reel {
   const album = l.album ?? [];
@@ -68,10 +72,10 @@ export function reelOf(l: PastLife): Reel {
     cands.set(k, old ? { ...old, ...s, star: old.star || s.star, scene: old.scene ?? s.scene } : s);
   };
   for (const e of l.log) {
-    if (e.kind === 'death' || e.quiet) continue;
-    put({ age: e.age, text: e.text, who: e.who, star: e.star, mine: isNote(e), big: e.big, warm: e.tpl, kind: e.kind, scene: photo(e.age) });
+    if (e.kind === 'death' || e.quiet || (STAT_LINE.test(e.text) && !e.star)) continue;
+    put({ age: e.age, text: e.text, who: e.who, star: e.star, mine: isNote(e), big: e.big, warm: e.tpl, hist: e.big && !!e.stat && !e.tpl, kind: e.kind, scene: photo(e.age) });
   }
-  for (const m of album) if (m.age > 0) put({ age: m.age, text: m.text, scene: m.scene, kind: m.kind });
+  for (const m of album) if (m.age > 0 && !STAT_LINE.test(m.text)) put({ age: m.age, text: m.text, scene: m.scene, kind: m.kind });
   for (const q of l.questions) if (q.a) put({ age: q.age, text: L(`「${q.a}」`, `"${q.a}"`), mine: true });
 
   const all = [...cands.values()];
@@ -86,10 +90,10 @@ export function reelOf(l: PastLife): Reel {
     const n = Math.min(STAR_STAGE, Math.max(PER_STAGE, stars)) + mine;
     const picked = choose(inStage, n);
     picked.sort((a, b) => a.age - b.age);
-    chapters.push({ tone: st.tone, title: L(st.ja, st.en), shots: picked.map(({ big: _b, warm: _w, kind: _k, ...s }) => s) });
+    chapters.push({ tone: st.tone, title: L(st.ja, st.en), shots: picked.map(({ big: _b, warm: _w, hist: _h, kind: _k, ...s }) => s) });
   }
 
-  const b = byCode(l.birthCountry);
+  const born = bornIn(l.birthCountry, l.birthYear); // 1950年より前は当時の国名 (イギリス領インド など)
   const end = l.birthYear + l.age;
   const home = countryAt(l.country, end).name;
   // 近かった人から。ペットも入れる
@@ -100,7 +104,7 @@ export function reelOf(l: PastLife): Reel {
     name: l.name,
     span: `${l.birthYear} – ${end}`,
     birth: {
-      text: isEn ? `Born in ${b.name}, ${l.birthYear}.` : `${l.birthYear}年${l.birthMonth ? `${l.birthMonth}月` : ''}、${b.name}で生まれた。`,
+      text: isEn ? `Born in ${born}, ${l.birthYear}.` : `${l.birthYear}年${l.birthMonth ? `${l.birthMonth}月` : ''}、${born}で生まれた。`,
       scene: album.find((m) => m.age === 0)?.scene,
     },
     chapters,

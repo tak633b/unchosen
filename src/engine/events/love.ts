@@ -3,7 +3,8 @@ import { causeName } from '../causes';
 import { makeName } from '../identity';
 import { L, isEn } from '../../i18n';
 import { JOBS, jobName } from '../jobs';
-import { bump, childWord, countryOf, decide, eduLevel, log, type Person, type Relative } from '../person';
+import { bump, childWord, countryOf, decide, eduLevel, log, yearOf, type Person, type Relative } from '../person';
+import { awayAtWar } from '../worldevents';
 import type { Sex } from '../lifetable';
 import { clamp, normal, pick } from '../rng';
 import { yearly } from './common';
@@ -20,7 +21,7 @@ export function newPartner(p: Person): Relative {
   const sex: Sex = p.sex === 'F' ? 'M' : 'F';
   const d = p.sex === 'F' ? normal(p.rng, 3, 3) : normal(p.rng, -3, 3);
   const age = Math.max(17, Math.round(p.age + d));
-  const name = freshName(() => makeName(p.rng, p.country, sex), (p.nameKeys ??= [])).full;
+  const name = freshName(() => makeName(p.rng, p.country, sex, undefined, undefined, yearOf(p)), (p.nameKeys ??= [])).full;
   const edu = clamp(eduLevel(p) + Math.round(normal(p.rng, 0, 1)), 0, 5);
   const jobs = JOBS.filter((j) => j.edu <= edu && (j.maxEdu ?? 5) >= edu && !j.majors);
   return { alive: true, age, sex, name, job: jobs.length ? pick(p.rng, jobs).name : '家の仕事', id: newId(p), bond: 55, since: p.age, country: p.country };
@@ -39,6 +40,8 @@ export function love(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
   if (p.spouse?.alive || p.school.enrolled) return;
+  // 戦争で召集されているあいだ (前線・捕虜) は出会いも結婚も無い。serviceEnd 999 は戦時の召集 (worldevents.ts)
+  if (p.military === 'serving' && p.serviceEnd === 999) return;
   if (p.dating) {
     p.dating.age++;
     p.dating.years++;
@@ -116,6 +119,7 @@ export function births(p: Person): void {
   const r = p.rng;
   if (!p.spouse?.alive) { delete p.recent.trying; return; }
   const motherAge = p.sex === 'F' ? p.age : p.spouse.age;
+  if (awayAtWar(p)) return; // 夫婦が戦争で離れているあいだ
   if (p.recent.trying !== undefined) { tryForChild(p); return; }
   if (p.recent.noMoreKids !== undefined) return;
   if (motherAge < 15 || motherAge > 45) return;
