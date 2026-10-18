@@ -65,3 +65,13 @@ for (const f of ['WPP2024_Demographic_Indicators_Medium.csv.gz',
   await pipeline(res.body, createWriteStream(to));
   console.log('wpp', f);
 }
+
+// Jordà-Schularick-Taylor Macrohistory Database R6 (18か国 1870〜2020年、CC BY-NC-SA 4.0)。
+// 名前は .xlsx だが中身は Stata の .dta。1900〜1949年の実際の相場に使う (build-market1900.py)
+await mkdir(new URL('jst/', dir), { recursive: true });
+{
+  const res = await fetch('https://www.macrohistory.net/app/download/9834512469/JSTdatasetR6.xlsx', { headers: { 'User-Agent': 'Mozilla/5.0' } });
+  if (!res.ok) throw new Error(`jst: HTTP ${res.status}`);
+  await writeFile(new URL('jst/JSTdatasetR6.dta', dir), Buffer.from(await res.arrayBuffer()));
+  console.log('jst JSTdatasetR6.dta');
+}

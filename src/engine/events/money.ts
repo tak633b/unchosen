@@ -78,7 +78,8 @@ export function finances(p: Person): void {
   rentalYear(p, c, income);
   let last = 0;
   if (p.wealth > 0) {
-    last = fundReturn(p.invest ?? 'deposit', year, c, r);
+    // 1年で失うのは99%まで。1948年のドイツの株 (-90%) に個別株のぶれが乗っても、貯えが借金に変わらない
+    last = Math.max(-0.99, fundReturn(p.invest ?? 'deposit', year, c, r));
     if (p.invest === 'stock' || p.invest === 'picker') stockMove(p, last);
     p.wealth *= 1 + last;
     if (p.invest && p.invest !== 'deposit') p.gain = (p.gain ?? 0) + (p.wealth * last) / (1 + last);

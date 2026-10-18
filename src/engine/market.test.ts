@@ -70,6 +70,18 @@ describe('市場の値動き', () => {
     expect(debtRate(k, 0.03)).toBe(0.1);
   });
 
+  // 1900〜1949年は JST Macrohistory Database の実質の利回り (market1900.ts)。表を壊すと落ちる
+  it('1900〜1949年: 大恐慌の株、ドイツの1923年と日本の敗戦後の預金', () => {
+    const mean = (f: (r: Rng) => number) => { const r = makeRng(3); let s = 0; for (let i = 0; i < 4000; i++) s += f(r); return s / 4000; };
+    const kept = (code: string, y0: number, y1: number) => { let w = 1; for (let y = y0; y <= y1; y++) w *= 1 + fundReturn('deposit', y, byCode(code), makeRng(1)); return w; };
+    // 実測 (2026-10-18): 米国の株 1931年 -34.4% (JST: -34.4%)。ドイツの預金は1922〜23年で 0.094% だけ残る。日本の預金は1945〜49年で 1.08%
+    expect(mean((r) => fundReturn('stock', 1931, USA, r))).toBeCloseTo(-0.344, 2);
+    expect(kept('DEU', 1922, 1923)).toBeCloseTo(0.00094, 6);
+    expect(kept('JPN', 1945, 1949)).toBeCloseTo(0.0108, 4);
+    // 表の無い国も1931年は世界の株の下げ (記録のある国の中央値 -19.8%) に乗る
+    expect(mean((r) => fundReturn('stock', 1931, byCode('BRA'), r))).toBeCloseTo(-0.198, 2);
+  });
+
   it('乗り換えは売ることなので、手数料と売却益の税がかかる (税の無い国もある)', () => {
     expect(capitalGainsTax(byCode('JPN'))).toBe(0.20315);
     expect(capitalGainsTax(byCode('KOR'))).toBe(0);

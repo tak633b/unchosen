@@ -1,7 +1,7 @@
 // お金の置き場所と、その年の市場の値動き。利回りはどれも物価上昇を引いた実質。
 //
 // marketReturn(asset, year, country, rng) が「その年・その国で、その資産が何%動いたか」を返す唯一の関数。
-// ふだんは historyReturn: 過去の年は実際の値動きと経済危機、これから先の年は景気の波 (不況と金融危機)、
+// ふだんは historyReturn: 過去の年は実際の値動きと経済危機 (1900〜1949年は market1900.ts の JST の表)、これから先の年は景気の波 (不況と金融危機)、
 // 表のない国・資産は長い目で見た統計 (下の LONG_RUN)。
 // テストなどで setMarketReturn(fn) を差し替えられる。fn が undefined を返した年・資産は historyReturn に戻る。
 // 預金・債券・株・不動産ファンド・家の値段の5つだけを聞く。バランス型と個別株はここから組み立てる (fundReturn)
@@ -9,6 +9,7 @@ import type { Country } from './countries';
 import { L } from '../i18n';
 import { countryOf, log, yearOf, type Person } from './person';
 import { makeRng, normal, type Rng } from './rng';
+import { EARLY, EARLY_FROM, EARLY_WORLD, type EarlyAsset } from './market1900';
 
 export type MarketAsset = 'deposit' | 'bond' | 'stock' | 'realestate' | 'house';
 export type MarketReturn = (asset: MarketAsset, year: number, c: Country, rng: Rng) => number | undefined;
@@ -105,6 +106,21 @@ export const SHOCKS: Shock[] = [
   { codes: ['KOR'], year: 2022, dep: -0.04 },
   { codes: ['*'], year: 2022, dep: -0.06, ja: '物価が上がり続け、預けてあるお金の値打ちが目に見えて減った。', en: 'Prices kept climbing, and money in the bank was visibly worth less.', stat: ['2022年の世界の物価上昇率は約9%で、1990年代半ば以来の高さだった (世界銀行)', 'Global inflation in 2022 was about 9%, the highest since the mid-1990s (World Bank)'] },
   { codes: ['*'], year: 2023, debt: 0.05 }, // 政策金利がほぼ0から4〜5%へ上がり、借金の利息が重くなった
+  // ---- 1900〜1949年: market1900.ts の表 (JST) の無い国の、物価の大崩れ。預金と債券がほぼ消えた年 ----
+  // 物価の上がり方からの目安 (Hanke & Krus 2012 "World Hyperinflations"、Sargent 1982 "The Ends of Four Big Inflations")。暮らしの話は events/*.json が書く
+  ...([[1918, -0.8], [1919, -0.9], [1920, -0.9], [1921, -0.9], [1922, -0.99], [1923, -0.99]] as const).map(([year, dep]) => ({ codes: ['RUS', 'UKR', 'BLR', 'GEO', 'ARM', 'AZE', 'KAZ', 'UZB', 'TKM', 'KGZ', 'TJK'], year, dep })), // 革命と内戦、1922〜24年のルーブルの崩壊
+  { codes: ['MEX'], year: 1915, dep: -0.9 }, { codes: ['MEX'], year: 1916, dep: -0.95 }, // 革命の各派が刷った紙幣が値打ちを失った
+  { codes: ['AUT'], year: 1921, dep: -0.8 }, { codes: ['AUT'], year: 1922, dep: -0.95 },
+  { codes: ['HUN'], year: 1923, dep: -0.9 }, { codes: ['HUN'], year: 1924, dep: -0.5 },
+  { codes: ['POL'], year: 1923, dep: -0.99 },
+  // 日中戦争からの国民政府の紙幣の崩壊 (重慶の物価は1937〜45年に約2,000倍、Young 1965)、1948年の金円券
+  ...([[1938, -0.3], [1939, -0.5], [1940, -0.6], [1941, -0.6], [1942, -0.6], [1943, -0.6], [1944, -0.6], [1945, -0.9], [1946, -0.8], [1947, -0.9], [1948, -0.99], [1949, -0.99]] as const).map(([year, dep]) => ({ codes: ['CHN'], year, dep })),
+  { codes: ['GRC'], year: 1942, dep: -0.9 }, { codes: ['GRC'], year: 1943, dep: -0.9 }, { codes: ['GRC'], year: 1944, dep: -0.99 },
+  { codes: ['PHL'], year: 1944, dep: -0.99 }, // 日本の占領下の軍票
+  { codes: ['MYS', 'SGP', 'IDN', 'MMR'], year: 1945, dep: -0.95 }, // 日本の軍票は敗戦で紙くずになった
+  { codes: ['KOR'], year: 1945, dep: -0.9 }, { codes: ['KOR'], year: 1946, dep: -0.7 }, { codes: ['KOR'], year: 1947, dep: -0.5 }, // 日本と同じ円の地域。解放後も物価が何十倍にもなった (目安)
+  { codes: ['HUN'], year: 1945, dep: -0.99 }, { codes: ['HUN'], year: 1946, dep: -0.99 },
+  { codes: ['ROU'], year: 1946, dep: -0.9 }, { codes: ['ROU'], year: 1947, dep: -0.95 }, // 1947年8月、2万対1で新しいレウへ
 ];
 
 // 記録に書く文のある出来事。国の出来事を世界の出来事より先に見る
@@ -150,7 +166,29 @@ export const layoffOf = (code: string, year: number): number => {
 // 不動産ファンドの家賃のぶん (総収益と家の値上がりの差)
 const RENT = LONG_RUN.realestate[0] - LONG_RUN.house[0];
 
+// ---- 1900〜1949年 -------------------------------------------------------------------------
+// 表 (market1900.ts、JST の16か国) のある国は実際の値動き。無い国は統計どおりの1年に、世界の株の値動きと物価の大崩れ (SHOCKS) を足す。
+// 乱数の引き方は1950年からと同じ (預金は引かず、ほかは1回)。1年で失うのは99%まで (残高が0や負にならない)
+const EARLY_TO = 1949;
+const early = (code: string, a: EarlyAsset, year: number): number | undefined => {
+  const v = EARLY[code]?.[a][year - EARLY_FROM];
+  return v == null ? undefined : v / 100;
+};
+function earlyReturn(asset: MarketAsset, year: number, c: Country, rng: Rng): number {
+  const own = early(c.code, asset === 'realestate' ? 'house' : asset, year);
+  const dep = pick(c.code, year, 'dep');
+  let r: number;
+  switch (asset) {
+    case 'deposit': r = own ?? dep ?? DEPOSIT; break;
+    case 'bond': r = own !== undefined ? normal(rng, own, 0.02) : longRunReturn('bond', year, c, rng) + (dep === undefined ? 0 : dep - DEPOSIT); break;
+    case 'stock': r = own !== undefined ? normal(rng, own, 0.04) : normal(rng, EARLY_WORLD[year - EARLY_FROM] / 100 + (pick(c.code, year, 'stock') ?? 0), c.gdp < 25000 ? 0.15 : 0.06); break;
+    default: r = own === undefined ? longRunReturn(asset, year, c, rng) : asset === 'house' ? normal(rng, own, 0.03) : normal(rng, own + RENT, 0.06);
+  }
+  return Math.max(-0.99, r);
+}
+
 export function historyReturn(asset: MarketAsset, year: number, c: Country, rng: Rng): number {
+  if (year >= EARLY_FROM && year <= EARLY_TO) return earlyReturn(asset, year, c, rng);
   const code = c.code;
   const emerging = c.gdp < 25000;
   if (year > HISTORY_TO) {
