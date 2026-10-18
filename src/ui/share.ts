@@ -52,7 +52,7 @@ export function shareLines(l: PastLife): string[] {
   const art = /^[aeiou]/.test(home) ? 'an' : 'a';
   return [
     L(`${l.name}(${span})。${place(l)}の${home || '家'}に生まれた。`, `${l.name} (${span}). Born into ${home ? `${art} ${home}` : 'a family'} in ${place(l)}.`),
-    ...(l.job ? [L(`${jobName(l.job)}として働いた。`, `Work: ${jobName(l.job)}.`)] : []),
+    ...(l.job ? [L(`${jobName(l.job.replace('(リーダー)', ''))}として働いた。`, `Work: ${jobName(l.job.replace('(リーダー)', ''))}.`)] : []),
     ...(happy !== undefined && l.age >= 3 ? [L(`いちばん幸せだったのは${happy}歳のころ。`, `Happiest around age ${happy}.`)] : []),
     deathLine(l),
     ...(stat !== undefined ? [L(`生まれた年、世界の${stat}%はこの家より貧しかった。`, `In the birth year, ${stat}% of the world was poorer than this family.`)] : []),
@@ -80,7 +80,7 @@ export function shareCardOf(l: PastLife, host = location.host): HTMLCanvasElemen
     facts: [
       [L('生まれた家の暮らし向き', 'Family at birth'), me ? homeWord(me.familyP).replace(/^./, (c) => c.toUpperCase()) : dash],
       [L('学歴', 'Education'), me ? (me.edu < 0 ? L('就学前', 'Preschool') : EDU_LABEL[me.edu]) : dash],
-      [L('仕事', 'Work'), l.job ? jobName(l.job) : me ? L('なし', 'None') : dash],
+      [L('仕事', 'Work'), l.job ? jobName(l.job.replace('(リーダー)', '')) : me ? L('なし', 'None') : dash],
       [L('連れ合い', 'Spouse'), sp.length ? sp.join(SEP) : l.circle ? L('いない', 'None') : dash],
       [L('子ども', 'Children'), me ? (me.kids ? L(`${me.kids}人`, String(me.kids)) : L('いない', 'None')) : dash],
       [L('いちばん幸せだった年', 'Happiest year'), happy !== undefined ? L(`${happy}歳 (${l.birthYear + happy}年)`, `Age ${happy} (${l.birthYear + happy})`) : dash],

@@ -133,7 +133,7 @@ function happen(p: Person): void {
     bump(p, { happy: -2, health: -1 });
   });
 
-  const sibs = all.filter(([x, role]) => role === 'sibling' && x.age >= 18);
+  const sibs = all.filter(([x, role]) => role === 'sibling' && x.age >= 18 && x.age <= 50); // 預かる子がいる年ごろまで
   if (sibs.length && p.age >= 18) list.push(() => {
     const [x, role] = pick(r, sibs);
     const move = r() < 0.5;
@@ -237,7 +237,7 @@ function childDays(p: Person): void {
     };
     if (k.age === 6) once('kschool', clamp(c.school / 9, 0.1, 0.95), L(`${k.name}が学校に上がった。`, `${k.name} started school.`), 2);
     else if (k.age === 18 && p.recent[`kschool:${k.id}`] !== undefined) once('kgrad', clamp((c.school - 6) / 6, 0.05, 0.9), L(`${k.name}の卒業式に出た。`, `Went to ${k.name}'s graduation.`), 3);
-    else if (k.age >= 16 && k.age <= 24) once('kjob', 0.12, L(`${k.name}が初めての給料で、家族に食事をごちそうしてくれた。`, `${k.name} treated the family to a meal with a first paycheck.`), 4);
+    else if (k.age >= 16 && k.age <= 24 && k.job) once('kjob', 0.12, L(`${k.name}が初めての給料で、家族に食事をごちそうしてくれた。`, `${k.name} treated the family to a meal with a first paycheck.`), 4);
     if (k.age >= 20 && k.age <= 35 && once('kwed', 0.07, L(`${k.name}の結婚式に出た。`, `Went to ${k.name}'s wedding.`), 5)) bump(p, { happy: 3 });
   }
 }

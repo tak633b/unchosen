@@ -13,7 +13,7 @@ import { crisisScript, declineScript, farewell } from './farewell';
 import { isAcute } from '../engine/crisis';
 import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
-import { isEn, L } from '../i18n';
+import { isEn, L, lang, setLang, type Lang } from '../i18n';
 import { drawPortrait, drawScene, sceneOf, type Scene } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
 import { mountRing, paintFaces, personCard } from './ring';
@@ -38,7 +38,7 @@ const NET_MS = 60_000; // ほかのプレイヤーの数を見に行き、この
 type Tab = '' | 'me' | 'band' | 'compare' | 'log';
 const TABS: [Exclude<Tab, ''>, string][] = [['me', L('いまの状態', 'Status')], ['band', L('人生の帯', 'Life band')], ['compare', L('比べる', 'Compare')], ['log', L('全部の記録', 'Full record')]];
 
-interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[]; album?: Moment[]; lifeId?: string }
+interface Saved { basis: BirthBasis; speed: number; p: SavedPerson; others: SavedPerson[]; album?: Moment[]; lifeId?: string; lang?: Lang } // lang: 記録を書いてきた言語 (日英を混ぜないため、再開はこの言語で)
 
 interface GameState {
   p: Person;
@@ -81,6 +81,8 @@ export const clearSaved = () => save(SAVE_KEY, null);
 export function resumeGame(onExit: () => void): void {
   const s = hasSaved();
   if (!s) return onExit();
+  // 途中で言語を変えていたら、この人生の記録の言語に戻してから読み込み直す
+  if (s.lang && s.lang !== lang) return setLang(s.lang);
   run(fromSaved(s.p), s.others.map(fromSaved), s.basis, s.speed, onExit, s.album, s.lifeId);
 }
 
@@ -127,7 +129,7 @@ function net(): void {
 
 function persist(): void {
   if (!S || !S.p.alive) return;
-  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved), album: S.album, lifeId: S.beat.id } satisfies Saved);
+  save(SAVE_KEY, { basis: S.basis, speed: S.speed, p: toSaved(S.p), others: S.others.map(toSaved), album: S.album, lifeId: S.beat.id, lang } satisfies Saved);
 }
 
 function frame(t: number): void {

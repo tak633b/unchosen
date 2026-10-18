@@ -5,7 +5,7 @@ import { CHOICES, RATE, type Choice } from './events/choices';
 import { fits } from './events/moments';
 
 const PLACEHOLDERS = ['name', 'city', 'country', 'friend', 'who', 'whoName', 'money'];
-const WHEN_KEYS = ['place', 'wealth', 'income', 'region', 'countries', 'religion', 'state', 'sex', 'married', 'widowed', 'hasChildren', 'hasPet', 'migrated', 'youngChild', 'parentAlive', 'fatherAlive', 'motherAlive', 'sibling', 'teenChild', 'livingAlone', 'job'];
+const WHEN_KEYS = ['place', 'wealth', 'income', 'region', 'countries', 'religion', 'state', 'sex', 'married', 'widowed', 'hasChildren', 'hasPet', 'migrated', 'youngChild', 'parentAlive', 'fatherAlive', 'motherAlive', 'sibling', 'teenChild', 'livingAlone', 'job', 'baby', 'marriedFor', 'uni'];
 const KINDS = ['child', 'school', 'work', 'family', 'love', 'loss', 'ill', 'move', 'old', 'hard'];
 const TECH = ['electricity', 'appliance', 'tv', 'car', 'mobile', 'smartphone', 'internet', 'computer'];
 const STATS = ['health', 'happy', 'money', 'learn', 'bond'];

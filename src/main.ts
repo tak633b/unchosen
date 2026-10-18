@@ -371,7 +371,7 @@ function past(): void {
   app.innerHTML = `
   <main class="home wide">
     <h1>${L('前世の記録', 'Past lives')}</h1>
-    <p class="note">${L(`最近の${lives.length}つの人生(最大10)。この端末にだけ残っている。`, `Your last ${lives.length} ${lives.length === 1 ? 'life' : 'lives'} (up to 10). Kept only on this device.`)}</p>
+    ${lives.length ? `<p class="note">${L(`最近の${lives.length}つの人生(最大10)。この端末にだけ残っている。`, `Your last ${lives.length} ${lives.length === 1 ? 'life' : 'lives'} (up to 10). Kept only on this device.`)}</p>` : ''}
     <ul class="pastlist">${lives.map((l, i) => `
       <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${causeLabel(l.cause) ? L(`${l.age}歳(${esc(causeLabel(l.cause))})`, `age ${l.age} (${esc(causeLabel(l.cause))})`) : L(`${l.age}歳`, `age ${l.age}`)}
       <small>${new Date(l.date).toLocaleDateString(isEn ? 'en-US' : 'ja-JP')}</small></button></li>`).join('') || `<li>${L('まだない。', 'None yet.')}</li>`}</ul>
