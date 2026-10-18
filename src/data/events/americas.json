@@ -54,22 +54,25 @@
     1918
    ],
    "hit": 0.35,
+   "kill": 0.0011,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     30
    ],
    "sex": "M",
-   "kill": 0.0011,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 4,
+   "die": 0.025,
+   "wound": 0.043,
+   "pow": 0.001,
    "effect": {
     "health": -5,
     "happy": -10
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "徴兵されて海を渡り、フランスの塹壕で冬を越した。砲弾の音は、帰ってからも夢に出た。"
+     "徴兵登録のあと召集され、輸送船でフランスへ渡った。"
     ],
     "news": [
      "米国がドイツに宣戦し、若い男たちが次々にヨーロッパへ送られた。"
@@ -77,7 +80,7 @@
    },
    "en": {
     "hit": [
-     "Drafted and shipped across the ocean, and spent the winter in the trenches of France. The shellfire came back in dreams long after."
+     "Registered for the draft, was called up, and crossed to France on a troopship."
     ],
     "news": [
      "The United States declared war on Germany, and young men were shipped to Europe by the hundreds of thousands."
@@ -186,23 +189,27 @@
     1945
    ],
    "hit": 0.45,
+   "kill": 0.003,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.003,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 5,
+   "die": 0.025,
+   "wound": 0.042,
+   "pow": 0.008,
+   "powDie": 0.15,
    "effect": {
     "health": -5,
     "happy": -12
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "徴兵され、訓練のあと海外の戦場へ送られた。戦友の何人かは帰らなかった。",
-     "召集されて太平洋の島々を転戦した。終わったとき、体重は出征前より10キロ少なかった。"
+     "徴兵され、訓練のあと海外の戦場へ送られた。",
+     "召集されて太平洋の島々を転戦した。"
     ],
     "news": [
      "12月、真珠湾が攻撃され、米国は戦争に入った。町から若い男が消え、砂糖も肉もガソリンも配給になった。"
@@ -210,16 +217,16 @@
    },
    "en": {
     "hit": [
-     "Drafted, trained, and sent overseas to the front. Some of the men in the unit never came home.",
-     "Called up and moved from island to island across the Pacific. By the end, ten kilos lighter than when it began."
+     "Was drafted and, after training, shipped to a battlefield overseas.",
+     "Was called up and fought from island to island across the Pacific."
     ],
     "news": [
      "In December Pearl Harbor was attacked and the country went to war. The young men left town, and sugar, meat and gasoline were rationed."
     ]
    },
    "stat": [
-    "第二次世界大戦で米国は約1,610万人が軍務につき、40万5,399人が亡くなった",
-    "About 16.1 million Americans served in the Second World War; 405,399 died"
+    "米軍には約1,610万人が入り、約40万5千人が亡くなった",
+    "About 16.1 million Americans served in the armed forces, and about 405,000 died"
    ],
    "src": "US Department of Veterans Affairs, America's Wars fact sheet"
   },
@@ -510,22 +517,26 @@
     1918
    ],
    "hit": 0.33,
+   "kill": 0.0075,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.0075,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 5,
+   "die": 0.1,
+   "wound": 0.28,
+   "pow": 0.006,
+   "draft": 1918,
    "effect": {
     "health": -6,
     "happy": -12
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "志願して海を渡り、フランドルの泥の中で戦った。毒ガスの日のことは、一生忘れなかった。"
+     "軍に入り、海を渡ってフランダースの泥の中の前線に入った。"
     ],
     "news": [
      "ヨーロッパで大きな戦争が始まり、カナダの若者が次々に海を渡った。ヴィミーの尾根の名が新聞に載った。"
@@ -533,7 +544,7 @@
    },
    "en": {
     "hit": [
-     "Enlisted and crossed the ocean, and fought in the mud of Flanders. The day of the gas was never forgotten."
+     "Joined the army, crossed the ocean, and went into the line in the mud of Flanders."
     ],
     "news": [
      "A great war began in Europe and young Canadians crossed the ocean by the thousand. The name Vimy Ridge was in every newspaper."
@@ -587,19 +598,22 @@
     1945
    ],
    "hit": 0.4,
+   "kill": 0.0039,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.0039,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 5,
+   "die": 0.04,
+   "wound": 0.05,
+   "pow": 0.01,
    "effect": {
     "health": -5,
     "happy": -12
    },
+   "severity": 5,
    "ja": {
     "hit": [
      "軍に入り、イギリスで訓練を受けたあと、ノルマンディーの海岸からオランダまで進んだ。",
@@ -3097,20 +3111,23 @@
     1935
    ],
    "hit": 0.5,
+   "kill": 0.02,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.02,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 5,
+   "die": 0.22,
+   "pow": 0.08,
+   "powDie": 0.1,
+   "back": 1936,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 5,
    "ja": {
     "hit": [
      "徴兵され、高地からチャコの乾いた森へ送られた。敵よりも、渇きの方がおそろしかった。"
@@ -3131,7 +3148,8 @@
     "チャコ戦争 (1932〜35年) で、ボリビアは約25万人を動員し、5万人以上が亡くなった",
     "Bolivia mobilized about 250,000 men for the Chaco War of 1932-35; more than 50,000 died"
    ],
-   "src": "Farcau 1996, The Chaco War: Bolivia and Paraguay, 1932-1935"
+   "src": "Farcau 1996, The Chaco War: Bolivia and Paraguay, 1932-1935",
+   "rough": true
   },
   {
    "id": "py-chaco-war",
@@ -3144,20 +3162,22 @@
     1935
    ],
    "hit": 0.6,
+   "kill": 0.03,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.03,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 5,
+   "die": 0.25,
+   "pow": 0.02,
+   "back": 1936,
    "effect": {
     "health": -8,
     "happy": -12
    },
+   "severity": 5,
    "ja": {
     "hit": [
      "召集されてチャコの前線へ送られた。水を運ぶ車が来ない日が、何日も続いた。"
@@ -3178,7 +3198,8 @@
     "チャコ戦争 (1932〜35年) で、パラグアイは約15万人を動員し、3万〜4万人が亡くなった",
     "Paraguay mobilized about 150,000 men for the Chaco War of 1932-35; 30,000 to 40,000 died"
    ],
-   "src": "Farcau 1996, The Chaco War: Bolivia and Paraguay, 1932-1935"
+   "src": "Farcau 1996, The Chaco War: Bolivia and Paraguay, 1932-1935",
+   "rough": true
   },
   {
    "id": "bo-revolution-1952",
@@ -3980,6 +4001,46 @@
     "During the interior war of 1986-92, about 10,000 people fled to neighboring French Guiana"
    ],
    "src": "Inter-American Court of Human Rights, Moiwana Village v. Suriname (2005)"
+  },
+  {
+   "id": "us-ww2-women-work",
+   "type": "war",
+   "countries": [
+    "USA",
+    "CAN"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.25,
+   "age": [
+    18,
+    45
+   ],
+   "sex": "F",
+   "effect": {
+    "happy": 2
+   },
+   "severity": 2,
+   "kind": "work",
+   "ja": {
+    "hit": [
+     "航空機の工場でリベット打ちの仕事についた。初めての自分の給料だった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Took a job riveting in an aircraft plant. The first paycheck of her own."
+    ],
+    "news": []
+   },
+   "stat": [
+    "米国で働く女性は、1940年の約1,200万人から1945年には約1,900万人に増えた",
+    "The number of American women in work rose from about 12 million in 1940 to about 19 million in 1945"
+   ],
+   "src": "US Department of Labor, Women's Bureau; Goldin 1991, AER 81:741"
   }
  ]
 }

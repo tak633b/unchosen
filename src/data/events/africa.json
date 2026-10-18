@@ -243,11 +243,17 @@
     45
    ],
    "sex": "M",
-   "severity": 4,
+   "die": 0.1,
+   "home": [
+    "戦争が終わり、生きのびた人夫たちと一緒に村へ帰った。",
+    "The war ended, and the surviving carriers walked home to the village together."
+   ],
+   "labour": true,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
      "荷運びの人夫に駆り出され、兵のあとについて何百キロも歩いた。熱病と飢えで倒れていく者を、道ばたに置いていくしかなかった。"
@@ -291,17 +297,18 @@
    "hit": 0.15,
    "kill": 0.002,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     35
    ],
    "sex": "M",
-   "severity": 3,
+   "die": 0.15,
    "effect": {
     "health": -6,
     "happy": -12
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "徴兵の割り当てで「セネガル狙撃兵」に取られ、船でフランスの戦場へ送られた。"
@@ -340,17 +347,18 @@
    "hit": 0.12,
    "kill": 0.002,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     35
    ],
    "sex": "M",
-   "severity": 3,
+   "die": 0.13,
    "effect": {
     "health": -6,
     "happy": -12
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "フランスの軍に召集され、西部戦線の塹壕に送られた。"
@@ -6600,6 +6608,74 @@
     "About 14,000 people were killed in political violence between 1990 and the 1994 election (Truth and Reconciliation Commission)"
    ],
    "src": "South African Truth and Reconciliation Commission Report 1998"
+  },
+  {
+   "id": "ww2-african-troops",
+   "type": "war",
+   "countries": [
+    "KEN",
+    "UGA",
+    "TZA",
+    "MWI",
+    "ZMB",
+    "ZWE",
+    "NGA",
+    "GHA",
+    "SLE",
+    "GMB",
+    "SEN",
+    "MLI",
+    "GIN",
+    "CIV",
+    "BFA",
+    "BEN",
+    "NER",
+    "MRT"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.06,
+   "kill": 0.0003,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    18,
+    35
+   ],
+   "sex": "M",
+   "die": 0.03,
+   "pow": 0.05,
+   "powDie": 0.1,
+   "back": 1945,
+   "effect": {
+    "health": -4,
+    "happy": -10
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "植民地の軍に集められ、ビルマや北アフリカの戦場へ送られた。"
+    ],
+    "news": [
+     "遠い戦争のために、村の若い男たちが兵隊に集められていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was taken into the colonial army and shipped to the battlefields of Burma or North Africa."
+    ],
+    "news": [
+     "For a faraway war, the village's young men were gathered up as soldiers."
+    ]
+   },
+   "stat": [
+    "第二次世界大戦では、イギリスとフランスのアフリカの植民地から100万人を超える兵が集められた",
+    "More than a million soldiers were raised in the British and French African colonies during the Second World War"
+   ],
+   "src": "Killingray 2010, Fighting for Britain: African Soldiers in the Second World War; Echenberg 1991, Colonial Conscripts",
+   "rough": true
   }
  ]
 }

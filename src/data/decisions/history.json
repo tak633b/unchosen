@@ -997,6 +997,432 @@
           ]
         }
       ]
+    },
+    {
+      "id": "h-ww1-volunteer",
+      "minAge": 18,
+      "maxAge": 38,
+      "weight": 1,
+      "from": 1914,
+      "to": 1915,
+      "chance": 0.6,
+      "when": {
+        "countries": [
+          "GBR",
+          "CAN"
+        ],
+        "sex": "M"
+      },
+      "title": "志願するか",
+      "text": "町の壁という壁に「祖国は君を必要としている」というポスターが貼られた。職場の仲間は、もう何人も募兵事務所に並んだ。",
+      "stat": "1914〜15年の英国では、徴兵の始まる前に約250万人が志願して軍に入った (英国陸軍省の統計)",
+      "en": {
+        "title": "Volunteer?",
+        "text": "Every wall in town carries the poster: \"Your Country Needs You\". Several of {name}'s workmates have already queued at the recruiting office.",
+        "stat": "In 1914-15, before conscription began, about 2.5 million British men volunteered for the army (War Office statistics)"
+      },
+      "options": [
+        {
+          "label": "志願する",
+          "en": {
+            "label": "Volunteer",
+            "hint": "Off to the war"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "募兵事務所の列に並び、その日のうちに入隊の宣誓をした。",
+              "en": {
+                "text": "Queued at the recruiting office and took the oath that same day."
+              },
+              "mark": "volunteer",
+              "kind": "work",
+              "big": true
+            }
+          ],
+          "hint": "戦地へ行く"
+        },
+        {
+          "label": "まだ行かない",
+          "en": {
+            "label": "Not yet",
+            "hint": "If conscription comes, the call may come anyway"
+          },
+          "auto": 5,
+          "outcomes": [
+            {
+              "weight": 3
+            },
+            {
+              "weight": 1,
+              "text": "通りで、知らない女性に白い羽根を手渡された。臆病者の印だった。",
+              "en": {
+                "text": "A stranger in the street pressed a white feather into his hand: the mark of a coward."
+              },
+              "effects": {
+                "happy": -4
+              },
+              "kind": "hard"
+            }
+          ],
+          "hint": "徴兵が始まれば、どのみち呼ばれるかもしれない"
+        }
+      ]
+    },
+    {
+      "id": "h-ww1-volunteer-irl",
+      "minAge": 18,
+      "maxAge": 38,
+      "weight": 1,
+      "from": 1914,
+      "to": 1916,
+      "chance": 0.5,
+      "when": {
+        "countries": [
+          "IRL"
+        ],
+        "sex": "M"
+      },
+      "title": "イギリス軍に志願するか",
+      "text": "戦争に加われば自治が来る、と演説する人がいる。イギリスのための戦争に行くな、と言う人もいる。",
+      "stat": "アイルランドでは徴兵は行われず、約21万人が志願してイギリス軍に加わった",
+      "en": {
+        "title": "Join the British Army?",
+        "text": "Some speakers say that fighting in this war will bring Home Rule. Others say no Irishman should fight Britain's war.",
+        "stat": "Conscription was never applied in Ireland; about 210,000 Irishmen volunteered for the British forces"
+      },
+      "options": [
+        {
+          "label": "志願する",
+          "en": {
+            "label": "Volunteer"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "志願して、アイルランドの連隊に入った。",
+              "en": {
+                "text": "Volunteered and joined an Irish regiment."
+              },
+              "mark": "volunteer",
+              "kind": "work",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "行かない",
+          "en": {
+            "label": "Stay home"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-emigrate",
+      "minAge": 16,
+      "maxAge": 35,
+      "weight": 1,
+      "from": 1900,
+      "to": 1929,
+      "chance": 0.05,
+      "when": {
+        "countries": [
+          "ITA",
+          "ESP",
+          "PRT",
+          "POL",
+          "IRL",
+          "GRC",
+          "HUN",
+          "SVK",
+          "HRV",
+          "UKR",
+          "LTU",
+          "NOR",
+          "SWE",
+          "FIN",
+          "DEU",
+          "GBR",
+          "LBN",
+          "SYR",
+          "MEX",
+          "JPN",
+          "CHN",
+          "IND",
+          "PAK",
+          "BGD"
+        ]
+      },
+      "title": "海の向こうへ",
+      "text": "先に海を渡った同じ村の人から、手紙と船の切符代が届いた。向こうでは、一日働けばここのひと月分になるという。",
+      "stat": "1900〜1914年に、ヨーロッパからは毎年100万人ほどが南北アメリカへ渡った (Hatton & Williamson 1998)",
+      "en": {
+        "title": "Across the sea",
+        "text": "A letter came from someone from the village who had crossed the sea before, with money for the passage. Over there, they say, a day's work pays what a month does here.",
+        "stat": "In 1900-14 about a million Europeans a year crossed to the Americas (Hatton & Williamson 1998)"
+      },
+      "options": [
+        {
+          "label": "船に乗る",
+          "en": {
+            "label": "Take the ship",
+            "hint": "Years apart from family"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 10,
+              "text": "三等船室の切符を買い、港から船に乗った。",
+              "en": {
+                "text": "Bought a steerage ticket and boarded the ship at the port."
+              },
+              "mark": "emigrate",
+              "kind": "move",
+              "big": true,
+              "note": "上陸を拒まれたのは、エリス島では到着した人の2%ほど (Ellis Island Foundation)"
+            },
+            {
+              "weight": 0.3,
+              "text": "港の検査で目の病気 (トラコーマ) と言われ、上陸を許されずに送り返された。",
+              "en": {
+                "text": "The port doctors found trachoma in the eyes. Entry was refused, and it was the ship home."
+              },
+              "effects": {
+                "happy": -10
+              },
+              "cost": -0.3,
+              "kind": "hard"
+            }
+          ],
+          "hint": "家族とは何年も会えない"
+        },
+        {
+          "label": "残る",
+          "en": {
+            "label": "Stay"
+          },
+          "auto": 4,
+          "outcomes": [
+            {
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-jewish-emigrate",
+      "minAge": 0,
+      "maxAge": 85,
+      "weight": 1,
+      "from": 1933,
+      "to": 1939,
+      "chance": 0.5,
+      "when": {
+        "countries": [
+          "DEU",
+          "AUT"
+        ],
+        "religion": [
+          "ユダヤ教"
+        ]
+      },
+      "title": "国を出るか",
+      "text": "ユダヤ人の店への不買運動、公職からの追放、ユダヤ人から市民権を奪う法律。親戚の何人かは、もう外国へ渡った。",
+      "stat": "1933年にドイツにいたユダヤ人約52万5千人のうち、1939年までに半数を超える人が国を出た (USHMM)",
+      "en": {
+        "title": "Leave the country?",
+        "text": "The boycott of Jewish shops, the purge from public service, the laws stripping Jews of citizenship. Several relatives have already gone abroad.",
+        "stat": "Of about 525,000 Jews in Germany in 1933, more than half had left by 1939 (USHMM)"
+      },
+      "options": [
+        {
+          "label": "国を出る",
+          "en": {
+            "label": "Leave",
+            "hint": "A visa is not guaranteed"
+          },
+          "auto": 3,
+          "outcomes": [
+            {
+              "weight": 7,
+              "text": "持ち出せるお金はわずかだった。残りの財産は「出国税」として取り上げられた。",
+              "en": {
+                "text": "Only a little money could be taken. The rest went as the \"flight tax\"."
+              },
+              "mark": "flee-jew",
+              "cost": -0.5,
+              "kind": "move",
+              "big": true
+            },
+            {
+              "weight": 3,
+              "text": "ビザを出してくれる国が見つからなかった。領事館の前の列に、何日も並んだ。",
+              "en": {
+                "text": "No country would grant a visa. Day after day in the queue outside the consulates."
+              },
+              "effects": {
+                "happy": -10
+              },
+              "kind": "hard",
+              "note": "1938年のエビアン会議でも、受け入れを増やした国はほとんどなかった"
+            }
+          ],
+          "hint": "ビザが下りるとは限らない"
+        },
+        {
+          "label": "残る",
+          "en": {
+            "label": "Stay"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "年老いた親を置いては行けなかった。",
+              "en": {
+                "text": "The old parents could not be left behind."
+              },
+              "kind": "family"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-pol-jew-east",
+      "minAge": 0,
+      "maxAge": 70,
+      "weight": 1,
+      "from": 1939,
+      "to": 1939,
+      "chance": 0.6,
+      "when": {
+        "countries": [
+          "POL"
+        ],
+        "religion": [
+          "ユダヤ教"
+        ]
+      },
+      "title": "東へ逃げるか",
+      "text": "9月、ドイツ軍が町に近づいている。東の国境の向こうはソ連の軍が入った土地で、そこへ逃げる人の列ができている。",
+      "stat": "1939年の秋、ポーランドのユダヤ人約30万人がソ連の側へ逃れた。その多くが戦争を生きのびた",
+      "en": {
+        "title": "Flee east?",
+        "text": "In September the German army is closing in on the town. Beyond the eastern line the Soviet army has moved in, and people are already on the road toward it.",
+        "stat": "In the autumn of 1939 some 300,000 Polish Jews fled to the Soviet side; many of them survived the war"
+      },
+      "options": [
+        {
+          "label": "東へ逃げる",
+          "en": {
+            "label": "Flee east"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 4,
+              "text": "荷車に積めるだけを積み、夜の道を東へ歩いた。",
+              "en": {
+                "text": "Loaded what the cart would carry and walked east through the night."
+              },
+              "mark": "flee-east",
+              "kind": "move",
+              "big": true
+            },
+            {
+              "weight": 1,
+              "text": "国境の川で追い返され、町に戻るしかなかった。",
+              "en": {
+                "text": "Turned back at the border river, there was nothing to do but return to town."
+              },
+              "effects": {
+                "happy": -8
+              },
+              "kind": "hard"
+            }
+          ]
+        },
+        {
+          "label": "家に残る",
+          "en": {
+            "label": "Stay home"
+          },
+          "auto": 6,
+          "outcomes": [
+            {
+              "weight": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-white-emigre",
+      "minAge": 16,
+      "maxAge": 65,
+      "weight": 1,
+      "from": 1919,
+      "to": 1921,
+      "chance": 0.2,
+      "when": {
+        "countries": [
+          "RUS",
+          "UKR"
+        ],
+        "wealth": "rich"
+      },
+      "title": "国を出るか",
+      "text": "赤軍が近づいている。家の財産は没収され、同じ階級の知り合いが何人も連れていかれた。南の港からは、まだ外国へ行く船が出ている。",
+      "stat": "革命と内戦のあと、100万〜200万人がロシアから国外へ逃れた",
+      "en": {
+        "title": "Leave the country?",
+        "text": "The Red Army is coming. The family property has been confiscated, and several acquaintances of the same class have been taken away. Ships are still leaving the southern ports for abroad.",
+        "stat": "After the revolution and civil war, between one and two million people fled Russia"
+      },
+      "options": [
+        {
+          "label": "船に乗る",
+          "en": {
+            "label": "Take a ship"
+          },
+          "auto": 1,
+          "outcomes": [
+            {
+              "weight": 1,
+              "text": "着の身着のままで、南の港から外国へ向かう船に乗った。",
+              "en": {
+                "text": "With nothing but the clothes they stood in, boarded a ship leaving a southern port."
+              },
+              "mark": "white-emigre",
+              "kind": "move",
+              "big": true
+            }
+          ]
+        },
+        {
+          "label": "残る",
+          "en": {
+            "label": "Stay"
+          },
+          "auto": 2,
+          "outcomes": [
+            {
+              "weight": 1
+            }
+          ]
+        }
+      ]
     }
   ]
 }

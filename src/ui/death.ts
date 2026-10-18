@@ -1,5 +1,6 @@
 // 死亡記録: 一生のまとめ、数字、この人への一言、同じ1秒に生まれた人たちの結末。
 import { ERA_NOW, byCode, countriesAt, countryAt, type BirthBasis } from '../engine/countries';
+import { bornIn } from '../engine/polity';
 import { formatMoney, monthlyYen, yen } from '../engine/economy';
 import { netWorth } from '../engine/events/money';
 import { bornTable } from '../engine/lifetable';
@@ -80,7 +81,7 @@ function factsOf(p: Person): [string, string][] {
       [L('家族', 'Family'), isEn
         ? `Mother ${p.mother.name ?? ''}, father ${p.father.name ?? ''}${sibs ? `, ${sibs} ${sibs === 1 ? 'sibling' : 'siblings'}` : ''}`
         : `母 ${p.mother.name ?? ''}・父 ${p.father.name ?? ''}${sibs ? `・きょうだい${sibs}人` : ''}`],
-      [L('生まれた場所', 'Born in'), `${p.city ?? L('農村', 'a rural area')}${L('・', ', ')}${byCode(p.birthCountry).name}`],
+      [L('生まれた場所', 'Born in'), `${p.city ?? L('農村', 'a rural area')}${L('・', ', ')}${bornIn(p.birthCountry, p.birthYear)}`],
     ];
   }
   const edu = eduLevel(p);
@@ -135,7 +136,7 @@ export function deathRecord(l: PastLife, slot = ''): string {
   <article class="record">
     <header><span>${L('死亡記録', 'Death record')}</span><span>No. ${l.birthCountry}-${l.birthYear}-${String(l.age).padStart(3, '0')}</span></header>
     ${l.scene ? `<canvas class="pixscene" data-scene="${sceneAttr(l.scene)}"></canvas>` : ''}
-    <p class="kicker">${esc(b.name)}${L('・', ' · ')}${genderWord(genderOf(l))}</p>
+    <p class="kicker">${esc(bornIn(l.birthCountry, l.birthYear))}${L('・', ' · ')}${genderWord(genderOf(l))}</p>
     <h1>${esc(l.name)}</h1>
     <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}${L(`・享年${l.age}歳`, ` · died at ${l.age}`)}${l.line ? L(`・第${l.line.length}世代`, ` · generation ${l.line.length}`) : ''}</p>
     <button class="replay" data-replay>▶ ${L('人生をふりかえる', 'Look back on this life')}</button>
@@ -281,8 +282,7 @@ const aiStoryHtml = (s: { title: string; story: string }) =>
   `<div class="aistory"><h3><i class="aitag">AI</i>${esc(s.title || L('この人の物語', 'This life'))}</h3>${s.story.split(/\n\n+/).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`;
 
 export function deathCard(l: PastLife): HTMLCanvasElement {
-  const b = byCode(l.birthCountry);
-  return drawCard({ kicker: `${b.name}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [...starred(l.log).slice(0, 1).map((e) => `★ ${e.text}`), l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene,
+  return drawCard({ kicker: `${bornIn(l.birthCountry, l.birthYear)}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [...starred(l.log).slice(0, 1).map((e) => `★ ${e.text}`), l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene,
     years: lifeMapCells({ kinds: l.kinds, age: l.age, alive: false }).filter((c) => c.age <= l.age).map((c) => c.kind) });
 }
 
