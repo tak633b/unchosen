@@ -1,7 +1,7 @@
 // 人との間の時間: 出会い、近さの移ろい、けんかと仲直り、疎遠と再会。家族以外の人の死もここで。
 import { addTie, callName, circle, freshName, mourn, shared } from '../bonds';
 import { makeName } from '../identity';
-import { bump, countryOf, log, yearOf, type Person, type Relative, type Role, type Tie } from '../person';
+import { bump, countryOf, log, type Person, type Relative, type Role, type Tie } from '../person';
 import { clamp, normal, pick } from '../rng';
 import { relDies } from './family';
 import { L } from '../../i18n';
@@ -28,7 +28,8 @@ function meet(p: Person): void {
   const friends = tiesOf(p, 'friend');
   const name = (full = false) => {
     const sex = r() < 0.65 ? p.sex : p.sex === 'F' ? 'M' : 'F';
-    const n = freshName(() => makeName(r, p.country, sex, undefined, undefined, yearOf(p)), (p.nameKeys ??= []));
+    // 友だちはほぼ同い年なので、名は自分の生まれ年で引く (年は名を引いたあとで決める)
+    const n = freshName(() => makeName(r, p.country, sex, undefined, undefined, p.birthYear), (p.nameKeys ??= []));
     return { sex, name: full ? n.full : n.given } as const;
   };
   if (p.age === 12 && !friends.length) {

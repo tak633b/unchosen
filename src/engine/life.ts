@@ -77,7 +77,7 @@ export function createPerson(o: BirthOptions): Person {
   const nameKeys = [name.key]; // 人の輪の中で同じ名にしない (きょうだい・親から。あとで友だちや恋人も足す)
   const sib = (age: number) => {
     const s: Sex = rng() < 0.5 ? 'M' : 'F';
-    return { alive: true, age, sex: s, name: freshName(() => makeName(rng, c.code, s, fam), nameKeys).given };
+    return { alive: true, age, sex: s, name: freshName(() => makeName(rng, c.code, s, fam, undefined, year - age), nameKeys).given };
   };
   const now = new Date();
   const p: Person = {
@@ -87,8 +87,8 @@ export function createPerson(o: BirthOptions): Person {
     age: 0, alive: true, rural, familyP, birthP: familyP, incomeP: familyP,
     working: false, jobYears: 0, formal: false, retired: false, unemployed: 0,
     wealth: 0, peakIncome: 0, house: false, car: false,
-    mother: { alive: true, age: motherAge, sex: 'F', name: freshName(() => makeName(rng, c.code, 'F', fam), nameKeys).given },
-    father: { alive: true, age: fatherAge, sex: 'M', name: freshName(() => makeName(rng, c.code, 'M', fam), nameKeys).given },
+    mother: { alive: true, age: motherAge, sex: 'F', name: freshName(() => makeName(rng, c.code, 'F', fam, undefined, year - motherAge), nameKeys).given },
+    father: { alive: true, age: fatherAge, sex: 'M', name: freshName(() => makeName(rng, c.code, 'M', fam, undefined, year - fatherAge), nameKeys).given },
     siblings: [
       ...Array.from({ length: older }, (_, i) => sib(2 + i * 2 + Math.floor(rng() * 2))),
       // 母が45歳を過ぎてからは生まれない (乱数は同じだけ引いてから外す)

@@ -6,7 +6,7 @@ import { showRng } from '../crisis';
 import { earnings, formatMoney } from '../economy';
 import { makeName } from '../identity';
 import type { Sex } from '../lifetable';
-import { bump, childWord, countryOf, decide, log, type Person } from '../person';
+import { bump, childWord, countryOf, decide, log, yearOf, type Person } from '../person';
 
 // 血縁のない家に赤ん坊を迎えることが制度としてふつうにある国 (roots.ts の DOMESTIC と、同じ型の制度を持つ西欧・北欧・オセアニア)
 const ADOPT = new Set(['USA', 'GBR', 'CAN', 'AUS', 'NZL', 'IRL', 'SWE', 'NOR', 'DNK', 'FIN', 'NLD', 'BEL', 'FRA', 'DEU', 'CHE', 'ESP', 'ITA']);
@@ -52,7 +52,7 @@ function consult(p: Person): void {
 function welcome(p: Person): void {
   const r = showRng(p.seed, p.age, 0x4d04);
   const sex: Sex = r() < 0.512 ? 'M' : 'F';
-  const name = freshName(() => makeName(r, p.country, sex, { pool: p.pool, index: p.familyIndex }), (p.nameKeys ??= [])).given;
+  const name = freshName(() => makeName(r, p.country, sex, { pool: p.pool, index: p.familyIndex }, undefined, yearOf(p)), (p.nameKeys ??= [])).given;
   const kid = { alive: true, age: 0, sex, name, id: newId(p), bond: 70, since: p.age, country: p.country, adopted: true };
   p.children.push(kid);
   p.recent.adoptDone = p.age;

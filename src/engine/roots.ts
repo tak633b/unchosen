@@ -2,7 +2,7 @@
 // 生まれた時に一度だけ決める。乱数は主人公の乱数とは別に seed から作る (この仕組みが無い国・人生では、これまでと同じ人生になる)
 import { byCode } from './countries';
 import { familyNames, makeName, pickCity } from './identity';
-import { log, type Person, type Relative } from './person';
+import { log, yearOf, type Person, type Relative } from './person';
 import { ensureBonds, freshName } from './bonds';
 import { clamp, makeRng, normal, pickWeighted, type Rng } from './rng';
 import { L } from '../i18n';
@@ -169,9 +169,9 @@ function renameFamily(p: Person, r: Rng, pool: string, index?: number): void {
   const fam = { pool, index: index ?? Math.floor(r() * familyNames(pool).length) };
   const code = p.country;
   const keys: string[] = [];
-  const me = freshName(() => makeName(r, code, p.sex, fam), keys);
+  const me = freshName(() => makeName(r, code, p.sex, fam, undefined, p.birthYear), keys);
   Object.assign(p, { given: me.given, name: me.full, pool, familyIndex: fam.index });
-  for (const rel of [p.mother, p.father, ...p.siblings]) rel.name = freshName(() => makeName(r, code, rel.sex, fam), keys).given;
+  for (const rel of [p.mother, p.father, ...p.siblings]) rel.name = freshName(() => makeName(r, code, rel.sex, fam, undefined, yearOf(p) - rel.age), keys).given;
   p.nameKeys = keys;
 }
 
@@ -229,7 +229,7 @@ function adoption(p: Person, r: Rng): boolean {
     p.familyP = p.incomeP = clamp(0.5 + r() * 0.45, 0.01, 0.99);
     // 生まれた家のきょうだいとは別れる (養家のきょうだいは作らない。ponytail)
     p.siblings = [];
-    renameFamily(p, r, makeName(r, dest, p.sex).pool);
+    renameFamily(p, r, makeName(r, dest, p.sex, undefined, undefined, p.birthYear).pool);
     p.mother.country = p.father.country = dest;
     p.roots = { ...p.roots, adopted: { from: p.birthCountry, abroad: true, at } };
     log(p, L(`生後${at || 1}か月で、${byCode(dest).name}の夫婦の養子になった。新しい名前は${p.name}。生まれた${from}の記録は、施設の書類に残っている。`,
@@ -268,7 +268,7 @@ function twin(p: Person, r: Rng): void {
   const identical = r() < MZ / twinRate(p.birthCountry, p.birthYear);
   const sex = identical ? p.sex : r() < 0.5 ? 'M' : 'F';
   const fam = { pool: p.pool, index: p.familyIndex };
-  const s: Relative = { alive: true, age: 0, sex, name: freshName(() => makeName(r, p.birthCountry, sex, fam), (p.nameKeys ??= [])).given };
+  const s: Relative = { alive: true, age: 0, sex, name: freshName(() => makeName(r, p.birthCountry, sex, fam, undefined, p.birthYear), (p.nameKeys ??= [])).given };
   p.siblings = [...p.siblings, s];
   ensureBonds(p);
   s.bond = 72; // 同じ日に生まれたきょうだい

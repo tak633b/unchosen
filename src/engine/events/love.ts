@@ -21,7 +21,7 @@ export function newPartner(p: Person): Relative {
   const sex: Sex = p.sex === 'F' ? 'M' : 'F';
   const d = p.sex === 'F' ? normal(p.rng, 3, 3) : normal(p.rng, -3, 3);
   const age = Math.max(17, Math.round(p.age + d));
-  const name = freshName(() => makeName(p.rng, p.country, sex, undefined, undefined, yearOf(p)), (p.nameKeys ??= [])).full;
+  const name = freshName(() => makeName(p.rng, p.country, sex, undefined, undefined, yearOf(p) - age), (p.nameKeys ??= [])).full;
   const edu = clamp(eduLevel(p) + Math.round(normal(p.rng, 0, 1)), 0, 5);
   const jobs = JOBS.filter((j) => j.edu <= edu && (j.maxEdu ?? 5) >= edu && !j.majors);
   return { alive: true, age, sex, name, job: jobs.length ? pick(p.rng, jobs).name : '家の仕事', id: newId(p), bond: 55, since: p.age, country: p.country };
@@ -175,7 +175,7 @@ export function giveBirth(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
   const sex: Sex = r() < 0.512 ? 'M' : 'F';
-  const name = freshName(() => makeName(r, p.birthCountry, sex, { pool: p.pool, index: p.familyIndex }), (p.nameKeys ??= [])).given;
+  const name = freshName(() => makeName(r, p.birthCountry, sex, { pool: p.pool, index: p.familyIndex }, undefined, yearOf(p)), (p.nameKeys ??= [])).given;
   const kid = { alive: true, age: 0, sex, name, id: newId(p), bond: 75, since: p.age, country: p.country };
   p.children.push(kid);
   const n = p.children.length;
