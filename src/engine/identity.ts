@@ -1,5 +1,6 @@
 // 名前・都市・宗教。国ごとの命名文化から引く (src/data/identity.json)。
 import data from '../data/identity.json';
+import eraData from '../data/name-eras.json';
 import type { Sex } from './lifetable';
 import { isEn } from '../i18n';
 import { pickWeighted, type Rng } from './rng';
@@ -33,6 +34,12 @@ const POOLS: Record<string, Pool> = Object.fromEntries(Object.entries(RAW).map((
   : v]));
 // 姓の一覧 (元の文字)。家の姓を選び直すとき (roots.ts)
 export const familyNames = (pool: string): string[] => POOLS[pool]?.family ?? [];
+// 昔に生まれた人の名 (scripts/build-name-eras.mjs。出典はそこに書いた。明治安田生命の生まれ年別ランキング、米 SSA、英 ONS、INSEE、INE など)。
+// [この年より前に生まれた人, 名]。どの帯にも入らない人は上の (いまの) 名
+type Givens = Pick<Pool, 'male' | 'female' | 'maleEn' | 'femaleEn'>;
+const ERAS = eraData as unknown as Record<string, [number, Givens][]>;
+const givensAt = (poolId: string, pool: Pool, born?: number): Givens =>
+  (born !== undefined && (ERAS[poolId] ?? ERAS[RAW[poolId]?.from ?? ''])?.find(([until]) => born < until)?.[1]) || pool;
 const COUNTRIES = data.countries as unknown as Record<string, CountryIdentity>;
 const FALLBACK: CountryIdentity = { pool: 'english', cities: [], religions: [['その他', 1]] };
 
@@ -55,17 +62,19 @@ function poolsFor(ci: CountryIdentity, religion?: string, code?: string, year?: 
   return open.length ? open : ci.pools;
 }
 
+// year: 名を付けられる人が生まれた年 (名の流行と、移民の伝統を引くかに使う)
 export function makeName(rng: Rng, code: string, sex: Sex, family?: { pool: string; index: number }, religion?: string, year?: number): Name & { familyIndex: number } {
   const ci = idOf(code);
   const poolId = family?.pool ?? (ci.pools ? pickWeighted(rng, poolsFor(ci, religion, code, year), ([, w]) => w)[0] : ci.pool!);
   const pool = POOLS[poolId] ?? Object.values(POOLS)[0];
   // 添字を先に引いてから言語で配列を選ぶ (同じ seed なら日英で同じ人生になる)
-  const givens = sex === 'F' ? pool.female : pool.male;
+  const era = givensAt(poolId, pool, year);
+  const givens = sex === 'F' ? era.female : era.male;
   const givenIndex = Math.floor(rng() * givens.length);
   const familyIndex = family?.index ?? Math.floor(rng() * pool.family.length);
   const female = sex === 'F' && pool.familyFemale;
   const en = isEn && pool.familyEn;
-  const given = (en && (sex === 'F' ? pool.femaleEn : pool.maleEn)?.[givenIndex]) || givens[givenIndex];
+  const given = (en && (sex === 'F' ? era.femaleEn : era.maleEn)?.[givenIndex]) || givens[givenIndex];
   const fam = (en && (female ? pool.familyFemaleEn ?? pool.familyEn : pool.familyEn)?.[familyIndex])
     || (female ? pool.familyFemale![familyIndex] : pool.family[familyIndex]);
   // 英語の日本人名は名・姓の順。中国・韓国は姓・名のまま
