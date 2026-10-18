@@ -31,7 +31,8 @@ import { DEEP_SEA, DEEP_SEA_RISK } from './events/career';
 import { origin, roots, rootsMortality } from './roots';
 import { rootsYear } from './events/roots';
 import { faith } from './events/faith';
-import { eventCause, excessQ } from './worldevents';
+import { excessQ, myEventCause, myExcessQ } from './worldevents';
+import { bornIn } from './polity';
 import { household, lastMonths } from './events/household';
 import { adoption } from './events/adopt';
 
@@ -66,7 +67,7 @@ export function createPerson(o: BirthOptions): Person {
   // 農業で働く人が多い国ほど、貧しい家ほど農村に生まれやすい
   const rural = rng() < clamp(c.agri * 1.3 * (1.4 - familyP * 0.8), 0.02, 0.95);
   // 宗教を先に決め、名はその宗教の人の伝統から引く (インドのイスラム教徒にヒンドゥーの名を付けない)
-  const religion = pickReligion(rng, c.code);
+  const religion = pickReligion(rng, c.code, year);
   const name = makeName(rng, c.code, sex, undefined, religion);
   const fam = { pool: name.pool, index: name.familyIndex };
   const motherAge = Math.round(clamp(normal(rng, c.tfr > 4 ? 24 : 29, 5), 15, 45));
@@ -115,7 +116,7 @@ export const homeWord = (familyP: number) => isEn
 const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 function birthStoryEn(p: Person, older: number): string {
-  const c = byCode(p.birthCountry);
+  const c = { name: bornIn(p.birthCountry, p.birthYear) }; // 1949年までの生まれは、当時の国の名前 (polity.ts)
   const where = p.city ? `${p.city}, ${c.name}` : `a rural area of ${c.name}`;
   const home = p.familyP >= 0.8 ? 'a family in the top 20% of incomes' : `${p.familyP >= 0.4 && p.familyP < 0.8 ? 'an' : 'a'} ${homeWord(p.familyP)}`;
   const sibs = older ? `There ${older === 1 ? 'was 1 older sibling' : `were ${older} older siblings`}.` : 'The first child.';
@@ -124,7 +125,7 @@ function birthStoryEn(p: Person, older: number): string {
 }
 
 export function birthStory(p: Person): string {
-  const c = byCode(p.birthCountry);
+  const c = { name: bornIn(p.birthCountry, p.birthYear) };
   const older = p.siblings.filter((s) => s.age > 0).length;
   if (isEn) return birthStoryEn(p, older);
   const where = p.city ? `${c.name}の${p.city}` : `${c.name}の農村`;
@@ -165,7 +166,8 @@ export function riskParts(p: Person): RiskParts {
   // ウイグル族・チベット族は、住む自治区の平均寿命の差を倍率でかける (roots.ts)
   const base = Math.max(lifeTable(c, p.sex).q[p.age] * 0.3, lifeTable(c, p.sex).q[p.age] - maternal) * rootsMortality(p);
   // 5歳未満は生命表の値をそのまま使う (乳幼児死亡率を統計どおりに保つ)
-  const histAdd = excessQ(p.country, yearOf(p), p.sex, p.age);
+  // 輪の人は出来事を生きない (history.ts) ので、国の平均で足す
+  const histAdd = p.anchor ? excessQ(p.country, yearOf(p), p.sex, p.age) : myExcessQ(p);
   const hist = histAdd ? { histAdd } : {};
   if (p.age < 5) return { q: clamp(base + histAdd, 0, 1), table: base, ...one, ...hist };
   // その年齢のふつうの健康 (drift で何もしなかった場合) より悪ければ死亡率が上がる
@@ -230,7 +232,7 @@ export function advanceYear(p: Person): void {
   const roll = p.anchor ? 1 : p.rng();
   if (p.anchor ? p.age >= p.anchor.dies : roll < q) {
     let cause: string;
-    const ev = p.anchor ? undefined : eventCause(p.country, yearOf(p), p.sex, p.age, roll);
+    const ev = p.anchor ? undefined : myEventCause(p, roll);
     if (p.anchor?.cause) cause = p.anchor.cause;
     else if (ev) cause = ev;
     else if (p.hiv === 'untreated' && p.hivYears >= 3 && p.rng() < 0.1 / q) cause = causeName('エイズ関連の病気');

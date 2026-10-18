@@ -69,23 +69,28 @@
     1945
    ],
    "hit": 0.55,
-   "severity": 5,
-   "effect": {
-    "health": -6,
-    "happy": -15
-   },
+   "kill": 0.032,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.032,
-   "cause": "戦争",
-   "who": "men",
+   "die": 0.27,
+   "wound": 0.1,
+   "pow": 0.07,
+   "powDie": 0.1,
+   "back": 1949,
+   "effect": {
+    "health": -6,
+    "happy": -15
+   },
+   "severity": 5,
    "ja": {
     "hit": [
      "召集令状が届いた。町内の人に見送られて入営し、中国大陸へ送られた。",
-     "赤紙が来て兵隊にとられた。南の島で、飢えと病気に苦しみながら終戦を迎えた。",
+     "赤紙が来て兵隊にとられた。輸送船で南の島へ運ばれた。",
      "召集されて入営した。前線の部隊に回され、何年も家に帰れなかった。"
     ],
     "news": [
@@ -95,7 +100,7 @@
    "en": {
     "hit": [
      "The call-up papers came. Seen off by the neighborhood, entered the army and was shipped to the Chinese mainland.",
-     "The red draft card came. The war ended on a southern island, amid hunger and sickness.",
+     "The red draft card came. A transport ship carried the unit to a southern island.",
      "Was called up and assigned to a front-line unit. For years there was no going home."
     ],
     "news": [
@@ -103,10 +108,14 @@
     ]
    },
    "stat": [
-    "日中戦争から太平洋戦争までの日本の軍人・軍属の死者は、約230万人 (厚生労働省)",
-    "About 2.3 million Japanese soldiers and military personnel died in the wars of 1937-45 (Ministry of Health, Labour and Welfare)"
+    "日中戦争から太平洋戦争までの日本の軍人・軍属の死者は約230万人。その6割ほどは戦闘ではなく、飢えと病気で亡くなったとされる",
+    "About 2.3 million Japanese soldiers and military personnel died in 1937-45; by some estimates about 60% of them died of hunger and disease rather than in combat"
    ],
-   "src": "厚生労働省 社会・援護局「援護50年史」; 内閣府 戦没者数"
+   "src": "厚生労働省 社会・援護局「援護50年史」; 藤原彰『餓死した英霊たち』(2001); 厚生労働省 シベリア抑留者数",
+   "home": [
+    "戦争が終わり、復員船で日本に帰った。家の焼けた町で、家族を探して歩いた。",
+    "The war ended, and a repatriation ship brought the soldier back to Japan, to walk the burned streets looking for family."
+   ]
   },
   {
    "id": "jp-air-raids-1944",
@@ -1071,17 +1080,26 @@
     1945
    ],
    "hit": 0.15,
-   "severity": 4,
-   "effect": {
-    "health": -5,
-    "happy": -15
-   },
+   "kill": 0.0005,
+   "who": "men",
+   "cause": "戦争",
    "age": [
     16,
     40
    ],
    "sex": "M",
-   "rough": true,
+   "die": 0.03,
+   "back": 1945,
+   "home": [
+    "戦争が終わり、炭鉱を出て、港から船で故郷へ帰った。",
+    "The war ended. Walked out of the mine and took a boat from the port back home."
+   ],
+   "labour": true,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "severity": 4,
    "ja": {
     "hit": [
      "労務の動員で、日本の炭鉱へ送られた。終戦まで、家には帰れなかった。",
@@ -1104,7 +1122,8 @@
     "1939〜45年に、朝鮮から日本本土へ労務動員された人は約70万人とされる",
     "About 700,000 Koreans are estimated to have been mobilized for labor in Japan proper in 1939-45"
    ],
-   "src": "大蔵省管理局「日本人の海外活動に関する歴史的調査」(1947); 外村大『朝鮮人強制連行』(2012)"
+   "src": "大蔵省管理局「日本人の海外活動に関する歴史的調査」(1947); 外村大『朝鮮人強制連行』(2012)",
+   "rough": true
   },
   {
    "id": "kr-war-1950",
@@ -2945,23 +2964,26 @@
     1918
    ],
    "hit": 0.5,
-   "severity": 5,
-   "effect": {
-    "health": -8,
-    "happy": -15
-   },
+   "kill": 0.0126,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     44
    ],
    "sex": "M",
-   "kill": 0.0126,
-   "cause": "戦争",
-   "who": "men",
+   "die": 0.145,
+   "wound": 0.37,
+   "pow": 0.01,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "severity": 5,
    "ja": {
     "hit": [
-     "志願して兵隊になり、ガリポリの浜に上陸した。",
-     "志願してフランスの西部戦線へ送られた。塹壕で泥と砲撃の中を何年も過ごした。"
+     "志願して兵隊になり、船でエジプトへ、それからガリポリの浜に上陸した。",
+     "志願してフランスの西部戦線へ送られた。"
     ],
     "news": [
      "ヨーロッパで大戦争が始まり、若い男たちが志願して海を渡っていった。"
@@ -2969,16 +2991,16 @@
    },
    "en": {
     "hit": [
-     "Volunteered for the army and landed on the beach at Gallipoli.",
-     "Volunteered and was sent to the Western Front in France. Years in the trenches, in mud and under shellfire."
+     "Volunteered, sailed to Egypt, and landed on the beach at Gallipoli.",
+     "Volunteered and was sent to the Western Front in France."
     ],
     "news": [
      "A great war began in Europe, and young men volunteered and sailed away across the sea."
     ]
    },
    "stat": [
-    "第一次世界大戦で、オーストラリアからは約41万7,000人が志願して従軍し、約6万2,000人が亡くなった (オーストラリア戦争記念館)",
-    "In the First World War about 417,000 Australians enlisted and some 62,000 died (Australian War Memorial)"
+    "オーストラリアでは徴兵は行われず、約41万7千人が志願し、約6万2千人が戦死した",
+    "Australia never conscripted: about 417,000 men volunteered and about 62,000 died"
    ],
    "src": "Australian War Memorial, First World War 1914-18"
   },
@@ -2993,19 +3015,24 @@
     1945
    ],
    "hit": 0.55,
-   "severity": 5,
-   "effect": {
-    "health": -6,
-    "happy": -12
-   },
+   "kill": 0.0057,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.0057,
-   "cause": "戦争",
-   "who": "men",
+   "die": 0.04,
+   "wound": 0.04,
+   "pow": 0.03,
+   "powDie": 0.3,
+   "back": 1945,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "severity": 5,
    "ja": {
     "hit": [
      "兵隊になり、北アフリカの砂漠で戦った。",
@@ -3133,23 +3160,27 @@
     1918
    ],
    "hit": 0.4,
-   "severity": 5,
-   "effect": {
-    "health": -8,
-    "happy": -15
-   },
+   "kill": 0.0165,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.0165,
-   "cause": "戦争",
-   "who": "men",
+   "die": 0.15,
+   "wound": 0.33,
+   "pow": 0.005,
+   "draft": 1916,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "severity": 5,
    "ja": {
     "hit": [
      "兵隊になり、ガリポリの崖の下に上陸した。",
-     "兵隊になってフランスへ送られ、ソンムの塹壕で過ごした。"
+     "兵隊になってフランスへ送られ、ソンムの塹壕に入った。"
     ],
     "news": [
      "ヨーロッパで大戦争が始まり、若い男たちが海を渡っていった。"
@@ -3157,8 +3188,8 @@
    },
    "en": {
     "hit": [
-     "Joined up and landed beneath the cliffs at Gallipoli.",
-     "Joined up and was sent to France, to the trenches of the Somme."
+     "Became a soldier and landed below the cliffs at Gallipoli.",
+     "Became a soldier, was shipped to France, and went into the trenches on the Somme."
     ],
     "news": [
      "A great war began in Europe, and the young men sailed away across the sea."
@@ -3181,19 +3212,24 @@
     1945
    ],
    "hit": 0.5,
-   "severity": 5,
-   "effect": {
-    "health": -6,
-    "happy": -12
-   },
+   "kill": 0.0074,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.0074,
-   "cause": "戦争",
-   "who": "men",
+   "die": 0.06,
+   "wound": 0.1,
+   "pow": 0.06,
+   "powDie": 0.06,
+   "back": 1945,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "severity": 5,
    "ja": {
     "hit": [
      "兵隊になり、クレタ島とイタリアで戦った。",
@@ -3708,6 +3744,551 @@
     "Cyclone Winston killed 44 people and affected about 350,000, some 40% of the population (Government of Fiji)"
    ],
    "src": "Government of Fiji 2016, Post-Disaster Needs Assessment: Tropical Cyclone Winston"
+  },
+  {
+   "id": "jp-ww1-1914",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1914,
+    1914
+   ],
+   "hit": 0,
+   "effect": {},
+   "severity": 2,
+   "ja": {
+    "hit": [],
+    "news": [
+     "日本がドイツに宣戦し、中国の青島を攻め落とした。遠いヨーロッパの戦争は、輸出の好景気として町に届いた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Japan declared war on Germany and took Qingdao in China. The faraway war in Europe reached the town as an export boom."
+    ]
+   },
+   "stat": [
+    "青島の戦いでの日本軍の戦死者は約400人。大戦中の輸出の伸びで、日本は債務国から債権国になった",
+    "About 400 Japanese soldiers died at Qingdao. Wartime exports turned Japan from a debtor into a creditor nation"
+   ],
+   "src": "防衛省防衛研究所『戦史叢書』; 日本銀行統計局『明治以降本邦主要経済統計』"
+  },
+  {
+   "id": "kr-conscription-1944",
+   "type": "war",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.45,
+   "kill": 0.0005,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    19,
+    22
+   ],
+   "sex": "M",
+   "die": 0.05,
+   "back": 1945,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "朝鮮で初めての徴兵検査を受け、日本の陸軍に入れられた。中国の前線へ送られた。",
+     "徴兵されて日本の陸軍に入り、遠い南の島へ送られた。"
+    ],
+    "news": [
+     "朝鮮の若い男たちにも徴兵が始まり、村から入営する者が出た。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Sat Korea's first conscription examination and was put into the Japanese army, then sent to the front in China.",
+     "Was conscripted into the Japanese army and shipped to a distant southern island."
+    ],
+    "news": [
+     "Conscription now reached young Korean men too, and village boys were sent off to the barracks."
+    ]
+   },
+   "stat": [
+    "1944〜45年、朝鮮人約21万人が徴兵や志願で日本の陸海軍に入れられた。軍人・軍属の朝鮮人の死者は約2万2千人",
+    "In 1944-45 some 210,000 Koreans were drafted or \"volunteered\" into the Japanese army and navy; about 22,000 Korean soldiers and military employees died"
+   ],
+   "src": "厚生省引揚援護局 (1953) 朝鮮人軍人軍属数; 樋口雄一『戦時下朝鮮の民衆と徴兵』(2001)",
+   "rough": true
+  },
+  {
+   "id": "cn-conscription-1937",
+   "type": "war",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1937,
+    1945
+   ],
+   "hit": 0.12,
+   "kill": 0.007,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "die": 0.25,
+   "wound": 0.15,
+   "pow": 0.02,
+   "back": 1945,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "兵を集める役人に捕まり、縄でつながれて部隊まで歩かされた。",
+     "徴兵されて国民党の軍に入った。わらじで何百キロも行軍した。"
+    ],
+    "news": [
+     "村に兵を集めに役人が来た。若い男たちは山や畑に隠れた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was seized by the recruiting officers and marched to the unit roped to the other men.",
+     "Was conscripted into the Nationalist army and marched hundreds of kilometers in straw sandals."
+    ],
+    "news": [
+     "Officials came to the village to round up soldiers. The young men hid in the hills and the fields."
+    ]
+   },
+   "stat": [
+    "日中戦争の間に国民党の軍は約1,400万人を徴兵した。部隊に着く前に、飢えと病気で多くが亡くなった",
+    "The Nationalist army conscripted some 14 million men during the war with Japan; many died of hunger and disease before even reaching their units"
+   ],
+   "src": "van de Ven 2003, War and Nationalism in China 1925-1945; Mitter 2013, China's War with Japan",
+   "rough": true
+  },
+  {
+   "id": "jp-russo-war-1904",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1904,
+    1905
+   ],
+   "hit": 0.15,
+   "kill": 0.0018,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    20,
+    37
+   ],
+   "sex": "M",
+   "die": 0.08,
+   "wound": 0.14,
+   "pow": 0.002,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "召集されて満州へ送られた。旅順の要塞の前の塹壕に入った。",
+     "召集されて海を渡り、奉天の野で戦った。"
+    ],
+    "news": [
+     "ロシアとの戦争が始まった。号外が出て、町じゅうが提灯行列でわいた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and shipped to Manchuria, into the trenches before the fortress of Port Arthur.",
+     "Was called up, crossed the sea, and fought on the plains of Mukden."
+    ],
+    "news": [
+     "War with Russia broke out. Special editions hit the streets, and the town celebrated with lantern parades."
+    ]
+   },
+   "stat": [
+    "日露戦争で日本は約109万人を動員し、約8万8千人が戦死・戦病死した",
+    "Japan mobilized about 1.09 million men for the Russo-Japanese War; about 88,000 died"
+   ],
+   "src": "陸軍省『明治三十七八年戦役陸軍衛生史』; 大江志乃夫『日露戦争の軍事史的研究』(1976)"
+  },
+  {
+   "id": "jp-student-mobilization-1944",
+   "type": "war",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1944,
+    1945
+   ],
+   "hit": 0.7,
+   "age": [
+    12,
+    19
+   ],
+   "effect": {
+    "health": -2,
+    "happy": -6
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "学徒動員で、授業がなくなり、毎日軍需工場で部品を作った。",
+     "勤労動員で、学校の代わりに工場へ通い、風船爆弾の紙を貼った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Mobilized as a student: classes stopped, and every day was spent making parts in a munitions factory.",
+     "Mobilized for labor: instead of school, a factory, gluing the paper of balloon bombs."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1945年3月には、中学生以上の約340万人の生徒・学生が工場などに動員されていた",
+    "By March 1945 some 3.4 million secondary and university students had been mobilized into factories and other work"
+   ],
+   "src": "文部省『学制百年史』(1972)"
+  },
+  {
+   "id": "cn-boxer-1900",
+   "type": "war",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1900,
+    1900
+   ],
+   "hit": 0.002,
+   "kill": 0.0002,
+   "who": "all",
+   "cause": "戦争",
+   "effect": {
+    "health": -4,
+    "happy": -12,
+    "wealth": -0.3
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "義和団と外国の軍隊の戦いに町が巻き込まれ、家を焼かれた。"
+    ],
+    "news": [
+     "北京で外国の公使館が囲まれ、八か国の軍隊が北京に入った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The town was caught between the Boxers and the foreign armies, and the house was burned."
+    ],
+    "news": [
+     "The foreign legations in Beijing were besieged, and the armies of eight nations marched into the capital."
+    ]
+   },
+   "stat": [
+    "義和団の乱 (1899〜1901年) の死者は10万人前後とされる",
+    "The Boxer Uprising of 1899-1901 is thought to have left around 100,000 dead"
+   ],
+   "src": "Cohen 1997, History in Three Keys",
+   "rough": true
+  },
+  {
+   "id": "ph-american-war-1899",
+   "type": "war",
+   "countries": [
+    "PHL"
+   ],
+   "years": [
+    1900,
+    1902
+   ],
+   "hit": 0.15,
+   "kill": 0.025,
+   "who": "all",
+   "cause": "戦争",
+   "effect": {
+    "health": -6,
+    "happy": -15,
+    "wealth": -0.3
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "アメリカ軍の作戦で、村の人は「保護区」に移された。そこでコレラがはやった。"
+    ],
+    "news": [
+     "アメリカの軍隊との戦争が続き、村々が焼かれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The American campaign herded the villagers into a \"protected zone\", where cholera broke out."
+    ],
+    "news": [
+     "The war with the American army dragged on, and villages were burned."
+    ]
+   },
+   "stat": [
+    "米比戦争 (1899〜1902年) では、戦闘と飢え・病気で20万人を超えるフィリピンの民間人が亡くなったとされる",
+    "More than 200,000 Filipino civilians are thought to have died from fighting, famine and disease in the Philippine-American War (1899-1902)"
+   ],
+   "src": "Linn 2000, The Philippine War 1899-1902; Gates 1984",
+   "rough": true
+  },
+  {
+   "id": "jp-showa-crisis-1930",
+   "type": "finance",
+   "countries": [
+    "JPN"
+   ],
+   "years": [
+    1930,
+    1934
+   ],
+   "hit": 0.15,
+   "urban": 0.5,
+   "poor": 1.5,
+   "effect": {
+    "happy": -10,
+    "wealth": -0.3
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "生糸と米の値が崩れ、家の借金がふくらんだ。弁当を持たずに学校へ行く子が増えた。",
+     "冷害で米がとれず、村から娘たちが奉公や身売りに出されていった。"
+    ],
+    "news": [
+     "昭和恐慌。生糸の値が半分に落ち、農村の暮らしが行き詰まった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Silk and rice prices collapsed and the family debt swelled. More children came to school without lunch.",
+     "The cold summers ruined the rice, and daughters were sent from the village into service or sold away."
+    ],
+    "news": [
+     "The Showa Depression: raw silk prices halved and farm life hit a wall."
+    ]
+   },
+   "stat": [
+    "1929年から1931年に、生糸の値は約半分、米の値は約4割下がった",
+    "Between 1929 and 1931 the price of raw silk fell by about half and the price of rice by about 40%"
+   ],
+   "src": "中村隆英『昭和恐慌と経済政策』(1978); 日本銀行 卸売物価指数",
+   "rough": true
+  },
+  {
+   "id": "kr-name-change-1940",
+   "type": "occupation",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1940,
+    1940
+   ],
+   "hit": 0.8,
+   "effect": {
+    "happy": -8
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "創氏改名で、家は日本式の名字を届け出させられた。学校では朝鮮語を話すと罰を受けた。"
+    ],
+    "news": [
+     "朝鮮の人々に、日本式の名字を名乗ることが求められた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under the name-change order the family had to register a Japanese-style surname. At school, speaking Korean meant punishment."
+    ],
+    "news": [
+     "Koreans were required to take Japanese-style surnames."
+    ]
+   },
+   "stat": [
+    "1940年の創氏改名では、半年ほどのうちに約8割の家が日本式の氏を届け出た",
+    "Under the 1940 name-change order, about 80% of Korean households registered Japanese-style surnames within about six months"
+   ],
+   "src": "水野直樹『創氏改名』(2008)"
+  },
+  {
+   "id": "kr-rice-1939",
+   "type": "famine",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1939,
+    1945
+   ],
+   "hit": 0.4,
+   "urban": 0.7,
+   "poor": 1.5,
+   "effect": {
+    "health": -4,
+    "happy": -8
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "米の供出で、つくった米のほとんどを持っていかれた。家では満州から来た豆かすを食べた。"
+    ],
+    "news": [
+     "戦争のための米の供出が厳しくなり、村の食べ物が減った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The rice levy took almost all the rice the family grew. At home they ate soybean cake shipped in from Manchuria."
+    ],
+    "news": [
+     "The wartime rice levy grew harsher, and the village went short of food."
+    ]
+   },
+   "stat": [
+    "1940年代前半、朝鮮の人の一人あたりの米の消費は、1910年代の半分ほどに落ちた",
+    "In the early 1940s rice consumption per head in Korea fell to about half its level of the 1910s"
+   ],
+   "src": "朝鮮総督府 統計年報; Kimura 1993 (Explorations in Economic History 30)",
+   "rough": true
+  },
+  {
+   "id": "kr-comfort-1937",
+   "type": "war",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1938,
+    1945
+   ],
+   "hit": 0,
+   "effect": {},
+   "severity": 3,
+   "newsAt": 1942,
+   "ja": {
+    "hit": [],
+    "news": [
+     "工場で働けると言われて村を出た娘たちが、戻ってこなかった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Village girls who left after being promised factory jobs did not come back."
+    ]
+   },
+   "stat": [
+    "日本軍の「慰安所」に集められた女性の数は、研究によって2万人から20万人まで推計に幅がある。その多くが朝鮮の女性だった",
+    "Estimates of the women taken to the Japanese military's \"comfort stations\" range from 20,000 to 200,000; many of them were Korean"
+   ],
+   "src": "吉見義明『従軍慰安婦』(1995); 秦郁彦『慰安婦と戦場の性』(1999); アジア女性基金「慰安婦問題とアジア女性基金」",
+   "rough": true
+  },
+  {
+   "id": "kr-jeju-1948",
+   "type": "war",
+   "countries": [
+    "KOR"
+   ],
+   "years": [
+    1948,
+    1949
+   ],
+   "cities": [
+    "済州",
+    "Jeju"
+   ],
+   "elsewhere": 0.004,
+   "hit": 0.3,
+   "kill": 0.0012,
+   "who": "all",
+   "cause": "戦争",
+   "effect": {
+    "health": -4,
+    "happy": -20,
+    "home": true
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "済州島で、討伐隊が山の村々を焼いた。家族は海辺の村へ追い立てられ、帰る家はなくなった。"
+    ],
+    "news": [
+     "済州島で蜂起があり、討伐で多くの島民が殺されたと伝わった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On Jeju, the counter-insurgency troops burned the mountain villages. The family was driven down to the coast, with no home left to return to."
+    ],
+    "news": [
+     "Word came of an uprising on Jeju, and of the many islanders killed in its suppression."
+    ]
+   },
+   "stat": [
+    "済州4・3事件 (1947〜54年) の犠牲者は、韓国政府の報告書で2万5千〜3万人と推定される (島の人口の1割ほど)",
+    "The Jeju April 3 events of 1947-54 left an estimated 25,000-30,000 dead, about a tenth of the island (South Korean government report)"
+   ],
+   "src": "済州4・3事件真相究明委員会 報告書 (2003)",
+   "rough": true
+  },
+  {
+   "id": "cn-nanjing-1937",
+   "type": "war",
+   "countries": [
+    "CHN"
+   ],
+   "years": [
+    1937,
+    1937
+   ],
+   "hit": 0,
+   "effect": {},
+   "severity": 4,
+   "ja": {
+    "hit": [],
+    "news": [
+     "首都の南京が日本軍に落とされ、多くの市民が殺されたと伝わった。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "Nanjing, the capital, fell to the Japanese army, and word spread of a great killing of its people."
+    ]
+   },
+   "stat": [
+    "南京事件の死者の数は、数万人から30万人まで研究によって幅がある",
+    "Estimates of the dead in the Nanjing Massacre range from tens of thousands to 300,000"
+   ],
+   "src": "日中歴史共同研究報告書 (2010); 笠原十九司『南京事件』(1997)"
   }
  ]
 }

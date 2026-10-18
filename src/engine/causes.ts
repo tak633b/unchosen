@@ -51,7 +51,7 @@ const CAUSE_EN: Record<string, string> = {
   肝硬変: 'cirrhosis', 認知症: 'dementia', 老衰: 'old age', 転倒: 'fall', [HOMICIDE]: 'homicide',
   エイズ関連の病気: 'AIDS-related illness', 海の事故: 'accident at sea', 出産時の合併症: 'complications of childbirth', [SUICIDE]: 'suicide',
   // 世界の出来事 (worldevents.ts) での死
-  戦争: 'war', 飢饉: 'famine', インフルエンザ: 'influenza', 'COVID-19': 'COVID-19', 流行病: 'epidemic disease', 災害: 'natural disaster', 事故: 'accident',
+  戦争: 'war', 戦死: 'killed in the war', ホロコースト: 'murdered in the Holocaust', 虐殺: 'killed in a massacre', 飢饉: 'famine', インフルエンザ: 'influenza', 'COVID-19': 'COVID-19', 流行病: 'epidemic disease', 災害: 'natural disaster', 事故: 'accident',
 };
 export const causeName = (n: string): string => (isEn ? CAUSE_EN[n] ?? n : n);
 export const isSuicide = (cause: string | undefined): boolean => cause === SUICIDE || cause === CAUSE_EN[SUICIDE];

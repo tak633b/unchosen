@@ -9,6 +9,7 @@ import { clamp, pickWeighted } from './rng';
 import { CHOICES, eligible, toDecision } from './events/choices';
 import { economyNews } from './market';
 import { worldEvents } from './worldevents';
+import { polityChange, polityName } from './polity';
 
 // history.json の need に書ける条件
 const uni = (p: Person) => p.school.uni === 'studying' || p.school.grad === 'studying';
@@ -31,8 +32,11 @@ const parentWord = (p: Person) => (p.father.alive ? L('父', 'father') : L('母'
 export function history(p: Person): void {
   economyNews(p);
   if (p.anchor) return; // 輪の人の一生には出さない (主人公の記録とぶつけない)
-  worldEvents(p); // 戦争・災害・疫病・事故など、目録の出来事 (1900年〜) と、これから先の名前のない出来事
   const year = yearOf(p);
+  // 国が独立した・併合された・占領された年 (polity.ts)。生まれた年のことは出生の記録に書いてある
+  const change = polityChange(p.country, year);
+  if (change && p.age >= 1 && once(p, `pol:${p.country}:${year}`)) log(p, change, 'family', true);
+  worldEvents(p); // 戦争・災害・疫病・事故など、目録の出来事 (1900年〜) と、これから先の名前のない出来事
   for (const c of HISTORY) {
     if (!eligible(p, c) || !(c.need ?? []).every((n) => NEED[n]?.(p))) continue;
     if (p.rng() >= c.chance!) continue;
@@ -145,6 +149,12 @@ function aftermath(p: Person, y: number): void {
   if (exiled !== undefined && once(p, 'exile')) goIntoExile(p);
   const back = p.birthCountry === 'ARG' ? 1984 : p.birthCountry === 'CHL' ? 1988 : 0;
   if (exiled !== undefined && back && y >= back && p.country !== p.birthCountry && p.recent['hist:exile'] !== undefined && once(p, 'exile-back')) homecoming(p);
+  // 国を出る・追われる (1900〜1950年)。決めたこと (decisions/history.json の印) と、巻き込まれた出来事 (data/events の evhit) から
+  for (const m of MOVES) {
+    const k = m.mark ? mark(p, m.mark) : p.recent[`evhit:${m.ev}`];
+    if (k === undefined || (m.from && !m.from.includes(p.country)) || !once(p, `move:${m.mark ?? m.ev}`)) continue;
+    settle(p, m.to(y, p.country), m.say, !!m.refugee);
+  }
   // 1989年11月のビロード革命のあと、追われた人の名誉が回復された
   if (y === 1990 && mark(p, 'cz-purged') !== undefined && once(p, 'cz-rehab')) {
     log(p, L('ビロード革命のあと、20年前の処分が取り消された。', 'After the Velvet Revolution, the punishment of twenty years before was annulled.'), 'family', true);
@@ -164,6 +174,42 @@ function goIntoExile(p: Person): void {
   p.incomeP = clamp(p.incomeP * 0.6, 0.02, 0.9);
   if (p.working) p.unemployed = 1;
   log(p, L(`${dest.name}の${p.city ?? '町'}で、亡命者として暮らし始めた。`, `Began life as an exile in ${p.city ? `${p.city}, ` : ''}${dest.name}.`), 'move', true);
+}
+
+// 行き先は前ほど多い。refugee: 戻る場所のない移住 (分離独立・住民交換)。故郷へ帰るかの揺れ (migration.ts) に入れない
+interface Move { mark?: string; ev?: string; from?: string[]; to: (y: number, from: string) => string[]; say: [string, string]; refugee?: boolean }
+// 1924年の移民法で、米国は南欧・東欧・アジアからの移民をほぼ閉ざした (西半球の国からは制限なし)
+const OPEN_1924 = ['IRL', 'DEU', 'GBR', 'NOR', 'SWE', 'MEX'];
+const EMIGRATE: Record<string, string[]> = {
+  ITA: ['USA', 'ARG', 'BRA'], ESP: ['ARG', 'BRA', 'URY'], PRT: ['BRA', 'USA'], LBN: ['BRA', 'USA', 'ARG'], SYR: ['BRA', 'ARG', 'USA'],
+  JPN: ['BRA', 'USA', 'PER'], CHN: ['MYS', 'SGP', 'IDN', 'THA', 'PHL'], MEX: ['USA'],
+};
+// 英領インドからの年季契約の移民 (フィジー・カリブ海・モーリシャス・南アフリカ) は1917年に止められた。そのあとはビルマ・マラヤ・セイロンへ
+const INDIA_OUT = (y: number) => (y < 1917 ? ['MYS', 'FJI', 'TTO', 'GUY', 'MUS', 'ZAF'] : ['MMR', 'MYS', 'LKA']);
+const MOVES: Move[] = [
+  { mark: 'emigrate', to: (y, c) => (EMIGRATE[c] ?? (['IND', 'PAK', 'BGD'].includes(c) ? INDIA_OUT(y) : ['USA', 'CAN', 'ARG'])).filter((d) => d !== 'USA' || y < 1924 || OPEN_1924.includes(c)), say: ['{dest}の{city}で、新しい暮らしを始めた。言葉もわからないまま、同じ国から来た人の多い通りに部屋を借りた。', 'Began a new life in {city}, {dest}, renting a room on a street full of people from home, before knowing a word of the language.'] },
+  { mark: 'flee-jew', to: () => ['USA', 'GBR', 'ISR', 'ARG', 'CHN'], say: ['{dest}にたどり着いた。持ってこられたのは、スーツケース二つだけだった。', 'Reached {dest} with no more than two suitcases.'] },
+  { mark: 'flee-east', to: () => ['RUS', 'KAZ', 'UZB'], say: ['東へ逃れ、{dest}で暮らすことになった。', 'Fled east and ended up living in {dest}.'] },
+  { mark: 'white-emigre', to: () => ['FRA', 'DEU', 'SRB', 'CHN', 'TUR', 'USA'], say: ['{dest}の{city}で、亡命者として暮らし始めた。', 'Began life as an émigré in {city}, {dest}.'] },
+  { ev: 'partition-1947-pak-hindu', from: ['PAK'], to: () => ['IND'], say: ['国境を越え、{dest}の難民キャンプにたどり着いた。', 'Crossed the border and reached a refugee camp in {dest}.'], refugee: true },
+  { ev: 'partition-1947-ind-muslim', from: ['IND'], to: () => ['PAK', 'BGD'], say: ['{dest}にたどり着き、逃げた人の残した家に入った。', 'Reached {dest} and moved into a house left by people who had fled the other way.'], refugee: true },
+  { ev: 'partition-1947-bgd-hindu', from: ['BGD'], to: () => ['IND'], say: ['{dest}のカルカッタの近くの難民の集落で暮らし始めた。', 'Began life in a refugee colony outside Calcutta, {dest}.'], refugee: true },
+  { ev: 'tr-armenian-1915', from: ['TUR'], to: () => ['SYR', 'LBN', 'ARM'], say: ['砂漠の道を生きのびて、{dest}の{city}の難民の集落にたどり着いた。', 'Survived the desert road and reached a refugee settlement in {city}, {dest}.'], refugee: true },
+  { ev: 'tr-exchange-1923', from: ['TUR'], to: () => ['GRC'], say: ['{dest}の港に着き、難民の住宅に入った。', 'Landed in {dest} and was housed with the refugees.'], refugee: true },
+  { ev: 'grc-exchange-1923', from: ['GRC'], to: () => ['TUR'], say: ['{dest}に着き、出ていったギリシャ人の村に住むことになった。', 'Arrived in {dest} and was settled in a village the Greeks had left.'], refugee: true },
+];
+function settle(p: Person, dests: string[], [ja, en]: [string, string], refugee: boolean): void {
+  const list = dests.filter((code) => code !== p.country && countriesAt(yearOf(p)).some((c) => c.code === code));
+  if (!list.length) return;
+  const dest = byCode(pickWeighted(p.rng, list, (code) => list.length - list.indexOf(code)));
+  p.country = dest.code;
+  p.city = pickCity(p.rng, dest.code);
+  if (!p.countriesLived.includes(dest.code)) p.countriesLived.push(dest.code);
+  p.migratedTo = refugee ? undefined : dest.code;
+  p.incomeP = clamp(p.incomeP * 0.6, 0.02, 0.9);
+  if (p.working) p.unemployed = 1;
+  const city = p.city ?? L('町', 'a small town');
+  log(p, L(ja, en).replaceAll('{dest}', polityName(dest.code, yearOf(p)) ?? dest.name).replaceAll('{city}', city), 'move', true);
 }
 
 function homecoming(p: Person): void {

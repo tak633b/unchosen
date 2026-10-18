@@ -10,24 +10,29 @@
     1914,
     1918
    ],
-   "hit": 0.75,
+   "hit": 0.8,
    "kill": 0.035,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
-    18,
-    45
+    19,
+    48
    ],
    "sex": "M",
-   "severity": 5,
+   "die": 0.165,
+   "wound": 0.4,
+   "pow": 0.06,
+   "powDie": 0.04,
+   "back": 1919,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "動員令が貼り出され、駅で家族と別れた。列車は東の前線へ向かった。",
+     "召集されて歩兵の連隊に入り、塹壕に送られた。泥と寒さの中で冬を越した。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -35,16 +40,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "The mobilization order went up on the walls. Goodbyes at the station, and the train headed east to the front.",
+     "Was called up into an infantry regiment and sent to the trenches. Winter in the mud and the cold."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "フランスの第一次世界大戦の戦死者は約140万人で、人口のおよそ3.4%にあたる",
-    "France lost about 1.4 million soldiers in the First World War, some 3.4% of its population"
+    "フランスは約840万人を動員し、そのうち約140万人 (動員された人の16%ほど) が戦死・戦病死した",
+    "France mobilized about 8.4 million men; about 1.4 million of them, some 16%, died in the war"
    ],
    "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
   },
@@ -58,24 +63,29 @@
     1914,
     1918
    ],
-   "hit": 0.7,
+   "hit": 0.8,
    "kill": 0.03,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "severity": 5,
+   "die": 0.155,
+   "wound": 0.32,
+   "pow": 0.08,
+   "powDie": 0.05,
+   "back": 1919,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集され、花で飾られた列車で西部戦線へ向かった。",
+     "召集されて東部戦線へ送られた。ロシアの平原を何百キロも歩いた。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -83,16 +93,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and rode a flower-decked train to the Western Front.",
+     "Was called up and sent to the Eastern Front. Hundreds of kilometers on foot across the Russian plain."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "ドイツの第一次世界大戦の戦死者は約200万人だった",
-    "Germany lost about 2 million soldiers in the First World War"
+    "ドイツは約1,320万人を動員し、約200万人 (動員された人の15%ほど) が戦死・戦病死した",
+    "Germany mobilized about 13.2 million men; about 2 million, some 15%, died"
    ],
    "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
   },
@@ -109,21 +119,27 @@
    "hit": 0.55,
    "kill": 0.019,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "severity": 4,
+   "die": 0.13,
+   "wound": 0.29,
+   "pow": 0.03,
+   "powDie": 0.07,
+   "back": 1919,
+   "draft": 1916,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "軍に入り、訓練のあと海峡を渡ってフランスの塹壕に入った。",
+     "召集されてフランダースの前線に送られた。雨の続く泥の中で、何か月も同じ塹壕にいた。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -131,16 +147,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Joined the army, and after training crossed the Channel to the trenches in France.",
+     "Was called up and sent to the Flanders front. Months in the same trench, in mud and endless rain."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "英国の第一次世界大戦の戦死者は約88万人だった",
-    "Britain lost about 880,000 soldiers in the First World War"
+    "英国 (イギリス本国) から約570万人が軍に入り、約70万人が戦死した。1916年1月までは志願兵だけだった",
+    "About 5.7 million men from the United Kingdom served and about 700,000 died. Until January 1916 every one of them was a volunteer"
    ],
    "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
   },
@@ -157,21 +173,26 @@
    "hit": 0.6,
    "kill": 0.018,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "severity": 4,
+   "die": 0.115,
+   "wound": 0.17,
+   "pow": 0.11,
+   "powDie": 0.17,
+   "back": 1919,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集され、アルプスの山の前線に送られた。",
+     "召集されてイゾンツォ川の前線に入った。同じ丘への突撃が、何度もくり返された。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -179,16 +200,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and sent to the mountain front in the Alps.",
+     "Was called up to the Isonzo front, where the same hills were stormed again and again."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "イタリアは1915〜18年の戦争で約65万人の兵士を失った",
-    "Italy lost about 650,000 soldiers in the war of 1915-18"
+    "イタリアは約560万人を動員し、約65万人が戦死・戦病死した。捕虜約60万人のうち約10万人が収容所で亡くなった",
+    "Italy mobilized about 5.6 million men; about 650,000 died. Of some 600,000 taken prisoner, about 100,000 died in the camps"
    ],
    "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
   },
@@ -207,25 +228,29 @@
     1914,
     1918
    ],
-   "hit": 0.6,
+   "hit": 0.7,
    "kill": 0.02,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "rough": true,
-   "severity": 4,
+   "die": 0.13,
+   "wound": 0.4,
+   "pow": 0.24,
+   "powDie": 0.15,
+   "back": 1920,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集され、ガリツィアの前線へ送られた。",
+     "動員されてセルビアとの国境の部隊に入り、のちにイタリアの山の前線へ回された。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -233,18 +258,19 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and sent to the front in Galicia.",
+     "Was mobilized into a unit on the Serbian border, and later moved to the mountain front against Italy."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "オーストリア＝ハンガリーの第一次世界大戦の戦死者は110万人を超えた",
-    "Austria-Hungary lost more than 1.1 million soldiers in the First World War"
+    "オーストリア＝ハンガリーは約900万人を動員し、約110万人が戦死・戦病死、約220万人が捕虜になった",
+    "Austria-Hungary mobilized about 9 million men; about 1.1 million died and some 2.2 million were taken prisoner"
    ],
-   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online",
+   "rough": true
   },
   {
    "id": "wwi-rus",
@@ -261,22 +287,26 @@
    "hit": 0.5,
    "kill": 0.012,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "rough": true,
-   "severity": 4,
+   "die": 0.13,
+   "wound": 0.3,
+   "pow": 0.2,
+   "powDie": 0.08,
+   "back": 1919,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集され、ろくな訓練もないまま西の前線へ送られた。銃は二人に一丁だった。",
+     "村の若い男たちと一緒に兵隊にとられ、ガリツィアの前線へ向かった。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -284,18 +314,19 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and sent west to the front with hardly any training. There was one rifle for every two men.",
+     "Was taken for a soldier along with the young men of the village and marched toward the Galician front."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "ロシア帝国の第一次世界大戦の戦死者は約180万人とされる",
-    "The Russian Empire lost an estimated 1.8 million soldiers in the First World War"
+    "ロシア帝国は約1,200万〜1,500万人を動員し、約180万人が戦死・戦病死、250万人を超える人が捕虜になった",
+    "The Russian Empire mobilized 12-15 million men; about 1.8 million died and more than 2.5 million were taken prisoner"
    ],
-   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
+   "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online",
+   "rough": true
   },
   {
    "id": "wwi-bgr",
@@ -307,24 +338,27 @@
     1916,
     1918
    ],
-   "hit": 0.6,
+   "hit": 0.8,
    "kill": 0.015,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "severity": 3,
+   "die": 0.07,
+   "wound": 0.13,
+   "pow": 0.03,
+   "back": 1919,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 3,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "動員されて、マケドニアの山の前線に送られた。"
     ],
     "news": [
      "大きな戦争が始まった。村の若い男たちが列車に乗って出ていき、戻らない人も多かった。"
@@ -332,16 +366,15 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was mobilized and sent to the mountain front in Macedonia."
     ],
     "news": [
      "A great war began. The young men left on the trains, and many did not come back."
     ]
    },
    "stat": [
-    "ブルガリアは第一次世界大戦で約8万7,000人の兵士を失った",
-    "Bulgaria lost about 87,000 soldiers in the First World War"
+    "ブルガリアは男性人口の4割ほどにあたる約120万人を動員し、約8万7千人が戦死した",
+    "Bulgaria mobilized about 1.2 million men, some 40% of its male population; about 87,000 died"
    ],
    "src": "Winter 2003, Demographic consequences of the First World War; Encyclopaedia 1914-1918-online"
   },
@@ -1225,198 +1258,6 @@
    "src": "Kersten 1991, The Establishment of Communist Rule in Poland; IPN"
   },
   {
-   "id": "holocaust-pol",
-   "type": "genocide",
-   "countries": [
-    "POL"
-   ],
-   "years": [
-    1941,
-    1945
-   ],
-   "hit": 0,
-   "kill": 0.085,
-   "who": "all",
-   "cause": "戦争",
-   "severity": 5,
-   "effect": {},
-   "ja": {
-    "hit": [],
-    "news": [
-     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
-    ]
-   },
-   "en": {
-    "hit": [],
-    "news": [
-     "One morning the Jewish neighbors were marched to the station. None of them came back."
-    ]
-   },
-   "stat": [
-    "ナチス・ドイツの占領下で、ポーランドのユダヤ人約300万人が殺された",
-    "Under Nazi German occupation, about 3 million Polish Jews were murdered"
-   ],
-   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
-  },
-  {
-   "id": "holocaust-east",
-   "type": "genocide",
-   "countries": [
-    "LTU",
-    "LVA",
-    "UKR",
-    "BLR",
-    "MDA"
-   ],
-   "years": [
-    1941,
-    1945
-   ],
-   "hit": 0,
-   "kill": 0.035,
-   "who": "all",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 5,
-   "effect": {},
-   "ja": {
-    "hit": [],
-    "news": [
-     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
-    ]
-   },
-   "en": {
-    "hit": [],
-    "news": [
-     "One morning the Jewish neighbors were marched to the station. None of them came back."
-    ]
-   },
-   "stat": [
-    "リトアニアでは、戦前のユダヤ人約21万人のうち9割以上が殺された",
-    "In Lithuania more than 90% of the roughly 210,000 pre-war Jews were murdered"
-   ],
-   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
-  },
-  {
-   "id": "holocaust-hun-svk",
-   "type": "genocide",
-   "countries": [
-    "HUN",
-    "SVK"
-   ],
-   "years": [
-    1942,
-    1945
-   ],
-   "hit": 0,
-   "kill": 0.025,
-   "who": "all",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 5,
-   "effect": {},
-   "ja": {
-    "hit": [],
-    "news": [
-     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
-    ]
-   },
-   "en": {
-    "hit": [],
-    "news": [
-     "One morning the Jewish neighbors were marched to the station. None of them came back."
-    ]
-   },
-   "stat": [
-    "1944年の春から夏、ハンガリーから約43万7,000人のユダヤ人がアウシュヴィッツへ送られた",
-    "In the spring and summer of 1944 about 437,000 Jews were deported from Hungary to Auschwitz"
-   ],
-   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
-  },
-  {
-   "id": "holocaust-central",
-   "type": "genocide",
-   "countries": [
-    "NLD",
-    "AUT",
-    "CZE",
-    "GRC",
-    "HRV",
-    "SRB",
-    "BIH",
-    "ROU"
-   ],
-   "years": [
-    1941,
-    1945
-   ],
-   "hit": 0,
-   "kill": 0.008,
-   "who": "all",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 4,
-   "effect": {},
-   "ja": {
-    "hit": [],
-    "news": [
-     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
-    ]
-   },
-   "en": {
-    "hit": [],
-    "news": [
-     "One morning the Jewish neighbors were marched to the station. None of them came back."
-    ]
-   },
-   "stat": [
-    "オランダのユダヤ人約14万人のうち、約10万2,000人が殺された",
-    "Of about 140,000 Jews in the Netherlands, about 102,000 were murdered"
-   ],
-   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
-  },
-  {
-   "id": "holocaust-west",
-   "type": "genocide",
-   "countries": [
-    "DEU",
-    "FRA",
-    "BEL",
-    "LUX",
-    "ITA",
-    "NOR",
-    "EST"
-   ],
-   "years": [
-    1941,
-    1945
-   ],
-   "hit": 0,
-   "kill": 0.002,
-   "who": "all",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 4,
-   "effect": {},
-   "ja": {
-    "hit": [],
-    "news": [
-     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
-    ]
-   },
-   "en": {
-    "hit": [],
-    "news": [
-     "One morning the Jewish neighbors were marched to the station. None of them came back."
-    ]
-   },
-   "stat": [
-    "ドイツのユダヤ人のうち、約16万5,000人が殺された",
-    "About 165,000 German Jews were murdered"
-   ],
-   "src": "USHMM Holocaust Encyclopedia; Hilberg 2003, The Destruction of the European Jews; Yad Vashem"
-  },
-  {
    "id": "ww2-deu-front",
    "type": "war",
    "countries": [
@@ -1429,21 +1270,29 @@
    "hit": 0.8,
    "kill": 0.06,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     17,
     50
    ],
    "sex": "M",
-   "severity": 5,
+   "die": 0.3,
+   "wound": 0.35,
+   "pow": 0.6,
+   "powDie": 0.1,
+   "back": 1948,
+   "exempt": [
+    "ユダヤ教"
+   ],
    "effect": {
     "health": -10,
     "happy": -18
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "召集されて東部戦線へ送られた。何年もあとに、捕虜の収容所から帰ってきた。",
-     "兵隊にとられ、終わりまで前線にいた。仲間の多くは戻らなかった。"
+     "召集され、訓練のあと東部戦線へ送られた。",
+     "召集されてフランスへ、それからロシアの雪の中へ送られた。"
     ],
     "news": [
      "9月、戦争が始まった。"
@@ -1451,16 +1300,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the Eastern Front. Years later, came home from a prisoner-of-war camp.",
-     "Was conscripted and stayed at the front to the end. Most of the comrades did not return."
+     "Was called up and, after training, sent to the Eastern Front.",
+     "Was called up and sent to France, and then on into the Russian snow."
     ],
     "news": [
      "In September the war began."
     ]
    },
    "stat": [
-    "第二次世界大戦のドイツの兵士の死者は約530万人とされる",
-    "German military deaths in the Second World War are estimated at about 5.3 million"
+    "ドイツ国防軍には約1,800万人が入り、約530万人が戦死・戦病死した。約1,100万人が捕虜になった",
+    "About 18 million men served in the Wehrmacht; about 5.3 million died, and some 11 million were taken prisoner"
    ],
    "src": "Overmans 1999, Deutsche militärische Verluste im Zweiten Weltkrieg"
   },
@@ -1661,22 +1510,29 @@
    "hit": 0.7,
    "kill": 0.035,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     17,
     50
    ],
    "sex": "M",
-   "rough": true,
-   "severity": 4,
+   "die": 0.2,
+   "wound": 0.3,
+   "pow": 0.4,
+   "powDie": 0.08,
+   "back": 1947,
+   "exempt": [
+    "ユダヤ教"
+   ],
    "effect": {
     "health": -10,
     "happy": -18
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "ドイツ国防軍に召集され、東部戦線へ送られた。",
+     "召集されて、北のノルウェーの山岳部隊に回された。"
     ],
     "news": [
      "3月、ドイツ軍が国境を越え、国はドイツに併合された。"
@@ -1684,8 +1540,8 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up into the Wehrmacht and sent to the Eastern Front.",
+     "Was called up and posted to a mountain unit in the far north of Norway."
     ],
     "news": [
      "In March the German army crossed the border, and the country was annexed to Germany."
@@ -1695,7 +1551,8 @@
     "第二次世界大戦で、オーストリア出身の兵士約26万人が亡くなった",
     "About 260,000 soldiers from Austria died in the Second World War"
    ],
-   "src": "Austrian State Archives; Overmans 1999"
+   "src": "Austrian State Archives; Overmans 1999",
+   "rough": true
   },
   {
    "id": "ww2-gbr",
@@ -1710,20 +1567,26 @@
    "hit": 0.6,
    "kill": 0.008,
    "who": "men",
-   "cause": "戦争",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "severity": 4,
+   "die": 0.065,
+   "wound": 0.05,
+   "pow": 0.035,
+   "powDie": 0.07,
+   "back": 1945,
    "effect": {
     "health": -6,
     "happy": -12
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて海を渡った。北アフリカとイタリアで4年を過ごした。"
+     "召集されて海を渡り、北アフリカとイタリアを転戦した。",
+     "召集されて海軍に入り、北大西洋で船団を守った。"
     ],
     "news": [
      "ドイツに宣戦が布告された。配給の手帳が配られ、窓には灯火管制の布が張られた。"
@@ -1731,7 +1594,8 @@
    },
    "en": {
     "hit": [
-     "Was called up and shipped overseas. Four years in North Africa and Italy."
+     "Was called up, went overseas, and fought through North Africa and Italy.",
+     "Was called up into the navy and guarded convoys in the North Atlantic."
     ],
     "news": [
      "War was declared on Germany. Ration books were handed out, and blackout cloth went up over the windows."
@@ -1928,19 +1792,29 @@
     1940,
     1945
    ],
-   "hit": 0.5,
+   "hit": 0.4,
    "kill": 0.01,
    "who": "men",
-   "cause": "戦争",
-   "severity": 4,
+   "cause": "戦死",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "die": 0.09,
+   "wound": 0.08,
+   "pow": 0.35,
+   "powDie": 0.05,
+   "back": 1946,
    "effect": {
     "health": -6,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて、ロシアの雪原へ送られた。退却のときには何百キロも歩いた。",
-     "空襲と占領の中で、配給と闇市で暮らした。"
+     "召集されて、ロシアの雪原へ送られた。",
+     "召集されて北アフリカの砂漠へ送られた。"
     ],
     "news": [
      "6月、イタリアが参戦した。"
@@ -1948,16 +1822,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the snowfields of Russia. In the retreat, walked hundreds of kilometers.",
-     "Lived on rations and the black market through the raids and the occupation."
+     "Was called up and sent to the snowfields of Russia.",
+     "Was called up and sent to the North African desert."
     ],
     "news": [
      "In June Italy entered the war."
     ]
    },
    "stat": [
-    "第二次世界大戦のイタリアの死者は、兵士と民間人を合わせて約45万人とされる",
-    "Italy's Second World War dead, soldiers and civilians together, are estimated at about 450,000"
+    "イタリアの軍人の死者は約32万人。1943年9月の休戦のあと、約60万人の兵がドイツに捕らえられ収容所へ送られた",
+    "About 320,000 Italian servicemen died. After the armistice of September 1943, some 600,000 Italian soldiers were seized by Germany and sent to camps"
    ],
    "src": "ISTAT 1957, Morti e dispersi per cause belliche"
   },
@@ -2106,19 +1980,26 @@
     1945
    ],
    "hit": 0.4,
+   "kill": 0.005,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     27
    ],
    "sex": "M",
-   "kill": 0.005,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 3,
+   "die": 0.24,
+   "pow": 0.2,
+   "powDie": 0.15,
+   "back": 1946,
+   "exempt": [
+    "ユダヤ教"
+   ],
    "effect": {
     "health": -8,
     "happy": -18
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "ドイツ軍に無理に入れられ、東部戦線へ送られた。"
@@ -2222,30 +2103,33 @@
     1944
    ],
    "hit": 0.7,
+   "kill": 0.025,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.025,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 4,
+   "die": 0.15,
+   "wound": 0.3,
+   "pow": 0.006,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集されて東の国境の前線に送られた。",
+     "召集され、カレリアの森の中の塹壕で冬を越した。"
     ],
     "news": []
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and sent to the front on the eastern border.",
+     "Was called up and spent the winter in a trench in the Karelian forest."
     ],
     "news": []
    },
@@ -2603,24 +2487,31 @@
     1945
    ],
    "hit": 0.5,
+   "kill": 0.015,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.015,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 4,
+   "die": 0.2,
+   "wound": 0.2,
+   "pow": 0.3,
+   "powDie": 0.2,
+   "back": 1948,
+   "exempt": [
+    "ユダヤ教"
+   ],
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 4,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集されてドン川の前線へ送られた。",
+     "召集されて東の前線の部隊に入った。"
     ],
     "news": [
      "国が枢軸国の側で戦争に加わった。"
@@ -2628,8 +2519,8 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and sent to the front on the Don.",
+     "Was called up into a unit on the Eastern Front."
     ],
     "news": [
      "The country entered the war on the Axis side."
@@ -2639,7 +2530,8 @@
     "1943年1月のヴォロネジの戦いで、ハンガリー第2軍は約20万人のうち半分ほどを失った",
     "In the Battle of Voronezh in January 1943, the Hungarian Second Army lost about half of its roughly 200,000 men"
    ],
-   "src": "Ungváry 2005; Axworthy 1995, Third Axis Fourth Ally"
+   "src": "Ungváry 2005; Axworthy 1995, Third Axis Fourth Ally",
+   "rough": true
   },
   {
    "id": "budapest-siege",
@@ -2817,23 +2709,28 @@
     1945
    ],
    "hit": 0.7,
+   "kill": 0.05,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.05,
-   "who": "men",
-   "cause": "戦争",
-   "severity": 5,
+   "die": 0.25,
+   "wound": 0.4,
+   "pow": 0.15,
+   "powDie": 0.57,
+   "back": 1945,
    "effect": {
     "health": -10,
     "happy": -18
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "召集されて前線に送られた。塹壕で冬を越し、帰ってきたときには口数が減っていた。",
-     "兵隊にとられ、何年も前線にいた。砲声が耳から離れなくなった。"
+     "召集されて前線に送られた。最初の秋、部隊は何百キロも退いた。",
+     "徴兵所に呼ばれ、数週間の訓練で前線の師団に回された。"
     ],
     "news": [
      "6月22日、ドイツ軍が国境を越えて攻めこんできた。"
@@ -2841,16 +2738,16 @@
    },
    "en": {
     "hit": [
-     "Was called up and sent to the front. Winters in the trenches, and on coming home, far fewer words.",
-     "Was conscripted and spent years at the front. The sound of the guns never quite left."
+     "Was called up and sent to the front. That first autumn, the unit fell back hundreds of kilometers.",
+     "Was summoned to the recruiting office and, after a few weeks of training, posted to a front-line division."
     ],
     "news": [
      "On 22 June the German army crossed the border and attacked."
     ]
    },
    "stat": [
-    "第二次世界大戦 (大祖国戦争) で、ソ連の兵士約870万人が亡くなった",
-    "About 8.7 million Soviet soldiers died in the Second World War (the Great Patriotic War)"
+    "ソ連は約3,450万人を動員し、約870万人が戦死・戦病死した。ドイツの捕虜になった約570万人のうち、約300万人が収容所で亡くなった",
+    "The USSR mobilized about 34.5 million people; about 8.7 million died. Of some 5.7 million taken prisoner by Germany, about 3 million died in the camps"
    ],
    "src": "Krivosheev 1997, Soviet Casualties and Combat Losses"
   },
@@ -2876,23 +2773,27 @@
     1945
    ],
    "hit": 0.6,
+   "kill": 0.035,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.035,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 5,
+   "die": 0.25,
+   "wound": 0.4,
+   "pow": 0.15,
+   "powDie": 0.57,
+   "back": 1945,
    "effect": {
     "health": -10,
     "happy": -18
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "召集されて、西の前線へ何千キロも汽車で運ばれた。何年もたって、勲章と傷を持って帰ってきた。"
+     "召集されて、西の前線へ何千キロも汽車で運ばれた。"
     ],
     "news": [
      "6月、遠い西の国境で戦争が始まった。男たちは次々に駅から出ていった。"
@@ -2900,7 +2801,7 @@
    },
    "en": {
     "hit": [
-     "Was called up and carried thousands of kilometers west to the front by train. Years later, came home with medals and wounds."
+     "Was called up and carried thousands of kilometers west to the front by train."
     ],
     "news": [
      "In June war broke out far away on the western border. One after another, the men left from the station."
@@ -2910,7 +2811,8 @@
     "第二次世界大戦で、ソ連の兵士約870万人が亡くなった。中央アジアとカフカスからも数百万人が前線へ送られた",
     "About 8.7 million Soviet soldiers died in the Second World War; millions were sent to the front from Central Asia and the Caucasus"
    ],
-   "src": "Krivosheev 1997, Soviet Casualties and Combat Losses"
+   "src": "Krivosheev 1997, Soviet Casualties and Combat Losses",
+   "rough": true
   },
   {
    "id": "ussr-homefront",
@@ -5865,17 +5767,27 @@
     1943,
     1943
    ],
-   "hit": 0,
+   "hit": 0.95,
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "happy": -15,
+    "wealth": -0.3
+   },
    "severity": 2,
-   "effect": {},
    "ja": {
-    "hit": [],
+    "hit": [
+     "10月、一斉検挙の知らせが前の晩に届いた。漁船の船倉に隠れて、海峡を渡りスウェーデンへ逃れた。"
+    ],
     "news": [
      "10月、ユダヤ人の隣人たちが、夜のうちに小舟でスウェーデンへ逃がされた。"
     ]
    },
    "en": {
-    "hit": [],
+    "hit": [
+     "In October, word of the roundup came the night before. Hidden in the hold of a fishing boat, the family crossed the strait to Sweden."
+    ],
     "news": [
      "In October Jewish neighbors were smuggled across to Sweden by night in small boats."
     ]
@@ -6596,6 +6508,1830 @@
     "Russia's economy shrank by about 40% between 1990 and 1998 (World Bank)"
    ],
    "src": "World Bank, World Development Indicators"
+  },
+  {
+   "id": "wwi-irl",
+   "type": "war",
+   "countries": [
+    "IRL"
+   ],
+   "years": [
+    1914,
+    1918
+   ],
+   "hit": 0.23,
+   "kill": 0.008,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    18,
+    45
+   ],
+   "sex": "M",
+   "die": 0.15,
+   "wound": 0.3,
+   "pow": 0.03,
+   "back": 1919,
+   "draft": 9999,
+   "effect": {
+    "health": -8,
+    "happy": -15
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "イギリス軍に志願し、フランスの前線に送られた。"
+    ],
+    "news": [
+     "戦争が始まり、町の若い男たちがイギリス軍に志願していった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Volunteered for the British Army and was sent to the front in France."
+    ],
+    "news": [
+     "The war began, and young men of the town went off to volunteer for the British Army."
+    ]
+   },
+   "stat": [
+    "アイルランドからは約21万人がイギリス軍に加わり、3万人前後が戦死した。アイルランドでは徴兵は行われなかった",
+    "About 210,000 Irishmen served in the British forces and some 30,000 died. Conscription was never applied in Ireland"
+   ],
+   "src": "Jeffery 2000, Ireland and the Great War; Irish National War Memorial records",
+   "rough": true
+  },
+  {
+   "id": "fra-ww2-army",
+   "type": "war",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1939,
+    1940
+   ],
+   "hit": 0.55,
+   "kill": 0.0018,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    20,
+    48
+   ],
+   "sex": "M",
+   "die": 0.015,
+   "wound": 0.03,
+   "pow": 0.37,
+   "powDie": 0.03,
+   "back": 1945,
+   "effect": {
+    "health": -4,
+    "happy": -12
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "総動員で召集され、マジノ線の陣地で、何も起きない冬を過ごした。"
+    ],
+    "news": [
+     "また戦争が始まった。前の戦争の父親たちが、息子を駅で見送った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up in the general mobilization and spent an uneventful winter in the Maginot Line."
+    ],
+    "news": [
+     "War again. Fathers who had fought the last one saw their sons off at the station."
+    ]
+   },
+   "stat": [
+    "1939〜40年にフランスは約500万人を動員した。1940年6月の敗戦で約185万人が捕虜になり、その多くが1945年までドイツに留められた",
+    "France mobilized about 5 million men in 1939-40. The defeat of June 1940 left some 1.85 million prisoners of war, many held in Germany until 1945"
+   ],
+   "src": "Durand 1980, La captivité: histoire des prisonniers de guerre français; Ministère des Armées (Mémoire des hommes)"
+  },
+  {
+   "id": "fra-sto-1943",
+   "type": "occupation",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1943,
+    1944
+   ],
+   "hit": 0.45,
+   "kill": 0.0008,
+   "who": "men",
+   "cause": "戦争",
+   "age": [
+    20,
+    23
+   ],
+   "sex": "M",
+   "die": 0.05,
+   "back": 1945,
+   "home": [
+    "戦争が終わり、収容所を出て、何週間もかけて家へ帰った。",
+    "The war ended. Out of the camp, and weeks on the road to get home."
+   ],
+   "labour": true,
+   "effect": {
+    "health": -5,
+    "happy": -12
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "強制労働徴用 (STO) で、ドイツの工場に送られた。"
+    ],
+    "news": [
+     "若い男たちがドイツの工場へ送られることになった。山へ逃げて隠れる者もいた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was requisitioned for compulsory labor (the STO) and sent to a factory in Germany."
+    ],
+    "news": [
+     "Young men were to be sent to work in German factories. Some fled to the hills and hid."
+    ]
+   },
+   "stat": [
+    "1943〜44年の強制労働徴用 (STO) で、約60万〜65万人のフランス人がドイツで働かされた",
+    "Under the compulsory labor service (STO) of 1943-44, some 600,000-650,000 French workers were sent to Germany"
+   ],
+   "src": "Zielinski 2009 (Travail forcé et STO); Arnaud 2010, Les STO",
+   "rough": true
+  },
+  {
+   "id": "ostarbeiter-1942",
+   "type": "occupation",
+   "countries": [
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1942,
+    1944
+   ],
+   "hit": 0.15,
+   "kill": 0.003,
+   "who": "young",
+   "cause": "戦争",
+   "age": [
+    15,
+    30
+   ],
+   "die": 0.06,
+   "back": 1945,
+   "home": [
+    "戦争が終わり、収容所を出て、何週間もかけて家へ帰った。",
+    "The war ended. Out of the camp, and weeks on the road to get home."
+   ],
+   "labour": true,
+   "effect": {
+    "health": -6,
+    "happy": -15
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "ドイツへ働きに送られる名簿に載せられた。貨車で運ばれ、胸に「OST」の印を付けて工場で働かされた。"
+    ],
+    "news": [
+     "占領軍が若い人を集め、貨車でドイツへ働きに送り始めた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was put on the list for labor in Germany, carried off in a freight wagon, and set to work in a factory with an \"OST\" badge on the chest."
+    ],
+    "news": [
+     "The occupiers began rounding up young people and shipping them in freight wagons to work in Germany."
+    ]
+   },
+   "stat": [
+    "ソ連の占領地から約300万人が「東方労働者」としてドイツへ送られた。その多くはウクライナの若い女性と男性だった",
+    "About 3 million people from the occupied Soviet territories were sent to Germany as \"Ostarbeiter\", most of them young Ukrainian women and men"
+   ],
+   "src": "Herbert 1997, Hitler's Foreign Workers; Polian 2002",
+   "rough": true
+  },
+  {
+   "id": "pol-forced-labour",
+   "type": "occupation",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1940,
+    1944
+   ],
+   "hit": 0.12,
+   "kill": 0.002,
+   "who": "young",
+   "cause": "戦争",
+   "age": [
+    15,
+    40
+   ],
+   "die": 0.05,
+   "back": 1945,
+   "home": [
+    "戦争が終わり、収容所を出て、何週間もかけて家へ帰った。",
+    "The war ended. Out of the camp, and weeks on the road to get home."
+   ],
+   "labour": true,
+   "effect": {
+    "health": -6,
+    "happy": -15
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "路上で捕まえられ、ドイツの農場へ働きに送られた。服には「P」の印を縫い付けさせられた。"
+    ],
+    "news": [
+     "占領軍が市場や教会の前で若い人を捕まえ、ドイツへ働きに送った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was caught in a street roundup and sent to work on a farm in Germany, with a \"P\" badge sewn onto the clothes."
+    ],
+    "news": [
+     "The occupiers seized young people outside markets and churches and sent them to work in Germany."
+    ]
+   },
+   "stat": [
+    "ポーランドからは約170万〜280万人がドイツの強制労働に送られた",
+    "Between 1.7 and 2.8 million Poles were deported to forced labor in Germany"
+   ],
+   "src": "Herbert 1997, Hitler's Foreign Workers; IPN",
+   "rough": true
+  },
+  {
+   "id": "rus-japan-war-1904",
+   "type": "war",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1904,
+    1905
+   ],
+   "hit": 0.06,
+   "kill": 0.0004,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    21,
+    38
+   ],
+   "sex": "M",
+   "die": 0.05,
+   "wound": 0.1,
+   "pow": 0.06,
+   "back": 1906,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "召集され、シベリア鉄道で何週間もかけて満州へ運ばれた。"
+    ],
+    "news": [
+     "遠い満州で日本との戦争が始まった。負けの知らせが続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and carried for weeks on the Trans-Siberian Railway to Manchuria."
+    ],
+    "news": [
+     "War with Japan began in faraway Manchuria. The news was of one defeat after another."
+    ]
+   },
+   "stat": [
+    "日露戦争でロシアは約120万人を満州に送り、5万〜7万人が戦死・戦病死した",
+    "Russia sent about 1.2 million men to Manchuria; 50,000-70,000 died"
+   ],
+   "src": "Kowner 2006, Historical Dictionary of the Russo-Japanese War",
+   "rough": true
+  },
+  {
+   "id": "balkan-wars-1912",
+   "type": "war",
+   "countries": [
+    "BGR",
+    "SRB",
+    "MNE"
+   ],
+   "years": [
+    1912,
+    1913
+   ],
+   "hit": 0.6,
+   "kill": 0.012,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    20,
+    45
+   ],
+   "sex": "M",
+   "die": 0.1,
+   "wound": 0.2,
+   "pow": 0.02,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "動員されて、トルコとの戦争へ向かった。翌年には、昨日までの味方との戦争になった。"
+    ],
+    "news": [
+     "オスマン帝国との戦争が始まり、町の男たちが動員された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was mobilized for the war against Turkey. The next year, the war was against the allies of the year before."
+    ],
+    "news": [
+     "War with the Ottoman Empire began, and the men of the town were mobilized."
+    ]
+   },
+   "stat": [
+    "二度のバルカン戦争で、ブルガリアは約6万6千人、セルビアは約3万7千人の兵を失った",
+    "In the two Balkan Wars Bulgaria lost about 66,000 soldiers and Serbia about 37,000"
+   ],
+   "src": "Hall 2000, The Balkan Wars 1912-1913; Erickson 2003",
+   "rough": true
+  },
+  {
+   "id": "pol-army-1939",
+   "type": "war",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1939,
+    1939
+   ],
+   "hit": 0.4,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    20,
+    42
+   ],
+   "sex": "M",
+   "die": 0.066,
+   "wound": 0.13,
+   "pow": 0.6,
+   "powDie": 0.1,
+   "back": 1945,
+   "effect": {
+    "health": -5,
+    "happy": -15
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "8月の終わり、動員の命令が来た。西の国境の部隊に入った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "At the end of August the mobilization order came, and it was off to a unit on the western border."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1939年9月、ポーランドは約100万人を動員し、約6万6千人が戦死した。ドイツとソ連の捕虜は合わせて60万人を超えた",
+    "In September 1939 Poland mobilized about a million men; about 66,000 were killed, and more than 600,000 were taken prisoner by Germany and the USSR"
+   ],
+   "src": "Zaloga & Madej 1985, The Polish Campaign 1939; IPN",
+   "rough": true
+  },
+  {
+   "id": "holocaust-pol",
+   "type": "genocide",
+   "countries": [
+    "POL"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.9,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "家族はゲットーへ移された。壁の内側で、配給はほんのわずかしかなかった。",
+     "腕に星の印を付けることを命じられた。家と店は取り上げられた。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The family was forced into the ghetto. Behind its walls, the rations were barely anything.",
+     "Was ordered to wear the star. The house and the shop were taken."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ナチス・ドイツの占領下で、ポーランドのユダヤ人約330万人のうち約300万人 (9割) が殺された",
+    "Under Nazi German occupation about 3 million of Poland's 3.3 million Jews, some 90%, were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-baltic",
+   "type": "genocide",
+   "countries": [
+    "LTU",
+    "LVA"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.9,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ドイツ軍が来た夏、町のユダヤ人の男たちが連れていかれ、戻らなかった。残った家族はゲットーへ移された。"
+    ],
+    "news": [
+     "町はずれの森で銃声が何日も続いた。ユダヤ人の隣人たちの家は空になった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The summer the Germans came, the Jewish men of the town were taken away and never returned. The rest of the family was forced into the ghetto."
+    ],
+    "news": [
+     "For days there was shooting in the woods outside town. The houses of the Jewish neighbors stood empty."
+    ]
+   },
+   "stat": [
+    "リトアニアとラトビアでは、ユダヤ人の9割前後が殺された (リトアニアで約19万5千人)",
+    "In Lithuania and Latvia about 90% of the Jews were murdered (about 195,000 in Lithuania)"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-ukr",
+   "type": "genocide",
+   "countries": [
+    "UKR"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.6,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ドイツ軍が町に入ると、ユダヤ人は集められるよう命じられた。家族は町はずれの谷へ歩かされた。"
+    ],
+    "news": [
+     "町のユダヤ人が町はずれの谷へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "When the Germans entered the town, the Jews were ordered to assemble. The family was marched to a ravine outside town."
+    ],
+    "news": [
+     "The Jews of the town were marched to a ravine outside it. None of them came back."
+    ]
+   },
+   "stat": [
+    "いまのウクライナの土地で、ユダヤ人約150万人が殺された。1941年9月のキーウのバビ・ヤールでは、2日間で3万3,771人が銃殺された",
+    "About 1.5 million Jews were murdered on the territory of today's Ukraine; at Babi Yar outside Kyiv, 33,771 were shot in two days in September 1941"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-blr",
+   "type": "genocide",
+   "countries": [
+    "BLR"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.75,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "家族はゲットーへ移された。壁の内側で、配給はほんのわずかしかなかった。",
+     "腕に星の印を付けることを命じられた。家と店は取り上げられた。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The family was forced into the ghetto. Behind its walls, the rations were barely anything.",
+     "Was ordered to wear the star. The house and the shop were taken."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "いまのベラルーシの土地で、ユダヤ人約80万人が殺された",
+    "About 800,000 Jews were murdered on the territory of today's Belarus"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-rus",
+   "type": "genocide",
+   "countries": [
+    "RUS"
+   ],
+   "years": [
+    1941,
+    1943
+   ],
+   "hit": 0.95,
+   "kill": 0.12,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ドイツ軍が占領した町で、ユダヤ人が集められ、殺された。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "In the towns the Germans occupied, the Jews were rounded up and killed."
+    ]
+   },
+   "stat": [
+    "ロシアの占領された地域で、ユダヤ人10万人あまりが殺された",
+    "More than 100,000 Jews were murdered in the occupied regions of Russia"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-mda",
+   "type": "genocide",
+   "countries": [
+    "MDA"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.6,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "家族ごとトランスニストリアの収容地へ追い立てられた。冬の道で、多くの人が倒れた。"
+    ],
+    "news": [
+     "ユダヤ人の家族が、東のトランスニストリアへ追い立てられていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The family was driven out to the camps of Transnistria. Many fell along the winter roads."
+    ],
+    "news": [
+     "Jewish families were driven east to Transnistria."
+    ]
+   },
+   "stat": [
+    "1941年、ベッサラビアとブコビナのユダヤ人はルーマニアの軍と警察に殺され、生き残った約15万人がトランスニストリアへ移送された",
+    "In 1941 the Jews of Bessarabia and Bukovina were massacred by Romanian troops and police, and some 150,000 survivors were deported to Transnistria"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-rou",
+   "type": "genocide",
+   "countries": [
+    "ROU"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.35,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の家族が列車で運ばれていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "Jewish families were taken away by train."
+    ]
+   },
+   "stat": [
+    "ルーマニアとその支配地で28万〜38万人のユダヤ人が殺された。北トランシルヴァニアのユダヤ人は1944年にアウシュヴィッツへ送られた",
+    "280,000-380,000 Jews were murdered in Romania and its territories; the Jews of Northern Transylvania were deported to Auschwitz in 1944"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-hun",
+   "type": "genocide",
+   "countries": [
+    "HUN"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.95,
+   "kill": 0.5,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "男たちは労働奉仕隊にとられた。1944年の春、残った家族はゲットーに集められ、列車に乗せられた。"
+    ],
+    "news": [
+     "1944年の春、町のユダヤ人がゲットーに集められ、数週間のうちに列車で運ばれていった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The men were taken into the labor service. In the spring of 1944 the rest of the family was herded into a ghetto and put on a train."
+    ],
+    "news": [
+     "In the spring of 1944 the Jews of the town were herded into a ghetto, and within weeks were taken away by train."
+    ]
+   },
+   "stat": [
+    "1944年5〜7月に、ハンガリーから約43万7千人のユダヤ人がアウシュヴィッツへ送られた",
+    "Between May and July 1944 about 437,000 Jews were deported from Hungary to Auschwitz"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-svk",
+   "type": "genocide",
+   "countries": [
+    "SVK"
+   ],
+   "years": [
+    1942,
+    1945
+   ],
+   "hit": 0.95,
+   "kill": 0.75,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "スロバキアのユダヤ人約8万9千人のうち、約7万人が殺された",
+    "About 70,000 of Slovakia's 89,000 Jews were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-cze",
+   "type": "genocide",
+   "countries": [
+    "CZE"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.95,
+   "kill": 0.7,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "テレジーンのゲットーへ送られた。そこからさらに東へ送られる列車が、毎週出ていた。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was sent to the ghetto at Terezín. From there, trains left for the east every week."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ボヘミアとモラヴィアのユダヤ人約11万8千人のうち、約7万8千人が殺された",
+    "About 78,000 of the 118,000 Jews of Bohemia and Moravia were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-aut",
+   "type": "genocide",
+   "countries": [
+    "AUT"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.95,
+   "kill": 0.65,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "オーストリアのユダヤ人約18万5千人のうち、約6万5千人が殺された。13万人ほどは1941年までに国外へ逃れた",
+    "About 65,000 of Austria's 185,000 Jews were murdered; some 130,000 had escaped abroad by 1941"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-deu",
+   "type": "genocide",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.95,
+   "kill": 0.5,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "1933年にドイツにいたユダヤ人約52万5千人のうち、約16万5千人が殺された。半数あまりは国外へ逃れた",
+    "Of about 525,000 Jews in Germany in 1933, some 165,000 were murdered; more than half had emigrated"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-nld",
+   "type": "genocide",
+   "countries": [
+    "NLD"
+   ],
+   "years": [
+    1942,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.73,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ヴェステルボルクの通過収容所へ送られた。毎週火曜日、東へ向かう列車が出た。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was sent to the transit camp at Westerbork. Every Tuesday a train left for the east."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "オランダのユダヤ人約14万人のうち、約10万2千人が殺された",
+    "About 102,000 of the 140,000 Jews of the Netherlands were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-grc",
+   "type": "genocide",
+   "countries": [
+    "GRC"
+   ],
+   "years": [
+    1943,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.85,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ギリシャのユダヤ人約7万7千人のうち、6万人を超える人が殺された。テッサロニキのユダヤ人社会はほぼ消えた",
+    "More than 60,000 of Greece's 77,000 Jews were murdered; the Jewish community of Thessaloniki all but vanished"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-yug",
+   "type": "genocide",
+   "countries": [
+    "HRV",
+    "SRB",
+    "BIH"
+   ],
+   "years": [
+    1941,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.8,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ユーゴスラビアのユダヤ人約8万人のうち、約6万人が殺された",
+    "About 60,000 of the 80,000 Jews of Yugoslavia were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-mkd",
+   "type": "genocide",
+   "countries": [
+    "MKD"
+   ],
+   "years": [
+    1943,
+    1943
+   ],
+   "hit": 0.95,
+   "kill": 0.95,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "3月のある夜、町のユダヤ人がたばこ倉庫に集められ、列車で北へ送られた。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "One night in March the town's Jews were rounded up into a tobacco warehouse and sent north by train."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "1943年3月、マケドニアのユダヤ人7,144人がトレブリンカへ送られ、ほぼ全員が殺された",
+    "In March 1943, 7,144 Jews of Macedonia were deported to Treblinka; almost all were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-fra",
+   "type": "genocide",
+   "countries": [
+    "FRA"
+   ],
+   "years": [
+    1942,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.25,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "7月、警察が家に来た。家族は冬季競輪場に集められ、ドランシーへ送られた。",
+     "星の印を付けることを命じられた。南へ逃れ、偽の書類で暮らした。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In July the police came to the door. The family was herded into the Vélodrome d'Hiver and sent on to Drancy.",
+     "Was ordered to wear the star. Fled south and lived on false papers."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "フランスのユダヤ人約33万人のうち、約7万6千人が移送され、そのほとんどが殺された",
+    "About 76,000 of the 330,000 Jews in France were deported, and nearly all of them were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-bel-lux",
+   "type": "genocide",
+   "countries": [
+    "BEL",
+    "LUX"
+   ],
+   "years": [
+    1942,
+    1944
+   ],
+   "hit": 0.95,
+   "kill": 0.4,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "ユダヤ人として名簿に載せられ、家財を取り上げられた。やがて「東へ移す」という命令が来た。",
+     "星の印を付けることを命じられた。ある夜、移送の列車の名簿に家族の名があった。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was registered as a Jew and stripped of property. Then came the order of \"resettlement to the east\".",
+     "Was ordered to wear the star. One night the family's names appeared on a deportation list."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "ベルギーのユダヤ人約6万6千人のうち、約2万5千人がアウシュヴィッツへ送られ殺された",
+    "About 25,000 of Belgium's 66,000 Jews were deported to Auschwitz and murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "holocaust-ita",
+   "type": "genocide",
+   "countries": [
+    "ITA"
+   ],
+   "years": [
+    1943,
+    1945
+   ],
+   "hit": 0.95,
+   "kill": 0.17,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "人種法で学校と仕事を追われた。1943年の秋、ドイツ軍の一斉検挙が始まり、修道院にかくまわれた。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "The racial laws had already shut the schools and jobs. In the autumn of 1943 the German roundups began, and the family was hidden in a convent."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "イタリアのユダヤ人約4万4千人のうち、約7,500人が殺された",
+    "About 7,500 of Italy's 44,000 Jews were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-nor",
+   "type": "genocide",
+   "countries": [
+    "NOR"
+   ],
+   "years": [
+    1942,
+    1943
+   ],
+   "hit": 0.95,
+   "kill": 0.45,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "11月、警察に捕まり、輸送船に乗せられた。"
+    ],
+    "news": [
+     "11月、ユダヤ人の隣人たちが輸送船でドイツへ送られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In November the police came, and it was onto the transport ship."
+    ],
+    "news": [
+     "In November the Jewish neighbors were shipped off to Germany."
+    ]
+   },
+   "stat": [
+    "ノルウェーのユダヤ人約2,100人のうち、773人が移送され、生きて戻ったのは38人だった",
+    "Of about 2,100 Jews in Norway, 773 were deported; only 38 came back"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords"
+  },
+  {
+   "id": "holocaust-est",
+   "type": "genocide",
+   "countries": [
+    "EST"
+   ],
+   "years": [
+    1941,
+    1941
+   ],
+   "hit": 0.95,
+   "kill": 0.25,
+   "who": "all",
+   "cause": "ホロコースト",
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "health": -15,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true,
+    "job": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "ドイツ軍が来る前に東へ逃げられず、捕らえられた。"
+    ],
+    "news": [
+     "ユダヤ人の隣人たちが、ある朝、駅へ連れていかれた。戻ってきた人はいなかった。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Could not get away east before the Germans arrived, and was arrested."
+    ],
+    "news": [
+     "One morning the Jewish neighbors were marched to the station. None of them came back."
+    ]
+   },
+   "stat": [
+    "エストニアのユダヤ人約4,300人の多くは東へ逃れた。残った約1,000人のほぼ全員が殺された",
+    "Most of Estonia's 4,300 Jews fled east; nearly all of the roughly 1,000 who remained were murdered"
+   ],
+   "src": "Hilberg 2003, The Destruction of the European Jews; USHMM Holocaust Encyclopedia; Benz 1991, Dimension des Völkermords",
+   "rough": true
+  },
+  {
+   "id": "deu-persecution-1933",
+   "type": "unrest",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1933,
+    1939
+   ],
+   "hit": 0.9,
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "happy": -20,
+    "wealth": -0.5,
+    "job": true
+   },
+   "severity": 4,
+   "newsAt": 1938,
+   "ja": {
+    "hit": [
+     "ユダヤ人だという理由で、勤め先を追われた。公園のベンチにも「ユダヤ人お断り」の札が付いた。",
+     "11月の夜、家族の店の窓が叩き割られた。翌朝、父は連れていかれた。"
+    ],
+    "news": [
+     "11月の夜、町のユダヤ人の店とシナゴーグが壊され、火をつけられた。通りにはガラスが散らばっていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was dismissed from work for being Jewish. Even the park benches now said \"No Jews\".",
+     "One November night the windows of the family's shop were smashed. The next morning Father was taken away."
+    ],
+    "news": [
+     "One November night the Jewish shops and the synagogue in town were wrecked and set on fire. Glass covered the streets."
+    ]
+   },
+   "stat": [
+    "1938年11月9〜10日の「水晶の夜」で、シナゴーグ約1,400が焼かれ、ユダヤ人の男性約3万人が強制収容所へ送られた",
+    "In the Kristallnacht pogrom of 9-10 November 1938, some 1,400 synagogues were burned and about 30,000 Jewish men were sent to concentration camps"
+   ],
+   "src": "USHMM Holocaust Encyclopedia (Kristallnacht); Friedländer 1997, Nazi Germany and the Jews"
+  },
+  {
+   "id": "aut-persecution-1938",
+   "type": "unrest",
+   "countries": [
+    "AUT"
+   ],
+   "years": [
+    1938,
+    1939
+   ],
+   "hit": 0.95,
+   "faith": [
+    "ユダヤ教"
+   ],
+   "effect": {
+    "happy": -20,
+    "wealth": -0.6,
+    "job": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "3月、ドイツ軍が来た次の日、近所の人たちの前で歩道をブラシで洗わされた。家の店はまもなく取り上げられた。"
+    ],
+    "news": [
+     "ドイツ軍が来た。ユダヤ人の隣人たちが、群衆の前で歩道を洗わされていた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "In March, the day after the Germans came, was made to scrub the pavement on hands and knees in front of the neighbors. The family shop was soon confiscated."
+    ],
+    "news": [
+     "The Germans arrived. Jewish neighbors were made to scrub the pavements before a jeering crowd."
+    ]
+   },
+   "stat": [
+    "1938年3月の併合から1年半のうちに、オーストリアのユダヤ人の3分の2が国を出た",
+    "Within 18 months of the Anschluss of March 1938, two thirds of Austria's Jews had left the country"
+   ],
+   "src": "Dokumentationsarchiv des österreichischen Widerstandes (DÖW); USHMM Holocaust Encyclopedia"
+  },
+  {
+   "id": "grc-exchange-1923",
+   "type": "unrest",
+   "countries": [
+    "GRC"
+   ],
+   "years": [
+    1923,
+    1924
+   ],
+   "hit": 0.9,
+   "faith": [
+    "イスラム教"
+   ],
+   "effect": {
+    "happy": -20,
+    "wealth": -0.6,
+    "home": true
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "住民交換で、イスラム教徒の家族はトルコへ移ることになった。家も畑も置いて、船に乗った。"
+    ],
+    "news": [
+     "トルコとの住民交換が決まり、イスラム教徒の隣人たちが船でトルコへ去った。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Under the population exchange the Muslim family had to move to Turkey. House and fields were left behind, and they boarded the ship."
+    ],
+    "news": [
+     "The population exchange with Turkey was agreed, and the Muslim neighbors left by ship for Turkey."
+    ]
+   },
+   "stat": [
+    "1923年のローザンヌ条約による住民交換で、トルコから約120万人の正教徒がギリシャへ、ギリシャから約40万人のイスラム教徒がトルコへ移された",
+    "The 1923 Lausanne exchange moved about 1.2 million Orthodox Christians from Turkey to Greece and about 400,000 Muslims from Greece to Turkey"
+   ],
+   "src": "Hirschon (ed.) 2003, Crossing the Aegean; Clark 2006, Twice a Stranger"
+  },
+  {
+   "id": "ww1-women-work",
+   "type": "war",
+   "countries": [
+    "FRA",
+    "DEU",
+    "GBR",
+    "ITA",
+    "AUT"
+   ],
+   "years": [
+    1915,
+    1918
+   ],
+   "hit": 0.3,
+   "age": [
+    16,
+    45
+   ],
+   "sex": "F",
+   "effect": {
+    "health": -2,
+    "happy": -3
+   },
+   "severity": 2,
+   "kind": "work",
+   "ja": {
+    "hit": [
+     "男たちが前線に出た穴を埋めて、砲弾工場で働いた。火薬で手と顔が黄色く染まった。",
+     "男手のなくなった畑を、女と子どもと年寄りだけで耕した。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Filled a place left by the men at the front, working in a shell factory. The explosives stained the hands and face yellow.",
+     "With the men gone, the fields were worked by women, children and the old."
+    ],
+    "news": []
+   },
+   "stat": [
+    "英国では1918年までに約95万人の女性が軍需工場で働いた",
+    "By 1918 nearly 950,000 women were working in British munitions factories"
+   ],
+   "src": "Woollacott 1994, On Her Their Lives Depend; Imperial War Museum",
+   "rough": true
+  },
+  {
+   "id": "ww2-women-work",
+   "type": "war",
+   "countries": [
+    "GBR",
+    "RUS",
+    "UKR",
+    "BLR",
+    "KAZ"
+   ],
+   "years": [
+    1941,
+    1945
+   ],
+   "hit": 0.35,
+   "age": [
+    16,
+    45
+   ],
+   "sex": "F",
+   "effect": {
+    "health": -2,
+    "happy": -3
+   },
+   "severity": 2,
+   "kind": "work",
+   "ja": {
+    "hit": [
+     "工場の旋盤の前に立ち、一日12時間、砲弾の殻を削った。",
+     "戦争のための仕事に回され、男たちの抜けた職場で働いた。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Stood at a factory lathe twelve hours a day, turning shell casings.",
+     "Was directed into war work, filling the jobs the men had left."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1943年、ソ連の工場で働く人の半分あまり、英国では働く女性の多くが戦争のための仕事についていた",
+    "By 1943 more than half of Soviet industrial workers were women, and most British women of working age were in war work"
+   ],
+   "src": "Barber & Harrison 1991, The Soviet Home Front; Summerfield 1984, Women Workers in the Second World War",
+   "rough": true
+  },
+  {
+   "id": "deu-klv-1940",
+   "type": "war",
+   "countries": [
+    "DEU"
+   ],
+   "years": [
+    1940,
+    1945
+   ],
+   "hit": 0.25,
+   "age": [
+    6,
+    14
+   ],
+   "urban": 1.6,
+   "effect": {
+    "happy": -8
+   },
+   "severity": 2,
+   "ja": {
+    "hit": [
+     "空襲を避けて、子どもだけで田舎の寮へ送られた。家族からの手紙を何度も読み返した。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "To escape the bombing, the children were sent away alone to a hostel in the countryside. Letters from home were read over and over."
+    ],
+    "news": []
+   },
+   "stat": [
+    "ドイツの「学童地方疎開 (KLV)」で、1940〜45年に約280万人の子どもが田舎へ送られた",
+    "Under the German Kinderlandverschickung, about 2.8 million children were sent to the countryside in 1940-45"
+   ],
+   "src": "Kock 1997, \"Der Führer sorgt für unsere Kinder ...\" Die Kinderlandverschickung im Zweiten Weltkrieg",
+   "rough": true
+  },
+  {
+   "id": "ussr-evacuation-1941",
+   "type": "war",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR"
+   ],
+   "years": [
+    1941,
+    1942
+   ],
+   "hit": 0.09,
+   "urban": 2,
+   "effect": {
+    "happy": -12,
+    "wealth": -0.5,
+    "home": true
+   },
+   "severity": 3,
+   "ja": {
+    "hit": [
+     "工場ごと東へ疎開した。貨車で何週間も揺られ、ウラルの町の雪の中で、屋根より先に機械を据えた。",
+     "家族で東へ疎開した。着いた町で、知らない家の一部屋に何家族も暮らした。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "The whole factory was evacuated east. Weeks in a freight wagon, and in a town in the Urals the machines were set up in the snow before there was a roof.",
+     "The family was evacuated east. In the new town several families shared one room in a stranger's house."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1941〜42年に、ソ連では約1,650万人の人と約1,500の工場が東へ疎開した",
+    "In 1941-42 about 16.5 million people and some 1,500 factories were evacuated east in the USSR"
+   ],
+   "src": "Barber & Harrison 1991, The Soviet Home Front 1941-1945; Manley 2009, To the Tashkent Station"
+  },
+  {
+   "id": "gbr-rationing-1940",
+   "type": "war",
+   "countries": [
+    "GBR"
+   ],
+   "years": [
+    1940,
+    1945
+   ],
+   "hit": 0.9,
+   "effect": {
+    "happy": -2
+   },
+   "severity": 1,
+   "ja": {
+    "hit": [
+     "配給手帳が配られた。卵は週に1個、バターとベーコンは量り売りで、庭は野菜畑になった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Ration books were handed out. One egg a week, butter and bacon weighed out by the ounce, and the garden dug up for vegetables."
+    ],
+    "news": []
+   },
+   "stat": [
+    "英国の食料の配給は1940年1月に始まり、最後の肉の配給が終わったのは1954年だった",
+    "British food rationing began in January 1940; meat was the last item to come off the ration, in 1954"
+   ],
+   "src": "Zweiniger-Bargielowska 2000, Austerity in Britain"
+  },
+  {
+   "id": "dekulakization-1930",
+   "type": "occupation",
+   "countries": [
+    "RUS",
+    "UKR",
+    "BLR",
+    "KAZ"
+   ],
+   "years": [
+    1930,
+    1933
+   ],
+   "hit": 0.015,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "飢饉",
+   "urban": 0.1,
+   "effect": {
+    "health": -10,
+    "happy": -25,
+    "wealth": -0.9,
+    "home": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "「クラーク (富農)」とされ、家と家畜を取り上げられた。家族ごと貨車でウラルの森の入植地へ送られた。"
+    ],
+    "news": [
+     "村の暮らしの良い家が「クラーク」とされ、家族ごと遠くへ送られた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was branded a \"kulak\" family. House and livestock were seized, and the family was shipped by freight wagon to a settlement in the forests of the Urals."
+    ],
+    "news": [
+     "The better-off households of the village were branded \"kulaks\" and deported, whole families at a time."
+    ]
+   },
+   "stat": [
+    "1930〜31年に約180万人が「クラーク」として家族ごと強制移住させられ、移住先で多くが亡くなった",
+    "In 1930-31 about 1.8 million people were deported with their families as \"kulaks\"; many died in the special settlements"
+   ],
+   "src": "Viola 2007, The Unknown Gulag; Zemskov 1994",
+   "rough": true
   }
  ]
 }

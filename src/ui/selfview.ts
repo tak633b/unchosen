@@ -1,6 +1,7 @@
 // 自分の欄: 輪の真ん中の顔を押すと開く。身の上・状態・能力・経験・お金・つながり。
 // 遊んでいる間は今の姿だけ (この先のことは出さない)。エンジンが持っていない数値は作らない
 import { byCode, countryAt } from '../engine/countries';
+import { bornIn } from '../engine/polity';
 import { closest, people } from '../engine/bonds';
 import { causeLabel } from '../engine/causes';
 import { formatMoney, monthlyYen, perDay, yen } from '../engine/economy';
@@ -33,7 +34,7 @@ function identity(p: Person): string {
   const born = p.birthP ?? p.familyP;
   const list: [string, string][] = [
     [L('性別', 'Gender'), genderWord(genderOf(p))],
-    [L('生まれ', 'Born'), L(`${p.birthYear}年${p.birthMonth}月・${byCode(p.birthCountry).name}`, `${p.birthYear}/${p.birthMonth}, ${byCode(p.birthCountry).name}`)],
+    [L('生まれ', 'Born'), L(`${p.birthYear}年${p.birthMonth}月・${bornIn(p.birthCountry, p.birthYear)}`, `${p.birthYear}/${p.birthMonth}, ${bornIn(p.birthCountry, p.birthYear)}`)],
     [L('住まい', 'Lives'), `${p.city ?? L('農村', 'rural area')}${L('、', ', ')}${byCode(p.country).name}`],
     [L('宗教', 'Religion'), religionName(p.religion)],
     [L('生まれた家', 'Family'), `${homeWord(born)} (${rank(born, byCode(p.birthCountry).name)})`],

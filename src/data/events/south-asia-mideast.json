@@ -57,17 +57,22 @@
     1918
    ],
    "hit": 0.02,
+   "kill": 0.0003,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "rough": true,
-   "severity": 3,
+   "die": 0.05,
+   "wound": 0.05,
+   "pow": 0.01,
    "effect": {
     "health": -5,
     "happy": -12
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "英国の軍に入り、海の向こうの戦場へ送られた。泥の塹壕で、見たこともない寒さを知った。"
@@ -78,7 +83,7 @@
    },
    "en": {
     "hit": [
-     "Joined the British Indian Army and was shipped to battlefields overseas. Learned a cold never known before, in trenches of mud."
+     "Joined the British Indian Army and was shipped to a battlefield across the sea. In the muddy trenches came a cold never felt before."
     ],
     "news": [
      "A great war began in Europe, and young men from the villages crossed the sea as soldiers."
@@ -88,7 +93,8 @@
     "第一次世界大戦では、インドから約130万人が兵士や労働者として海外へ送られ、7万4,000人あまりが戻らなかった",
     "In the First World War about 1.3 million Indians served overseas as soldiers and labourers, and more than 74,000 did not return"
    ],
-   "src": "Commonwealth War Graves Commission; Omissi 1999, Indian Voices of the Great War"
+   "src": "Commonwealth War Graves Commission; Omissi 1999, Indian Voices of the Great War",
+   "rough": true
   },
   {
    "id": "in-ww2",
@@ -102,16 +108,24 @@
     1945
    ],
    "hit": 0.03,
+   "kill": 0.0002,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "severity": 3,
+   "die": 0.035,
+   "wound": 0.03,
+   "pow": 0.03,
+   "powDie": 0.15,
+   "back": 1945,
    "effect": {
     "health": -4,
     "happy": -10
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "志願して英国の軍に入り、北アフリカやビルマの戦場へ送られた。"
@@ -244,15 +258,15 @@
    "kill": 0.006,
    "who": "all",
    "cause": "戦争",
-   "kind": "move",
-   "rough": true,
-   "severity": 5,
    "effect": {
     "health": -6,
     "happy": -25,
     "home": true,
     "wealth": -0.6
    },
+   "severity": 5,
+   "kind": "move",
+   "newsAt": 1947,
    "ja": {
     "hit": [
      "分離独立で、新しい国境の向こうへ移ることになった。持てるだけの物を持ち、何日も歩いて、知らない町の難民キャンプに着いた。",
@@ -281,7 +295,8 @@
     "1947年の分離独立では、約1,400万人が国境を越えて移り、数十万〜100万人が暴力で亡くなったとされる",
     "Partition in 1947 uprooted some 14 million people, and between several hundred thousand and a million were killed in the violence"
    ],
-   "src": "UNHCR, The State of the World's Refugees 2000; Talbot & Singh 2009, The Partition of India"
+   "src": "UNHCR, The State of the World's Refugees 2000; Talbot & Singh 2009, The Partition of India",
+   "rough": true
   },
   {
    "id": "partition-1947-ind",
@@ -297,15 +312,15 @@
    "kill": 0.0006,
    "who": "all",
    "cause": "戦争",
-   "kind": "move",
-   "rough": true,
-   "severity": 5,
    "effect": {
     "health": -6,
     "happy": -25,
     "home": true,
     "wealth": -0.6
    },
+   "severity": 5,
+   "kind": "move",
+   "newsAt": 1947,
    "ja": {
     "hit": [
      "分離独立で、新しい国境の向こうへ移ることになった。持てるだけの物を持ち、何日も歩いて、知らない町の難民キャンプに着いた。",
@@ -334,7 +349,8 @@
     "1947年の分離独立では、約1,400万人が国境を越えて移り、数十万〜100万人が暴力で亡くなったとされる",
     "Partition in 1947 uprooted some 14 million people, and between several hundred thousand and a million were killed in the violence"
    ],
-   "src": "UNHCR, The State of the World's Refugees 2000; Talbot & Singh 2009, The Partition of India"
+   "src": "UNHCR, The State of the World's Refugees 2000; Talbot & Singh 2009, The Partition of India",
+   "rough": true
   },
   {
    "id": "partition-1947-bgd",
@@ -1344,20 +1360,20 @@
     1918
    ],
    "hit": 0.12,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.002,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 3,
+   "die": 0.1,
    "effect": {
     "health": -5,
     "happy": -10
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "グルカ兵として英国の軍に入り、遠いヨーロッパと中東の戦場へ送られた。"
@@ -1378,7 +1394,8 @@
     "第一次世界大戦では、ネパールから約20万人が英国の軍に加わった",
     "About 200,000 Nepalis served with the British forces in the First World War"
    ],
-   "src": "Brigade of Gurkhas history; Des Chene 1991"
+   "src": "Brigade of Gurkhas history; Des Chene 1991",
+   "rough": true
   },
   {
    "id": "np-ww2",
@@ -1391,20 +1408,20 @@
     1945
    ],
    "hit": 0.12,
+   "kill": 0.002,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     40
    ],
    "sex": "M",
-   "kill": 0.002,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 3,
+   "die": 0.05,
    "effect": {
     "health": -5,
     "happy": -10
    },
+   "severity": 3,
    "ja": {
     "hit": [
      "グルカ兵として英国の軍に入り、ビルマや北アフリカ、イタリアの戦場へ送られた。"
@@ -1425,7 +1442,8 @@
     "第二次世界大戦では、約25万人のグルカ兵が英国の軍に加わった",
     "About 250,000 Gurkhas served with the British forces in the Second World War"
    ],
-   "src": "Brigade of Gurkhas history; Gurkha Welfare Trust"
+   "src": "Brigade of Gurkhas history; Gurkha Welfare Trust",
+   "rough": true
   },
   {
    "id": "np-quake-1934",
@@ -3027,24 +3045,29 @@
     1914,
     1918
    ],
-   "hit": 0.4,
+   "hit": 0.6,
+   "kill": 0.04,
+   "who": "men",
+   "cause": "戦死",
    "age": [
     18,
     45
    ],
    "sex": "M",
-   "kill": 0.04,
-   "who": "men",
-   "cause": "戦争",
-   "rough": true,
-   "severity": 5,
+   "die": 0.27,
+   "wound": 0.14,
+   "pow": 0.09,
+   "powDie": 0.1,
+   "back": 1920,
    "effect": {
     "health": -8,
     "happy": -15
    },
+   "severity": 5,
    "ja": {
     "hit": [
-     "兵にとられ、ガリポリやコーカサスの前線へ送られた。寒さと病で、戦場より多くの仲間が倒れた。"
+     "兵にとられ、ガリポリの塹壕に入った。",
+     "召集されて、雪のコーカサスの前線へ歩いて向かった。寒さと病で、戦闘より多くの仲間が倒れた。"
     ],
     "news": [
      "帝国が大戦に加わり、村の男たちが次々に戦場へ連れて行かれた。"
@@ -3052,7 +3075,8 @@
    },
    "en": {
     "hit": [
-     "Was conscripted and sent to the fronts at Gallipoli and in the Caucasus. Cold and disease killed more comrades than the fighting did."
+     "Was taken for a soldier and sent to the trenches at Gallipoli.",
+     "Was called up and marched to the snowbound Caucasus front, where cold and disease killed more men than the fighting."
     ],
     "news": [
      "The empire entered the Great War, and the men of the villages were taken off to the fronts one after another."
@@ -3062,7 +3086,8 @@
     "第一次世界大戦で、オスマン帝国は約280万人を兵として動員し、77万人ほどの兵士が戦死や病気で亡くなった",
     "In the First World War the Ottoman Empire mobilized about 2.8 million men, and some 770,000 soldiers died in battle or of disease"
    ],
-   "src": "Erickson 2001, Ordered to Die: A History of the Ottoman Army in the First World War"
+   "src": "Erickson 2001, Ordered to Die: A History of the Ottoman Army in the First World War",
+   "rough": true
   },
   {
    "id": "tr-armenian-1915",
@@ -3074,21 +3099,32 @@
     1915,
     1916
    ],
-   "hit": 0,
-   "kill": 0.04,
+   "hit": 0.85,
+   "kill": 0.35,
    "who": "all",
-   "cause": "戦争",
-   "rough": true,
+   "cause": "虐殺",
+   "faith": [
+    "キリスト教"
+   ],
+   "effect": {
+    "health": -20,
+    "happy": -30,
+    "wealth": -0.9,
+    "home": true
+   },
    "severity": 4,
-   "effect": {},
    "ja": {
-    "hit": [],
+    "hit": [
+     "春、村のアルメニア人に退去の命令が出た。男たちは先に連れていかれ、女と子どもと年寄りは南のシリアの砂漠へ歩かされた。"
+    ],
     "news": [
      "アルメニア人の住民が町や村から追い立てられ、シリアの砂漠へ向けて歩かされた。戻った人はわずかだった。"
     ]
    },
    "en": {
-    "hit": [],
+    "hit": [
+     "In spring the Armenians of the village were ordered out. The men were taken away first; the women, children and old people were marched south toward the Syrian desert."
+    ],
     "news": [
      "Armenian residents were driven out of the towns and villages and marched toward the Syrian desert. Few came back."
     ]
@@ -3097,7 +3133,8 @@
     "1915〜16年の追放と虐殺で、オスマン帝国のアルメニア人60万〜150万人が亡くなったとされる",
     "Between 600,000 and 1.5 million Ottoman Armenians are thought to have died in the deportations and massacres of 1915-16"
    ],
-   "src": "Suny 2015, They Can Live in the Desert but Nowhere Else; Akçam 2012"
+   "src": "Suny 2015, They Can Live in the Desert but Nowhere Else; Akçam 2012",
+   "rough": true
   },
   {
    "id": "tr-exchange-1923",
@@ -3109,17 +3146,20 @@
     1923,
     1924
    ],
-   "hit": 0.05,
-   "kind": "move",
-   "severity": 3,
+   "hit": 0.9,
+   "faith": [
+    "キリスト教"
+   ],
    "effect": {
     "happy": -18,
     "home": true,
     "wealth": -0.5
    },
+   "severity": 3,
+   "kind": "move",
    "ja": {
     "hit": [
-     "ギリシャとの住民の交換で、生まれた土地を離れ、見知らぬ村に移された。"
+     "住民交換で、正教徒の家族はギリシャへ移ることになった。家も畑も置いて、船に乗った。"
     ],
     "news": [
      "ギリシャとの取り決めで、両国の住民が宗教によって入れ替えられた。"
@@ -3127,7 +3167,7 @@
    },
    "en": {
     "hit": [
-     "Under the population exchange with Greece, the family left the land of their birth and was resettled in a strange village."
+     "Under the population exchange the Orthodox family had to move to Greece. House and fields were left behind, and they boarded the ship."
     ],
     "news": [
      "Under an agreement with Greece, the populations of the two countries were exchanged by religion."
@@ -6396,6 +6436,184 @@
     "The August 2008 war killed about 850 people and temporarily displaced 192,000 (UNHCR / EU fact-finding mission)"
    ],
    "src": "Independent International Fact-Finding Mission on the Conflict in Georgia (2009); UNHCR"
+  },
+  {
+   "id": "tr-balkan-wars-1912",
+   "type": "war",
+   "countries": [
+    "TUR"
+   ],
+   "years": [
+    1912,
+    1913
+   ],
+   "hit": 0.25,
+   "kill": 0.008,
+   "who": "men",
+   "cause": "戦死",
+   "age": [
+    20,
+    45
+   ],
+   "sex": "M",
+   "die": 0.25,
+   "pow": 0.1,
+   "effect": {
+    "health": -6,
+    "happy": -12
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "召集されてトラキアの前線へ送られた。コレラが部隊の中に広がった。"
+    ],
+    "news": [
+     "バルカンの国々との戦争に負け、ヨーロッパの領土の大半を失った。難民が町にあふれた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Was called up and sent to the Thracian front, where cholera spread through the ranks."
+    ],
+    "news": [
+     "The war with the Balkan states was lost, and with it most of the European lands. Refugees filled the towns."
+    ]
+   },
+   "stat": [
+    "バルカン戦争でのオスマン軍の死者は、戦病死を含め10万人を超えた",
+    "Ottoman military deaths in the Balkan Wars, disease included, exceeded 100,000"
+   ],
+   "src": "Erickson 2003, Defeat in Detail: The Ottoman Army in the Balkans",
+   "rough": true
+  },
+  {
+   "id": "partition-1947-pak-hindu",
+   "type": "war",
+   "countries": [
+    "PAK"
+   ],
+   "years": [
+    1947,
+    1947
+   ],
+   "hit": 0.9,
+   "kill": 0.05,
+   "who": "all",
+   "cause": "虐殺",
+   "faith": [
+    "ヒンドゥー教",
+    "シク教"
+   ],
+   "effect": {
+    "health": -8,
+    "happy": -25,
+    "wealth": -0.8,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "8月、暴動が近くの村まで来た。家を捨て、東のインドへ向かう何キロもの列に加わった。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "In August the riots reached the next village. The family abandoned the house and joined a column of refugees miles long heading east to India."
+    ],
+    "news": []
+   },
+   "stat": [
+    "分離独立で1,400万〜1,800万人が国境を越えて移り、20万〜100万人が殺された",
+    "Partition displaced 14-18 million people across the new borders, and between 200,000 and a million were killed"
+   ],
+   "src": "Khan 2007, The Great Partition; Talbot & Singh 2009",
+   "rough": true
+  },
+  {
+   "id": "partition-1947-ind-muslim",
+   "type": "war",
+   "countries": [
+    "IND"
+   ],
+   "years": [
+    1947,
+    1947
+   ],
+   "hit": 0.15,
+   "kill": 0.01,
+   "who": "all",
+   "cause": "虐殺",
+   "faith": [
+    "イスラム教"
+   ],
+   "effect": {
+    "health": -8,
+    "happy": -25,
+    "wealth": -0.8,
+    "home": true,
+    "job": true
+   },
+   "severity": 5,
+   "ja": {
+    "hit": [
+     "8月、町のイスラム教徒の地区が襲われた。家を捨て、西のパキスタンへ向かう列車に乗った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "In August the town's Muslim quarter was attacked. The family abandoned the house and boarded a train west to Pakistan."
+    ],
+    "news": []
+   },
+   "stat": [
+    "分離独立で1,400万〜1,800万人が国境を越えて移り、20万〜100万人が殺された",
+    "Partition displaced 14-18 million people across the new borders, and between 200,000 and a million were killed"
+   ],
+   "src": "Khan 2007, The Great Partition; Talbot & Singh 2009",
+   "rough": true
+  },
+  {
+   "id": "partition-1947-bgd-hindu",
+   "type": "unrest",
+   "countries": [
+    "BGD"
+   ],
+   "years": [
+    1947,
+    1950
+   ],
+   "hit": 0.25,
+   "faith": [
+    "ヒンドゥー教"
+   ],
+   "effect": {
+    "happy": -20,
+    "wealth": -0.6,
+    "home": true,
+    "job": true
+   },
+   "severity": 4,
+   "ja": {
+    "hit": [
+     "村に居づらくなり、家と田を安く手放して、国境を越えて西ベンガルへ移った。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "Life in the village grew impossible. The house and the paddy were sold for a pittance, and the family crossed the border into West Bengal."
+    ],
+    "news": []
+   },
+   "stat": [
+    "1947〜51年に、東パキスタンから300万人ほどのヒンドゥー教徒がインドへ移った",
+    "Some 3 million Hindus moved from East Pakistan to India in 1947-51"
+   ],
+   "src": "Chatterji 2007, The Spoils of Partition",
+   "rough": true
   }
  ]
 }

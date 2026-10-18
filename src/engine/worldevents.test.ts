@@ -32,7 +32,8 @@ describe('世界の出来事の目録', () => {
       expect(a >= 1900 && a <= b && b <= 2025, `${e.id} ${e.years}`).toBe(true);
       expect(TYPES, e.id).toContain(e.type);
       expect(e.hit >= 0 && e.hit <= 1, e.id).toBe(true);
-      expect((e.kill ?? 0) >= 0 && (e.kill ?? 0) <= 0.5, e.id).toBe(true);
+      // 宗教で分かれる出来事 (faith) の kill はその人たちの中での割合 (ポーランドのユダヤ人の9割)。ほかは国の人口に対する割合
+      expect((e.kill ?? 0) >= 0 && (e.kill ?? 0) <= (e.faith ? 0.95 : 0.5), e.id).toBe(true);
       expect((e.elsewhere ?? 0) >= 0 && (e.elsewhere ?? 0) <= e.hit, e.id).toBe(true);
       expect(Number.isInteger(e.severity) && e.severity >= 1 && e.severity <= 5, e.id).toBe(true);
       if (e.kill) expect(EVENT_CAUSES, e.id).toContain(e.cause);
