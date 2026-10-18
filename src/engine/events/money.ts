@@ -194,6 +194,7 @@ function switchOffer(p: Person, c: Country, last: number): void {
   if (!p.invest || p.age > 65 || p.wealth <= 0 || p.rng() > (last < -0.15 ? 0.5 : 0.015)) return;
   const crash = last < -0.15;
   const to = (['deposit', 'stock', 'balanced'] as Holding[]).filter((h) => h !== p.invest && onSale(h, yearOf(p)));
+  if (!to.length) return; // 替える先がまだ世に無い年 (1929年より前の預金など)
   const taxRate = capitalGainsTax(c);
   decide(p, {
     title: crash ? L('相場が大きく下がった', 'The market fell hard') : L('預け先を見直す？', 'Rethink the savings?'),
