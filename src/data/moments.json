@@ -437,6 +437,7 @@
       "minAge": 0,
       "maxAge": 5,
       "weight": 1,
+      "to": 1989,
       "when": {
         "wealth": "poor",
         "income": "low"
@@ -2836,7 +2837,7 @@
     },
     {
       "id": "family-trip-abroad",
-      "text": "家族で外国へ旅行した。{name}がいちばんよく覚えているのは、空港の免税店だった。",
+      "text": "家族で{abroad}へ旅行した。{name}がいちばんよく覚えているのは、空港の免税店だった。",
       "minAge": 10,
       "maxAge": 18,
       "weight": 1,
@@ -2851,7 +2852,7 @@
       },
       "cost": -0.08,
       "en": {
-        "text": "The family took a trip abroad. What {name} remembers best is the airport duty-free shop."
+        "text": "The family took a trip to {abroad}. What {name} remembered best was the duty-free shop at the airport."
       },
       "from": 1970
     },
@@ -8811,6 +8812,178 @@
       },
       "en": {
         "text": "A few words with {friend}, a neighbor who had married into the village at the same age, on the way back from the market became the break in her day."
+      }
+    },
+    {
+      "id": "domestic-trip",
+      "text": "休みに{spot}へ出かけた。写真をたくさん撮り、帰りの車ではみんな眠っていた。",
+      "minAge": 6,
+      "maxAge": 75,
+      "weight": 1,
+      "from": 1960,
+      "when": {
+        "countries": [
+          "JPN",
+          "KOR",
+          "CHN",
+          "USA",
+          "IND",
+          "DEU",
+          "FRA",
+          "GBR",
+          "ITA",
+          "ESP",
+          "RUS",
+          "BRA",
+          "MEX",
+          "CAN",
+          "AUS",
+          "IDN",
+          "THA",
+          "VNM",
+          "PHL",
+          "TUR",
+          "EGY",
+          "ARG",
+          "ZAF",
+          "KEN"
+        ],
+        "wealth": [
+          "middle",
+          "rich"
+        ]
+      },
+      "effects": {
+        "happy": 3,
+        "bond": 1
+      },
+      "en": {
+        "text": "Went on a holiday trip to {spot}. Took lots of photos, and on the way home everyone fell asleep."
+      }
+    },
+    {
+      "id": "karaoke-jp",
+      "text": "職場の飲み会の二次会でカラオケに行き、マイクを回されて一曲歌った。",
+      "minAge": 20,
+      "maxAge": 70,
+      "weight": 1,
+      "from": 1977,
+      "when": {
+        "countries": [
+          "JPN"
+        ],
+        "state": "work"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      },
+      "en": {
+        "text": "After the work drinking party everyone moved on to karaoke, and the microphone came round for one song."
+      }
+    },
+    {
+      "id": "karaoke-kr",
+      "text": "友だちとノレバン (カラオケ部屋) に入り、時間を延長して歌い続けた。",
+      "minAge": 14,
+      "maxAge": 60,
+      "weight": 1,
+      "from": 1991,
+      "when": {
+        "countries": [
+          "KOR"
+        ]
+      },
+      "effects": {
+        "happy": 3
+      },
+      "en": {
+        "text": "Went to a noraebang (karaoke room) with friends and kept adding time to keep singing."
+      }
+    },
+    {
+      "id": "karaoke-ph",
+      "text": "近所の家の前にビデオケの機械が置かれ、夜遅くまで歌声が響いた。",
+      "minAge": 5,
+      "maxAge": 80,
+      "weight": 1,
+      "from": 1985,
+      "when": {
+        "countries": [
+          "PHL"
+        ]
+      },
+      "effects": {
+        "happy": 2
+      },
+      "en": {
+        "text": "Someone set up a videoke machine in front of the neighbours' house, and the singing went on late into the night."
+      }
+    },
+    {
+      "id": "karaoke-ktv",
+      "text": "KTVの個室で、同僚たちと流行りの歌を歌った。",
+      "minAge": 18,
+      "maxAge": 60,
+      "weight": 1,
+      "from": 1995,
+      "when": {
+        "countries": [
+          "CHN",
+          "VNM",
+          "THA",
+          "MYS"
+        ],
+        "place": "urban"
+      },
+      "effects": {
+        "happy": 2,
+        "bond": 1
+      },
+      "en": {
+        "text": "Sang the latest hits with co-workers in a private KTV room."
+      }
+    },
+    {
+      "id": "rent-hike-move",
+      "text": "町が人気になり、家賃が一度に大きく上がった。払いきれず、通勤に一時間かかる郊外へ引っ越した。",
+      "minAge": 22,
+      "maxAge": 70,
+      "weight": 0.5,
+      "from": 1985,
+      "cost": -0.05,
+      "when": {
+        "place": "urban",
+        "income": "high",
+        "renter": true,
+        "wealth": [
+          "poor",
+          "middle"
+        ]
+      },
+      "effects": {
+        "happy": -6
+      },
+      "en": {
+        "text": "The neighbourhood became popular and the rent jumped all at once. Unable to pay, moved out to a suburb an hour's commute away."
+      }
+    },
+    {
+      "id": "old-shop-cafe",
+      "text": "何十年も通った角の八百屋が閉まり、高いコーヒーを出す店になった。通りを歩く人の顔ぶれも変わった。",
+      "minAge": 45,
+      "maxAge": 85,
+      "weight": 0.5,
+      "from": 1990,
+      "when": {
+        "place": "urban",
+        "income": "high"
+      },
+      "effects": {
+        "happy": -2
+      },
+      "en": {
+        "text": "The corner greengrocer of so many decades closed and became a café selling expensive coffee. The faces on the street had changed too."
       }
     }
   ]

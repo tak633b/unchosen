@@ -13,6 +13,7 @@ import { uniK, visaRefused } from '../history';
 import { clamp } from '../rng';
 import { startWork } from './work';
 import { because, schoolWhy } from '../why';
+import { sideDraft } from '../divided';
 
 // 学校の区切りは国の学制で (schoolsys.ts)。basic の国 (北欧・ポーランド・ブラジル) は小学校と中学校が一つの基礎学校
 const levelOf = (years: number, s: SchoolSys) => {
@@ -372,9 +373,10 @@ const CONSCRIPTION: Record<string, number> = {
 };
 
 export function military(p: Person): void {
-  const months = CONSCRIPTION[p.birthCountry];
+  const side = sideDraft(p); // 東西ドイツ・南北ベトナムは、その側のその年の制度 (divided.ts)
+  const months = side ?? CONSCRIPTION[p.birthCountry];
   const eligible = p.sex === 'M' || (p.birthCountry === 'ISR' && p.age === 18);
-  if (!months || !eligible) return;
+  if ((!months && p.military !== 'serving') || !eligible) return;
   if (p.military === 'serving') {
     if (p.age >= (p.serviceEnd ?? 0)) {
       p.military = 'done';
@@ -388,10 +390,12 @@ export function military(p: Person): void {
   const student = p.school.uni === 'studying' || p.school.grad === 'studying';
   decide(p, {
     title: L('入営の通知', 'Draft notice'),
-    text: L(`${byCode(p.birthCountry).name}では男性に兵役の義務がある。期間はおよそ${months}か月。`, `Military service is compulsory for men in ${byCode(p.birthCountry).name}. It lasts about ${months} months.`),
+    text: months > 36 // 戦争の終わるまで (南北ベトナム)
+      ? L(`${byCode(p.birthCountry).name}では戦争のあいだ、男性は戦争が終わるまで兵役に就く。`, `In ${byCode(p.birthCountry).name}, men serve until the war is over.`)
+      : L(`${byCode(p.birthCountry).name}では男性に兵役の義務がある。期間はおよそ${months}か月。`, `Military service is compulsory for men in ${byCode(p.birthCountry).name}. It lasts about ${months} months.`),
     options: [
       {
-        label: L('入隊する', 'Enlist'), hint: L(`${months}か月`, `${months} months`),
+        label: L('入隊する', 'Enlist'), hint: months > 36 ? L('戦争が終わるまで', 'Until the war ends') : L(`${months}か月`, `${months} months`),
         apply: (q) => {
           q.military = 'serving';
           q.serviceEnd = q.age + Math.ceil(months / 12);

@@ -34,7 +34,7 @@ function identity(p: Person): string {
   const born = p.birthP ?? p.familyP;
   const list: [string, string][] = [
     [L('性別', 'Gender'), genderWord(genderOf(p))],
-    [L('生まれ', 'Born'), L(`${p.birthYear}年${p.birthMonth}月・${bornIn(p.birthCountry, p.birthYear)}`, `${p.birthYear}/${p.birthMonth}, ${bornIn(p.birthCountry, p.birthYear)}`)],
+    [L('生まれ', 'Born'), L(`${p.birthYear}年${p.birthMonth}月・${bornIn(p.birthCountry, p.birthYear, p.birthSide)}`, `${p.birthYear}/${p.birthMonth}, ${bornIn(p.birthCountry, p.birthYear, p.birthSide)}`)],
     [L('住まい', 'Lives'), `${p.city ?? L('農村', 'rural area')}${L('、', ', ')}${byCode(p.country).name}`],
     [L('宗教', 'Religion'), religionName(p.religion)],
     [L('生まれた家', 'Family'), `${homeWord(born)} (${rank(born, byCode(p.birthCountry).name)})`],

@@ -9,7 +9,10 @@ import { clamp, pickWeighted } from './rng';
 import { CHOICES, eligible, toDecision } from './events/choices';
 import { economyNews } from './market';
 import { worldEvents } from './worldevents';
-import { polityChange, polityName } from './polity';
+import { polityChange, polityName, sideOf } from './polity';
+import { divided } from './divided';
+import { air } from './air';
+import { tvArrives } from './tech';
 
 // history.json の need に書ける条件
 const uni = (p: Person) => p.school.uni === 'studying' || p.school.grad === 'studying';
@@ -34,8 +37,11 @@ export function history(p: Person): void {
   if (p.anchor) return; // 輪の人の一生には出さない (主人公の記録とぶつけない)
   const year = yearOf(p);
   // 国が独立した・併合された・占領された年 (polity.ts)。生まれた年のことは出生の記録に書いてある
-  const change = polityChange(p.country, year);
+  const change = polityChange(p.country, year, sideOf(p));
   if (change && p.age >= 1 && once(p, `pol:${p.country}:${year}`)) log(p, change, 'family', true);
+  divided(p); // 東西ドイツ・南北ベトナムの、その側の暮らし (divided.ts)
+  air(p);     // 空気と台所の煙 (air.ts)
+  tvArrives(p); // 家に初めてテレビが来た年 (tech.ts)
   worldEvents(p); // 戦争・災害・疫病・事故など、目録の出来事 (1900年〜) と、これから先の名前のない出来事
   for (const c of HISTORY) {
     if (!eligible(p, c) || !(c.need ?? []).every((n) => NEED[n]?.(p))) continue;
@@ -196,6 +202,7 @@ const MOVES: Move[] = [
   { ev: 'partition-1947-bgd-hindu', from: ['BGD'], to: () => ['IND'], say: ['{dest}のカルカッタの近くの難民の集落で暮らし始めた。', 'Began life in a refugee colony outside Calcutta, {dest}.'], refugee: true },
   { ev: 'tr-armenian-1915', from: ['TUR'], to: () => ['SYR', 'LBN', 'ARM'], say: ['砂漠の道を生きのびて、{dest}の{city}の難民の集落にたどり着いた。', 'Survived the desert road and reached a refugee settlement in {city}, {dest}.'], refugee: true },
   { ev: 'tr-exchange-1923', from: ['TUR'], to: () => ['GRC'], say: ['{dest}の港に着き、難民の住宅に入った。', 'Landed in {dest} and was housed with the refugees.'], refugee: true },
+  { mark: 'boat', from: ['VNM'], to: () => ['USA', 'AUS', 'CAN', 'FRA', 'DEU', 'GBR'], say: ['何日も海を漂ったあと難民キャンプに着き、一年ほどして{dest}の{city}に受け入れられた。', 'After days adrift at sea came a refugee camp, and about a year later resettlement in {city}, {dest}.'], refugee: true },
   { ev: 'grc-exchange-1923', from: ['GRC'], to: () => ['TUR'], say: ['{dest}に着き、出ていったギリシャ人の村に住むことになった。', 'Arrived in {dest} and was settled in a village the Greeks had left.'], refugee: true },
 ];
 function settle(p: Person, dests: string[], [ja, en]: [string, string], refugee: boolean): void {
