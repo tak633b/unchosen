@@ -280,7 +280,9 @@ export function leaveReason(p: Person, c: Country): string | null {
   // 親の介護で仕事を辞める人は日本で年10万人ほど (総務省 就業構造基本調査 2022)
   const frail = [p.mother, p.father].some((r) => r.alive && r.age >= 80);
   if (frail && p.rng() < 0.02) return L('親の介護のために仕事を辞めた。', 'Left work to care for an aging parent.');
-  if (p.stats.health < 40 && p.rng() < 0.15) return L('体を壊し、仕事を続けられなくなった。', 'Health gave out, and work could not go on.');
+  // 体のために年金の年齢より前に仕事を離れる人は、引退した人の15%ほど (Eurostat 労働力調査 2023 特別調査「年金と労働市場への参加」: 引退の主な理由が自分の健康・障害)。
+  // 体の目盛りが40を切った年の7%で、引退のうちこの理由がおよそ15〜20%になる (実測 2026-10-27)
+  if (p.stats.health < 40 && p.rng() < 0.07) return L('体を壊し、仕事を続けられなくなった。', 'Health gave out, and work could not go on.');
   if (!p.formal && !p.selfEmployed && p.age >= 60 && p.rng() < 0.1) return L('契約が更新されず、仕事を離れた。', 'The contract was not renewed, and work came to an end.');
   return null;
 }

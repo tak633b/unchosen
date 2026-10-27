@@ -10,7 +10,7 @@ import { netWorth } from '../engine/events/money';
 import { jobName, majorName } from '../engine/jobs';
 import { homeWord, riskParts } from '../engine/life';
 import { generation } from '../engine/lineage';
-import { EDU_LABEL, eduLevel, genderOf, genderWord, schoolYears, yearOf, type Person, type YearKind } from '../engine/person';
+import { EDU_LABEL, eduLevel, gradeOf, preschool, genderOf, genderWord, schoolYears, yearOf, type Person, type YearKind } from '../engine/person';
 import { petTies } from '../engine/pets';
 import { esc } from './dom';
 import { worldIncomeTopAt } from './worldrank';
@@ -88,7 +88,7 @@ const KIND: Record<YearKind, [string, string]> = {
 
 function experience(p: Person): string {
   const s = p.school;
-  const edu = p.age < 6 ? L('就学前', 'Preschool') : s.enrolled ? L(`在学中 (${s.years + 1}年目)`, `In school (year ${s.years + 1})`) : EDU_LABEL[eduLevel(p)];
+  const edu = preschool(p) ? L('就学前', 'Preschool') : s.enrolled ? L(`在学中 (${gradeOf(p)})`, `In school (${gradeOf(p)})`) : EDU_LABEL[eduLevel(p)];
   const list: [string, string][] = [
     [L('学校', 'School'), `${edu}${L(`・通った年数 ${schoolYears(p)}年`, `, ${schoolYears(p)} years in school`)}${s.track ? L(`・${s.track === 'general' ? '普通科' : '職業科'}`, `, ${s.track === 'general' ? 'academic' : 'vocational'} track`) : ''}`],
   ];

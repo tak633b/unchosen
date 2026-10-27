@@ -4,6 +4,8 @@ import { bump, countryOf, decide, log, type Person } from '../person';
 import { clamp, pick } from '../rng';
 import { currentIncome, subsistence } from './common';
 import { outOfPocket } from './insurance';
+import { afterStroke } from './disability';
+import { ageing } from './ageing';
 import { isEn, L } from '../../i18n';
 import type { Country } from '../countries';
 import type { Sex } from '../lifetable';
@@ -100,10 +102,15 @@ const illnessName = (n: string) => (isEn ? ILLNESS_EN[n] ?? n : n);
 export function illness(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
+  ageing(p);
   bloodPressure(p);
   if (p.illness) {
     p.illness.years--;
-    if (p.illness.years <= 0) { log(p, L(`${p.illness.name}がひとまず落ち着いた。`, `The ${p.illness.name} eased, for now.`), 'ill'); p.illness = undefined; }
+    if (p.illness.years <= 0) {
+      log(p, L(`${p.illness.name}がひとまず落ち着いた。`, `The ${p.illness.name} eased, for now.`), 'ill');
+      if (p.illness.name === illnessName('脳卒中')) afterStroke(p);
+      p.illness = undefined;
+    }
     return;
   }
   if (p.age < 5) return;

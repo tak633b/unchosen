@@ -5,7 +5,7 @@ import { currentIncome } from '../engine/events/common';
 import { causeLabel } from '../engine/causes';
 import { jobName } from '../engine/jobs';
 import { homeWord } from '../engine/life';
-import { EDU_LABEL, eduLevel, schoolYears, type Person } from '../engine/person';
+import { EDU_LABEL, eduLevel, gradeOf, preschool, schoolYears, type Person } from '../engine/person';
 import { nowLine } from '../engine/summary';
 import { esc } from './dom';
 import { recordHtml } from './lifeview';
@@ -37,7 +37,7 @@ function facts(o: Person): [string, string][] {
   const death = [...o.log].reverse().find((e) => e.kind === 'death');
   return [
     [L('生まれた家', 'Family'), `${homeWord(born.familyP)} (${rank(born.familyP, byCode(o.birthCountry).name)})`],
-    [L('学校', 'School'), o.age < 6 ? L('就学前', 'Preschool') : o.school.enrolled ? L(`在学中(${o.school.years + 1}年目)`, `In school (year ${o.school.years + 1})`) : `${EDU_LABEL[eduLevel(o)]}${L(`・${schoolYears(o)}年`, `, ${schoolYears(o)} years`)}`],
+    [L('学校', 'School'), preschool(o) ? L('就学前', 'Preschool') : o.school.enrolled ? L(`在学中(${gradeOf(o)})`, `In school (${gradeOf(o)})`) : `${EDU_LABEL[eduLevel(o)]}${L(`・${schoolYears(o)}年`, `, ${schoolYears(o)} years`)}`],
     [L('仕事', 'Work'), o.job ? `${jobName(o.job)}${o.retired ? L('・引退', ', retired') : !o.working ? L('・今は働いていない', ', not working now') : ''}` : L('なし', 'None')],
     [L('収入', 'Income'), `${o.alive ? `${L('今', 'Now')} ${money(income)}${L('・', ' · ')}` : ''}${L('いちばん稼いだ年', 'Best year')} ${money(o.peakIncome)}`],
     [L('結婚', 'Marriage'), spouses.length ? spouses.map((s) => `${s.name ?? ''}${s.alive ? '' : L('(他界)', ' (deceased)')}`).join(L('、', ', ')) + (o.childMarriage ? L('・18歳前に結婚', ', married before 18') : '') : L('していない', 'Never married')],

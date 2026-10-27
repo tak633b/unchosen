@@ -3,7 +3,7 @@ import { byCode, countryAt, type Country } from '../engine/countries';
 import { perDay, yen } from '../engine/economy';
 import { currentIncome } from '../engine/events/common';
 import { netWorth } from '../engine/events/money';
-import { EDU_LABEL, eduLevel, genderOf, genderWord, yearOf, type Focus, type Person } from '../engine/person';
+import { EDU_LABEL, eduLevel, gradeOf, preschool, genderOf, genderWord, yearOf, type Focus, type Person } from '../engine/person';
 import { nowLine } from '../engine/summary';
 import { esc, load, pct } from './dom';
 import { isEn, L, religionName } from '../i18n';
@@ -43,7 +43,7 @@ export function idCard(p: Person): string {
     [L('住まい', 'Lives'), `${p.city ?? L('農村', 'Rural area')}${L('、', ', ')}${c.name}`],
     [L('宗教', 'Religion'), religionName(p.religion)],
     [L('生まれた家', 'Family'), dots(p.familyP)],
-    [L('学歴', 'School'), p.age < 6 ? L('就学前', 'Preschool') : p.school.enrolled ? L(`在学中(${p.school.years + 1}年目)`, `In school (year ${p.school.years + 1})`) : p.school.uni === 'studying' ? `${L('大学在学中', 'At university')}${p.school.major ? `${L('・', ', ')}${majorName(p.school.major)}` : ''}` : EDU_LABEL[eduLevel(p)]],
+    [L('学歴', 'School'), preschool(p) ? L('就学前', 'Preschool') : p.school.enrolled ? L(`在学中(${gradeOf(p)})`, `In school (${gradeOf(p)})`) : p.school.uni === 'studying' ? `${L('大学在学中', 'At university')}${p.school.major ? `${L('・', ', ')}${majorName(p.school.major)}` : ''}` : EDU_LABEL[eduLevel(p)]],
   ];
   return `<div class="idhead"><span>${L('身分の記録', 'Identity record')}${L('・', ' · ')}${p.birthCountry}</span><span>${p.birthYear}</span></div>
     <div class="idbody"><canvas class="portrait pix" id="portraitcv" aria-hidden="true"></canvas>
