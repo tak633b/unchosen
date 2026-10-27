@@ -41,12 +41,13 @@ export function strain(p: Person): void {
   // うつ病の生涯有病率は15〜20% (WHO・Kessler ほか 2005) で、ここでの「しんどい時期」はそれより広い
   if (!t || p.rng() >= 0.15) return;
   p.recent.strain = p.age;
-  p.strain = { until: p.age + 1 + Math.floor(p.rng() * 3), k: K.start };
+  // 何もしなくても半分ほどは1年のうちに抜ける (治療を受けないうつ病の12か月での寛解は53%: Whiteford et al., Psychol Med 2013)。残りは2〜3年
+  p.strain = { until: p.age + (p.rng() < 0.5 ? 1 : 2 + Math.floor(p.rng() * 2)), k: K.start };
   const f = friendTie(p);
   decide(p, {
     title: L('しんどい時期', 'A hard stretch'),
     text: L(t[0], t[1]),
-    stat: L('世界の大人の約5%がうつ病を経験している (WHO 2023)。話すこと・助けを求めることで、多くの人が回復する', 'About 5% of adults worldwide experience depression (WHO 2023). Talking and getting help is how many people recover'),
+    stat: L('世界の大人の約5%がうつ病を経験している (WHO 2023)。助けがなくても半分ほどは1年のうちに回復し (Whiteford et al. 2013)、助けを受ければもっと早い', 'About 5% of adults worldwide experience depression (WHO 2023). About half recover within a year even without help (Whiteford et al. 2013), and help makes it faster'),
     options: [
       {
         label: f ? L(`${f.name}に打ち明ける`, `Tell ${f.name}`) : L('家族に打ち明ける', 'Tell family'), hint: L('うまく言えなくてもいい', 'It does not have to come out right'),
@@ -62,6 +63,8 @@ export function strain(p: Person): void {
         label: L('相談窓口や医者を頼る', 'See a counselor or doctor'), hint: L('少しお金と勇気がいる', 'Takes a little money and nerve'),
         apply: (q) => {
           setK(q, K.help);
+          // 助けを受けると早く抜けやすい: 1年のうちに抜けるのが7割ほどに
+          if (q.strain && q.rng() < 0.4) q.strain = { ...q.strain, until: q.age + 1 };
           q.wealth -= scaleOf(q) * 0.02;
           log(q, L('相談に通いはじめた。眠れる夜が少しずつ増えた。', 'Started going to talk to someone. Slowly, more nights brought sleep.'), 'ill');
           bump(q, { happy: 4 });

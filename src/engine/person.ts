@@ -3,6 +3,7 @@ import type { Sex } from './lifetable';
 import { clamp, type Rng } from './rng';
 import { isEn, L } from '../i18n';
 import type { Holding } from './market';
+import { gradeLabel, schoolSys } from './schoolsys';
 
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
@@ -110,6 +111,10 @@ export interface Person {
   jobYears: number;
   formal: boolean;   // 正規の雇用か (年金・保険あり)
   retired: boolean;
+  contrib?: number;    // 正規で働き、年金に入っていた年数 (pension.ts)。古いセーブには無い
+  pensionAt?: number;  // 年金を受け取り始める年齢。早めに辞めた人は、それまで蓄えで暮らす
+  disabled?: number;   // 障害の認定を受けた年齢 (events/disability.ts)
+  pensionCut?: number; // 早めに受け取って減った割合 (0.25 なら25%減)
   unemployed: number;
   wealth: number;    // 純資産 (購買力平価ドル)。マイナスは借金
   peakIncome: number;
@@ -141,6 +146,9 @@ export interface Person {
     grad: 'no' | 'studying' | 'done';
     major?: string;
     abroad?: string; // 留学先の国コード
+    sys?: string;    // 学制を引く国 (入学した国。schoolsys.ts)。古いセーブには無く、生まれた国で引く
+    ba?: number;     // 大学の年数 (入学した国の学士の年数。医学は6年)。古いセーブには無い
+    ma?: number;     // 大学院 (修士) の年数
   };
   military: 'none' | 'serving' | 'done' | 'deferred';
   serviceEnd?: number;
@@ -241,14 +249,20 @@ export function eduLevel(p: Person): EduLevel {
   if (p.school.grad === 'done') return 5;
   if (p.school.uni === 'done') return 4;
   const y = p.school.years;
-  return y >= 12 ? 3 : y >= 9 ? 2 : y >= 6 ? 1 : 0;
+  const s = sysOf(p);
+  return y >= s.total ? 3 : y >= s.prim + s.lower ? 2 : y >= s.prim ? 1 : 0;
 }
+export const sysOf = (p: Person) => schoolSys(p.school.sys ?? p.birthCountry);
+// 在学中の学年 (「8年生（中学校）」「Year 9」「基礎学校7年生」など、その国の数え方で)
+export const gradeOf = (p: Person): string => gradeLabel(sysOf(p), p.school.years);
+// 入学の年齢より前 (就学前)。英国は5歳、北欧は7歳で入る
+export const preschool = (p: Person): boolean => p.age < sysOf(p).entry && !p.school.enrolled;
 
-// 学校に通った年数。大学は専攻で4年か6年 (医学)、大学院は2年 (events/school.ts)
-const uniLen = (p: Person) => (p.school.major === '医学' ? 6 : 4) + (p.school.langYear ? 1 : 0);
+// 学校に通った年数。大学は入った国の学士の年数か6年 (医学)、大学院は修士の年数 (events/school.ts)
+export const uniLen = (p: Person) => (p.school.major === '医学' ? 6 : p.school.ba ?? 4) + (p.school.langYear ? 1 : 0);
 export const schoolYears = (p: Person): number => p.school.years
   + (p.school.uni === 'done' ? uniLen(p) : p.school.uni === 'studying' ? p.school.uniYears : 0)
-  + (p.school.grad === 'done' ? 2 : p.school.grad === 'studying' ? p.school.uniYears : 0);
+  + (p.school.grad === 'done' ? p.school.ma ?? 2 : p.school.grad === 'studying' ? p.school.uniYears : 0);
 export const EDU_LABEL = isEn
   ? ['No schooling', 'Primary school', 'Middle school', 'High school', 'University', 'Graduate school']
   : ['学校に通えなかった', '小学校', '中学校', '高校', '大学', '大学院'];

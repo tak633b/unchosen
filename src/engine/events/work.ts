@@ -8,10 +8,14 @@ import { clamp, normal } from '../rng';
 import { shared } from '../bonds';
 import { layoffK } from '../market';
 import { businessRetire, career, leaveReason } from './career';
+import { contribOf, pensionRule, type Early, type Rule } from '../pension';
+import { currentIncome } from './common';
+import { homeSpell } from './disability';
 
 function takeJob(p: Person, o: Offer, first: boolean): void {
   p.working = true;
   p.unemployed = 0;
+  delete p.recent.jobless;
   p.job = o.job.name;
   p.jobKind = o.job.kind;
   p.selfEmployed = /自分の畑|露天商|日雇い|市場の店主|漁師|家畜/.test(o.job.name);
@@ -101,6 +105,16 @@ export function startWork(p: Person): void {
 export function work(p: Person): void {
   const c = countryOf(p);
   const r = p.rng;
+  // 家のことをするため仕事を離れた人も、働いていた間の年金は年金の年齢から受け取る
+  if (p.homemaker && !p.working && !p.retired && p.formal && (p.contrib ?? 0) > 0 && c.gdp > 15000) {
+    const rule = pensionRule(p, c);
+    if (p.age >= rule.age && p.contrib! >= rule.minYears) {
+      p.retired = true;
+      p.pensionAt = p.age;
+      log(p, L(`若いころに${p.contrib}年働いた分の年金を受け取り始めた。`, `Began drawing the pension earned in ${p.contrib} years of work when younger.`), 'old');
+    }
+    return;
+  }
   // 学校を出たのに仕事のない大人は、毎年もう一度仕事を探す
   if (!p.working && !p.homemaker && !p.retired && p.age >= 16 && p.age < 60 && !p.school.enrolled
     && p.school.uni !== 'studying' && p.school.grad !== 'studying' && p.military !== 'serving' && p.pending.length === 0) {
@@ -110,16 +124,24 @@ export function work(p: Person): void {
   if (!p.working || p.retired || p.school.uni === 'studying' || p.school.grad === 'studying' || p.military === 'serving') return;
   if (p.unemployed > 0) {
     p.unemployed--;
-    if (p.unemployed === 0) jobSearch(p, false);
+    if (p.unemployed === 0 && !homeSpell(p)) jobSearch(p, false);
     return;
   }
   p.jobYears++;
+  if (p.formal) p.contrib = (p.contrib ?? 0) + 1;
   p.incomeP = clamp(p.incomeP + normal(r, p.focus === 'work' ? 0.012 : 0.002, 0.025), 0.01, 0.99);
   // 不況・危機の年は職を失いやすい (market.ts。長い目で見た平均は1倍)
-  if (p.age < 60 && !p.business && r() < (p.formal ? 0.025 : 0.05) * (p.focus === 'work' ? 0.6 : 1) * layoffK(p)) {
-    p.unemployed = 1 + Math.floor(r() * 2);
+  // 失業率の高い国ほど、仕事を失いやすく、次が見つかるまで長い (unempK)
+  const k = unempK(c);
+  if (p.age < 60 && !p.business && r() < (p.formal ? 0.025 : 0.05) * (p.focus === 'work' ? 0.6 : 1) * layoffK(p) * k) {
     log(p, r() < 0.5 ? L('会社が人を減らし、仕事を失った。', 'Lost the job in a round of layoffs.') : L('仕事がなくなった。', 'The work dried up.'), 'hard');
     bump(p, { happy: -8 });
+    // 次の仕事までの長さ: 平均は世界の平均 (失業率5%) の国で約1年3か月、国の失業率で伸び縮みする (指数分布)
+    const months = Math.max(1, Math.round(-Math.log(1 - r()) * 15 * k));
+    if (months < 12) {
+      log(p, L(`${months}か月探して、次の仕事の話が来た。`, `After ${months} month${months === 1 ? '' : 's'} of looking, a new job came up.`), 'work');
+      jobSearch(p, false);
+    } else p.unemployed = Math.round(months / 12);
     return;
   }
   // 資格をとって3年は、昇進が少ししやすい (events/career.ts)
@@ -133,6 +155,22 @@ export function work(p: Person): void {
   career(p);
   if (p.working && !p.retired && p.unemployed === 0) retirement(p, c);
 }
+
+// 失業率 (%、ILO 模型推計 2023、ILOSTAT)。表に無い国は世界の平均に近い5.5%
+// ponytail: 今の年の値を、どの時代にも使う。不況の年の上がり下がりは market.ts の layoffK が受け持つ
+const UNEMP: Record<string, number> = {
+  ZAF: 32.1, ESP: 12.2, GRC: 11.1, TUR: 9.4, ITA: 7.7, FRA: 7.3, BRA: 8.0, USA: 3.6, DEU: 3.0, JPN: 2.6, KOR: 2.7, MEX: 2.8, IND: 4.2,
+  CHN: 4.7, NGA: 3.1, RUS: 3.2, GBR: 4.0, CAN: 5.4, AUS: 3.7, POL: 2.8, NLD: 3.6, SWE: 7.6, FIN: 7.2, IRN: 9.0, EGY: 7.3, SAU: 4.9,
+  ARG: 6.1, COL: 10.2, CHL: 8.7, PER: 4.6, IDN: 3.4, PHL: 2.2, VNM: 1.6, THA: 0.9, PAK: 5.4, BGD: 5.1, ETH: 3.5, KEN: 5.7, MAR: 9.1,
+  DZA: 11.8, TUN: 15.1, JOR: 17.9, IRQ: 15.5, IRL: 4.3, PRT: 6.5, BEL: 5.5, AUT: 5.1, CHE: 4.1, NOR: 3.6, DNK: 5.1, CZE: 2.6,
+  HUN: 4.1, ROU: 5.6, ARM: 8.6, GEO: 11.6, MKD: 13.1, SRB: 9.4, ALB: 11.0, NAM: 19.4, BWA: 23.4, LSO: 16.4, SWZ: 33.3, ISR: 3.5,
+  NZL: 3.7, MYS: 3.5, SGP: 3.0, KHM: 0.3, MMR: 3.0, TZA: 2.6, UGA: 2.9, GHA: 3.0, AGO: 14.6, ZMB: 5.9, URY: 8.4, ECU: 3.8, BOL: 3.1,
+};
+// 失業率5%の国と比べた倍率。仕事を失う確率と、次が見つかるまでの長さの両方に、比の平方根ずつかける
+export const unempK = (c: Country): number => {
+  const u = (UNEMP[c.code] ?? 5.5) / 100;
+  return Math.sqrt((u / (1 - u)) / (0.05 / 0.95));
+};
 
 function leadOffer(p: Person, c: Country): void {
   decide(p, {
@@ -176,21 +214,28 @@ function retirement(p: Person, c: Country): void {
     if (!businessRetire(p) && (p.age >= 80 || p.stats.health < 30)) retire(p, L('体が利かなくなり、会社を人に任せた。', 'The body gave out, and the company passed to other hands.'));
     return;
   }
-  // 職ごとの定年や、介護・体・契約の終わり
-  const why = leaveReason(p, c);
-  if (why) { retire(p, why); return; }
   const pensionCountry = c.gdp > 15000 && p.formal;
-  if (pensionCountry && p.age >= 60) {
-    if (p.age >= 68) { retire(p, L('定年で仕事を引退した。', 'Retired at the mandatory age.')); return; }
-    if (p.age % 2 === 0) {
+  const rule = pensionCountry ? pensionRule(p, c) : undefined;
+  // 職ごとの定年や、介護・体・契約の終わり。体を壊して辞めた人は、障害の年金としてすぐ受け取る。ほかは年金の年齢から
+  const why = leaveReason(p, c);
+  if (why) { retire(p, why, rule && p.stats.health >= 40 ? Math.max(p.age, rule.age) : p.age); return; }
+  if (rule) {
+    if (p.age >= 72) { retire(p, L('定年で仕事を引退した。', 'Retired at the mandatory age.')); return; }
+    const e = rule.early;
+    if (e && p.age >= e.age && p.age < rule.age && contribOf(p) >= e.years && p.recent.earlyPension === undefined) { earlyPension(p, rule, e); return; }
+    if (p.age >= 55 && p.age < rule.age && (p.age - 55) % 3 === 0 && enoughSaved(p)) { earlyRetire(p, rule); return; }
+    if (p.age >= rule.age && (p.age - rule.age) % 2 === 0) {
+      // 年金の年齢を過ぎても働き続ける人の割合は国で違う (pension.ts の stay)。表に無い国は、これまでどおり65歳ごろに引退する
+      const first = p.age === rule.age;
+      const leave = c.code in STAY_KNOWN ? (first ? 1 - rule.stay : 0.55) : (p.age >= 65 ? 1 : 0);
       decide(p, {
         title: L('引退する？', 'Retire?'),
         text: L(`${p.age}歳。年金を受け取れる年になった。`, `Age ${p.age}. Old enough to draw a pension.`),
         options: [
-          { label: L('引退する', 'Retire'), hint: L('年金で暮らす', 'Live on the pension'), apply: (q) => retire(q, L('仕事を引退し、年金で暮らし始めた。', 'Retired and began living on a pension.')) },
+          { label: L('引退する', 'Retire'), hint: L('年金で暮らす・ゆとり↑', 'Live on the pension, more time ↑'), apply: (q) => retire(q, L('仕事を引退し、年金で暮らし始めた。', 'Retired and began living on a pension.')) },
           { label: L('もう少し働く', 'Keep working'), apply: () => {} },
         ],
-        auto: (q) => (q.age >= 65 || q.stats.health < 45 ? 0 : 1),
+        auto: (q) => (q.stats.health < 45 || q.rng() < leave ? 0 : 1),
       });
     }
     return;
@@ -202,7 +247,44 @@ function retirement(p: Person, c: Country): void {
   }
 }
 
-function retire(p: Person, text: string): void {
+// at: 年金を受け取り始める年齢 (省けば今から)
+function retire(p: Person, text: string, at = p.age): void {
   p.retired = true;
+  p.pensionAt = at;
   log(p, text, 'old', true);
+}
+
+// pension.ts の表にある国 (年金の年齢を過ぎて働き続ける割合が分かる国)
+const STAY_KNOWN = { USA: 1, DEU: 1, FRA: 1, ITA: 1, ESP: 1, JPN: 1, KOR: 1, GBR: 1, RUS: 1, CHN: 1 };
+
+// 法律の決まりで、年金の年齢より前に受け取って引退できる (米国62歳・ドイツ63歳・フランスとイタリアの長い加入・スペインの2年前・日本の繰上げ・韓国の早期年金)
+function earlyPension(p: Person, rule: Rule, e: Early): void {
+  p.recent.earlyPension = p.age;
+  const cut = Math.round(e.cut * 100);
+  decide(p, {
+    title: L('年金を早めに受け取る？', 'Draw the pension early?'),
+    text: L(`${p.age}歳。年金は${rule.age}歳からだが、${e.why}。`, `Age ${p.age}. The pension normally starts at ${rule.age}, but ${e.why.charAt(0).toLowerCase() + e.why.slice(1)}.`),
+    stat: cut ? L(`早めに受け取ると、年金はずっと${cut}%少ないまま`, `Drawing early leaves the pension ${cut}% lower for good`) : undefined,
+    options: [
+      { label: L('早めに引退する', 'Retire early'), hint: cut ? L(`年金${cut}%減・ゆとり↑`, `Pension -${cut}%, more time ↑`) : L('減額なし・ゆとり↑', 'No cut, more time ↑'),
+        apply: (q) => { q.pensionCut = e.cut; retire(q, cut ? L(`${q.age}歳で、減った年金を早めに受け取って引退した。`, `Retired at ${q.age}, drawing a reduced pension early.`) : L(`長く働いてきたので、${q.age}歳で減額なしの年金を受け取って引退した。`, `After a long working life, retired at ${q.age} on a full pension.`)); } },
+      { label: L(`${rule.age}歳まで働く`, `Work on to ${rule.age}`), apply: () => {} },
+    ],
+    auto: (q) => (q.stats.health < 35 || q.rng() < rule.claim ? 0 : 1),
+  });
+}
+
+// 蓄えが十分なら、年金の年齢より前でも辞められる。年金の年齢までは蓄えで暮らす (4%ルール: 年の暮らしの25倍の蓄え。Bengen 1994)
+const enoughSaved = (p: Person) => p.wealth >= currentIncome(p) * 0.8 * 25;
+function earlyRetire(p: Person, rule: Rule): void {
+  decide(p, {
+    title: L('早めに引退しようか？', 'Retire early?'),
+    text: L(`${p.age}歳。蓄えは${formatMoney(p.wealth)}。年金は${rule.age}歳から出る。それまでは蓄えで暮らすことになる。`, `Age ${p.age}. Savings: ${formatMoney(p.wealth)}. The pension starts at ${rule.age}; until then, savings would have to cover everything.`),
+    stat: L('年に蓄えの4%ずつ使えば、30年ほどもつことが多い (Bengen 1994 の4%ルール)', 'Spending 4% of savings a year usually lasts about 30 years (the 4% rule, Bengen 1994)'),
+    options: [
+      { label: L('早めに辞める', 'Stop working now'), hint: L('ゆとり↑・収入は年金まで無し', 'More time ↑, no income until the pension'), apply: (q) => retire(q, L(`${q.age}歳で仕事を辞めた。年金の年齢までは蓄えで暮らす。`, `Stopped working at ${q.age}. Savings would carry things until the pension.`), rule.age) },
+      { label: L('まだ働く', 'Keep working'), apply: () => {} },
+    ],
+    auto: (q) => (q.rng() < 0.3 ? 0 : 1),
+  });
 }

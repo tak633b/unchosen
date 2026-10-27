@@ -7,15 +7,22 @@ import { destinations, isFree, speaks, stayOdds, thirdCountry, tuitionAbroad } f
 import { subsistence } from './common';
 import { talent, type Talent } from '../talent';
 import { commission, enterAcademy } from './career';
-import { bump, countryOf, decide, log, yearOf, type Person } from '../person';
+import { bump, countryOf, decide, log, sysOf, uniLen, yearOf, type Person } from '../person';
+import { bachelorYears, lowerEnd, masterYears, type SchoolSys } from '../schoolsys';
 import { uniK, visaRefused } from '../history';
 import { clamp } from '../rng';
 import { startWork } from './work';
 import { because, schoolWhy } from '../why';
 
-const levelOf = (years: number) => isEn
-  ? (years >= 12 ? 'finished high school' : years >= 10 ? 'left high school partway' : years >= 9 ? 'finished middle school' : years >= 7 ? 'left middle school partway' : years >= 6 ? 'finished primary school' : `left primary school after ${Math.round(years)} years`)
-  : (years >= 12 ? '高校を卒業した' : years >= 10 ? '高校を途中でやめた' : years >= 9 ? '中学校を卒業した' : years >= 7 ? '中学校を途中でやめた' : years >= 6 ? '小学校を卒業した' : `小学校を${Math.round(years)}年で離れた`);
+// 学校の区切りは国の学制で (schoolsys.ts)。basic の国 (北欧・ポーランド・ブラジル) は小学校と中学校が一つの基礎学校
+const levelOf = (years: number, s: SchoolSys) => {
+  const n = Math.round(years), lo = lowerEnd(s), basic = s.grade === 'basic';
+  return isEn
+    ? (years >= s.total ? 'finished high school' : years > lo ? 'left high school partway' : years === lo ? (basic ? 'finished basic school' : 'finished middle school')
+      : basic ? `left basic school after ${n} years` : years > s.prim ? 'left middle school partway' : years === s.prim ? 'finished primary school' : `left primary school after ${n} years`)
+    : (years >= s.total ? '高校を卒業した' : years > lo ? '高校を途中でやめた' : years === lo ? (basic ? '基礎学校を卒業した' : '中学校を卒業した')
+      : basic ? `基礎学校を${n}年で離れた` : years > s.prim ? '中学校を途中でやめた' : years === s.prim ? '小学校を卒業した' : `小学校を${n}年で離れた`);
+};
 const capital = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
 export function schooling(p: Person): void {
@@ -23,17 +30,18 @@ export function schooling(p: Person): void {
   if (p.military === 'serving') return;
   if (p.school.uni === 'studying') return university(p);
   if (p.school.grad === 'studying') return gradSchool(p);
-  // 入学した年はまだ1年を終えていない。6歳で入って18歳で12年を終える
-  if (!p.school.enrolled || p.age <= 6) return;
+  // 入学した年はまだ1年を終えていない。6歳で入る12年制なら18歳で終える (英国は5歳から13年・ドイツは6歳から13年: schoolsys.ts)
+  const s = sysOf(p);
+  if (!p.school.enrolled || p.age <= s.entry) return;
   p.school.years++;
   bump(p, { learn: 4 + (p.focus === 'learn' ? 3 : 0) });
   const y = p.school.years;
-  if (y === 6) log(p, L('小学校を卒業した。', 'Finished primary school.'), 'school');
-  if (y === 9 && p.school.target > 9) {
-    log(p, L('中学校を卒業した。', 'Finished middle school.'), 'school');
+  if (y === s.prim && s.grade !== 'basic') log(p, L('小学校を卒業した。', 'Finished primary school.'), 'school');
+  if (y === lowerEnd(s) && p.school.target > y) {
+    log(p, s.grade === 'basic' ? L('基礎学校を卒業した。', 'Finished basic school.') : L('中学校を卒業した。', 'Finished middle school.'), 'school');
     chooseTrack(p, c);
   }
-  if (y >= 12) {
+  if (y >= s.total) {
     p.school.enrolled = false;
     log(p, L('高校を卒業した。', 'Finished high school.'), 'school', true);
     afterHighSchool(p, c);
@@ -45,11 +53,12 @@ export function schooling(p: Person): void {
 function askToLeave(p: Person): void {
   if (p.age < 10) { leaveSchool(p); return; }
   // 学年の途中なら「〜の途中で」 (卒業の一行は schooling() がその年に書いている)
-  const mid = p.school.years >= 10 ? L('高校', 'high school') : p.school.years >= 7 && p.school.years < 9 ? L('中学校', 'middle school') : undefined;
+  const s = sysOf(p), y = p.school.years;
+  const mid = y > lowerEnd(s) ? L('高校', 'high school') : y > s.prim && y < lowerEnd(s) ? (s.grade === 'basic' ? L('基礎学校', 'basic school') : L('中学校', 'middle school')) : undefined;
   decide(p, {
     title: L('学校をやめる？', 'Leave school?'),
     text: mid ? L(`家計が苦しく、${mid}の途中で働きに出るよう言われた。`, `Money is tight at home. Partway through ${mid}, you are told to go out and work.`)
-      : isEn ? `Money is tight at home. Having ${levelOf(p.school.years)}, you are told to go out and work.` : `家計が苦しく、${levelOf(p.school.years)}ところで働きに出るよう言われた。`,
+      : isEn ? `Money is tight at home. Having ${levelOf(y, s)}, you are told to go out and work.` : `家計が苦しく、${levelOf(y, s)}ところで働きに出るよう言われた。`,
     options: [
       {
         label: L('学校を続けたいと頼む', 'Ask to stay in school'), hint: L('うまくいくとは限らない', 'It may not work'),
@@ -72,9 +81,10 @@ function askToLeave(p: Person): void {
 function leaveSchool(p: Person): void {
   p.school.enrolled = false;
   // 6年目・9年目の卒業は schooling() がその年に書いている。同じ一行は重ねない
-  const text = isEn ? capital(levelOf(p.school.years)) + '.' : levelOf(p.school.years) + '。';
+  const s = sysOf(p);
+  const text = isEn ? capital(levelOf(p.school.years, s)) + '.' : levelOf(p.school.years, s) + '。';
   if (!p.log.some((e) => e.age === p.age && e.text === text)) log(p, text, 'school');
-  if (p.school.years < 12) because(p, schoolWhy(p, countryOf(p)));
+  if (p.school.years < s.total) because(p, schoolWhy(p, countryOf(p)));
   if (p.age >= 10) startWork(p);
 }
 
@@ -196,10 +206,12 @@ function chooseAbroad(p: Person, home: Country): void {
 function enterUni(p: Person, home: Country, abroad: Country | null): void {
   p.school.uni = 'studying';
   p.school.uniYears = 0;
+  // 学士の年数は大学のある国の制度で (ヨーロッパの多くは3年・米国とアジアの多くは4年: schoolsys.ts)
+  p.school.ba = bachelorYears((abroad ?? home).code, yearOf(p));
   if (abroad) {
     // 言葉が通じなければ、まず1年その国の言葉を学ぶ
     p.school.langYear = !speaks(p, abroad);
-    const years = 4 + (p.school.langYear ? 1 : 0);
+    const years = p.school.ba + (p.school.langYear ? 1 : 0);
     const tuition = tuitionAbroad(abroad) * years;
     const living = subsistence(abroad) * 2 * years;
     // 難民の家の子は奨学金で学費が無く、暮らしも半分まかなわれる (UNHCR の DAFI 奨学金など)
@@ -214,12 +226,13 @@ function enterUni(p: Person, home: Country, abroad: Country | null): void {
     log(p, L(`${abroad.name}の大学に合格し、留学した。${note}費用 ${formatMoney(cost)} のうち ${formatMoney(parents)} は親が出し、残りは借金になった。${p.school.langYear ? 'はじめの1年は言葉の学校に通う。' : ''}`,
       `Was admitted to a university in ${abroad.name} and moved there. ${note ? `${note} ` : ''}Of the ${formatMoney(cost)} cost, parents paid ${formatMoney(parents)}; the rest became debt.${p.school.langYear ? ' The first year would be spent in language school.' : ''}`), 'move', true);
   } else {
-    const cost = tuitionOf(home) * 4;
+    const n = p.school.ba;
+    const cost = tuitionOf(home) * n;
     const parents = cost * clamp(p.familyP * 0.9, 0, 0.9);
     p.wealth -= cost - parents;
     log(p, isEn
-      ? `Got into university. Tuition for four years: ${formatMoney(cost)}.${cost - parents > 1 ? ` ${formatMoney(cost - parents)} of it to be covered by scholarships and loans.` : ''}`
-      : `大学に合格した。学費は4年で ${formatMoney(cost)}。${cost - parents > 1 ? `うち ${formatMoney(cost - parents)} は奨学金と借金でまかなう。` : ''}`, 'school', true);
+      ? `Got into university. Tuition for ${n === 3 ? 'three' : 'four'} years: ${formatMoney(cost)}.${cost - parents > 1 ? ` ${formatMoney(cost - parents)} of it to be covered by scholarships and loans.` : ''}`
+      : `大学に合格した。学費は${n}年で ${formatMoney(cost)}。${cost - parents > 1 ? `うち ${formatMoney(cost - parents)} は奨学金と借金でまかなう。` : ''}`, 'school', true);
   }
   bump(p, { happy: 8 });
   chooseMajor(p);
@@ -266,7 +279,7 @@ function chooseMajor(p: Person): void {
 function university(p: Person): void {
   p.school.uniYears++;
   bump(p, { learn: 5 + (p.focus === 'learn' ? 3 : 0) });
-  const years = (p.school.major === '医学' ? 6 : 4) + (p.school.langYear ? 1 : 0);
+  const years = uniLen(p);
   if (p.school.langYear && p.school.uniYears === 1) log(p, L(`${countryOf(p).name}の言葉を1年学び、授業についていけるようになった。`, `Spent a year learning the language of ${countryOf(p).name}, enough to follow lectures.`), 'school');
   if (p.school.uniYears < years) return;
   p.school.uni = 'done';
@@ -284,7 +297,7 @@ function afterUni(p: Person): void {
     { label: abroad ? L(`${abroad.name}に残って仕事を探す`, `Stay in ${abroad.name} and look for work`) : L('仕事を探す', 'Look for work'), hint: abroad ? L('就労ビザが要る', 'Needs a work visa') : undefined, apply: (q: Person) => stayOrWork(q) },
     ...(abroad ? [{ label: L(`${home.name}に帰って働く`, `Go back to ${home.name} to work`), hint: L('家族のそばへ', 'Back near family'), apply: (q: Person) => goHome(q) }] : []),
     ...(third ? [{ label: L(`${third.name}で仕事を探す`, `Look for work in ${third.name}`), hint: L('知り合いはいない・ビザは狭き門', 'No one there, and visas are hard'), apply: (q: Person) => goThird(q, third) }] : []),
-    ...(p.stats.learn >= 60 ? [{ label: L('大学院に進む', 'Go to grad school'), hint: L('あと2年。専門職への道', 'Two more years. A path to professional work'), apply: (q: Person) => { q.school.grad = 'studying'; q.school.uniYears = 0; log(q, L('大学院に進んだ。', 'Started graduate school.'), 'school'); } }] : []),
+    ...(p.stats.learn >= 60 ? [{ label: L('大学院に進む', 'Go to grad school'), hint: L(`あと${masterYears(p.country)}年。専門職への道`, `${masterYears(p.country) === 1 ? 'One more year' : 'Two more years'}. A path to professional work`), apply: (q: Person) => { q.school.grad = 'studying'; q.school.uniYears = 0; q.school.ma = masterYears(q.country); log(q, L('大学院に進んだ。', 'Started graduate school.'), 'school'); } }] : []),
   ];
   decide(p, {
     title: L('卒業のあと', 'After graduation'),
@@ -330,7 +343,7 @@ function goHome(p: Person): void {
 function gradSchool(p: Person): void {
   p.school.uniYears++;
   bump(p, { learn: 5 });
-  if (p.school.uniYears < 2) return;
+  if (p.school.uniYears < (p.school.ma ?? 2)) return; // 修士は英国・アイルランド・スペイン・オランダで1年、多くの国で2年
   p.school.grad = 'done';
   log(p, L('大学院を修了し、修士号をとった。', 'Finished graduate school with a master\'s degree.'), 'school', true);
   if (p.school.abroad && p.country !== p.birthCountry) {

@@ -8,6 +8,7 @@ import { homeShare } from './work';
 import { isEn, L } from '../../i18n';
 import { because, homeWhy, schoolWhy } from '../why';
 import { showRng } from '../crisis';
+import { schoolSys } from '../schoolsys';
 
 const TEMPERAMENTS: [string, Partial<Stats>, string][] = [
   [L('好奇心の強い子', 'Curious'), { learn: 8 }, L('学び +8', 'Learning +8')],
@@ -140,7 +141,7 @@ export function childhood(p: Person): void {
         'About 1 in 5 children under 5 worldwide are stunted, too short for their age (UNICEF, WHO, World Bank 2023)'));
     bump(p, { health: -10, learn: -5 });
   }
-  if (p.age === 6) startSchool(p, c);
+  if (p.age === schoolSys(p.country).entry) startSchool(p, c); // 入学の年齢は国の学制で (英国5歳・多くの国6歳・北欧7歳)
   if (p.age === 7) chooseHobby(p, L('好きなことが見つかった', 'Found something to love'));
   if (p.age === 8 && !p.pet && r() < 0.35) askForPet(p);
   if (p.age === 10 && !p.school.enrolled && !p.working && p.rng() >= homeShare(p)) {
@@ -157,7 +158,10 @@ export function childhood(p: Person): void {
 function startSchool(p: Person, c: Country): void {
   const r = p.rng;
   const girlGap = p.sex === 'F' && c.gdp < 5000 ? -1.2 : 0;
-  p.school.target = Math.max(p.anchor?.school ?? 0, clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3), 0, 12));
+  // 通う年数の見込みは12年制の物差しで引き、その国の学制の長さに合わせて伸び縮みさせる (13年制の英国・ドイツで、1年早くやめる人が増えないように)
+  const sys = schoolSys(p.country);
+  p.school.sys = p.country;
+  p.school.target = Math.max(p.anchor?.school ?? 0, clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3) * sys.total / 12, 0, sys.total));
   if (p.school.target < 1) {
     log(p, L('みんなが学校へ行く年になったが、通えなかった。', 'Reached school age, but could not go.'), 'hard', true);
     because(p, schoolWhy(p, c));
