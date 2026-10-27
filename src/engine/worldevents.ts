@@ -16,6 +16,8 @@ import { bump, log, place, yearOf, type Person, type Relative, type YearKind } f
 import { showRng } from './crisis';
 import { causeName } from './causes';
 import { yearly } from './events/common';
+import { sideOf, type Side } from './polity';
+import { warDutyQ } from './divided';
 import type { Sex } from './lifetable';
 
 export type EventType = 'war' | 'occupation' | 'genocide' | 'famine' | 'epidemic' | 'quake' | 'tsunami' | 'cyclone' | 'flood' | 'drought'
@@ -62,6 +64,7 @@ export interface WorldEvent {
   home?: [string, string];      // 帰ってきたときの一行。省略すると兵の帰還の文
   labour?: boolean;             // 兵ではなく、労働に駆り出された (強制労働・徴用・人夫)
   exempt?: string[];            // 召集されない宗教 (ドイツ国防軍はユダヤ人を兵にしなかった)
+  side?: Side;                  // 分かれていた国のこの側の人だけに起きる・届く (東西ドイツ・南北ベトナム。polity.ts の DIVIDED)
 }
 
 export const CATALOG: WorldEvent[] = [global, eastAsia, southAsiaMideast, europe, africa, americas].flatMap((f) => (f as { events: WorldEvent[] }).events);
@@ -136,7 +139,8 @@ const logEvent = (p: Person, e: WorldEvent, text: string, kind: YearKind, big: b
 export function worldEvents(p: Person): void {
   const year = yearOf(p);
   if (year < WPP_FROM) service(p, year);
-  const here = eventsAt(p.country, year);
+  const side = sideOf(p);
+  const here = eventsAt(p.country, year).filter((e) => !e.side || e.side === side);
   const news: [WorldEvent, 'near' | 'news'][] = [];
   for (const e of here) {
     if (p.recent[`evhit:${e.id}`] !== undefined) continue;
@@ -312,8 +316,14 @@ export function eventHazard(code: string, year: number, sex: Sex, age: number, f
 export const excessQ = (code: string, year: number, sex: Sex, age: number): number => (year < WPP_FROM ? eventHazard(code, year, sex, age).q : 0);
 // 主人公の分 (召集されたかどうか・宗教を見る)
 const mine = (p: Person) => eventHazard(p.country, yearOf(p), p.sex, p.age, p.religion, (e) => myDuty(p, e));
-export const myExcessQ = (p: Person): number => (yearOf(p) < WPP_FROM ? mine(p).q : 0);
-export const myEventCause = (p: Person, u: number): string | undefined => { const h = mine(p); return h.cause && u < h.q ? causeName(h.cause) : undefined; };
+// 分かれていたベトナムの戦争の間に兵として服務している人の死 (divided.ts。生命表の平均を超えるぶん) を足す
+export const myExcessQ = (p: Person): number => (yearOf(p) < WPP_FROM ? mine(p).q : 0) + warDutyQ(p);
+export const myEventCause = (p: Person, u: number): string | undefined => {
+  const d = warDutyQ(p);
+  if (u < d) return causeName('戦死');
+  const h = mine(p);
+  return h.cause && u - d < h.q ? causeName(h.cause) : undefined;
+};
 // 家族の分。家族は主人公と同じ宗教として数える
 const kins = (p: Person, r: Relative) => eventHazard(p.country, yearOf(p), r.sex, r.age, p.religion, (e) => relDuty(p, r, e));
 export const kinExcessQ = (p: Person, r: Relative): number => (yearOf(p) < WPP_FROM ? kins(p, r).q : 0);

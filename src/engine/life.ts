@@ -32,7 +32,9 @@ import { origin, roots, rootsMortality } from './roots';
 import { rootsYear } from './events/roots';
 import { faith } from './events/faith';
 import { excessQ, myEventCause, myExcessQ } from './worldevents';
-import { bornIn } from './polity';
+import { bornIn, sideMortality, sideOf } from './polity';
+import { divide } from './divided';
+import { pickRegion } from './regions';
 import { household, lastMonths } from './events/household';
 import { adoption } from './events/adopt';
 
@@ -104,6 +106,7 @@ export function createPerson(o: BirthOptions): Person {
   if (c.u5mr > 0.05 && familyP < 0.3) bump(p, { health: -10 });
   ensureBonds(p);
   if (!o.plain) origin(p);
+  divide(p); pickRegion(p); // 分かれていた国の側と、農村の地方 (乱数の並びは変えない)
   log(p, birthStory(p), 'child', true, undefined, [p.mother.id!, p.father.id!]);
   if (!o.plain) roots(p);
   return p;
@@ -116,8 +119,8 @@ export const homeWord = (familyP: number) => isEn
 const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 function birthStoryEn(p: Person, older: number): string {
-  const c = { name: bornIn(p.birthCountry, p.birthYear) }; // 1949年までの生まれは、当時の国の名前 (polity.ts)
-  const where = p.city ? `${p.city}, ${c.name}` : `a rural area of ${c.name}`;
+  const c = { name: bornIn(p.birthCountry, p.birthYear, p.birthSide) }; // 1949年までの生まれと東西ドイツ・南北ベトナムは、当時の国の名前 (polity.ts)
+  const where = p.city ? `${p.city}, ${c.name}` : `a rural area of ${p.region ? `${p.region}, ` : ''}${c.name}`;
   const home = p.familyP >= 0.8 ? 'a family in the top 20% of incomes' : `${p.familyP >= 0.4 && p.familyP < 0.8 ? 'an' : 'a'} ${homeWord(p.familyP)}`;
   const sibs = older ? `There ${older === 1 ? 'was 1 older sibling' : `were ${older} older siblings`}.` : 'The first child.';
   const faith = p.religion === '無宗教' ? 'The family followed no particular religion.' : `Family religion: ${religionName(p.religion)}.`;
@@ -125,10 +128,10 @@ function birthStoryEn(p: Person, older: number): string {
 }
 
 export function birthStory(p: Person): string {
-  const c = { name: bornIn(p.birthCountry, p.birthYear) };
+  const c = { name: bornIn(p.birthCountry, p.birthYear, p.birthSide) };
   const older = p.siblings.filter((s) => s.age > 0).length;
   if (isEn) return birthStoryEn(p, older);
-  const where = p.city ? `${c.name}の${p.city}` : `${c.name}の農村`;
+  const where = p.city ? `${c.name}の${p.city}` : `${c.name}の${p.region ? `${p.region}の` : ''}農村`;
   const top = p.familyP >= 0.8 ? 'で、所得の上位20%に入る家' : `の${homeWord(p.familyP)}`;
   return `${p.birthYear}年${p.birthMonth}月、${where}${top}に${childWord(genderOf(p))}として生まれた。${older ? `上に${older}人のきょうだいがいる。` : '最初の子どもだった。'}家は${p.religion === '無宗教' ? '特定の宗教を持たない' : p.religion === 'その他' ? 'ほかの宗教を信じている' : `${p.religion}を信じている`}。`;
 }
@@ -182,7 +185,7 @@ export function riskParts(p: Person): RiskParts {
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
   // つらい時期 (events/strain.ts) には、自死の率をその倍率のぶんだけ動かす。時期の外では 0 なので、ふだんの死亡率は変わらない
   const strainAdd = (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
-  const cal = calibration(p.age, p.sex);
+  const cal = calibration(p.age, p.sex) * sideMortality(sideOf(p), p.country, yearOf(p), p.sex); // 東西ドイツの寿命の差 (polity.ts)
   const jobAdd = p.working && !p.retired && p.job === DEEP_SEA ? DEEP_SEA_RISK : 0;
   return { q: clamp(cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + strainAdd + jobAdd + histAdd, 0, 1), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, strainAdd, ...(jobAdd ? { jobAdd } : {}), ...hist };
 }

@@ -3,6 +3,7 @@ import type { Sex } from './lifetable';
 import { clamp, type Rng } from './rng';
 import { isEn, L } from '../i18n';
 import type { Holding } from './market';
+import { sidedCountry, sideOf, type Side } from './polity';
 
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
@@ -90,6 +91,9 @@ export interface Person {
   birthCountry: string;
   country: string;
   city: string | null; // null は農村
+  region?: string;   // 農村に生まれた人の、生まれた地方 (regions.ts。表示の言語の名前)
+  side?: Side;       // 分かれていた国 (東西ドイツ・南北ベトナム) のどちらの側か (polity.ts の DIVIDED)。今いる側
+  birthSide?: Side;  // 生まれた側 (東から西へ逃れても、生まれは東ドイツ)
   religion: string;
   birthYear: number;
   birthMonth: number;
@@ -186,7 +190,7 @@ export interface Person {
 
 export const yearOf = (p: Person): number => p.birthYear + p.age;
 // その人がいる国の、今の暦年の値
-export const countryOf = (p: Person): Country => countryAt(p.country, yearOf(p));
+export const countryOf = (p: Person): Country => sidedCountry(countryAt(p.country, yearOf(p)), sideOf(p)); // 東西ドイツの所得は側の値 (polity.ts)
 
 // 1950年 (国連の統計の始まり) より前の行には、1950年より前の年を挙げた脚注だけを添える。
 // 「日本の特殊詐欺は2022年に… (警察庁)」や、年を書かない WHO・ILO・UNICEF の今の数字を、1930年代の出来事に付けない。

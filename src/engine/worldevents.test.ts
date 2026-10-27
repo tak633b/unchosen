@@ -128,7 +128,8 @@ describe('一生の中で出会う出来事', () => {
       while (p.alive && p.birthYear + p.age < 2021) advanceYear(p);
       if (!p.alive) continue;
       n++;
-      if (p.recent['ev:covid-19'] !== undefined) seen++;
+      // ロックダウンをしなかった国 (韓国・日本・スウェーデンなど) は covid-19-open
+      if (p.recent['ev:covid-19'] !== undefined || p.recent['ev:covid-19-open'] !== undefined) seen++;
     }
     expect(n).toBeGreaterThan(20);
     expect(seen / n).toBeGreaterThan(0.95);

@@ -6,6 +6,7 @@ import { bornIn } from '../polity';
 import { countryAt } from '../countries';
 import { bump, countryOf, log, place, yearOf, type Person, type Stats } from '../person';
 import { techShare, type Tech } from '../tech';
+import { abroad, spot } from '../travel';
 import { pickWeighted } from '../rng';
 import { isEn, L } from '../../i18n';
 import { isPoor, isRich, scaleOf } from './common';
@@ -65,6 +66,7 @@ export interface When {
   livingAlone?: boolean;
   job?: 'office' | 'manual' | 'farm' | 'none';
   employee?: boolean; // 雇われて働いている (自分の店・畑・会社ではない)
+  renter?: boolean;   // 家を持たず、自分で部屋を借りて暮らしている大人 (働いているか連れ合いがいる)
 }
 
 // 留学や移住で外国にいる間は町の名前を持たない (p.city === null) が、農村ではない
@@ -120,6 +122,7 @@ export function fits(p: Person, w: When): boolean {
   if (!is(w.teenChild, p.children.some((k) => k.alive && k.age >= 13 && k.age <= 19))) return false;
   if (!is(w.livingAlone, p.working && p.age >= 18 && !p.spouse?.alive)) return false;
   if (!is(w.employee, p.working && !p.retired && !p.selfEmployed)) return false;
+  if (!is(w.renter, !p.house && !p.mortgage && p.age >= 20 && (p.working || !!p.spouse?.alive))) return false;
   if (w.job && w.job !== (p.working && !p.retired && p.unemployed === 0 ? p.jobKind ?? 'manual' : 'none')) return false;
   return true;
 }
@@ -129,7 +132,9 @@ export const fill = (p: Person, text: string) => text
   .replaceAll('{city}', place(p))
   .replaceAll('{country}', countryOf(p).name)
   .replaceAll('{friend}', p.friend ?? L('幼なじみ', 'a childhood friend'))
-  .replaceAll('{pet}', p.pet?.name ?? '');
+  .replaceAll('{pet}', p.pet?.name ?? '')
+  .replace('{spot}', () => spot(p))      // 国内の有名な場所 (travel.ts)
+  .replace('{abroad}', () => abroad(p)); // その国の人がよく行く外国
 
 const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
 // 犬の散歩のような出来事は、猫のときは猫の文にする。選ぶ候補と重みは変えない (乱数の並びが同じになる)
@@ -187,7 +192,7 @@ export function milestone(p: Person): void {
   const born = countryAt(p.birthCountry, p.birthYear);
   const alive = bornTable(born, p.sex, p.birthYear).l[p.age];
   const u5 = 1 - bornTable(born, p.sex, p.birthYear).l[5];
-  const bornName = bornIn(p.birthCountry, p.birthYear); // 1950年より前は当時の国名
+  const bornName = bornIn(p.birthCountry, p.birthYear, p.birthSide); // 1950年より前と東西ドイツ・南北ベトナムは当時の国名
   const who = p.gender === 'X' ? L('子ども', 'children') : p.sex === 'F' ? L('女の子', 'girls') : L('男の子', 'boys');
   const text = isEn
     ? (p.age === 5

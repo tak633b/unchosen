@@ -1008,7 +1008,6 @@
     "GHA",
     "TCD",
     "SOM",
-    "JPN",
     "BFA",
     "DEU",
     "COL",
@@ -1047,7 +1046,6 @@
     "HTI",
     "PNG",
     "CAF",
-    "KOR",
     "JOR",
     "HND",
     "UKR",
@@ -1065,13 +1063,11 @@
     "KGZ",
     "PSE",
     "PRY",
-    "NIC",
     "AZE",
     "LBY",
     "ARE",
     "BEL",
     "SLV",
-    "SWE",
     "LBN",
     "CZE",
     "PRT",
@@ -1084,7 +1080,6 @@
     "GRC",
     "PAN",
     "GAB",
-    "BLR",
     "MNG",
     "GNB",
     "BGR",
@@ -1103,7 +1098,6 @@
     "GEO",
     "FIN",
     "ARM",
-    "URY",
     "JAM",
     "MDA",
     "HRV",
@@ -1213,7 +1207,6 @@
     "GHA",
     "TCD",
     "SOM",
-    "JPN",
     "BFA",
     "DEU",
     "COL",
@@ -1252,7 +1245,6 @@
     "HTI",
     "PNG",
     "CAF",
-    "KOR",
     "JOR",
     "HND",
     "UKR",
@@ -1270,13 +1262,11 @@
     "KGZ",
     "PSE",
     "PRY",
-    "NIC",
     "AZE",
     "LBY",
     "ARE",
     "BEL",
     "SLV",
-    "SWE",
     "LBN",
     "CZE",
     "PRT",
@@ -1289,7 +1279,6 @@
     "GRC",
     "PAN",
     "GAB",
-    "BLR",
     "MNG",
     "GNB",
     "BGR",
@@ -1308,7 +1297,6 @@
     "GEO",
     "FIN",
     "ARM",
-    "URY",
     "JAM",
     "MDA",
     "HRV",
@@ -1374,6 +1362,103 @@
     "Working hours lost worldwide in 2020 equalled 255 million full-time jobs (ILO)"
    ],
    "src": "ILO Monitor: COVID-19 and the world of work, 7th edition (January 2021)"
+  },
+  {
+   "id": "covid-19-open",
+   "type": "epidemic",
+   "countries": [
+    "KOR",
+    "JPN",
+    "SWE",
+    "BLR",
+    "NIC",
+    "URY"
+   ],
+   "years": [
+    2020,
+    2021
+   ],
+   "hit": 0.02,
+   "kill": 0.002,
+   "who": "frail",
+   "cause": "COVID-19",
+   "severity": 5,
+   "effect": {
+    "health": -8,
+    "happy": -6
+   },
+   "ja": {
+    "hit": [
+     "新型コロナにかかり、息が苦しくなって入院した。退院してからも、長いあいだ疲れが抜けなかった。",
+     "新型コロナで高い熱が続き、酸素の管をつけて何日も過ごした。"
+    ],
+    "news": [
+     "新型コロナウイルスが世界中に広がった。国は外出を禁じなかったが、人は出歩かなくなり、店から客が遠のいた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "Caught COVID-19 and was hospitalized, struggling to breathe. The exhaustion lingered long after coming home.",
+     "COVID-19 brought a fever that would not break, and days on an oxygen line."
+    ],
+    "news": [
+     "The new coronavirus spread across the world. The country never ordered people to stay home, but people stayed in anyway, and the shops emptied of customers."
+    ]
+   },
+   "stat": [
+    "2020〜21年の新型コロナによる世界の超過死亡は、約1,490万人と推計される (WHO)",
+    "WHO estimates about 14.9 million excess deaths worldwide from COVID-19 in 2020-21"
+   ],
+   "src": "WHO 2022, Global excess deaths associated with COVID-19; Msemburi et al. 2023, Nature 613:130",
+   "rough": true
+  },
+  {
+   "id": "covid-19-open-work",
+   "type": "epidemic",
+   "countries": [
+    "KOR",
+    "JPN",
+    "SWE",
+    "BLR",
+    "NIC",
+    "URY"
+   ],
+   "years": [
+    2020,
+    2021
+   ],
+   "hit": 0.02,
+   "age": [
+    18,
+    64
+   ],
+   "severity": 1,
+   "poor": 1.5,
+   "effect": {
+    "happy": -8,
+    "wealth": -0.1,
+    "job": true
+   },
+   "ja": {
+    "hit": [
+     "外出の禁止はなかったが、店の客が目に見えて減った。売り上げは戻らず、勤め先から「もう来なくていい」と言われた。",
+     "客足が途絶えたまま、勤めていた店がのれんを下ろした。"
+    ],
+    "news": []
+   },
+   "en": {
+    "hit": [
+     "There was no lockdown, but the customers thinned out all the same. Sales never came back, and the employer said not to come in any more.",
+     "The customers never returned, and the shop where the job was closed its doors for good."
+    ],
+    "news": []
+   },
+   "stat": [
+    "ロックダウンをしなかった国では、2020年に減った働き手は1%前後だった (日本0.7%・韓国0.8%、各国の労働力調査)",
+    "In countries without a lockdown, employment fell by around 1% in 2020 (Japan 0.7%, Korea 0.8%, national labour force surveys)"
+   ],
+   "src": "総務省統計局 労働力調査 2020年平均; Statistics Korea, Economically Active Population Survey 2020; SCB AKU 2020",
+   "rough": true
   },
   {
    "id": "h1n1-2009",

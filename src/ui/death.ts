@@ -81,7 +81,7 @@ function factsOf(p: Person): [string, string][] {
       [L('家族', 'Family'), isEn
         ? `Mother ${p.mother.name ?? ''}, father ${p.father.name ?? ''}${sibs ? `, ${sibs} ${sibs === 1 ? 'sibling' : 'siblings'}` : ''}`
         : `母 ${p.mother.name ?? ''}・父 ${p.father.name ?? ''}${sibs ? `・きょうだい${sibs}人` : ''}`],
-      [L('生まれた場所', 'Born in'), `${p.city ?? L('農村', 'a rural area')}${L('・', ', ')}${bornIn(p.birthCountry, p.birthYear)}`],
+      [L('生まれた場所', 'Born in'), `${p.city ?? L('農村', 'a rural area')}${L('・', ', ')}${bornIn(p.birthCountry, p.birthYear, p.birthSide)}`],
     ];
   }
   const edu = eduLevel(p);

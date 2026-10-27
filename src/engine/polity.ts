@@ -3,7 +3,7 @@
 // 国の名前が変わった年 (独立・併合・占領) には、その国にいる人の人生に一行が残る (history.ts)。
 // 区切りは年単位 (その年の途中で変わっても、その年から新しい名前)。
 // ponytail: 国の中で治める国の違った地域 (西ウクライナはオーストリア領・ポーランド領など) は、国の大部分に合わせている
-import { byCode } from './countries';
+import { byCode, type Country } from './countries';
 import { L } from '../i18n';
 
 // [この年から, 日本語の名前, 英語の名前, その年に起きたこと (日本語), (英語)]。名前が null なら、いまの国名
@@ -28,6 +28,15 @@ const INDOCHINA: [string, string] = ['フランス領インドシナ', 'French I
 add(['DEU'], [[0, 'ドイツ帝国', 'the German Empire'], [1918, null, null, '11月、皇帝が退位し、ドイツは共和国になった。', 'In November the Kaiser abdicated and Germany became a republic.'],
   [1945, '連合国占領下のドイツ', 'Allied-occupied Germany', '5月、ドイツは降伏し、四つの占領地区に分けられた。', 'In May Germany surrendered and was divided into four occupation zones.'],
   [1949, null, null, '西と東に、二つのドイツの国が生まれた。', 'Two German states were founded, one in the west and one in the east.']]);
+// 分かれていた国の、それぞれの側 (下の divide で生まれた人に決める)。キーは「国:側」
+T['DEU:E'] = [...T.DEU.slice(0, 2),
+  [1945, 'ソ連占領地区のドイツ', 'Soviet-occupied Germany', '5月、ドイツは降伏し、四つの占領地区に分けられた。ここはソ連の占領地区になった。', 'In May Germany surrendered and was divided into four occupation zones. This one fell to the Soviets.'],
+  [1949, 'ドイツ民主共和国 (東ドイツ)', 'the German Democratic Republic (East Germany)', '10月7日、ソ連の占領地区にドイツ民主共和国が生まれた。', 'On 7 October the German Democratic Republic was founded in the Soviet zone.'],
+  [1990, null, null, '10月3日、東ドイツは西のドイツ連邦共和国に加わり、ドイツは一つになった。', 'On 3 October East Germany joined the Federal Republic, and Germany was one country again.']];
+T['DEU:W'] = [...T.DEU.slice(0, 2),
+  [1945, '西側連合国の占領下のドイツ', 'Allied-occupied western Germany', '5月、ドイツは降伏し、四つの占領地区に分けられた。ここはアメリカ・イギリス・フランスの占領地区になった。', 'In May Germany surrendered and was divided into four occupation zones. This one fell to the Americans, British and French.'],
+  [1949, 'ドイツ連邦共和国 (西ドイツ)', 'the Federal Republic of Germany (West Germany)', '5月、西の占領地区にドイツ連邦共和国が生まれた。', 'In May the Federal Republic of Germany was founded in the western zones.'],
+  [1990, null, null, '10月3日、東ドイツが加わり、ドイツは一つになった。', 'On 3 October East Germany joined, and Germany was one country again.']];
 add(['AUT'], [[0, ...AH], [1918, null, null, '帝国が崩れ、オーストリアは共和国になった。', 'The empire collapsed, and Austria became a republic.'],
   [1938, 'ドイツに併合されたオーストリア', 'Austria annexed to Germany', '3月、ドイツ軍が国境を越え、オーストリアはドイツに併合された。', 'In March German troops crossed the border, and Austria was annexed to Germany.'],
   [1945, null, null, '戦争が終わり、オーストリアは再び一つの国になった (連合国の占領は1955年まで続いた)。', 'The war ended, and Austria became a country of its own again (Allied occupation lasted until 1955).']]);
@@ -151,6 +160,13 @@ add(['JPN'], [[0, null, null], [1945, '連合国占領下の日本', 'Allied-occ
 add(['MNG'], [[0, '清 (外モンゴル)', 'the Qing Empire (Outer Mongolia)'], [1911, 'ボグド・ハーン政権のモンゴル', 'the Bogd Khanate of Mongolia', '清が倒れ、モンゴルは独立を宣言した。', 'The Qing collapsed, and Mongolia declared independence.'],
   [1924, null, null, 'モンゴル人民共和国が生まれた。', "The Mongolian People's Republic was proclaimed."]]);
 add(['VNM'], [[0, ...INDOCHINA], [1945, null, null, '9月2日、ハノイでベトナムの独立が宣言された。フランスとの戦争はこのあとも続いた。', 'On 2 September Vietnamese independence was proclaimed in Hanoi. The war with France went on.']]);
+// 1954年のジュネーブ協定で、北緯17度線の北と南に分かれた。1975年4月30日にサイゴンが落ち、1976年7月2日に一つになった
+const VN_ONE: Seg = [1976, null, null, '7月2日、南北が一つになり、ベトナム社会主義共和国が生まれた。', 'On 2 July North and South were united as the Socialist Republic of Vietnam.'];
+T['VNM:N'] = [...T.VNM, [1954, 'ベトナム民主共和国 (北ベトナム)', 'the Democratic Republic of Vietnam (North Vietnam)', '7月、ジュネーブ協定で国は北緯17度線で分けられた。北はベトナム民主共和国になった。', 'In July the Geneva Accords split the country at the 17th parallel. The north became the Democratic Republic of Vietnam.'], VN_ONE];
+T['VNM:S'] = [...T.VNM, [1954, 'ベトナム国 (南ベトナム)', 'the State of Vietnam (South Vietnam)', '7月、ジュネーブ協定で国は北緯17度線で分けられた。南はベトナム国になった。', 'In July the Geneva Accords split the country at the 17th parallel. The south became the State of Vietnam.'],
+  [1955, 'ベトナム共和国 (南ベトナム)', 'the Republic of Vietnam (South Vietnam)', '10月、国民投票でベトナム共和国が生まれた。', 'In October a referendum created the Republic of Vietnam.'],
+  // サイゴンの陥落は目録の出来事 (vn-war-1965) のニュースが書いている
+  [1975, '南ベトナム共和国 (臨時革命政府)', 'the Republic of South Vietnam (Provisional Revolutionary Government)'], VN_ONE];
 add(['LAO'], [[0, ...INDOCHINA], indep(1953, 'ラオス', 'Laos')]);
 add(['KHM'], [[0, ...INDOCHINA], indep(1953, 'カンボジア', 'Cambodia')]);
 add(['THA'], [[0, 'シャム', 'Siam'], [1939, null, null, '国の名がシャムからタイになった。', 'The country was renamed from Siam to Thailand.']]);
@@ -208,26 +224,67 @@ add(['PAN'], [[0, 'コロンビア', 'Colombia'], [1903, null, null, '11月、�
 add(['HTI'], [[0, null, null], [1915, 'アメリカ占領下のハイチ', 'US-occupied Haiti', 'アメリカの海兵隊が上陸した。', 'US Marines landed.'], [1934, null, null, 'アメリカ軍が去った。', 'The American troops left.']]);
 add(['DOM'], [[0, null, null], [1916, 'アメリカ占領下のドミニカ共和国', 'US-occupied Dominican Republic', 'アメリカの海兵隊が上陸した。', 'US Marines landed.'], [1924, null, null, 'アメリカ軍が去った。', 'The American troops left.']]);
 
-const segAt = (code: string, year: number): Seg | undefined => {
-  const segs = T[code];
+// 分かれていた国: [側A, 側B, 一つになった年]。この年より前に生まれた人に、どちらの側かを決める
+// ponytail: イエメン (北と南、1990年に統一) は国の一覧 (countries.json) に無いので入れていない
+export type Side = 'E' | 'W' | 'N' | 'S';
+export const DIVIDED: Record<string, [Side, Side, number]> = { DEU: ['E', 'W', 1990], VNM: ['N', 'S', 1976] };
+
+const segAt = (key: string, year: number): Seg | undefined => {
+  const segs = T[key];
   if (!segs) return undefined;
   let s: Seg | undefined;
   for (const x of segs) if (year >= x[0]) s = x;
   return s ?? segs[0];
 };
+const keyOf = (code: string, side?: Side) => (side && T[`${code}:${side}`] ? `${code}:${side}` : code);
 
-// その年にその土地を治めていた国の名前。いまの国名と同じなら undefined
-export function polityName(code: string, year: number): string | undefined {
-  const s = segAt(code, year);
+// その年にその土地を治めていた国の名前。いまの国名と同じなら undefined。side は分かれていた国のどちらの側か
+export function polityName(code: string, year: number, side?: Side): string | undefined {
+  const s = segAt(keyOf(code, side), year);
   return s?.[1] ? L(s[1], s[2]!) : undefined;
 }
-// 出生の記録に書く国の名前 (1949年までの生まれだけ、当時の名前にする)
-export const bornIn = (code: string, year: number): string => (year < 1950 && polityName(code, year)) || byCode(code).name;
+// 出生の記録に書く国の名前 (1949年までの生まれと、分かれていた国に生まれた人は、当時の名前にする)
+export const bornIn = (code: string, year: number, side?: Side): string => ((year < 1950 || side) && polityName(code, year, side)) || byCode(code).name;
 // その年に名前が変わったなら、起きたことの一行。
 // 目録の出来事のニュースが同じことを書いている年 (インドとパキスタンの独立・イスラエルの建国・中華人民共和国の成立・
 // 第二次世界大戦の占領の始まり・ロシアの内戦など) は、一行を持たない
-export function polityChange(code: string, year: number): string | undefined {
-  const s = segAt(code, year);
+export function polityChange(code: string, year: number, side?: Side): string | undefined {
+  const s = segAt(keyOf(code, side), year);
   return s && s[0] === year && s[3] ? L(s[3], s[4]!) : undefined;
 }
-export const POLITY_CODES = Object.keys(T);
+export const POLITY_CODES = Object.keys(T).filter((k) => !k.includes(':'));
+
+// ---- 分かれていた国の、側ごとの暮らしの差 ---------------------------------------------------------
+// 国の一覧の値 (countries.json・国連の生命表) は東西を合わせた国全体のもの。側ごとの比 r (東/西) と東の人口の割合 s から、
+// 平均が国全体のままになるよう、東は r/(1-s+s·r) 倍、西は 1/(1-s+s·r) 倍にする
+export const lerp = (pts: [number, number][], y: number): number => {
+  if (y <= pts[0][0]) return pts[0][1];
+  for (let i = 1; i < pts.length; i++) if (y <= pts[i][0]) { const [y0, v0] = pts[i - 1], [y1, v1] = pts[i]; return v0 + ((v1 - v0) * (y - y0)) / (y1 - y0); }
+  return pts[pts.length - 1][1];
+};
+// 東の人口の割合 (東ベルリンを含む新しい州。Destatis)
+const EAST_POP: [number, number][] = [[1950, 0.26], [1970, 0.22], [1989, 0.21], [2020, 0.19]];
+// 東の1人あたり所得の、西に対する比。1950〜89年は Maddison の1人当たりGDPの東西比の目安、1991年からは1人あたりの可処分所得の比 (Destatis, VGR der Länder)。
+// ponytail: 東ドイツの所得の東西比は推計によって幅がある (1989年で4〜6割)。中ほどを取った
+const EAST_INCOME: [number, number][] = [[1950, 0.65], [1970, 0.55], [1989, 0.45], [1991, 0.6], [1995, 0.75], [2005, 0.8], [2020, 0.86]];
+// 東の死亡率の、西に対する比。平均寿命の東西差 (1970年ほぼ同じ → 1989年に男女とも約2.5〜3年 → 女性は2000年代に追いつき、男性は2020年も1年あまり) を、
+// 死亡率の1割がおよそ1年に当たるとして比に直した (Destatis; Vogt & Kluge 2015, Demographic Research)
+const EAST_DEATH_M: [number, number][] = [[1950, 1.05], [1970, 1], [1980, 1.15], [1989, 1.27], [2000, 1.18], [2020, 1.12]];
+const EAST_DEATH_F: [number, number][] = [[1950, 1.05], [1970, 1], [1980, 1.15], [1989, 1.27], [2000, 1.04], [2020, 1.02]];
+const sideK = (side: Side, r: number, s: number) => (side === 'E' ? r : 1) / (1 - s + s * r);
+// 分かれていた国の側。その国にいる間だけ効く (外国に移れば、その国の人として暮らす)
+export const sideOf = (p: { side?: Side; country: string; birthCountry: string }): Side | undefined => (p.side && p.country === p.birthCountry ? p.side : undefined);
+const sideMemo = new Map<string, Country>();
+// その人の側の値にした国 (所得)。ドイツの東西だけ。ponytail: 南北ベトナムの所得の差は確かな系列が無いので、国全体のまま
+export function sidedCountry(c: Country, side: Side | undefined): Country {
+  if ((side !== 'E' && side !== 'W') || c.code !== 'DEU' || (c.year ?? 0) < 1950) return c;
+  const key = side + c.year + ':' + c.gdp;
+  let hit = sideMemo.get(key);
+  if (!hit) sideMemo.set(key, (hit = { ...c, gdp: c.gdp * sideK(side, lerp(EAST_INCOME, c.year!), lerp(EAST_POP, c.year!)) }));
+  return hit;
+}
+// 死亡率にかける倍率 (生命表は国全体)
+export function sideMortality(side: Side | undefined, code: string, year: number, sex: 'F' | 'M'): number {
+  if ((side !== 'E' && side !== 'W') || code !== 'DEU' || year < 1950) return 1;
+  return sideK(side, lerp(sex === 'M' ? EAST_DEATH_M : EAST_DEATH_F, year), lerp(EAST_POP, year));
+}

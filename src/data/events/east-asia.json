@@ -1562,6 +1562,98 @@
    "newsAt": 1975
   },
   {
+   "id": "vn-n-evacuation-1965",
+   "type": "war",
+   "countries": [
+    "VNM"
+   ],
+   "side": "N",
+   "years": [
+    1965,
+    1972
+   ],
+   "cities": [
+    "ハノイ",
+    "Hanoi",
+    "ハイフォン",
+    "Haiphong"
+   ],
+   "elsewhere": 0,
+   "hit": 0.6,
+   "age": [
+    4,
+    16
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "空襲を避けて、学校ごと田舎の村へ疎開した。親とは何か月も会えなかった。"
+    ],
+    "news": [
+     "北への空爆が続き、町の子どもたちは田舎の村へ疎開した。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "To escape the air raids, the whole school was evacuated to a village in the countryside. Months went by without seeing the parents."
+    ],
+    "news": [
+     "The bombing of the North went on, and the city children were evacuated to the villages."
+    ]
+   },
+   "stat": [
+    "1965〜72年の北への空爆のあいだ、ハノイとハイフォンの子どもの多くが農村に疎開した。1972年12月の空爆の前には、ハノイの人口の半分ほどが町を離れた",
+    "During the bombing of the North in 1965-72 most children of Hanoi and Haiphong were evacuated to the countryside; before the December 1972 raids about half of Hanoi's people left the city"
+   ],
+   "src": "Thayer 1974; Elliott 2002, The Vietnamese War"
+  },
+  {
+   "id": "vn-s-tet-1968",
+   "type": "war",
+   "countries": [
+    "VNM"
+   ],
+   "side": "S",
+   "years": [
+    1968,
+    1968
+   ],
+   "hit": 0.03,
+   "urban": 2,
+   "rough": true,
+   "severity": 4,
+   "effect": {
+    "health": -3,
+    "happy": -12,
+    "home": true
+   },
+   "ja": {
+    "hit": [
+     "テトの夜、町で戦闘が始まった。家の近くに砲弾が落ち、何日も家に閉じこもった。"
+    ],
+    "news": [
+     "テトの夜、南の町々に攻撃が始まった。古都フエでは一か月近く戦闘が続いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On the night of Tet, fighting broke out in the town. Shells fell near the house, and for days nobody went outside."
+    ],
+    "news": [
+     "On the night of Tet, attacks began on the towns of the South. In the old capital of Hue the fighting lasted almost a month."
+    ]
+   },
+   "stat": [
+    "テト攻勢のあと、フエでは2,800人あまりの住民の遺体が集団墓地から見つかった",
+    "After the Tet Offensive, the bodies of more than 2,800 residents of Hue were found in mass graves"
+   ],
+   "src": "Pike 1970, The Viet-Cong Strategy of Terror; Willbanks 2007, The Tet Offensive"
+  },
+  {
    "id": "vn-border-war-1979",
    "type": "war",
    "countries": [

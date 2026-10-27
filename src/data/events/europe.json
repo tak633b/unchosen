@@ -4049,6 +4049,125 @@
    "src": "City of Hamburg"
   },
   {
+   "id": "deu-e-1953",
+   "type": "unrest",
+   "countries": [
+    "DEU"
+   ],
+   "side": "E",
+   "years": [
+    1953,
+    1953
+   ],
+   "hit": 0.08,
+   "age": [
+    16,
+    65
+   ],
+   "rough": true,
+   "severity": 3,
+   "effect": {
+    "happy": -8
+   },
+   "ja": {
+    "hit": [
+     "6月17日、仕事のノルマの引き上げに抗議するストライキに加わった。午後、ソ連軍の戦車が通りに入ってきた。"
+    ],
+    "news": [
+     "6月17日、東ドイツの各地で労働者が立ち上がった。ソ連軍の戦車がそれを押しつぶした。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On 17 June joined the strike against the raised work quotas. That afternoon Soviet tanks rolled into the streets."
+    ],
+    "news": [
+     "On 17 June workers rose up across East Germany. Soviet tanks crushed the uprising."
+    ]
+   },
+   "stat": [
+    "1953年6月17日の蜂起には700を超える町で約100万人が加わり、少なくとも55人が亡くなった",
+    "About a million people in over 700 towns joined the uprising of 17 June 1953; at least 55 were killed"
+   ],
+   "src": "Bundeszentrale für politische Bildung; Kowalczuk 2013, 17. Juni 1953"
+  },
+  {
+   "id": "deu-e-1989",
+   "type": "revolution",
+   "countries": [
+    "DEU"
+   ],
+   "side": "E",
+   "years": [
+    1989,
+    1989
+   ],
+   "hit": 0.1,
+   "age": [
+    16,
+    75
+   ],
+   "rough": true,
+   "severity": 4,
+   "kind": "family",
+   "effect": {
+    "happy": 6
+   },
+   "ja": {
+    "hit": [
+     "秋の月曜の夜、ろうそくを手に、教会から町の環状道路へ歩いた。「私たちが人民だ」と声をそろえた。"
+    ],
+    "news": [
+     "秋、東ドイツの町々でデモが広がった。11月9日の夜、ベルリンの壁が開いた。"
+    ]
+   },
+   "en": {
+    "hit": [
+     "On a Monday night that autumn, candle in hand, walked from the church out onto the ring road. Everyone chanted together: \"We are the people.\""
+    ],
+    "news": [
+     "That autumn demonstrations spread through the towns of East Germany. On the night of 9 November the Berlin Wall opened."
+    ]
+   },
+   "stat": [
+    "1989年10月9日、ライプツィヒの月曜デモには約7万人が加わった",
+    "On 9 October 1989 some 70,000 people joined the Monday demonstration in Leipzig"
+   ],
+   "src": "Stiftung Friedliche Revolution Leipzig; Hertle 2009, Chronik des Mauerfalls"
+  },
+  {
+   "id": "deu-w-1989",
+   "type": "revolution",
+   "countries": [
+    "DEU"
+   ],
+   "side": "W",
+   "years": [
+    1989,
+    1989
+   ],
+   "hit": 0,
+   "severity": 4,
+   "effect": {},
+   "ja": {
+    "hit": [],
+    "news": [
+     "11月9日の夜、ベルリンの壁が開いた。東から来たトラバントの列を、人々は歓声と花で迎えた。"
+    ]
+   },
+   "en": {
+    "hit": [],
+    "news": [
+     "On the night of 9 November the Berlin Wall opened. Crowds greeted the lines of Trabants from the East with cheers and flowers."
+    ]
+   },
+   "stat": [
+    "ベルリンの壁は1961年から1989年まで28年間、町を分けていた",
+    "The Berlin Wall divided the city for 28 years, from 1961 to 1989"
+   ],
+   "src": "Stiftung Berliner Mauer"
+  },
+  {
    "id": "deu-reunification-jobs",
    "type": "finance",
    "countries": [
@@ -4058,7 +4177,7 @@
     1990,
     1993
    ],
-   "hit": 0.07,
+   "hit": 0.3,
    "age": [
     16,
     64
@@ -4074,7 +4193,7 @@
      "統一のあと、東の工場が閉じられ、職を失った。"
     ],
     "news": [
-     "壁が開き、翌年、東と西が一つの国になった。"
+     "統一のあと、東の工場や国営の会社が次々に閉じられ、町から働き口が消えていった。"
     ]
    },
    "en": {
@@ -4082,14 +4201,15 @@
      "After reunification the factory in the east was shut down, and the job went with it."
     ],
     "news": [
-     "The Wall opened, and the next year East and West became one country."
+     "After reunification the factories and state firms of the East closed one after another, and the jobs drained out of town."
     ]
    },
    "stat": [
-    "統一から数年で、旧東ドイツの仕事の3分の1ほどが失われた",
-    "Within a few years of reunification, about a third of jobs in the former East Germany had disappeared"
+    "統一から数年で、旧東ドイツの働き口は約970万から約620万に減った",
+    "Within a few years of reunification, jobs in the former East Germany fell from about 9.7 million to about 6.2 million"
    ],
-   "src": "Institut für Arbeitsmarkt- und Berufsforschung (IAB)"
+   "src": "Institut für Arbeitsmarkt- und Berufsforschung (IAB); Statistisches Bundesamt, Erwerbstätigenrechnung",
+   "side": "E"
   },
   {
    "id": "chernobyl",
