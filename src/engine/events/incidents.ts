@@ -11,6 +11,7 @@ import { techShare } from '../tech';
 import { because } from '../why';
 import { isPoor, isRich, scaleOf } from './common';
 import { sentence } from './justice';
+import { gentle } from '../gentle';
 import { L } from '../../i18n';
 
 const US_HOMICIDE = 5.8; // 米国の殺人率 (10万人あたり、UNODC 2021ごろ)。暴力の目安の基準
@@ -275,7 +276,7 @@ function fire(p: Person): void {
 // 事件を目にする。一生に一度だけ。ponytail: 年0.4%×prop は推計
 const witnessP = (p: Person, x: Ctx) => (p.age >= 12 ?0.004 * x.prop : 0);
 function witness(p: Person, x: Ctx): void {
-  log(p, x.v > 2 && p.rng() < 0.5
+  log(p, x.v > 2 && p.rng() < 0.5 && !gentle()
     ? L('道の向こうで銃声がして、人が倒れるのを見た。警察に話を聞かれたあとも、その音が耳に残った。', 'Across the street, a gunshot, and someone fell. Long after the police had taken a statement, the sound stayed.')
     : L('目の前でひったくりがあった。犯人の服の色を覚えていて、警察で話した。数週間後、捕まったと電話があった。', 'Saw a bag snatching right in front of them. Remembered the color of the thief\'s jacket and told the police. A few weeks later, a call: he had been caught.'), 'hard');
   bump(p, { happy: -2 });
@@ -358,11 +359,14 @@ export function context(p: Person): Ctx {
   return { c, y: yearOf(p), v, prop: clamp(v ** 0.3, 0.3, 2.5), urban: p.city ? 1 : 0.6, old: p.age >= 65 };
 }
 
+// 怖い場面を除くとき (gentle.ts) に起こさないもの: 刃物の強盗・暴行・誘拐・脅し (みかじめ料)・麻薬の運び役や組への誘い。乱数は同じだけ引く
+const HEAVY = new Set(['kidnap', 'lure', 'extort', 'robbery', 'assault']);
+
 export function crime(p: Person): void {
   if (p.age < 6) return;
   const x = context(p);
   for (const [key, gap, prob, run] of LIST) {
-    if (!ok(p, key, gap) || p.rng() >= prob(p, x)) continue;
+    if (!ok(p, key, gap) || p.rng() >= (gentle() && HEAVY.has(key) ? 0 : prob(p, x))) continue;
     p.recent[`inc:${key}`] = p.age;
     run(p, x);
     return;

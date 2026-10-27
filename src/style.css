@@ -642,3 +642,12 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 /* 人生の長さ (ui/pace.ts) */
 .pacerow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
 .pacerow .seg button { padding: 3px 12px; font-size: 13px; }
+
+/* 心がつらいとき・怖い場面を除く・休む (ui/care.ts) */
+.modal-back.care { z-index: 40; } /* 振り返りの幕 (.crisis 30) より上 */
+.gentle { display: block; margin: 10px 0; cursor: pointer; }
+.gentle input { width: auto; margin-right: 6px; vertical-align: middle; }
+.gentle small { display: block; margin-top: 2px; }
+.carelines { padding-left: 1.2em; }
+.carelines li { margin: 8px 0; }
+.carefoot { text-align: center; margin-top: 24px; }

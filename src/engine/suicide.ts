@@ -52,8 +52,24 @@ export function suicideHazard(c: Country, sex: Sex, age: number): number {
   return ((sex === 'M' ? m : f) / 1e5) * AGE_K.find(([from]) => age >= from)![1];
 }
 
-// 相談先。日本語の画面では日本の窓口、英語の画面では米国の988と、国ごとの窓口を探せる findahelpline.com
+// 相談先。番号はここにだけ置く (死亡記録の「なぜ」・つらい時期の記録・「心がつらいとき」の欄 ui/care.ts が使う)。
+// 日本: 厚生労働省「まもろうよ こころ」の電話相談の一覧 (2026-10 確認)、24時間子供SOSダイヤルは文部科学省。
+// 英語: 米国の988 (電話・テキスト)、英国とアイルランドのサマリタンズ 116 123、ほかの国は findahelpline.com
+export interface Line { name: string; tel?: string; url?: string; note: string }
+export const LINES_JA: Line[] = [
+  { name: 'いのちSOS', tel: '0120-061-338', note: '24時間・毎日。「死にたい」「消えたい」気持ちを受け止める' },
+  { name: 'よりそいホットライン', tel: '0120-279-338', note: '24時間・毎日。どんな悩みでも。岩手・宮城・福島からは 0120-279-226' },
+  { name: 'こころの健康相談統一ダイヤル', tel: '0570-064-556', note: '住んでいる都道府県の窓口につながる。受付の時間は地域で違う' },
+  { name: '24時間子供SOSダイヤル', tel: '0120-0-78310', note: '子どもと若い人のための窓口。24時間・毎日' },
+];
+export const LINES_EN: Line[] = [
+  { name: '988 Suicide & Crisis Lifeline (US)', tel: '988', note: 'Call or text, 24/7' },
+  { name: 'Samaritans (UK and Ireland)', tel: '116 123', note: 'Free, 24/7' },
+  { name: 'Find A Helpline', url: 'https://findahelpline.com', note: 'Free, confidential lines in other countries' },
+];
+const [INOCHI, , , KODOMO] = LINES_JA;
+
 export const helpline = (): string => L(
-  'つらい気持ちを話せる場所があります。いのちSOS 0120-061-338。10代の人は24時間子供SOSダイヤル 0120-0-78310',
-  'If things feel heavy, you can talk to someone. In the US, call or text 988. Elsewhere, findahelpline.com lists free, confidential lines',
+  `つらい気持ちを話せる場所があります。${INOCHI.name} ${INOCHI.tel}。10代の人は${KODOMO.name} ${KODOMO.tel}`,
+  `If things feel heavy, you can talk to someone. In the US, call or text ${LINES_EN[0].tel}. Elsewhere, findahelpline.com lists free, confidential lines`,
 );

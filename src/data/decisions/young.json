@@ -3444,6 +3444,7 @@
     },
     {
       "id": "y-extortion-shop",
+      "heavy": true,
       "minAge": 21,
       "maxAge": 30,
       "weight": 1,

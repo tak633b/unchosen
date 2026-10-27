@@ -20,6 +20,8 @@ import { lifeNow, presenceHome } from './ui/presence';
 import { applyTheme, themeBtn, toggleTheme } from './ui/theme';
 import { PACES, pace, paceSeg, setPace, yearMs } from './ui/pace';
 import { bindStones, dropStone, stonesHtml } from './ui/stones';
+import { careLink, gentleSwitch, restOk } from './ui/care';
+import { helpline } from './engine/suicide';
 
 const app = $('#app');
 // 世界では1秒に約4.2人が生まれ、約2人が亡くなる (国連世界人口推計 2024)
@@ -105,6 +107,7 @@ function home(): void {
         <button class="primary" data-go="born">${L('生まれる', 'Be born')}</button>
         ${saved ? `<button data-go="resume">${L(`続きから・${esc(byCode(saved.p.country).name)}、${saved.p.age}歳の${esc(saved.p.name)}`, `Continue: ${esc(saved.p.name)}, ${saved.p.age}, ${esc(byCode(saved.p.country).name)}`)}</button>` : ''}
       </div>
+      ${gentleSwitch()}
       ${paceSeg()}
       <details class="opts" ${custom ? 'open' : ''}><summary>${L('細かく選ぶ(任意)', 'Choose details (optional)')}</summary>
       <div class="startgrid">
@@ -132,6 +135,7 @@ function home(): void {
       <p class="note">${L('遊んでいる人生の国・生まれた年・性別・年齢だけを送って数えている。あなた自身のことは何も送らない。', 'Only the country, birth year, sex and age of the life being played are sent and counted. Nothing about you.')}</p></section>
     <section><h2>${L('みんなの人生', 'Lives others lived')}</h2><p class="note">${L('それぞれが生きた人生と、その人への一言。プレイした人の名前や連絡先は残らない。', 'Lives that players lived, and a few words for each. No names or contact details of players are kept.')}</p><ul class="memorial" id="shared"><li>${L('読み込み中…', 'Loading…')}</li></ul></section>
     <nav class="homenav"><button data-go="past">${L('前世の記録', 'Past lives')}</button><button data-go="about">${L('データについて', 'About the data')}</button></nav>
+    <p class="carefoot">${careLink()}</p>
   </main>${stonesHtml()}`;
   bindStones(app);
   const t0 = performance.now();
@@ -179,10 +183,7 @@ function home(): void {
     if (gb) { save('gender', gb.dataset.gender || null); home(); return; }
     const ym = t.closest<HTMLElement>('[data-year]')?.dataset.year;
     if (ym) { save('birthYear', ym === 'random' ? null : ym === 'now' ? THIS_YEAR : chosenYear() ?? THIS_YEAR); home(); return; }
-    if (go === 'born') {
-      if (saved) clearSaved();
-      await newBirth(basis);
-    }
+    if (go === 'born') await newBirth(basis);
     if (go === 'resume') { await loadWorld(); resumeGame(home); }
     if (go === 'past') past();
     if (go === 'about') about();
@@ -191,6 +192,8 @@ function home(): void {
 
 // 新しい人生をくじで引く (トップの「生まれる」と、出生届の「引き直す」)
 async function newBirth(basis: BirthBasis): Promise<void> {
+  if (!restOk(() => void newBirth(basis))) return; // 夜遅くなら、始める前に一度だけ休むかたずねる (ui/care.ts)
+  if (hasSaved()) clearSaved();
   await loadWorld();
   const seed = randomSeed();
   const year = chosenYear() ?? pickBirthYear(makeRng(seed ^ 0x5eed));
@@ -404,6 +407,7 @@ function past(): void {
   app.innerHTML = `
   <main class="home wide">
     <h1>${L('前世の記録', 'Past lives')}</h1>
+    <p class="note">${L('ここにあるのは、統計から作ったシミュレーションの人生。あなたの実際の前世や、これから先のことを教えるものではない。', 'These are simulated lives built from statistics. They are not your real past lives, and they do not tell your future.')}</p>
     ${lives.length ? `<p class="note">${L(`最近の${lives.length}つの人生(最大10)。この端末にだけ残っている。`, `Your last ${lives.length} ${lives.length === 1 ? 'life' : 'lives'} (up to 10). Kept only on this device.`)}</p>` : ''}
     <ul class="pastlist">${lives.map((l, i) => `
       <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${causeLabel(l.cause) ? L(`${l.age}歳(${esc(causeLabel(l.cause))})`, `age ${l.age} (${esc(causeLabel(l.cause))})`) : L(`${l.age}歳`, `age ${l.age}`)}
@@ -439,7 +443,7 @@ function about(): void {
     <p>Income: a person's family and job sit within the country's income distribution (a log-normal shaped by the Gini index). Amounts are shown in purchasing-power-parity dollars.</p>
     <p>Before 1950 (only when you pick a year): life expectancy, under-5 mortality, population and fertility come from Gapminder's long-run series, joined smoothly to the UN figures for 1950. Years of war, famine and epidemic are smoothed out of the baseline, and their deaths are added separately. Life tables for 1900–1945 reshape each country's 1950s UN table (Brass logit model) to match those figures. They are estimates.</p>
     <p>Missing values are estimated from countries in the same region with similar GDP per person. Child marriage in high-income countries is set at 1%.</p>
-    <p>Suicide: it is one of the leading causes of death, so it is included at each country's rate by age and sex (WHO Global Health Estimates 2021), from age 10 up, without changing overall mortality. It is never shown as a cause on records, cards or the memorial, and no method or reason is ever described. If things feel heavy, you can talk to someone: in the US, call or text 988; elsewhere, findahelpline.com.</p>
+    <p>Suicide: it is one of the leading causes of death, so it is included at each country's rate by age and sex (WHO Global Health Estimates 2021), from age 10 up, without changing overall mortality. It is never shown as a cause on records, cards or the memorial, and no method or reason is ever described. ${esc(helpline())}.</p>
     <p>Crime and justice: drink-driving, fights, teen mistakes and theft in hard years are choices with costs, never gains. A record fades after a time modeled on Japanese law (fines 5 years, suspended sentences at the end of probation, prison 10 years after release). Family imprisonment uses prison population rates from the World Prison Brief.</p>` : `
     <p>国ごとの指標(${COUNTRIES.length}か国、人口50万人以上): 年間出生数・人口、男女別の平均寿命、乳児死亡率・5歳未満死亡率、1人当たりGDP(購買力平価)、ジニ係数、平均教育年数、高等教育就学率、農業従事者の割合、合計特殊出生率、妊産婦死亡率、HIV陽性率、殺人発生率、喫煙率、医療費の自己負担割合、18歳未満で結婚した女性の割合、生活満足度。</p>
     <p>出典: 国連世界人口推計、UN IGME、世界銀行 WDI、WHO、UNESCO UIS、UNDP、ILO、UNAIDS、UNODC、UNICEF、World Happiness Report(いずれも Our World in Data 経由)。2024年以前で最新の値を使っている。</p>
@@ -448,7 +452,7 @@ function about(): void {
     <p>所得: 国ごとの所得分布(ジニ係数から決めた対数正規分布)の中で、家と仕事の位置が決まる。金額は購買力平価ドルと、日本の物価での円換算(1ドル≒95円)を並べている。</p>
     <p>1950年より前(年を選んだときだけ): 平均寿命・5歳未満死亡率・人口・出生率は Gapminder の長い系列を使い、1950年の国連の値へなめらかにつないでいる。戦争・飢饉・疫病の年はふだんの流れからは除き、その死は別に足している。1900〜1945年の生命表は、その国の1950年代の国連の生命表の形を、これらの値に合うよう動かしたもの(ブラスのロジット・モデル)。どれも推定。</p>
     <p>欠けている値は、同じ地域で1人当たりGDPが近い国から推計している。高所得国の児童婚率は1%としている。</p>
-    <p>自死: 実際に主要な死因の一つなので、国・年齢・性別ごとの率(WHO Global Health Estimates 2021)で、10歳以上にだけ起こる。全体の死亡率は変えず、ほかの死因から取り分けている。記録・カード・追悼館には死因として出さず、方法や理由も書かない。つらい気持ちを話せる場所があります: いのちSOS 0120-061-338、10代の人は24時間子供SOSダイヤル 0120-0-78310。</p>
+    <p>自死: 実際に主要な死因の一つなので、国・年齢・性別ごとの率(WHO Global Health Estimates 2021)で、10歳以上にだけ起こる。全体の死亡率は変えず、ほかの死因から取り分けている。記録・カード・追悼館には死因として出さず、方法や理由も書かない。${esc(helpline())}。</p>
     <p>罪と償い: 飲酒運転・けんか・10代のあやまち・食べ物のない年の盗みは、代償のある選択として出てくる。罪で得をすることはない。前科は日本の刑法にならって消える(罰金は5年、執行猶予は猶予期間の終わり、刑務所は出てから10年)。家族の収監は World Prison Brief の収容率から。</p>`}
     <h2>${L('音楽', 'Music')}</h2>
     <ul>${Object.values(TRACKS).map((t) => `<li>“<a href="${t.url}" rel="noopener">${t.title}</a>” ${t.artist} (incompetech.com), <a href="${t.licenseUrl}" rel="noopener">${t.license}</a></li>`).join('')}</ul>
