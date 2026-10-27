@@ -37,6 +37,8 @@ import { worldMap } from './worldmap';
 import { orgsHtml } from './orgs';
 import { playReel, reelOf } from './reel';
 import { musicNow, musicScene } from './music';
+import { textureOf, type Texture } from '../engine/texture';
+import { mountTexture, texLine, textureHtml } from './texture';
 
 export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
@@ -59,6 +61,7 @@ export interface PastLife {
   job?: string;                // 最後の仕事 (JOBS の名前)
   lived?: string[];            // 暮らした国の順 (地図用)。古い記録には無い
   look?: Lookback;             // 振り返って: 残した・守った・失った (lookback.ts)
+  tex?: Texture; texLine?: string; // この人生の手ざわりと、その一、二文 (ui/texture.ts)。18歳より前に終わった人生と古い記録には無い
 }
 
 export type CircleTie = Pick<Tie, 'id' | 'name' | 'role' | 'sex' | 'age' | 'alive' | 'bond' | 'diedAt' | 'since' | 'until' | 'pet'>;
@@ -99,6 +102,8 @@ function factsOf(p: Person): [string, string][] {
   ];
 }
 
+const texOf = (p: Person) => { const t = textureOf(p); return t ? { tex: t, texLine: texLine(p, t) } : {}; };
+
 export function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[]): PastLife {
   return {
     seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
@@ -116,6 +121,7 @@ export function toPast(p: Person, others: Person[], basis: BirthBasis, album: Mo
     ...(album.length ? { album: pickMoments(album) } : {}),
     city: p.city, ...(p.job ? { job: p.job } : {}),
     lived: p.countriesLived, look: lookbackOf(p),
+    ...texOf(p),
   };
 }
 
@@ -162,6 +168,7 @@ export function deathRecord(l: PastLife, slot = ''): string {
   </section>
   ${l.look ? lookbackHtml(l.look) : ''}
   ${timeSpentHtml(l.kinds, l.age)}
+  ${textureHtml(l)}
   ${l.lived && l.lived.length > 1 ? `<section class="panel"><h3>${L('暮らした場所', 'Where this life was lived')} <small>${L('生まれた国から順に', 'from the birth country onward')}</small></h3>${worldMap(l.lived)}</section>` : ''}
   ${answers.length ? `<section class="panel"><h3>${L('ひと息のことば', 'Notes from the pauses')} <small>${L('時間が止まったときに書いたこと', 'written when time stopped')}</small></h3><ul class="answers">${answers.map((q) => `<li><small>${L(`${q.age}歳・`, `Age ${q.age} · `)}${esc(q.q)}</small><br>${esc(q.a)}</li>`).join('')}</ul></section>` : ''}
   ${l.album?.length ? `<section class="panel"><h3>${L('思い出のアルバム', 'Album')} <small>${L('その年の場面', 'the scene of that year')}</small></h3>${albumHtml(l.album)}</section>` : ''}
@@ -207,6 +214,7 @@ export function paintLife(root: HTMLElement, l: PastLife, p?: Person, others?: P
   paintScenes(root);
   root.querySelector<HTMLElement>('[data-replay]')?.addEventListener('click', () => void replayLife(l));
   mountHomeCompare(root, l);
+  mountTexture(root, l);
   root.querySelectorAll<HTMLCanvasElement>('canvas[data-gen]').forEach((cv) => { const g = l.line?.[Number(cv.dataset.gen)]; if (g) drawPortrait(cv, lineStandIn(g)); });
   paintOthers(root, l, others);
   // 同じ1秒に生まれた人の小さな顔。一生を作り直さず、生まれと享年だけで顔を決める

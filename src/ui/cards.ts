@@ -4,8 +4,8 @@ import { drawPortrait, drawScene, fromData, H as SH, W as SW, type SceneData } f
 import type { Person } from '../engine/person';
 import { isEn } from '../i18n';
 
-const FONT = isEn ? 'system-ui, "Helvetica Neue", Arial, sans-serif' : '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif';
-const SERIF = '"Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif';
+export const FONT = isEn ? 'system-ui, "Helvetica Neue", Arial, sans-serif' : '"Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif';
+export const SERIF = '"Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif';
 
 // years: 1年ずつの色の名前 (人生地図と同じ k-*)。あればカードの下の縁に1年1本の帯で描く
 export interface CardText { kicker: string; title: string; lines: string[]; foot: string; scene?: SceneData; years?: string[] }
@@ -64,7 +64,7 @@ export function drawCard(t: CardText): HTMLCanvasElement {
   return cv;
 }
 
-function wrap(g: CanvasRenderingContext2D, text: string, x: number, y: number, maxW: number, lh: number, maxLines: number): void {
+export function wrap(g: CanvasRenderingContext2D, text: string, x: number, y: number, maxW: number, lh: number, maxLines: number): void {
   let line = '';
   let n = 0;
   // 英語は単語の途中で折らない

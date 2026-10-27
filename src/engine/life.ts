@@ -39,6 +39,7 @@ import { pickRegion } from './regions';
 import { household, lastMonths } from './events/household';
 import { adoption } from './events/adopt';
 import { BIRTH_GAP, motherAgeAt } from './events/parents';
+import { texYear } from './texture';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -290,6 +291,7 @@ export function advanceYear(p: Person): void {
   drift(p);
   if (near && p.alive) logNearMiss(p, near, q);
   if (!p.kinds[p.age]) p.kinds[p.age] = baseKind(p);
+  texYear(p);
   if (PAUSE_AGES.includes(p.age) && p.reflect) p.questions.push({ age: p.age, q: '' });
 }
 

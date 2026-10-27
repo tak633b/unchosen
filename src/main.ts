@@ -22,6 +22,7 @@ import { PACES, pace, paceSeg, setPace, yearMs } from './ui/pace';
 import { bindStones, dropStone, stonesHtml } from './ui/stones';
 import { careLink, gentleSwitch, restOk } from './ui/care';
 import { helpline } from './engine/suicide';
+import { lifeTexName, TEX_UNLOCK, textureSettings } from './ui/texture';
 
 const app = $('#app');
 // 世界では1秒に約4.2人が生まれ、約2人が亡くなる (国連世界人口推計 2024)
@@ -134,7 +135,7 @@ function home(): void {
     <section id="nowlives" hidden><h2>${L('いま、この中で', 'Right now, in here')}</h2><div id="nowbody"></div>
       <p class="note">${L('遊んでいる人生の国・生まれた年・性別・年齢だけを送って数えている。あなた自身のことは何も送らない。', 'Only the country, birth year, sex and age of the life being played are sent and counted. Nothing about you.')}</p></section>
     <section><h2>${L('みんなの人生', 'Lives others lived')}</h2><p class="note">${L('それぞれが生きた人生と、その人への一言。プレイした人の名前や連絡先は残らない。', 'Lives that players lived, and a few words for each. No names or contact details of players are kept.')}</p><ul class="memorial" id="shared"><li>${L('読み込み中…', 'Loading…')}</li></ul></section>
-    <nav class="homenav"><button data-go="past">${L('前世の記録', 'Past lives')}</button><button data-go="about">${L('データについて', 'About the data')}</button></nav>
+    <nav class="homenav"><button data-go="past">${L('前世の記録', 'Past lives')}</button><button data-go="about">${L('データについて', 'About the data')}</button>${pastLives().length >= TEX_UNLOCK ? `<button data-go="texture">${L('手ざわりを決める', 'Choose a texture')}</button>` : ''}</nav>
     <p class="carefoot">${careLink()}</p>
   </main>${stonesHtml()}`;
   bindStones(app);
@@ -187,6 +188,7 @@ function home(): void {
     if (go === 'resume') { await loadWorld(); resumeGame(home); }
     if (go === 'past') past();
     if (go === 'about') about();
+    if (go === 'texture') textureSettings(app, home);
   };
 }
 
@@ -402,6 +404,12 @@ function born(p: Person, basis: BirthBasis): void {
 
 // ---- 前世の記録 -----------------------------------------------------------
 
+// 手ざわりで選ぶ (名前のある前世が2つ以上のときだけ)
+function texFilter(lives: ReturnType<typeof pastLives>): string {
+  const names = [...new Set(lives.map((l) => lifeTexName(l.tex)).filter((n): n is string => !!n))];
+  return names.length >= 2 ? `<label class="field">${L('手ざわりで選ぶ', 'Filter by texture')} <select id="texf"><option value="">${L('すべて', 'All')}</option>${names.map((n) => `<option>${esc(n)}</option>`).join('')}</select></label>` : '';
+}
+
 function past(): void {
   const lives = pastLives();
   app.innerHTML = `
@@ -409,12 +417,15 @@ function past(): void {
     <h1>${L('前世の記録', 'Past lives')}</h1>
     <p class="note">${L('ここにあるのは、統計から作ったシミュレーションの人生。あなたの実際の前世や、これから先のことを教えるものではない。', 'These are simulated lives built from statistics. They are not your real past lives, and they do not tell your future.')}</p>
     ${lives.length ? `<p class="note">${L(`最近の${lives.length}つの人生(最大10)。この端末にだけ残っている。`, `Your last ${lives.length} ${lives.length === 1 ? 'life' : 'lives'} (up to 10). Kept only on this device.`)}</p>` : ''}
+    ${texFilter(lives)}
     <ul class="pastlist">${lives.map((l, i) => `
-      <li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${causeLabel(l.cause) ? L(`${l.age}歳(${esc(causeLabel(l.cause))})`, `age ${l.age} (${esc(causeLabel(l.cause))})`) : L(`${l.age}歳`, `age ${l.age}`)}
+      <li data-texn="${esc(lifeTexName(l.tex) ?? '')}"><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${sexWord(genderOf(l))}${L('・', ', ')}${causeLabel(l.cause) ? L(`${l.age}歳(${esc(causeLabel(l.cause))})`, `age ${l.age} (${esc(causeLabel(l.cause))})`) : L(`${l.age}歳`, `age ${l.age}`)}
       <small>${new Date(l.date).toLocaleDateString(isEn ? 'en-US' : 'ja-JP')}</small></button></li>`).join('') || `<li>${L('まだない。', 'None yet.')}</li>`}</ul>
     <div id="pastdetail"></div>
     <button data-go="home">${L('戻る', 'Back')}</button>
   </main>`;
+  const tf = document.getElementById('texf') as HTMLSelectElement | null;
+  if (tf) tf.onchange = () => app.querySelectorAll<HTMLElement>('.pastlist li[data-texn]').forEach((li) => { li.hidden = !!tf.value && li.dataset.texn !== tf.value; });
   app.onclick = async (e) => {
     const t = e.target as HTMLElement;
     const i = t.closest<HTMLElement>('[data-i]')?.dataset.i;
