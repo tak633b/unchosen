@@ -37,6 +37,7 @@ import { scaleOf } from './common';
 import { independent } from './money';
 import { fill, fits, statOf, techWeight, type When } from './moments';
 import type { Tech } from '../tech';
+import { gentle } from '../gentle';
 
 export type WhoRole = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend';
 interface Effect { effects?: Partial<Stats>; cost?: number; d?: number; mark?: string } // mark: 起きたことの印 (p.recent の mark:…)。歴史の続き (history.ts) が読む
@@ -49,6 +50,7 @@ export interface Choice {
   title: string; text: string; stat?: string;
   en: { title: string; text: string; stat?: string };
   options: ChoiceOption[];
+  heavy?: boolean;  // 暴力の場面を含む。怖い場面を除くとき (gentle.ts) は出さない
   chance?: number;  // 歴史の出来事 (decisions/history.json)。条件に合う年にこの確率で出す。ふだんの分かれ道には混ぜない
   need?: string[];  // 歴史の出来事の、when で書けない条件 (history.ts の NEED)
 }
@@ -77,7 +79,7 @@ function whoOf(p: Person, c: Pick<Choice, 'who' | 'whoAge'>): Relative | undefin
 const byId = (p: Person, id: number) => [p.mother, p.father, ...p.siblings, p.spouse, p.dating, ...p.children, ...(p.ties ?? [])].find((r) => r?.id === id && r.alive);
 
 export function eligible(p: Person, c: Choice): boolean {
-  if (p.age < c.minAge || p.age > c.maxAge || p.recent[seenKey(c.id)] !== undefined) return false;
+  if (p.age < c.minAge || p.age > c.maxAge || p.recent[seenKey(c.id)] !== undefined || (c.heavy && gentle())) return false;
   const year = yearOf(p);
   if ((c.from !== undefined && year < c.from) || (c.to !== undefined && year > c.to)) return false;
   if (c.who && !whoOf(p, c)) return false;

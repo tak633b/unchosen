@@ -2,6 +2,7 @@
 import { byCode, countryAt, pickBirthCountry, type BirthBasis } from './countries';
 import { causeName, homicideHazard, isSuicide, pickCause } from './causes';
 import { helpline, suicideHazard } from './suicide';
+import { gentle } from './gentle';
 import { reachOut, strain, strainK } from './events/strain';
 import { justice } from './events/justice';
 import { isEn, L, religionName } from '../i18n';
@@ -186,7 +187,8 @@ export function riskParts(p: Person): RiskParts {
   const illK = ((p.illness?.mult ?? careQuality(c)) / careQuality(c)) * bpK(p);
   const hivAdd = p.hiv === 'untreated' && p.hivYears >= 3 ? 0.1 : p.hiv === 'treated' ? 0.003 : 0;
   // つらい時期 (events/strain.ts) には、自死の率をその倍率のぶんだけ動かす。時期の外では 0 なので、ふだんの死亡率は変わらない
-  const strainAdd = (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
+  // 怖い場面を除くとき (gentle.ts) は自死が起きないので、自死の率を上げる分も足さない
+  const strainAdd = gentle() ? 0 : (strainK(p) - 1) * suicideHazard(c, p.sex, p.age);
   const cal = calibration(p.age, p.sex);
   const jobAdd = p.working && !p.retired && p.job === DEEP_SEA ? DEEP_SEA_RISK : 0;
   return { q: clamp(cal * base * healthK * wealthK * smokeK * drinkK * illK + hivAdd + strainAdd + jobAdd + histAdd, 0, 1), table: base, cal, healthK, wealthK, smokeK, drinkK, illK, hivAdd, strainAdd, ...(jobAdd ? { jobAdd } : {}), ...hist };

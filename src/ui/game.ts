@@ -28,6 +28,7 @@ import { lifeBeat, lifeEnd, lifeNow, lifeStart, newLifeId, presenceLine, type Be
 import { yearMs } from './pace';
 import { STAR_MAX, toggleStar } from './stars';
 import { themeBtn, toggleTheme } from './theme';
+import { careLink, onCarePause } from './care';
 
 let YEAR_MS = yearMs();  // 1倍速で1年にかける時間 (pace.ts。既定は26秒、平均寿命まで約30分)
 const DEFER_MAX = 2;     // 決定を「いったん下ろす」のは2回まで
@@ -80,6 +81,8 @@ interface GameState {
 }
 
 let S: GameState | null = null;
+// 「心がつらいとき」や休むことをすすめる窓が開いたら、時間を止める (care.ts)
+onCarePause(() => { if (S && !S.paused) { S.paused = true; render(); } });
 
 export const hasSaved = () => load<Saved | null>(SAVE_KEY, null);
 export const clearSaved = () => save(SAVE_KEY, null);
@@ -222,6 +225,7 @@ function shell(): string {
       <button data-act="bg" id="bgbtn" title="${L('ONなら別のタブに移っても進み続ける (決めることが来たら止まる)', 'When on, keeps going in a background tab (stops at decisions)')}">${L('裏でも進める', 'Run in background')}</button>
       <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button><input type="range" id="musicvol" min="0" max="100" step="5" value="${musicVolume()}" aria-label="${L('音量', 'Volume')}">
       <button data-act="note" id="notebtn" title="${L('いま思ったことを一行、この人生の記録に書き留める', 'Write one line into this life\'s record')}">✎</button>
+      ${careLink()}
       ${themeBtn()}
       <button data-act="exit">${L('中断', 'Quit')}</button>
     </div>

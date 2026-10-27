@@ -6,6 +6,7 @@ import { pick } from '../rng';
 import { shared } from '../bonds';
 import { scaleOf } from './common';
 import { L } from '../../i18n';
+import { gentle } from '../gentle';
 
 type Kind = NonNullable<Person['record']>['kind'];
 const FADE: Record<Kind, number> = { fine: 5, suspended: 3, prison: 10 };
@@ -33,7 +34,7 @@ export function justice(p: Person): void {
   const c = countryOf(p);
   // 推計: 毎年の出会いやすさ。米国 CDC (2018): 飲酒運転は自己申告で年1.47億回、逮捕は約100万件 (1回あたり約0.7%)
   if (p.drinker && p.car && p.age >= 18 && p.age <= 80 && p.age - (p.recent.drunkDrive ?? -99) >= 10 && r() < 0.04) return drunkDrive(p);
-  if (p.drinker && p.age >= 18 && p.age <= 60 && p.age - (p.recent.brawl ?? -99) >= 15 && r() < 0.015) return brawl(p);
+  if (p.drinker && p.age >= 18 && p.age <= 60 && p.age - (p.recent.brawl ?? -99) >= 15 && r() < 0.015 && !gentle()) return brawl(p); // けんかは怖い場面を除くとき (gentle.ts) は起きない
   if (p.age >= 13 && p.age <= 18 && p.recent.teen === undefined && r() < 0.02) return teenMistake(p);
   if (p.age >= 16 && p.stats.money < 8 && p.wealth <= 0 && c.gdp < 20000 && p.age - (p.recent.hungry ?? -99) >= 10 && r() < 0.15) return hungerTheft(p);
 }

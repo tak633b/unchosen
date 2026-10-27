@@ -5,6 +5,7 @@ import { isEn } from '../i18n';
 import { pickWeighted, type Rng } from './rng';
 import type { Sex } from './lifetable';
 import { suicideHazard } from './suicide';
+import { gentle } from './gentle';
 
 type Tag = 'inf' | 'mal' | 'smoke' | 'old' | 'road';
 type Row = [name: string, weight: number, tag?: Tag];
@@ -80,6 +81,7 @@ export function homicideHazard(c: Country, sex: Sex, age: number): number {
 // 他殺と自死の割合。生命表の死亡率は両方を含むので、ほかの死因から取り分けるだけで、亡くなる確率は変えない。
 // suicideK: つらい時期 (events/strain.ts) の倍率
 function violentShares(c: Country, sex: Sex, age: number, q: number, suicideK: number): [h: number, s: number] {
+  if (gentle()) return [0, 0]; // 怖い場面を除く (gentle.ts): 他殺と自死の分も、ほかの死因の重みで配る
   const h = Math.min(0.9, homicideHazard(c, sex, age) / q);
   return [h, Math.min(0.95 - h, (suicideHazard(c, sex, age) * suicideK) / q)];
 }
