@@ -95,7 +95,8 @@ export function family(p: Person): void {
     if (k.age === 18 && p.age < 80 && k.alive && !k.fixed) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');
   }
   // 記録で決まっている子の子は記録どおりに足すので (kin.ts)、ここでは数えない
-  const grown = p.children.filter((k) => k.alive && k.age >= 20 && !k.fixed);
+  // 孫を持てるのは、子を産める・持てる年の子だけ (70歳の娘に孫が生まれていた)
+  const grown = p.children.filter((k) => k.alive && k.age >= 20 && k.age <= (k.sex === 'F' ? 45 : 60) && !k.fixed);
   if (p.age >= 50 && grown.length && r() < 0.12) {
     const parent = pick(r, grown);
     const sex = r() < 0.512 ? 'M' : 'F';

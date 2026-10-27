@@ -65,7 +65,8 @@ export function pensionRule(p: Person, c: Country): Rule {
       const age = M ? lerp(b, 1941, 60, 1961, 65) : lerp(b, 1946, 60, 1966, 65);
       const per = y >= 2022 ? 0.004 : 0.005;
       // 2013年から会社は65歳まで雇い続けることが義務 (高年齢者雇用安定法)。65歳より前の年金の年齢では7割5分が働き続ける (60〜64歳の就業率 74%、2022)
-      return { age, minYears: y >= 2017 ? 10 : 25, stay: age < 65 ? 0.75 : 0.5, claim: 0.15, early: age > 60 ? { age: 60, years: 10, cut: reduction((age - 60) * 12, per), why: L(`60歳から繰り上げて受け取れる。1か月早めるごとに${per * 100}%減る`, `The pension can start from 60, ${per * 100}% less for each month early`) } : undefined };
+      // 繰上げ受給は厚生年金で数%にとどまる (厚労省「厚生年金保険・国民年金事業の概況」)。65〜69歳の男性の就業率61% (労働力調査2023) なので、年金の年齢を過ぎても多くが働く
+      return { age, minYears: y >= 2017 ? 10 : 25, stay: age < 65 ? 0.8 : 0.65, claim: 0.05, early: age > 60 ? { age: 60, years: 10, cut: reduction((age - 60) * 12, per), why: L(`60歳から繰り上げて受け取れる。1か月早めるごとに${per * 100}%減る`, `The pension can start from 60, ${per * 100}% less for each month early`) } : undefined };
     }
     case 'KOR': {
       // 国民年金 (1988年〜) は1952年生まれまで60歳、1953〜56年61歳・57〜60年62歳・61〜64年63歳・65〜68年64歳・1969年から65歳。

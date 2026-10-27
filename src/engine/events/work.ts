@@ -227,7 +227,8 @@ function retirement(p: Person, c: Country): void {
     if (p.age >= rule.age && (p.age - rule.age) % 2 === 0) {
       // 年金の年齢を過ぎても働き続ける人の割合は国で違う (pension.ts の stay)。表に無い国は、これまでどおり65歳ごろに引退する
       const first = p.age === rule.age;
-      const leave = c.code in STAY_KNOWN ? (first ? 1 - rule.stay : 0.55) : (p.age >= 65 ? 1 : 0);
+      // 2回目からは2年ごとに55%が辞める。ただし年金の年齢を過ぎても多くが働く国 (日本・韓国) はその割合のまま
+      const leave = c.code in STAY_KNOWN ? (first ? 1 - rule.stay : Math.min(0.55, 1 - rule.stay)) : (p.age >= 65 ? 1 : 0);
       decide(p, {
         title: L('引退する？', 'Retire?'),
         text: L(`${p.age}歳。年金を受け取れる年になった。`, `Age ${p.age}. Old enough to draw a pension.`),
@@ -235,7 +236,7 @@ function retirement(p: Person, c: Country): void {
           { label: L('引退する', 'Retire'), hint: L('年金で暮らす・ゆとり↑', 'Live on the pension, more time ↑'), apply: (q) => retire(q, L('仕事を引退し、年金で暮らし始めた。', 'Retired and began living on a pension.')) },
           { label: L('もう少し働く', 'Keep working'), apply: () => {} },
         ],
-        auto: (q) => (q.stats.health < 45 || q.rng() < leave ? 0 : 1),
+        auto: (q) => (q.stats.health < 25 || q.rng() < leave ? 0 : 1),
       });
     }
     return;
@@ -270,7 +271,8 @@ function earlyPension(p: Person, rule: Rule, e: Early): void {
         apply: (q) => { q.pensionCut = e.cut; retire(q, cut ? L(`${q.age}歳で、減った年金を早めに受け取って引退した。`, `Retired at ${q.age}, drawing a reduced pension early.`) : L(`長く働いてきたので、${q.age}歳で減額なしの年金を受け取って引退した。`, `After a long working life, retired at ${q.age} on a full pension.`)); } },
       { label: L(`${rule.age}歳まで働く`, `Work on to ${rule.age}`), apply: () => {} },
     ],
-    auto: (q) => (q.stats.health < 35 || q.rng() < rule.claim ? 0 : 1),
+    // 体の値は60代でたいてい20〜40 (実測)。ここで辞めるのは、とても弱った人だけ
+    auto: (q) => (q.stats.health < 20 || q.rng() < rule.claim ? 0 : 1),
   });
 }
 
