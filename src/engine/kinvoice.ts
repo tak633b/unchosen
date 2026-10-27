@@ -28,6 +28,7 @@ function pCall(v: Voice): string {
     case 'child': return f ? '母' : '父';
     case 'grandchild': return f ? '祖母' : '祖父';
     case 'grandparent': return `孫の${p}`;
+    case 'step': return `継子の${p}`;
     case 'pet': return p;
     case 'sibling': return `きょうだいの${p}`;
     case 'spouse': return `連れ合いの${p}`;

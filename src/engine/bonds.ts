@@ -22,6 +22,7 @@ export function initialBond(p: Person, r: Relative, role: Role): number {
     case 'child': return 75;
     case 'grandchild': return 50;
     case 'grandparent': return 55;
+    case 'step': return 40; // 親の新しい相手。打ち解けるかは数年で決まる (events/parents.ts)
     case 'pet': return 60;
     case 'friend': return 50;
     case 'mentor': return 45;
@@ -104,8 +105,8 @@ export function addTie(p: Person, t: Omit<Tie, 'id' | 'bond'> & { bond?: number 
 export function callName(r: Relative, role: Role): string {
   const n = r.name ?? '';
   const ja: Record<Role, string> = {
-    mother: '母', father: '父', sibling: `きょうだいの${n}`, spouse: `連れ合いの${n}`, partner: `恋人の${n}`, child: `子どもの${n}`,
-    friend: `友だちの${n}`, mentor: `恩師の${n}`, rival: `ライバルの${n}`, ex: `昔の恋人の${n}`, grandchild: `孫の${n}`, grandparent: r.sex === 'F' ? '祖母' : '祖父', pet: `${r.pet ?? ''}の${n}`,
+    mother: '母', father: '父', sibling: `きょうだいの${n}`, spouse: r.cohab ? n : `連れ合いの${n}`, partner: `恋人の${n}`, child: `子どもの${n}`,
+    friend: `友だちの${n}`, mentor: `恩師の${n}`, rival: `ライバルの${n}`, ex: `昔の恋人の${n}`, grandchild: `孫の${n}`, grandparent: r.sex === 'F' ? '祖母' : '祖父', pet: `${r.pet ?? ''}の${n}`, step: `継${r.sex === 'F' ? '母' : '父'}の${n}`,
   };
   return L(ja[role], role === 'mother' ? 'Mother' : role === 'father' ? 'Father' : n);
 }

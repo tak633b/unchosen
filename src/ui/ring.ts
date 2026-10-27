@@ -21,11 +21,12 @@ export function roleName(t: Tie, p: Person): string {
     case 'mother': return L('母', 'Mother');
     case 'father': return L('父', 'Father');
     case 'sibling': return f ? L(older ? '姉' : '妹', 'Sister') : L(older ? '兄' : '弟', 'Brother');
-    case 'spouse': return f ? L('妻', 'Wife') : L('夫', 'Husband');
+    case 'spouse': return t.cohab ? L('パートナー', 'Partner') : f ? L('妻', 'Wife') : L('夫', 'Husband');
     case 'partner': return L('恋人', 'Partner');
     case 'child': return f ? L('娘', 'Daughter') : L('息子', 'Son');
     case 'grandchild': return L('孫', f ? 'Granddaughter' : 'Grandson');
     case 'grandparent': return f ? L('祖母', 'Grandmother') : L('祖父', 'Grandfather');
+    case 'step': return f ? L('継母', 'Stepmother') : L('継父', 'Stepfather');
     case 'pet': return t.pet === '猫' ? L('猫', 'Cat') : L('犬', 'Dog');
     case 'friend': return L('友だち', 'Friend');
     case 'mentor': return L('恩師', 'Mentor');
@@ -34,7 +35,7 @@ export function roleName(t: Tie, p: Person): string {
   }
 }
 
-const ORDER: Role[] = ['mother', 'father', 'grandparent', 'spouse', 'partner', 'child', 'grandchild', 'friend', 'mentor', 'rival', 'ex', 'sibling'];
+const ORDER: Role[] = ['mother', 'father', 'step', 'grandparent', 'spouse', 'partner', 'child', 'grandchild', 'friend', 'mentor', 'rival', 'ex', 'sibling'];
 const gone = (t: Tie) => t.until !== undefined || t.role === 'ex' || (t.role === 'pet' && !t.alive); // 亡くなったペットは外の輪へ
 // 人の輪に並べる全員: 人と、飼ったペット
 export const everyone = (p: Person): Tie[] => [...people(p), ...petTies(p)];

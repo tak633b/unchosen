@@ -134,7 +134,7 @@ function relOf(rec: Ledger, id: number, year: number): Relative {
   return { alive: !dead, age: dead ? fx.dies! : year - fx.born, sex: rec.sexOf(id), name: rec.nameOf(id), fixed: fx };
 }
 
-interface Wed { year: number; spouse?: number } // spouse が無ければ、乱数で選んだ相手と結婚する
+interface Wed { year: number; spouse?: number; cohab?: boolean } // spouse が無ければ、乱数で選んだ相手と結婚する
 interface Kid { id: number; year: number }
 interface Grand extends Kid { parent: number }
 
@@ -153,7 +153,7 @@ function fixedDeaths(rp: Person): void {
     const n = rel.name ?? '';
     const text = role === 'mother' || role === 'father'
       ? L(`${role === 'mother' ? '母' : '父'}が${rel.age}歳で亡くなった${why}。`, `${role === 'mother' ? 'Mother' : 'Father'} died at ${rel.age}${why}.`)
-      : role === 'spouse' ? L(`連れ合いの${n}が${rel.age}歳で亡くなった${why}。`, `Spouse ${n} died at ${rel.age}${why}.`)
+      : role === 'spouse' ? (rel.cohab ? L(`${n}が${rel.age}歳で亡くなった${why}。`, `${n} died at ${rel.age}${why}.`) : L(`連れ合いの${n}が${rel.age}歳で亡くなった${why}。`, `Spouse ${n} died at ${rel.age}${why}.`))
         : role === 'child' ? L(`子どもの${n}が${rel.age < 1 ? '1歳になる前に' : `${rel.age}歳で`}亡くなった${why}。`, `Child ${n} died ${rel.age < 1 ? 'before turning 1' : `at ${rel.age}`}${why}.`)
           : role === 'sibling' ? L(`きょうだいの${n}が${rel.age}歳で亡くなった${why}。`, `${rel.sex === 'F' ? 'Sister' : 'Brother'} ${n} died at ${rel.age}${why}.`)
             : L(`孫の${n}が${rel.age}歳で亡くなった${why}。`, `Grandchild ${n} died at ${rel.age}${why}.`);
@@ -212,7 +212,7 @@ function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
     job = t.job;
     if (role === 'spouse') {
       const w = rec.wedPa(t);
-      weds.push({ year: rec.year(w), spouse: 0 });
+      weds.push({ year: rec.year(w), spouse: 0, ...(t.cohab ? { cohab: true } : {}) }); // 結婚せずに一緒に暮らした相手 (events/love.ts)
       cover(rec.p.log.find((e) => e.age === w && e.big && e.who?.includes(id)));
       const mine = childIds(id);
       kids.push(...mine.map((k) => { const r = rec.byId.get(k)!.r; cover(rec.entry(r.since!, id, k)); return { id: k, year: rec.born(r) }; }));
@@ -284,8 +284,8 @@ function build(rec: Ledger, id: number, upto = Infinity): KinLife | undefined {
         q.dating = undefined;
         if (w.spouse === undefined) { marry(q, newPartner(q)); continue; }
         keepLateSpouse(q);
-        q.spouse = { ...relOf(rec, w.spouse, yr), id: newId(q), bond: 70, since: q.age };
-        shared(q, [q.spouse], L(`${q.spouse.name}と結婚した。`, `Married ${q.spouse.name}.`), 'love', 10, true, undefined, 'wedding');
+        q.spouse = { ...relOf(rec, w.spouse, yr), id: newId(q), bond: 70, since: q.age, ...(w.cohab ? { cohab: true } : {}) };
+        shared(q, [q.spouse], w.cohab ? L(`${q.spouse.name}と一緒に暮らし始めた。結婚はしていない。`, `Moved in with ${q.spouse.name}, without marrying.`) : L(`${q.spouse.name}と結婚した。`, `Married ${q.spouse.name}.`), 'love', 10, true, undefined, w.cohab ? 'move_in' : 'wedding');
       }
       for (const k of kids) {
         if (k.year !== yr) continue;

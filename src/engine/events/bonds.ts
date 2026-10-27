@@ -78,7 +78,9 @@ function drift(p: Person): void {
   for (const [r, role] of circle(p)) {
     if (!r.alive || r.bond === undefined) continue;
     let d = 0;
-    if (role === 'mother' || role === 'father' || role === 'sibling') d = ((role === 'sibling' ? 50 : 60) - r.bond) * 0.05 + fam + away;
+    // 両親が別れたあと、離れて暮らす親とは遠くなりやすい (events/parents.ts)
+    const apart = p.split && role !== 'sibling' && role !== p.split.with ? (p.split.rare ? 25 : 45) : 60;
+    if (role === 'mother' || role === 'father' || role === 'sibling') d = ((role === 'sibling' ? 50 : apart) - r.bond) * 0.05 + fam + away;
     else if (role === 'spouse' || role === 'child' || role === 'grandchild') d = (65 - r.bond) * 0.05 + fam;
     else if (role === 'partner') d = 0.5;
     else if ((r as Tie).until === undefined && (role === 'friend' || role === 'mentor')) d = (role === 'friend' ? -1.2 : -0.5) + (p.focus === 'rest' ? 0.8 : 0);

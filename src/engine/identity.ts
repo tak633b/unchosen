@@ -84,6 +84,18 @@ export function makeName(rng: Rng, code: string, sex: Sex, family?: { pool: stri
   return { given, full, pool: poolId, familyIndex, key: givens[givenIndex] };
 }
 
+// 姓を変えた人の姓名 (結婚で相手の姓になるとき。events/love.ts)。名はそのまま、姓だけ同じ伝統の familyIndex 番に。並びは makeName と同じ
+export function withFamily(poolId: string, sex: Sex, given: string, familyIndex: number): string {
+  const pool = POOLS[poolId] ?? Object.values(POOLS)[0];
+  const female = sex === 'F' && pool.familyFemale;
+  const en = isEn && pool.familyEn;
+  const fam = (en && (female ? pool.familyFemaleEn ?? pool.familyEn : pool.familyEn)?.[familyIndex])
+    || (female ? pool.familyFemale![familyIndex] : pool.family[familyIndex]);
+  const order = en && poolId === 'japanese' ? 'given-first' : pool.order;
+  const sep = en ? ' ' : pool.sep;
+  return order === 'family-first' ? `${fam}${sep}${given}` : `${given}${sep}${fam}`;
+}
+
 // 都市の人は上位の都市ほど生まれやすい
 export function pickCity(rng: Rng, code: string): string | null {
   const ci = idOf(code);

@@ -214,7 +214,8 @@ describe('1918年のかぜ', () => {
       if (!liveTo(p, 1920).alive && p.cause === 'インフルエンザ') flu++;
     }
     expect(flu / n).toBeGreaterThan(0.03);
-    expect(flu / n).toBeLessThan(0.08);
+    // 上限は0.1。1500人ずつ6組で測ると、変更前の版でも0.064〜0.090 (平均0.076、生き残る約600人の二項分布のゆれ ±0.011) で、0.08 は平均のすぐ上だった
+    expect(flu / n).toBeLessThan(0.1);
   });
 });
 

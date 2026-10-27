@@ -42,6 +42,7 @@ export function idCard(p: Person): string {
       : `${byCode(p.birthCountry).name}・${p.birthYear}年${p.birthMonth}月`],
     [L('住まい', 'Lives'), `${p.city ?? L('農村', 'Rural area')}${L('、', ', ')}${c.name}`],
     [L('宗教', 'Religion'), religionName(p.religion)],
+    ...(p.maiden ? [[L('旧姓名', 'Birth name'), p.maiden] as [string, string]] : []), // 結婚で姓を変えた人 (events/love.ts)
     [L('生まれた家', 'Family'), dots(p.familyP)],
     [L('学歴', 'School'), p.age < 6 ? L('就学前', 'Preschool') : p.school.enrolled ? L(`在学中(${p.school.years + 1}年目)`, `In school (year ${p.school.years + 1})`) : p.school.uni === 'studying' ? `${L('大学在学中', 'At university')}${p.school.major ? `${L('・', ', ')}${majorName(p.school.major)}` : ''}` : EDU_LABEL[eduLevel(p)]],
   ];
@@ -76,7 +77,7 @@ export function familyPanel(p: Person): string {
     [`${L('父', 'Father')} ${p.father.name ?? ''}`, rel(p.father.alive, p.father.age)],
     [L('きょうだい', 'Siblings'), sibs.length ? L(`${sibs.length}人${sibDead ? `(うち${sibDead}人が他界)` : ''}`, `${sibs.length}${sibDead ? ` (${sibDead} deceased)` : ''}`) : L('なし', 'None')],
   ];
-  if (p.spouse) rows.push([`${L('連れ合い', 'Spouse')} ${p.spouse.name ?? ''}`, p.spouse.alive ? `${yrs(p.spouse.age)}${p.spouse.job ? `${L('・', ', ')}${jobName(p.spouse.job)}` : ''}` : L('他界', 'Deceased')]);
+  if (p.spouse) rows.push([`${p.spouse.cohab ? L('パートナー', 'Partner') : L('連れ合い', 'Spouse')} ${p.spouse.name ?? ''}`, p.spouse.alive ? `${yrs(p.spouse.age)}${p.spouse.job ? `${L('・', ', ')}${jobName(p.spouse.job)}` : ''}` : L('他界', 'Deceased')]);
   else if (p.dating) rows.push([`${L('恋人', 'Partner')} ${p.dating.name}`, yrs(p.dating.age)]);
   for (const k of p.children) rows.push([`${L('子ども', 'Child')} ${k.name ?? ''}`, k.alive ? yrs(k.age) : L('他界', 'Deceased')]);
   if (p.pet) rows.push([`${L(p.pet.kind, p.pet.kind === '犬' ? 'Dog' : 'Cat')} ${p.pet.name}`, yrs(p.pet.age)]);

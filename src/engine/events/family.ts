@@ -14,6 +14,7 @@ import { petAged, petDied } from '../pets';
 import { orphans } from './roots';
 import { funeral, remember } from './remember';
 import { grownChildren } from './grown';
+import { parents as parentsApart } from './parents';
 
 export function relDies(p: Person, rel: Relative): string | null {
   const c = countryOf(p);
@@ -50,6 +51,7 @@ export function family(p: Person): void {
     if (young) p.familyP = clamp(p.familyP - 0.12, 0.01, 0.99);
     if (!p.mother.alive && !p.father.alive && p.age >= 18) inherit(p);
   }
+  if (p.alive) parentsApart(p);
   for (const s of p.siblings) {
     if (s.age < 0) {
       s.age++;
@@ -73,7 +75,7 @@ export function family(p: Person): void {
     const cause = relDies(p, p.spouse);
     if (cause) {
       const quiet = isSuicide(cause);
-      log(p, L(`連れ合いの${p.spouse.name}が${p.spouse.age}歳で亡くなった${quiet ? '' : `(${cause})`}。`, `Spouse ${p.spouse.name} died at ${p.spouse.age}${quiet ? '' : ` (${cause})`}.`), 'loss', true, undefined, [p.spouse.id!]);
+      log(p, L(`${p.spouse.cohab ? '' : '連れ合いの'}${p.spouse.name}が${p.spouse.age}歳で亡くなった${quiet ? '' : `(${cause})`}。`, `${p.spouse.cohab ? '' : 'Spouse '}${p.spouse.name} died at ${p.spouse.age}${quiet ? '' : ` (${cause})`}.`), 'loss', true, undefined, [p.spouse.id!]);
       because(p, deathWhy(countryOf(p), p.spouse.sex, p.spouse.age));
       if (quiet) afterSuicideLoss(p);
       mourn(p, p.spouse, -20, -15);

@@ -38,6 +38,8 @@ export interface Relative {
   pet?: '犬' | '猫';   // 人の輪に並べるペット (role 'pet') の種類
   gen?: number;       // 前の世代の主人公 (この人で続けた一つ前の人生)。その世代の番号
   adopted?: boolean;  // 養子として迎えた子 (events/adopt.ts)
+  cohab?: boolean;    // 結婚せずに一緒に暮らしている連れ合い (events/love.ts)。呼ぶときは「配偶者」ではなく名前で
+  fam?: [string, number]; // 連れ合いの家の姓: 命名の伝統 (identity.json の pool) と family の番号。結婚で姓を変えるとき (events/love.ts)
 }
 // 家系の一人。顔を描き、年と続き柄を出す分だけ持つ。rel は次の主人公がこの人から見て何にあたるか
 export interface LineEntry { seed: number; name: string; given: string; sex: Sex; gender?: 'X'; birthYear: number; age: number; cause: string; birthCountry: string; country: string; religion: string; rel?: Role } // rel が無いのは家系の最後 (記録の本人)
@@ -52,7 +54,7 @@ export interface Anchor {
   each: (p: Person) => void;                                       // 毎年、家族の時間のあとに: 決まった結婚・子・死
 }
 // 主人公から見た関係。family 系は Person の mother/father/siblings/spouse/children に、それ以外は ties に入る
-export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild' | 'grandparent' | 'pet'; // pet は飼った犬・猫 (人の輪に並べるだけ)。grandparent は、孫として一生を続けた人から見た前の主人公だけ
+export type Role = 'mother' | 'father' | 'sibling' | 'spouse' | 'partner' | 'child' | 'friend' | 'mentor' | 'rival' | 'ex' | 'grandchild' | 'grandparent' | 'pet' | 'step'; // pet は飼った犬・猫 (人の輪に並べるだけ)。grandparent は、孫として一生を続けた人から見た前の主人公だけ
 export interface Memory { age: number; text: string; d: number; k?: string } // d: その時の近さの変化。k: 出来事の種類 (最後の言葉を、語る人の目線で組むため)
 export interface Tie extends Relative { role: Role; since: number; until?: number; of?: number } // since/until は主人公の年齢。of は孫の親 (子) の id
 // 分かれ道の結果のうち、何年か後に起きるもの。age 歳で decisions/*.json の id・選択肢 o・結果 r が起きる。w は出てくる人の id
@@ -182,6 +184,8 @@ export interface Person {
   strain?: { until: number; k: number };  // つらい時期 (events/strain.ts)。until の年齢で抜ける。k は自死の率にかける倍率
   record?: { kind: 'fine' | 'suspended' | 'prison'; until: number }; // 前科 (events/justice.ts)。until の年齢で効力を失う
   jailed?: { id: number; until: number; retrial?: boolean }; // 刑務所にいる家族 (events/justice.ts)
+  split?: { age: number; with: 'mother' | 'father'; rare?: boolean }; // 育つあいだに両親が別れた (events/parents.ts)。with: 一緒に暮らした親。rare: 離れた親とはほとんど会わない
+  maiden?: string;   // 結婚で姓を変えた人の、生まれた時の姓名 (events/love.ts)。身分の記録に残す
 }
 
 export const yearOf = (p: Person): number => p.birthYear + p.age;

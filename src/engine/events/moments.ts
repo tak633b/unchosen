@@ -86,6 +86,7 @@ function matches(p: Person, m: Moment): boolean {
   if ((m.from !== undefined && year < m.from) || (m.to !== undefined && year > m.to)) return false;
   const last = p.recent[m.id];
   if (last !== undefined && (m.once || p.age - last < REPEAT_GAP)) return false;
+  if (m.id === 'forgot-anniversary' && p.spouse?.cohab) return false; // 結婚せずに暮らす二人に結婚記念日は無い (events/love.ts)
   return !m.when || fits(p, m.when);
 }
 
@@ -129,7 +130,9 @@ export const fill = (p: Person, text: string) => text
   .replaceAll('{city}', place(p))
   .replaceAll('{country}', countryOf(p).name)
   .replaceAll('{friend}', p.friend ?? L('幼なじみ', 'a childhood friend'))
-  .replaceAll('{pet}', p.pet?.name ?? '');
+  .replaceAll('{pet}', p.pet?.name ?? '')
+  // 結婚せずに暮らす相手は「配偶者」と呼ばず名前で (events/love.ts)
+  .replace(/配偶者|\b[Tt]he spouse\b/g, (m) => (p.spouse?.cohab ? p.spouse.name ?? m : m));
 
 const textOf = (m: Moment) => (isEn ? m.en?.text ?? m.text : m.text);
 // 犬の散歩のような出来事は、猫のときは猫の文にする。選ぶ候補と重みは変えない (乱数の並びが同じになる)

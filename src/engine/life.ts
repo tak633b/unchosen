@@ -35,6 +35,7 @@ import { excessQ, myEventCause, myExcessQ } from './worldevents';
 import { bornIn } from './polity';
 import { household, lastMonths } from './events/household';
 import { adoption } from './events/adopt';
+import { BIRTH_GAP, motherAgeAt } from './events/parents';
 
 // 5, 15, 30, 50, 70 歳で時間が止まり、問いが一つ出る
 // 問いの文はその場の暮らしで変わるので、画面に出す時に作る
@@ -70,10 +71,13 @@ export function createPerson(o: BirthOptions): Person {
   const religion = pickReligion(rng, c.code, year);
   const name = makeName(rng, c.code, sex, undefined, religion, year);
   const fam = { pool: name.pool, index: name.familyIndex };
-  const motherAge = Math.round(clamp(normal(rng, c.tfr > 4 ? 24 : 29, 5), 15, 45));
-  const fatherAge = Math.round(clamp(motherAge + normal(rng, 4, 3), 16, 70));
+  // 母の年齢は、上のきょうだいの数を引いてから決める (第1子の母は若く、後の子ほど年上。平均は国の値。events/parents.ts)。乱数を引く順は前と同じ
+  const z = normal(rng, 0, 1);
+  const fatherGap = normal(rng, 4, 3);
   const older = poisson(rng, Math.max(0, (c.tfr - 1) * 0.5));
   const younger = poisson(rng, Math.max(0, (c.tfr - 1) * 0.5));
+  const motherAge = motherAgeAt(c, older, z);
+  const fatherAge = Math.round(clamp(motherAge + fatherGap, 16, 70));
   const nameKeys = [name.key]; // 人の輪の中で同じ名にしない (きょうだい・親から。あとで友だちや恋人も足す)
   const sib = (age: number) => {
     const s: Sex = rng() < 0.5 ? 'M' : 'F';
@@ -90,9 +94,10 @@ export function createPerson(o: BirthOptions): Person {
     mother: { alive: true, age: motherAge, sex: 'F', name: freshName(() => makeName(rng, c.code, 'F', fam, undefined, year - motherAge), nameKeys).given },
     father: { alive: true, age: fatherAge, sex: 'M', name: freshName(() => makeName(rng, c.code, 'M', fam, undefined, year - fatherAge), nameKeys).given },
     siblings: [
-      ...Array.from({ length: older }, (_, i) => sib(2 + i * 2 + Math.floor(rng() * 2))),
+      // きょうだいの間はおよそ3年 (BIRTH_GAP)。いちばん上の子も、母が15歳になってから生まれている (motherAgeAt)
+      ...Array.from({ length: older }, (_, i) => sib(2 + i * BIRTH_GAP + Math.floor(rng() * 2))),
       // 母が45歳を過ぎてからは生まれない (乱数は同じだけ引いてから外す)
-      ...Array.from({ length: younger }, (_, i) => sib(-(2 + i * 2 + Math.floor(rng() * 2)))).filter((s) => motherAge - s.age <= 45),
+      ...Array.from({ length: younger }, (_, i) => sib(-(2 + i * BIRTH_GAP + Math.floor(rng() * 2)))).filter((s) => motherAge - s.age <= 45),
     ],
     school: { years: 0, target: 0, enrolled: false, uni: 'no', uniYears: 0, grad: 'no' },
     military: 'none', childMarriage: false, children: [], petsHad: 0, hobbies: [],

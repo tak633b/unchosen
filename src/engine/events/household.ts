@@ -33,7 +33,7 @@ function spouseJob(p: Person): void {
     p.wealth -= subsistence(c) * 0.2;
     if (roll(p, 0x5b01) >= 0.5) return;
     delete p.recent[key];
-    log(p, L(`連れ合いの${s.name}が、また仕事を見つけた。`, `Spouse ${s.name} found work again.`), 'family', false, undefined, [s.id!]);
+    log(p, L(`${s.cohab ? '' : '連れ合いの'}${s.name}が、また仕事を見つけた。`, `${s.cohab ? '' : 'Spouse '}${s.name} found work again.`), 'family', false, undefined, [s.id!]);
     return;
   }
   // 連れ合いが働いているあいだ、自分に稼ぎが無い年 (家にいる・失業中)。10年に一度まで
@@ -43,7 +43,7 @@ function spouseJob(p: Person): void {
   }
   if (s.age < 20 || s.age > 60 || roll(p, 0x5b02) >= 0.03) return;
   p.recent[key] = p.age;
-  log(p, L(`連れ合いの${s.name}が仕事を失った。しばらくは自分の稼ぎと貯えで暮らすことになった。`, `Spouse ${s.name} lost ${her(s)} job. For a while the household lived on one income and the savings.`), 'hard', false, undefined, [s.id!]);
+  log(p, L(`${s.cohab ? '' : '連れ合いの'}${s.name}が仕事を失った。しばらくは自分の稼ぎと貯えで暮らすことになった。`, `${s.cohab ? '' : 'Spouse '}${s.name} lost ${her(s)} job. For a while the household lived on one income and the savings.`), 'hard', false, undefined, [s.id!]);
 }
 
 // 結婚のとき、相手が働いて貯めていたお金を持ち寄る。love.ts の marry() から呼ぶ。額は働いた年数で、年収の1〜4割ほど
@@ -94,7 +94,7 @@ export function lastMonths(p: Person): void {
   if (p.age < 50 || isAcute(p.cause) || roll(p, 0x7c01) >= 0.7) return;
   const near = p.spouse?.alive ? p.spouse : p.children.find((k) => k.alive && k.age >= 15);
   if (!near) return;
-  const who = near === p.spouse ? L(`連れ合いの${near.name}`, `${p.sex === 'F' ? 'husband' : 'wife'} ${near.name}`) : L(`子どもの${near.name}`, `${near.sex === 'F' ? 'daughter' : 'son'} ${near.name}`);
+  const who = near === p.spouse ? (near.cohab ? near.name ?? '' : L(`連れ合いの${near.name}`, `${p.sex === 'F' ? 'husband' : 'wife'} ${near.name}`)) : L(`子どもの${near.name}`, `${near.sex === 'F' ? 'daughter' : 'son'} ${near.name}`);
   log(p, L(`最後の数か月を、${who}のそばで過ごした。伝えたかったことを話す時間があった。`, `Spent the last months near ${who}. There was time to say what needed saying.`), 'family', false, undefined, [near.id!]);
 }
 

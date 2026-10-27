@@ -134,7 +134,7 @@ function ties(p: Person): string {
   const pets = petTies(p);
   const best = closest(p, 1)[0];
   return sec(L('つながり', 'People'), rows([
-    [L('家族', 'Family'), n((t) => ['mother', 'father', 'sibling', 'spouse', 'grandparent'].includes(t.role))],
+    [L('家族', 'Family'), n((t) => ['mother', 'father', 'sibling', 'spouse', 'grandparent', 'step'].includes(t.role))],
     [L('子ども', 'Children'), n((t) => t.role === 'child')],
     [L('孫', 'Grandchildren'), n((t) => t.role === 'grandchild')],
     [L('友だち・恩師', 'Friends and mentors'), n((t) => t.role === 'friend' || t.role === 'mentor')],
