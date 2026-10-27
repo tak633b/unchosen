@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { createPerson, liveOut } from './life';
 import { circle } from './bonds';
 import eras from '../data/name-eras.json';
+import { makeName } from './identity';
+import { makeRng } from './rng';
 
 // 人の輪 (家族・友だち・恋人・恩師・ライバル・孫) の中で、同じ名前の人が出ない (根拠: きょうだいと友だちが同じ名前だったという報告)
 describe('人の輪の名前', () => {
@@ -27,5 +29,15 @@ describe('生まれた年の名', () => {
       expect(old.female, `seed ${s} 母`).toContain(p.mother.name);
       expect(old.male, `seed ${s} 父`).toContain(p.father.name);
     }
+  });
+});
+
+describe('漢字・ハングルの名は流行り直さない', () => {
+  it('1995年以降に生まれた日本人に、昭和より前の帯の名が付かない', () => {
+    const jp = (eras as unknown as Record<string, [number, { male: string[]; female: string[] }][]>).japanese;
+    const old = new Set(jp.flatMap(([, b]) => [...b.male, ...b.female]));
+    const got: string[] = [];
+    for (let s = 0; s < 300; s++) got.push(makeName(makeRng(s), 'JPN', s % 2 ? 'F' : 'M', undefined, undefined, 1995 + (s % 30)).given);
+    expect(got.filter((n) => old.has(n))).toEqual([]); // 1975年以降の生まれは、どの帯にもある名を外した今のリストから引く (identity.ts の modernOf)
   });
 });

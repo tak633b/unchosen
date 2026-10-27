@@ -1,6 +1,6 @@
 // 死亡記録: 一生のまとめ、数字、この人への一言、同じ1秒に生まれた人たちの結末。
 import { ERA_NOW, byCode, countriesAt, countryAt, type BirthBasis } from '../engine/countries';
-import { bornIn } from '../engine/polity';
+import { bornIn, type Side } from '../engine/polity';
 import { formatMoney, monthlyYen, yen } from '../engine/economy';
 import { netWorth } from '../engine/events/money';
 import { bornTable } from '../engine/lifetable';
@@ -44,6 +44,7 @@ export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
   birthCountry: string; country: string; birthYear: number; age: number; cause: string;
   birthMonth?: number;         // 走馬灯の「何年何月に生まれた」。古い記録には無い
+  birthSide?: Side;            // 東西ドイツ・南北ベトナムのどちらに生まれたか (polity.ts)。古い記録には無い
   story: string; log: Person['log']; kinds: Person['kinds']; happyByAge: number[];
   questions: Person['questions']; facts: [string, string][];
   others: { name: string; country: string; age: number; story: string; seed?: number; birthYear?: number; birthMonth?: number }[]; // seed などは、詳しい記録を作り直すため
@@ -107,7 +108,7 @@ const texOf = (p: Person) => { const t = textureOf(p); return t ? { tex: t, texL
 export function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[]): PastLife {
   return {
     seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
-    birthYear: p.birthYear, birthMonth: p.birthMonth, age: p.age, cause: causeLabel(p.cause), story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
+    birthYear: p.birthYear, birthMonth: p.birthMonth, ...(p.birthSide ? { birthSide: p.birthSide } : {}), age: p.age, cause: causeLabel(p.cause), story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
     questions: p.questions, facts: factsOf(p),
     others: others.map((o) => ({ name: o.name, country: o.birthCountry, age: o.age, story: lifeStory(o), seed: o.seed, birthYear: o.birthYear, birthMonth: o.birthMonth })),
     me: briefOf(p),
@@ -142,7 +143,7 @@ export function deathRecord(l: PastLife, slot = ''): string {
   <article class="record">
     <header><span>${L('死亡記録', 'Death record')}</span><span>No. ${l.birthCountry}-${l.birthYear}-${String(l.age).padStart(3, '0')}</span></header>
     ${l.scene ? `<canvas class="pixscene" data-scene="${sceneAttr(l.scene)}"></canvas>` : ''}
-    <p class="kicker">${esc(bornIn(l.birthCountry, l.birthYear))}${L('・', ' · ')}${genderWord(genderOf(l))}</p>
+    <p class="kicker">${esc(bornIn(l.birthCountry, l.birthYear, l.birthSide))}${L('・', ' · ')}${genderWord(genderOf(l))}</p>
     <h1>${esc(l.name)}</h1>
     <p class="kicker">${l.birthYear} – ${l.birthYear + l.age}${L(`・享年${l.age}歳`, ` · died at ${l.age}`)}${l.line ? L(`・第${l.line.length}世代`, ` · generation ${l.line.length}`) : ''}</p>
     <button class="replay" data-replay>▶ ${L('人生をふりかえる', 'Look back on this life')}</button>
@@ -290,7 +291,7 @@ const aiStoryHtml = (s: { title: string; story: string }) =>
   `<div class="aistory"><h3><i class="aitag">AI</i>${esc(s.title || L('この人の物語', 'This life'))}</h3>${s.story.split(/\n\n+/).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`;
 
 export function deathCard(l: PastLife): HTMLCanvasElement {
-  return drawCard({ kicker: `${bornIn(l.birthCountry, l.birthYear)}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [...starred(l.log).slice(0, 1).map((e) => `★ ${e.text}`), l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene,
+  return drawCard({ kicker: `${bornIn(l.birthCountry, l.birthYear, l.birthSide)}${L('・', ' · ')}${l.birthYear}–${l.birthYear + l.age}`, title: L(`${l.name}、${l.age}歳`, `${l.name}, ${l.age}`), lines: [...starred(l.log).slice(0, 1).map((e) => `★ ${e.text}`), l.story], foot: L('Unchosen — 生まれは、選べない', 'Unchosen. No one chooses where they are born.'), scene: l.scene,
     years: lifeMapCells({ kinds: l.kinds, age: l.age, alive: false }).filter((c) => c.age <= l.age).map((c) => c.kind) });
 }
 

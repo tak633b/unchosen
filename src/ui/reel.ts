@@ -93,7 +93,7 @@ export function reelOf(l: PastLife): Reel {
     chapters.push({ tone: st.tone, title: L(st.ja, st.en), shots: picked.map(({ big: _b, warm: _w, hist: _h, kind: _k, ...s }) => s) });
   }
 
-  const born = bornIn(l.birthCountry, l.birthYear); // 1950年より前は当時の国名 (イギリス領インド など)
+  const born = bornIn(l.birthCountry, l.birthYear, l.birthSide); // 1950年より前は当時の国名 (イギリス領インド など)
   const end = l.birthYear + l.age;
   const home = countryAt(l.country, end).name;
   // 近かった人から。ペットも入れる

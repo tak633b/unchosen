@@ -188,7 +188,7 @@ export function textureCard(l: PastLife, story = false): HTMLCanvasElement {
   wrap(g, l.name, 48, y, W - 96, 52, 1);
   g.fillStyle = '#a7a193';
   g.font = `28px ${FONT}`;
-  wrap(g, L(`${bornIn(l.birthCountry, l.birthYear)}・${l.birthYear}–${l.birthYear + l.age}・${l.age}歳まで`, `${bornIn(l.birthCountry, l.birthYear)} · ${l.birthYear}–${l.birthYear + l.age} · lived to ${l.age}`), 48, y + 48, W - 96, 36, 1);
+  wrap(g, L(`${bornIn(l.birthCountry, l.birthYear, l.birthSide)}・${l.birthYear}–${l.birthYear + l.age}・${l.age}歳まで`, `${bornIn(l.birthCountry, l.birthYear, l.birthSide)} · ${l.birthYear}–${l.birthYear + l.age} · lived to ${l.age}`), 48, y + 48, W - 96, 36, 1);
   g.fillStyle = '#ebe5d8';
   g.font = `bold 30px ${SERIF}`;
   wrap(g, L('手ざわりは選ぶものではなく、生まれた人生が決める。', 'No one chooses the texture. The life they were born into does.'), 48, H - 76, W - 96, 38, 1);

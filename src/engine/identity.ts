@@ -38,8 +38,31 @@ export const familyNames = (pool: string): string[] => POOLS[pool]?.family ?? []
 // [この年より前に生まれた人, 名]。どの帯にも入らない人は上の (いまの) 名
 type Givens = Pick<Pool, 'male' | 'female' | 'maleEn' | 'femaleEn'>;
 const ERAS = eraData as unknown as Record<string, [number, Givens][]>;
-const givensAt = (poolId: string, pool: Pool, born?: number): Givens =>
-  (born !== undefined && (ERAS[poolId] ?? ERAS[RAW[poolId]?.from ?? ''])?.find(([until]) => born < until)?.[1]) || pool;
+// 漢字・ハングルの名は昔の名が流行り直すことがほとんど無い。最後の帯より後の生まれは、どこかの帯にある名を今のリストから外す (1995年生まれの「洋子」)
+const NO_REVIVAL = new Set(['japanese', 'korean', 'chinese']);
+// 帯に入っていないが、昭和・戦前の名として明らかなもの
+const OLD_STYLE = ['良子', '實', '治', '昭', '二郎', '길자'];
+const modern = new Map<string, Givens>();
+function modernOf(poolId: string, pool: Pool): Givens {
+  let g = modern.get(poolId);
+  if (!g) {
+    const old = new Set([...(ERAS[poolId] ?? []).flatMap(([, b]) => [...b.male, ...b.female]), ...OLD_STYLE]);
+    const keep = (names: string[], en?: string[]) => {
+      const i = names.map((_, k) => k).filter((k) => !old.has(names[k]));
+      return i.length >= 10 ? [i.map((k) => names[k]), en && i.map((k) => en[k])] as const : [names, en] as const;
+    };
+    const [male, maleEn] = keep(pool.male, pool.maleEn), [female, femaleEn] = keep(pool.female, pool.femaleEn);
+    modern.set(poolId, g = { male, female, maleEn, femaleEn });
+  }
+  return g;
+}
+const givensAt = (poolId: string, pool: Pool, born?: number): Givens => {
+  if (born === undefined) return pool;
+  const eras = ERAS[poolId] ?? ERAS[RAW[poolId]?.from ?? ''];
+  const band = eras?.find(([until]) => born < until)?.[1];
+  if (band) return band;
+  return eras && NO_REVIVAL.has(poolId) ? modernOf(poolId, pool) : pool;
+};
 const COUNTRIES = data.countries as unknown as Record<string, CountryIdentity>;
 const FALLBACK: CountryIdentity = { pool: 'english', cities: [], religions: [['その他', 1]] };
 
