@@ -2,7 +2,7 @@
 import { byCode, countryAt, type BirthBasis } from '../engine/countries';
 import { advanceYear, createPerson, fromSaved, settle, toSaved, type SavedPerson } from '../engine/life';
 import { companionDeaths } from '../engine/events/household';
-import { choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
+import { autoPick, choose, type Decision, type Focus, type Person, type Question } from '../engine/person';
 import { randomSeed } from '../engine/rng';
 import { nowLine } from '../engine/summary';
 import { lifeBand, survivalChart } from './charts';
@@ -28,6 +28,7 @@ import { lifeBeat, lifeEnd, lifeNow, lifeStart, newLifeId, presenceLine, type Be
 import { yearMs } from './pace';
 import { STAR_MAX, toggleStar } from './stars';
 import { themeBtn, toggleTheme } from './theme';
+import { wantTexture } from './texture';
 
 let YEAR_MS = yearMs();  // 1倍速で1年にかける時間 (pace.ts。既定は26秒、平均寿命まで約30分)
 const DEFER_MAX = 2;     // 決定を「いったん下ろす」のは2回まで
@@ -101,6 +102,7 @@ export function startWithOthers(p: Person, others: Person[], basis: BirthBasis, 
 
 function run(p: Person, others: Person[], basis: BirthBasis, speed: number, onExit: () => void, album: Moment[] = [], lifeId?: string): void {
   p.reflect = true;
+  p.tilt ??= wantTexture(); // 「手ざわりを決める」(ui/texture.ts)
   resetAi();
   S = { p, others, basis, speed, ff: false, paused: false, music: load('music', false), bg: load('bg', false), progress: 0, modal: false, logOpen: false, life: false, olife: false, tab: '', raf: 0, last: performance.now(), onExit, tk: 0, tkAt: 0, seen: true, album: addMoment(album, momentOf(p)), beat: { id: lifeId ?? newLifeId(), at: 0, age: -1 }, shelved: [] };
   YEAR_MS = yearMs();
@@ -381,7 +383,7 @@ function nextModal(): void {
 
 function showDecision(d: Decision): void {
   const p = S!.p;
-  const auto = p.auto ? d.auto(p) : -1;
+  const auto = p.auto ? autoPick(p, d) : -1;
   openModal(`<p class="kicker">${L(`大きな決定・${p.age}歳・${p.birthYear + p.age}年`, `Big decision · age ${p.age} · ${p.birthYear + p.age}`)}</p><h2>${esc(d.title)}</h2><p>${esc(d.text)}</p>
     ${d.stat ? `<p class="statbox">${esc(d.stat)}</p>` : ''}
     <div class="cards">${d.options.map((o, i) => `<button data-i="${i}" class="${i === auto ? 'pre' : ''}"><span class="num">${i + 1}</span><b>${esc(o.label)}</b>${o.hint ? `<small>${esc(o.hint)}</small>` : ''}</button>`).join('')}</div>
@@ -393,7 +395,7 @@ function showDecision(d: Decision): void {
     const t = e.target as HTMLElement;
     const x = t.closest<HTMLElement>('[data-x]')?.dataset.x;
     if (x === 'manual') { S!.p.auto = false; render(); showDecision(d); return; }
-    if (x === 'auto') { S!.p.auto = true; render(); decideNow(d, d.auto(S!.p)); return; }
+    if (x === 'auto') { S!.p.auto = true; render(); decideNow(d, autoPick(S!.p, d)); return; }
     if (x === 'defer') { deferNow(d); return; }
     const b = t.closest<HTMLElement>('[data-i]');
     if (b) decideNow(d, Number(b.dataset.i));

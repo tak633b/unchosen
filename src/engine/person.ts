@@ -3,6 +3,7 @@ import type { Sex } from './lifetable';
 import { clamp, type Rng } from './rng';
 import { isEn, L } from '../i18n';
 import type { Holding } from './market';
+import type { TexAcc } from './texture';
 
 export type Focus = 'health' | 'learn' | 'work' | 'family' | 'rest';
 export type YearKind = 'child' | 'school' | 'work' | 'family' | 'love' | 'loss' | 'ill' | 'move' | 'old' | 'hard' | 'death';
@@ -182,6 +183,8 @@ export interface Person {
   strain?: { until: number; k: number };  // つらい時期 (events/strain.ts)。until の年齢で抜ける。k は自死の率にかける倍率
   record?: { kind: 'fine' | 'suspended' | 'prison'; until: number }; // 前科 (events/justice.ts)。until の年齢で効力を失う
   jailed?: { id: number; until: number; retrial?: boolean }; // 刑務所にいる家族 (events/justice.ts)
+  tex?: TexAcc;      // この人生の手ざわりの、1年ずつの値 (texture.ts)。古いセーブには無い
+  tilt?: [number, number, number, number]; // 「手ざわりを決める」で選んだ傾き (-2〜2)。おまかせの決断がそちらへ傾く
 }
 
 export const yearOf = (p: Person): number => p.birthYear + p.age;
@@ -212,11 +215,15 @@ export function bump(p: Person, d: Partial<Stats>): void {
 export function decide(p: Person, d: Decision): void {
   if (d.stat && !eraStat(d.stat, yearOf(p))) d = { ...d, stat: undefined };
   if (p.auto && !p.reflect) {
-    choose(p, d, d.auto(p));
+    choose(p, d, autoPick(p, d));
   } else {
     p.pending.push(d);
   }
 }
+
+// おまかせで選ぶ番号。手ざわりを決めた人生は texture.ts が傾ける
+export const autoHook: { pick?: (p: Person, d: Decision) => number } = {};
+export const autoPick = (p: Person, d: Decision): number => (p.tilt && autoHook.pick ? autoHook.pick(p, d) : d.auto(p));
 
 export function choose(p: Person, d: Decision, i: number): void {
   p.decisions++;

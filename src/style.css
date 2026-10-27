@@ -642,3 +642,19 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 /* 人生の長さ (ui/pace.ts) */
 .pacerow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
 .pacerow .seg button { padding: 3px 12px; font-size: 13px; }
+
+/* この人生の手ざわり (ui/texture.ts) */
+.texname b { font-family: var(--serif); font-size: 26px; color: var(--accent); margin-right: 6px; }
+.texture .texname { margin: 6px 0 2px; }
+.texpic { font-family: var(--serif); font-size: 18px; margin: 0 0 8px; }
+.texrows { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 6px; }
+.texrows li { display: grid; grid-template-columns: 5em 1fr 5.5em 8.5em; align-items: center; gap: 8px; font-size: 14px; }
+.texrows li > span:first-child { text-align: right; }
+.texrows small { color: var(--sub); }
+.texbar { position: relative; height: 4px; background: var(--line); border-radius: 2px; }
+.texbar::after { content: ''; position: absolute; left: 50%; top: -4px; width: 1px; height: 12px; background: var(--faint); }
+.texbar i { position: absolute; top: -5px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--accent); }
+.texline { font-family: var(--serif); line-height: 1.8; }
+.texwant { border-top: 1px dashed var(--line); margin-top: 10px; padding-top: 8px; opacity: 0.85; }
+.texset { list-style: none; padding: 0; display: grid; gap: 10px; }
+@media (max-width: 520px) { .texrows li { grid-template-columns: 3.5em 1fr 3.5em; } .texrows small { grid-column: 1 / -1; text-align: center; } }
