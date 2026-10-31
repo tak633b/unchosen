@@ -73,6 +73,7 @@ const JA: Rule[] = [
   ['{R}に、昔の話をしてもらった。', '{P}に、昔の話をした。'],
   ['{R}の家で、一緒に食事をした。', '{P}が家に来て、一緒に食事をした。'],
   ['遠くから{R}に電話をした。', '遠くにいる{P}から電話があった。'],
+  ['遠くの{R}に手紙を書いた。', '遠くにいる{P}から手紙が届いた。'],
   ['{X}歳になった{R}の世話をするようになった。', '{X}歳になり、{P}が世話をしてくれるようになった。'],
 ];
 const EN: Rule[] = [
@@ -104,6 +105,7 @@ const EN: Rule[] = [
   ["Stayed over at {R}'s house and talked until dawn.", '{P} stayed over and the two talked until dawn.'],
   ['{R} told stories about the old days.', 'Told {P} stories about the old days.'],
   ['Called {R} from far away.', '{P} called from far away.'],
+  ['Wrote a letter to {R}, far away.', 'A letter came from {P}, far away.'],
   ['Began looking after {R}, now {X}.', 'Now {X}, began to be looked after by {P}.'],
 ];
 

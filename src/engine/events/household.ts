@@ -7,6 +7,7 @@ import { earnings, formatMoney } from '../economy';
 import { isAcute, showRng } from '../crisis';
 import { countryOf, log, type Person, type Relative } from '../person';
 import { subsistence } from './common';
+import { isSocialist } from '../era';
 
 const roll = (p: Person, salt: number) => showRng(p.seed, p.age, salt)();
 const her = (r: Relative) => (r.sex === 'F' ? 'her' : 'his');
@@ -41,7 +42,7 @@ function spouseJob(p: Person): void {
     p.recent.spouseKept = p.age;
     log(p, L(`${s.name}の稼ぎで暮らした一年だった。`, `A year lived on ${s.name}'s earnings.`), 'family', false, undefined, [s.id!]);
   }
-  if (s.age < 20 || s.age > 60 || roll(p, 0x5b02) >= 0.03) return;
+  if (s.age < 20 || s.age > 60 || roll(p, 0x5b02) >= 0.03 || isSocialist(p)) return; // 社会主義の国では失業がない (era.ts)
   p.recent[key] = p.age;
   log(p, L(`${s.cohab ? '' : '連れ合いの'}${s.name}が仕事を失った。しばらくは自分の稼ぎと貯えで暮らすことになった。`, `${s.cohab ? '' : 'Spouse '}${s.name} lost ${her(s)} job. For a while the household lived on one income and the savings.`), 'hard', false, undefined, [s.id!]);
 }
