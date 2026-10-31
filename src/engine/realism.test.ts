@@ -90,10 +90,11 @@ describe('年金の決まり', () => {
 
   it('米国では62歳で早めに受け取る人がいて、ドイツでは63〜64歳が多い', () => {
     // 実測 (1955年生まれで50歳に働いていた人 約490人): 米国 62歳 38%・平均62.5歳 / ドイツ 63〜64歳 40%・平均63.3歳。
-    // 前は どの国も60〜61歳が4割で、米国62歳は8%、ドイツ63〜64歳は7%だった
+    // 前は どの国も60〜61歳が4割で、米国62歳は8%、ドイツ63〜64歳は7%だった。
+    // 150人では乱数の並びが少し変わるだけで 22〜38% に揺れた (2026-10-31、出生率の調整で並びが変わり 22% に)。400人で 米国62歳 26.5〜28.5%
     const dist = (code: string) => {
       const ages: number[] = [];
-      for (let i = 0; i < 150; i++) {
+      for (let i = 0; i < 400; i++) {
         const p = liveTo(born(code, 5000 + i, 1955), 50);
         if (!p.alive || p.retired || !p.working || p.homemaker) continue;
         while (p.alive && !p.retired && p.age < 85) advanceYear(p);
@@ -137,6 +138,29 @@ describe('年を重ねた体', () => {
     };
     expect(share('JPN')).toBeGreaterThan(0.85);
     expect(share('NGA')).toBeLessThan(0.6);
+  }, 120000);
+});
+
+describe('子どもの数 (合計特殊出生率)', () => {
+  it('女性が一生に持つ子どもの数は、その国・その年の出生率 (国連 WPP、era.json) に近い', () => {
+    // 実測 (2000年生まれの女性 各200人、50歳まで生きた人。WPP 2020〜45年の平均の出生率と比べて):
+    // 調整前 インド 2.34 (出生率1.88、+0.46)・ニジェール 5.44 (4.84、+0.60) → 調整後 インド 2.01・ニジェール 4.97。
+    // 世界銀行 SP.DYN.TFRT.IN の2022年の値 (インド 2.0・ニジェール 6.7) は、2000年生まれが子を持つ2020〜40年代の値ではないので比べない
+    const kids = (code: string) => {
+      let n = 0, k = 0;
+      for (let i = 0; i < 200; i++) {
+        const p = liveTo(createPerson({ seed: 30000 + i, basis: 'births', country: code, year: 2000, auto: true, gender: 'F' }), 50);
+        if (p.age < 50) continue;
+        n++; k += p.children.length;
+      }
+      return k / n;
+    };
+    const ind = kids('IND');
+    expect(ind).toBeGreaterThan(1.7);
+    expect(ind).toBeLessThan(2.25); // 調整前は 2.34
+    const ner = kids('NER');
+    expect(ner).toBeGreaterThan(4.5);
+    expect(ner).toBeLessThan(5.3); // 調整前は 5.44
   }, 120000);
 });
 
