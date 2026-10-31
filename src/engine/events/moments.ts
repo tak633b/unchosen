@@ -5,6 +5,8 @@ import { bornTable } from '../lifetable';
 import { bornIn } from '../polity';
 import { countryAt } from '../countries';
 import { bump, countryOf, log, place, yearOf, type Person, type Stats } from '../person';
+import { richChildhood, socialistAt } from '../era';
+import { sideOf } from '../polity';
 import { techShare, type Tech } from '../tech';
 import { abroad, spot } from '../travel';
 import { pickWeighted } from '../rng';
@@ -67,6 +69,7 @@ export interface When {
   job?: 'office' | 'manual' | 'farm' | 'none';
   employee?: boolean; // 雇われて働いている (自分の店・畑・会社ではない)
   renter?: boolean;   // 家を持たず、自分で部屋を借りて暮らしている大人 (働いているか連れ合いがいる)
+  socialist?: boolean; // 社会主義の経済の国と年 (era.ts の socialistAt)。false で「市場のある国だけ」
 }
 
 // 留学や移住で外国にいる間は町の名前を持たない (p.city === null) が、農村ではない
@@ -94,13 +97,17 @@ function matches(p: Person, m: Moment): boolean {
 
 export function fits(p: Person, w: When): boolean {
   const c = countryOf(p);
+  const year = yearOf(p);
+  // 1950〜70年代の先進国 (era.ts) は、その年の所得が今の中所得国並みでも、低所得国の暮らしの行 (income: low・gdpUnder) を出さない
+  const gdp = richChildhood(c.code, year) ? Math.max(c.gdp, 15000) : c.gdp;
   if (w.place && (w.place === 'rural') !== isRural(p)) return false;
   if (w.wealth && !oneOf<Wealth>(w.wealth, isPoor(p) ? 'poor' : isRich(p) ? 'rich' : 'middle')) return false;
-  if (w.income && !oneOf<Income>(w.income, c.gdp < 5000 ? 'low' : c.gdp <= 25000 ? 'mid' : 'high')) return false;
+  if (w.income && !oneOf<Income>(w.income, gdp < 5000 ? 'low' : gdp <= 25000 ? 'mid' : 'high')) return false;
+  if (w.socialist !== undefined && w.socialist !== socialistAt(c.code, year, sideOf(p))) return false;
   if (w.region && !w.region.includes(c.region)) return false;
   if (w.countries && !w.countries.includes(c.code)) return false;
   if (w.notCountries?.includes(c.code)) return false;
-  if (w.gdpUnder !== undefined && c.gdp >= w.gdpUnder) return false;
+  if (w.gdpUnder !== undefined && gdp >= w.gdpUnder) return false;
   if (w.religion && !w.religion.includes(p.religion)) return false;
   if (w.state && w.state !== stateOf(p)) return false;
   if (w.sex && w.sex !== p.sex) return false;

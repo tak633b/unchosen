@@ -78,7 +78,9 @@ describe('人との場面', () => {
     expect(d?.options.map((o) => [o.effects, o.money, o.d])).toEqual([[{ happy: 10 }, -0.5, 4], [{ happy: -2 }, 0, -3]]);
   });
   it('届くまでに亡くなった人の場面は反映しない', () => {
-    const p = liveOut(createPerson({ seed: 7919, basis: 'births', auto: true }));
+    // 輪の中に先に亡くなった人のいる人生を探す (seed 7919 で決め打ちすると、エンジンの変更で乱数がずれたとき誰も亡くなっていない人生になることがある)
+    let p = liveOut(createPerson({ seed: 7919, basis: 'births', auto: true }));
+    for (let s = 7920; !people(p).some((x) => !x.alive); s++) p = liveOut(createPerson({ seed: s, basis: 'births', auto: true }));
     const gone = people(p).find((x) => !x.alive)!;
     const n = p.log.length;
     applyYear(p, { moments: [], scene: { who: gone.id!, text: '畑で話した。', tone: 'warm', d: 3 } });

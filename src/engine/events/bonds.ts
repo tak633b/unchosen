@@ -1,5 +1,6 @@
 // 人との間の時間: 出会い、近さの移ろい、けんかと仲直り、疎遠と再会。家族以外の人の死もここで。
 import { addTie, callName, circle, freshName, mourn, shared } from '../bonds';
+import { isSocialist } from '../era';
 import { makeName } from '../identity';
 import { bump, countryOf, log, type Person, type Relative, type Role, type Tie } from '../person';
 import { clamp, normal, pick } from '../rng';
@@ -205,10 +206,12 @@ function happen(p: Person): void {
     const n = callName(x, role);
     const story = p.age < 18 && r() < 0.5;
     const home = p.country === p.birthCountry;
+    const letter = isSocialist(p); // 社会主義の国では家の電話が少なく、遠くの家族とは手紙 (era.ts)
     shared(p, [x], p.age < 18
       ? (story ? L(`${n}に、昔の話をしてもらった。`, `${n} told stories about the old days.`) : L(`${n}と二人で出かけた。`, `Spent a day out with ${n}.`))
-      : home ? L(`${n}の家で、一緒に食事をした。`, `Had a meal with ${n}.`) : L(`遠くから${n}に電話をした。`, `Called ${n} from far away.`), p.kinds[p.age] ?? 'family', 3,
-    false, undefined, p.age < 18 ? (story ? 'parent_story' : 'parent_outing') : home ? 'parent_meal' : 'parent_call');
+      : home ? L(`${n}の家で、一緒に食事をした。`, `Had a meal with ${n}.`)
+        : letter ? L(`遠くの${n}に手紙を書いた。`, `Wrote a letter to ${n}, far away.`) : L(`遠くから${n}に電話をした。`, `Called ${n} from far away.`), p.kinds[p.age] ?? 'family', 3,
+    false, undefined, p.age < 18 ? (story ? 'parent_story' : 'parent_outing') : home ? 'parent_meal' : letter ? 'parent_letter' : 'parent_call');
   });
 
   if (p.spouse?.alive && p.spouse.fixed?.ref !== 0) list.push(() => {

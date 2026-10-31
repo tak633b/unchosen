@@ -8,7 +8,8 @@ import { homeShare } from './work';
 import { isEn, L } from '../../i18n';
 import { because, homeWhy, schoolWhy } from '../why';
 import { showRng } from '../crisis';
-import { schoolSys } from '../schoolsys';
+import { lowerEnd, schoolSys } from '../schoolsys';
+import { richChildhood, universalSchooling } from '../era';
 
 const TEMPERAMENTS: [string, Partial<Stats>, string][] = [
   [L('好奇心の強い子', 'Curious'), { learn: 8 }, L('学び +8', 'Learning +8')],
@@ -135,7 +136,8 @@ export function childhood(p: Person): void {
     log(p, L('ひどい熱と下痢で何日も寝込んだが、回復した。', 'Was bedridden for days with high fever and diarrhea, then recovered.'), 'ill');
     bump(p, { health: -6 });
   }
-  if (p.age === 3 && p.familyP < 0.25 && c.gdp < 6000 && r() < 0.6) {
+  // 1950年代の日本・東欧のように所得は低くても、先進国の子には出さない (era.ts)
+  if (p.age === 3 && p.familyP < 0.25 && c.gdp < 6000 && !richChildhood(p.country, yearOf(p)) && r() < 0.6) {
     log(p, L('食べ物の足りない年が続き、背が伸びなかった。', 'Years of too little food. Stopped growing taller.'), 'hard', true,
       L('世界の5歳未満の子どものおよそ5人に1人が発育阻害(年齢に比べて背が低い)の状態にある (UNICEF・WHO・世界銀行 2023)',
         'About 1 in 5 children under 5 worldwide are stunted, too short for their age (UNICEF, WHO, World Bank 2023)'));
@@ -161,7 +163,10 @@ function startSchool(p: Person, c: Country): void {
   // 通う年数の見込みは12年制の物差しで引き、その国の学制の長さに合わせて伸び縮みさせる (13年制の英国・ドイツで、1年早くやめる人が増えないように)
   const sys = schoolSys(p.country);
   p.school.sys = p.country;
-  p.school.target = Math.max(p.anchor?.school ?? 0, clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3) * sys.total / 12, 0, sys.total));
+  // 皆が通う学校のある国と年 (era.ts): 少なくとも初等 (1900年〜) か前期中等 (1950年〜) までは通う
+  const must = universalSchooling(p.country, yearOf(p));
+  const floor = must === 'lower' ? lowerEnd(sys) : must === 'prim' ? sys.prim : 0;
+  p.school.target = Math.max(floor, p.anchor?.school ?? 0, clamp(normal(r, c.school * 1.35 + (p.familyP - 0.5) * 6 + (p.rural ? -1.5 : 0) + girlGap, 3) * sys.total / 12, 0, sys.total));
   if (p.school.target < 1) {
     log(p, L('みんなが学校へ行く年になったが、通えなかった。', 'Reached school age, but could not go.'), 'hard', true);
     because(p, schoolWhy(p, c));

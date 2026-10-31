@@ -1197,9 +1197,11 @@
       "minAge": 6,
       "maxAge": 12,
       "weight": 1,
-      "from": 1960,
+      "from": 1975,
       "when": {
-        "income": "low"
+        "income": "low",
+        "region": ["アフリカ", "アジア", "南アメリカ", "北アメリカ"],
+        "notCountries": ["USA", "CAN", "JPN", "KOR", "CHN", "MNG"]
       },
       "effects": {
         "happy": 3,
@@ -3634,6 +3636,7 @@
       "weight": 1,
       "from": 1960,
       "when": {
+        "socialist": false,
         "income": "high"
       },
       "effects": {
@@ -6639,6 +6642,7 @@
       "maxAge": 90,
       "weight": 0.3,
       "when": {
+        "socialist": false,
         "wealth": "middle"
       },
       "effects": {
@@ -8953,6 +8957,7 @@
       "from": 1985,
       "cost": -0.05,
       "when": {
+        "socialist": false,
         "place": "urban",
         "income": "high",
         "renter": true,

@@ -14,6 +14,7 @@ import { clamp } from '../rng';
 import { startWork } from './work';
 import { because, schoolWhy } from '../why';
 import { sideDraft } from '../divided';
+import { isSocialist } from '../era';
 
 // 学校の区切りは国の学制で (schoolsys.ts)。basic の国 (北欧・ポーランド・ブラジル) は小学校と中学校が一つの基礎学校
 const levelOf = (years: number, s: SchoolSys) => {
@@ -181,12 +182,12 @@ function chooseAbroad(p: Person, home: Country): void {
     text: L(`${home.name}から留学する学生がよく行く国。学費・暮らし・言葉・卒業後に残れる見込みがそれぞれ違う。`, `The countries students from ${home.name} most often go to. Each differs in cost, language and the odds of staying on to work.`),
     stat: L('行き先はユネスコ統計研究所の留学生の受け入れ国の目安。卒業後5年たっても留学先に残っている人は国により2〜6割 (OECD 2022)', 'Destinations follow UNESCO Institute for Statistics data on where students go. Five years after graduating, 20 to 60% are still in the host country (OECD 2022)'),
     options: dests.map((d) => {
-      const free = isFree(d);
+      const free = isFree(d, yearOf(p));
       const lang = speaks(p, d);
       return {
         label: d.name,
         hint: [
-          free ? L('授業料なし', 'No tuition') : L(`年の学費${formatMoney(tuitionAbroad(d))}`, `Tuition ${formatMoney(tuitionAbroad(d))}/yr`),
+          free ? L('授業料なし', 'No tuition') : L(`年の学費${formatMoney(tuitionAbroad(d, yearOf(p)))}`, `Tuition ${formatMoney(tuitionAbroad(d, yearOf(p)))}/yr`),
           L(`暮らし年${formatMoney(living(d))}`, `living ${formatMoney(living(d))}/yr`),
           lang ? '' : L('言葉の1年が要る', 'needs a language year'),
           L(`残れる見込み${Math.round(stayOdds(d) * 100)}%`, `${Math.round(stayOdds(d) * 100)}% stay to work`),
@@ -196,7 +197,7 @@ function chooseAbroad(p: Person, home: Country): void {
     }),
     // 自動では、安くて言葉の通じる国を選びやすい
     auto: (q) => {
-      const w = dests.map((d) => (speaks(q, d) ? 2 : 1) * (isFree(d) || tuitionAbroad(d) < 10000 ? 1.5 : 1));
+      const w = dests.map((d) => (speaks(q, d) ? 2 : 1) * (isFree(d, yearOf(q)) || tuitionAbroad(d, yearOf(q)) < 10000 ? 1.5 : 1));
       let x = q.rng() * w.reduce((a, b) => a + b, 0);
       for (let i = 0; i < w.length; i++) if ((x -= w[i]) < 0) return i;
       return 0;
@@ -213,7 +214,7 @@ function enterUni(p: Person, home: Country, abroad: Country | null): void {
     // 言葉が通じなければ、まず1年その国の言葉を学ぶ
     p.school.langYear = !speaks(p, abroad);
     const years = p.school.ba + (p.school.langYear ? 1 : 0);
-    const tuition = tuitionAbroad(abroad) * years;
+    const tuition = tuitionAbroad(abroad, yearOf(p)) * years;
     const living = subsistence(abroad) * 2 * years;
     // 難民の家の子は奨学金で学費が無く、暮らしも半分まかなわれる (UNHCR の DAFI 奨学金など)
     const cost = p.refugee ? living * 0.5 : tuition + living;
@@ -223,15 +224,15 @@ function enterUni(p: Person, home: Country, abroad: Country | null): void {
     p.country = abroad.code;
     p.city = null;
     if (!p.countriesLived.includes(abroad.code)) p.countriesLived.push(abroad.code);
-    const note = p.refugee ? L('奨学金で学費は免除された。', 'A scholarship covered the tuition.') : isFree(abroad) ? L('授業料はかからず、費用は暮らしの分だけ。', 'There was no tuition; the cost was living expenses only.') : '';
+    const note = p.refugee ? L('奨学金で学費は免除された。', 'A scholarship covered the tuition.') : isFree(abroad, yearOf(p)) ? L('授業料はかからず、費用は暮らしの分だけ。', 'There was no tuition; the cost was living expenses only.') : '';
     log(p, L(`${abroad.name}の大学に合格し、留学した。${note}費用 ${formatMoney(cost)} のうち ${formatMoney(parents)} は親が出し、残りは借金になった。${p.school.langYear ? 'はじめの1年は言葉の学校に通う。' : ''}`,
       `Was admitted to a university in ${abroad.name} and moved there. ${note ? `${note} ` : ''}Of the ${formatMoney(cost)} cost, parents paid ${formatMoney(parents)}; the rest became debt.${p.school.langYear ? ' The first year would be spent in language school.' : ''}`), 'move', true);
   } else {
     const n = p.school.ba;
-    const cost = tuitionOf(home) * n;
+    const cost = isSocialist(p) ? 0 : tuitionOf(home) * n; // 社会主義の国の大学は学費がない (era.ts)
     const parents = cost * clamp(p.familyP * 0.9, 0, 0.9);
     p.wealth -= cost - parents;
-    log(p, isEn
+    log(p, cost === 0 ? L('大学に合格した。学費はかからなかった。', 'Got into university. There was no tuition.') : isEn
       ? `Got into university. Tuition for ${n === 3 ? 'three' : 'four'} years: ${formatMoney(cost)}.${cost - parents > 1 ? ` ${formatMoney(cost - parents)} of it to be covered by scholarships and loans.` : ''}`
       : `大学に合格した。学費は${n}年で ${formatMoney(cost)}。${cost - parents > 1 ? `うち ${formatMoney(cost - parents)} は奨学金と借金でまかなう。` : ''}`, 'school', true);
   }

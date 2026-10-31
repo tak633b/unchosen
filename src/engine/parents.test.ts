@@ -71,13 +71,14 @@ describe('結婚せずに一緒に暮らす', () => {
   }, 180_000);
   it('一緒に暮らす相手を「連れ合い」「Spouse」と書かない', () => {
     let seen = 0;
-    for (const p of born(200, 'FRA', 1990).map((q) => liveOut(q))) {
+    for (const p of born(400, 'FRA', 1990).map((q) => liveOut(q))) {
       const s = p.spouse;
       if (!s?.cohab) continue;
       seen++;
       for (const e of p.log) expect(e.text).not.toContain(`連れ合いの${s.name}`);
     }
-    expect(seen).toBeGreaterThan(3); // 実測 5人 (200人のうち、亡くなる時まで結婚せずに暮らした相手のいる人)
+    // 実測: 200人で5人 (2026-10)。2026-10-31 に時代のゲート (era.ts) で乱数がずれて 200人で3人になったので、400人 (実測 6人) で数える
+    expect(seen).toBeGreaterThan(3);
   }, 180_000);
 });
 

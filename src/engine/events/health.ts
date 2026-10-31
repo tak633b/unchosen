@@ -9,6 +9,7 @@ import { ageing } from './ageing';
 import { isEn, L } from '../../i18n';
 import type { Country } from '../countries';
 import type { Sex } from '../lifetable';
+import { isSocialist } from '../era';
 
 export function habits(p: Person): void {
   const c = countryOf(p);
@@ -158,7 +159,8 @@ export function treat(p: Person, name: string, years: number, severity: number):
   const c = countryOf(p);
   const r = p.rng;
   const cost = c.gdp * (0.3 + r() * 1.0) * severity;
-  const share = outOfPocket(p, cost * c.oop); // 保険に入っていれば自己負担が3割に (insurance.ts)
+  const free = isSocialist(p); // 社会主義の国では医療は国が提供し、窓口の負担がない (ソ連 1936年憲法 第120条、東欧・中国の公的医療。era.ts)
+  const share = free ? 0 : outOfPocket(p, cost * c.oop); // 保険に入っていれば自己負担が3割に (insurance.ts)
   const income = Math.max(currentIncome(p), subsistence(c));
   const ratio = share / income;
   // 貯えで払える分は貯えから。借りるのは足りない分だけ
@@ -170,9 +172,9 @@ export function treat(p: Person, name: string, years: number, severity: number):
   const traditional = c.gdp < 15000;
   decide(p, {
     title: L(`${name}と診断された`, `Diagnosed with ${name}`),
-    text: L(`治療費は ${formatMoney(cost)}。そのうち自分で払うのは ${formatMoney(share)} で、年収の約${Math.round(ratio * 100)}%にあたる。${ratio > 1 && saved > 0 ? (owe > 0 ? `貯えで払えるのは ${formatMoney(saved)} まで。` : '貯えで払える。') : ''}`,
+    text: free ? L('国の病院で治療を受けられる。費用はかからない。', 'Treatment is at the state hospital, free of charge.') : L(`治療費は ${formatMoney(cost)}。そのうち自分で払うのは ${formatMoney(share)} で、年収の約${Math.round(ratio * 100)}%にあたる。${ratio > 1 && saved > 0 ? (owe > 0 ? `貯えで払えるのは ${formatMoney(saved)} まで。` : '貯えで払える。') : ''}`,
       `Treatment costs ${formatMoney(cost)}. The out-of-pocket share is ${formatMoney(share)}, about ${Math.round(ratio * 100)}% of a year's income.${ratio > 1 && saved > 0 ? (owe > 0 ? ` Savings cover ${formatMoney(saved)} of it.` : ' Savings can cover it.') : ''}`),
-    stat: L(`${c.name}では医療費のおよそ${Math.round(c.oop * 100)}%を患者が自分で払っている (WHO)`, `In ${c.name}, patients pay about ${Math.round(c.oop * 100)}% of health spending out of pocket (WHO)`),
+    stat: free ? L('ソ連と東欧の国では、医療は国が提供し、患者が窓口で払うことはなかった', 'In the Soviet Union and Eastern Europe, health care was provided by the state at no charge to the patient') : L(`${c.name}では医療費のおよそ${Math.round(c.oop * 100)}%を患者が自分で払っている (WHO)`, `In ${c.name}, patients pay about ${Math.round(c.oop * 100)}% of health spending out of pocket (WHO)`),
     options: [
       {
         label: owe > 0 ? (saved > 0 ? L('貯えを崩し、足りない分は借りて治療を受ける', 'Use savings, borrow the rest, go to hospital') : L('借金をして病院で治療を受ける', 'Borrow and go to hospital'))

@@ -1,7 +1,9 @@
 // 留学の行き先: 生まれた国の学生が実際によく行く上位3か国、その学費と暮らしの費用、言葉、卒業後に残って働ける見込み。
-import { byCode, countriesAt, type Country } from './countries';
+import { byCode, countriesAt, countryAt, type Country } from './countries';
 import type { Person } from './person';
 import { pickWeighted } from './rng';
+import { socialistAt } from './era';
+import { sideOf } from './polity';
 
 // 学位をとりに外国へ出る学生の行き先の上位 (UNESCO 統計研究所 UIS の受け入れ国別の目安。韓国は教育部 2023)
 const TOP: Record<string, string[]> = {
@@ -19,7 +21,15 @@ const TOP: Record<string, string[]> = {
 // 表に無い国は、留学生を多く受け入れる豊かな国から人口の重みで選ぶ (以前の版と同じ考え)
 const HOSTS = ['USA', 'GBR', 'AUS', 'CAN', 'DEU', 'FRA', 'JPN'];
 
+// 社会主義の国の学生の留学先は、ほかの社会主義の国 (ソ連・東欧)。ponytail: 東ドイツは国の一覧では一つのドイツなので外している。中国 (1960年の中ソ対立まで) も入れていない
+const BLOC = ['RUS', 'POL', 'CZE', 'HUN', 'BGR', 'ROU', 'UKR', 'BLR'];
 export function destinations(p: Person, year: number): Country[] {
+  if (socialistAt(p.country, year, sideOf(p))) {
+    const pool = BLOC.filter((c) => c !== p.country && socialistAt(c, year)).map((c) => countryAt(c, year));
+    const out: Country[] = [];
+    while (out.length < 3 && pool.length) { const d = pickWeighted(p.rng, pool, (x) => x.pop * (x.code === 'RUS' ? 4 : 1)); out.push(d); pool.splice(pool.indexOf(d), 1); }
+    return out;
+  }
   const listed = (TOP[p.birthCountry] ?? []).filter((c) => c !== p.country).map((c) => byCode(c));
   if (listed.length >= 3) return listed.slice(0, 3);
   const pool = countriesAt(year).filter((d) => d.gdp > 35000 && d.code !== p.country && !listed.some((l) => l.code === d.code));
@@ -39,8 +49,9 @@ const TUITION: Record<string, number> = {
   JPN: 5600, KOR: 6000, CHN: 4000, MYS: 5000, RUS: 4000, FRA: 3000, BEL: 4000, PRT: 3000, POL: 3000, ESP: 2500, ITA: 2500,
   CHE: 1500, AUT: 1500, TUR: 1000, MAR: 1000, DEU: 0, CZE: 0, NOR: 0, ARG: 0, SAU: 0,
 };
-export const tuitionAbroad = (d: Country): number => TUITION[d.code] ?? 8000;
-export const isFree = (d: Country): boolean => tuitionAbroad(d) === 0;
+// 社会主義の国の大学は学費がない (era.ts)
+export const tuitionAbroad = (d: Country, year?: number): number => (year !== undefined && socialistAt(d.code, year) ? 0 : TUITION[d.code] ?? 8000);
+export const isFree = (d: Country, year?: number): boolean => tuitionAbroad(d, year) === 0;
 
 // 教える言葉
 const LANG: Record<string, string> = {

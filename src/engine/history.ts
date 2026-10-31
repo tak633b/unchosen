@@ -11,6 +11,7 @@ import { economyNews } from './market';
 import { worldEvents } from './worldevents';
 import { polityChange, polityName, sideOf } from './polity';
 import { divided } from './divided';
+import { socialistYear } from './era';
 import { air } from './air';
 import { tvArrives } from './tech';
 
@@ -40,6 +41,7 @@ export function history(p: Person): void {
   const change = polityChange(p.country, year, sideOf(p));
   if (change && p.age >= 1 && once(p, `pol:${p.country}:${year}`)) log(p, change, 'family', true);
   divided(p); // 東西ドイツ・南北ベトナムの、その側の暮らし (divided.ts)
+  socialistYear(p); // 社会主義の国の住まい・車の順番待ち・ピオネール、ソ連のあとの私有化 (era.ts)
   air(p);     // 空気と台所の煙 (air.ts)
   tvArrives(p); // 家に初めてテレビが来た年 (tech.ts)
   worldEvents(p); // 戦争・災害・疫病・事故など、目録の出来事 (1900年〜) と、これから先の名前のない出来事

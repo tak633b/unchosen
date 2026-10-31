@@ -9,6 +9,7 @@ import { currentIncome, subsistence } from './common';
 import { insuranceOffer, premium } from './insurance';
 import { rentalEquity, rentalOffer, rentalYear } from './rental';
 import { kidSupport } from './grown';
+import { isSocialist, socialistHousing } from '../era';
 
 const DEBT_RATE = 0.03; // 借金の多くは家族・親族や奨学金からなので低めに
 
@@ -30,7 +31,7 @@ export function finances(p: Person): void {
   const income = currentIncome(p);
   if (income > p.peakIncome) { p.peakIncome = income; p.peakYear = year; }
   const floor = subsistence(c);
-  const owner = !!(p.mortgage || p.house);
+  const owner = !!(p.mortgage || p.house || p.recent['soc:flat'] !== undefined); // 国から割り当てられたアパート (era.ts) は家賃がごくわずか
   const before = { worth: netWorth(p), house: houseWorth(p), owed: p.mortgage ? mortgageLeft(p.mortgage) : 0 };
   // 貯められる割合は、国の中での位置と、暮らしの絶対的な余裕の両方で決まる
   // 貧しい家でも、土地や家畜などの形で少しは蓄える (最低5%)
@@ -60,11 +61,13 @@ export function finances(p: Person): void {
   const kept = income - living + kidCost - rentSaved;
 
   let interest = 0;
+  // 社会主義の国では住宅の市場がなく、家の値段は動かない (era.ts)
+  const houseMove = socialistHousing(p) ? 0 : marketReturn('house', year, c, r);
   if (p.mortgage) {
     const m = p.mortgage;
     p.wealth -= m.pay;
     interest = m.pay - (before.owed - (m.years > 1 ? balanceOf(m.pay, m.rate ?? 0.018, m.years - 1) : 0));
-    m.value *= 1 + marketReturn('house', year, c, r) - houseAging(p.age - (m.since ?? p.age));
+    m.value *= 1 + houseMove - houseAging(p.age - (m.since ?? p.age));
     if (--m.years <= 0) {
       log(p, L('住宅ローンを払い終えた。家は自分のものになった。', 'Paid off the mortgage. The house is now fully owned.'), 'family');
       p.homeValue = m.value;
@@ -73,14 +76,16 @@ export function finances(p: Person): void {
       p.house = true;
     }
   } else if (p.homeValue) {
-    p.homeValue *= 1 + marketReturn('house', year, c, r) - houseAging(p.age - (p.homeSince ?? p.age));
+    p.homeValue *= 1 + houseMove - houseAging(p.age - (p.homeSince ?? p.age));
   }
   rentalYear(p, c, income);
   let last = 0;
   if (p.wealth > 0) {
     // 1年で失うのは99%まで。1948年のドイツの株 (-90%) に個別株のぶれが乗っても、貯えが借金に変わらない
-    last = Math.max(-0.99, fundReturn(p.invest ?? 'deposit', year, c, r));
-    if (p.invest === 'stock' || p.invest === 'picker') stockMove(p, last);
+    // 社会主義の国では貯えは国の貯蓄銀行の預金だけ (era.ts)
+    const hold: Holding = isSocialist(p) ? 'deposit' : p.invest ?? 'deposit';
+    last = Math.max(-0.99, fundReturn(hold, year, c, r));
+    if (hold === 'stock' || hold === 'picker') stockMove(p, last);
     p.wealth *= 1 + last;
     if (p.invest && p.invest !== 'deposit') p.gain = (p.gain ?? 0) + (p.wealth * last) / (1 + last);
   } else {
@@ -108,12 +113,13 @@ export function finances(p: Person): void {
   ]);
   // クメール・ルージュの時代 (1975〜78年) は私有の財産も市場もない (history.ts の kh-1975)
   if (p.recent['hist:kh-1975'] !== undefined && year < 1979) return;
+  // 社会主義の経済 (era.ts) には投資・住宅ローン・保険の市場がない。住まいと車の順番待ちは era.ts の socialistYear
+  if (isSocialist(p)) return;
   investOffer(p, income);
   switchOffer(p, c, last);
-  houseOffer(p, income);
-  selfBuild(p, c);
+  if (!socialistHousing(p)) { houseOffer(p, income); selfBuild(p, c); } // 中国は1992年まで住宅が公有
   carOffer(p, income);
-  rentalOffer(p, c, income);
+  if (!socialistHousing(p)) rentalOffer(p, c, income);
   insuranceOffer(p, c, income);
 }
 

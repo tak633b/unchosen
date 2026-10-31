@@ -11,6 +11,7 @@ import { businessRetire, career, leaveReason } from './career';
 import { contribOf, pensionRule, type Early, type Rule } from '../pension';
 import { currentIncome } from './common';
 import { homeSpell } from './disability';
+import { isSocialist } from '../era';
 
 function takeJob(p: Person, o: Offer, first: boolean): void {
   p.working = true;
@@ -46,7 +47,8 @@ export function jobSearch(p: Person, first = true): void {
     stat: L(`${c.name}では働く人のおよそ${informal}%が非正規の仕事に就いている (ILO の推計にもとづく目安)`, `About ${informal}% of workers in ${c.name} are in informal jobs (rough figure based on ILO estimates)`),
     options: [
       ...offers.map((o) => ({ ...offerLabel(o), apply: (q: Person) => takeJob(q, o, first) })),
-      ...(p.age >= 16 ? [{
+      // 社会主義の国では仕事は割り当てられ、待つという選択がない (era.ts)
+      ...(p.age >= 16 && !isSocialist(p) ? [{
         label: L('もっといい仕事を待つ', 'Wait for better'), hint: L('もう1年探す', 'Search one more year'),
         apply: (q: Person) => { q.unemployed = 1; q.working = true; log(q, L('仕事を探し続けた。', 'Kept looking for work.'), 'work'); },
       }] : []),
@@ -133,7 +135,14 @@ export function work(p: Person): void {
   // 不況・危機の年は職を失いやすい (market.ts。長い目で見た平均は1倍)
   // 失業率の高い国ほど、仕事を失いやすく、次が見つかるまで長い (unempK)
   const k = unempK(c);
-  if (p.age < 60 && !p.business && r() < (p.formal ? 0.025 : 0.05) * (p.focus === 'work' ? 0.6 : 1) * layoffK(p) * k) {
+  // 社会主義の国では失業はまれで、職場が人を減らしても別の職場に割り当てられる (ソ連憲法は労働を権利と義務とし、公式には失業が無かった。era.ts)
+  const soc = isSocialist(p);
+  if (p.age < 60 && !p.business && r() < (p.formal ? 0.025 : 0.05) * (p.focus === 'work' ? 0.6 : 1) * layoffK(p) * k * (soc ? 0.3 : 1)) {
+    if (soc) {
+      p.jobYears = 0;
+      log(p, L('職場が人を減らすことになり、国の斡旋で別の職場に割り当てられた。', 'The workplace was cutting staff, and the state assigned a job at another enterprise.'), 'work');
+      return;
+    }
     log(p, r() < 0.5 ? L('会社が人を減らし、仕事を失った。', 'Lost the job in a round of layoffs.') : L('仕事がなくなった。', 'The work dried up.'), 'hard');
     bump(p, { happy: -8 });
     // 次の仕事までの長さ: 平均は世界の平均 (失業率5%) の国で約1年3か月、国の失業率で伸び縮みする (指数分布)
