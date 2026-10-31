@@ -8,7 +8,8 @@ import { createPerson, homeWord } from './engine/life';
 import { genderOf, genderWord, type Gender, type Person } from './engine/person';
 import { makeRng, pickWeighted, randomSeed } from './engine/rng';
 import { drawCard, shareCard } from './ui/cards';
-import { deathCard, deathRecord, paintLife, pastLives } from './ui/death';
+import { lifeCard } from './ui/sharecards';
+import { deathRecord, paintLife, pastLives } from './ui/death';
 import { $, esc, load, pct, save } from './ui/dom';
 import { clearSaved, hasSaved, resumeGame, sameSecondOthers, startWithOthers } from './ui/game';
 import { aiPanel, bindAiPanel, handleAiClick } from './ui/aipanel';
@@ -435,7 +436,7 @@ function past(): void {
       $('#pastdetail').scrollIntoView();
     }
     const card = t.closest<HTMLElement>('[data-card]')?.dataset.card;
-    if (card !== undefined) await shareCard(deathCard(lives[Number(card)]), 'life.png');
+    if (card !== undefined) await shareCard(lifeCard(lives[Number(card)]), 'life.png');
     if (t.closest('[data-go=home]')) home();
   };
 }

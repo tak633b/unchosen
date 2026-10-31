@@ -580,7 +580,11 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 .record, .panel { min-width: 0; overflow-wrap: anywhere; }
 .survwrap { max-width: 520px; }
 
-/* 人生を共有する欄 (src/ui/share.ts) */
+/* 人生を共有する欄 (src/ui/share.ts, sharecards.ts) */
+.cardkinds { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0 12px; }
+.cardkinds button { font-size: 13px; padding: 5px 12px; }
+.cardkinds .ratio { margin-left: auto; display: flex; gap: 4px; }
+.cardprev canvas { display: block; width: 100%; max-width: 320px; height: auto; border-radius: 6px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35); }
 .sharetext { white-space: pre-wrap; word-break: break-word; font: inherit; font-size: 13px; color: var(--sub); background: var(--bg2); border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
 
 /* ☆ 覚えておきたい瞬間 (ui/stars.ts) */

@@ -39,6 +39,7 @@ import { playReel, reelOf } from './reel';
 import { musicNow, musicScene } from './music';
 import { textureOf, type Texture } from '../engine/texture';
 import { mountTexture, texLine, textureHtml } from './texture';
+import { pickCard, type CardKind } from './sharecards';
 
 export interface PastLife {
   seed: number; basis: BirthBasis; name: string; given: string; sex: Person['sex']; gender?: 'X';
@@ -63,6 +64,7 @@ export interface PastLife {
   lived?: string[];            // 暮らした国の順 (地図用)。古い記録には無い
   look?: Lookback;             // 振り返って: 残した・守った・失った (lookback.ts)
   tex?: Texture; texLine?: string; // この人生の手ざわりと、その一、二文 (ui/texture.ts)。18歳より前に終わった人生と古い記録には無い
+  card?: CardKind;             // シェアするカードの形 (ui/sharecards.ts)。無ければ開くたびに pickCard で選ぶ
 }
 
 export type CircleTie = Pick<Tie, 'id' | 'name' | 'role' | 'sex' | 'age' | 'alive' | 'bond' | 'diedAt' | 'since' | 'until' | 'pet'>;
@@ -106,7 +108,7 @@ function factsOf(p: Person): [string, string][] {
 const texOf = (p: Person) => { const t = textureOf(p); return t ? { tex: t, texLine: texLine(p, t) } : {}; };
 
 export function toPast(p: Person, others: Person[], basis: BirthBasis, album: Moment[]): PastLife {
-  return {
+  const life: PastLife = {
     seed: p.seed, basis, name: p.name, given: p.given, sex: p.sex, ...(p.gender ? { gender: p.gender } : {}), birthCountry: p.birthCountry, country: p.country,
     birthYear: p.birthYear, birthMonth: p.birthMonth, ...(p.birthSide ? { birthSide: p.birthSide } : {}), age: p.age, cause: causeLabel(p.cause), story: lifeStory(p), log: p.log, kinds: p.kinds, happyByAge: p.happyByAge,
     questions: p.questions, facts: factsOf(p),
@@ -124,6 +126,8 @@ export function toPast(p: Person, others: Person[], basis: BirthBasis, album: Mo
     lived: p.countriesLived, look: lookbackOf(p),
     ...texOf(p),
   };
+  life.card = pickCard(life);
+  return life;
 }
 
 // slot: 記録のすぐ下に置くもの (亡くなった直後なら「一言」と保存のボタン)。
@@ -319,7 +323,7 @@ export function showDeath(p: Person, others: Person[], basis: BirthBasis, onExit
       <div class="choices">
         <button class="primary" data-d="done">${L('見送る', 'Say goodbye')}</button>
       </div>
-    </section>${shareSection()}`)}</main>`;
+    </section>${shareSection(life)}`)}</main>`;
   window.scrollTo(0, 0);
   // ほかのプレイヤーがこの国で生きた人生の平均 (少ないうちは出さない)
   void countryAverage(p.birthCountry).then((t) => {
