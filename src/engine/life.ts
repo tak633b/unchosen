@@ -19,6 +19,7 @@ import { lifePayout } from './events/insurance';
 import { births, childMarriage, love } from './events/love';
 import { bpK, careQuality, drift, habits, hiv, illness, smokeStart } from './events/health';
 import { migration } from './events/migration';
+import { languages } from './langs';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
 import { choices } from './events/choices';
@@ -272,6 +273,7 @@ export function advanceYear(p: Person): void {
   hiv(p);
   illness(p);
   if (!p.anchor?.hold(p, 'move')) migration(p);
+  languages(p);
   finances(p);
   household(p);
   if (!p.anchor?.hold(p, 'birth')) adoption(p);

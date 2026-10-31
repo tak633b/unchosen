@@ -178,6 +178,7 @@ export interface Person {
   illness?: Illness;
   migratedTo?: string;
   countriesLived: string[];
+  langs?: Record<string, 0 | 1 | 2 | 3>; // 話せる言葉と段階 (0 初級・1 日常会話・2 仕事で使える・3 母語並み。langs.ts)。古いセーブには無い
   stats: Stats;
   focus: Focus;
   decisions: number;

@@ -6,6 +6,7 @@ import { countryOf, yearOf, type EduLevel, type Person } from './person';
 import { techShare, type Tech } from './tech';
 import { clamp, normal, type Rng } from './rng';
 import { talentEdge } from './talent';
+import { hereLevel } from './langs';
 
 export type JobKind = 'office' | 'manual' | 'farm';
 
@@ -133,6 +134,8 @@ const fitsSex = (j: Job, p: Person, rng: Rng) =>
 
 // 学歴に一番合う仕事から順に、3つまで選ぶ
 export function pickOffers(p: Person, c: Country, edu: EduLevel, rng: Rng, n = 3): Offer[] {
-  const pool = eligibleJobs(p, edu).filter((j) => fitsSex(j, p, rng) && (!j.rare || rng() < j.rare)).sort((a, b) => b.edu - a.edu + (rng() - 0.5) * 2.5);
+  // 外国で、その国の言葉がまだ仕事で使えない (2未満) うちは、学位の要る仕事の誘いは4回に1回しか来ない (langs.ts。実測で決めた)
+  const tongueTied = p.country !== p.birthCountry && hereLevel(p) < 2;
+  const pool = eligibleJobs(p, edu).filter((j) => fitsSex(j, p, rng) && (!j.rare || rng() < j.rare) && (!tongueTied || j.edu < 4 || rng() < 0.25)).sort((a, b) => b.edu - a.edu + (rng() - 0.5) * 2.5);
   return pool.slice(0, n).map((j) => offerFor(p, c, j, rng)).sort((a, b) => b.pay - a.pay);
 }
