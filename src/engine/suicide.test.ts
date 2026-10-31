@@ -84,6 +84,20 @@ describe('自死', () => {
     }
   });
 
+  it('助けを求めた・打ち明けた・立ち直った年とその翌年には自死で終わらず、つらい行のすぐ次に死の行が来ない', () => {
+    // 実測 (1990年生まれ 3000人生、国はくじ): 自死 22件 → 20件 (-9%、±20%のうち)。防いだ2件のほかは同じ人が同じ年に亡くなった
+    const died = kor.ps.filter((p) => isSuicide(p.cause));
+    expect(died.length).toBeGreaterThan(0);
+    for (const p of died) {
+      expect(p.age - (p.recent.heldOn ?? -99)).toBeGreaterThan(1);
+      const i = p.log.findIndex((e) => e.kind === 'death');
+      const prev = p.log[i - 1];
+      if (prev && p.age - prev.age <= 1) expect(['hard', 'loss', 'ill']).not.toContain(prev.kind); // 間に静かな一行が入る (life.ts の settle)
+    }
+    // 打ち明けた・頼った・抜けた人がいる (印が付く経路が生きている)
+    expect(kor.ps.filter((p) => p.recent.heldOn !== undefined).length).toBeGreaterThan(10);
+  });
+
   it('前科は決まった年に消える', () => {
     for (const p of kor.ps) if (p.record) expect(p.age).toBeLessThan(p.record.until);
   });

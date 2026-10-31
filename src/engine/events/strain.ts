@@ -31,6 +31,7 @@ export function strain(p: Person): void {
   if (s) {
     if (p.age < s.until) return;
     p.strain = undefined;
+    p.recent.heldOn = p.age; // 立ち直った年とその翌年は自死で終わらない (suicide.ts の shielded)
     log(p, pick(p.rng, RECOVER)(), 'family');
     bump(p, { happy: 6 });
     return;
@@ -53,6 +54,7 @@ export function strain(p: Person): void {
         label: f ? L(`${f.name}に打ち明ける`, `Tell ${f.name}`) : L('家族に打ち明ける', 'Tell family'), hint: L('うまく言えなくてもいい', 'It does not have to come out right'),
         apply: (q) => {
           setK(q, K.talk);
+          q.recent.heldOn = q.age; // 打ち明けた年
           const text = L('思い切って話した。黙って聞いてもらえただけで、少し息がしやすくなった。', 'Said it out loud at last. Just being listened to made it a little easier to breathe.');
           log(q, text, 'family', false, undefined, f ? [f.id!] : undefined);
           if (f) remember(q, f as Relative, text, 6);
@@ -63,6 +65,7 @@ export function strain(p: Person): void {
         label: L('相談窓口や医者を頼る', 'See a counselor or doctor'), hint: L('少しお金と勇気がいる', 'Takes a little money and nerve'),
         apply: (q) => {
           setK(q, K.help);
+          q.recent.heldOn = q.age; // 助けを求めた年
           // 助けを受けると早く抜けやすい: 1年のうちに抜けるのが7割ほどに
           if (q.strain && q.rng() < 0.4) q.strain = { ...q.strain, until: q.age + 1 };
           q.wealth -= scaleOf(q) * 0.02;
