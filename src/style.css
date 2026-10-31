@@ -643,6 +643,22 @@ button.rcenter:hover canvas, button.rcenter:focus-visible canvas { box-shadow: 0
 .pacerow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
 .pacerow .seg button { padding: 3px 12px; font-size: 13px; }
 
+/* ⋯ メニュー (ui/game.ts) */
+.menu { position: relative; }
+.menu > summary { list-style: none; cursor: pointer; padding: 3px 11px; font-size: 13px; line-height: 1.5; color: var(--text); background: var(--surface2); border: 1px solid var(--line); border-radius: 999px; }
+.menu > summary::-webkit-details-marker { display: none; }
+.menu > summary:hover, .menu[open] > summary { border-color: var(--accent); }
+.menu > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.menubox { position: absolute; right: 0; top: calc(100% + 6px); z-index: 6; width: min(300px, calc(100vw - 32px)); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; box-shadow: 0 12px 40px rgb(0 0 0 / 0.4); text-align: left; }
+.menubox h4 { font-size: 12px; margin: 8px 0 2px; color: var(--sub); letter-spacing: 0.1em; }
+.menubox ul { list-style: none; margin: 0; padding: 0; }
+.menubox li { margin: 2px 0; }
+.menubox .gentle { margin: 4px 0; font-size: 14px; }
+.menubox button.link { font-size: 14px; }
+/* 狭い幅では ⋯ が折り返した行の途中に来るので、上の帯 (sticky) を基準に帯の下へ全幅で出す */
+@media (max-width: 560px) { .menu { position: static; } .menubox { left: 16px; right: 16px; width: auto; } }
+.modal.wide { width: min(900px, 100%); }
+
 /* 心がつらいとき・怖い場面を除く・休む (ui/care.ts) */
 .modal-back.care { z-index: 40; } /* 振り返りの幕 (.crisis 30) より上 */
 .gentle { display: block; margin: 10px 0; cursor: pointer; }

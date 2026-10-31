@@ -15,7 +15,7 @@ import { isAcute } from '../engine/crisis';
 import { aiOthersLines, aiStatus, onYear, resetAi } from '../ai/director';
 import { aiOn } from '../ai/settings';
 import { isEn, L, lang, setLang, type Lang } from '../i18n';
-import { drawPortrait, drawScene, sceneOf, type Scene } from './pixel';
+import { drawPortrait, drawScene, paintScenes, sceneOf, type Scene } from './pixel';
 import { comparePanel, countryPanel, familyPanel, focusPanel, idCard, logPanel, othersPanel, scenePanel, statsPanel, yearPanel } from './panels';
 import { mountRing, paintFaces, personCard } from './ring';
 import { paintOtherFaces } from './portrait';
@@ -23,13 +23,14 @@ import { briefOf, otherHtml } from './otherview';
 import { continueAs, generation, othersFor } from '../engine/lineage';
 import { pickQuestion } from './pause';
 import { lifeMap } from './lifemap';
-import { addMoment, momentOf, type Moment } from './album';
+import { addMoment, albumHtml, momentOf, type Moment } from './album';
 import { lifeBeat, lifeEnd, lifeNow, lifeStart, newLifeId, presenceLine, type Beat } from './presence';
 import { yearMs } from './pace';
 import { STAR_MAX, toggleStar } from './stars';
 import { themeBtn, toggleTheme } from './theme';
-import { careLink, onCarePause } from './care';
-import { wantTexture } from './texture';
+import { careLink, gentleSwitch, onCarePause, overlay } from './care';
+import { TEX_UNLOCK, textureSettings, wantTexture } from './texture';
+import { deathRecord, paintLife, pastLives } from './death';
 
 let YEAR_MS = yearMs();  // 1倍速で1年にかける時間 (pace.ts。既定は26秒、平均寿命まで約30分)
 const DEFER_MAX = 2;     // 決定を「いったん下ろす」のは2回まで
@@ -227,7 +228,7 @@ function shell(): string {
       <button data-act="bg" id="bgbtn" title="${L('ONなら別のタブに移っても進み続ける (決めることが来たら止まる)', 'When on, keeps going in a background tab (stops at decisions)')}">${L('裏でも進める', 'Run in background')}</button>
       <button data-act="music" id="musicbtn" aria-label="${L('音楽', 'Music')}">♪</button><input type="range" id="musicvol" min="0" max="100" step="5" value="${musicVolume()}" aria-label="${L('音量', 'Volume')}">
       <button data-act="note" id="notebtn" title="${L('いま思ったことを一行、この人生の記録に書き留める', 'Write one line into this life\'s record')}">✎</button>
-      ${careLink()}
+      ${menuHtml()}
       ${themeBtn()}
       <button data-act="exit">${L('中断', 'Quit')}</button>
     </div>
@@ -253,6 +254,49 @@ function shell(): string {
   <div class="modal-back" id="modal" hidden><div class="modal" id="modalbody"></div></div>`;
 }
 
+// ⋯ メニュー: 見るもの・設定・助け。外を押すか Esc で閉じる (下の document の listener)
+function menuHtml(): string {
+  const item = (act: string, label: string) => `<li><button class="link" data-act="${act}">${label}</button></li>`;
+  return `<details class="menu" id="menu"><summary aria-label="${L('メニュー', 'Menu')}" title="${L('メニュー', 'Menu')}">⋯</summary><div class="menubox">
+    <h4>${L('見るもの', 'Look back')}</h4><ul>${item('past', L('前世の記録', 'Past lives'))}${item('album', L('思い出のアルバム', 'Album'))}</ul>
+    <h4>${L('設定', 'Settings')}</h4><ul><li>${gentleSwitch()}</li><li><button class="link" data-act="auto" id="menuauto"></button></li>${pastLives().length >= TEX_UNLOCK ? item('texture', L('手ざわりを決める', 'Choose a texture')) : ''}</ul>
+    <h4>${L('助け', 'Help')}</h4><ul><li>${careLink()}</li></ul>
+  </div></details>`;
+}
+const closeMenu = (): void => { const m = document.querySelector<HTMLDetailsElement>('#menu[open]'); if (m) m.open = false; };
+document.addEventListener('click', (e) => { const t = e.target as HTMLElement; if (!t.closest?.('#menu') || t.closest('[data-care]')) closeMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.querySelector('#menu[open]')) { closeMenu(); document.querySelector<HTMLElement>('#menu summary')?.focus(); } });
+
+// 前世の記録を、人生を止めたまま重ねて見る (トップの past と同じ記録。閉じればこの人生に戻る)
+function showPast(): void {
+  const lives = pastLives();
+  const back = overlay(`<h2>${L('前世の記録', 'Past lives')}</h2>
+    <ul class="pastlist">${lives.map((l, i) => `<li><button data-i="${i}"><b>${esc(l.name)}</b>　${esc(byCode(l.birthCountry).name)}${L('・', ', ')}${L(`${l.age}歳`, `age ${l.age}`)}</button></li>`).join('') || `<li>${L('まだない。', 'None yet.')}</li>`}</ul>
+    <div id="pastdetail"></div>
+    <div class="choices"><button data-care-close>${L('閉じる', 'Close')}</button></div>`, 'wide');
+  back.addEventListener('click', (e) => {
+    const i = (e.target as HTMLElement).closest<HTMLElement>('[data-i]')?.dataset.i;
+    if (i === undefined) return;
+    const d = back.querySelector<HTMLElement>('#pastdetail')!;
+    d.innerHTML = deathRecord(lives[Number(i)]);
+    paintLife(d, lives[Number(i)]);
+    d.scrollIntoView();
+  });
+}
+
+function showAlbum(): void {
+  if (!S) return;
+  const back = overlay(`<h2>${L('思い出のアルバム', 'Album')}</h2>${albumHtml(S.album) || `<p class="note">${L('まだ一枚もない。大きな出来事の年に、一枚ずつ残っていく。', 'Nothing yet. One picture is kept for each year with a big event.')}</p>`}
+    <div class="choices"><button data-care-close>${L('閉じる', 'Close')}</button></div>`, 'wide');
+  paintScenes(back);
+}
+
+// 手ざわりを決める。戻ったら、この人生のこれからのおまかせにも効かせる
+function showTexture(): void {
+  const back = overlay('');
+  textureSettings(back.querySelector<HTMLElement>('.modal')!, () => { back.remove(); if (S) S.p.tilt = wantTexture(); });
+}
+
 function render(): void {
   if (!S) return;
   const { p } = S;
@@ -263,6 +307,7 @@ function render(): void {
   $('#pausebtn').textContent = S.paused ? L('▶ 再開', '▶ Resume') : L('❚❚ 止める', '❚❚ Pause');
   document.querySelectorAll<HTMLButtonElement>('[data-act=speed]').forEach((b) => b.classList.toggle('on', +b.dataset.v! === S!.speed));
   $('#autobtn').classList.toggle('on', p.auto);
+  $('#menuauto').textContent = L(`自動で決める: ${p.auto ? 'ON' : 'OFF'}`, `Auto decisions: ${p.auto ? 'on' : 'off'}`);
   $('#musicbtn').classList.toggle('on', S.music);
   $('#bgbtn').classList.toggle('on', S.bg);
   $('#bgbtn').setAttribute('aria-pressed', String(S.bg));
@@ -342,6 +387,9 @@ function onClick(e: MouseEvent): void {
     case 'bg': S.bg = !S.bg; save('bg', S.bg); break;
     case 'music': S.music = !S.music; save('music', S.music); setMusic(S.music); break;
     case 'note': showNote(); return;
+    case 'past': closeMenu(); showPast(); return;
+    case 'album': closeMenu(); showAlbum(); return;
+    case 'texture': closeMenu(); showTexture(); return;
     case 'star': if (!toggleStar(S.p, Number(v))) { t.title = L(`印は${STAR_MAX}個まで`, `Up to ${STAR_MAX} stars`); return; } persist(); break;
     case 'focus': S.p.focus = v as Focus; break;
     case 'logmore': S.logOpen = !S.logOpen; break;

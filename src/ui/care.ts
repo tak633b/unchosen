@@ -22,16 +22,16 @@ document.addEventListener('change', (e) => {
 });
 
 // ---- 重ねて出す小さな窓 ----------------------------------------------------
-// 人生の途中で開いたら、時間を止める (game.ts が止め方を渡す)
+// 人生の途中で開いたら、時間を止める (game.ts が止め方を渡す)。game.ts の ⋯ メニュー (前世の記録・アルバム・手ざわり) もこの窓で出す
 let pause = (): void => {};
 export function onCarePause(f: () => void): void { pause = f; }
 
-function overlay(html: string): HTMLElement {
+export function overlay(html: string, cls = ''): HTMLElement {
   document.querySelector('.care')?.remove();
   pause();
   const back = document.createElement('div');
   back.className = 'modal-back care';
-  back.innerHTML = `<div class="modal" role="dialog" aria-modal="true">${html}</div>`;
+  back.innerHTML = `<div class="modal ${cls}" role="dialog" aria-modal="true">${html}</div>`;
   back.addEventListener('click', (e) => {
     const t = e.target as HTMLElement;
     if (t === back || t.closest('[data-care-close]')) back.remove();
