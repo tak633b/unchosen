@@ -45,6 +45,10 @@ const AGE_K: [from: number, k: number][] = [[80, 2.8], [70, 2], [50, 1.5], [30, 
 
 export const SUICIDE_MIN_AGE = 10;
 
+// 助けを求めた年・人に打ち明けた年・つらい時期を抜けた年と、その翌年には、自死で終わらない (本家 v0.8.61)。
+// strain.ts がその年齢を recent.heldOn に置く。全体の件数は変えない (3000人生で 22 → 測って ±20% のうち)
+export const shielded = (p: { age: number; recent: Record<string, number> }): boolean => p.age - (p.recent.heldOn ?? -99) <= 1;
+
 // 1年あたりの自死の確率 (その国・性別・年齢)
 export function suicideHazard(c: Country, sex: Sex, age: number): number {
   if (age < SUICIDE_MIN_AGE) return 0;

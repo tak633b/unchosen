@@ -4,6 +4,7 @@ import type { Person } from './person';
 import { pickWeighted } from './rng';
 import { socialistAt } from './era';
 import { sideOf } from './polity';
+import { ENGLISH_SCHOOLING, langOf } from './langs';
 
 // 学位をとりに外国へ出る学生の行き先の上位 (UNESCO 統計研究所 UIS の受け入れ国別の目安。韓国は教育部 2023)
 const TOP: Record<string, string[]> = {
@@ -53,20 +54,14 @@ const TUITION: Record<string, number> = {
 export const tuitionAbroad = (d: Country, year?: number): number => (year !== undefined && socialistAt(d.code, year) ? 0 : TUITION[d.code] ?? 8000);
 export const isFree = (d: Country, year?: number): boolean => tuitionAbroad(d, year) === 0;
 
-// 教える言葉
-const LANG: Record<string, string> = {
-  USA: 'en', GBR: 'en', AUS: 'en', CAN: 'en', NZL: 'en', IRL: 'en', MYS: 'en', SGP: 'en', NLD: 'en',
-  DEU: 'de', AUT: 'de', CHE: 'de', FRA: 'fr', BEL: 'fr', SEN: 'fr', CIV: 'fr', CMR: 'fr', MAR: 'fr', DZA: 'fr', TUN: 'fr',
-  JPN: 'ja', KOR: 'ko', CHN: 'zh', ESP: 'es', ARG: 'es', MEX: 'es', COL: 'es', PRT: 'pt', BRA: 'pt',
-  RUS: 'ru', KAZ: 'ru', UZB: 'ru', UKR: 'ru', KGZ: 'ru', TUR: 'tr', CZE: 'cs', POL: 'pl', ITA: 'it', SAU: 'ar', ARE: 'ar', EGY: 'ar',
-};
-// 大学まで英語で学ぶことの多い国
-const ENGLISH_SCHOOLING = new Set(['IND', 'NGA', 'KEN', 'GHA', 'PHL', 'PAK', 'BGD', 'MYS', 'SGP', 'ZAF', 'UGA', 'ZMB', 'ZWE', 'TZA']);
+// 教える言葉は、その国でいちばん使われる言葉 (langs.ts)。オランダ・マレーシアの大学は英語の課程が多い
+const TEACH: Record<string, string> = { NLD: 'en', MYS: 'en', BEL: 'fr', UKR: 'ru' };
+const teaches = (code: string) => TEACH[code] ?? langOf(code);
 
 // 行き先の言葉で授業を受けられるか。できなければ言葉を学ぶ1年が足される
 export function speaks(p: Person, d: Country): boolean {
-  const to = LANG[d.code];
-  if (!to || to === LANG[p.birthCountry]) return true;
+  const to = teaches(d.code);
+  if (!to || to === teaches(p.birthCountry) || (p.langs?.[to] ?? 0) >= 2) return true;
   return to === 'en' && (ENGLISH_SCHOOLING.has(p.birthCountry) || p.stats.learn >= 75);
 }
 

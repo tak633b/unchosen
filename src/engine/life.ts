@@ -1,7 +1,7 @@
 // 一つの人生を、1年ずつ進める。
 import { byCode, countryAt, pickBirthCountry, type BirthBasis } from './countries';
 import { causeName, homicideHazard, isSuicide, pickCause } from './causes';
-import { helpline, suicideHazard } from './suicide';
+import { helpline, shielded, suicideHazard } from './suicide';
 import { gentle } from './gentle';
 import { reachOut, strain, strainK } from './events/strain';
 import { justice } from './events/justice';
@@ -19,6 +19,7 @@ import { lifePayout } from './events/insurance';
 import { births, childMarriage, love } from './events/love';
 import { bpK, careQuality, drift, habits, hiv, illness, smokeStart } from './events/health';
 import { migration } from './events/migration';
+import { languages } from './langs';
 import { crime, dilemmas } from './events/social';
 import { milestone, moments } from './events/moments';
 import { choices } from './events/choices';
@@ -211,6 +212,9 @@ export function settle(p: Person): void {
   lifePayout(p, countryOf(p));
   // 自死は死因を書かず、理由も書かない。「なぜ」の欄には相談先を置く (suicide.ts)
   if (isSuicide(p.cause)) {
+    // 直前の失業・別れ・病が理由のように読めないよう、つらい行のすぐ次には置かない (間に静かな一行)
+    const last = p.log[p.log.length - 1];
+    if (last && p.age - last.age <= 1 && ['hard', 'loss', 'ill'].includes(last.kind)) log(p, L('その年も、季節はいつものようにめぐった。', 'That year too, the seasons turned as they always had.'), 'family');
     log(p, L(`${p.age}歳で亡くなった。`, `Died at ${p.age}.`), 'death', true);
     because(p, helpline());
     return;
@@ -250,7 +254,7 @@ export function advanceYear(p: Person): void {
     else if (p.job === DEEP_SEA && p.working && !p.retired && p.rng() < DEEP_SEA_RISK / q) cause = causeName('海の事故');
     else if (p.illness && p.rng() < 0.85) cause = p.illness.name;
     else if (p.bp === 'ignored' && p.rng() < 0.3) cause = causeName(p.rng() < 0.6 ? '脳卒中' : '心臓病');
-    else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker, strainK(p));
+    else cause = pickCause(p.rng, c, p.sex, p.age, Math.max(q, homicideHazard(c, p.sex, p.age)), !!p.smoker, shielded(p) ? 0 : strainK(p)); // 助けを求めた年の前後は自死にしない (suicide.ts)
     die(p, cause);
     return;
   }
@@ -272,6 +276,7 @@ export function advanceYear(p: Person): void {
   hiv(p);
   illness(p);
   if (!p.anchor?.hold(p, 'move')) migration(p);
+  languages(p);
   finances(p);
   household(p);
   if (!p.anchor?.hold(p, 'birth')) adoption(p);

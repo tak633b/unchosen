@@ -10,6 +10,7 @@ import { insuranceOffer, premium } from './insurance';
 import { rentalEquity, rentalOffer, rentalYear } from './rental';
 import { kidSupport } from './grown';
 import { isSocialist, socialistHousing } from '../era';
+import { langClassOffer } from '../langs';
 
 const DEBT_RATE = 0.03; // 借金の多くは家族・親族や奨学金からなので低めに
 
@@ -121,6 +122,7 @@ export function finances(p: Person): void {
   carOffer(p, income);
   if (!socialistHousing(p)) rentalOffer(p, c, income);
   insuranceOffer(p, c, income);
+  langClassOffer(p, c); // 外国で暮らす人に、この国の言葉の授業 (langs.ts)
 }
 
 // 財産が大きく動いた年は、何で動いたかを一行で残す (本家の「今年、財産が31万円減りました。住宅価格の変動 −20万円 · …」)

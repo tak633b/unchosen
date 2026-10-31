@@ -8,6 +8,7 @@ import { formatMoney, monthlyYen, perDay, yen } from '../engine/economy';
 import { currentIncome } from '../engine/events/common';
 import { netWorth } from '../engine/events/money';
 import { jobName, majorName } from '../engine/jobs';
+import { langLine } from '../engine/langs';
 import { homeWord, riskParts } from '../engine/life';
 import { generation } from '../engine/lineage';
 import { EDU_LABEL, eduLevel, gradeOf, preschool, genderOf, genderWord, schoolYears, yearOf, type Person, type YearKind } from '../engine/person';
@@ -97,6 +98,7 @@ function experience(p: Person): string {
   if (p.military !== 'none') list.push([L('兵役', 'Military'), p.military === 'serving' ? L('服務中', 'Serving') : p.military === 'done' ? L('終えた', 'Completed') : L('猶予', 'Deferred')]);
   list.push([L('仕事', 'Work'), p.job ? `${jobName(p.job)}${L(`・${p.jobYears}年`, `, ${years(p.jobYears)}`)}${L('・', ', ')}${p.selfEmployed ? L('自分で営む', 'self-employed') : p.formal ? L('正規', 'formal') : L('非正規', 'informal')}${p.retired ? L('・引退', ', retired') : p.unemployed ? L('・求職中', ', looking for work') : ''}` : L('まだない', 'None yet')]);
   list.push([L('暮らした国', 'Countries'), p.countriesLived.map((c) => byCode(c).name).join(' → ')]);
+  list.push([L('言葉', 'Languages'), langLine(p)]);
   const firstWork = p.log.find((e) => e.kind === 'work' && !e.tpl);
   const wed = p.log.find((e) => e.big && (e.kind === 'love' || e.kind === 'hard') && e.who?.length);
   const firsts = [

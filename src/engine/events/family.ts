@@ -90,6 +90,8 @@ export function family(p: Person): void {
       because(p, deathWhy(countryOf(p), k.sex, k.age));
       if (isSuicide(kCause)) afterSuicideLoss(p);
       mourn(p, k, -25, -5);
+      // 幼い子を亡くした悲しみは、一行残す (和らぐまでの数年は health.ts の grief)
+      if (k.age < 10) log(p, L('小さな靴を、しまえないまま季節が過ぎた。', 'The seasons passed, and the small shoes stayed where they were.'), 'loss', false, undefined, [k.id!]);
       orphans(p, k);
     }
     if (k.age === 18 && p.age < 80 && k.alive && !k.fixed) shared(p, [k], L(`${k.name}が家を出て、自分の暮らしを始めた。`, `${k.name} left home to start ${k.sex === 'F' ? 'her' : 'his'} own life.`), 'family', -2, false, undefined, 'left_home');

@@ -253,7 +253,11 @@ export function births(p: Person): void {
   // 次の子までは2年以上あく。合計特殊出生率に合うよう、残りの年の確率を上げてある (実測で調整)
   if (p.children.some((k) => k.alive && k.age < 2)) return;
   // 少子の国は「持つ」を選んでも授からない年がある (tryForChild) ので、その分だけ考える年を増やして出生率に合わせる (実測: 子の数が約12%減っていた)
-  const pYear = Math.min(0.6, c.tfr < 3 ? (c.tfr / 11) * 1.14 : c.tfr / 19);
+  // 早く結婚した人は子を持てる年が長いので、1年あたりの確率を下げて合計を国の出生率に合わせる (インドは21歳で結婚し、2.34人になっていた)。
+  // 多産の国は、出生率が高いほど2年の間隔とこの確率の重なりで多く出ていた (ニジェール +0.6人) ので、出生率で少し下げる。
+  // 実測 (2000年生まれの女性 各200人、国連 WPP の暦年の出生率と比べて): 調整前 インド +0.46・ニジェール +0.60 → 調整後は realism.test.ts
+  const wedAt = p.sex === 'F' ? p.spouse.since ?? p.age : p.spouse.age - (p.age - (p.spouse.since ?? p.age));
+  const pYear = Math.min(0.6, c.tfr < 3 ? (c.tfr / 11) * 1.14 * Math.min(1, 22 / Math.max(1, 45 - wedAt)) : (c.tfr / 19) * (1 - 0.06 * (c.tfr - 3)));
   if (r() >= pYear) return;
   if (c.tfr < 3) {
     decide(p, {
