@@ -11,6 +11,9 @@ import { causeName } from '../engine/causes';
 import { worldIncomeTopAt } from './worldrank';
 import { lifeMapCells } from './lifemap';
 import { download, drawShareCard, toPng } from './cards';
+import { bornIn } from '../engine/polity';
+import { lifeTexName } from './texture';
+import { ageSpread, cardKinds, cardLabel, lifeCard, pickCard, setCard, SPREAD_BIG, type CardKind } from './sharecards';
 import { isEn, L, lang } from '../i18n';
 
 export const TAGS = L('#Unchosen #生まれは選べない', '#Unchosen');
@@ -43,17 +46,25 @@ const deathLine = (l: PastLife) => {
   return l.cause ? L(`${ja}、${causeName(l.cause)}で亡くなった。`, `${en}. Cause: ${causeName(l.cause)}.`) : L(`${l.age === 0 ? ja : `${ja}で`}亡くなった。`, `${en}.`);
 };
 
-// 用意した文の本体 (感想・問い・リンクを除いた4〜5行)。リンクの先のページにも同じ行を出す
+// 用意した文の本体 (感想・問い・リンクを除いた4〜6行)。リンクの先のページにも同じ行を出す。
+// いちばん目を引くことから: 同じ1秒の寿命が大きく分かれていればその一文が先頭。手ざわりの名前と、1950年より前なら生きた時代も足す
 export function shareLines(l: PastLife): string[] {
   const home = l.me ? homeWord(l.me.familyP) : '';
   const span = `${l.birthYear}–${l.birthYear + l.age}`;
   const happy = happiestAge(l.happyByAge);
   const stat = poorerShare(l);
   const art = /^[aeiou]/.test(home) ? 'an' : 'a';
+  const [lo, hi] = ageSpread(l);
+  const n = l.others.length + 1;
+  const tex = lifeTexName(l.tex);
+  const polity = bornIn(l.birthCountry, l.birthYear, l.birthSide);
   return [
+    ...(hi - lo >= SPREAD_BIG ? [L(`同じ1秒に生まれた${n}人は、${lo}歳から${hi}歳まで、生きた長さが大きく分かれた。`, `The ${n} born in the same second lived from ${lo} to ${hi} years. A wide gap.`)] : []),
     L(`${l.name}(${span})。${place(l)}の${home || '家'}に生まれた。`, `${l.name} (${span}). Born into ${home ? `${art} ${home}` : 'a family'} in ${place(l)}.`),
+    ...(l.birthYear < 1950 ? [L(`${polity}に生まれ、${l.birthYear}年から${l.birthYear + l.age}年の世界を生きた。`, `Born in ${polity}, and lived through the world of ${l.birthYear}–${l.birthYear + l.age}.`)] : []),
     ...(l.job ? [L(`${jobName(l.job.replace('(リーダー)', ''))}として働いた。`, `Work: ${jobName(l.job.replace('(リーダー)', ''))}.`)] : []),
     ...(happy !== undefined && l.age >= 3 ? [L(`いちばん幸せだったのは${happy}歳のころ。`, `Happiest around age ${happy}.`)] : []),
+    ...(tex ? [L(`この人生の手ざわりは「${tex}」。`, `The texture of this life: ${tex}.`)] : []),
     deathLine(l),
     ...(stat !== undefined ? [L(`生まれた年、世界の${stat}%はこの家より貧しかった。`, `In the birth year, ${stat}% of the world was poorer than this family.`)] : []),
   ];
@@ -98,9 +109,11 @@ export function shareCardOf(l: PastLife, host = location.host): HTMLCanvasElemen
   });
 }
 
-// 死亡記録に置く欄
-export const shareSection = (): string => `<section class="panel sharebox">
+// 死亡記録に置く欄。カードの形のボタン列と、カードそのもの (mountShare が描く) を上に置く
+export const shareSection = (l: PastLife): string => `<section class="panel sharebox">
   <h3>${L('この人生を共有する', 'Share this life')}</h3>
+  <div class="cardkinds" role="group" aria-label="${L('カードの形', 'Card style')}">${cardKinds(l).map((k) => `<button data-ck="${k}">${cardLabel(k)}</button>`).join('')}<span class="ratio"><button data-ratio="45">4:5</button><button data-ratio="916">9:16</button></span></div>
+  <div class="cardprev"></div>
   <textarea id="feel" maxlength="200" rows="2" placeholder="${L('この人生を生きてみた、ひとことの感想(任意)', 'A few words on living this life (optional)')}"></textarea>
   <pre class="sharetext" aria-live="polite"></pre>
   <div class="choices">
@@ -133,6 +146,27 @@ export function mountShare(root: HTMLElement, l: PastLife, ogCard: () => HTMLCan
   render();
   feel.addEventListener('input', render);
 
+  // カードの形 (この人生に残す) と、4:5 か 9:16 か
+  let kind: CardKind = l.card ?? pickCard(l);
+  let story = false;
+  const prev = box.querySelector<HTMLElement>('.cardprev')!;
+  const showCard = () => {
+    card = null;
+    box.querySelectorAll<HTMLElement>('[data-ck]').forEach((b) => b.classList.toggle('on', b.dataset.ck === kind));
+    box.querySelectorAll<HTMLElement>('[data-ratio]').forEach((b) => b.classList.toggle('on', (b.dataset.ratio === '916') === story));
+    const cv = lifeCard(l, kind, story);
+    cv.setAttribute('role', 'img');
+    cv.setAttribute('aria-label', cardLabel(kind));
+    prev.replaceChildren(cv);
+  };
+  showCard();
+  box.querySelector('.cardkinds')!.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-ck],[data-ratio]');
+    if (!b) return;
+    if (b.dataset.ck) { kind = b.dataset.ck as CardKind; setCard(l, kind); } else story = b.dataset.ratio === '916';
+    showCard();
+  });
+
   // リンクを作る (感想が変わったら作り直す)。だめなら null
   const permalink = async (): Promise<string | null> => {
     const feelings = feel.value.trim();
@@ -156,8 +190,8 @@ export function mountShare(root: HTMLElement, l: PastLife, ogCard: () => HTMLCan
     }
   };
   const text = async () => shareText(lines, feel.value.trim(), (await permalink()) ?? fallbackUrl);
-  const image = async () => (card ??= await toPng(shareCardOf(l)));
-  const filename = `unchosen-${l.birthCountry}-${l.birthYear}.png`;
+  const image = async () => (card ??= await toPng(lifeCard(l, kind, story)));
+  const filename = () => `unchosen-${l.birthCountry}-${l.birthYear}-${kind}${story ? '-story' : ''}.png`;
 
   const copy = async (t: string) => {
     try { await navigator.clipboard.writeText(t); return true; } catch {
@@ -174,16 +208,16 @@ export function mountShare(root: HTMLElement, l: PastLife, ogCard: () => HTMLCan
   box.addEventListener('click', async (e) => {
     const d = (e.target as HTMLElement).closest<HTMLElement>('[data-sh]')?.dataset.sh;
     if (!d) return;
-    if (d === 'save') { const b = await image(); if (b) download(b, filename); return; }
+    if (d === 'save') { const b = await image(); if (b) download(b, filename()); return; }
     if (d === 'copy') { note.textContent = (await copy(await text())) ? L('文とリンクをコピーした。', 'Copied the text and link.') : L('コピーできなかった。上の文を選んでコピーしてください。', 'Could not copy. Please select the text above.'); return; }
     const [b, t] = await Promise.all([image(), text()]);
     if (!b) return;
-    const files = [new File([b], filename, { type: 'image/png' })];
+    const files = [new File([b], filename(), { type: 'image/png' })];
     try {
       if (navigator.canShare?.({ files, text: t })) await navigator.share({ files, text: t });
       else if (navigator.share) await navigator.share({ text: t });
       else {
-        download(b, filename);
+        download(b, filename());
         note.textContent = (await copy(t)) ? L('画像を保存し、文とリンクをコピーした。', 'Saved the image and copied the text and link.') : L('画像を保存した。', 'Saved the image.');
       }
     } catch (err) {
