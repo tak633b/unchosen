@@ -30,7 +30,7 @@ describe('自動で生きた人生の集計が、生まれた年の統計と合�
       expect(Math.abs(sum / n - (f.e0 + m.e0) / 2)).toBeLessThan(3);
       expect(Math.abs(u5 / n - (1 - (f.l[5] + m.l[5]) / 2))).toBeLessThan(0.03);
       expect(Math.abs(cm / women - countryAt(code, year + 15).childMarriage)).toBeLessThan(0.08);
-    }, 60_000);
+    }, 180_000); // 手元では 1件 8〜18秒。GitHub Actions の実行機は約3.7倍遅く、JPN 2050 が 66秒で 60秒の上限を越えた (2026-10-31 run 41197848045)
   }
 });
 
