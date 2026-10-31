@@ -204,6 +204,17 @@ export function treat(p: Person, name: string, years: number, severity: number):
   });
 }
 
+// 悲しみは数年かけて和らぐ (本家 v0.8.69): 配偶者・子を亡くしてからの年数で指数で減衰する分 (年ごとに0.6倍、6年まで)。
+// 死別のあと、多くの人の抑うつ症状は1〜2年で前の水準に近づき、長く続くのは1〜2割 (Bonanno et al. 2002 の「回復」型。倍率は推計)
+function grief(p: Person): number {
+  let g = 0;
+  for (const r of [p.spouse, ...p.children, ...(p.ties ?? []).filter((t) => t.role === 'spouse')]) {
+    if (!r || r.alive || r.diedAt === undefined || p.age - r.diedAt > 6) continue;
+    g += (r === p.spouse || 'role' in r ? 18 : 22) * 0.6 ** (p.age - r.diedAt);
+  }
+  return g;
+}
+
 // 目盛りの年ごとの流れ。若いうちは 80 前後へ戻り、45歳からは年々下がる
 export function drift(p: Person): void {
   const c = countryOf(p);
@@ -214,7 +225,9 @@ export function drift(p: Person): void {
   bump(p, { bond: (55 - p.stats.bond) * 0.08 + (f === 'family' ? 3 : f === 'work' ? -1 : 0) });
   const moneyScore = (p.working || p.retired ? p.incomeP : p.familyP) * 100;
   const target = c.happiness * 10 + (moneyScore - 50) * 0.2 + (p.stats.bond - 50) * 0.2 + (p.stats.health - 60) * 0.15;
-  bump(p, { happy: (target - p.stats.happy) * 0.15 + (f === 'rest' ? 2 : 0) });
+  // 悲しみのあいだは目標が下がり、戻る速さは上がる (悲しみの減衰に追いつくように)。亡くした年は mourn の分だけ大きく下がる
+  const g = grief(p);
+  bump(p, { happy: (target - g - p.stats.happy) * (g > 0 ? 0.35 : 0.15) + (f === 'rest' ? 2 : 0) });
   p.stats.money = clamp(moneyScore * (p.unemployed > 0 ? 0.5 : p.retired ? 0.8 : 1), 0, 100);
   p.happyByAge[p.age] = p.stats.happy;
 }

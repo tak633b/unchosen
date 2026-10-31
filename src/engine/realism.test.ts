@@ -164,6 +164,26 @@ describe('子どもの数 (合計特殊出生率)', () => {
   }, 120000);
 });
 
+describe('悲しみは数年かけて和らぐ', () => {
+  it('配偶者を亡くした年に大きく下がり、5年後には落ちた分の6割以上戻る', () => {
+    // 実測 (1960年生まれ、配偶者を亡くして6年以上生きた100人。幸福の平均): 前年 59 → 当年 36 → +1 39 → +2 44 → +3 47 → +4 51 → +5 52。
+    // 前は +5 でも 49 (落ちた分の 54%) で、その先も戻らなかった。今は 71% (health.ts の grief)
+    const sums = [0, 0, 0];
+    let n = 0;
+    for (let i = 0; i < 3000 && n < 100; i++) {
+      const p = createPerson({ seed: 70000 + i, basis: 'births', year: 1960, auto: true });
+      liveTo(p, 120);
+      const d = p.spouse?.diedAt;
+      if (d === undefined || p.age < d + 6) continue;
+      n++;
+      sums[0] += p.happyByAge[d - 1]; sums[1] += p.happyByAge[d]; sums[2] += p.happyByAge[d + 5];
+    }
+    const [before, at, later] = sums.map((s) => s / n);
+    expect(before - at).toBeGreaterThan(15);
+    expect((later - at) / (before - at)).toBeGreaterThan(0.6); // 前は 0.54
+  }, 180000);
+});
+
 describe('失業の長さ (ILO)', () => {
   it('失業率の高い国ほど倍率が大きい', () => {
     expect(unempK(byCode('ZAF'))).toBeGreaterThan(2.5);
